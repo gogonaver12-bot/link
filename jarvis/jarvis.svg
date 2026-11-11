@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e0fbff"/>
+      <stop offset="35%" stop-color="#38d6ff"/>
+      <stop offset="100%" stop-color="#03141f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="#03141f"/>
+  <circle cx="200" cy="200" r="70" fill="url(#g)"/>
+  <g fill="none" stroke="#38d6ff">
+    <circle cx="200" cy="200" r="95" stroke-width="2" opacity=".8"/>
+    <circle cx="200" cy="200" r="120" stroke-width="6" stroke-dasharray="40 14" opacity=".6">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="12s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="200" r="145" stroke-width="1.5" stroke-dasharray="4 8" opacity=".7">
+      <animateTransform attributeName="transform" type="rotate" from="360 200 200" to="0 200 200" dur="20s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="200" r="170" stroke-width="1" opacity=".4"/>
+  </g>
+  <text x="200" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" letter-spacing="6" fill="#03141f">JARVIS</text>
+</svg>
