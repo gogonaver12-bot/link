@@ -142,6 +142,42 @@ const SCENES = {
       <path d="M0 -14 Q60 -20 120 -12 T182 -14" fill="none" stroke="var(--boneS)" stroke-width="12" stroke-linecap="round"/>
       <path d="M0 -14 Q60 -20 120 -12 T182 -14" fill="none" stroke="var(--bone)" stroke-width="9" stroke-linecap="round"/>
       <ellipse cx="122" cy="6" rx="46" ry="22" fill="none" stroke="var(--boneS)" stroke-width="3" opacity=".55"/>`
+  },
+  wrist: {
+    name: '손목 관절', view: '옆에서 본 모습 · 오른쪽이 손바닥 쪽(앞)', J: [190, 200], zero: 90,
+    prox: `${skinPath('M166 0 L216 0 L213 120 Q215 178 205 216 L176 216 Q165 178 167 120 Z')}
+      ${bone(183, 4, 183, 190, 9)}${bone(198, 4, 198, 196, 6)}${knob(190, 204, 11)}${label(224, 90, '아래팔')}${label(224, 70, '(앞 = 굽힘근)', 11)}${label(60, 70, '(뒤 = 폄근)', 11)}`,
+    distal: `${poly([[-12, -17], [60, -20], [112, -9], [116, 9], [60, 19], [-12, 17]])}
+      ${bone(8, 0, 104, 0, 8)}${knob(0, 0, 10)}<path d="M104 -6 L122 -5 M106 0 L124 0 M104 6 L122 5" stroke="var(--boneS)" stroke-width="3" stroke-linecap="round"/>`
+  },
+  neck: {
+    name: '목 (머리 움직임)', view: '옆에서 본 모습 · 오른쪽이 얼굴 방향', J: [200, 250], zero: -90,
+    prox: `${skinPath('M60 280 Q120 244 200 254 Q280 244 340 280 L360 430 L40 430 Z')}
+      ${bone(206, 268, 300, 276, 8)}${bone(196, 256, 190, 330, 9)}${label(60, 300, '어깨·등 윗부분')}${label(246, 300, '빗장뼈')}`,
+    distal: `${poly([[-6, -22], [98, -22], [102, 24], [-6, 24]])}
+      <ellipse cx="136" cy="0" rx="52" ry="44" fill="var(--skin)"/>
+      <polygon points="128,40 138,60 112,58" fill="var(--skin)"/>
+      <circle cx="148" cy="24" r="3.5" fill="var(--ink)"/>
+      ${bone(0, -6, 112, -8, 9)}<ellipse cx="124" cy="-12" rx="28" ry="20" fill="none" stroke="var(--boneS)" stroke-width="3" opacity=".5"/>`
+  },
+  shRot: {
+    name: '어깨 돌림 (위에서 본 모습)', view: '위에서 내려다본 오른쪽 어깨 · 위쪽이 몸 앞', J: [190, 190], zero: -90,
+    prox: `<ellipse cx="100" cy="212" rx="94" ry="70" fill="var(--skin)"/>
+      <path d="M96 268 Q166 270 196 218" fill="none" stroke="var(--boneS)" stroke-width="13" stroke-linecap="round"/>
+      <path d="M96 268 Q166 270 196 218" fill="none" stroke="var(--bone)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M58 150 Q120 148 188 178" fill="none" stroke="var(--boneS)" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+      ${label(30, 205, '몸통(위에서)')}${label(60, 292, '어깨뼈(등 쪽) ↑')}${label(250, 330, '팔꿈치를 옆구리에 붙이고 90° 굽힌 자세', 11)}`,
+    distal: `${poly([[0, -15], [135, -11], [162, -9], [162, 9], [135, 11], [0, 15]])}
+      ${bone(0, 0, 138, 0, 11)}<circle cx="0" cy="0" r="17" fill="var(--bone)" stroke="var(--boneS)" stroke-width="2"/>
+      <text x="150" y="4" font-size="11" fill="var(--sub)" text-anchor="middle">손</text>`
+  },
+  shoulderSide: {
+    name: '어깨 관절 (옆)', view: '옆에서 본 모습 · 오른쪽이 몸 앞', J: [200, 100], zero: 90,
+    prox: `<circle cx="205" cy="34" r="26" fill="var(--skin)"/>
+      ${skinPath('M150 62 Q200 44 248 62 L256 340 L146 340 Z')}
+      <path d="M160 74 L174 176 L188 160 L182 82 Z" fill="var(--bone)" stroke="var(--boneS)" stroke-width="1.5"/>
+      ${knob(214, 88, 7)}${bone(214, 88, 236, 84, 6)}${bone(200, 70, 200, 340, 7)}${label(88, 130, '어깨뼈(뒤)')}${label(222, 74, '부리돌기', 11)}${label(70, 300, '몸통')}`,
+    distal: `${poly([[-16, -20], [165, -15], [176, -12], [176, 12], [165, 15], [-16, 22]])}${bone(0, 0, 160, 0, 12)}${knob(0, 0, 15)}`
   }
 };
 
@@ -291,10 +327,139 @@ const MUSCLES = [
     daily: '숙였다 일어나기, 허리 펴고 앉기, 데드리프트',
     geo: { pts: [{ a: [166, 262] }, { d: [152, -19] }], bulge: -6, w: 16 } }
 ];
-const WIKI = { biceps: 'Biceps', brachialis: 'Brachialis_muscle', brachioradialis: 'Brachioradialis', triceps: 'Triceps', deltoid: 'Deltoid_muscle', supraspinatus: 'Supraspinatus_muscle', pecmajor: 'Pectoralis_major', lat: 'Latissimus_dorsi_muscle', iliopsoas: 'Iliopsoas', rectusfem: 'Rectus_femoris_muscle', gmax: 'Gluteus_maximus', gmed: 'Gluteus_medius', addlong: 'Adductor_longus_muscle', quad: 'Quadriceps_femoris_muscle', hams: 'Hamstring', gastroc: 'Gastrocnemius_muscle', soleus: 'Soleus_muscle', tibant: 'Tibialis_anterior_muscle', rectab: 'Rectus_abdominis_muscle', erector: 'Erector_spinae_muscles' };
+/* ---------- 확장판 데이터 (조사 후 추가) ---------- */
+MOVES.push(
+  { id: 'wrist-flex', scene: 'wrist', a0: 90, a1: 25, name: '손목 굽힘', term: '굽힘(굴곡)', def: '손바닥 쪽으로 손목 꺾기 (스냅, 공 던질 때 마지막 손목 동작).', ag: ['fcr', 'fcu'], an: ['ecrl', 'ecu'] },
+  { id: 'wrist-ext', scene: 'wrist', a0: 30, a1: 150, name: '손목 폄', term: '폄(신전)', def: '손등 쪽으로 손목 젖히기 (손바닥으로 문 밀기, 팔굽혀펴기 자세).', ag: ['ecrl', 'ecu'], an: ['fcr', 'fcu'] },
+  { id: 'neck-flex', scene: 'neck', a0: -90, a1: -42, name: '목 굽힘', term: '굽힘(굴곡)', def: '고개를 숙여 턱을 가슴 쪽으로 당기기.', ag: ['scm'], an: ['splenius', 'trapezius'] },
+  { id: 'neck-ext', scene: 'neck', a0: -48, a1: -132, name: '목 폄', term: '폄(신전)', def: '고개를 뒤로 젖혀 천장 보기.', ag: ['splenius', 'trapezius'], an: ['scm'] },
+  { id: 'sh-rot-ext', scene: 'shRot', a0: -90, a1: -5, name: '어깨 가쪽돌림', term: '가쪽돌림(외회전, External rotation)', def: '팔꿈치를 옆구리에 붙인 채 손을 몸 바깥쪽으로 돌리기. 위에서 내려다본 그림이에요.', ag: ['infraspinatus', 'teresminor'], an: ['subscap'] },
+  { id: 'sh-rot-int', scene: 'shRot', a0: -5, a1: -170, name: '어깨 안쪽돌림', term: '안쪽돌림(내회전, Internal rotation)', def: '손을 배 쪽(몸 안쪽)으로 돌리기 (허리 뒤로 손 보내기, 밥 먹기).', ag: ['subscap'], an: ['infraspinatus', 'teresminor'] },
+  { id: 'sh-flex', scene: 'shoulderSide', a0: 90, a1: -10, name: '어깨 굽힘', term: '굽힘(굴곡)', def: '팔을 앞으로 들어 올리기. (앞세모근·큰가슴근 윗부분도 함께 도와요)', ag: ['coracobr'], an: ['teresmajor'] },
+  { id: 'sh-ext', scene: 'shoulderSide', a0: 10, a1: 140, name: '어깨 폄', term: '폄(신전)', def: '앞으로 든 팔을 내려 뒤로 보내기 (노 젓기, 수영 당기기).', ag: ['teresmajor'], an: ['coracobr'] }
+);
+const addTo = (id, k, ...v) => MOVES.find(m => m.id === id)[k].push(...v);
+addTo('hip-flex', 'ag', 'sartorius'); addTo('hip-ext', 'an', 'sartorius');
+addTo('hip-abd', 'ag', 'tfl'); addTo('hip-add', 'an', 'tfl');
+addTo('hip-add', 'ag', 'addmag', 'gracilis'); addTo('hip-abd', 'an', 'addmag', 'gracilis');
+addTo('dorsi', 'ag', 'edl'); addTo('plantar', 'an', 'edl');
+addTo('trunk-flex', 'ag', 'extoblique'); addTo('trunk-ext', 'an', 'extoblique');
+
+MUSCLES.push(
+  { id: 'fcr', region: '아래팔', move: 'wrist-flex', ko: '노쪽손목굽힘근', old: '요측수근굴근', en: 'Flexor carpi radialis',
+    o: '위팔뼈 안쪽위관절융기 (굽힘근 공통힘줄)', i: '2·3번째 손허리뼈 바닥', act: '손목 굽힘 + 노쪽 치우침(엄지 쪽으로 꺾기)', n: '정중신경 (C6–C7)',
+    qi: '2·3번째 손허리뼈 바닥', qa: '손목 굽힘 + 노쪽 치우침', qn: '정중신경',
+    tip: '굽힘근은 팔꿈치 안쪽(안쪽위관절융기)에서 시작해요. 그래서 안쪽이 아픈 "골퍼 팔꿈치". 손목 안쪽에서 맥박 잴 때 만져지는 힘줄이 이 근육!',
+    daily: '손목 스냅으로 공 던지기, 망치질 내리치기',
+    geo: { pts: [{ a: [205, 38] }, { d: [32, -13] }], bulge: -9, w: 11, tendon: 0.4 } },
+  { id: 'fcu', region: '아래팔', move: 'wrist-flex', ko: '자쪽손목굽힘근', old: '척측수근굴근', en: 'Flexor carpi ulnaris',
+    o: '위팔뼈 안쪽위관절융기, 자뼈 팔꿈치머리·뒤모서리', i: '콩알뼈(두상골) → 갈고리뼈, 5번째 손허리뼈', act: '손목 굽힘 + 자쪽 치우침(새끼손가락 쪽으로 꺾기)', n: '자신경 (C7–T1)',
+    qi: '콩알뼈·5번째 손허리뼈', qa: '손목 굽힘 + 자쪽 치우침', qn: '자신경',
+    tip: '⚠ 예외! 아래팔 굽힘근은 거의 다 정중신경인데, 이 근육만 자신경(+깊은손가락굽힘근 새끼쪽 절반).',
+    daily: '망치 휘두르기, 라켓 스윙 마무리',
+    geo: { pts: [{ a: [195, 30] }, { d: [20, -9] }], bulge: -7, w: 10, tendon: 0.4 } },
+  { id: 'ecrl', region: '아래팔', move: 'wrist-ext', ko: '긴노쪽손목폄근', old: '장요측수근신전근', en: 'Extensor carpi radialis longus',
+    o: '위팔뼈 가쪽위관절융기 위능선 (가쪽위관절융기 바로 위)', i: '2번째 손허리뼈 바닥', act: '손목 폄 + 노쪽 치우침', n: '노신경 (C6–C7)',
+    qi: '2번째 손허리뼈 바닥', qa: '손목 폄 + 노쪽 치우침', qn: '노신경',
+    tip: '폄근은 팔꿈치 바깥쪽에서 시작 → "테니스 엘보". 폄근은 전부 노신경(또는 그 가지). ※ 자료마다 기시를 "가쪽위관절융기"로 쓰기도 해요.',
+    daily: '주먹 쥘 때 손목 고정, 키보드 손목 받치기',
+    geo: { pts: [{ a: [177, 74] }, { d: [30, 24] }], bulge: 9, w: 11, tendon: 0.45 } },
+  { id: 'ecu', region: '아래팔', move: 'wrist-ext', ko: '자쪽손목폄근', old: '척측수근신전근', en: 'Extensor carpi ulnaris',
+    o: '위팔뼈 가쪽위관절융기 (폄근 공통힘줄), 자뼈 뒤모서리', i: '5번째 손허리뼈 바닥', act: '손목 폄 + 자쪽 치우침', n: '뒤뼈사이신경 = 노신경 가지 (C7–C8)',
+    qi: '5번째 손허리뼈 바닥', qa: '손목 폄 + 자쪽 치우침', qn: '뒤뼈사이신경(노신경 가지)',
+    tip: '이름에 "자쪽"이 붙었어도 신경은 자신경이 아니라 노신경 계열! 폄근 = 노신경 공식 기억.',
+    daily: '골프·테니스 스윙, 손목 젖혀 문 밀기',
+    geo: { pts: [{ a: [184, 70] }, { d: [22, 22] }], bulge: 8, w: 10, tendon: 0.45 } },
+  { id: 'scm', region: '목', move: 'neck-flex', ko: '목빗근', old: '흉쇄유돌근', en: 'Sternocleidomastoid',
+    o: '복장뼈 자루, 빗장뼈 안쪽 1/3', i: '꼭지돌기(귀 뒤 뼈 돌기), 위목덜미선 가쪽', act: '양쪽: 목 굽힘(턱 당기기) / 한쪽: 고개를 반대쪽으로 돌림·같은 쪽으로 기울임', n: '더부신경 (뇌신경 XI) + 목신경 C2–C3',
+    qi: '꼭지돌기', qa: '목 굽힘(양쪽) / 반대쪽으로 돌림(한쪽)', qn: '더부신경(뇌신경 XI)',
+    tip: '이름이 곧 위치: 복장(sterno)-빗장(cleido)-꼭지(mastoid). 고개를 돌리면 목 옆에서 대각선으로 튀어나오는 그 근육. 오른쪽 목빗근 수축 → 왼쪽을 봄.',
+    daily: '고개 돌려 뒤돌아보기, 베개에서 머리 들기',
+    geo: { pts: [{ a: [214, 262] }, { d: [126, -12] }], bulge: 9, w: 14, tendon: 0.12 } },
+  { id: 'splenius', region: '목', move: 'neck-ext', ko: '머리널판근', old: '두판상근', en: 'Splenius capitis',
+    o: '목덜미인대 아래쪽, C7–T3 가시돌기', i: '꼭지돌기, 위목덜미선 가쪽', act: '양쪽: 머리·목 폄 / 한쪽: 같은 쪽으로 돌림·기울임', n: '목신경 뒤가지 (C2–C5)',
+    qi: '꼭지돌기·위목덜미선', qa: '머리·목 폄', qn: '목신경 뒤가지',
+    tip: 'splenium = "붕대". 목 뒤를 붕대처럼 감싸서 머리를 받쳐요. 스마트폰 오래 보면 뻣뻣해지는 근육.',
+    daily: '고개 들어 하늘 보기, 거북목 자세 유지',
+    geo: { pts: [{ a: [176, 258] }, { d: [128, -17] }], bulge: -9, w: 13, tendon: 0.1 } },
+  { id: 'trapezius', region: '목', move: 'neck-ext', ko: '등세모근 (위섬유)', old: '승모근', en: 'Trapezius',
+    o: '뒤통수뼈, 목덜미인대, C7–T12 가시돌기', i: '빗장뼈 가쪽 1/3, 어깨뼈봉우리, 어깨뼈가시', act: '위섬유: 어깨뼈 올림(으쓱) + 머리 폄 / 중간: 어깨뼈 모음 / 아래: 어깨뼈 내림', n: '더부신경 (뇌신경 XI) + C3–C4',
+    qi: '빗장뼈 가쪽·어깨뼈봉우리·어깨뼈가시', qa: '어깨뼈 올림 + 머리 폄', qn: '더부신경(뇌신경 XI)',
+    tip: '한쪽만 보면 삼각형, 양쪽을 합치면 사다리꼴(trapezoid) → 이름 유래. 그림은 목 쪽 위섬유만 표시. 어깨 으쓱 = 위섬유, 날개뼈 모으기 = 중간섬유.',
+    daily: '어깨 으쓱, 무거운 가방 메기, 고개 젖히기',
+    geo: { pts: [{ d: [140, -26] }, { a: [176, 296] }], bulge: 12, w: 13, tendon: 0.15 } },
+  { id: 'infraspinatus', region: '어깨', move: 'sh-rot-ext', ko: '가시아래근', old: '극하근', en: 'Infraspinatus',
+    o: '어깨뼈 가시아래오목', i: '위팔뼈 큰결절 중간면', act: '어깨 가쪽돌림 + 위팔뼈머리를 관절에 눌러 안정', n: '어깨위신경 (C5–C6)',
+    qi: '위팔뼈 큰결절 중간면', qa: '어깨 가쪽돌림', qn: '어깨위신경',
+    tip: '돌림근띠 4형제 암기 SITS = 가시위(Supra) · 가시아래(Infra) · 작은원(Teres minor) · 어깨밑(Subscapularis). 가시아래근은 가쪽돌림 담당.',
+    daily: '손을 바깥으로 돌려 "안녕" 손짓, 테니스 백핸드',
+    geo: { pts: [{ a: [150, 262] }, { d: [-9, 15] }], bulge: 6, w: 17, tendon: 0.25 } },
+  { id: 'teresminor', region: '어깨', move: 'sh-rot-ext', ko: '작은원근', old: '소원근', en: 'Teres minor',
+    o: '어깨뼈 가쪽 모서리 중간 1/3', i: '위팔뼈 큰결절 아래면', act: '어깨 가쪽돌림 + 약한 모음', n: '겨드랑신경 (C5–C6)',
+    qi: '위팔뼈 큰결절 아래면', qa: '어깨 가쪽돌림', qn: '겨드랑신경',
+    tip: '가시아래근의 아래 짝꿍. 돌림근띠 중 겨드랑신경 지배는 이 근육뿐 (세모근과 같은 신경).',
+    daily: '던지기 후 팔 감속, 손 바깥으로 돌리기',
+    geo: { pts: [{ a: [170, 258] }, { d: [-12, 17] }], bulge: 4, w: 11, tendon: 0.25 } },
+  { id: 'subscap', region: '어깨', move: 'sh-rot-int', ko: '어깨밑근', old: '견갑하근', en: 'Subscapularis',
+    o: '어깨뼈 어깨밑오목 (어깨뼈 앞면)', i: '위팔뼈 작은결절', act: '어깨 안쪽돌림 (가장 강함) + 위팔뼈머리 앞쪽 안정', n: '위·아래어깨밑신경 (C5–C6)',
+    qi: '위팔뼈 작은결절', qa: '어깨 안쪽돌림', qn: '위·아래어깨밑신경',
+    tip: '돌림근띠 중 가장 크고 유일한 안쪽돌림근. 어깨뼈 "밑(앞면)"에 있어서 어깨밑근. 그림에서는 어깨뼈 앞쪽에서 위팔뼈 앞으로 감겨요.',
+    daily: '허리 뒤로 손 보내기, 와이퍼처럼 손 안으로 돌리기',
+    geo: { pts: [{ a: [152, 238] }, { a: [178, 214] }, { d: [20, -12] }], bulge: -4, w: 15 } },
+  { id: 'coracobr', region: '어깨', move: 'sh-flex', ko: '부리위팔근', old: '오훼완근', en: 'Coracobrachialis',
+    o: '어깨뼈 부리돌기', i: '위팔뼈 몸통 안쪽 중간', act: '어깨 굽힘 + 모음', n: '근육피부신경 (C5–C7)',
+    qi: '위팔뼈 몸통 안쪽 중간', qa: '어깨 굽힘 + 모음', qn: '근육피부신경',
+    tip: '근육피부신경이 몸통을 "뚫고 지나가는" 유일한 근육 → "피부신경이 뚫는 근육". 부리돌기에서 위팔로 이어져요.',
+    daily: '팔을 앞으로 모아 올리기, 물건 건네기',
+    geo: { pts: [{ a: [214, 90] }, { d: [80, -8] }], bulge: -6, w: 11 } },
+  { id: 'teresmajor', region: '어깨', move: 'sh-ext', ko: '큰원근', old: '대원근', en: 'Teres major',
+    o: '어깨뼈 아래각 뒤면', i: '위팔뼈 작은결절능선', act: '어깨 폄·모음·안쪽돌림', n: '아래어깨밑신경 (C5–C7)',
+    qi: '위팔뼈 작은결절능선', qa: '어깨 폄·모음·안쪽돌림', qn: '아래어깨밑신경',
+    tip: '"넓은등근의 작은 조수(lat\'s little helper)". 넓은등근과 같은 자리에 붙어서 같은 일을 도와요. 작은원근과 이름 헷갈림 주의: 큰원근은 돌림근띠가 아니에요!',
+    daily: '노 젓기, 턱걸이 보조, 팔을 뒤로 당기기',
+    geo: { pts: [{ a: [166, 142] }, { d: [40, -2] }], bulge: 8, w: 13 } },
+  { id: 'sartorius', region: '다리', move: 'hip-flex', ko: '넙다리빗근', old: '봉공근', en: 'Sartorius',
+    o: '위앞엉덩뼈가시 (ASIS)', i: '정강뼈 안쪽면 위쪽 (거위발)', act: '엉덩관절 굽힘·벌림·가쪽돌림 + 무릎 굽힘 → 양반다리 자세', n: '넙다리신경 (L2–L3)',
+    qi: '정강뼈 안쪽면 위쪽(거위발)', qa: '엉덩관절 굽힘·벌림·가쪽돌림', qn: '넙다리신경',
+    tip: '몸에서 가장 긴 근육(약 50cm). sartor = 재단사 → 재단사처럼 책상다리로 앉게 해요. 거위발 암기: "Say Grace before Tea" = Sartorius·Gracilis·Semitendinosus.',
+    daily: '양반다리로 앉기, 다리 꼬기, 신발 신으려 발 올리기',
+    geo: { pts: [{ a: [182, 132] }, { d: [190, -9] }], bulge: -9, w: 9, tendon: 0.1 } },
+  { id: 'tfl', region: '엉덩이', move: 'hip-abd', ko: '넙다리근막긴장근', old: '대퇴근막장근', en: 'Tensor fasciae latae',
+    o: '위앞엉덩뼈가시 가쪽, 엉덩뼈능선 앞쪽', i: '엉덩정강띠 → 정강뼈 가쪽관절융기', act: '엉덩관절 벌림·굽힘·안쪽돌림, 무릎 가쪽 안정', n: '위볼기신경 (L4–S1)',
+    qi: '엉덩정강띠(→ 정강뼈 가쪽)', qa: '엉덩관절 벌림·굽힘·안쪽돌림', qn: '위볼기신경',
+    tip: 'tensor = 팽팽하게 만드는 근육. 허벅지 바깥의 긴 띠(엉덩정강띠)를 당겨 걸을 때 무릎·골반을 안정시켜요. 근육 배는 짧고 힘줄 띠가 길어요.',
+    daily: '다리 옆으로 들기, 걷기·달리기 중 골반 안정',
+    geo: { pts: [{ a: [258, 102] }, { d: [150, -17] }], bulge: -8, w: 12, tendon: 0.75 } },
+  { id: 'addmag', region: '엉덩이', move: 'hip-add', ko: '큰모음근', old: '대내전근', en: 'Adductor magnus',
+    o: '두덩뼈 아래가지, 궁둥뼈가지, 궁둥뼈결절', i: '넙다리뼈 거친선, 모음근결절', act: '엉덩관절 모음 (뒤쪽 섬유는 엉덩관절 폄도 도움)', n: '폐쇄신경 + 궁둥신경(정강신경 부분)',
+    qi: '넙다리뼈 거친선·모음근결절', qa: '엉덩관절 모음 (+폄)', qn: '폐쇄신경 + 궁둥신경',
+    tip: '모음근 중 가장 크고 "반은 모음근, 반은 햄스트링". 그래서 신경도 2개(폐쇄신경 + 궁둥신경)를 받는 예외.',
+    daily: '말 타기, 다리 모으기, 일어설 때 엉덩이 펴기 보조',
+    geo: { pts: [{ a: [164, 212] }, { d: [105, 10] }], bulge: 11, w: 19 } },
+  { id: 'gracilis', region: '다리', move: 'hip-add', ko: '두덩정강근', old: '박근', en: 'Gracilis',
+    o: '두덩뼈 아래가지 (두덩뼈결합 가까이)', i: '정강뼈 안쪽면 위쪽 (거위발)', act: '엉덩관절 모음 + 무릎 굽힘·안쪽돌림', n: '폐쇄신경 (L2–L3)',
+    qi: '정강뼈 안쪽면 위쪽(거위발)', qa: '엉덩관절 모음 + 무릎 굽힘', qn: '폐쇄신경',
+    tip: 'gracilis = 가냘픈. 허벅지 안쪽 가장 얇고 긴 띠. 모음근 중 유일하게 무릎까지 넘어가는 두관절근이에요. 거위발(Say Grace before Tea)의 "Grace"!',
+    daily: '다리 모으기, 승마·수영 평영 다리 모으기',
+    geo: { pts: [{ a: [168, 208] }, { d: [165, 11] }], bulge: 6, w: 8, tendon: 0.35 } },
+  { id: 'edl', region: '다리', move: 'dorsi', ko: '긴발가락폄근', old: '장지신근', en: 'Extensor digitorum longus',
+    o: '정강뼈 가쪽관절융기, 종아리뼈 앞면, 뼈사이막', i: '2–5번째 발가락 가운데·끝마디뼈', act: '발가락 폄 + 발등굽힘', n: '깊은종아리신경 (L5–S1)',
+    qi: '2–5번째 발가락뼈', qa: '발가락 폄 + 발등굽힘', qn: '깊은종아리신경',
+    tip: '앞정강근 바로 옆 형제. 발가락을 위로 쳐들어요. 둘 다 깊은종아리신경 → 마비되면 발끝이 처져요(foot drop).',
+    daily: '발가락 들어 올리기, 걸을 때 발끝 걸리지 않게 하기',
+    geo: { pts: [{ a: [208, 62] }, { d: [84, -10] }], bulge: -7, w: 9, tendon: 0.42 } },
+  { id: 'extoblique', region: '몸통', move: 'trunk-flex', ko: '배바깥빗근', old: '외복사근', en: 'External oblique',
+    o: '아래 8개 갈비뼈 바깥면', i: '엉덩뼈능선 앞쪽, 백색선(배곧은근집), 두덩결절', act: '양쪽: 몸통 굽힘 / 한쪽: 몸통을 반대쪽으로 돌림 + 같은 쪽 옆굽힘', n: '갈비사이신경 (T7–T11) + 갈비밑신경',
+    qi: '엉덩뼈능선·백색선', qa: '몸통 굽힘·반대쪽 돌림', qn: '갈비사이신경(T7–T12)',
+    tip: '섬유 방향 = "손을 바지 주머니에 넣는 방향"(위바깥 → 아래안쪽). 한쪽만 수축하면 반대쪽 어깨를 앞으로 돌려요 (오른쪽 → 왼쪽 돌림).',
+    daily: '몸 비틀기, 윗몸일으키기 비틀기, 허리 옆으로 숙이기',
+    geo: { pts: [{ d: [92, 22] }, { a: [226, 276] }], bulge: -9, w: 15, tendon: 0.18 } }
+);
+
+const WIKI = { biceps: 'Biceps', brachialis: 'Brachialis_muscle', brachioradialis: 'Brachioradialis', triceps: 'Triceps', deltoid: 'Deltoid_muscle', supraspinatus: 'Supraspinatus_muscle', pecmajor: 'Pectoralis_major', lat: 'Latissimus_dorsi_muscle', iliopsoas: 'Iliopsoas', rectusfem: 'Rectus_femoris_muscle', gmax: 'Gluteus_maximus', gmed: 'Gluteus_medius', addlong: 'Adductor_longus_muscle', quad: 'Quadriceps_femoris_muscle', hams: 'Hamstring', gastroc: 'Gastrocnemius_muscle', soleus: 'Soleus_muscle', tibant: 'Tibialis_anterior_muscle', rectab: 'Rectus_abdominis_muscle', erector: 'Erector_spinae_muscles', fcr: 'Flexor_carpi_radialis_muscle', fcu: 'Flexor_carpi_ulnaris_muscle', ecrl: 'Extensor_carpi_radialis_longus_muscle', ecu: 'Extensor_carpi_ulnaris_muscle', scm: 'Sternocleidomastoid_muscle', splenius: 'Splenius_capitis_muscle', trapezius: 'Trapezius', infraspinatus: 'Infraspinatus_muscle', teresminor: 'Teres_minor_muscle', subscap: 'Subscapularis_muscle', coracobr: 'Coracobrachialis_muscle', teresmajor: 'Teres_major_muscle', sartorius: 'Sartorius_muscle', tfl: 'Tensor_fasciae_latae_muscle', addmag: 'Adductor_magnus_muscle', gracilis: 'Gracilis_muscle', edl: 'Extensor_digitorum_longus_muscle', extoblique: 'Abdominal_external_oblique_muscle' };
 const M = Object.fromEntries(MUSCLES.map(m => [m.id, m]));
 const MV = Object.fromEntries(MOVES.map(m => [m.id, m]));
-const REGIONS = ['전체', '팔', '어깨', '엉덩이', '다리', '몸통'];
+const REGIONS = ['전체', '목', '어깨', '팔', '아래팔', '몸통', '엉덩이', '다리'];
 
 /* =========================================================
    5) 애니메이션 무대
@@ -335,7 +500,7 @@ function mountStage(el, cfg) {
       <g id="dist">${sc.distal}</g>
       ${order.map(id => { const [f, s] = col(cfg.roles[id]); const op = cfg.roles[id] ? 1 : .45;
         return `<g opacity="${op}"><path id="t-${id}" fill="none" stroke="${f}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/>
-        <path id="bo-${id}" fill="none" stroke="${s}" stroke-linecap="round"/><path id="b-${id}" fill="none" stroke="${f}" stroke-linecap="round"/></g>`; }).join('')}
+        <path id="bo-${id}" fill="none" stroke="${s}" stroke-linecap="round"/><path id="b-${id}" fill="none" stroke="${f}" stroke-linecap="round"/><path id="h-${id}" fill="none" stroke="#fff" stroke-linecap="round" opacity=".26"/></g>`; }).join('')}
       <circle cx="${J[0]}" cy="${J[1]}" r="4" fill="var(--ink)" opacity=".6"/>
       ${cfg.focus ? `<g id="oi"><circle id="o-dot" r="7" fill="#1f9d61" stroke="#fff" stroke-width="2"/><text id="o-t" font-size="12" font-weight="700" fill="#1f9d61">기시</text>
         <circle id="i-dot" r="7" fill="#f2a516" stroke="#fff" stroke-width="2"/><text id="i-t" font-size="12" font-weight="700" fill="#d48700">정지</text></g>` : ''}
@@ -366,6 +531,7 @@ function mountStage(el, cfg) {
       const bu = m.geo.bulge * (0.6 + 0.4 * k), cx = (a[0] + b[0]) / 2 + (-dy / len) * bu, cy = (a[1] + b[1]) / 2 + (dx / len) * bu;
       const d = `M${a[0]} ${a[1]} Q${cx} ${cy} ${b[0]} ${b[1]}`, w = m.geo.w * k;
       q('#b-' + id).setAttribute('d', d); q('#b-' + id).setAttribute('stroke-width', w);
+      q('#h-' + id).setAttribute('d', d); q('#h-' + id).setAttribute('stroke-width', w * .34);
       q('#bo-' + id).setAttribute('d', d); q('#bo-' + id).setAttribute('stroke-width', w + 3);
       q('#t-' + id).setAttribute('d', g.tendon ? 'M' + g.tendon.map(p => p.join(' ')).join(' L') : '');
       if (id === cfg.focus) {
@@ -402,14 +568,14 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
    7) 화면
    ========================================================= */
 const app = document.getElementById('app');
-const TABS = [['atlas', '📖 근육 도감'], ['moves', '🔄 움직임'], ['cards', '🃏 암기카드'], ['quiz', '✅ 퀴즈'], ['refs', '📑 참고자료']];
+const TABS = [['atlas', '📖 근육 도감'], ['moves', '🔄 움직임'], ['bodymap', '🗺️ 몸 지도'], ['cards', '🃏 암기카드'], ['quiz', '✅ 퀴즈'], ['refs', '📑 참고자료']];
 let tab = 'atlas', region = '전체', selMuscle = 'biceps', selMove = 'elbow-flex';
 
 function renderTabs() {
   document.getElementById('tabs').innerHTML = TABS.map(([k, t]) => `<button class="tab ${k === tab ? 'on' : ''}" data-k="${k}">${t}</button>`).join('');
   document.querySelectorAll('.tab').forEach(b => b.onclick = () => { tab = b.dataset.k; render(); });
 }
-function render() { stopStage(); renderTabs(); ({ atlas, moves, cards, quiz, refs })[tab](); window.scrollTo(0, 0); }
+function render() { stopStage(); renderTabs(); ({ atlas, moves, bodymap, cards, quiz, refs })[tab](); window.scrollTo(0, 0); }
 
 function infoTable(m) {
   const mv = MV[m.move];
@@ -454,6 +620,46 @@ function moves() {
   app.querySelectorAll('.item').forEach(b => b.onclick = () => { selMove = b.dataset.id; moves(); });
   app.querySelectorAll('[data-m]').forEach(a => a.onclick = e => { e.preventDefault(); selMuscle = a.dataset.m; region = '전체'; tab = 'atlas'; render(); });
   mountStage(document.getElementById('stage'), { move: selMove, roles });
+}
+
+/* ---------- 몸 지도 ---------- */
+// [앞/뒤, x, y, 깊은근육(true)]  — 화면 왼쪽 = 그림 속 사람의 오른쪽(앞면) / 뒷면은 반대
+const BODYPOS = {
+  scm: ['f', 100, 62], deltoid: ['f', 56, 86], pecmajor: ['f', 90, 106], subscap: ['f', 80, 94, 1], coracobr: ['f', 62, 118],
+  biceps: ['f', 49, 122], brachialis: ['f', 46, 140, 1], brachioradialis: ['f', 40, 172], fcr: ['f', 47, 190], fcu: ['f', 38, 202],
+  rectab: ['f', 112, 150], extoblique: ['f', 80, 164], iliopsoas: ['f', 92, 226, 1], tfl: ['f', 64, 244], sartorius: ['f', 86, 262],
+  rectusfem: ['f', 82, 282], quad: ['f', 96, 300], addlong: ['f', 100, 252], gracilis: ['f', 104, 278], tibant: ['f', 82, 372], edl: ['f', 92, 386],
+  splenius: ['b', 110, 56], trapezius: ['b', 110, 84], supraspinatus: ['b', 138, 84, 1], infraspinatus: ['b', 140, 104], teresminor: ['b', 152, 116],
+  teresmajor: ['b', 154, 130], triceps: ['b', 172, 126], lat: ['b', 128, 156], erector: ['b', 110, 176], ecrl: ['b', 172, 186], ecu: ['b', 182, 200],
+  gmed: ['b', 140, 226], gmax: ['b', 120, 244], addmag: ['b', 106, 276], hams: ['b', 124, 296], gastroc: ['b', 126, 360], soleus: ['b', 128, 384, 1]
+};
+let mapSel = null, mapHide = false;
+function bodyFig(view) {
+  const arm = 'M62 78 Q44 86 40 130 L36 190 L34 232 L50 232 L54 190 L60 150 L68 100 Z', leg = 'M70 224 L110 224 L108 330 L100 424 L78 424 L76 330 Z';
+  const sh = 'fill="var(--skin)" stroke="var(--line)" stroke-width="2"';
+  const dots = MUSCLES.filter(m => BODYPOS[m.id] && BODYPOS[m.id][0] === view).map(m => {
+    const [, x, y, deep] = BODYPOS[m.id], n = MUSCLES.indexOf(m) + 1, on = m.id === mapSel;
+    return `<g class="dt" data-id="${m.id}" style="cursor:pointer"><circle cx="${x}" cy="${y}" r="9" fill="${on ? '#f2a516' : 'var(--ag)'}" stroke="#fff" stroke-width="1.6" ${deep ? 'stroke-dasharray="3 2" opacity=".8"' : ''}/>
+      <text x="${x}" y="${y + 3.5}" font-size="9.5" font-weight="700" text-anchor="middle" fill="#fff" pointer-events="none">${n}</text></g>`;
+  }).join('');
+  return `<svg viewBox="0 0 220 440" style="width:100%;max-width:260px"><text x="110" y="436" text-anchor="middle" font-size="12" fill="var(--sub)">${view === 'f' ? '앞모습' : '뒷모습'}</text>
+    <circle cx="110" cy="30" r="20" ${sh}/><rect x="100" y="48" width="20" height="24" ${sh}/>
+    <path d="M68 74 Q110 62 152 74 L158 120 L146 190 L152 226 L68 226 L74 190 L62 120 Z" ${sh}/>
+    <path d="${arm}" ${sh}/><path d="${arm}" ${sh} transform="translate(220,0) scale(-1,1)"/>
+    <path d="${leg}" ${sh}/><path d="${leg}" ${sh} transform="translate(220,0) scale(-1,1)"/>${dots}</svg>`;
+}
+function bodymap() {
+  const m = mapSel && M[mapSel];
+  app.innerHTML = `<h2>몸 지도 — 위치로 외우기</h2>
+    <p class="sub">번호를 눌러 근육을 확인하세요. 점선 원은 <b>깊은 근육</b>(겉에서 안 보임). 아래 <b>이름 가리기</b>를 켜고 번호만 보고 이름을 맞혀 보세요.</p>
+    <div class="ctrl" style="margin-bottom:8px"><button class="btn ghost" id="hide">${mapHide ? '👁 이름 보이기' : '🙈 이름 가리기'}</button></div>
+    <div class="layout"><div class="card" style="display:flex;gap:6px;justify-content:center;align-items:flex-start">${bodyFig('f')}${bodyFig('b')}</div>
+      <div class="card">${m ? `${infoTable(m)}<div class="ctrl" style="margin-top:10px"><button class="btn" id="go">▶ 움직임 애니메이션 보기</button></div>` : '<p class="sub">왼쪽 그림에서 번호를 눌러 보세요.</p>'}
+        ${mapHide ? '' : `<h3>번호표</h3><div class="list" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">${MUSCLES.map((x, i) => `<button class="item ${x.id === mapSel ? 'on' : ''}" data-id="${x.id}" style="padding:6px 10px">${i + 1}. ${x.ko}</button>`).join('')}</div>`}</div></div>`;
+  app.querySelectorAll('[data-id]').forEach(e => e.onclick = () => { mapSel = e.dataset.id; bodymap(); });
+  app.querySelectorAll('[data-m]').forEach(a => a.onclick = e => { e.preventDefault(); mapSel = a.dataset.m; bodymap(); });
+  document.getElementById('hide').onclick = () => { mapHide = !mapHide; bodymap(); };
+  const go = document.getElementById('go'); if (go) go.onclick = () => { selMuscle = mapSel; region = '전체'; tab = 'atlas'; render(); };
 }
 
 let card = null, flipped = false, cardMode = 'name';
@@ -541,7 +747,10 @@ function refs() {
       <tr><th>주동근</th><td>움직임을 주로 만드는 근육 (agonist)</td></tr>
       <tr><th>길항근</th><td>반대 방향 움직임을 만드는 근육, 늘어나며 속도 조절 (antagonist)</td></tr>
       <tr><th>두관절근</th><td>관절 두 개를 넘는 근육 (넙다리곧은근, 햄스트링, 장딴지근)</td></tr>
-      <tr><th>힘줄</th><td>근육 끝의 질긴 끈. 그림의 가는 선 (tendon)</td></tr></table>
+      <tr><th>힘줄</th><td>근육 끝의 질긴 끈. 그림의 가는 선 (tendon)</td></tr>
+      <tr><th>SITS</th><td>돌림근띠 4개: 가시위(S)·가시아래(I)·작은원(T)·어깨밑(S) — 어깨를 안정시키는 근육</td></tr>
+      <tr><th>위관절융기</th><td>아래팔 <b>굽힘근은 안쪽</b>(골퍼 팔꿈치), <b>폄근은 가쪽</b>(테니스 팔꿈치)에서 시작</td></tr>
+      <tr><th>신경 공식</th><td>아래팔 폄근 = 노신경 / 굽힘근 = 정중신경 (예외: 자쪽손목굽힘근 = 자신경) / 모음근 = 폐쇄신경 / 넙다리 앞 = 넙다리신경 / 넙다리 뒤 = 궁둥신경</td></tr></table>
       <p class="sub">용어는 대한해부학회 새 용어를 쓰고, 괄호에 옛 한자 용어를 같이 적었어요.</p></div>
     <div class="card"><h3>참고 교과서·자료</h3><ul class="refs">
       <li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/11-introduction" target="_blank" rel="noopener">OpenStax, Anatomy and Physiology 2e — 11장 근육계 (무료)</a></li>
@@ -549,6 +758,12 @@ function refs() {
       <li>Netter — <i>Atlas of Human Anatomy</i> (근육 그림 아틀라스)</li>
       <li>Neumann — <i>Kinesiology of the Musculoskeletal System</i> (움직임·주동근/길항근)</li>
       <li>Kendall et al. — <i>Muscles: Testing and Function</i> (근육별 기능 검사)</li>
+      <li><b>이번 확장판 조사 자료</b> (교차 확인용, 교과서와 함께 보세요):</li>
+      <li><a href="https://www.kenhub.com/en/library/anatomy/the-rotator-cuff" target="_blank" rel="noopener">Kenhub — 돌림근띠(Rotator cuff)</a></li>
+      <li><a href="https://images.radiopaedia.org/articles/teres-minor" target="_blank" rel="noopener">Radiopaedia — Teres minor</a></li>
+      <li><a href="https://kenhub.com/en/library/anatomy/radial-muscles-of-the-forearm" target="_blank" rel="noopener">Kenhub — 아래팔 노쪽 근육</a> · <a href="https://anatomy.ttuhscep.edu/schemes/forearm_ans.html" target="_blank" rel="noopener">TTUHSC — 아래팔 신경·근육 도식</a></li>
+      <li><a href="https://kenhub.com/en/library/anatomy/the-sartorius-muscle" target="_blank" rel="noopener">Kenhub — Sartorius</a> · <a href="https://wikimsk.org/wiki/Sartorius" target="_blank" rel="noopener">WikiMSK — Sartorius</a></li>
+      <li class="sub">조사 중 확인된 차이: 긴노쪽손목폄근 기시(위능선 vs 가쪽위관절융기), 어깨밑근·큰원근 신경 분절(C5–C6 vs C5–C7) 등은 자료마다 달라서 표준 교과서 표기를 우선했어요.</li>
       ${MUSCLES.map(m => `<li><a href="https://en.wikipedia.org/wiki/${WIKI[m.id]}" target="_blank" rel="noopener">${m.ko} — ${m.en}</a></li>`).join('')}
     </ul><p class="sub">신경 번호(C5 등)는 교과서마다 조금씩 다를 수 있어요. 그림은 이해용 2D 단순화예요 (뒤침·돌림 같은 회전 동작은 설명으로만 다뤄요).</p></div></div>`;
 }
