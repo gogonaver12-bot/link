@@ -71,21 +71,44 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     path.write_text(head + "\n".join(ev) + "\n", encoding="utf-8")
 
 
-def background(total, colors, work):
+def background(total, colors, work, cues, keywords):
     clips = sorted((ROOT / "assets" / "clips").glob("*.mp4"))
+    if not clips and keywords:
+        import stock
+        print("🔎 무료 실사 영상 검색:", keywords)
+        clips = stock.fetch(keywords, ROOT / "assets" / "stock_cache", want=len(keywords))
     bg = work / "bg.mp4"
-    vf_fit = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30"
-    if clips:
-        random.shuffle(clips)
-        lst = work / "clips.txt"
-        lst.write_text("".join(f"file '{c.resolve()}'\n" for c in clips * 20))
-        sh(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-t", f"{total:.2f}",
-            "-vf", vf_fit + ",eq=brightness=-0.08", "-an", "-c:v", "libx264", "-preset", "veryfast", bg])
-    else:
+    fit = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30"
+    if not clips:
         c1, c2 = colors
-        src = (f"gradients=s={W}x{H}:c0={c1}:c1={c2}:x0=0:y0=0:x1={W}:y1={H}:speed=0.015:d={total:.2f},fps=30")
+        src = f"gradients=s={W}x{H}:c0={c1}:c1={c2}:x0=0:y0=0:x1={W}:y1={H}:speed=0.015:d={total:.2f},fps=30"
         sh(["ffmpeg", "-y", "-f", "lavfi", "-i", src, "-vf", "noise=alls=6:allf=t",
             "-c:v", "libx264", "-preset", "veryfast", bg])
+        return bg
+    # 자막 줄마다 컷 전환 + 천천히 줌인 (시선 유지)
+    segs, bounds = [], [c[0] for c in cues[1:]] + [total]
+    start = 0.0
+    for i, end in enumerate(bounds):
+        d = max(0.5, end - start)
+        c = clips[i % len(clips)]
+        seg = work / f"seg{i:02d}.mp4"
+        frames = int(d * 30) + 1
+        if c.suffix == ".jpg":  # 사진: 켄번스 줌
+            zp = f"scale={W*2}:{H*2}:force_original_aspect_ratio=increase,crop={W*2}:{H*2},zoompan=z='1+0.0015*on':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d={frames}:s={W}x{H}:fps=30"
+            sh(["ffmpeg", "-y", "-i", c, "-vf", f"{zp},eq=brightness=-0.08:saturation=1.15",
+                "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
+            segs.append(seg); start = end
+            continue
+        L = dur(c)  # 앞뒤 20%(제목/자막 카드 많음) 건너뜀
+        off = random.uniform(L * 0.2, max(L * 0.2, L * 0.8 - d))
+        zoom = f"zoompan=z='1.25+0.0012*on':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={W}x{H}:fps=30"
+        sh(["ffmpeg", "-y", "-ss", f"{off:.2f}", "-stream_loop", "-1", "-i", c, "-t", f"{d:.2f}",
+            "-vf", f"{fit},{zoom},eq=brightness=-0.10:saturation=1.15", "-frames:v", str(frames),
+            "-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
+        segs.append(seg); start = end
+    lst = work / "segs.txt"
+    lst.write_text("".join(f"file '{p.resolve()}'\n" for p in segs))
+    sh(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", bg])
     return bg
 
 
@@ -120,7 +143,7 @@ def main():
         "-c:a", "aac", "-b:a", "160k", voice_mp3])
     total = min(dur(voice_mp3), MAX_SEC)
 
-    bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work)
+    bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work, cues, s.get("keywords", []))
     ass = work / "sub.ass"
     build_ass(cues, s["title"], ass)
 

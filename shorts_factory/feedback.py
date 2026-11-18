@@ -13,7 +13,7 @@ ROOT = Path(__file__).parent
 SCRIPTS = ROOT / "scripts"
 MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
-SCHEMA_HINT = """각 대본은 JSON 객체: {"title":"","hook":"","lines":["",...],"cta":"","description":"","tags":[""],"colors":["0xRRGGBB","0xRRGGBB"]}
+SCHEMA_HINT = """각 대본은 JSON 객체: {"title":"","hook":"","lines":["",...],"cta":"","description":"","tags":[""],"colors":["0xRRGGBB","0xRRGGBB"],"keywords":["자막 줄마다 1개, 순서대로 영어 검색어(예: black hole, galaxy)"]}
 규칙: 한국어, 읽는 시간 25~50초, 첫 줄은 3초 안에 끝나는 강한 훅, 저작권/실존인물/허위정보 금지,
 조회 상위 영상의 공통점은 강화하고 하위 영상의 패턴은 피할 것. 출력은 {"analysis":"...","scripts":[...]} 만."""
 
