@@ -1,0 +1,84 @@
+<title>JARVIS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500&display=swap">
+<style>
+/* Layout: one-screen HUD — reactor ring on top, status + command console below */
+:root{--bg:#03141f;--panel:#06202f;--line:#1b4a5e;--fg:#d8f6ff;--dim:#7fb3c4;--accent:#38d6ff;
+--display:"Orbitron","Inter",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);display:flex;flex-direction:column;align-items:center;gap:20px;
+padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));box-sizing:border-box}
+.ring{width:min(78vw,300px);max-width:100%;aspect-ratio:1}
+.ring svg{width:100%;height:100%}
+.spin{transform-origin:200px 200px;animation:r 12s linear infinite}
+.spin2{transform-origin:200px 200px;animation:r 20s linear infinite reverse}
+.core{animation:p 3s ease-in-out infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+@keyframes p{50%{opacity:.6}}
+@media (prefers-reduced-motion:reduce){.spin,.spin2,.core{animation:none}}
+.clock{font-family:var(--display);font-size:1.8rem;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.date{color:var(--dim);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.panel{width:100%;max-width:460px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:.9rem}
+.row span:first-child{color:var(--dim)}
+.ok{color:var(--accent)}
+#log{min-height:96px;max-height:30vh;overflow-y:auto;font-size:.9rem;display:flex;flex-direction:column;gap:6px}
+#log .me{color:var(--dim)}
+form{display:flex;gap:8px}
+input{flex:1;min-width:0;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit}
+button{background:var(--accent);color:var(--bg);border:0;border-radius:8px;padding:0 16px;font-family:var(--display);font-weight:700;cursor:pointer}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{background:transparent;color:var(--accent);border:1px solid var(--line);font-family:var(--body);font-weight:500;padding:6px 10px}
+</style>
+
+<div class="ring" aria-hidden="true">
+<svg viewBox="0 0 400 400">
+<defs><radialGradient id="g"><stop offset="0%" stop-color="#e0fbff"/><stop offset="35%" stop-color="#38d6ff"/><stop offset="100%" stop-color="#03141f" stop-opacity="0"/></radialGradient></defs>
+<circle class="core" cx="200" cy="200" r="70" fill="url(#g)"/>
+<g fill="none" stroke="#38d6ff">
+<circle cx="200" cy="200" r="95" stroke-width="2" opacity=".8"/>
+<circle class="spin" cx="200" cy="200" r="120" stroke-width="6" stroke-dasharray="40 14" opacity=".6"/>
+<circle class="spin2" cx="200" cy="200" r="145" stroke-width="1.5" stroke-dasharray="4 8" opacity=".7"/>
+<circle cx="200" cy="200" r="170" stroke-width="1" opacity=".4"/>
+</g>
+<text x="200" y="207" text-anchor="middle" font-family="Orbitron,Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="5" fill="#03141f">JARVIS</text>
+</svg>
+</div>
+
+<div style="text-align:center">
+<div class="clock" id="clock">--:--:--</div>
+<div class="date" id="date"></div>
+</div>
+
+<div class="panel">
+<div class="row"><span>시스템</span><span class="ok">● 온라인</span></div>
+<div class="row"><span>작업</span><span>connection-test-002 · status</span></div>
+</div>
+
+<div class="panel">
+<div id="log" aria-live="polite"><div>안녕하세요. 무엇을 도와드릴까요?</div></div>
+<div class="chips">
+<button type="button" data-q="시간">시간</button>
+<button type="button" data-q="날짜">날짜</button>
+<button type="button" data-q="상태">상태</button>
+</div>
+<form id="f"><input id="q" placeholder="명령 입력 (예: 시간)" autocomplete="off"><button>실행</button></form>
+</div>
+
+<script>
+const $=id=>document.getElementById(id), log=$('log');
+function tick(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('ko-KR',{hour12:false});
+$('date').textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'})}
+tick();setInterval(tick,1000);
+function say(t,c){const e=document.createElement('div');if(c)e.className=c;e.textContent=t;log.appendChild(e);log.scrollTop=log.scrollHeight}
+function answer(q){const d=new Date();
+if(/시간|time/i.test(q))return'지금은 '+d.toLocaleTimeString('ko-KR')+' 입니다.';
+if(/날짜|date|오늘/i.test(q))return'오늘은 '+d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'long'})+' 입니다.';
+if(/상태|status/i.test(q))return'모든 시스템 정상입니다. 작업 connection-test-002 대기 중.';
+if(/안녕|hello|hi/i.test(q))return'안녕하세요, 반갑습니다.';
+return'"'+q+'" 명령은 아직 배우지 않았어요. 시간·날짜·상태를 물어보세요.'}
+function run(q){q=q.trim();if(!q)return;say('> '+q,'me');setTimeout(()=>say(answer(q)),250)}
+$('f').addEventListener('submit',e=>{e.preventDefault();run($('q').value);$('q').value=''});
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>run(b.dataset.q));
+</script>
