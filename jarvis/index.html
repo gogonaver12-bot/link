@@ -68,7 +68,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
 
 <script>
 const $=id=>document.getElementById(id), log=$('log');
-function tick(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('ko-KR',{hour12:false});
+function tick(){const d=new Date();$('clock').textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
 $('date').textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'})}
 tick();setInterval(tick,1000);
 function say(t,c){const e=document.createElement('div');if(c)e.className=c;e.textContent=t;log.appendChild(e);log.scrollTop=log.scrollHeight}
