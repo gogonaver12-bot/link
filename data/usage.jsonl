@@ -46,3 +46,17 @@
 {"ts": "2026-11-23T12:43:04+00:00", "agent": "product_sales", "model": "gemini:gemini-flash-lite-latest", "in": 334, "out": 1326, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-23T12:43:09+00:00", "agent": "shorts_feedback", "model": "gemini:gemini-flash-lite-latest", "in": 223, "out": 477, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-23T12:43:12+00:00", "agent": "blogger", "model": "gemini:gemini-flash-lite-latest", "in": 1890, "out": 705, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:27+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 553, "out": 37, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:27+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 626, "out": 37, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:29+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 562, "out": 162, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:30+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 630, "out": 86, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:31+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 684, "out": 197, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:31+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 741, "out": 227, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:33+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 805, "out": 135, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:35+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 894, "out": 380, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:38+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 812, "out": 191, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:39+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1090, "out": 123, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:40+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1275, "out": 107, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:41+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1437, "out": 54, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:41+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1546, "out": 62, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T14:43:49+00:00", "agent": "idea_scorer", "model": "groq:qwen/qwen3.8-27b", "in": 564, "out": 15, "cache_read": 0, "usd": 0.0}

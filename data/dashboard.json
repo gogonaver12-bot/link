@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:43:42+00:00",
+ "updated": "2026-11-23T14:43:52+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -65,7 +65,8 @@
   ],
   "by_model": {
    "gemini:gemini-flash-lite-latest": 0.0,
-   "groq:openai/gpt-oss-120b": 0.0
+   "groq:openai/gpt-oss-120b": 0.0,
+   "groq:qwen/qwen3.8-27b": 0.0
   }
  },
  "money": {
@@ -640,6 +641,12 @@
  ],
  "runs": [
   {
+   "ts": "2026-11-23T14:43:42+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "JP 시장(ja)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: BOOTH, note, ココナラ, YouTube. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
+  },
+  {
    "ts": "2026-11-23T12:42:08+00:00",
    "agent": "researcher",
    "model": "gemini:gemini-flash-lite-latest",
@@ -879,10 +886,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T14:43:41+00:00",
-   "cmd": "jobs",
+   "ts": "2026-11-23T14:43:51+00:00",
+   "cmd": "biz scout --market JP",
    "ok": true,
-   "output": "새 작업 없음"
+   "output": "(출력 없음)"
   },
   {
    "ts": "2026-11-23T14:42:47+00:00",
