@@ -415,7 +415,8 @@ const KEYS = [
     ["CEREBRAS_API_KEY", "API Keys → Generate", "https://cloud.cerebras.ai/"], ["OPENROUTER_API_KEY", "Create Key (무료 모델만 사용)", "https://openrouter.ai/settings/keys"],
     ["MISTRAL_API_KEY", "Create new key (무료 체험 등급)", "https://console.mistral.ai/api-keys"]]],
   ["⭐ 품질·분석 (선택)", [
-    ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑", "https://console.anthropic.com/settings/keys"],
+    ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑ (CLAUDE_API_KEY 이름도 인식)", "https://console.anthropic.com/settings/keys"],
+    ["OPENAI_API_KEY", "ChatGPT · 유료 (CHATGPT_API_KEY 이름도 인식)", "https://platform.openai.com/api-keys"],
     ["YOUTUBE_API_KEY", "YouTube Data API v3 사용 → 사용자 인증 정보 → API 키", "https://console.cloud.google.com/apis/credentials"],
     ["GH_SEARCH_TOKEN", "스킬 자동 검색용 · Public repositories 읽기만", "https://github.com/settings/personal-access-tokens/new"]]],
 ];
