@@ -332,6 +332,7 @@ function viewAI() {
   <div class="card">${(D.channels || []).map((c) => `<div class="row"><span class="dot ${c.ready ? "" : "off"}"></span>
     <div class="grow"><div class="t">${esc(c.name)}</div><div class="m">${c.ready ? "자동 업로드 중" : esc(c.need)}</div></div></div>`).join("")}</div>
   <div class="section-title"><h2>연결된 AI</h2><button data-open="keys">🔑 키 발급 도우미</button></div>
+  <button class="btn ghost" style="margin-bottom:10px" data-cmd="ai check" data-label="연결 점검">🩺 연결 점검 (AI마다 실제 호출해서 진단)</button>
   <div class="pgrid">${[...D.providers].sort((a, b) => b.connected - a.connected || b.free - a.free).map((p) => `
     <div class="card prov tap" data-prov="${esc(p.id)}"><span class="dot ${p.connected ? "" : "off"}"></span>
     <div class="grow"><div class="t">${esc(NAMES[p.id] || p.id)}</div><div class="m">${p.connected ? "연결됨" : "미연결"} · ${p.free ? "무료" : "유료"}</div></div></div>`).join("")}</div>
