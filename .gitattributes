@@ -1,2 +1,3 @@
 # 여러 실행이 동시에 기록을 추가해도 충돌 없이 합치기
 data/*.jsonl merge=union
+*.bat text eol=crlf
