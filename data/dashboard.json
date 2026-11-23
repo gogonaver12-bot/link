@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T11:12:07+00:00",
+ "updated": "2026-11-23T11:19:12+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -347,7 +347,10 @@
     "add_site"
    ],
    "model": "auto",
-   "skills": [],
+   "skills": [
+    "bahasa-skills-skill",
+    "creator-buddy-skill"
+   ],
    "avg": null,
    "evals": 0,
    "last_feedback": ""
@@ -491,17 +494,17 @@
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T11:11+00:00"
+   "date": "2026-11-23T11:18+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T11:11+00:00"
+   "date": "2026-11-23T11:18+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T11:11+00:00"
+   "date": "2026-11-23T11:18+00:00"
   }
  ],
  "runs": [
@@ -700,6 +703,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T11:19:11+00:00",
+   "cmd": "pipeline new \"매일 트렌드로 블로그 글 1편 자동 게시하고 주간 성과 보고\"",
+   "ok": true,
+   "output": "⚙️ 파이프라인 생성: 매일 트렌드 블로그 게시 및 주간 성과 보고 [daily] · 5단계\n장착 스킬: researcher←bahasa-skills-skill, researcher←creator-buddy-skill\n바로 실행: pipeline run daily_trend_blog_and_report"
+  },
+  {
    "ts": "2026-11-23T11:12:05+00:00",
    "cmd": "make I0001 --pdf-only",
    "ok": true,
@@ -740,6 +749,62 @@
    "cmd": "news discover",
    "ok": true,
    "output": "새 출처: 플래텀 (30개 글), 벤처스퀘어 (30개 글), 전자신문 (30개 글)"
+  }
+ ],
+ "pipelines": [
+  {
+   "name": "daily_trend_blog_and_report",
+   "title": "매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "schedule": "daily",
+   "enabled": true,
+   "steps": [
+    {
+     "command": "news"
+    },
+    {
+     "agent": "researcher",
+     "task": "수집된 트렌드 중 블로그 주젌로 적합한 항목을 선정하여 요약하세요."
+    },
+    {
+     "agent": "content_creator",
+     "task": "선택된 트렌드 주젌로 SEO가 적용된 블로그 게시물 초안을 작성하세요."
+    },
+    {
+     "command": "blog"
+    },
+    {
+     "agent": "analyst",
+     "task": "주간 블로그 성과와 트렌드 대응 결과를 분션하여 보고서를 작성하세요."
+    }
+   ],
+   "agents_created": [],
+   "skills_equipped": [
+    "researcher←bahasa-skills-skill",
+    "researcher←creator-buddy-skill"
+   ],
+   "created": "2026-11-23",
+   "runs": 0,
+   "last": {}
+  }
+ ],
+ "channels": [
+  {
+   "id": "youtube",
+   "name": "유튜브 숏츠",
+   "ready": false,
+   "need": "구글 1회 연결"
+  },
+  {
+   "id": "blogger",
+   "name": "블로그(Blogger)",
+   "ready": false,
+   "need": "구글 1회 연결 + BLOGGER_BLOG_ID"
+  },
+  {
+   "id": "kmong",
+   "name": "크몽·Gumroad",
+   "ready": false,
+   "need": "자동 등록 API 없음 → 업로드 키트 준비"
   }
  ]
 }
