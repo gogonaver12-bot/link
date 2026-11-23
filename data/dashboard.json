@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:56:51+00:00",
+ "updated": "2026-11-23T16:56:59+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1145,9 +1145,9 @@
  ],
  "errors": [
   {
-   "ts": "2026-11-23T16:56:49+00:00",
+   "ts": "2026-11-23T16:56:56+00:00",
    "cmd": "run 미국 쇼츠 바이럴 공식 분석",
-   "error": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChLDHuw9uT889iPp2vzXr'}",
+   "error": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChLDJR579mHuH9c7LnVFs'}",
    "msg": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_er"
   }
  ],
@@ -1341,7 +1341,7 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T16:56:50+00:00",
+   "ts": "2026-11-23T16:56:57+00:00",
    "cmd": "미국 쇼츠 바이럴 공식 분석",
    "ok": false,
    "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
