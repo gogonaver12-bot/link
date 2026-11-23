@@ -1,0 +1,63 @@
+[
+  {
+    "title": "크몽 AI 전자책·노하우 PDF 제작 및 판매",
+    "market": "대한민국 크몽(Kmong) 부업/재테크/AI 카테고리",
+    "platform": "크몽",
+    "model": "판매",
+    "first_step": "챗GPT를 활용해 30페이지 분량의 '초보를 위한 챗GPT 업무 자동화 가이드' 목차를 작성하고 PDF로 변환하기",
+    "evidence": "크몽 플랫폼 내 AI 및 부업 관련 전자책 카테고리에서 직장인과 초보자의 구매 수요가 꾸준히 상위권 유지 중",
+    "scores": {
+      "demand": 85,
+      "low_competition": 60,
+      "low_cost": 95,
+      "speed_to_revenue": 90,
+      "scalability": 90,
+      "low_risk": 90
+    },
+    "id": "I0001",
+    "score": 85.0,
+    "status": "active",
+    "created": "2026-11-23",
+    "started": "2026-11-23"
+  },
+  {
+    "title": "소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행",
+    "market": "국내 지역 소상공인(식당, 뷰티, 학원 등)",
+    "platform": "크몽 및 당근마켓",
+    "model": "외주",
+    "first_step": "동네 상가 10곳을 리서치하고 AI로 작성한 샘플 블로그 포스팅 1건을 무료로 보내주며 제안하기",
+    "evidence": "마케팅 인력이 없는 자영업자들의 블로그/인스타 대행 수요가 높으나 초기 진입장벽과 영업 노동이 존재함",
+    "scores": {
+      "demand": 80,
+      "low_competition": 70,
+      "low_cost": 100,
+      "speed_to_revenue": 85,
+      "scalability": 60,
+      "low_risk": 85
+    },
+    "id": "I0002",
+    "score": 80.0,
+    "status": "candidate",
+    "created": "2026-11-23"
+  },
+  {
+    "title": "네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅",
+    "market": "국내 IT/가전 및 시즌 이슈 관심 소비자",
+    "platform": "네이버 블로그",
+    "model": "광고",
+    "first_step": "최근 검색량이 급증하는 가전제품 키워드를 선정하고 AI로 SEO 최적화된 리뷰 초안 작성하기",
+    "evidence": "네이버 검색 유입을 통한 롱테일 키워드 공략 시 개설 초기 블로그도 단기간 내 클릭 및 구매 전환 발생 가능",
+    "scores": {
+      "demand": 90,
+      "low_competition": 50,
+      "low_cost": 100,
+      "speed_to_revenue": 75,
+      "scalability": 80,
+      "low_risk": 85
+    },
+    "id": "I0003",
+    "score": 80.5,
+    "status": "candidate",
+    "created": "2026-11-23"
+  }
+]

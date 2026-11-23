@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:19:32+00:00",
+ "updated": "2026-11-23T10:20:42+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -72,7 +72,83 @@
   "cost": 0,
   "profit": 0
  },
- "ideas": [],
+ "ideas": [
+  {
+   "id": "I0001",
+   "title": "크몽 AI 전자책·노하우 PDF 제작 및 판매",
+   "market": "대한민국 크몽(Kmong) 부업/재테크/AI 카테고리",
+   "platform": "크몽",
+   "model": "판매",
+   "first_step": "챗GPT를 활용해 30페이지 분량의 '초보를 위한 챗GPT 업무 자동화 가이드' 목차를 작성하고 PDF로 변환하기",
+   "evidence": "크몽 플랫폼 내 AI 및 부업 관련 전자책 카테고리에서 직장인과 초보자의 구매 수요가 꾸준히 상위권 유지 중",
+   "scores": {
+    "demand": 85,
+    "low_competition": 60,
+    "low_cost": 95,
+    "speed_to_revenue": 90,
+    "scalability": 90,
+    "low_risk": 90
+   },
+   "score": 85.0,
+   "status": "active",
+   "created": "2026-11-23",
+   "started": "2026-11-23",
+   "last_review": null,
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
+  },
+  {
+   "id": "I0002",
+   "title": "소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행",
+   "market": "국내 지역 소상공인(식당, 뷰티, 학원 등)",
+   "platform": "크몽 및 당근마켓",
+   "model": "외주",
+   "first_step": "동네 상가 10곳을 리서치하고 AI로 작성한 샘플 블로그 포스팅 1건을 무료로 보내주며 제안하기",
+   "evidence": "마케팅 인력이 없는 자영업자들의 블로그/인스타 대행 수요가 높으나 초기 진입장벽과 영업 노동이 존재함",
+   "scores": {
+    "demand": 80,
+    "low_competition": 70,
+    "low_cost": 100,
+    "speed_to_revenue": 85,
+    "scalability": 60,
+    "low_risk": 85
+   },
+   "score": 80.0,
+   "status": "candidate",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "metrics": null
+  },
+  {
+   "id": "I0003",
+   "title": "네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅",
+   "market": "국내 IT/가전 및 시즌 이슈 관심 소비자",
+   "platform": "네이버 블로그",
+   "model": "광고",
+   "first_step": "최근 검색량이 급증하는 가전제품 키워드를 선정하고 AI로 SEO 최적화된 리뷰 초안 작성하기",
+   "evidence": "네이버 검색 유입을 통한 롱테일 키워드 공략 시 개설 초기 블로그도 단기간 내 클릭 및 구매 전환 발생 가능",
+   "scores": {
+    "demand": 90,
+    "low_competition": 50,
+    "low_cost": 100,
+    "speed_to_revenue": 75,
+    "scalability": 80,
+    "low_risk": 85
+   },
+   "score": 80.5,
+   "status": "candidate",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "metrics": null
+  }
+ ],
  "team": [
   {
    "name": "analyst",
@@ -295,8 +371,25 @@
   "JP",
   "GLOBAL"
  ],
- "reports": [],
+ "reports": [
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-23T10:20+00:00"
+  },
+  {
+   "file": "reports/jobs/connection-test-002.md",
+   "title": "connection-test-002",
+   "date": "2026-11-23T10:20+00:00"
+  }
+ ],
  "runs": [
+  {
+   "ts": "2026-11-23T10:20:38+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
+  },
   {
    "ts": "2026-11-23T09:59:25+00:00",
    "agent": "researcher",
@@ -336,8 +429,81 @@
   {
    "id": "connection-test-002",
    "task": "status",
-   "done": false
+   "done": true
   }
  ],
- "news": []
+ "news": [
+  {
+   "source": "구글 트렌드 JP",
+   "category": "trend",
+   "title": "8時だョ 全員集合",
+   "url": "https://trends.google.com/trending/rss?geo=JP"
+  },
+  {
+   "source": "구글 트렌드 US",
+   "category": "trend",
+   "title": "uefa champions league",
+   "url": "https://trends.google.com/trending/rss?geo=US"
+  },
+  {
+   "source": "구글 트렌드 KR",
+   "category": "trend",
+   "title": "fc서울",
+   "url": "https://trends.google.com/trending/rss?geo=KR"
+  },
+  {
+   "source": "Product Hunt",
+   "category": "product",
+   "title": "Inkling 2 Mini",
+   "url": "https://www.producthunt.com/products/tinker-2"
+  },
+  {
+   "source": "Product Hunt",
+   "category": "product",
+   "title": "Open Source Solana Wallet",
+   "url": "https://www.producthunt.com/products/open-source-solana-wallet"
+  },
+  {
+   "source": "Product Hunt",
+   "category": "product",
+   "title": "Jot",
+   "url": "https://www.producthunt.com/products/jot-15"
+  },
+  {
+   "source": "Hacker News",
+   "category": "tech",
+   "title": "Perplexity and Intelligence",
+   "url": "https://openai.com/index/perplexity-and-intelligence/"
+  },
+  {
+   "source": "Hacker News",
+   "category": "tech",
+   "title": "The Birds of GTA 6: A Field Guide to Vice City and Leonida's Wildlife",
+   "url": "https://www.audubon.org/magazine/birds-of-gta-6-field-guide-vice-city-wildlife"
+  },
+  {
+   "source": "Hacker News",
+   "category": "tech",
+   "title": "What Happened to Silicon Valley?",
+   "url": "https://www.oreilly.com/radar/what-happened-to-silicon-valley/"
+  },
+  {
+   "source": "GitHub 변경 로그",
+   "category": "devtools",
+   "title": "Connect Supabase, Box, Calendly, and more to Copilot",
+   "url": "https://github.blog/changelog/2026-11-18-connect-supabase-box-calendly-and-more-to-copilot"
+  },
+  {
+   "source": "GitHub 변경 로그",
+   "category": "devtools",
+   "title": "Wait for pull request events with GitHub CLI",
+   "url": "https://github.blog/changelog/2026-11-18-wait-for-pull-request-events-with-github-cli"
+  },
+  {
+   "source": "GitHub 변경 로그",
+   "category": "devtools",
+   "title": "S3 audit log streaming with OpenID Connect expands to GHE.com",
+   "url": "https://github.blog/changelog/2026-11-19-s3-audit-log-streaming-with-openid-connect-expands-to-ghe-com"
+  }
+ ]
 }

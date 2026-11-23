@@ -1,1 +1,8 @@
 {"ts": "2026-11-23T10:19:31+00:00", "agent": "worker", "model": "gemini:gemini-flash-lite-latest", "in": 14, "out": 4, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:23+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 452, "out": 35, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:25+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 523, "out": 37, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:27+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 595, "out": 26, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:34+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 649, "out": 39, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:35+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 724, "out": 41, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:38+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 818, "out": 820, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T10:20:41+00:00", "agent": "idea_scorer", "model": "gemini:gemini-flash-lite-latest", "in": 1220, "out": 695, "cache_read": 0, "usd": 0.0}
