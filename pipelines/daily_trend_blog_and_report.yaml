@@ -2,7 +2,7 @@ name: daily_trend_blog_and_report
 title: 매일 트렌드 블로그 게시 및 주간 성과 보고
 description: 매일 트렌드로 블로그 글 1편 자동 게시하고 주간 성과 보고
 schedule: daily
-enabled: true
+enabled: false
 created: '2026-11-23'
 steps:
 - command: news
@@ -18,3 +18,20 @@ skills_equipped: []
 runs:
 - date: '2026-11-23'
   ok: true
+viability:
+  date: '2026-11-23'
+  pass: false
+  why: 흑자 확률 22% · 90일 ROI 중앙값 -70% (기준 40%·+30%)
+  sim:
+    days: 90
+    runs: 2000
+    p_profit: 0.225
+    roi_p10: -0.96
+    roi_p50: -0.7
+    roi_p90: 1.13
+    rev30_p50: 18.0
+    rev_p10: 18.0
+    rev_p50: 144.0
+    rev_p90: 1269.0
+    breakeven_p50: 91
+disabled_reason: '생존 테스트 탈락: 흑자 확률 22% · 90일 ROI 중앙값 -70% (기준 40%·+30%)'

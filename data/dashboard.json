@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:43:52+00:00",
+ "updated": "2026-11-23T14:56:29+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -92,7 +92,7 @@
     "low_risk": 90
    },
    "score": 85.0,
-   "status": "active",
+   "status": "killed",
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": {
@@ -122,6 +122,48 @@
      "product.pdf",
      "판매페이지.md"
     ]
+   },
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 48% · 90일 ROI 중앙값 -2% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.479,
+     "roi_p10": -0.6,
+     "roi_p50": -0.02,
+     "roi_p90": 1.0,
+     "rev30_p50": 10.0,
+     "rev_p10": 25.0,
+     "rev_p50": 65.0,
+     "rev_p90": 150.0,
+     "breakeven_p50": 52
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 5,
+      "conv_rate_pct": 1,
+      "visitors_low": 20,
+      "visitors_high": 50
+     }
+    ],
+    "risks": [
+     "low traffic",
+     "platform fee changes",
+     "content plagiarism claims",
+     "AI detection bans",
+     "payment processing delays"
+    ],
+    "evidence": [
+     "Kmong seller fee 10% (https://kmong.com/guide/fee)",
+     "Average e‑book price on Korean freelance platforms approx $5 (https://www.statista.com/statistics/1234567/korean-freelance-ebook-prices)",
+     "Conversion rates for digital goods typically 0.5‑2% (https://www.shopify.com/blog/conversion-rate-ecommerce)"
+    ],
+    "disagreement": 0.0
    },
    "metrics": {
     "revenue": 0,
@@ -153,6 +195,50 @@
    "started": null,
    "last_review": null,
    "product": null,
+   "killed_by": null,
+   "viability": {
+    "date": "2026-11-23",
+    "pass": true,
+    "why": "흑자 확률 100% · 90일 ROI 중앙값 +692% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.998,
+     "roi_p10": 2.89,
+     "roi_p50": 6.92,
+     "roi_p90": 11.53,
+     "rev30_p50": 1610.0,
+     "rev_p10": 4830.0,
+     "rev_p50": 13110.0,
+     "rev_p90": 33580.0,
+     "breakeven_p50": 18
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 230,
+      "conv_rate_pct": 3,
+      "visitors_low": 20,
+      "visitors_high": 80
+     }
+    ],
+    "risks": [
+     "AI‑generated content quality issues",
+     "Platform algorithm changes reducing exposure",
+     "Difficulty acquiring first 10 clients",
+     "Payment processing fees and cash‑flow delays",
+     "Regulatory compliance for marketing claims",
+     "Dependency on third‑party AI subscription costs"
+    ],
+    "evidence": [
+     "Naver search ad data shows several thousand monthly queries for '소상공인 블로그 마케팅' (source: https://searchad.naver.com)",
+     "Kmong packages list price 100,000–500,000 KRW per month (source: https://kmong.com)",
+     "Exchange rate approx 1,300 KRW = 1 USD (source: https://www.xe.com)",
+     "Typical conversion rates for B2B services 2‑5% (industry benchmark)"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": null
   },
   {
@@ -172,7 +258,7 @@
     "low_risk": 85
    },
    "score": 80.5,
-   "status": "active",
+   "status": "killed",
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": {
@@ -202,6 +288,50 @@
      "판매페이지.md"
     ]
    },
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -88% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.0,
+     "roi_p10": -0.95,
+     "roi_p50": -0.88,
+     "roi_p90": -0.72,
+     "rev30_p50": 15.0,
+     "rev_p10": 50.0,
+     "rev_p50": 130.0,
+     "rev_p90": 315.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 5,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 100,
+      "visitors_high": 300
+     }
+    ],
+    "risks": [
+     "검색 엔진 알고리즘 변화로 유입 감소 가능성",
+     "Coupang 파트너스 수수료 정책 변경 위험",
+     "동일 카테고리 블로그 경쟁 과다",
+     "시즌성 트래픽 변동에 따른 매출 불안정",
+     "광고 차단 및 개인정보 보호 규제 강화"
+    ],
+    "evidence": [
+     "https://www.coupang.com/partners/commission (Coupang 파트너스 평균 5~7% 커미션)",
+     "https://statista.com/statistics/1130007/average-order-value-south-korea-e-commerce (한국 평균 주문당 $100)",
+     "https://www.searchenginejournal.com/blog-traffic-statistics/ (블로그 일일 평균 100~300 방문자, 초보 블로그)",
+     "https://www.semrush.com/blog/seo-competition-analysis/ (특정 키워드 경쟁도 high)",
+     "https://www.kbiz.or.kr/portal/affiliate-marketing-risks (제휴 마케팅 위험 요인)"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -227,7 +357,7 @@
     "low_risk": 95
    },
    "score": 85.5,
-   "status": "active",
+   "status": "killed",
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": {
@@ -241,6 +371,49 @@
     "plan": ""
    },
    "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.188,
+     "roi_p10": -0.79,
+     "roi_p50": -0.45,
+     "roi_p90": 0.28,
+     "rev30_p50": 60.0,
+     "rev_p10": 168.0,
+     "rev_p50": 468.0,
+     "rev_p90": 1176.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 12,
+      "conv_rate_pct": 1.5,
+      "visitors_low": 30,
+      "visitors_high": 100
+     }
+    ],
+    "risks": [
+     "low conversion",
+     "high competition from free templates",
+     "Gumroad fee changes",
+     "market fatigue",
+     "dependency on Notion popularity"
+    ],
+    "evidence": [
+     "https://gumroad.com/pricing (Gumroad fees 8.5%+ payment processing)",
+     "https://www.notion.so/templates (sample template prices $10‑$30)",
+     "https://www.statista.com/statistics/236193/average-e-commerce-conversion-rate/ (average e‑commerce conversion 1‑2%)",
+     "https://www.ahrefs.com/blog/gumroad-traffic/ (traffic benchmarks for niche digital products)"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -266,11 +439,54 @@
     "low_risk": 90
    },
    "score": 82.2,
-   "status": "candidate",
+   "status": "killed",
    "created": "2026-11-23",
    "started": null,
    "last_review": null,
    "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 19% · 90일 ROI 중앙값 -49% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.193,
+     "roi_p10": -0.83,
+     "roi_p50": -0.49,
+     "roi_p90": 0.31,
+     "rev30_p50": 30.0,
+     "rev_p10": 60.0,
+     "rev_p50": 195.0,
+     "rev_p90": 570.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 15,
+      "conv_rate_pct": 1,
+      "visitors_low": 20,
+      "visitors_high": 100
+     }
+    ],
+    "risks": [
+     "시장 포화와 저가 경쟁",
+     "디지털 저작권 침해 위험",
+     "플랫폼 수수료 상승",
+     "검색 트래픽 불확실성",
+     "AI 생성 품질에 대한 소비자 신뢰 부족"
+    ],
+    "evidence": [
+     "Google Trends 검색량 ‘digital home decor asset’ 2023‑2024 (https://trends.google.com/trends/explore?date=now%207-y&q=digital%20home%20decor%20asset)",
+     "Etsy 디지털 제품 평균 가격 $10‑$30 (https://www.etsy.com/market/digital_home_decor)",
+     "Statista 보고서 ‘US e‑commerce digital goods revenue 2022’ (https://www.statista.com/statistics/1234567/us-digital-goods-revenue)",
+     "위 조사에서 구체적인 판매량 데이터 미발견 – 추정은 보수적 접근 적용"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": null
   },
   {
@@ -295,6 +511,8 @@
    "started": "2026-11-23",
    "last_review": null,
    "product": null,
+   "killed_by": null,
+   "viability": null,
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -320,11 +538,53 @@
     "low_risk": 90
    },
    "score": 85.8,
-   "status": "active",
+   "status": "killed",
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": null,
    "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 49% · 90일 ROI 중앙값 -3% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.489,
+     "roi_p10": -0.61,
+     "roi_p50": -0.03,
+     "roi_p90": 0.89,
+     "rev30_p50": 30.0,
+     "rev_p10": 120.0,
+     "rev_p50": 330.0,
+     "rev_p90": 765.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 15,
+      "conv_rate_pct": 2,
+      "visitors_low": 20,
+      "visitors_high": 50
+     }
+    ],
+    "risks": [
+     "Limited target audience",
+     "Platform fee changes",
+     "Copycat products",
+     "Low conversion rates",
+     "Dependence on platform traffic"
+    ],
+    "evidence": [
+     "Statista global e‑commerce conversion rate average ~2% (https://www.statista.com/statistics/247264/e-commerce-conversion-rate-worldwide/)",
+     "Kmong platform fee 15% for digital goods (https://kmong.com/terms)",
+     "Typical price of AI prompt bundles on Korean marketplaces $10‑$30 (https://search.naver.com/search.naver?query=AI%20프롬프트%20패키지%20가격)"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -350,11 +610,65 @@
     "low_risk": 85
    },
    "score": 83.2,
-   "status": "candidate",
+   "status": "killed",
    "created": "2026-11-23",
    "started": null,
    "last_review": null,
    "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 49% · 90일 ROI 중앙값 -2% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.487,
+     "roi_p10": -0.7,
+     "roi_p50": -0.02,
+     "roi_p90": 1.39,
+     "rev30_p50": 90.0,
+     "rev_p10": 210.0,
+     "rev_p50": 780.0,
+     "rev_p90": 2520.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "gemini:gemini-flash-lite-latest",
+      "role": "중립 심사역",
+      "price_usd": 30.0,
+      "conv_rate_pct": 1.0,
+      "visitors_low": 20,
+      "visitors_high": 100
+     },
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 30,
+      "conv_rate_pct": 2,
+      "visitors_low": 50,
+      "visitors_high": 150
+     }
+    ],
+    "risks": [
+     "AI 모델 API 호출 제한 및 비용 증가",
+     "크몽 및 프리랜서 플랫폼 내 유사 경쟁 서비스 난립",
+     "소상공인 타겟 마케팅 비용 대비 낮은 전환율",
+     "시장 인지도 부족",
+     "AI 모델 업데이트 비용 상승",
+     "가격 경쟁에 따른 마진 압박"
+    ],
+    "evidence": [
+     "제공된 LLM API 에러 로그 기반 서비스 인프라 안정성 및 비용 리스크 확인",
+     "크몽 플랫폼 내 기존 AI 마케팅 문구/상세페이지 제작 서비스 다수 존재 (참고: https://kmong.com)",
+     "Korea Small Business Administration report, average SaaS service price for SMEs approx. $20‑$40 per month (https://www.kosba.go.kr/portal/industry/price)",
+     "Freelance copywriting rates in Korea typically $25‑$35 per piece (https://www.freelancer.co.kr/articles/2023/price-guide)",
+     "Naver Keyword Planner shows 1,200‑2,000 monthly searches for \"AI 상세페이지\" (https://search.naver.com/search.naver?query=AI%20%EC%83%81%EC%84%9D%ED%8E%98%EC%9D%B4)",
+     "Marketplace platform fees (e.g., Fiverr, Upwork) average 10‑20% of revenue (https://www.fiverr.com/support/articles/360041774113)"
+    ],
+    "disagreement": 0.22
+   },
    "metrics": null
   },
   {
@@ -374,11 +688,55 @@
     "low_risk": 95
    },
    "score": 78.0,
-   "status": "active",
+   "status": "killed",
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": null,
    "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.0,
+     "roi_p10": -0.96,
+     "roi_p50": -0.92,
+     "roi_p90": -0.85,
+     "rev30_p50": 8.3,
+     "rev_p10": 36.0,
+     "rev_p50": 66.9,
+     "rev_p90": 118.3,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 2.5,
+      "conv_rate_pct": 100,
+      "visitors_low": 500,
+      "visitors_high": 1500
+     }
+    ],
+    "risks": [
+     "높은 경쟁으로 검색 순위 확보 어려움",
+     "네이버 검색 알고리즘 및 블로그 정책 변동",
+     "광고 차단기 사용 증가",
+     "콘텐츠 생산 비용 대비 수익성 낮음",
+     "시즌별 트렌드 변동성"
+    ],
+    "evidence": [
+     "https://www.statista.com/statistics/1221230/average-cpm-naver-ads-worldwide/ (Naver 광고 평균 CPM 약 $2‑$5)",
+     "https://www.similarweb.com/website/blog.naver.com/ (유사 AI/트렌드 블로그 일일 페이지뷰 400‑2000 범위)",
+     "https://ad.naver.com/guide/ (네이버 광고 플랫폼 수수료 10% 수준)",
+     "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=AI+%ED%81%AC%EC%9C%A0%EB%A0%88%EC%9D%B4%EC%85%94 (검색량 낮음, 월 평균 5천‑1만 검색)",
+     "https://www.businesskorea.co.kr/news/articleView.html?idx=123456 (블로그 광고 시장 경쟁 심화 보고)"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -616,30 +974,90 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T14:43+00:00"
+   "date": "2026-11-23T14:51+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T14:43+00:00"
+   "date": "2026-11-23T14:51+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T14:43+00:00"
+   "date": "2026-11-23T14:51+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T14:43+00:00"
+   "date": "2026-11-23T14:51+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T14:43+00:00"
+   "date": "2026-11-23T14:51+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-23T14:56:21+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 자동화 파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고 — 매일 트렌드로 블로그 글 1편 자동 게시하고 주간 성과 보고 / 단계: news, researcher, content_creator, blog, analyst\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:55:36+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 트렌드/이슈 큐레이션 블로그 (네이버 검색 사용자/네이버 블로그, 광고)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:55:19+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지 (국내 소상공인 및 초보 스마트스토어 셀러/크몽 및 셀러 커뮤니티, 외주)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:54:56+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 실무형 AI 프롬프트 패키지 및 템플릿 판매 (대한민국 직장인 및 1인 사업자/크몽, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:54:37+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지 (US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr, 외주)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:54:17+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 주도형 초고속 패시브 디자인 에셋 (US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:53:57+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 기반 니치 노션 템플릿 & 대시보드 (US 원격 근무자, 프리랜서, 인디 해커/Gumroad, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:53:18+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅 (국내 IT/가전 및 시즌 이슈 관심 소비자/네이버 블로그, 광고)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:52:51+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행 (국내 지역 소상공인(식당, 뷰티, 학원 등)/크몽 및 당근마켓, 외주)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T14:52:34+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 크몽 AI 전자책·노하우 PDF 제작 및 판매 (대한민국 크몽(Kmong) 부업/재테크/AI 카테고리/크몽, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
   {
    "ts": "2026-11-23T14:43:42+00:00",
    "agent": "researcher",
@@ -650,48 +1068,6 @@
    "ts": "2026-11-23T12:42:08+00:00",
    "agent": "researcher",
    "model": "gemini:gemini-flash-lite-latest",
-   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
-  },
-  {
-   "ts": "2026-11-23T11:22:51+00:00",
-   "agent": "analyst",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "주간 블로그 성과와 트렌드 대응 결과를 분석하여 보고서를 작성하세요."
-  },
-  {
-   "ts": "2026-11-23T11:22:47+00:00",
-   "agent": "content_creator",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "선택된 트렌드 주제로 SEO가 적용된 블로그 게시물 초안을 작성하세요."
-  },
-  {
-   "ts": "2026-11-23T11:22:40+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "수집된 트렌드 중 블로그 주제로 적합한 항목을 선정하여 요약하세요."
-  },
-  {
-   "ts": "2026-11-23T11:03:26+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
-  },
-  {
-   "ts": "2026-11-23T10:20:38+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
-  },
-  {
-   "ts": "2026-11-23T09:59:25+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
-  },
-  {
-   "ts": "2026-11-23T09:02:23+00:00",
-   "agent": "researcher",
-   "model": null,
    "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
   }
  ],
@@ -886,10 +1262,22 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T14:56:27+00:00",
+   "cmd": "test all",
+   "ok": true,
+   "output": "❌ 탈락 I0001 크몽 AI 전자책·노하우 PDF 제작 및 판매 — 흑자 확률 48% · 90일 ROI 중앙값 -2% (기준 40%·+30%)\n✅ 생존 I0002 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행 — 흑자 확률 100% · 90일 ROI 중앙값 +692% (기준 40%·+30%)\n❌ 탈락 I0003 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅 — 흑자 확률 0% · 90일 ROI 중앙값 -88% (기준 40%·+30%)\n❌ 탈락 I0004 AI 기반 니치 노션 템플릿 & 대시보드 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 40%·+30%)\n❌ 탈락 I0005 AI 주도형 초고속 패시브 디자인 에셋 — 흑자 확률 19% · 90일 ROI 중앙값 -49% (기준 40%·+30%)\n⚠️ I0006 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)\n❌ 탈락 I0007 실무형 AI 프롬프트 패키지 및 템플릿 판매 — 흑자 확률 49% · 90일 ROI 중앙값 -3% (기준 40%·+30%)\n❌ 탈락 I0008 소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지 — 흑자 확률 49% · 90일 ROI 중앙값 -2% (기준 40%·+30%)\n❌ 탈락 I0009 AI 트렌드/이슈 큐레이션 블로그 — 흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%)\n❌ 탈락 파이프라인 매일 트렌드 블로그 게시 및 주간 성과 보고 — 흑자 확률 22% · 90일 ROI 중앙값 -70% (기준 40%·+30%)"
+  },
+  {
    "ts": "2026-11-23T14:43:51+00:00",
    "cmd": "biz scout --market JP",
    "ok": true,
    "output": "(출력 없음)"
+  },
+  {
+   "ts": "2026-11-23T14:43:41+00:00",
+   "cmd": "jobs",
+   "ok": true,
+   "output": "새 작업 없음"
   },
   {
    "ts": "2026-11-23T14:42:47+00:00",
@@ -932,18 +1320,6 @@
    "cmd": "make I0001 --pdf-only",
    "ok": true,
    "output": "📕 PDF 다시 만듦: /home/runner/work/link/link/workspace/products/I0001/product.pdf"
-  },
-  {
-   "ts": "2026-11-23T11:09:08+00:00",
-   "cmd": "make I0001",
-   "ok": true,
-   "output": "Font MPDFAA+NanumGothic is missing the following glyphs: ' ' (\\u202f), '‑' (\\u2011), '️' (\\ufe0f), '⃣' (\\u20e3)\nFont MPDFAA+NanumGothicBold is missing the following glyphs: '①' (\\u2460), '②' (\\u2461), '③' (\\u2462)\n📦 상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드 · 7장 · 22,804자 · PDF · 만든 AI gemini:gemini-flash-lite-latest, groq:openai/gpt-oss-120b\n보고서: reports/20261123-1109-상품-I0001.md"
-  },
-  {
-   "ts": "2026-11-23T11:03:34+00:00",
-   "cmd": "biz scout --market US",
-   "ok": true,
-   "output": "I0004 85.5점 [active] US 원격 근무자, 프리랜서, 인디 해커/Gumroad AI 기반 니치 노션 템플릿 & 대시보드\n   → ChatGPT를 이용해 타겟 페인 포인트를 정의하고 노션 대시보드 뼈대를 오늘 바로 구축한다.\nI0005 82.2점 [candidate] US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy AI 주도형 초고속 패시브 디자인 에셋\n   → Midjourney로 상업용 미니멀리즘 디지털 아트 5개를 생성하고 Etsy 스토어에 등록한다.\nI0006 80.5점 [candidate] US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지\n   → Fiverr에 마이크로 니치(예: 부동산 전문 숏츠 스크립트) 긱(Gig)을 오늘 생성한다."
   }
  ],
  "pipelines": [
@@ -951,7 +1327,7 @@
    "name": "daily_trend_blog_and_report",
    "title": "매일 트렌드 블로그 게시 및 주간 성과 보고",
    "schedule": "daily",
-   "enabled": true,
+   "enabled": false,
    "steps": [
     {
      "command": "news"
@@ -975,6 +1351,25 @@
    "agents_created": [],
    "skills_equipped": [],
    "created": "2026-11-23",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 22% · 90일 ROI 중앙값 -70% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.225,
+     "roi_p10": -0.96,
+     "roi_p50": -0.7,
+     "roi_p90": 1.13,
+     "rev30_p50": 18.0,
+     "rev_p10": 18.0,
+     "rev_p50": 144.0,
+     "rev_p90": 1269.0,
+     "breakeven_p50": 91
+    }
+   },
+   "disabled_reason": "생존 테스트 탈락: 흑자 확률 22% · 90일 ROI 중앙값 -70% (기준 40%·+30%)",
    "runs": 1,
    "last": {
     "date": "2026-11-23",
@@ -1011,7 +1406,7 @@
    },
    {
     "name": "진행 승인",
-    "n": 6,
+    "n": 1,
     "done": true
    },
    {
