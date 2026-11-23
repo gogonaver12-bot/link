@@ -291,3 +291,19 @@ def test_make_product_end_to_end_offline(monkeypatch):
     d = store.WORKSPACE / "products" / "I0001"
     assert r["sections"] == 2 and r["pdf"] and (d / "판매페이지.md").exists() and (d / "01-메일.md").exists()
     assert store.load_json("ideas.json", [])[0]["product"]["pdf"].endswith("product.pdf")
+
+
+def test_pdf_renders_tables_quotes_code_and_rebuild(monkeypatch):
+    pytest.importorskip("fpdf")
+    from mother import product
+    fonts = store.ROOT / "data" / "cache" / "fonts"
+    if not (fonts / "NanumGothic-Regular.ttf").exists():
+        pytest.skip("글꼴 없음(오프라인)")
+    monkeypatch.setattr(product, "_fonts", lambda: {k: fonts / f for k, f in product.FONTS.items()})
+    store.save_json("ideas.json", [{"id": "I0009", "title": "t", "market": "KR", "platform": "크몽"}])
+    d = store.WORKSPACE / "products" / "I0009"
+    d.mkdir(parents=True)
+    (d / "00-목차.md").write_text("# 제목\n부제\n", encoding="utf-8")
+    (d / "01-a.md").write_text("## 1. 첫 장\n| 항목 | 값 |\n|---|---|\n| 가 | 1️⃣ ① |\n> 핵심\n```\n코드\n```\n- 목록 🚀\n", encoding="utf-8")
+    out = product.rebuild_pdf("I0009")
+    assert out and out.read_bytes()[:4] == b"%PDF"

@@ -55,6 +55,8 @@ def make(idea_id, pages=30):
                            f"약 {pages}쪽 분량의 목차를 설계하라. 각 장은 구매자가 바로 따라 할 수 있는 실전 내용으로.",
                            OUTLINE_SCHEMA, agent="product_planner")
     sections = outline["sections"][:8]
+    for sec in sections:  # '1장. 제목' → '제목' (번호 중복 방지)
+        sec["title"] = re.sub(r"^\s*(제?\s*\d+\s*장|chapter\s*\d+|\d+)\s*[.:)\-]?\s*", "", sec["title"], flags=re.I) or sec["title"]
     per = max(1200, pages * 550 // max(1, len(sections)))
     (out / "00-목차.md").write_text(f"# {outline['title']}\n{outline['subtitle']}\n\n- 대상: {outline['target']}\n- 가격: {outline['price']}\n\n"
                                     + "\n".join(f"{n}. {s['title']}" for n, s in enumerate(sections, 1)) + "\n", encoding="utf-8")
@@ -94,6 +96,21 @@ def make(idea_id, pages=30):
             "pdf": bool(pdf), "report": f"reports/{rp.name}", "models": sorted(used)}
 
 
+def rebuild_pdf(idea_id):
+    """AI 호출 없이 저장된 원고로 PDF만 다시 만들기 (토큰 0)."""
+    d = store.WORKSPACE / "products" / idea_id
+    head = (d / "00-목차.md").read_text(encoding="utf-8").splitlines()
+    outline = {"title": head[0].lstrip("# ").strip(), "subtitle": head[1].strip() if len(head) > 1 else ""}
+    texts = []
+    for f in sorted(d.glob("[0-9][0-9]-*.md")):
+        if f.name.startswith("00-"):
+            continue
+        body = f.read_text(encoding="utf-8")
+        first = next((l for l in body.splitlines() if l.startswith("#")), f.stem[3:])
+        texts.append((re.sub(r"^#+\s*(\d+\.\s*)?", "", first).strip(), body))
+    return build_pdf(d / "product.pdf", outline, texts, LANG_NAME.get(_lang(_idea(idea_id)), "한국어"))
+
+
 # ───────────────────────── PDF ─────────────────────────
 FONTS = {"R": "NanumGothic-Regular.ttf", "B": "NanumGothic-Bold.ttf"}
 FONT_URL = "https://raw.githubusercontent.com/google/fonts/main/ofl/nanumgothic/"
@@ -110,13 +127,42 @@ def _fonts():
     return {k: d / f for k, f in FONTS.items()}
 
 
+KEYCAP = {f"{d}\ufe0f\u20e3": f"{d}." for d in "0123456789"}
+CIRCLED = {chr(0x2460 + i): f"({i + 1})" for i in range(20)}
+SPACES = {"\u202f": " ", "\u00a0": " ", "\u2009": " ", "\u2011": "-", "\u2013": "-", "\u2014": "-", "\u2192": "->", "\u2190": "<-",
+          "\u2714": "v", "\u2705": "v", "\u274c": "x", "\u2610": "[ ]", "\u2611": "[v]"}
+
+
 def _clean(t):
+    for a, b in {**KEYCAP, **CIRCLED, **SPACES}.items():
+        t = t.replace(a, b)
+    t = re.sub(r"\[([^\]]+)\]\((https?://[^)]+)\)", r"\1", t)  # 링크는 글자만
     t = re.sub(r"\*\*|__|`", "", t)
-    return "".join(ch for ch in t if ord(ch) < 0x2600 or 0x3000 <= ord(ch) <= 0xFFEF)  # 글꼴에 없는 이모지 제거
+    return "".join(ch for ch in t if ord(ch) < 0x2600 or 0x3000 <= ord(ch) <= 0xFFEF and ch != "\ufe0f")
+
+
+def _table(pdf, rows):
+    n = max(len(r) for r in rows)
+    rows = [r + [""] * (n - len(r)) for r in rows]
+    pdf.set_font("N", "", 9.5)
+    try:
+        from fpdf.fonts import FontFace
+        head = FontFace(family="N", emphasis="BOLD", fill_color=(225, 238, 250))
+        pdf.set_fill_color(255, 255, 255)
+        with pdf.table(text_align="LEFT", line_height=5.6, first_row_as_headings=True, headings_style=head,
+                       padding=1.6, cell_fill_color=(246, 250, 253), cell_fill_mode="ROWS") as t:
+            for r in rows:
+                row = t.row()
+                for c in r:
+                    row.cell(c)
+    except Exception:  # 표가 너무 넓으면 줄글로
+        for r in rows:
+            pdf.multi_cell(0, 6, " | ".join(r), new_x="LMARGIN", new_y="NEXT")
+    pdf.ln(2)
 
 
 def build_pdf(path, outline, texts, lang="한국어"):
-    """마크다운 원고 → 표지·목차·본문 PDF (한글 나눔고딕). 일본어 등 글꼴 없는 언어는 건너뜀."""
+    """마크다운 원고 → 표지·목차·본문 PDF (한글 나눔고딕): 제목·목록·표·인용·코드 블록 지원."""
     if lang == "日本語":
         return None
     try:
@@ -130,34 +176,70 @@ def build_pdf(path, outline, texts, lang="한국어"):
     pdf.add_font("N", "", str(f["R"]))
     pdf.add_font("N", "B", str(f["B"]))
     pdf.add_page()
-    pdf.set_y(90)
+    pdf.set_fill_color(14, 30, 52)
+    pdf.rect(0, 0, 210, 297, "F")
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_y(95)
     pdf.set_font("N", "B", 24)
     pdf.multi_cell(0, 12, _clean(outline["title"]), align="C")
-    pdf.ln(4)
+    pdf.ln(6)
+    pdf.set_text_color(130, 215, 255)
     pdf.set_font("N", "", 13)
     pdf.multi_cell(0, 8, _clean(outline["subtitle"]), align="C")
+    pdf.set_text_color(20, 20, 20)
+    pdf.set_fill_color(255, 255, 255)
     pdf.add_page()
-    pdf.set_font("N", "B", 16)
-    pdf.cell(0, 10, "목차" if lang == "한국어" else "Contents", new_x="LMARGIN", new_y="NEXT")
+    pdf.set_font("N", "B", 18)
+    pdf.cell(0, 12, "목차" if lang == "한국어" else "Contents", new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("N", "", 12)
     for n, (title, _) in enumerate(texts, 1):
-        pdf.multi_cell(0, 8, _clean(f"{n}. {title}"), new_x="LMARGIN", new_y="NEXT")
+        pdf.multi_cell(0, 9, _clean(f"{n}. {title}"), new_x="LMARGIN", new_y="NEXT")
     for _, text in texts:
         pdf.add_page()
-        for line in text.splitlines():
-            s = _clean(line).rstrip()
+        table, code = [], None
+        for raw in text.splitlines() + [""]:
+            s = _clean(raw).rstrip()
+            if s.strip().startswith("```"):
+                if code is None:
+                    code = []
+                else:
+                    pdf.set_font("N", "", 10)
+                    pdf.set_fill_color(240, 244, 248)
+                    pdf.multi_cell(0, 6, "\n".join(code) or " ", fill=True, new_x="LMARGIN", new_y="NEXT")
+                    pdf.ln(2)
+                    code = None
+                continue
+            if code is not None:
+                code.append(s)
+                continue
+            if re.match(r"^\s*\|.*\|\s*$", s):
+                if not re.match(r"^\s*\|[\s:|-]+\|\s*$", s):
+                    table.append([c.strip() for c in s.strip().strip("|").split("|")])
+                continue
+            if table:
+                _table(pdf, table)
+                table = []
             if not s.strip():
-                pdf.ln(3)
+                pdf.ln(2.5)
                 continue
             m = re.match(r"^(#{1,4})\s+(.*)", s)
             if m:
+                pdf.ln(2)
                 pdf.set_font("N", "B", {1: 18, 2: 16, 3: 13}.get(len(m.group(1)), 12))
+                pdf.set_text_color(14, 60, 110) if len(m.group(1)) <= 2 else pdf.set_text_color(20, 20, 20)
                 pdf.multi_cell(0, 9, m.group(2), new_x="LMARGIN", new_y="NEXT")
+                pdf.set_text_color(20, 20, 20)
                 pdf.ln(1)
-            else:
-                b = re.match(r"^\s*(?:[-*]|\d+[.)])\s+(.*)", s)
+                continue
+            q = re.match(r"^>\s?(.*)", s)
+            if q:
                 pdf.set_font("N", "", 11)
-                pdf.multi_cell(0, 6.6, ("• " + b.group(1)) if b and not re.match(r"^\s*\d", s) else s.strip(),
-                               new_x="LMARGIN", new_y="NEXT")
+                pdf.set_fill_color(232, 246, 255)
+                pdf.multi_cell(0, 6.6, "  " + q.group(1), fill=True, new_x="LMARGIN", new_y="NEXT")
+                pdf.ln(1)
+                continue
+            b = re.match(r"^\s*[-*+]\s+(.*)", s)
+            pdf.set_font("N", "", 11)
+            pdf.multi_cell(0, 6.6, ("• " + b.group(1)) if b else s.strip(), new_x="LMARGIN", new_y="NEXT")
     pdf.output(str(path))
     return path
