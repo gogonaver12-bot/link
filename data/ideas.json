@@ -119,7 +119,7 @@
     },
     "id": "I0002",
     "score": 80.0,
-    "status": "candidate",
+    "status": "active",
     "created": "2026-11-23",
     "viability": {
       "date": "2026-11-23",
@@ -175,7 +175,8 @@
           "visitors_high": 80
         }
       ]
-    }
+    },
+    "started": "2026-11-23"
   },
   {
     "title": "네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅",
