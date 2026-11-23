@@ -16,6 +16,11 @@ def _report_list():
     return out
 
 
+KEY_NAMES = ["GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN", "BLOGGER_BLOG_ID",
+             "GEMINI_API_KEY", "GROQ_API_KEY", "CEREBRAS_API_KEY", "OPENROUTER_API_KEY", "MISTRAL_API_KEY",
+             "ANTHROPIC_API_KEY", "YOUTUBE_API_KEY", "GH_SEARCH_TOKEN"]
+
+
 def _via(v):
     if not v:
         return None
@@ -164,6 +169,7 @@ def build():
                       | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
         "channels": _channels(),
         "progress": _progress(rev),
+        "keys_set": {k: bool(os.getenv(k)) for k in KEY_NAMES},  # 이름별 등록 여부만 (값은 절대 포함 안 함)
     }
     (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
     return snap
