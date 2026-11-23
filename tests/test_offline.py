@@ -277,3 +277,17 @@ def test_dashboard_hides_resolved_errors_and_explains_in_korean():
     store.append_jsonl("errors.jsonl", {"ts": "2026-11-23T10:20:00+00:00", "cmd": "y", "error": "gemini 429: quota exceeded"})
     e = dashboard.build()["errors"]
     assert len(e) == 1 and e[0]["msg"].startswith("AI 무료 사용량 초과")
+
+
+def test_make_product_end_to_end_offline(monkeypatch):
+    from mother import product
+    store.save_json("ideas.json", [{"id": "I0001", "title": "크몽 AI 전자책", "market": "KR", "platform": "크몽", "model": "판매",
+                                    "first_step": "목차 작성", "evidence": "", "status": "active", "score": 85}])
+    monkeypatch.setattr(llm, "ask_json", lambda *a, **k: {"title": "챗GPT 업무 자동화", "subtitle": "하루 1시간 절약", "target": "직장인",
+                                                         "price": "9,900원", "sections": [{"title": "메일", "points": ["템플릿"]}, {"title": "엑셀", "points": ["함수"]}]})
+    monkeypatch.setattr(providers, "complete", lambda prompt, **k: ("## 본문\n- 체크리스트\n내용", "gemini:g"))
+    monkeypatch.setattr(product, "build_pdf", lambda path, *a, **k: path.write_bytes(b"%PDF") or path)
+    r = product.make("I0001", pages=10)
+    d = store.WORKSPACE / "products" / "I0001"
+    assert r["sections"] == 2 and r["pdf"] and (d / "판매페이지.md").exists() and (d / "01-메일.md").exists()
+    assert store.load_json("ideas.json", [])[0]["product"]["pdf"].endswith("product.pdf")
