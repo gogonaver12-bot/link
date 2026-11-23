@@ -1,0 +1,72 @@
+# ── LINK 마더 에이전트 설정 (여기만 고치면 전체 동작이 바뀜) ──
+company: "LINK AI Company"
+report_lang: ko            # 사용자 보고 언어 (산출물은 시장별 언어 자동)
+
+models:
+  mother: claude-opus-5-5  # CEO: 계획·검수·평가
+  worker: claude-opus-5-5  # 실무팀. 비용 40배 절약하려면 claude-haiku-5-5 로 변경
+effort:                    # low < medium < high  (낮을수록 토큰 절약)
+  mother: medium
+  worker: low
+
+budget:
+  daily_usd: 3.0           # 하루 API 비용 상한 (넘으면 자동 정지)
+  max_tool_turns: 6        # 에이전트 1회당 도구 반복 상한
+  max_page_chars: 6000     # 크롤링 페이지당 글자 상한
+  handoff_chars: 2500      # 다음 에이전트에 넘기는 요약 길이
+  web_search_max_uses: 3   # 1회당 웹검색 횟수 상한
+
+# USD / 1M tokens : [input, output, cache_read]
+pricing_per_mtok:
+  claude-opus-5-5: [4.0, 20.0, 0.20]
+  claude-sonnet-5-5: [2.0, 10.0, 0.10]
+  claude-haiku-5-5: [0.10, 0.50, 0.01]
+  claude-fable-5-2: [8.0, 40.0, 0.20]
+
+# 환율 (1단위 → USD). 필요 시 갱신
+fx_to_usd: {USD: 1.0, KRW: 0.00072, JPY: 0.0066, EUR: 1.08, CNY: 0.14}
+
+markets:
+  - {code: KR, lang: ko, platforms: [스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그]}
+  - {code: US, lang: en, platforms: [Gumroad, Etsy, Fiverr, YouTube, Amazon KDP]}
+  - {code: JP, lang: ja, platforms: [BOOTH, note, ココナラ, YouTube]}
+  - {code: GLOBAL, lang: en, platforms: [Product Hunt, AppSumo, Upwork, Lemon Squeezy]}
+
+business:
+  min_idea_score: 65       # 이 점수 이상 아이디어만 실행
+  auto_approve_top: 1      # scout 1회당 자동 승인 개수 (0 = 수동 승인)
+  kill_roi: -0.3           # ROI -30% 이하 &
+  kill_after_days: 30      #   30일 경과 → 탈락
+  target_roi: 1.0          # ROI 100% 이상 → 확장(scale)
+
+agent_review:
+  min_avg_score: 6.5       # 평균 점수 미만 에이전트 → 프롬프트 자동 업그레이드
+  window: 10               # 최근 N회 평가 기준
+
+# ── 모든 AI 통합 ── 키(환경변수)만 넣으면 자동 연결. 새 AI는 OpenAI 호환이면 한 줄 추가로 끝
+# free: 무료 등급 있음 / model: 비우면 목록에서 자동 선택 / prefer: 자동 선택 우선 키워드
+# price: [입력, 출력] USD/1M — 비용 장부용 추정치. 실제 요금은 각 사이트에서 확인 후 수정
+providers:
+  anthropic:  {key: ANTHROPIC_API_KEY, note: "Claude (마더·검수 담당, 최후 보루)"}
+  gemini:     {base: "https://generativelanguage.googleapis.com/v1beta/openai", key: GEMINI_API_KEY, free: true, prefer: [flash], note: "aistudio.google.com 무료 키"}
+  groq:       {base: "https://api.groq.com/openai/v1", key: GROQ_API_KEY, free: true, prefer: [gpt-oss-120b, llama-3.3-70b], note: "console.groq.com 무료 키"}
+  cerebras:   {base: "https://api.cerebras.ai/v1", key: CEREBRAS_API_KEY, free: true, prefer: [gpt-oss, llama], note: "cloud.cerebras.ai 무료 키"}
+  openrouter: {base: "https://openrouter.ai/api/v1", key: OPENROUTER_API_KEY, free: true, model_filter: ":free", prefer: [deepseek, qwen, llama], note: "무료 모델 수십개 한 키로"}
+  mistral:    {base: "https://api.mistral.ai/v1", key: MISTRAL_API_KEY, free: true, prefer: [mistral-small], note: "console.mistral.ai 무료 체험 등급"}
+  ollama:     {base: "http://localhost:11434/v1", free: true, prefer: [qwen, llama, gemma], note: "내 PC 무료 실행 (ollama.com)"}
+  openai:     {base: "https://api.openai.com/v1", key: OPENAI_API_KEY, prefer: [mini], price: [0.4, 1.6], note: "ChatGPT API"}
+  deepseek:   {base: "https://api.deepseek.com", key: DEEPSEEK_API_KEY, model: deepseek-chat, price: [0.3, 1.2], note: "저렴·중국어 강점"}
+  xai:        {base: "https://api.x.ai/v1", key: XAI_API_KEY, prefer: [mini, fast], price: [0.3, 0.5], note: "Grok"}
+  qwen:       {base: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1", key: DASHSCOPE_API_KEY, prefer: [flash, plus], price: [0.1, 0.4], note: "알리바바 Qwen"}
+  moonshot:   {base: "https://api.moonshot.ai/v1", key: MOONSHOT_API_KEY, prefer: [kimi], price: [0.6, 2.5], note: "Kimi"}
+  together:   {base: "https://api.together.xyz/v1", key: TOGETHER_API_KEY, prefer: [Llama-3.3-70B, Qwen], price: [0.6, 0.6], note: "오픈모델 다수"}
+  upstage:    {base: "https://api.upstage.ai/v1", key: UPSTAGE_API_KEY, prefer: [solar-pro, solar-mini], price: [0.25, 0.25], note: "한국어 특화 Solar"}
+  clova:      {base: "https://clovastudio.stream.ntruss.com/v1/openai", key: CLOVA_API_KEY, model: HCX-005, price: [1.0, 4.0], note: "네이버 HyperCLOVA X"}
+  perplexity: {base: "https://api.perplexity.ai", key: PERPLEXITY_API_KEY, model: sonar, tools: false, price: [1.0, 1.0], note: "검색 내장 AI (도구 없는 작업만)"}
+
+routing:
+  # 실무팀(worker) 시도 순서: 무료 → 저렴 → Claude. 키 없는 AI는 자동 건너뜀
+  worker_order: [gemini, groq, cerebras, openrouter, mistral, ollama, deepseek, qwen, upstage, openai, xai, moonshot, together, clova]
+  min_model_score: 5.5     # 평균 점수 미만 모델은 자동 탈락
+  min_samples: 3           # 최소 평가 횟수 이후 판정
+  window: 10

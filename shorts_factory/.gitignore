@@ -1,0 +1,8 @@
+out/.work_*
+token.json
+client_secret.json
+uploads.json
+stats.csv
+assets/clips/
+assets/stock_cache/
+__pycache__/
