@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:06:56+00:00",
+ "updated": "2026-11-23T10:08:49+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -194,7 +194,7 @@
    "id": "gemini",
    "free": true,
    "note": "aistudio.google.com 무료 키",
-   "connected": false
+   "connected": true
   },
   {
    "id": "groq",
@@ -304,6 +304,11 @@
   }
  ],
  "errors": [
+  {
+   "ts": "2026-11-23T10:08:47+00:00",
+   "cmd": "ai ask 한국어로 한 문장 인사",
+   "error": "ProviderError: gemini: 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceed"
+  },
   {
    "ts": "2026-11-23T10:06:54+00:00",
    "cmd": "ai ask 한국어로 한 문장 인사",
