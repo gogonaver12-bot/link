@@ -17,6 +17,7 @@ def sandbox(tmp_path, monkeypatch):
     ag = tmp_path / "agents"
     shutil.copytree(store.ROOT / "agents", ag, ignore=shutil.ignore_patterns("_history"))
     monkeypatch.setattr(store, "AGENTS", ag)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")  # 기본: Claude 연결된 상태로 가정
 
 
 def U(i=1000, o=500, cr=0):
@@ -171,3 +172,21 @@ def test_dashboard_export_has_no_secret_values(monkeypatch):
     assert "super-secret-value" not in raw
     assert d["money"]["profit"] == 80 and d["ideas"][0]["metrics"]["roi"] == 4.0
     assert {p["id"]: p["connected"] for p in d["providers"]}["gemini"] is True
+
+
+def test_gemini_only_mode_and_no_key_message(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY")
+    for k in ("GROQ_API_KEY", "GOOGLE_API_KEY", "GOOGLE_CSE_ID"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setattr(providers, "_alive", {"ollama": False})
+    # 키가 하나도 없으면 친절한 안내
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="AI 키가 없어요"):
+        llm.ask_json("mother", "s", "p", {"type": "object"})
+    # Gemini 키만 있으면: 웹검색이 필요한 팀도 무료 AI가 처리, JSON도 무료 AI로 생성
+    monkeypatch.setenv("GEMINI_API_KEY", "g")
+    monkeypatch.setattr(providers, "pick_model", lambda p: "g-flash")
+    assert providers.candidates({"tier": "worker", "tools": ["web_search", "crawl"]}) == [("gemini", "g-flash")]
+    monkeypatch.setattr(providers, "_post", lambda url, h, body: {
+        "choices": [{"message": {"content": '```json\n{"ideas": []}\n```'}}], "usage": {}})
+    assert llm.ask_json("mother", "s", "p", {"type": "object"}) == {"ideas": []}

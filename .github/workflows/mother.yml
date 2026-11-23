@@ -22,6 +22,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with: { ref: main }   # 대기 중이던 실행도 최신 상태에서 시작
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip }
       - run: pip install -r requirements.txt
@@ -50,15 +51,21 @@ jobs:
           GOAL: ${{ github.event.inputs.goal }}
           EVENT: ${{ github.event_name }}
         run: |
+          set -o pipefail
+          STATUS=0
           if [ "$EVENT" = "push" ]; then python -m mother jobs
           elif [ -n "$GOAL" ]; then python -m mother run "$GOAL"
           else python -c 'import os, shlex; from mother.__main__ import safe_main; safe_main(shlex.split(os.environ.get("CMD") or "daily"))'
-          fi | tee -a "$GITHUB_STEP_SUMMARY"
+          fi 2>&1 | tee -a "$GITHUB_STEP_SUMMARY" || STATUS=$?
           python -m mother export || true   # 휴대폰 앱 데이터 갱신
+          exit $STATUS
       - name: save results
         if: always()   # 실패해도 에러 기록(data/errors.jsonl)은 저장
         run: |
           git config user.name "mother-agent"
           git config user.email "mother-agent@users.noreply.github.com"
           git add data reports agents skills workspace || true
-          git diff --cached --quiet || (git commit -m "mother: auto update $(date -u +%F)" && git pull --rebase -q && git push)
+          git diff --cached --quiet || git commit -qm "mother: auto update $(date -u +%F)"
+          for i in 1 2 3; do   # 다른 실행과 겹치면: 기록은 합치고(jsonl) 나머지는 이번 결과 우선
+            git pull --rebase -X theirs -q origin main && git push -q && break || { git rebase --abort 2>/dev/null; sleep 5; }
+          done

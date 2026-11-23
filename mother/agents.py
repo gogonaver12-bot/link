@@ -60,6 +60,8 @@ def run(name, task, context=""):
     store.append_jsonl("runs.jsonl", {"ts": store.now().isoformat(timespec="seconds"), "agent": name, "model": used,
                                       "version": spec.get("version", 1), "task": task[:300], "output": out[:1500],
                                       "failover": errs})
+    if not out and not errs:
+        raise RuntimeError(llm.NO_KEY)
     return out or "[실패] " + " / ".join(errs)
 
 
