@@ -396,6 +396,13 @@ const newPipeSheet = () => `<h3>⚙️ 파이프라인 만들기</h3><p class="s
   <div class="suggest">${["매일 트렌드로 블로그 글 1편 자동 게시", "매주 새 사업 발굴하고 상위 1개 상품까지 제작", "매일 숏츠 1개 제작·업로드하고 성과로 다음 대본 개선"].map((x) => `<button data-fill2="${esc(x)}">${esc(x)}</button>`).join("")}</div>
   <div style="margin-top:16px"><button class="btn" id="pipeBtn">만들기</button></div>`;
 const googleSheet = () => `<h3>🔑 구글 1회 연결 (유튜브·블로그 자동 업로드)</h3>
+  <div class="card" style="margin-top:8px"><div class="t">💻 PC에서 제일 쉬운 방법 (추천)</div><div class="note"><ol>
+  <li><a target="_blank" rel="noopener" href="https://console.cloud.google.com/apis/library/youtube.googleapis.com">YouTube Data API</a>·<a target="_blank" rel="noopener" href="https://console.cloud.google.com/apis/library/blogger.googleapis.com">Blogger API</a> <b>사용</b></li>
+  <li><a target="_blank" rel="noopener" href="https://console.cloud.google.com/auth/overview">동의 화면</a>: 외부 → 내 이메일 테스트 사용자 → <b>앱 게시</b></li>
+  <li><a target="_blank" rel="noopener" href="https://console.cloud.google.com/auth/clients/create">OAuth 클라이언트</a>: <b>데스크톱 앱</b> → JSON 다운로드 → <b>client_secret.json</b></li>
+  <li><a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/archive/refs/heads/main.zip">프로그램 ZIP 받기</a> → <b>tools/google_login</b> 폴더에 client_secret.json 넣고 <b>google_login.bat</b> 더블클릭 → <b>허용</b></li>
+  <li>나온 값 4개를 Secrets에 붙여넣기 (블로그 ID까지 자동으로 찾아줘요)</li></ol></div></div>
+  <div class="m" style="margin:12px 2px 4px">또는 휴대폰만으로 (OAuth Playground):</div>
   <div class="note"><ol>
   <li><a target="_blank" rel="noopener" href="https://console.cloud.google.com/projectcreate">구글 클라우드</a>에서 새 프로젝트 → <b>YouTube Data API v3</b>, <b>Blogger API v3</b> 사용 설정</li>
   <li>OAuth 동의 화면: 외부 → 내 이메일을 테스트 사용자로 추가 → <b>게시 상태를 '프로덕션'</b>으로 (7일 만료 방지)</li>
