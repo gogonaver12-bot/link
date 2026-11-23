@@ -135,3 +135,4 @@
 {"ts": "2026-11-23T14:56:18+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1434, "out": 127, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-23T14:56:22+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 709, "out": 283, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-23T14:56:26+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 769, "out": 708, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T15:23:19+00:00", "agent": "worker", "model": "gemini:gemini-flash-lite-latest", "in": 17, "out": 1, "cache_read": 0, "usd": 0.0}

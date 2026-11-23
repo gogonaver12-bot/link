@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:56:29+00:00",
+ "updated": "2026-11-23T15:23:22+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -819,6 +819,21 @@
    "last_feedback": ""
   },
   {
+   "name": "office_assistant",
+   "title": "업무 비서팀",
+   "version": 1,
+   "tools": [
+    "save_file"
+   ],
+   "model": "auto",
+   "skills": [
+    "company_work_prompts"
+   ],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
    "name": "researcher",
    "title": "시장조사팀",
    "version": 1,
@@ -974,27 +989,27 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T14:51+00:00"
+   "date": "2026-11-23T15:22+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T14:51+00:00"
+   "date": "2026-11-23T15:22+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T14:51+00:00"
+   "date": "2026-11-23T15:22+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T14:51+00:00"
+   "date": "2026-11-23T15:22+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T14:51+00:00"
+   "date": "2026-11-23T15:22+00:00"
   }
  ],
  "runs": [
@@ -1262,6 +1277,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T15:23:20+00:00",
+   "cmd": "ai ask \"연결 확인: OK 한 단어만\"",
+   "ok": true,
+   "output": "OK \n— gemini:gemini-flash-lite-latest"
+  },
+  {
    "ts": "2026-11-23T14:56:27+00:00",
    "cmd": "test all",
    "ok": true,
@@ -1314,12 +1335,6 @@
    "cmd": "pipeline new \"매일 트렌드로 블로그 글 1편 자동 게시하고 주간 성과 보고\"",
    "ok": true,
    "output": "⚙️ 파이프라인 생성: 매일 트렌드 블로그 게시 및 주간 성과 보고 [daily] · 5단계\n장착 스킬: researcher←bahasa-skills-skill, researcher←creator-buddy-skill\n바로 실행: pipeline run daily_trend_blog_and_report"
-  },
-  {
-   "ts": "2026-11-23T11:12:05+00:00",
-   "cmd": "make I0001 --pdf-only",
-   "ok": true,
-   "output": "📕 PDF 다시 만듦: /home/runner/work/link/link/workspace/products/I0001/product.pdf"
   }
  ],
  "pipelines": [
