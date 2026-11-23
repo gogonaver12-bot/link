@@ -239,6 +239,19 @@ function viewBiz() {
         <span class="pill">${m.age}일차</span>${lr ? `<span class="pill ${esc(lr.action)}">${ACTION[lr.action] || ""}</span>` : ""}</div>` : ""}</div>`;
   }).join("") : empty("💡", "아직 사업 아이디어가 없어요", "AI가 국가별로 돈 되는 사업을 찾아 점수를 매겨요", { attr: 'data-open="scout"', label: "🔎 사업 발굴 시작" })}`;
 }
+const fileUrl = (f) => `../${f.split("/").map(encodeURIComponent).join("/")}`;
+function productBox(i) {
+  const pr = i.product;
+  if (i.status === "killed") return "";
+  if (!pr) return `<div class="field"><label>판매할 상품</label><div class="card"><div class="m wrap">AI가 목차·장별 원고·PDF·판매 페이지 문구까지 한 번에 만들어요 (무료 AI 사용, 약 3~5분)</div>
+    <button class="btn" style="margin-top:12px" data-cmd="make ${esc(i.id)}" data-label="상품 만들기">🛠 상품 만들기</button></div></div>`;
+  const listing = `${pr.dir}/판매페이지.md`;
+  return `<div class="field"><label>📦 만든 상품 · ${esc(pr.made)}</label><div class="card"><div class="t wrap">${esc(pr.title)}</div>
+    <div class="m">${pr.files.length}개 파일</div><div class="btns">
+    ${pr.pdf ? `<a class="btn" style="text-align:center" href="${fileUrl(pr.pdf)}" target="_blank" rel="noopener">📕 PDF 보기</a>` : ""}
+    <button class="btn ghost" data-go="#report=${encodeURIComponent(listing)}">🛒 판매 페이지</button></div>
+    <button class="btn ghost" style="margin-top:8px" data-cmd="make ${esc(i.id)}" data-label="상품 다시 만들기">🔁 다시 만들기</button></div></div>`;
+}
 function ideaSheet(id) {
   const i = D.ideas.find((x) => x.id === id); if (!i) return "";
   const m = i.metrics, lr = i.last_review;
@@ -251,6 +264,7 @@ function ideaSheet(id) {
   <div class="field"><label>점수 상세</label>${Object.entries(i.scores || {}).map(([k, v]) =>
     `<div class="crit"><span>${CRIT[k] || esc(k)}</span><div class="bar"><i style="width:${Math.max(0, Math.min(100, v))}%"></i></div><b>${v}</b></div>`).join("")}</div>
   <div class="field"><label>근거</label><div class="card md">${md(i.evidence || "")}</div></div>
+  ${productBox(i)}
   <div class="btns">${i.status === "candidate" ? `<button class="btn" data-cmd="biz approve ${esc(i.id)}" data-label="사업 승인">✅ 승인하고 시작</button>`
     : `<button class="btn ghost" data-cmd="biz review" data-label="ROI 리뷰">📊 다시 판정</button>`}
     <button class="btn ghost" data-open="log" data-id="${esc(i.id)}">💵 매출 기록</button></div>`;
@@ -301,7 +315,11 @@ function viewAI() {
 /* ───────── 화면: 보고서 ───────── */
 function viewReports() {
   if (D.empty) return `<div class="skeleton"></div>`;
+  const made = D.ideas.filter((i) => i.product);
   return `<h1 class="page">보고서</h1><p class="sub">결과만 깔끔하게 — 매일 자동으로 쌓여요</p>
+  ${made.length ? `<div class="section-title"><h2>📦 만든 상품</h2></div><div class="card">${made.map((i) => `<div class="row tap" data-idea="${esc(i.id)}">
+    <div class="score" style="font-size:17px">📕</div><div class="grow"><div class="t">${esc(i.product.title)}</div><div class="m">${esc(i.id)} · ${esc(i.platform)} · ${esc(i.product.made)}</div></div></div>`).join("")}</div>
+    <div class="section-title"><h2>보고서</h2></div>` : ""}
   ${D.reports.length ? `<div class="card">${D.reports.map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행해 보세요", { attr: 'data-cmd="daily" data-label="일일 자동운영"', label: "⚙️ 지금 실행" })}`;
 }
 async function viewReport(file) {

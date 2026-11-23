@@ -64,7 +64,7 @@ def build():
     ideas = []
     for i in store.load_json("ideas.json", []):
         ideas.append({k: i.get(k) for k in ("id", "title", "market", "platform", "model", "first_step", "evidence",
-                                            "scores", "score", "status", "created", "started", "last_review")}
+                                            "scores", "score", "status", "created", "started", "last_review", "product")}
                      | {"metrics": business.metrics(i) if i.get("started") else None})
     ledger = store.read_jsonl("ledger.jsonl")
     rev, cost = sum(r["revenue_usd"] for r in ledger), sum(r["cost_usd"] for r in ledger)
