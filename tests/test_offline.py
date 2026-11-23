@@ -361,3 +361,14 @@ def test_skill_relevance_gate_rejects_hijack_and_foreign(monkeypatch):
     assert not skills_finder.relevant("SEO팀", "seo writing", hijack)
     assert not skills_finder.relevant("SEO팀", "seo writing", chinese)
     assert skills_finder.relevant("SEO팀", "seo writing", ok)
+
+
+def test_progress_shows_where_it_is_stuck(monkeypatch):
+    from mother import dashboard
+    for k in ("GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN"):
+        monkeypatch.delenv(k, raising=False)
+    store.save_json("ideas.json", [{"id": "I0001", "title": "A", "status": "active", "started": "2026-11-01", "score": 80,
+                                    "product": {"title": "책"}}])
+    pr = dashboard.build()["progress"]
+    assert [s["done"] for s in pr["steps"]] == [True, True, True, False, False]
+    assert pr["action"] == "google" and "ROI 0%" in pr["blocker"]
