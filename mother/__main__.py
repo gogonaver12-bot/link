@@ -117,6 +117,7 @@ def main(argv=None):
 
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
     mk.add_argument("id"); mk.add_argument("--pages", type=int, default=30)
+    mk.add_argument("--pdf-only", action="store_true", help="AI 없이 저장된 원고로 PDF만 다시 만들기")
     rc = sp.add_parser("record", help="(내부용) 명령 결과를 앱에 기록")
     rc.add_argument("status"); rc.add_argument("file"); rc.add_argument("label", nargs="?", default="")
 
@@ -215,6 +216,9 @@ def main(argv=None):
         p(tools.hook_score(x.text, x.title, x.thumb))
     elif x.cmd == "make":
         from . import product
+        if x.pdf_only:
+            p("📕 PDF 다시 만듦: " + str(product.rebuild_pdf(x.id) or "실패(원고 없음)"))
+            return
         r = product.make(x.id, x.pages)
         p(f"📦 상품 완성: {r['title']} · {r['sections']}장 · {r['chars']:,}자" + (" · PDF" if r["pdf"] else "")
           + f" · 만든 AI {', '.join(r['models'])}\n보고서: {r['report']}")
