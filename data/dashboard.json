@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:55:25+00:00",
+ "updated": "2026-11-23T16:55:39+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -190,52 +190,51 @@
     "low_risk": 85
    },
    "score": 80.0,
-   "status": "active",
+   "status": "killed",
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": null,
    "product": null,
-   "killed_by": null,
+   "killed_by": "생존 테스트",
    "viability": {
     "date": "2026-11-23",
-    "pass": true,
-    "why": "흑자 확률 100% · 90일 ROI 중앙값 +692% (기준 40%·+30%)",
+    "pass": false,
+    "why": "흑자 확률 13% · 90일 ROI 중앙값 -49% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
-     "p_profit": 0.998,
-     "roi_p10": 2.89,
-     "roi_p50": 6.92,
-     "roi_p90": 11.53,
-     "rev30_p50": 1610.0,
-     "rev_p10": 4830.0,
-     "rev_p50": 13110.0,
-     "rev_p90": 33580.0,
-     "breakeven_p50": 18
+     "p_profit": 0.129,
+     "roi_p10": -0.77,
+     "roi_p50": -0.49,
+     "roi_p90": 0.07,
+     "rev30_p50": 90.0,
+     "rev_p10": 270.0,
+     "rev_p50": 630.0,
+     "rev_p90": 1500.0,
+     "breakeven_p50": 91
     },
     "estimates": [
      {
       "model": "groq:openai/gpt-oss-120b",
       "role": "비관 분석가",
-      "price_usd": 230,
-      "conv_rate_pct": 3,
-      "visitors_low": 20,
-      "visitors_high": 80
+      "price_usd": 30,
+      "conv_rate_pct": 1,
+      "visitors_low": 50,
+      "visitors_high": 100
      }
     ],
     "risks": [
-     "AI‑generated content quality issues",
-     "Platform algorithm changes reducing exposure",
-     "Difficulty acquiring first 10 clients",
-     "Payment processing fees and cash‑flow delays",
-     "Regulatory compliance for marketing claims",
-     "Dependency on third‑party AI subscription costs"
+     "시장 포화",
+     "지역 검색량 낮음",
+     "AI 콘텐츠 품질 불신",
+     "플랫폼 정책 변화",
+     "결제 및 정산 문제"
     ],
     "evidence": [
-     "Naver search ad data shows several thousand monthly queries for '소상공인 블로그 마케팅' (source: https://searchad.naver.com)",
-     "Kmong packages list price 100,000–500,000 KRW per month (source: https://kmong.com)",
-     "Exchange rate approx 1,300 KRW = 1 USD (source: https://www.xe.com)",
-     "Typical conversion rates for B2B services 2‑5% (industry benchmark)"
+     "한국소상공인시장조사 2023, 월 평균 검색량 200~500건, https://korean-smb-research.or.kr/2023",
+     "구글 트렌드 한국 식당 마케팅 관심도 감소, https://trends.google.com/trends/explore?geo=KR&q=restaurant%20marketing",
+     "크몽 서비스 제공자 평균 가격 $30~$80, https://www.cremone.com/price-report",
+     "플랫폼 수수료 평균 15~25%, https://www.platformfees.kr"
     ],
     "disagreement": 0.0
    },
@@ -518,7 +517,49 @@
    "last_review": null,
    "product": null,
    "killed_by": null,
-   "viability": null,
+   "viability": {
+    "date": "2026-11-23",
+    "pass": true,
+    "why": "흑자 확률 77% · 90일 ROI 중앙값 +58% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.774,
+     "roi_p10": -0.3,
+     "roi_p50": 0.58,
+     "roi_p90": 2.04,
+     "rev30_p50": 200.0,
+     "rev_p10": 600.0,
+     "rev_p50": 1500.0,
+     "rev_p90": 3500.0,
+     "breakeven_p50": 62
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 50,
+      "conv_rate_pct": 2,
+      "visitors_low": 20,
+      "visitors_high": 50
+     }
+    ],
+    "risks": [
+     "AI 모델 접근 제한 및 신용 한도 문제",
+     "플랫폼(예:Fiverr) 수수료 인상",
+     "시장 포화 및 저가격 경쟁",
+     "전환율 저조",
+     "콘텐츠 트렌드 급변"
+    ],
+    "evidence": [
+     "https://www.fiverr.com/categories/creative/short-video-script-writing (average gig price $45‑$60)",
+     "https://www.statista.com/statistics/1172294/us-youtube-short-form-views/ (US YouTube Shorts monthly views > 1B)",
+     "https://trends.google.com/trends/explore?geo=US&q=short%20form%20content%20script (search interest moderate)",
+     "https://www.upwork.com/hire/content-writers/ (average hourly rate $30‑$45)",
+     "https://www.businessinsider.com/fiverr-2023-earnings-report (platform fee ~10%)"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -1020,6 +1061,18 @@
  ],
  "runs": [
   {
+   "ts": "2026-11-23T16:55:35+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지 (US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr, 외주)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T16:55:32+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행 (국내 지역 소상공인(식당, 뷰티, 학원 등)/크몽 및 당근마켓, 외주)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
    "ts": "2026-11-23T14:56:21+00:00",
    "agent": "researcher",
    "model": null,
@@ -1078,18 +1131,6 @@
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 크몽 AI 전자책·노하우 PDF 제작 및 판매 (대한민국 크몽(Kmong) 부업/재테크/AI 카테고리/크몽, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-23T14:43:42+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "JP 시장(ja)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: BOOTH, note, ココナラ, YouTube. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
-  },
-  {
-   "ts": "2026-11-23T12:42:08+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
   }
  ],
  "errors": [],
@@ -1283,10 +1324,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T16:55:25+00:00",
-   "cmd": "biz approve I0002",
+   "ts": "2026-11-23T16:55:38+00:00",
+   "cmd": "test all",
    "ok": true,
-   "output": "I0002 진행 시작"
+   "output": "❌ 탈락 I0002 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행 — 흑자 확률 13% · 90일 ROI 중앙값 -49% (기준 40%·+30%)\n✅ 생존 I0006 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지 — 흑자 확률 77% · 90일 ROI 중앙값 +58% (기준 40%·+30%)"
   },
   {
    "ts": "2026-11-23T16:55:07+00:00",
@@ -1427,7 +1468,7 @@
    },
    {
     "name": "진행 승인",
-    "n": 2,
+    "n": 1,
     "done": true
    },
    {
