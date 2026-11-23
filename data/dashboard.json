@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:54:48+00:00",
+ "updated": "2026-11-23T16:55:08+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -891,7 +891,7 @@
    "id": "anthropic",
    "free": false,
    "note": "Claude (마더·검수 담당, 최후 보루)",
-   "connected": false
+   "connected": true
   },
   {
    "id": "gemini",
@@ -933,7 +933,7 @@
    "id": "openai",
    "free": false,
    "note": "ChatGPT API",
-   "connected": false
+   "connected": true
   },
   {
    "id": "deepseek",
@@ -1283,6 +1283,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T16:55:07+00:00",
+   "cmd": "ai arena \"소상공인에게 AI 블로그 대행을 파는 한 줄 홍보 문구 3개\"",
+   "ok": false,
+   "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
+  },
+  {
    "ts": "2026-11-23T16:54:47+00:00",
    "cmd": "biz approve I0002",
    "ok": true,
@@ -1335,12 +1341,6 @@
    "cmd": "biz scout --market JP",
    "ok": true,
    "output": "(출력 없음)"
-  },
-  {
-   "ts": "2026-11-23T14:43:41+00:00",
-   "cmd": "jobs",
-   "ok": true,
-   "output": "새 작업 없음"
   }
  ],
  "pipelines": [
@@ -1461,7 +1461,8 @@
   "CEREBRAS_API_KEY": false,
   "OPENROUTER_API_KEY": false,
   "MISTRAL_API_KEY": false,
-  "ANTHROPIC_API_KEY": false,
+  "ANTHROPIC_API_KEY": true,
+  "OPENAI_API_KEY": true,
   "YOUTUBE_API_KEY": true,
   "GH_SEARCH_TOKEN": false
  }
