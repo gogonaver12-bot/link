@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T11:02:58+00:00",
+ "updated": "2026-11-23T11:03:03+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -581,7 +581,7 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T11:02:57+00:00",
+   "ts": "2026-11-23T11:03:01+00:00",
    "cmd": "jobs",
    "ok": true,
    "output": "새 작업 없음"
