@@ -4,6 +4,7 @@ import json
 import os
 
 from . import agents, business, providers, store
+from .collector import _sources
 
 
 def _report_list():
@@ -13,6 +14,27 @@ def _report_list():
         out.append({"file": str(p.relative_to(store.ROOT)), "title": (first[0].lstrip("# ") if first else p.stem)[:80],
                     "date": dt.datetime.fromtimestamp(p.stat().st_mtime, dt.timezone.utc).isoformat(timespec="minutes")})
     return out
+
+
+def friendly(err):
+    e = (err or "").lower()
+    if "429" in e or "quota" in e or "rate limit" in e:
+        return "AI 무료 사용량 초과 — 다른 AI로 자동 전환 중. 계속되면 예비 AI 키(Groq 등)를 추가하세요"
+    if "ai 키가 없어요" in e or "authentication" in e or "401" in e or "api_key" in e:
+        return "AI 키가 없거나 틀려요 — 저장소 Secrets 확인"
+    if "예산" in e or "budget" in e:
+        return "오늘 AI 예산을 다 썼어요 — 내일 자동으로 다시 시작"
+    if "timeout" in e or "connection" in e:
+        return "인터넷 연결 오류 — 다음 실행 때 자동 재시도"
+    return (err or "")[:90]
+
+
+def _errors():
+    """해결 안 된 에러만: 마지막으로 AI가 정상 작동한 뒤에 난 에러."""
+    ok = [r["ts"] for r in store.read_jsonl("usage.jsonl")] + [c["ts"] for c in store.read_jsonl("commands.jsonl") if c.get("ok")]
+    last_ok = max(ok) if ok else ""
+    rows = [r for r in store.read_jsonl("errors.jsonl") if r["ts"] > last_ok][-5:][::-1]
+    return [{"ts": r["ts"], "cmd": r.get("cmd"), "error": r.get("error", "")[:600], "msg": friendly(r.get("error"))} for r in rows]
 
 
 def _news():
@@ -81,11 +103,12 @@ def build():
         "markets": [m["code"] for m in c["markets"]],
         "reports": _report_list(),
         "runs": [{k: r.get(k) for k in ("ts", "agent", "model", "task")} for r in store.read_jsonl("runs.jsonl")[-12:]][::-1],
-        "errors": [{k: r.get(k) for k in ("ts", "cmd", "error")} for r in store.read_jsonl("errors.jsonl")[-5:]][::-1],
+        "errors": _errors(),
         "jobs": jobs[-10:],
         "news": _news(),
         "sources": [{k: x.get(k) for k in ("name", "category", "origin", "added", "removed")}
-                    for x in store.load_json("sources.json", [])][::-1][:40],
+                    for x in _sources()][::-1][:40],
+        "commands": store.read_jsonl("commands.jsonl")[-10:][::-1],
     }
     (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
     return snap

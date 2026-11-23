@@ -179,7 +179,7 @@ function viewHome() {
     <div class="hero-info">
       <div class="clock" id="clock">${now.toTimeString().slice(0, 5)}</div>
       <div class="date">${now.toLocaleDateString("ko-KR", { month: "long", day: "numeric", weekday: "long" })}</div>
-      <span class="state"><span class="dot ${errs ? "bad" : conn ? "" : "warn"}"></span>${errs ? `에러 ${errs}건 · 자동 수정 대기` : conn ? `시스템 정상 · AI ${conn}개 연결` : "AI 키 연결 필요"}</span>
+      <span class="state"><span class="dot ${errs ? "bad" : conn ? "" : "warn"}"></span>${errs ? `문제 ${errs}건 · 자동 해결 중` : conn ? `시스템 정상 · AI ${conn}개 연결` : "AI 키 연결 필요"}</span>
       <div class="upd">예산 ${usd(b.daily)}/일 · 갱신 ${ago(D.updated)}</div>
     </div>
   </section>
@@ -189,7 +189,8 @@ function viewHome() {
     <div class="card kpi tap" data-go="#biz"><div class="lbl">🚀 진행 사업</div><div class="num">${act.length}<small>/ ${D.ideas.length}</small></div></div>
     <div class="card kpi tap" data-go="#team"><div class="lbl">🧠 팀 평균</div><div class="num">${teamAvg}<small>점</small></div></div>
   </div>
-  ${errs ? `<div class="card alert" style="margin-top:10px"><div class="t">⚠️ 최근 에러</div><div class="m wrap">${esc(D.errors[0].error)}</div></div>` : ""}
+  ${errs ? `<div class="card alert tap" data-errlog="0" style="margin-top:10px"><div class="t">⚠️ 해결 중인 문제</div><div class="m wrap clamp2">${esc(D.errors[0].msg || D.errors[0].error)}</div></div>` : ""}
+  ${(D.commands || []).length ? `<div class="section-title"><h2>최근 명령 결과</h2></div><div class="card">${D.commands.slice(0, 4).map(cmdRow).join("")}</div>` : ""}
   <div class="section-title"><h2>빠른 실행</h2></div>
   <div class="quick">
     <button class="qbtn" data-cmd="daily" data-label="일일 자동운영"><span class="ico">⚙️</span>일일 자동운영</button>
@@ -210,6 +211,13 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
+const CMDNAME = [[/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
+  [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
+  [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
+const cmdName = (c) => { const hit = CMDNAME.find(([re]) => re.test(c || "")); return hit ? hit[1] + (/--market (\w+)/.exec(c) ? " " + /--market (\w+)/.exec(c)[1] : "") : "목표: " + (c || "").slice(0, 30); };
+const cmdRow = (c, i) => `<div class="row tap" data-cmdlog="${i}"><span class="dot ${c.ok ? "" : "bad"}"></span>
+  <div class="grow"><div class="t">${esc(cmdName(c.cmd))} ${c.ok ? "" : "· 실패"}</div><div class="m">${esc((c.output || "").split("\n").filter(Boolean).slice(-1)[0] || "")}</div></div>
+  <span class="m">${ago(c.ts)}</span></div>`;
 const reportRow = (r) => `<div class="row tap" data-go="#report=${encodeURIComponent(r.file)}"><div class="score" style="font-size:17px">📄</div>
   <div class="grow"><div class="t">${esc(r.title)}</div><div class="m">${ago(r.date)} · ${esc(r.file.replace("reports/", ""))}</div></div></div>`;
 
@@ -378,7 +386,7 @@ function render() {
 const SHEETS = { addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-filter],[data-fill],[data-prov],[data-close],[data-v]");
+  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-prov],[data-close],[data-v]");
   if (!el) return;
   const ds = el.dataset;
   if (ds.close !== undefined) return closeSheet();
@@ -386,6 +394,12 @@ document.addEventListener("click", (e) => {
   if (ds.cmd) return dispatch(ds.cmd, "", ds.label);
   if (ds.open) { if (D && !D.empty) openSheet(SHEETS[ds.open](ds.id)); else if (ds.open === "settings") openSheet(settingsSheet()); return; }
   if (ds.idea) return openSheet(ideaSheet(ds.idea));
+  if (ds.errlog !== undefined) { const r = D.errors[+ds.errlog];
+    return openSheet(`<h3>⚠️ ${esc(r.msg)}</h3><p class="sub" style="margin:0">${ago(r.ts)} · ${esc(r.cmd || "")}</p>
+      <div class="field"><label>원문</label><div class="card md"><pre><code>${esc(r.error)}</code></pre></div></div>`); }
+  if (ds.cmdlog !== undefined) { const c = D.commands[+ds.cmdlog];
+    return openSheet(`<h3>${c.ok ? "✅" : "⚠️"} ${esc(cmdName(c.cmd))}</h3><p class="sub" style="margin:0">${ago(c.ts)} · ${esc(c.cmd)}</p>
+      <div class="field"><div class="card md"><pre><code>${esc(c.output)}</code></pre></div></div>`); }
   if (ds.prov) return openSheet(provSheet(ds.prov));
   if (ds.filter) { bizFilter = ds.filter; return render(); }
   if (ds.fill) { $("#goal").value = ds.fill; return $("#goal").focus(); }

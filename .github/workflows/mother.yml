@@ -13,7 +13,6 @@ on:
   push:
     paths: ["jarvis/jobs.json"]  # 작업큐에 추가하면 자동 처리
 
-concurrency: { group: mother, cancel-in-progress: false }
 permissions: { contents: write }
 
 jobs:
@@ -56,7 +55,8 @@ jobs:
           if [ "$EVENT" = "push" ]; then python -m mother jobs
           elif [ -n "$GOAL" ]; then python -m mother run "$GOAL"
           else python -c 'import os, shlex; from mother.__main__ import safe_main; safe_main(shlex.split(os.environ.get("CMD") or "daily"))'
-          fi 2>&1 | tee -a "$GITHUB_STEP_SUMMARY" || STATUS=$?
+          fi 2>&1 | tee out.txt | tee -a "$GITHUB_STEP_SUMMARY" || STATUS=$?
+          python -m mother record "$STATUS" out.txt "${GOAL:-${CMD:-$EVENT}}" || true   # 앱에 명령 결과 표시
           python -m mother export || true   # 휴대폰 앱 데이터 갱신
           exit $STATUS
       - name: save results
