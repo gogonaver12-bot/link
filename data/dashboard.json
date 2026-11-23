@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T11:03:11+00:00",
+ "updated": "2026-11-23T11:03:36+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -171,6 +171,81 @@
     "roi": 0.0,
     "age": 0
    }
+  },
+  {
+   "id": "I0004",
+   "title": "AI 기반 니치 노션 템플릿 & 대시보드",
+   "market": "US 원격 근무자, 프리랜서, 인디 해커",
+   "platform": "Gumroad",
+   "model": "판매",
+   "first_step": "ChatGPT를 이용해 타겟 페인 포인트를 정의하고 노션 대시보드 뼈대를 오늘 바로 구축한다.",
+   "evidence": "Gumroad 및 r/Notion 커뮤니티의 지속적인 디지털 생산성 템플릿 수요 확인",
+   "scores": {
+    "demand": 85,
+    "low_competition": 60,
+    "low_cost": 95,
+    "speed_to_revenue": 90,
+    "scalability": 90,
+    "low_risk": 95
+   },
+   "score": 85.5,
+   "status": "active",
+   "created": "2026-11-23",
+   "started": "2026-11-23",
+   "last_review": null,
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
+  },
+  {
+   "id": "I0005",
+   "title": "AI 주도형 초고속 패시브 디자인 에셋",
+   "market": "US 홈데코, 파티 준비, 소셜미디어 크리에이터",
+   "platform": "Etsy",
+   "model": "판매",
+   "first_step": "Midjourney로 상업용 미니멀리즘 디지털 아트 5개를 생성하고 Etsy 스토어에 등록한다.",
+   "evidence": "Etsy 내 디지털 다운로드 카테고리의 높은 구매 의도 트래픽 존재",
+   "scores": {
+    "demand": 90,
+    "low_competition": 50,
+    "low_cost": 90,
+    "speed_to_revenue": 85,
+    "scalability": 85,
+    "low_risk": 90
+   },
+   "score": 82.2,
+   "status": "candidate",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "metrics": null
+  },
+  {
+   "id": "I0006",
+   "title": "AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지",
+   "market": "US 소상공인 및 유튜브 숏폼 크리에이터",
+   "platform": "Fiverr",
+   "model": "외주",
+   "first_step": "Fiverr에 마이크로 니치(예: 부동산 전문 숏츠 스크립트) 긱(Gig)을 오늘 생성한다.",
+   "evidence": "숏폼 마케팅 수요 폭증 및 빠른 외주 서비스 구매 성향",
+   "scores": {
+    "demand": 80,
+    "low_competition": 70,
+    "low_cost": 100,
+    "speed_to_revenue": 85,
+    "scalability": 60,
+    "low_risk": 90
+   },
+   "score": 80.5,
+   "status": "candidate",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "metrics": null
   }
  ],
  "team": [
@@ -401,15 +476,21 @@
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T11:03+00:00"
+   "date": "2026-11-23T11:02+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T11:03+00:00"
+   "date": "2026-11-23T11:02+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-23T11:03:26+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
+  },
   {
    "ts": "2026-11-23T10:20:38+00:00",
    "agent": "researcher",
@@ -599,16 +680,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T11:03:09+00:00",
-   "cmd": "biz review",
+   "ts": "2026-11-23T11:03:34+00:00",
+   "cmd": "biz scout --market US",
    "ok": true,
-   "output": "I0001 WATCH ROI +0% 매출 $0 | \nI0003 WATCH ROI +0% 매출 $0 |"
-  },
-  {
-   "ts": "2026-11-23T11:02:57+00:00",
-   "cmd": "jobs",
-   "ok": true,
-   "output": "새 작업 없음"
+   "output": "I0004 85.5점 [active] US 원격 근무자, 프리랜서, 인디 해커/Gumroad AI 기반 니치 노션 템플릿 & 대시보드\n   → ChatGPT를 이용해 타겟 페인 포인트를 정의하고 노션 대시보드 뼈대를 오늘 바로 구축한다.\nI0005 82.2점 [candidate] US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy AI 주도형 초고속 패시브 디자인 에셋\n   → Midjourney로 상업용 미니멀리즘 디지털 아트 5개를 생성하고 Etsy 스토어에 등록한다.\nI0006 80.5점 [candidate] US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지\n   → Fiverr에 마이크로 니치(예: 부동산 전문 숏츠 스크립트) 긱(Gig)을 오늘 생성한다."
   },
   {
    "ts": "2026-11-23T10:56:37+00:00",
