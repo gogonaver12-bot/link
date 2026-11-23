@@ -80,3 +80,11 @@ autopilot:
   youtube_privacy: public  # public / private
   blog_posts_per_day: 1    # 블로그 글 → Blogger 게시 (구글 연결 시)
   blog_draft: false        # true 면 임시저장만
+
+# ── 생존 테스트 (인터넷 조사 → AI 경쟁 추정 → 몬테카를로 시뮬레이션) ──
+viability:
+  min_p_profit: 0.4        # 90일 안에 흑자일 확률이 40% 미만이면 탈락
+  min_roi_p50: 0.3         # 90일 ROI 중앙값 +30% 미만이면 탈락
+  days: 90
+  runs: 2000               # 시뮬레이션 반복 횟수
+  max_ais: 3               # 경쟁시킬 AI 수 (회사별 1개: 중립·비관·낙관)

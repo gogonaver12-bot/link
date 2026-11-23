@@ -48,13 +48,23 @@ def scout(market_code=None, n=3):
                       status="candidate", created=store.today())
             new.append(it)
     ideas += new
-    k = c["business"]["auto_approve_top"]
-    for it in sorted(new, key=lambda x: -x["score"])[:k]:
-        if it["score"] >= c["business"]["min_idea_score"]:
-            it["status"] = "active"
-            it["started"] = store.today()
     store.save_json("ideas.json", ideas)
-    return new
+    k = c["business"]["auto_approve_top"]
+    from . import viability
+    for it in sorted(new, key=lambda x: -x["score"])[:k + 1]:  # 점수 상위 → 생존 테스트 통과해야 승인
+        if it["score"] < c["business"]["min_idea_score"]:
+            continue
+        try:
+            _, r = viability.test_idea(it["id"])
+        except llm.BudgetExceeded:
+            raise
+        except Exception:
+            continue
+        if r["pass"] and k > 0:
+            approve(it["id"])
+            k -= 1
+    ids = {i["id"] for i in new}
+    return [i for i in store.load_json("ideas.json", []) if i["id"] in ids]
 
 
 def approve(idea_id):
@@ -117,7 +127,11 @@ def review():
         out = llm.ask_json("mother", "너는 투자심사역이다. 숫자 근거로 간결하게.", "\n".join(need), ACTION_SCHEMA,
                            agent="investor")
         plans = {x["id"]: x for x in out["items"]}
+    from . import viability
     for it, m, act in rows:
+        if m["age"] >= 30 and not it.get("calibrated"):
+            viability.calibrate(it, m["revenue"])
+            it["calibrated"] = store.today()
         p = plans.get(it["id"], {})
         it["last_review"] = {"date": store.today(), "action": act, **m, "plan": p.get("plan", "")}
         if act == "kill":
