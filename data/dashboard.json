@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T11:03:36+00:00",
+ "updated": "2026-11-23T11:09:09+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -64,7 +64,8 @@
    }
   ],
   "by_model": {
-   "gemini:gemini-flash-lite-latest": 0.0
+   "gemini:gemini-flash-lite-latest": 0.0,
+   "groq:openai/gpt-oss-120b": 0.0
   }
  },
  "money": {
@@ -103,6 +104,24 @@
     "age": 0,
     "plan": ""
    },
+   "product": {
+    "made": "2026-11-23",
+    "title": "퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
+    "dir": "workspace/products/I0001",
+    "pdf": "workspace/products/I0001/product.pdf",
+    "files": [
+     "00-목차.md",
+     "01-1장-챗GPT와-친해지기-초보자를-위한-기본-개념과-가입.md",
+     "02-2장-기획서-보고서-작성-10분-만에-끝내는-법.md",
+     "03-3장-이메일-작성-및-비즈니스-커뮤니케이션-자동화.md",
+     "04-4장-데이터-분석-및-엑셀-Excel-스프레드시트-200-활용.md",
+     "05-5장-마케팅-문구-및-블로그-SNS-콘텐츠-대량-생산.md",
+     "06-6장-업무-시간을-반으로-줄여주는-나만의-맞춤형-GPT-설정법.md",
+     "07-7장-실전-부록-복사해서-바로-쓰는-치트키-프롬프트-모음-30선.md",
+     "product.pdf",
+     "판매페이지.md"
+    ]
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -132,6 +151,7 @@
    "created": "2026-11-23",
    "started": null,
    "last_review": null,
+   "product": null,
    "metrics": null
   },
   {
@@ -154,16 +174,8 @@
    "status": "active",
    "created": "2026-11-23",
    "started": "2026-11-23",
-   "last_review": {
-    "date": "2026-11-23",
-    "action": "watch",
-    "revenue": 0,
-    "cost": 0,
-    "profit": 0,
-    "roi": 0.0,
-    "age": 0,
-    "plan": ""
-   },
+   "last_review": null,
+   "product": null,
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -193,6 +205,7 @@
    "created": "2026-11-23",
    "started": "2026-11-23",
    "last_review": null,
+   "product": null,
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -222,6 +235,7 @@
    "created": "2026-11-23",
    "started": null,
    "last_review": null,
+   "product": null,
    "metrics": null
   },
   {
@@ -245,6 +259,7 @@
    "created": "2026-11-23",
    "started": null,
    "last_review": null,
+   "product": null,
    "metrics": null
   }
  ],
@@ -474,14 +489,19 @@
  ],
  "reports": [
   {
+   "file": "reports/20261123-1109-상품-I0001.md",
+   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
+   "date": "2026-11-23T11:09+00:00"
+  },
+  {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T11:02+00:00"
+   "date": "2026-11-23T11:07+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T11:02+00:00"
+   "date": "2026-11-23T11:07+00:00"
   }
  ],
  "runs": [
@@ -680,10 +700,34 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T11:09:08+00:00",
+   "cmd": "make I0001",
+   "ok": true,
+   "output": "Font MPDFAA+NanumGothic is missing the following glyphs: ' ' (\\u202f), '‑' (\\u2011), '️' (\\ufe0f), '⃣' (\\u20e3)\nFont MPDFAA+NanumGothicBold is missing the following glyphs: '①' (\\u2460), '②' (\\u2461), '③' (\\u2462)\n📦 상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드 · 7장 · 22,804자 · PDF · 만든 AI gemini:gemini-flash-lite-latest, groq:openai/gpt-oss-120b\n보고서: reports/20261123-1109-상품-I0001.md"
+  },
+  {
    "ts": "2026-11-23T11:03:34+00:00",
    "cmd": "biz scout --market US",
    "ok": true,
    "output": "I0004 85.5점 [active] US 원격 근무자, 프리랜서, 인디 해커/Gumroad AI 기반 니치 노션 템플릿 & 대시보드\n   → ChatGPT를 이용해 타겟 페인 포인트를 정의하고 노션 대시보드 뼈대를 오늘 바로 구축한다.\nI0005 82.2점 [candidate] US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy AI 주도형 초고속 패시브 디자인 에셋\n   → Midjourney로 상업용 미니멀리즘 디지털 아트 5개를 생성하고 Etsy 스토어에 등록한다.\nI0006 80.5점 [candidate] US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지\n   → Fiverr에 마이크로 니치(예: 부동산 전문 숏츠 스크립트) 긱(Gig)을 오늘 생성한다."
+  },
+  {
+   "ts": "2026-11-23T11:03:09+00:00",
+   "cmd": "biz review",
+   "ok": true,
+   "output": "I0001 WATCH ROI +0% 매출 $0 | \nI0003 WATCH ROI +0% 매출 $0 |"
+  },
+  {
+   "ts": "2026-11-23T11:03:01+00:00",
+   "cmd": "jobs",
+   "ok": true,
+   "output": "새 작업 없음"
+  },
+  {
+   "ts": "2026-11-23T11:02:57+00:00",
+   "cmd": "jobs",
+   "ok": true,
+   "output": "새 작업 없음"
   },
   {
    "ts": "2026-11-23T10:56:37+00:00",
