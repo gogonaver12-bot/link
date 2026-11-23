@@ -74,6 +74,10 @@ def friendly(err):
     e = (err or "").lower()
     if "429" in e or "quota" in e or "rate limit" in e:
         return "AI 무료 사용량 초과 — 다른 AI로 자동 전환 중. 계속되면 예비 AI 키(Groq 등)를 추가하세요"
+    if "credit balance" in e or "크레딧 부족" in e:
+        return "Claude 충전 잔액 부족 — 무료 AI로 자동 전환 중 (console.anthropic.com 에서 충전하면 Claude 사용)"
+    if "insufficient_quota" in e:
+        return "ChatGPT 충전 잔액 부족 — 다른 AI로 자동 전환 중 (platform.openai.com 결제 확인)"
     if "ai 키가 없어요" in e or "authentication" in e or "401" in e or "api_key" in e:
         return "AI 키가 없거나 틀려요 — 저장소 Secrets 확인"
     if "예산" in e or "budget" in e:

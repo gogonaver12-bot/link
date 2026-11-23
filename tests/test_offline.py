@@ -397,3 +397,23 @@ def test_viability_simulation_competition_and_survival(monkeypatch):
     assert not r["pass"] and idea["status"] == "killed" and "시뮬레이션 탈락" in (store.DATA / "lessons.md").read_text(encoding="utf-8")
     viability.calibrate({"id": "I0001"}, actual_rev30=0)
     assert providers.model_stats()["gemini:g"][1] == 1  # 30일 뒤 실제와 비교해 AI 예측력 채점
+
+
+def test_claude_out_of_credit_falls_back_to_free_ai(monkeypatch):
+    import anthropic
+    err = anthropic.BadRequestError.__new__(anthropic.BadRequestError)
+    Exception.__init__(err, "Your credit balance is too low to access the Anthropic API")
+
+    class C:
+        class beta:
+            class messages:
+                @staticmethod
+                def create(**k):
+                    raise err
+
+    monkeypatch.setattr(llm, "_client", C)
+    monkeypatch.setattr(llm, "_claude_down", None)
+    monkeypatch.setattr(providers, "json_complete", lambda *a, **k: {"ok": True})
+    assert llm.ask_json("mother", "s", "p", {"type": "object"}) == {"ok": True}
+    assert not llm.has_claude()  # 이번 실행 동안 Claude 건너뜀
+    monkeypatch.setattr(llm, "_claude_down", None)

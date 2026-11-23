@@ -18,8 +18,23 @@ NO_KEY = ("AI 키가 없어요. 저장소 Settings → Secrets → Actions 에 A
           "또는 무료 GEMINI_API_KEY(aistudio.google.com)를 넣어주세요.")
 
 
+_claude_down = None  # 크레딧 부족·키 오류가 나면 이번 실행 동안 Claude를 건너뛰고 무료 AI로 전환
+
+
 def has_claude():
-    return bool(os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_AUTH_TOKEN"))
+    return bool(os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_AUTH_TOKEN")) and not _claude_down
+
+
+def _check_down(e):
+    """복구 안 되는 Claude 오류(잔액 부족·키 오류·권한)면 이번 실행에서 Claude를 끈다."""
+    global _claude_down
+    msg = str(e).lower()
+    if isinstance(e, (anthropic.AuthenticationError, anthropic.PermissionDeniedError)) or "credit balance" in msg or "billing" in msg:
+        _claude_down = "Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환"
+        store.append_jsonl("errors.jsonl", {"ts": store.now().isoformat(timespec="seconds"), "cmd": "claude",
+                                            "error": f"{type(e).__name__}: {str(e)[:300]}", "trace": "", "attempt": 1})
+        return True
+    return False
 
 
 def client():
@@ -60,7 +75,12 @@ def call(tier, system, messages, tools=None, max_tokens=16000, agent="mother", s
     if model in FALLBACK_OK:  # 안전분류기 오탐 거절 시 같은 호출 안에서 대체 모델이 이어받음
         kw["betas"] = ["server-side-fallback-2026-07-01"]
         kw["fallbacks"] = "default"
-    resp = client().beta.messages.create(**kw)
+    try:
+        resp = client().beta.messages.create(**kw)
+    except anthropic.APIStatusError as e:
+        if _check_down(e):
+            raise RuntimeError(_claude_down) from e
+        raise
     u = resp.usage
     store.append_jsonl("usage.jsonl", {
         "ts": store.now().isoformat(timespec="seconds"), "agent": agent, "model": resp.model,
@@ -78,11 +98,18 @@ def text_of(resp):
 
 def ask_json(tier, system, prompt, schema, agent="mother", max_tokens=8000):
     """구조화 출력: 스키마에 맞는 JSON을 보장받아 dict로 반환. Claude 키가 없으면 무료 AI로 대체."""
+    from . import providers
     if not has_claude():
-        from . import providers
         return providers.json_complete(system, prompt, schema, agent=agent)
-    resp = call(tier, system, [{"role": "user", "content": prompt}], schema=schema,
-                agent=agent, max_tokens=max_tokens)
+    try:
+        resp = call(tier, system, [{"role": "user", "content": prompt}], schema=schema,
+                    agent=agent, max_tokens=max_tokens)
+    except BudgetExceeded:
+        raise
+    except Exception:
+        if has_claude():
+            raise
+        return providers.json_complete(system, prompt, schema, agent=agent)  # Claude가 막히면 무료 AI로
     if resp.stop_reason == "refusal":
         raise RuntimeError(text_of(resp))
     return json.loads(text_of(resp))
