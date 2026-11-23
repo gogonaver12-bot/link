@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T17:11:34+00:00",
+ "updated": "2026-11-23T17:11:53+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1347,10 +1347,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T17:11:32+00:00",
-   "cmd": "agent upgrade",
+   "ts": "2026-11-23T17:11:51+00:00",
+   "cmd": "biz review",
    "ok": true,
-   "output": "analyst: 유지\ncontent_creator: 유지\ndeveloper: 유지\ngithub_scout: 유지\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: 유지\nsales: 유지\nviral_analyst: 유지"
+   "output": "진행중 사업 없음"
   },
   {
    "ts": "2026-11-23T17:00:08+00:00",
