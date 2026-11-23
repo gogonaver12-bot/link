@@ -183,8 +183,31 @@ def main(argv=None):
         p(cmd_daily())
 
 
+RETRYABLE = ("Timeout", "ConnectionError", "APIConnectionError", "RateLimitError", "InternalServerError",
+             "OverloadedError", "ServiceUnavailable")
+
+
+def safe_main(argv=None, wait=10):
+    """에러 자동 처리: 일시 오류는 1회 자동 재시도 → 그래도 실패하면 기록 남기고 한 줄 보고."""
+    import time
+    import traceback
+    for attempt in (1, 2):
+        try:
+            return main(argv)
+        except llm.BudgetExceeded as e:
+            sys.exit(f"⚠️ {e}")
+        except SystemExit:
+            raise
+        except Exception as e:
+            name = type(e).__name__
+            store.append_jsonl("errors.jsonl", {"ts": store.now().isoformat(timespec="seconds"),
+                                                "cmd": " ".join(argv or sys.argv[1:]), "error": f"{name}: {e}"[:500],
+                                                "trace": traceback.format_exc()[-1500:], "attempt": attempt})
+            if attempt == 1 and any(k in name for k in RETRYABLE):
+                time.sleep(wait)
+                continue
+            sys.exit(f"⚠️ 실패: {name}: {str(e)[:150]} (기록: data/errors.jsonl)")
+
+
 if __name__ == "__main__":
-    try:
-        main()
-    except llm.BudgetExceeded as e:
-        sys.exit(f"⚠️ {e}")
+    safe_main()

@@ -143,3 +143,18 @@ def test_openai_tool_loop_and_agent_failover(monkeypatch):
     assert (store.WORKSPACE / "s.json").exists()
     run = store.read_jsonl("runs.jsonl")[-1]
     assert run["failover"] and "429" in run["failover"][0]
+
+
+def test_error_auto_retry_and_log(monkeypatch):
+    from mother import __main__ as cli
+    calls = []
+
+    def boom(argv=None):
+        calls.append(1)
+        raise ConnectionError("network down")
+
+    monkeypatch.setattr(cli, "main", boom)
+    with pytest.raises(SystemExit) as e:
+        cli.safe_main(["status"], wait=0)
+    assert len(calls) == 2 and "실패" in str(e.value)
+    assert len(store.read_jsonl("errors.jsonl")) == 2
