@@ -291,7 +291,9 @@ def check_all():
             code = int(str(e).split(" ")[1][:3]) if str(e).split(" ")[1][:3].isdigit() else 0
             out.append(f"{p}: {_why(code, str(e))}")
         except Exception as e:
-            out.append(f"{p}: ⚠️ {type(e).__name__}: {str(e)[:120]}")
+            msg = "키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기" if "Invalid" in str(e) and "header" in str(e) \
+                else store.redact(str(e))[:120]
+            out.append(f"{p}: ⚠️ {msg}")
     return out or ["연결된 AI 키가 없어요"]
 
 

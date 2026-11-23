@@ -417,3 +417,10 @@ def test_claude_out_of_credit_falls_back_to_free_ai(monkeypatch):
     assert llm.ask_json("mother", "s", "p", {"type": "object"}) == {"ok": True}
     assert not llm.has_claude()  # 이번 실행 동안 Claude 건너뜀
     monkeypatch.setattr(llm, "_claude_down", None)
+
+
+def test_secrets_never_written_to_logs(monkeypatch):
+    monkeypatch.setenv("OPENAI_API_KEY", "google-genai AQ.Ab8RNsecretvalue123")
+    store.append_jsonl("commands.jsonl", {"output": "Invalid header value: 'Bearer google-genai AQ.Ab8RNsecretvalue123'"})
+    raw = (store.DATA / "commands.jsonl").read_text(encoding="utf-8")
+    assert "Ab8RNsecret" not in raw and "AIza" not in store.redact("key=AIzaSyA1234567890abcdefghijklmnop")

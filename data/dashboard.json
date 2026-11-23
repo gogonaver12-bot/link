@@ -1350,7 +1350,7 @@
    "ts": "2026-11-23T17:00:08+00:00",
    "cmd": "ai check",
    "ok": true,
-   "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ InvalidHeader: Invalid leading whitespace, reserved character(s), or return character(s) in header value: 'Bearer google-genai AQ.Ab8RN"
+   "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ InvalidHeader: Invalid leading whitespace, reserved character(s), or return character(s) in header value: '***"
   },
   {
    "ts": "2026-11-23T16:58:39+00:00",
