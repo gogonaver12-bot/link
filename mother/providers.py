@@ -283,8 +283,14 @@ def arena(task):
             entries.append((f"{p}:{m}", run_openai(p, m, "간결하고 정확하게.", task, agent="arena", max_turns=1)))
         except Exception as e:
             entries.append((f"{p}:?", f"[실패] {e}"))
-    r = llm.call("worker", "간결하고 정확하게.", [{"role": "user", "content": task}], agent="arena")
-    entries.append((f"anthropic:{r.model}", llm.text_of(r)))
+    if llm.has_claude():
+        try:
+            r = llm.call("worker", "간결하고 정확하게.", [{"role": "user", "content": task}], agent="arena")
+            entries.append((f"anthropic:{r.model}", llm.text_of(r)))
+        except llm.BudgetExceeded:
+            raise
+        except Exception as e:
+            entries.append(("anthropic:?", f"[실패] {e}"))
     labels = [chr(65 + i) for i in range(len(entries))]  # 이름을 가려 공정 채점
     sheet = "\n\n".join(f"[{l}]\n{a[:3000]}" for l, (_, a) in zip(labels, entries))
     judged = llm.ask_json("mother", "너는 공정한 심사위원이다. 정확성·유용성·간결성으로 1~10점.",
