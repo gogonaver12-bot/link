@@ -112,7 +112,7 @@ async function dispatch(command = "daily", goal = "", label = "") {
     toast(`🚀 ${label || "명령"} 실행 시작 — 2~5분 뒤 결과가 반영돼요`);
     setTimeout(pollRun, 4000);
   } catch (e) {
-    toast("실행 실패: " + (String(e.message).startsWith("401") ? "토큰을 다시 확인해 주세요" : e.message));
+    openSheet(tokenFixSheet(String(e.message).slice(0, 3)));
   }
 }
 let polling = 0;
@@ -341,6 +341,15 @@ const settingsSheet = () => {
   <div class="note"><b>홈 화면에 앱으로 추가:</b> 아이폰은 Safari 공유 버튼 → 홈 화면에 추가 · 안드로이드는 Chrome 메뉴 → 앱 설치</div>
   <div class="note">저장소: <a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}">${esc(REPO)}</a> · 데이터 ${ago(D && D.updated)}</div>`;
 };
+const tokenFixSheet = (code) => code === "401"
+  ? `<h3>🔑 토큰이 맞지 않아요</h3><p class="note">토큰이 만료됐거나 잘못 복사됐어요. 새로 만들어 ⚙️ 설정에 다시 붙여넣어 주세요.</p>
+     <button class="btn" style="margin-top:12px" data-open="settings">⚙️ 설정 열기</button>`
+  : code === "403"
+  ? `<h3>🔒 토큰 권한이 부족해요</h3><p class="note">토큰은 맞는데 <b>실행 권한</b>이 빠져 있어요. 토큰을 고치면 다시 붙여넣을 필요 없이 바로 돼요.</p>
+     <div class="note"><ol><li><a target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens">내 토큰 목록</a>에서 만든 토큰 누르기 → <b>Edit</b></li>
+     <li>Repository access: <b>Only select repositories</b> → <b>${esc(REPO.split("/")[1])}</b> 선택</li>
+     <li>Permissions → Repository permissions → <b>Actions: Read and write</b></li><li>맨 아래 <b>Update</b> → 앱에서 다시 실행</li></ol></div>`
+  : `<h3>⚠️ 잠시 후 다시 시도해 주세요</h3><p class="note">깃허브 응답이 원활하지 않아요 (코드 ${esc(code)}).</p>`;
 const provSheet = (id) => {
   const p = D.providers.find((x) => x.id === id);
   return `<h3>${esc(NAMES[id] || id)}</h3><div class="chips"><span class="pill ${p.connected ? "ok" : ""}">${p.connected ? "연결됨" : "미연결"}</span><span class="pill">${p.free ? "무료 등급" : "유료"}</span></div>
@@ -394,8 +403,13 @@ document.addEventListener("click", async (e) => {
   if (id === "tokSave") {
     const v = $("#tok").value.trim(); if (v) store.set("gh_token", v);
     if (!token()) return toast("토큰을 붙여넣어 주세요");
-    try { await gh(`/repos/${REPO}/actions/workflows/mother.yml`); toast("✅ 연결 성공! 이제 앱에서 바로 실행돼요"); closeSheet(); }
-    catch (err) { toast("연결 실패: 권한(Actions 읽기/쓰기)과 저장소 선택을 확인해 주세요"); }
+    // 실행 권한 확인: 없는 워크플로에 실행 요청 → 권한 있으면 404, 없으면 403 (실제 실행 안 됨)
+    try { await gh(`/repos/${REPO}/actions/workflows/permission-probe.yml/dispatches`, { method: "POST", body: JSON.stringify({ ref: "main" }) }); }
+    catch (err) {
+      const code = String(err.message).slice(0, 3);
+      if (code === "404" || code === "422") { toast("✅ 연결 성공! 이제 앱에서 바로 실행돼요"); return closeSheet(); }
+      return openSheet(tokenFixSheet(code));
+    }
   }
   if (id === "tokDel") { store.set("gh_token", ""); toast("토큰을 삭제했어요"); closeSheet(); }
 });
