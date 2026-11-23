@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:42:48+00:00",
+ "updated": "2026-11-23T14:43:42+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -615,27 +615,27 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T14:42+00:00"
+   "date": "2026-11-23T14:43+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T14:42+00:00"
+   "date": "2026-11-23T14:43+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T14:42+00:00"
+   "date": "2026-11-23T14:43+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T14:42+00:00"
+   "date": "2026-11-23T14:43+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T14:42+00:00"
+   "date": "2026-11-23T14:43+00:00"
   }
  ],
  "runs": [
@@ -879,6 +879,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T14:43:41+00:00",
+   "cmd": "jobs",
+   "ok": true,
+   "output": "새 작업 없음"
+  },
+  {
    "ts": "2026-11-23T14:42:47+00:00",
    "cmd": "export",
    "ok": true,
@@ -931,12 +937,6 @@
    "cmd": "biz scout --market US",
    "ok": true,
    "output": "I0004 85.5점 [active] US 원격 근무자, 프리랜서, 인디 해커/Gumroad AI 기반 니치 노션 템플릿 & 대시보드\n   → ChatGPT를 이용해 타겟 페인 포인트를 정의하고 노션 대시보드 뼈대를 오늘 바로 구축한다.\nI0005 82.2점 [candidate] US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy AI 주도형 초고속 패시브 디자인 에셋\n   → Midjourney로 상업용 미니멀리즘 디지털 아트 5개를 생성하고 Etsy 스토어에 등록한다.\nI0006 80.5점 [candidate] US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지\n   → Fiverr에 마이크로 니치(예: 부동산 전문 숏츠 스크립트) 긱(Gig)을 오늘 생성한다."
-  },
-  {
-   "ts": "2026-11-23T11:03:09+00:00",
-   "cmd": "biz review",
-   "ok": true,
-   "output": "I0001 WATCH ROI +0% 매출 $0 | \nI0003 WATCH ROI +0% 매출 $0 |"
   }
  ],
  "pipelines": [
