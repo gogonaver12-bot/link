@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:58:01+00:00",
+ "updated": "2026-11-23T16:58:41+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1059,27 +1059,27 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T16:57+00:00"
+   "date": "2026-11-23T16:58+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T16:57+00:00"
+   "date": "2026-11-23T16:58+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T16:57+00:00"
+   "date": "2026-11-23T16:58+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T16:57+00:00"
+   "date": "2026-11-23T16:58+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T16:57+00:00"
+   "date": "2026-11-23T16:58+00:00"
   }
  ],
  "runs": [
@@ -1156,7 +1156,20 @@
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅 (국내 IT/가전 및 시즌 이슈 관심 소비자/네이버 블로그, 광고)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   }
  ],
- "errors": [],
+ "errors": [
+  {
+   "ts": "2026-11-23T16:58:38+00:00",
+   "cmd": "ai ask OK 한 단어 --model openai",
+   "error": "ProviderError: anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환",
+   "msg": "Claude 충전 잔액 부족 — 무료 AI로 자동 전환 중 (console.anthropic.com 에서 충전하면 Claude 사용)"
+  },
+  {
+   "ts": "2026-11-23T16:58:38+00:00",
+   "cmd": "claude",
+   "error": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChLDRxbcwmEKyEHsr1MRX'}",
+   "msg": "Claude 충전 잔액 부족 — 무료 AI로 자동 전환 중 (console.anthropic.com 에서 충전하면 Claude 사용)"
+  }
+ ],
  "jobs": [
   {
    "id": "connection-test-002",
@@ -1347,6 +1360,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T16:58:39+00:00",
+   "cmd": "ai ask \"OK 한 단어\" --model openai",
+   "ok": false,
+   "output": "⚠️ 실패: ProviderError: anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환 (기록: data/errors.jsonl)"
+  },
+  {
    "ts": "2026-11-23T16:58:00+00:00",
    "cmd": "ai arena \"숏폼 대본 패키지를 파는 한 줄 홍보 문구 3개\"",
    "ok": true,
@@ -1399,12 +1418,6 @@
    "cmd": "biz approve I0002",
    "ok": true,
    "output": "I0002 진행 시작"
-  },
-  {
-   "ts": "2026-11-23T16:55:07+00:00",
-   "cmd": "ai arena \"소상공인에게 AI 블로그 대행을 파는 한 줄 홍보 문구 3개\"",
-   "ok": false,
-   "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
   }
  ],
  "pipelines": [
