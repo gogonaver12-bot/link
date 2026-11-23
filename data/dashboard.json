@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:32:22+00:00",
+ "updated": "2026-11-23T10:52:46+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -383,12 +383,12 @@
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T10:32+00:00"
+   "date": "2026-11-23T10:52+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T10:32+00:00"
+   "date": "2026-11-23T10:52+00:00"
   }
  ],
  "runs": [
