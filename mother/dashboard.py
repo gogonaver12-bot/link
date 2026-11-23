@@ -84,6 +84,8 @@ def build():
         "errors": [{k: r.get(k) for k in ("ts", "cmd", "error")} for r in store.read_jsonl("errors.jsonl")[-5:]][::-1],
         "jobs": jobs[-10:],
         "news": _news(),
+        "sources": [{k: x.get(k) for k in ("name", "category", "origin", "added", "removed")}
+                    for x in store.load_json("sources.json", [])][::-1][:40],
     }
     (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
     return snap

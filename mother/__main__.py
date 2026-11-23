@@ -56,8 +56,11 @@ def cmd_daily():
     log = [f"# 일일 리포트 {store.today()}"]
     try:
         from . import collector
+        new_src = collector.discover()
         added, _ = collector.collect()
-        log += [f"## 오늘의 트렌드 (새 소식 {added}건)", collector.search(category="trend", limit=8)]
+        log += [f"## 오늘의 트렌드 (새 소식 {added}건 · 출처 {len(collector.feeds())}곳"
+                + (f" · 새 출처: {', '.join(new_src)}" if new_src else "") + ")",
+                collector.search(category="trend", limit=8)]
         rows, plans = business.review()
         log += ["## 사업 리뷰"] + [f"- {it['id']} {it['title']}: **{act}** ROI {m['roi']:+.0%} {plans.get(it['id'], {}).get('plan', '')}"
                                   for it, m, act in rows] or ["- 진행중 사업 없음"]
@@ -107,7 +110,8 @@ def main(argv=None):
     ai.add_argument("prompt", nargs="?", default="")
     ai.add_argument("--model", default="auto", help="auto 또는 provider:model (예: gemini:gemini-flash-latest)")
 
-    sp.add_parser("news", help="트렌드·뉴스 수집 (토큰 0)").add_argument("query", nargs="?", default="")
+    nw = sp.add_parser("news", help="트렌드·뉴스 수집 / news add <사이트> / news sources / news discover")
+    nw.add_argument("query", nargs="?", default=""); nw.add_argument("url", nargs="?", default="")
     hk = sp.add_parser("hook", help="숏츠 훅·제목 채점 (토큰 0)")
     hk.add_argument("text"); hk.add_argument("--title", default=""); hk.add_argument("--thumb", default="")
 
@@ -190,7 +194,14 @@ def main(argv=None):
         p(cmd_daily())
     elif x.cmd == "news":
         from . import collector
-        if x.query:
+        if x.query == "add":
+            p(collector.add_source(x.url))
+        elif x.query == "discover":
+            p("새 출처: " + (", ".join(collector.discover()) or "없음"))
+        elif x.query == "sources":
+            for s_ in collector._sources():
+                p(("❌ " if s_.get("removed") else "✅ ") + f"{s_['name']} [{s_['category']}] {s_['origin']} · {s_['url']}")
+        elif x.query:
             p(collector.search(x.query))
         else:
             added, failed = collector.collect()

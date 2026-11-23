@@ -228,3 +228,31 @@ def test_complete_answers_from_cache_second_time(monkeypatch):
     monkeypatch.setattr(tools, "CACHE", store.DATA)
     assert providers.complete("같은 질문") == ("답", "gemini:g")
     assert providers.complete("같은 질문") == ("답", "gemini:g (캐시)") and len(calls) == 1
+
+
+def test_sources_auto_add_discover_and_drop(monkeypatch):
+    from mother import collector
+    feed = ('<rss><channel><item><title>새 소식</title><link>https://site.com/1</link></item></channel></rss>')
+    page = '<html><head><link rel="alternate" type="application/rss+xml" href="/feed"></head></html>'
+
+    class R:
+        def __init__(self, url, ok=True):
+            self.url, self.status_code = url, 200 if ok else 500
+            body = feed if url.endswith("/feed") or "rss" in url else page
+            self.content, self.text = body.encode(), body
+        def raise_for_status(self):
+            if self.status_code >= 400:
+                raise collector.requests.HTTPError("500")
+
+    monkeypatch.setattr(collector.requests, "get", lambda url, **k: R(url, ok="dead" not in url))
+    monkeypatch.setattr(collector, "DEFAULT_FEEDS", [("죽은 사이트", "https://dead.com/rss", "tech")])
+    monkeypatch.setattr(collector, "CANDIDATES", [("후보", "https://cand.com/rss", "business")])
+    assert collector.add_source("https://blog.site.com/").startswith("추가됨")       # 일반 주소 → 피드 자동 탐색
+    assert collector.add_source("https://blog.site.com/feed").startswith("이미 있어요")
+    monkeypatch.setattr("mother.providers.complete", lambda *a, **k: ("https://ai.com/rss 추천", "gemini:g"))
+    added = collector.discover(max_new=3)
+    assert any("후보" in a for a in added) and any("ai.com" in a for a in added)
+    for _ in range(collector.MAX_FAILS):
+        collector.collect()
+    names = [n for n, _, _ in collector.feeds()]
+    assert "죽은 사이트" not in names and "cand.com" in " ".join(u for _, u, _ in collector.feeds())
