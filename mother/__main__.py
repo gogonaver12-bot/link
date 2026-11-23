@@ -3,7 +3,7 @@ import argparse
 import json
 import sys
 
-from . import agents, business, llm, mother, store, tools
+from . import agents, business, llm, mother, providers, store, tools
 
 
 def p(*a):
@@ -99,6 +99,11 @@ def main(argv=None):
     b.add_argument("--cost", type=float, default=0); b.add_argument("--currency", default="USD")
     b.add_argument("--note", default="")
 
+    ai = sp.add_parser("ai", help="모든 AI 통합: 연결현황·직접질문·아레나(모델 대결)")
+    ai.add_argument("action", choices=["status", "ask", "arena"])
+    ai.add_argument("prompt", nargs="?", default="")
+    ai.add_argument("--model", default="auto", help="auto 또는 provider:model (예: gemini:gemini-flash-latest)")
+
     for c in ("status", "jobs", "daily"):
         sp.add_parser(c)
     x = ap.parse_args(argv)
@@ -161,6 +166,15 @@ def main(argv=None):
             for it, m, act in rows:
                 p(f"{it['id']} {act.upper()} ROI {m['roi']:+.0%} 매출 ${m['revenue']} | {plans.get(it['id'], {}).get('plan', '')}")
             p("진행중 사업 없음" if not rows else "")
+    elif x.cmd == "ai":
+        if x.action == "status":
+            p(providers.status())
+        elif x.action == "ask":
+            text, used = providers.complete(x.prompt, spec={"tier": "worker", "tools": [], "model": x.model})
+            p(text, f"\n— {used}")
+        else:
+            for mid, sc, why in providers.arena(x.prompt):
+                p(f"{sc:>2}점 {mid} — {why}")
     elif x.cmd == "status":
         p(cmd_status())
     elif x.cmd == "jobs":

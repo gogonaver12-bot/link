@@ -42,3 +42,31 @@ business:
 agent_review:
   min_avg_score: 6.5       # 평균 점수 미만 에이전트 → 프롬프트 자동 업그레이드
   window: 10               # 최근 N회 평가 기준
+
+# ── 모든 AI 통합 ── 키(환경변수)만 넣으면 자동 연결. 새 AI는 OpenAI 호환이면 한 줄 추가로 끝
+# free: 무료 등급 있음 / model: 비우면 목록에서 자동 선택 / prefer: 자동 선택 우선 키워드
+# price: [입력, 출력] USD/1M — 비용 장부용 추정치. 실제 요금은 각 사이트에서 확인 후 수정
+providers:
+  anthropic:  {key: ANTHROPIC_API_KEY, note: "Claude (마더·검수 담당, 최후 보루)"}
+  gemini:     {base: "https://generativelanguage.googleapis.com/v1beta/openai", key: GEMINI_API_KEY, free: true, prefer: [flash], note: "aistudio.google.com 무료 키"}
+  groq:       {base: "https://api.groq.com/openai/v1", key: GROQ_API_KEY, free: true, prefer: [gpt-oss-120b, llama-3.3-70b], note: "console.groq.com 무료 키"}
+  cerebras:   {base: "https://api.cerebras.ai/v1", key: CEREBRAS_API_KEY, free: true, prefer: [gpt-oss, llama], note: "cloud.cerebras.ai 무료 키"}
+  openrouter: {base: "https://openrouter.ai/api/v1", key: OPENROUTER_API_KEY, free: true, model_filter: ":free", prefer: [deepseek, qwen, llama], note: "무료 모델 수십개 한 키로"}
+  mistral:    {base: "https://api.mistral.ai/v1", key: MISTRAL_API_KEY, free: true, prefer: [mistral-small], note: "console.mistral.ai 무료 체험 등급"}
+  ollama:     {base: "http://localhost:11434/v1", free: true, prefer: [qwen, llama, gemma], note: "내 PC 무료 실행 (ollama.com)"}
+  openai:     {base: "https://api.openai.com/v1", key: OPENAI_API_KEY, prefer: [mini], price: [0.4, 1.6], note: "ChatGPT API"}
+  deepseek:   {base: "https://api.deepseek.com", key: DEEPSEEK_API_KEY, model: deepseek-chat, price: [0.3, 1.2], note: "저렴·중국어 강점"}
+  xai:        {base: "https://api.x.ai/v1", key: XAI_API_KEY, prefer: [mini, fast], price: [0.3, 0.5], note: "Grok"}
+  qwen:       {base: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1", key: DASHSCOPE_API_KEY, prefer: [flash, plus], price: [0.1, 0.4], note: "알리바바 Qwen"}
+  moonshot:   {base: "https://api.moonshot.ai/v1", key: MOONSHOT_API_KEY, prefer: [kimi], price: [0.6, 2.5], note: "Kimi"}
+  together:   {base: "https://api.together.xyz/v1", key: TOGETHER_API_KEY, prefer: [Llama-3.3-70B, Qwen], price: [0.6, 0.6], note: "오픈모델 다수"}
+  upstage:    {base: "https://api.upstage.ai/v1", key: UPSTAGE_API_KEY, prefer: [solar-pro, solar-mini], price: [0.25, 0.25], note: "한국어 특화 Solar"}
+  clova:      {base: "https://clovastudio.stream.ntruss.com/v1/openai", key: CLOVA_API_KEY, model: HCX-005, price: [1.0, 4.0], note: "네이버 HyperCLOVA X"}
+  perplexity: {base: "https://api.perplexity.ai", key: PERPLEXITY_API_KEY, model: sonar, tools: false, price: [1.0, 1.0], note: "검색 내장 AI (도구 없는 작업만)"}
+
+routing:
+  # 실무팀(worker) 시도 순서: 무료 → 저렴 → Claude. 키 없는 AI는 자동 건너뜀
+  worker_order: [gemini, groq, cerebras, openrouter, mistral, ollama, deepseek, qwen, upstage, openai, xai, moonshot, together, clova]
+  min_model_score: 5.5     # 평균 점수 미만 모델은 자동 탈락
+  min_samples: 3           # 최소 평가 횟수 이후 판정
+  window: 10

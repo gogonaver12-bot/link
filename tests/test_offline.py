@@ -96,3 +96,50 @@ def test_business_cycle(monkeypatch):
 
 def test_score_weights():
     assert business.total({k: 100 for k in business.CRITERIA}) == 100
+
+
+# ───────────── 모든 AI 통합 라우터 ─────────────
+from mother import providers
+
+
+def test_routing_free_first_and_failover(monkeypatch):
+    for k in ("GEMINI_API_KEY", "GROQ_API_KEY", "GOOGLE_API_KEY", "GOOGLE_CSE_ID"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    monkeypatch.setenv("GROQ_API_KEY", "y")
+    monkeypatch.setattr(providers, "_alive", {"ollama": False})
+    monkeypatch.setattr(providers, "pick_model", lambda p: {"gemini": "g-flash", "groq": "llama"}.get(p, "claude-opus-5-5"))
+    order = providers.candidates({"tier": "worker", "tools": ["save_file"]})
+    assert order[:2] == [("gemini", "g-flash"), ("groq", "llama")] and order[-1][0] == "anthropic"
+    # 웹검색 필요 + 구글키 없음 → Claude만
+    assert [p for p, _ in providers.candidates({"tier": "worker", "tools": ["web_search"]})] == ["anthropic"]
+    # 마더는 항상 Claude
+    assert providers.candidates({"tier": "mother"}) == [("anthropic", "claude-opus-5-5")]
+    # 저성과 모델 탈락
+    for _ in range(3):
+        providers.record_score("gemini:g-flash", 3)
+    assert ("gemini", "g-flash") not in providers.candidates({"tier": "worker", "tools": []})
+
+
+def test_openai_tool_loop_and_agent_failover(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    monkeypatch.setattr(providers, "candidates", lambda spec: [("groq", "bad"), ("gemini", "g")])
+    replies = iter([
+        {"choices": [{"message": {"content": "", "tool_calls": [{"id": "c1", "type": "function", "function": {
+            "name": "save_file", "arguments": json.dumps({"path": "s.json", "content": "{}"})}}]}}],
+         "usage": {"prompt_tokens": 10, "completion_tokens": 5}},
+        {"choices": [{"message": {"content": "끝"}}], "usage": {}},
+    ])
+
+    def fake_post(url, headers, body):
+        if body["model"] == "bad":
+            raise providers.ProviderError("429 rate limit")
+        assert body["tools"][0]["function"]["name"] == "save_file"
+        return next(replies)
+
+    monkeypatch.setattr(providers, "_post", fake_post)
+    assert agents.run("content_creator", "대본") == "끝"
+    assert agents.last_model["content_creator"] == "gemini:g"
+    assert (store.WORKSPACE / "s.json").exists()
+    run = store.read_jsonl("runs.jsonl")[-1]
+    assert run["failover"] and "429" in run["failover"][0]

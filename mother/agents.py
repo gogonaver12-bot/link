@@ -34,16 +34,44 @@ def system_prompt(spec):
     return "\n\n".join(parts)  # 고정 텍스트만 → 캐시 적중 유지
 
 
+last_model = {}  # 에이전트별 마지막 사용 모델 (평가 → 모델 성적표 연결)
+
+
 def run(name, task, context=""):
-    """도구 루프 실행. 반환: 최종 텍스트."""
+    """무료 AI 우선 라우팅 → 실패 시 다음 AI → 마지막 Claude. 반환: 최종 텍스트."""
+    from . import providers
     spec = load(name)
+    user = f"{task}\n\n[참고자료]\n{context}" if context else task
+    out, used, errs = "", None, []
+    for p, m in providers.candidates(spec):
+        try:
+            if p == "anthropic":
+                out = _run_claude(spec, user, m)
+            else:
+                out = providers.run_openai(p, m, system_prompt(spec), user, spec.get("tools", []), agent=name)
+            if out:
+                used = f"{p}:{m}"
+                break
+        except llm.BudgetExceeded:
+            raise
+        except Exception as e:  # 한도 초과·장애·모델 단종 → 다음 AI로 자동 전환
+            errs.append(f"{p}: {str(e)[:120]}")
+    last_model[name] = used
+    store.append_jsonl("runs.jsonl", {"ts": store.now().isoformat(timespec="seconds"), "agent": name, "model": used,
+                                      "version": spec.get("version", 1), "task": task[:300], "output": out[:1500],
+                                      "failover": errs})
+    return out or "[실패] " + " / ".join(errs)
+
+
+def _run_claude(spec, user, model=None):
+    name = spec["name"]
     b = store.cfg()["budget"]
     tdefs = tools.claude_tools(spec.get("tools", []))
-    user = f"{task}\n\n[참고자료]\n{context}" if context else task
     messages = [{"role": "user", "content": user}]
     resp = None
     for turn in range(b["max_tool_turns"]):
-        resp = llm.call(spec.get("tier", "worker"), system_prompt(spec), messages, tools=tdefs or None, agent=name)
+        resp = llm.call(spec.get("tier", "worker"), system_prompt(spec), messages, tools=tdefs or None,
+                        agent=name, model=model)
         if resp.stop_reason == "pause_turn":
             messages.append({"role": "assistant", "content": resp.content})
             continue
@@ -62,20 +90,18 @@ def run(name, task, context=""):
         if turn == b["max_tool_turns"] - 2:
             results.append({"type": "text", "text": "도구 사용 한도에 도달. 지금까지 정보로 최종 결과를 작성하라."})
         messages.append({"role": "user", "content": results})
-    out = llm.text_of(resp) if resp else ""
-    store.append_jsonl("runs.jsonl", {"ts": store.now().isoformat(timespec="seconds"), "agent": name,
-                                      "version": spec.get("version", 1), "task": task[:300], "output": out[:1500]})
-    return out
+    return llm.text_of(resp) if resp else ""
 
 
 # ───────────────────────── 생성 ─────────────────────────
 SPEC_SCHEMA = {
     "type": "object", "additionalProperties": False,
-    "required": ["name", "title", "tier", "tools", "system"],
+    "required": ["name", "title", "tier", "model", "tools", "system"],
     "properties": {
         "name": {"type": "string", "description": "영문 소문자_밑줄"},
         "title": {"type": "string"},
         "tier": {"type": "string", "enum": ["worker", "mother"]},
+        "model": {"type": "string", "description": "'auto'(무료 AI 우선 자동) 또는 'provider:model'. 특별한 이유 없으면 auto"},
         "tools": {"type": "array", "items": {"type": "string", "enum": ["web_search", *tools.REGISTRY]}},
         "system": {"type": "string", "description": "역할·절차·출력형식을 담은 간결한 시스템 프롬프트(300자 내외)"},
     },

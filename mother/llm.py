@@ -32,12 +32,12 @@ def cost_usd(model, u):
     return usd
 
 
-def call(tier, system, messages, tools=None, max_tokens=16000, agent="mother", schema=None):
+def call(tier, system, messages, tools=None, max_tokens=16000, agent="mother", schema=None, model=None):
     c = store.cfg()
     spent = store.spend_on()
     if spent >= c["budget"]["daily_usd"]:
         raise BudgetExceeded(f"오늘 예산 소진: ${spent} / ${c['budget']['daily_usd']}")
-    model = c["models"][tier]
+    model = model or c["models"][tier]
     output_config = {"effort": c["effort"][tier]}
     if schema:
         output_config["format"] = {"type": "json_schema", "schema": schema}
