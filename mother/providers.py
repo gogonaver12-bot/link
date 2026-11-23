@@ -250,6 +250,51 @@ def json_complete(system, prompt, schema, agent="worker"):
     raise RuntimeError(llm.NO_KEY if not errs else " / ".join(errs))
 
 
+def _why(code, text):
+    t = (text or "").lower()
+    if code in (401, 403) or "invalid" in t and "key" in t:
+        return "❌ 키가 틀렸거나 만료됨 — 새로 발급해서 Secrets 값 교체"
+    if "insufficient_quota" in t or "credit" in t or "billing" in t or "balance" in t:
+        return "💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요"
+    if code == 429:
+        return "⏳ 무료 사용량 초과 — 잠시 후 자동 회복"
+    if code == 404:
+        return "❓ 모델/주소를 찾을 수 없음"
+    return f"⚠️ 오류 {code}: {text[:120]}"
+
+
+def check_all():
+    """연결 점검: 키가 있는 AI마다 실제로 1번 호출해 상태를 한국어로 진단 (토큰 거의 0)."""
+    out = []
+    for p, c in cfgp().items():
+        if p == "anthropic":
+            if not (os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_AUTH_TOKEN")):
+                continue
+            try:
+                llm.client().messages.create(model=store.cfg()["models"]["worker"], max_tokens=16,
+                                             messages=[{"role": "user", "content": "OK"}])
+                out.append("✅ Claude: 정상")
+            except Exception as e:
+                out.append(f"Claude: {_why(getattr(e, 'status_code', 0), str(e))}")
+            continue
+        if not c.get("key") or not _key(p):
+            continue
+        try:
+            r = requests.get(c["base"].rstrip("/") + "/models", headers=_headers(p), timeout=20)
+            if r.status_code >= 400:
+                out.append(f"{p}: {_why(r.status_code, r.text)}")
+                continue
+            m = pick_model(p)
+            run_openai(p, m, "OK 한 단어로 답하라.", "OK", agent="check", max_turns=1)
+            out.append(f"✅ {p}: 정상 ({m})")
+        except ProviderError as e:
+            code = int(str(e).split(" ")[1][:3]) if str(e).split(" ")[1][:3].isdigit() else 0
+            out.append(f"{p}: {_why(code, str(e))}")
+        except Exception as e:
+            out.append(f"{p}: ⚠️ {type(e).__name__}: {str(e)[:120]}")
+    return out or ["연결된 AI 키가 없어요"]
+
+
 def status():
     rows = []
     for p, c in cfgp().items():
