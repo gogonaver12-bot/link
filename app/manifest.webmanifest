@@ -53,6 +53,18 @@
       ]
     },
     {
+      "name": "🔑 키 발급 도우미",
+      "short_name": "키 발급",
+      "url": "./#keys",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "💼 사업 현황",
       "short_name": "사업",
       "url": "./#biz",

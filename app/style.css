@@ -275,3 +275,4 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .step.on b { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border-color: transparent; }
 .step.on { color: var(--fg); }
 .step small { font-family: var(--display); font-size: 11px; }
+.kb { flex: 1; white-space: nowrap; text-align: center; padding: 9px 6px; }

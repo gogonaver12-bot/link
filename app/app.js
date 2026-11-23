@@ -331,7 +331,7 @@ function viewAI() {
   <div class="section-title"><h2>🚀 자동 업로드</h2><button data-open="google">구글 연결 방법</button></div>
   <div class="card">${(D.channels || []).map((c) => `<div class="row"><span class="dot ${c.ready ? "" : "off"}"></span>
     <div class="grow"><div class="t">${esc(c.name)}</div><div class="m">${c.ready ? "자동 업로드 중" : esc(c.need)}</div></div></div>`).join("")}</div>
-  <div class="section-title"><h2>연결된 AI</h2><button data-open="keys">키 넣는 법</button></div>
+  <div class="section-title"><h2>연결된 AI</h2><button data-open="keys">🔑 키 발급 도우미</button></div>
   <div class="pgrid">${[...D.providers].sort((a, b) => b.connected - a.connected || b.free - a.free).map((p) => `
     <div class="card prov tap" data-prov="${esc(p.id)}"><span class="dot ${p.connected ? "" : "off"}"></span>
     <div class="grow"><div class="t">${esc(NAMES[p.id] || p.id)}</div><div class="m">${p.connected ? "연결됨" : "미연결"} · ${p.free ? "무료" : "유료"}</div></div></div>`).join("")}</div>
@@ -400,13 +400,38 @@ const googleSheet = () => `<h3>🔑 구글 1회 연결 (유튜브·블로그 자
   <li>OAuth 동의 화면: 외부 → 내 이메일을 테스트 사용자로 추가 → <b>게시 상태를 '프로덕션'</b>으로 (7일 만료 방지)</li>
   <li>사용자 인증 정보 → OAuth 클라이언트 ID → <b>웹 애플리케이션</b>, 리디렉션 URI: <b>https://developers.google.com/oauthplayground</b></li>
   <li><a target="_blank" rel="noopener" href="https://developers.google.com/oauthplayground">OAuth Playground</a> ⚙️ → Use your own OAuth credentials → ID·비밀번호 입력 → 범위에
-   <b>https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/blogger</b> 입력 → Authorize → Exchange → <b>Refresh token</b> 복사</li>
+   <b>https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/blogger</b>
+   <button class="btn small ghost" data-copy="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/blogger">범위 복사</button>
+   입력 → Authorize → Exchange → <b>Refresh token</b> 복사</li>
   <li><a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/settings/secrets/actions/new">Secrets</a>에 <b>GOOGLE_OAUTH_CLIENT_ID</b>, <b>GOOGLE_OAUTH_CLIENT_SECRET</b>, <b>GOOGLE_OAUTH_REFRESH_TOKEN</b>, <b>BLOGGER_BLOG_ID</b>(blogger.com 주소의 blogID 숫자) 저장</li>
-  </ol>끝나면 매일 아침 자동으로 숏츠·블로그가 올라가요.</div>`;
-const keysSheet = () => `<h3>🔑 AI 키 넣는 법</h3>
-  <div class="note"><ol><li>아래 버튼으로 깃허브 Secrets 화면 열기</li><li>Name에 키 이름(예: <b>GEMINI_API_KEY</b>), Secret에 키 붙여넣기</li><li>저장 → 다음 실행부터 자동 연결</li></ol>
-  무료 추천: <b>GEMINI_API_KEY</b>(aistudio.google.com) · <b>GROQ_API_KEY</b>(console.groq.com)</div>
-  <div style="margin-top:14px"><a class="btn" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/settings/secrets/actions/new">깃허브 Secrets 열기</a></div>`;
+  </ol>끝나면 매일 아침 자동으로 숏츠·블로그가 올라가요.</div>
+  <button class="btn ghost" style="margin-top:10px" data-open="keys">🔑 키 이름 복사·붙여넣기 도우미</button>`;
+const KEYS = [
+  ["🚀 자동 업로드 (가장 중요 · ROI 0% 해결)", [
+    ["GOOGLE_OAUTH_CLIENT_ID", "구글 1회 연결 ①", "#google"], ["GOOGLE_OAUTH_CLIENT_SECRET", "구글 1회 연결 ②", "#google"],
+    ["GOOGLE_OAUTH_REFRESH_TOKEN", "구글 1회 연결 ③", "#google"], ["BLOGGER_BLOG_ID", "blogger.com 내 블로그 주소의 blogID 숫자", "https://www.blogger.com/"]]],
+  ["🆓 무료 AI (막히면 자동 전환)", [
+    ["GEMINI_API_KEY", "Get API key → Create", "https://aistudio.google.com/apikey"], ["GROQ_API_KEY", "Create API Key", "https://console.groq.com/keys"],
+    ["CEREBRAS_API_KEY", "API Keys → Generate", "https://cloud.cerebras.ai/"], ["OPENROUTER_API_KEY", "Create Key (무료 모델만 사용)", "https://openrouter.ai/settings/keys"],
+    ["MISTRAL_API_KEY", "Create new key (무료 체험 등급)", "https://console.mistral.ai/api-keys"]]],
+  ["⭐ 품질·분석 (선택)", [
+    ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑", "https://console.anthropic.com/settings/keys"],
+    ["YOUTUBE_API_KEY", "YouTube Data API v3 사용 → 사용자 인증 정보 → API 키", "https://console.cloud.google.com/apis/credentials"],
+    ["GH_SEARCH_TOKEN", "스킬 자동 검색용 · Public repositories 읽기만", "https://github.com/settings/personal-access-tokens/new"]]],
+];
+const keysSheet = () => {
+  const set = (D && D.keys_set) || {};
+  const done = Object.values(set).filter(Boolean).length;
+  return `<h3>🔑 키 발급 도우미</h3><p class="sub" style="margin:0">키마다 ① 발급 → ② 이름 복사 → ③ Secrets에 붙여넣기. 등록됨 ${done}/${Object.keys(set).length || 12}</p>
+  ${KEYS.map(([group, rows]) => `<div class="section-title"><h2>${group}</h2></div><div class="card">${rows.map(([name, how, url]) => `
+    <div class="row" style="flex-wrap:wrap"><span class="dot ${set[name] ? "" : "off"}"></span>
+      <div class="grow"><div class="t" style="font-family:monospace;font-size:13px">${name}</div><div class="m wrap">${set[name] ? "✅ 등록됨" : esc(how)}</div></div>
+      ${set[name] ? "" : `<div style="display:flex;gap:6px;width:100%;margin-top:8px">
+        ${url.startsWith("#") ? `<button class="btn small ghost kb" data-open="google">① 방법</button>` : `<a class="btn small ghost kb" target="_blank" rel="noopener" href="${url}">① 발급</a>`}
+        <button class="btn small ghost kb" data-copy="${name}">② 복사</button>
+        <a class="btn small kb" target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/settings/secrets/actions/new">③ 넣기</a></div>`}</div>`).join("")}</div>`).join("")}
+  <p class="note">발급 화면의 키 값은 ③에서 Secret 칸에 붙여넣으세요. 키 값은 채팅·메모에 남기지 마세요.</p>`;
+};
 const noTokenSheet = (text) => `<h3>실행하려면 한 번만 연결해 주세요</h3>
   <p class="note">명령 <b>“${esc(text)}”</b> 을(를) 복사했어요. 지금은 깃허브 앱에서 <b>Run workflow</b>를 눌러 실행할 수 있어요.</p>
   <a class="btn" style="display:block;text-align:center;margin-top:12px" target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/actions/workflows/mother.yml">깃허브에서 실행</a>
@@ -453,7 +478,7 @@ function render() {
 const SHEETS = { newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-fill2],[data-prov],[data-close],[data-v]");
+  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-fill2],[data-copy],[data-prov],[data-close],[data-v]");
   if (!el) return;
   const ds = el.dataset;
   if (ds.close !== undefined) return closeSheet();
@@ -470,6 +495,7 @@ document.addEventListener("click", (e) => {
   if (ds.prov) return openSheet(provSheet(ds.prov));
   if (ds.filter) { bizFilter = ds.filter; return render(); }
   if (ds.fill) { $("#goal").value = ds.fill; return $("#goal").focus(); }
+  if (ds.copy) { navigator.clipboard?.writeText(ds.copy).then(() => toast(`복사됨: ${ds.copy.slice(0, 40)}`), () => toast("복사 실패 — 길게 눌러 복사해 주세요")); return; }
   if (ds.fill2) { $("#pipeDesc").value = ds.fill2; return $("#pipeDesc").focus(); }
   if (ds.v) {
     el.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === el));
