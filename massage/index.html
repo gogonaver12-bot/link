@@ -1,0 +1,912 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>마사지 부위 지도</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 왼쪽 고정 인체 지도(입력) + 오른쪽 결과 카드 흐름, 아래에 논문 DB. 좁은 화면은 한 줄로 쌓임 */
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --sunk:#EAF0EE; --ink:#16201E; --muted:#56645F; --line:#D5DFDB;
+  --body:#E3EAE7; --body-line:#B4C3BE;
+  --pain:#D9533A; --pain-soft:#F6D5CC; --care:#1C7466; --care-soft:#CBE6E0; --on-care:#FFFFFF;
+  --warn:#9A6514; --warn-soft:#F6E7C8; --danger:#B3261E; --danger-soft:#F9DAD6;
+  --font-ui:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1514; --surface:#171F1D; --sunk:#1D2725; --ink:#E4ECE9; --muted:#97A6A1; --line:#2A3633;
+  --body:#25302D; --body-line:#3C4B47;
+  --pain:#EE7A60; --pain-soft:#4A2620; --care:#4CC0AC; --care-soft:#1B3B35; --on-care:#0F1514;
+  --warn:#E2AE55; --warn-soft:#3A2E17; --danger:#F07267; --danger-soft:#43201D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1514; --surface:#171F1D; --sunk:#1D2725; --ink:#E4ECE9; --muted:#97A6A1; --line:#2A3633;
+  --body:#25302D; --body-line:#3C4B47;
+  --pain:#EE7A60; --pain-soft:#4A2620; --care:#4CC0AC; --care-soft:#1B3B35; --on-care:#0F1514;
+  --warn:#E2AE55; --warn-soft:#3A2E17; --danger:#F07267; --danger-soft:#43201D; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:15px;line-height:1.6;margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 56px}
+h1,h2,h3,h4{text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:26px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:19px;font-weight:700}
+h3{font-size:17px;font-weight:600}
+h4{font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.04em}
+p{margin:0}
+a{color:var(--care)}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--care);outline-offset:2px}
+.data{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.top .sub{color:var(--muted);max-width:62ch;margin-top:4px}
+.top nav{display:flex;gap:6px;flex-wrap:wrap}
+.top nav a{text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:14px}
+.top nav a:hover{border-color:var(--care)}
+
+.app{display:grid;grid-template-columns:minmax(300px,440px) minmax(0,1fr);gap:24px;align-items:start}
+.map-col{position:sticky;top:12px;display:flex;flex-direction:column;gap:12px}
+.flow{display:flex;flex-direction:column;gap:16px;min-width:0}
+@media (max-width:880px){.app{grid-template-columns:minmax(0,1fr)}.map-col{position:static}}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+
+.seg{display:inline-flex;background:var(--sunk);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+
+#bodymap{width:100%;height:auto;display:block;touch-action:manipulation}
+.zone{fill:var(--body);stroke:var(--body-line);stroke-width:1;cursor:pointer;transition:fill .15s}
+.zone:hover,.zone:focus-visible{stroke:var(--ink);stroke-width:1.6;outline:none}
+.zone.target{fill:var(--care-soft);stroke:var(--care);stroke-width:2;stroke-dasharray:4 2.5}
+.zone.pain{fill:var(--pain-soft);stroke:var(--pain);stroke-width:2;stroke-dasharray:none}
+.zone.pain.target{stroke:var(--care);stroke-dasharray:4 2.5}
+.zone.done{fill:var(--care);stroke:var(--care);stroke-dasharray:none}
+.mode-done .zone:not(.target):not(.done){opacity:.45}
+.chk{fill:var(--on-care);font-size:11px;font-weight:700;pointer-events:none;text-anchor:middle;dominant-baseline:central}
+.dot{fill:var(--pain);pointer-events:none}
+.vlabel{fill:var(--muted);font-size:11px;text-anchor:middle;font-family:var(--font-ui)}
+.vlabel.strong{fill:var(--ink);font-size:12.5px;font-weight:600}
+.hoverline{min-height:1.6em;font-size:14px;color:var(--muted)}
+.hoverline b{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:4px;display:inline-block;border:2px solid transparent}
+.sw.p{background:var(--pain-soft);border-color:var(--pain)}
+.sw.t{background:var(--care-soft);border:2px dashed var(--care)}
+.sw.d{background:var(--care);border-color:var(--care)}
+
+textarea{width:100%;min-height:84px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg);line-height:1.5}
+textarea:focus{border-color:var(--care);outline:none}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--care)}
+.btn.primary{background:var(--care);border-color:var(--care);color:var(--on-care);font-weight:600}
+.btn.small{padding:5px 10px;font-size:13.5px}
+.parsed{font-size:14px;color:var(--muted)}
+.parsed b{color:var(--ink)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.field label,.field .lab{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+input[type=range]{width:100%;accent-color:var(--care)}
+.score{font-weight:600}
+
+.flags{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 14px;margin-top:6px}
+.flags label{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.45;cursor:pointer;padding:4px 0}
+.flags input{margin-top:3px;accent-color:var(--danger);flex:none}
+.lv{font-size:11.5px;font-weight:600;padding:0 6px;border-radius:4px;margin-left:4px;white-space:nowrap}
+.lv.er{background:var(--danger-soft);color:var(--danger)}
+.lv.stop{background:var(--warn-soft);color:var(--warn)}
+.lv.caution{background:var(--sunk);color:var(--muted)}
+
+.alert{border-radius:12px;padding:12px 16px;border:1px solid;display:flex;flex-direction:column;gap:4px}
+.alert.er{background:var(--danger-soft);border-color:var(--danger);color:var(--ink)}
+.alert.er strong{color:var(--danger)}
+.alert.stop{background:var(--warn-soft);border-color:var(--warn)}
+.alert.stop strong{color:var(--warn)}
+.alert.caution{background:var(--sunk);border-color:var(--line)}
+.alert.example{background:var(--sunk);border-color:var(--line);flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:14px}
+
+.summary{display:flex;flex-direction:column;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 6px 3px 10px;font-size:13.5px;background:var(--pain-soft);color:var(--ink);border:1px solid var(--pain)}
+.chip button{border:0;background:transparent;cursor:pointer;width:20px;height:20px;border-radius:50%;line-height:1;color:var(--muted)}
+.chip button:hover{background:var(--surface)}
+.stats{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted)}
+.stats b{color:var(--ink);font-size:16px}
+.advice{font-size:14px;background:var(--sunk);border-radius:8px;padding:8px 12px}
+
+.progress{height:6px;background:var(--sunk);border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--care);width:0;transition:width .2s}
+.checklist{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px}
+.checklist label{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-radius:8px;border:1px solid var(--line);cursor:pointer;font-size:14px;line-height:1.4;height:100%}
+.checklist input{accent-color:var(--care);margin-top:2px;flex:none}
+.checklist small{display:block;color:var(--muted);font-size:12px}
+.checklist .is-done{background:var(--care-soft);border-color:var(--care)}
+
+.cards{display:flex;flex-direction:column;gap:12px}
+details.card{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details.card>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+details.card>summary::-webkit-details-marker{display:none}
+.card-head{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.card-head h3 .side{font-weight:500;color:var(--muted);font-size:14px;margin-left:4px}
+.focus{color:var(--muted);font-size:14px}
+.card-body{padding:0 16px 16px;display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--line);padding-top:14px}
+.cert{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.cert.mod{background:var(--care-soft);color:var(--care)}
+.cert.low{background:var(--warn-soft);color:var(--warn)}
+.cert.vlow{background:var(--danger-soft);color:var(--danger)}
+.cert.none{background:var(--sunk);color:var(--muted)}
+.tlist{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.tlist li{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.tbtn{flex:none;min-width:132px;text-align:left;border:1.5px dashed var(--care);background:var(--care-soft);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:13.5px;font-weight:600}
+.tbtn.on{border-style:solid;background:var(--care);color:var(--on-care)}
+.tlist .why{color:var(--muted);padding-top:4px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+ol.steps,ul.plain{margin:6px 0 0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px;font-size:14.5px}
+ul.warn{margin:6px 0 0;padding-left:1.3em;font-size:14.5px;display:flex;flex-direction:column;gap:4px}
+ul.warn li::marker{color:var(--danger)}
+.note{font-size:14px;background:var(--sunk);border-radius:8px;padding:6px 10px}
+.refs{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.refs a{font-weight:500}
+.refs .meta{color:var(--muted);font-size:12.5px}
+.empty{color:var(--muted);text-align:center;padding:28px 12px;border:1px dashed var(--line);border-radius:12px}
+
+.papers{margin-top:40px;display:flex;flex-direction:column;gap:14px}
+.papers .intro{color:var(--muted);max-width:70ch}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+@media (max-width:420px){.pgrid{grid-template-columns:minmax(0,1fr)}}
+.paper{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.paper .meta{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px}
+.paper a{font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.paper p{font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:12px;background:var(--sunk);border-radius:4px;padding:1px 6px;color:var(--muted)}
+select,input[type=search]{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--surface)}
+.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;display:grid;gap:8px;max-width:80ch}
+.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:calc(100% - 32px)}
+.toast.show{opacity:1}
+#copybox{width:100%;min-height:140px;margin-top:8px;font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>마사지 부위 지도</h1>
+      <p class="sub">아픈 곳을 글로 적거나 몸 그림을 누르면, 같이 풀어야 할 근육 부위·시술 순서·주의 신호·연구 근거를 바로 보여줍니다.</p>
+    </div>
+    <nav aria-label="바로가기">
+      <a href="#finder">부위 찾기</a>
+      <a href="#papers">논문 근거</a>
+      <a href="#guide">읽는 법</a>
+    </nav>
+  </header>
+
+  <main class="app" id="finder">
+    <section class="map-col" aria-label="몸 그림">
+      <div class="panel">
+        <div class="panel-head">
+          <div class="seg" role="group" aria-label="그림 누르기 모드">
+            <button type="button" id="mode-pain" aria-pressed="true">아픈 곳 표시</button>
+            <button type="button" id="mode-done" aria-pressed="false">마사지 완료 체크</button>
+          </div>
+        </div>
+        <svg id="bodymap" viewBox="0 0 420 405" role="group" aria-label="정면과 후면 인체 그림. 부위를 눌러 선택"></svg>
+        <p class="hoverline" id="hoverline" aria-live="polite">부위를 누르면 선택돼요. 키보드는 Tab으로 이동 후 Enter.</p>
+        <div class="legend">
+          <span><i class="sw p"></i>아픈 곳</span>
+          <span><i class="sw t"></i>마사지 추천</span>
+          <span><i class="sw d"></i>마사지 완료</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="flow">
+      <section class="panel" aria-labelledby="in-h">
+        <div class="panel-head"><h2 id="in-h">어디가 아픈가요?</h2></div>
+        <textarea id="symptom" placeholder="예: 오른쪽 어깨가 결리고 뒷목이 뻐근해요. 2주째, 통증 6점"></textarea>
+        <div class="row" style="margin-top:8px">
+          <button type="button" class="btn primary" id="analyze">글에서 부위 찾기</button>
+          <span class="parsed" id="parsed"></span>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label for="score">통증 세기 <span class="score data" id="score-out">5</span>/10</label>
+            <input type="range" id="score" min="0" max="10" step="1" value="5">
+          </div>
+          <div class="field">
+            <span class="lab" id="phase-lab">아픈 기간</span>
+            <div class="seg" role="group" aria-labelledby="phase-lab" id="phase">
+              <button type="button" data-v="acute" aria-pressed="false">6주 미만</button>
+              <button type="button" data-v="chronic" aria-pressed="false">6주 이상</button>
+              <button type="button" data-v="" aria-pressed="true">모름</button>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <h4>먼저 확인할 위험 신호 (하나라도 있으면 마사지 전에 진료)</h4>
+          <div class="flags" id="flags"></div>
+        </div>
+      </section>
+
+      <div id="alerts" class="cards"></div>
+
+      <section class="panel summary" id="summary" aria-labelledby="sum-h"></section>
+
+      <section class="panel" id="checkpanel" aria-labelledby="chk-h"></section>
+
+      <section aria-labelledby="cards-h">
+        <h2 id="cards-h" style="margin-bottom:10px">부위별 시술 가이드</h2>
+        <div class="cards" id="cards"></div>
+      </section>
+    </div>
+  </main>
+
+  <section class="papers" id="papers" aria-labelledby="pap-h">
+    <h2 id="pap-h">논문 근거 DB</h2>
+    <p class="intro">PubMed·코크란 라이브러리에서 찾아 제목·저자·학술지를 확인한 연구만 넣었습니다. 각 시술 가이드의 근거 표시는 이 목록에서 가져옵니다. 검색일 2026-11-23.</p>
+    <div class="row">
+      <label for="pf-region" class="parsed">부위</label>
+      <select id="pf-region"></select>
+      <label for="pf-q" class="parsed">검색</label>
+      <input type="search" id="pf-q" placeholder="예: 두통, Cochrane, 2019">
+      <span class="parsed data" id="pf-count"></span>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <footer class="foot" id="guide">
+    <h2 style="color:var(--ink)">근거 수준 읽는 법</h2>
+    <p><span class="cert mod">근거 중간</span> 효과가 있을 가능성이 높지만 새 연구로 바뀔 수 있음 · <span class="cert low">근거 낮음</span> 실제 효과가 다를 수 있음 · <span class="cert vlow">근거 매우 낮음</span> 매우 불확실 · <span class="cert none">근거 부족</span> 그 부위만 본 연구를 찾지 못해 일반 원칙을 적용</p>
+    <p>마사지 연구 대부분은 '시술 직후~몇 주' 단기 효과를 보여줍니다. 허리·목 코크란 고찰 모두 오래가는 효과는 불분명하다고 했으니, 스트레칭·운동·자세 안내를 같이 해 주세요.</p>
+    <p>이 페이지는 진단 도구가 아니라 시술 계획을 돕는 참고 자료입니다. 위험 신호가 있거나 2–4주 안에 나아지지 않으면 병원 진료를 권해 주세요. 입력한 내용은 이 브라우저에만 저장되고 어디에도 전송되지 않습니다.</p>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="application/json" id="massage-db">
+{
+"names":{
+ "head":"머리·관자놀이","jaw":"턱(턱관절)","occiput":"뒤통수","neck":"목","upper_trap":"어깨 윗부분(승모근)",
+ "shoulder":"어깨 관절","chest":"가슴","abdomen":"배","upper_back":"등·날개뼈","low_back":"허리",
+ "hip":"고관절 앞·사타구니","glute":"엉덩이·골반","upper_arm":"위팔","elbow":"팔꿈치·아래팔","wrist":"손목·손",
+ "thigh":"허벅지 앞","hamstring":"허벅지 뒤","knee":"무릎","shin":"정강이","calf":"종아리","ankle":"발목","foot":"발바닥·뒤꿈치"
+},
+"tagNames":{"general":"전반","safety":"안전·금기"},
+"shapes":[
+ {"v":"f","k":"neck","s":"C","t":"rect","a":{"x":89,"y":54,"width":22,"height":28,"rx":5}},
+ {"v":"f","k":"head","s":"C","t":"ellipse","a":{"cx":100,"cy":34,"rx":21,"ry":25}},
+ {"v":"f","k":"jaw","s":"R","t":"path","a":{"d":"M80.5 40 Q83 55 100 59.5 L100 49 Q89 48 80.5 40 Z"}},
+ {"v":"f","k":"jaw","s":"L","t":"path","a":{"d":"M119.5 40 Q117 55 100 59.5 L100 49 Q111 48 119.5 40 Z"}},
+ {"v":"f","k":"chest","s":"R","t":"rect","a":{"x":73,"y":76,"width":27,"height":42,"rx":6}},
+ {"v":"f","k":"chest","s":"L","t":"rect","a":{"x":100,"y":76,"width":27,"height":42,"rx":6}},
+ {"v":"f","k":"shoulder","s":"R","t":"circle","a":{"cx":63,"cy":88,"r":13}},
+ {"v":"f","k":"shoulder","s":"L","t":"circle","a":{"cx":137,"cy":88,"r":13}},
+ {"v":"f","k":"abdomen","s":"C","t":"rect","a":{"x":76,"y":118,"width":48,"height":46,"rx":6}},
+ {"v":"f","k":"hip","s":"R","t":"rect","a":{"x":74,"y":164,"width":26,"height":26,"rx":5}},
+ {"v":"f","k":"hip","s":"L","t":"rect","a":{"x":100,"y":164,"width":26,"height":26,"rx":5}},
+ {"v":"f","k":"upper_arm","s":"R","t":"rect","a":{"x":46,"y":100,"width":15,"height":52,"rx":7}},
+ {"v":"f","k":"upper_arm","s":"L","t":"rect","a":{"x":139,"y":100,"width":15,"height":52,"rx":7}},
+ {"v":"f","k":"elbow","s":"R","t":"rect","a":{"x":42,"y":152,"width":15,"height":50,"rx":7}},
+ {"v":"f","k":"elbow","s":"L","t":"rect","a":{"x":143,"y":152,"width":15,"height":50,"rx":7}},
+ {"v":"f","k":"wrist","s":"R","t":"ellipse","a":{"cx":49,"cy":214,"rx":9,"ry":13}},
+ {"v":"f","k":"wrist","s":"L","t":"ellipse","a":{"cx":151,"cy":214,"rx":9,"ry":13}},
+ {"v":"f","k":"thigh","s":"R","t":"rect","a":{"x":76,"y":190,"width":23,"height":68,"rx":9}},
+ {"v":"f","k":"thigh","s":"L","t":"rect","a":{"x":101,"y":190,"width":23,"height":68,"rx":9}},
+ {"v":"f","k":"knee","s":"R","t":"ellipse","a":{"cx":87,"cy":268,"rx":11,"ry":12}},
+ {"v":"f","k":"knee","s":"L","t":"ellipse","a":{"cx":113,"cy":268,"rx":11,"ry":12}},
+ {"v":"f","k":"shin","s":"R","t":"rect","a":{"x":79,"y":280,"width":17,"height":74,"rx":7}},
+ {"v":"f","k":"shin","s":"L","t":"rect","a":{"x":104,"y":280,"width":17,"height":74,"rx":7}},
+ {"v":"f","k":"ankle","s":"R","t":"ellipse","a":{"cx":86,"cy":364,"rx":12,"ry":9}},
+ {"v":"f","k":"ankle","s":"L","t":"ellipse","a":{"cx":114,"cy":364,"rx":12,"ry":9}},
+
+ {"v":"b","k":"neck","s":"C","t":"rect","a":{"x":89,"y":54,"width":22,"height":28,"rx":5}},
+ {"v":"b","k":"occiput","s":"C","t":"ellipse","a":{"cx":100,"cy":34,"rx":21,"ry":25}},
+ {"v":"b","k":"upper_back","s":"L","t":"rect","a":{"x":73,"y":80,"width":20,"height":52,"rx":6}},
+ {"v":"b","k":"upper_back","s":"C","t":"rect","a":{"x":93,"y":78,"width":14,"height":54,"rx":4}},
+ {"v":"b","k":"upper_back","s":"R","t":"rect","a":{"x":107,"y":80,"width":20,"height":52,"rx":6}},
+ {"v":"b","k":"shoulder","s":"L","t":"circle","a":{"cx":63,"cy":88,"r":13}},
+ {"v":"b","k":"shoulder","s":"R","t":"circle","a":{"cx":137,"cy":88,"r":13}},
+ {"v":"b","k":"upper_trap","s":"L","t":"polygon","a":{"points":"89,62 92,78 72,85 58,81 68,70"}},
+ {"v":"b","k":"upper_trap","s":"R","t":"polygon","a":{"points":"111,62 108,78 128,85 142,81 132,70"}},
+ {"v":"b","k":"low_back","s":"C","t":"rect","a":{"x":75,"y":132,"width":50,"height":34,"rx":5}},
+ {"v":"b","k":"glute","s":"L","t":"rect","a":{"x":74,"y":166,"width":26,"height":32,"rx":9}},
+ {"v":"b","k":"glute","s":"R","t":"rect","a":{"x":100,"y":166,"width":26,"height":32,"rx":9}},
+ {"v":"b","k":"upper_arm","s":"L","t":"rect","a":{"x":46,"y":100,"width":15,"height":52,"rx":7}},
+ {"v":"b","k":"upper_arm","s":"R","t":"rect","a":{"x":139,"y":100,"width":15,"height":52,"rx":7}},
+ {"v":"b","k":"elbow","s":"L","t":"rect","a":{"x":42,"y":152,"width":15,"height":50,"rx":7}},
+ {"v":"b","k":"elbow","s":"R","t":"rect","a":{"x":143,"y":152,"width":15,"height":50,"rx":7}},
+ {"v":"b","k":"wrist","s":"L","t":"ellipse","a":{"cx":49,"cy":214,"rx":9,"ry":13}},
+ {"v":"b","k":"wrist","s":"R","t":"ellipse","a":{"cx":151,"cy":214,"rx":9,"ry":13}},
+ {"v":"b","k":"hamstring","s":"L","t":"rect","a":{"x":76,"y":198,"width":23,"height":62,"rx":9}},
+ {"v":"b","k":"hamstring","s":"R","t":"rect","a":{"x":101,"y":198,"width":23,"height":62,"rx":9}},
+ {"v":"b","k":"calf","s":"L","t":"rect","a":{"x":78,"y":262,"width":19,"height":84,"rx":9}},
+ {"v":"b","k":"calf","s":"R","t":"rect","a":{"x":103,"y":262,"width":19,"height":84,"rx":9}},
+ {"v":"b","k":"foot","s":"L","t":"ellipse","a":{"cx":87,"cy":359,"rx":11,"ry":13}},
+ {"v":"b","k":"foot","s":"R","t":"ellipse","a":{"cx":113,"cy":359,"rx":11,"ry":13}}
+],
+"protocols":{
+ "head":{"focus":"긴장형 두통 · 관자놀이·이마 조임",
+  "muscles":["측두근","전두근","후두하근(연관)","상부승모근(연관)","흉쇄유돌근(연관)"],
+  "targets":[["occiput","후두하근: 두통 연관통의 흔한 출처"],["neck","흉쇄유돌근·목 뒤 근육: 머리로 퍼지는 통증"],["upper_trap","상부승모근 통증유발점: 관자놀이로 연관통"],["head","측두근·전두근: 직접 이완"]],
+  "steps":["누운 자세에서 목·어깨 쓰다듬기(경찰법) 3분","두개골 아래 홈(후두하근)을 손가락 끝으로 받쳐 60–90초 정적 압박","상부승모근·흉쇄유돌근 통증유발점 허혈성 압박 30–90초 (고객 통증 10점 중 5점 이하)","관자놀이(측두근) 손가락 원 그리기 2분","목 옆 늘리기 스트레칭 후 두통 세기 다시 묻기"],
+  "pressure":"약~중","min":20,
+  "self":["턱 당기기 10회 × 하루 3번","상부승모근 스트레칭 30초 × 3","화면을 눈높이로 올리기"],
+  "caution":["갑자기 시작된 극심한 두통, 발열·목 경직, 말 어눌함·마비 → 즉시 응급실","편두통(욱신거림·구역·빛 과민)은 긴장형 두통과 달라 효과가 다를 수 있음"],
+  "cert":"low","note":"통증유발점 마사지 RCT에서 두통 빈도는 위약과 차이가 없었고, 환자가 느낀 통증 감소는 더 컸음","refs":["moraska2015","dolina2024","espi2014"]},
+ "jaw":{"focus":"턱관절 통증 · 이 악물기 · 입 벌릴 때 소리",
+  "muscles":["교근","측두근","익돌근(입 안 시술은 자격 범위 확인)","흉쇄유돌근"],
+  "targets":[["jaw","교근: 턱 통증의 주 원인 근육"],["head","측두근: 이 악물 때 함께 긴장"],["neck","흉쇄유돌근: 턱·귀 주변 연관통"]],
+  "steps":["볼·턱선 가볍게 쓰다듬기 2분","입을 살짝 벌린 상태에서 교근 정적 압박 30–60초 후 원형 마찰","관자놀이 측두근 문지르기 2분","목 앞 흉쇄유돌근을 가볍게 집어 주무르기 (안쪽 맥박 뛰는 곳은 피하기)","천천히 입 벌리기로 벌어지는 범위 확인"],
+  "pressure":"약","min":10,
+  "self":["혀끝을 입천장에 대고 천천히 입 벌리기 6회","낮에 이 악무는 순간을 알아차리고 힘 빼기","딱딱하고 질긴 음식 줄이기"],
+  "caution":["입이 걸려 안 벌어지거나 안 다물어짐, 귀 통증·발열, 최근 치과 치료 → 치과·구강내과 먼저"],
+  "cert":"low","note":"근막이완·마사지: 입 벌림 범위는 중간 근거, 통증은 낮은 근거로 위약·무처치보다 나음","refs":["morell2016"]},
+ "occiput":{"focus":"뒤통수·뒷머리 통증, 눈 뒤까지 뻐근함",
+  "muscles":["후두하근","두판상근·경판상근","두반극근"],
+  "targets":[["occiput","후두하근: 직접 이완"],["neck","판상근·반극근: 뒷목 긴장"],["upper_trap","상부승모근: 뒤통수로 연관통"]],
+  "steps":["누운 자세에서 손바닥으로 뒷머리를 받쳐 1분 호흡","두개골 아래 홈을 따라 손가락 끝 정적 압박 60–90초","목 뒤 근육을 엄지로 위→아래 쓸어내리기(활주) 2–3분","상부승모근 주무르기(유념법) 2분","턱 당기기 2–3회로 마무리"],
+  "pressure":"약~중","min":15,
+  "self":["턱 당기기 10회","테니스공 2개를 양말에 넣어 뒤통수 아래 대고 누워 2분"],
+  "caution":["넘어짐·사고 후 뒷목·뒤통수 통증, 어지럼·시야 이상·손 저림 → 진료 먼저"],
+  "cert":"low","refs":["moraska2015","dolina2024"]},
+ "neck":{"focus":"목 결림 · 거북목 · 담 결림",
+  "muscles":["상부승모근","견갑거근","사각근","흉쇄유돌근","후두하근"],
+  "targets":[["neck","견갑거근·사각근: 목 움직임 제한의 주 원인"],["upper_trap","상부승모근: 목·어깨 연결부 긴장"],["occiput","후두하근: 고개 숙인 자세로 짧아짐"],["upper_back","능형근·중부승모근: 굽은 등과 함께 약해짐"],["chest","소흉근·대흉근: 둥근 어깨 자세 교정"]],
+  "steps":["누운 자세에서 목 뒤 쓰다듬기 3분","견갑거근(목 옆~날개뼈 위 모서리) 주무르기","통증유발점 허혈성 압박 30–90초, 통증 5/10 이하","가슴 앞 소흉근 이완 2분 (둥근 어깨가 있으면)","좌우 돌리기·옆으로 기울이기 범위 다시 확인"],
+  "pressure":"약~중","min":20,
+  "self":["턱 당기기 10회 × 하루 3번","견갑거근 스트레칭: 코를 반대쪽 겨드랑이로 30초","1시간마다 일어나 어깨 돌리기"],
+  "caution":["팔로 뻗치는 저림·근력 저하, 어지럼·시야 이상, 사고 후 통증 → 진료 먼저","목 앞쪽(맥박 뛰는 곳) 강한 압박·급하게 비틀기 금지"],
+  "cert":"low","note":"최신 코크란(2024): 위약 대비 차이가 작을 수 있음. 시술 직후 효과는 있으니 운동과 함께 쓰는 보조 치료로 안내","refs":["gross2024","kong2013","bervoets2015"]},
+ "upper_trap":{"focus":"어깨 뭉침 · 결림 · 무거움",
+  "muscles":["상부승모근","견갑거근","극상근"],
+  "targets":[["upper_trap","상부승모근: 직접 이완"],["neck","견갑거근: 날개뼈를 끌어올려 같이 뭉침"],["upper_back","중·하부승모근, 능형근: 반대쪽 균형"],["chest","소흉근: 어깨를 앞으로 당기는 근육"]],
+  "steps":["엎드리거나 앉은 자세에서 어깨선 쓰다듬기 3분","상부승모근 집어 주무르기(유념법) 3분","어깨선 가운데 통증유발점 허혈성 압박 30–90초","날개뼈 안쪽 능형근 엄지 활주 2분","어깨 으쓱했다 툭 내리기 5회로 마무리"],
+  "pressure":"중","min":15,
+  "self":["상부승모근 스트레칭 30초 × 3","날개뼈 모으기 10회 × 3","가방은 양쪽으로 메기"],
+  "caution":["왼쪽 어깨·턱으로 퍼지는 통증에 가슴 답답함·식은땀 → 심장 문제 가능성, 119"],
+  "cert":"low","note":"목·어깨 마사지는 시술 직후 통증 감소 효과가 뚜렷하고, 몇 주 뒤 효과는 불분명","refs":["kong2013","gross2024"]},
+ "shoulder":{"focus":"어깨 관절 통증 · 팔 올릴 때 아픔 · 오십견",
+  "muscles":["극하근·소원근","극상근","삼각근","대흉근·소흉근","견갑하근"],
+  "targets":[["shoulder","삼각근·회전근개 주변: 직접 이완"],["upper_back","극하근(날개뼈 위): 어깨 앞·옆으로 연관통"],["chest","대흉근·소흉근: 팔 올림을 막는 앞쪽 긴장"],["upper_arm","이두근·삼두근: 팔 쓰는 패턴 보상"],["upper_trap","상부승모근: 팔 들 때 과사용"]],
+  "steps":["어깨 주변 쓰다듬기 3분","날개뼈 위 극하근 통증유발점 압박 30–90초","가슴 앞 대흉근 주무르기·소흉근 이완 3분","삼각근·위팔 주무르기 2분","아프지 않은 범위에서 팔 돌리기(수동 가동) 후 범위 비교"],
+  "pressure":"중","min":20,
+  "self":["진자 운동: 허리 숙이고 팔 늘어뜨려 작은 원 그리기 1–2분","문틀 가슴 스트레칭 30초 × 3","아프지 않은 범위에서 수건 등 뒤로 돌리기"],
+  "caution":["넘어진 뒤 팔을 못 들면 힘줄 파열·골절 확인","밤에 잠이 깰 정도로 아프거나 열감 → 진료","왼쪽 어깨 통증 + 가슴 압박감·식은땀 → 119"],
+  "cert":"low","note":"메타분석: 단기 효과 크기 중간 이상(SMD −1.08), 장기 효과는 작음(SMD −0.47)","refs":["yeun2017","bervoets2015","kong2013"]},
+ "chest":{"focus":"가슴 앞 당김 · 둥근 어깨",
+  "muscles":["대흉근","소흉근","늑간근"],
+  "targets":[["chest","대흉근·소흉근: 직접 이완"],["shoulder","삼각근 앞쪽: 함께 짧아짐"],["upper_back","능형근·중부승모근: 반대쪽 약화"]],
+  "steps":["누운 자세에서 가슴 위쪽 쓰다듬기 2분","겨드랑이 앞 주름(대흉근)을 집어 주무르기","쇄골 아래 소흉근 부드러운 정적 압박 30–60초 (신경·혈관 지나는 곳이라 저리면 중단)","팔을 벌린 자세로 가슴 늘리기","등 쪽 날개뼈 운동 안내"],
+  "pressure":"약~중","min":10,
+  "self":["문틀 가슴 스트레칭 30초 × 3","날개뼈 모으기 10회"],
+  "caution":["가슴 통증은 근육보다 심장·폐 원인을 먼저 의심: 압박감·숨참·식은땀이면 119","유방 조직·수술 부위 직접 압박 금지"],
+  "cert":"none","note":"가슴만 따로 본 연구는 찾지 못함. 목·어깨 시술의 보조 부위로 사용","refs":[]},
+ "abdomen":{"focus":"배 긴장 · 복부 불편감",
+  "muscles":["복직근","복사근","장요근(깊은 곳)"],
+  "targets":[["abdomen","복부 근육: 가벼운 이완만"],["low_back","허리 근육: 배 긴장과 함께 굳음"],["hip","장요근: 오래 앉으면 짧아짐"]],
+  "steps":["원인 모를 복통은 시술하지 말고 진료 먼저 안내","무릎 세운 누운 자세에서 배꼽 주위 시계 방향 가볍게 쓰다듬기 5분","숨을 내쉴 때만 손을 조금 깊게","허리 근육 이완으로 마무리"],
+  "pressure":"약","min":10,
+  "self":["배로 숨쉬기(복식호흡) 5분","식후 가볍게 걷기"],
+  "caution":["급성 복통·발열·구토·혈변, 맥박이 뛰는 덩어리 → 시술 금지, 진료","임신 중이거나 복부 수술 직후 복부 마사지 금지"],
+  "cert":"none","note":"근골격 통증 목적의 복부 마사지 연구는 찾지 못함","refs":[]},
+ "upper_back":{"focus":"등 결림 · 날개뼈 사이 통증",
+  "muscles":["능형근","중·하부승모근","척추세움근(등)","극하근"],
+  "targets":[["upper_back","능형근·척추 옆 근육: 직접 이완"],["upper_trap","상부승모근: 위쪽 연결부"],["chest","대흉근·소흉근: 등을 앞으로 당기는 쪽"],["shoulder","극하근·뒤쪽 삼각근: 날개뼈 바깥"]],
+  "steps":["엎드린 자세에서 등 전체 쓰다듬기 3분","척추 양옆 근육을 엄지로 위→아래 활주 3분","날개뼈 안쪽 능형근 통증유발점 압박 30–90초","돌아누워 가슴 앞 이완 2분으로 균형 맞추기","등 펴기(흉추 신전) 운동 안내"],
+  "pressure":"중","min":20,
+  "self":["수건을 말아 등 아래 대고 누워 등 펴기 2분","날개뼈 모으기 10회 × 3"],
+  "caution":["갑작스러운 등 통증 + 가슴 통증·숨참 → 119","골다공증·고령자는 갈비뼈 위 강한 압박 금지"],
+  "cert":"low","note":"등만 따로 본 연구는 적고, 목·어깨 메타분석 근거를 함께 적용","refs":["kong2013","bervoets2015"]},
+ "low_back":{"focus":"허리 통증 · 요통 · 허리 삐끗",
+  "muscles":["척추세움근","요방형근","다열근","둔근(연관)","장요근(연관)","햄스트링(연관)"],
+  "targets":[["low_back","척추세움근·요방형근: 직접 이완"],["glute","중둔근·이상근: 허리·엉덩이 연관통"],["hamstring","햄스트링: 짧아지면 골반을 당김"],["hip","장요근: 오래 앉으면 허리를 앞으로 당김"]],
+  "steps":["엎드린 자세(배 밑 베개)에서 허리 쓰다듬기 3–5분","척추세움근 손바닥 주무르기·엄지 활주 5분","옆구리 쪽 허리(요방형근) 정적 압박 30–90초","엉덩이 중둔근 손바닥·팔꿈치 압박 3분","햄스트링·장요근 스트레칭 후 허리 숙이기 범위 확인"],
+  "pressure":"중","min":30,
+  "self":["가볍게 걷기 하루 20–30분 (누워만 있지 않기)","누워서 무릎 가슴으로 당기기 30초 × 3","고양이-소 자세 10회"],
+  "caution":["대소변 장애·엉덩이 감각 둔함 → 마미증후군 의심, 응급실","다리 힘 빠짐, 발열·체중 감소, 암 병력, 넘어짐·사고 후 → 진료 먼저"],
+  "cert":"low","note":"코크란(25개 RCT, 3,096명): 단기 통증·기능 개선, 장기 효과 불분명. 운동·교육과 함께 쓸 때 권장","refs":["furlan2015","bervoets2015"]},
+ "glute":{"focus":"엉덩이 통증 · 골반 뻐근함 · 앉으면 심해지는 다리 저림",
+  "muscles":["중둔근","소둔근","대둔근","이상근"],
+  "targets":[["glute","중둔근·이상근: 직접 이완"],["low_back","허리 근육: 같이 긴장"],["hamstring","햄스트링: 엉덩이 아래 부착부"],["hip","대퇴근막장근·장요근: 앞쪽 균형"]],
+  "steps":["엎드린 자세에서 엉덩이 쓰다듬기 3분","손바닥·팔꿈치로 중둔근 넓게 압박 3분","이상근(엉덩이 가운데 깊은 곳) 정적 압박 30–60초: 다리로 저림이 퍼지면 바로 힘 빼기","햄스트링 위쪽 주무르기","4자 자세 이상근 스트레칭 30초 × 3"],
+  "pressure":"중","min":20,
+  "self":["4자 스트레칭 30초 × 3","오래 앉을 때 30분마다 일어나기","뒷주머니에 지갑 넣고 앉지 않기"],
+  "caution":["양쪽 다리 저림·힘 빠짐, 대소변 장애 → 응급","좌골신경 지나는 곳을 팔꿈치로 오래 세게 누르지 않기"],
+  "cert":"vlow","note":"이상근 증후군은 진단 기준부터 논란. 선별 4증상: 엉덩이 통증, 앉으면 악화, 좌골 바깥 압통, 이상근을 늘리면 통증","refs":["hopayian2018","hopayian2010"]},
+ "hip":{"focus":"고관절 앞 · 사타구니 당김",
+  "muscles":["장요근","대퇴근막장근","내전근","대퇴직근"],
+  "targets":[["hip","장요근·대퇴근막장근: 직접 이완"],["thigh","대퇴직근: 고관절 앞을 같이 당김"],["glute","둔근: 뒤쪽 균형"],["low_back","허리: 장요근이 허리뼈에 붙음"]],
+  "steps":["누운 자세에서 허벅지 위쪽 쓰다듬기 2분","골반 뼈 바로 아래 대퇴근막장근 압박 30–60초","장요근은 배 쪽 깊은 곳이라 가볍게만, 맥박이 느껴지면 위치 바꾸기","허벅지 앞 주무르기 2분","런지 자세 고관절 앞 스트레칭 안내"],
+  "pressure":"약~중","min":15,
+  "self":["런지 자세 고관절 앞 스트레칭 30초 × 3","오래 앉기 줄이기"],
+  "caution":["사타구니 혹(탈장 의심)·맥박 뛰는 곳 강한 압박 금지","고령자가 넘어진 뒤 고관절 통증 → 골절 확인"],
+  "cert":"none","note":"이 부위만 본 마사지 연구는 찾지 못함. 일반 원칙 적용","refs":[]},
+ "upper_arm":{"focus":"위팔 근육통 · 팔 무거움",
+  "muscles":["이두근","삼두근","삼각근"],
+  "targets":[["upper_arm","이두근·삼두근: 직접 이완"],["shoulder","삼각근: 위쪽 연결"],["elbow","아래팔: 팔 쓰는 근육 연결"]],
+  "steps":["손끝→어깨 방향으로 팔 전체 쓰다듬기 2분","이두근·삼두근 주무르기 3분","뭉친 곳 정적 압박 30초","팔 펴기·굽히기 스트레칭"],
+  "pressure":"중","min":10,
+  "self":["벽 짚고 이두근 스트레칭 30초","삼두근 스트레칭 30초"],
+  "caution":["운동 후 소변이 콜라색이고 심하게 부음 → 횡문근융해증 의심, 즉시 진료"],
+  "cert":"low","note":"운동 후 근육통(알 배김) 연구 근거","refs":["guo2017","davis2020"]},
+ "elbow":{"focus":"팔꿈치 바깥·안쪽 통증 (테니스엘보·골프엘보)",
+  "muscles":["손목 폄근(단요측수근신근)","손목 굽힘근","상완요골근","회외근"],
+  "targets":[["elbow","아래팔 폄근·굽힘근: 직접 이완"],["wrist","손목·손: 같은 근육의 끝부분"],["upper_arm","위팔: 팔꿈치 위 긴장"]],
+  "steps":["아래팔 쓰다듬기 2분","손등 쪽 아래팔(폄근) 주무르기 3분","힘줄 결을 가로지르는 심부 횡마찰 5–10분 (Cyriax 방식, 근거 제한)","손목 굽힘 스트레칭 30초 × 3","천천히 내리는(편심성) 손목 운동 안내"],
+  "pressure":"중","min":15,
+  "self":["손목 굽힘 스트레칭 30초 × 3","가벼운 아령 천천히 내리기 15회 × 3"],
+  "caution":["붓고 뜨겁거나 다친 뒤 모양이 변함 → 진료","새끼손가락 쪽 저림 → 척골신경 확인"],
+  "cert":"vlow","note":"코크란: 근거 질이 매우 낮아 효과 불확실. 운동과 함께 사용","refs":["loew2014"]},
+ "wrist":{"focus":"손목 통증 · 손 저림 (손목터널증후군)",
+  "muscles":["손목 굽힘근","엄지두덩근","원회내근","사각근·소흉근(연관)"],
+  "targets":[["wrist","손바닥·엄지두덩: 직접 이완"],["elbow","아래팔 굽힘근·원회내근: 정중신경 지나는 길"],["neck","사각근: 팔 신경이 지나는 목 부위"],["chest","소흉근: 팔 신경이 지나는 가슴 부위"]],
+  "steps":["손바닥·아래팔 쓰다듬기 2분","아래팔 굽힘근 주무르기 3분","엄지두덩·손바닥 근막 이완 2분","팔꿈치 아래 원회내근 정적 압박 30초","목 옆 사각근 가볍게 이완 후 신경 활주 운동 안내"],
+  "pressure":"약~중","min":20,
+  "self":["손목 굽힘근 스트레칭 30초 × 3","정중신경 활주 운동 5회 × 하루 2번","마우스·키보드에 손목 받침 쓰기"],
+  "caution":["엄지 근육이 꺼지거나 감각이 없어짐, 밤새 저림 → 진료 (수술 검토 대상)"],
+  "cert":"low","note":"근막 마사지 단기 효과는 중간 근거. 마사지만 단독으로 본 연구는 소규모","refs":["huisstede2018","zhang2026","elliott2013"]},
+ "thigh":{"focus":"허벅지 앞 근육통 · 뻐근함",
+  "muscles":["대퇴사두근","대퇴근막장근","외측광근(장경인대 옆)"],
+  "targets":[["thigh","대퇴사두근: 직접 이완"],["knee","무릎 위: 힘줄 부착부"],["hip","고관절 앞: 대퇴직근 시작점"]],
+  "steps":["무릎→골반 방향 허벅지 쓰다듬기 3분","대퇴사두근 손바닥 주무르기 3분","바깥쪽 외측광근 손바닥 넓게 압박 (장경인대 자체를 세게 문지르지 않기)","허벅지 앞 스트레칭"],
+  "pressure":"중","min":15,
+  "self":["선 자세 허벅지 앞 스트레칭 30초 × 3","폼롤러 1–2분"],
+  "caution":["한쪽 다리 붓기·열감 → 혈전 확인","고령자 다리 강한 심부 마사지 주의"],
+  "cert":"low","note":"운동 후 근육통 연구 근거","refs":["guo2017","davis2020","crump2010"]},
+ "hamstring":{"focus":"허벅지 뒤 당김 · 근육통",
+  "muscles":["대퇴이두근","반건양근","반막양근"],
+  "targets":[["hamstring","햄스트링: 직접 이완"],["glute","엉덩이 아래: 부착부"],["calf","종아리: 무릎 뒤 연결"],["low_back","허리: 골반 기울기 연결"]],
+  "steps":["엎드린 자세 허벅지 뒤 쓰다듬기 3분","햄스트링 손바닥 주무르기 3분","뭉친 곳 정적 압박 30–60초","무릎 뒤 오금은 혈관·신경 지나므로 세게 누르지 않기","누워 다리 들어 스트레칭"],
+  "pressure":"중","min":15,
+  "self":["누워서 수건 걸어 다리 들어 올리기 30초 × 3"],
+  "caution":["운동 중 '뚝' 소리와 멍 → 파열 의심, 진료","오금 붓기·종아리 통증 → 혈전 확인"],
+  "cert":"low","note":"운동 후 근육통 연구 근거","refs":["guo2017","davis2020","crump2010"]},
+ "knee":{"focus":"무릎 통증 · 퇴행성 관절염",
+  "muscles":["대퇴사두근","햄스트링","비복근","무릎뼈 주변 조직"],
+  "targets":[["thigh","대퇴사두근: 무릎을 받쳐주는 핵심 근육"],["knee","무릎 주변: 가벼운 원형 마찰"],["hamstring","햄스트링: 무릎 뒤 긴장"],["calf","비복근: 무릎 뒤 부착"]],
+  "steps":["발→허벅지 방향 다리 전체 쓰다듬기 5분","대퇴사두근 주무르기 5분","무릎뼈 주변 손가락 원 그리기 3분 (뼈를 세게 누르지 않기)","햄스트링·종아리 이완 5분","무릎 굽혔다 펴기 10회"],
+  "pressure":"약~중","min":30,
+  "self":["의자에 앉아 무릎 펴기 10회 × 3","걷기·실내자전거"],
+  "caution":["갑자기 붓고 뜨겁고 빨개짐 → 감염·통풍 확인","종아리 붓기 동반 → 혈전 확인","인공관절·최근 주사 부위는 의사 확인"],
+  "cert":"mod","note":"연구에서는 60분 스웨덴식 마사지를 주 1회 8주 시행. 8주 단기 개선은 확인, 이후 유지 마사지의 장기 추가 효과는 없음","refs":["perlman2019","perlman2006","bervoets2015"]},
+ "shin":{"focus":"정강이 통증 · 신스플린트",
+  "muscles":["전경골근","장지신근","가자미근 안쪽 경계"],
+  "targets":[["shin","전경골근: 직접 이완 (뼈 위 직접 압박 금지)"],["calf","가자미근: 정강이 안쪽 통증과 연결"],["ankle","발목: 힘줄 지나는 길"]],
+  "steps":["정강이 바깥 근육을 발목→무릎 방향으로 쓰다듬기 2분","전경골근 엄지 활주 3분 (뼈 위는 피하기)","종아리 안쪽 가자미근 주무르기 3분","발목 돌리기"],
+  "pressure":"약~중","min":10,
+  "self":["운동량 줄이고 1–2주 쉬기","종아리 스트레칭 30초 × 3"],
+  "caution":["뼈 한 점을 누르면 심하게 아픔 → 피로골절 확인","운동 중 심해지고 감각 저하·붓기 → 구획증후군, 진료"],
+  "cert":"none","note":"이 부위만 본 마사지 연구는 찾지 못함. 일반 원칙 적용","refs":[]},
+ "calf":{"focus":"종아리 뭉침 · 쥐 · 근육통",
+  "muscles":["비복근","가자미근"],
+  "targets":[["calf","비복근·가자미근: 직접 이완"],["foot","발바닥: 같은 근막으로 연결"],["hamstring","무릎 뒤: 위쪽 연결"]],
+  "steps":["붓기·열감·빨개짐부터 확인 (혈전 배제)","발목→무릎 방향(심장 쪽)으로 쓰다듬기 3분","비복근·가자미근 손바닥 주무르기 3분","뭉친 곳 정적 압박 30–60초","벽 짚고 종아리 스트레칭"],
+  "pressure":"중","min":15,
+  "self":["벽 짚고 종아리 스트레칭 30초 × 3 (무릎 편 자세·굽힌 자세)","물 충분히 마시기"],
+  "caution":["한쪽 종아리만 붓고 뜨겁고 빨갛고 누르면 아픔 → 혈전 의심, 마사지 금지·즉시 진료","고령자 다리 강한 심부 마사지 후 혈전 사례 보고됨"],
+  "cert":"low","note":"운동 후 근육통 감소 근거 + 혈전 사례 보고","refs":["guo2017","davis2020","crump2010"]},
+ "ankle":{"focus":"발목 통증 · 삔 뒤 뻣뻣함",
+  "muscles":["비골근","전경골근","아킬레스건 주변"],
+  "targets":[["ankle","발목 주변: 부기 빠진 뒤 가벼운 이완"],["calf","종아리: 아킬레스건 긴장"],["shin","전경골근·비골근: 발목을 잡아주는 근육"]],
+  "steps":["다친 지 48–72시간 안이면 부은 곳 직접 마사지 금지: 위쪽에서 심장 방향으로 가볍게 쓰다듬기만","부기가 빠진 뒤 종아리 바깥(비골근) 주무르기 3분","아킬레스건 양옆 가볍게 집어 주무르기","발목 원 그리기·발로 알파벳 쓰기"],
+  "pressure":"약","min":10,
+  "self":["발로 알파벳 쓰기 2회","부기가 빠진 뒤 한 발 서기 30초 × 3"],
+  "caution":["체중을 못 싣거나 복숭아뼈 끝을 누르면 아픔 → 엑스레이 확인"],
+  "cert":"none","note":"이 부위만 본 마사지 연구는 찾지 못함. 일반 원칙 적용","refs":[]},
+ "foot":{"focus":"발바닥·뒤꿈치 통증 (족저근막염)",
+  "muscles":["족저근막","발바닥 근육","비복근·가자미근"],
+  "targets":[["calf","비복근·가자미근: 족저근막을 당기는 근육"],["foot","족저근막: 뒤꿈치→발가락 방향 이완"]],
+  "steps":["종아리 쓰다듬기·주무르기 5분","비복근·가자미근 근막이완 (천천히 늘리듯 누르기) 3분","발바닥 엄지 활주 뒤꿈치→발가락 3분","뒤꿈치 앞 아픈 점 정적 압박 30초 (통증 5/10 이하)","발가락 젖혀 족저근막 스트레칭"],
+  "pressure":"중","min":15,
+  "self":["아침 첫발 딛기 전 발가락 젖혀 스트레칭 10회","벽 짚고 종아리 스트레칭 30초 × 3","골프공·캔 굴리기 2분"],
+  "caution":["당뇨로 발 감각이 떨어졌거나 상처 → 강한 압박 금지","붓기·열감, 다친 뒤 통증 → 진료"],
+  "cert":"mod","note":"연부조직 가동술·종아리와 족저근막 근막이완이 효과적이라는 중간 근거","refs":["pollack2018","piper2016","siriphorn2020"]}
+},
+"keywords":[
+ {"re":"두통|머리.{0,4}(아프|아파|통증|지끈|띵|무겁|조이)|관자놀이|이마|편두통","keys":["head"]},
+ {"re":"뒤통수|뒷머리|머리\\s*뒤","keys":["occiput"]},
+ {"re":"턱|이갈이|악물|입.{0,4}벌","keys":["jaw"]},
+ {"re":"목|고개","keys":["neck"],"strip":"손목|발목|목요일|목소리|목표"},
+ {"re":"어깨.{0,4}(결|뭉|뻐근|무거|담)|승모근","keys":["upper_trap"],"group":"sh"},
+ {"re":"오십견|회전근|어깨\\s*관절|팔.{0,6}(올리|들|올라)|어깨.{0,4}(아프|아파|통증|시큰|찌릿)","keys":["shoulder"],"group":"sh"},
+ {"re":"어깨","keys":["upper_trap","shoulder"],"group":"sh","fb":true},
+ {"re":"가슴|흉근|굽은\\s*어깨|라운드\\s*숄더","keys":["chest"]},
+ {"re":"복부|아랫배|윗배|배가|배\\s*(아프|아파|통증|당|뭉|불편)","keys":["abdomen"],"strip":"알\\s*배|알이\\s*배"},
+ {"re":"등(이|에|쪽|이랑|\\s*(결|뭉|통증|아프|아파|뻐근))|날개뼈|견갑|날개죽지","keys":["upper_back"],"strip":"등산|등등|등급"},
+ {"re":"허리|요통|디스크|척추|옆구리","keys":["low_back"]},
+ {"re":"엉덩이|골반|이상근|궁둥이|꼬리뼈","keys":["glute"]},
+ {"re":"다리.{0,4}저|다리로\\s*(뻗|저|내려)|좌골신경","keys":["glute","low_back"]},
+ {"re":"사타구니|서혜|고관절|장요근","keys":["hip"]},
+ {"re":"위팔|팔뚝|이두|삼두|알통","keys":["upper_arm"]},
+ {"re":"팔꿈치|엘보|아래팔|전완","keys":["elbow"]},
+ {"re":"손목|손\\s*저|손이\\s*저|손가락|손바닥|마우스","keys":["wrist"]},
+ {"re":"허벅지\\s*뒤|햄스트링|오금","keys":["hamstring"],"group":"th"},
+ {"re":"허벅지|대퇴|장경인대","keys":["thigh"],"group":"th","fb":true},
+ {"re":"무릎|슬개|퇴행성\\s*관절","keys":["knee"]},
+ {"re":"정강이|신스플린트","keys":["shin"]},
+ {"re":"종아리|장딴지|쥐가|쥐\\s*(나|났|남)","keys":["calf"]},
+ {"re":"발목|접질|염좌|삠|삐었","keys":["ankle"]},
+ {"re":"발바닥|족저|뒤꿈치|아침\\s*첫\\s*발","keys":["foot"]}
+],
+"phase":{"chronic":"만성|오래|몇\\s*(년|달|개월)|\\d+\\s*(년|개월|달)","acute":"어제|오늘|방금|그저께|며칠|\\d+\\s*(일|주)\\s*(째|전|됐)"},
+"doms":"운동\\s*후|운동하고|알\\s*배|알이\\s*배|근육통|헬스|러닝|마라톤|등산",
+"flags":[
+ {"id":"fever","label":"열·오한이 함께 있다","level":"stop","re":"열이\\s*(나|있|났)|발열|오한|열나"},
+ {"id":"trauma","label":"넘어짐·사고 직후 생긴 통증","level":"stop","re":"넘어지|넘어져|넘어졌|부딪|교통사고|사고|골절|낙상"},
+ {"id":"cauda","label":"대소변 조절이 어렵거나 엉덩이·회음부 감각이 둔하다","level":"er","re":"대소변|소변.{0,6}(안|못|어렵|어려|힘들|새)|배변.{0,6}(안|못|어렵|어려|힘들)|회음|항문.{0,4}감각"},
+ {"id":"neuro","label":"팔·다리 힘이 빠지거나 감각이 없다","level":"stop","re":"마비|힘이\\s*(빠|안\\s*들)|힘\\s*빠|감각이\\s*(없|둔)|감각\\s*저하"},
+ {"id":"dvt","label":"한쪽 종아리가 붓고 뜨겁고 빨갛다","level":"stop","re":"(종아리|다리).{0,8}(붓|부어|부었|빨갛|뜨거|열감)|혈전"},
+ {"id":"chest","label":"가슴 통증·숨참·식은땀","level":"er","re":"가슴.{0,4}(통증|아프|아파|조이|답답|압박)|숨.{0,3}(차|막|가쁘)|식은땀"},
+ {"id":"cancer","label":"이유 없는 체중 감소·암 병력·밤에 쉬어도 계속 아픔","level":"stop","re":"체중.{0,4}(감소|줄|빠)|암\\s*(병력|수술|치료)|항암|밤에.{0,6}(아파|아프|통증|깨)"},
+ {"id":"headache","label":"갑자기 생긴 극심한 두통","level":"er","re":"갑자기.{0,8}두통|극심한\\s*두통|벼락|최악의\\s*두통"},
+ {"id":"preg","label":"임신 중이다","level":"caution","re":"임신|임산부"}
+],
+"refs":{
+ "furlan2015":{"t":"Massage for low-back pain","au":"Furlan AD 외","j":"Cochrane Database Syst Rev","y":2015,"type":"코크란 체계적 고찰","ko":"25개 RCT·3,096명. 비활성 대조 대비 단기 통증·기능 개선, 장기 효과는 없음. 확실성 낮음~매우 낮음. 심각한 부작용 없음(일시적 통증 증가가 가장 흔함).","tags":["low_back"],"url":"https://www.cochrane.org/evidence/CD001929"},
+ "gross2024":{"t":"Massage for neck pain","au":"Gross AR 외","j":"Cochrane Database Syst Rev","y":2024,"type":"코크란 체계적 고찰","ko":"아급성~만성 목 통증에서 위약 대비 통증·기능·삶의 질 차이가 거의 없을 수 있음(낮은 확실성). 부작용 보고가 부족해 분석 불가.","tags":["neck","upper_trap"],"url":"https://pubmed.ncbi.nlm.nih.gov/38415786/"},
+ "kong2013":{"t":"Massage therapy for neck and shoulder pain: a systematic review and meta-analysis","au":"Kong LJ 외","j":"Evid Based Complement Alternat Med","y":2013,"type":"체계적 고찰·메타분석","ko":"RCT만 분석. 목·어깨 통증에서 시술 직후 통증 감소 효과가 뚜렷함(어깨 SMD 1.50). 추적 효과 근거는 부족.","tags":["neck","upper_trap","shoulder","upper_back"],"url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC3600270/"},
+ "yeun2017":{"t":"Effectiveness of massage therapy for shoulder pain: a systematic review and meta-analysis","au":"Yeun YR","j":"J Phys Ther Sci","y":2017,"type":"체계적 고찰·메타분석","ko":"15편·635명. 어깨 통증 단기 감소(SMD −1.08), 장기 감소(SMD −0.47). 어떤 기법이 어떤 어깨 질환에 좋은지는 추가 연구 필요.","tags":["shoulder"],"url":"https://www.jstage.jst.go.jp/article/jpts/29/5/29_jpts-2016-603/_article"},
+ "bervoets2015":{"t":"Massage therapy has short-term benefits for people with common musculoskeletal disorders compared to no treatment: a systematic review","au":"Bervoets DC 외","j":"J Physiother","y":2015,"type":"체계적 고찰","ko":"어깨 통증·무릎 골관절염에서 무처치 대비 단기 통증 감소(낮음~중간 근거). 다른 적극적 치료와 비교하면 뚜렷한 우위 없음.","tags":["shoulder","knee","low_back","neck","upper_back"],"url":"https://pubmed.ncbi.nlm.nih.gov/26093806/"},
+ "moraska2015":{"t":"Myofascial trigger point-focused head and neck massage for recurrent tension-type headache: a randomized, placebo-controlled clinical trial","au":"Moraska AF 외","j":"Clin J Pain","y":2015,"type":"무작위 대조시험","ko":"56명. 두경부 통증유발점 마사지 vs 위약(가짜 초음파) vs 대기. 두통 빈도는 마사지·위약 모두 줄어 차이 없음. 환자가 느낀 두통 통증 감소는 마사지군이 가장 큼.","tags":["head","occiput","neck","upper_trap"],"url":"https://pubmed.ncbi.nlm.nih.gov/25329141/"},
+ "dolina2024":{"t":"Trigger Point Therapy Techniques as an Effective Unconventional Method of Treating Tension Headaches: A Systematic Review","au":"Dolina A 외","j":"Healthcare (Basel)","y":2024,"type":"체계적 고찰","ko":"허혈성 압박, 위치이완기법, 통증유발점 중심 마사지가 긴장형 두통에 효과적이라고 결론. 포함 연구 수가 적어 신중하게 해석.","tags":["head","occiput"],"url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11431695/"},
+ "espi2014":{"t":"Effectiveness of Physical Therapy in Patients with Tension-type Headache: Literature Review","au":"Espí-López GV 외","j":"J Jpn Phys Ther Assoc","y":2014,"type":"문헌 고찰","ko":"긴장형 두통 물리치료 RCT 고찰. 기법을 하나씩 단독으로 쓸 때 효과 근거는 없음 → 여러 기법을 묶어 적용.","tags":["head"],"url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC4316547/"},
+ "morell2016":{"t":"Manual therapy improved signs and symptoms of temporomandibular disorders","au":"Morell GC","j":"Evid Based Dent","y":2016,"type":"체계적 고찰 요약","ko":"턱관절장애 수기치료 고찰 요약. 근막이완·마사지가 위약·무처치보다 입 벌림 범위(중간 근거)와 통증(낮은 근거)에서 나음.","tags":["jaw"],"url":"https://pubmed.ncbi.nlm.nih.gov/27012575/"},
+ "perlman2006":{"t":"Massage therapy for osteoarthritis of the knee: a randomized controlled trial","au":"Perlman AI 외","j":"Arch Intern Med","y":2006,"type":"무작위 대조시험","ko":"무릎 골관절염 환자에게 8주 스웨덴식 마사지 → 대조군보다 통증·뻣뻣함·기능 개선. 지속 기간·비용 효과는 추가 연구 필요.","tags":["knee"],"url":"https://pubmed.ncbi.nlm.nih.gov/17159021/"},
+ "perlman2019":{"t":"Efficacy and Safety of Massage for Osteoarthritis of the Knee: a Randomized Clinical Trial","au":"Perlman A 외","j":"J Gen Intern Med","y":2019,"type":"다기관 무작위 대조시험","ko":"222명. 마사지 vs 가벼운 터치 vs 일반 치료. 주 1회 마사지가 8주 시점 단기 개선. 이후 유지 마사지는 장기 추가 이득 없음.","tags":["knee"],"url":"https://pubmed.ncbi.nlm.nih.gov/30543021/"},
+ "pollack2018":{"t":"Manual therapy for plantar heel pain","au":"Pollack Y 외","j":"Foot (Edinb)","y":2018,"type":"체계적 고찰","ko":"RCT 6편. 연부조직 가동술은 중간~높은 질 연구에서 효과적. 관절 가동술 결과는 엇갈림.","tags":["foot","calf"],"url":"https://pubmed.ncbi.nlm.nih.gov/29175715/"},
+ "piper2016":{"t":"The effectiveness of soft-tissue therapy for the management of musculoskeletal disorders and injuries of the upper and lower extremities: A systematic review by the OPTIMa collaboration","au":"Piper S 외","j":"Man Ther","y":2016,"type":"체계적 고찰","ko":"족저근막염: 비복근·가자미근·족저근막 근막이완이 효과적. 통증유발점 치료는 셀프 스트레칭에 더해도 추가 효과가 거의 없음.","tags":["foot","calf"],"url":"https://pubmed.ncbi.nlm.nih.gov/26386912/"},
+ "siriphorn2020":{"t":"Calf stretching and plantar fascia-specific stretching for plantar fasciitis: A systematic review and meta-analysis","au":"Siriphorn A 외","j":"J Bodyw Mov Ther","y":2020,"type":"체계적 고찰·메타분석","ko":"족저근막염에서 종아리 스트레칭과 족저근막 스트레칭을 비교. 셀프케어 스트레칭 안내의 근거로 사용, 질 높은 연구 추가 필요.","tags":["foot","calf"],"url":"https://pubmed.ncbi.nlm.nih.gov/33218515/"},
+ "ajimsha2015":{"t":"Effectiveness of myofascial release: systematic review of randomized controlled trials","au":"Ajimsha MS 외","j":"J Bodyw Mov Ther","y":2015,"type":"체계적 고찰","ko":"근막이완(MFR) RCT 모음. 연구 질과 결과가 섞여 있으나 최근 연구일수록 결과가 긍정적.","tags":["general"],"url":"https://pubmed.ncbi.nlm.nih.gov/25603749/"},
+ "elliott2013":{"t":"Massage therapy as an effective treatment for carpal tunnel syndrome","au":"Elliott R, Burkett B","j":"J Bodyw Mov Ther","y":2013,"type":"단일군 임상시험","ko":"21명에게 주 2회·30분 마사지를 6주 시행 → 증상·기능 개선 보고. 대조군이 없어 근거는 약함.","tags":["wrist"],"url":"https://pubmed.ncbi.nlm.nih.gov/23768278/"},
+ "huisstede2018":{"t":"Carpal Tunnel Syndrome: Effectiveness of Physical Therapy and Electrophysical Modalities. An Updated Systematic Review of Randomized Controlled Trials","au":"Huisstede BM 외","j":"Arch Phys Med Rehabil","y":2018,"type":"체계적 고찰","ko":"22개 RCT. 근막 마사지가 단기적으로 통증유발점 허혈성 압박·저출력 레이저보다 낫다는 중간 근거.","tags":["wrist"],"url":"https://pubmed.ncbi.nlm.nih.gov/28942118/"},
+ "zhang2026":{"t":"Effect of three traditional conservative treatment techniques on patients with mild-to-moderate carpal tunnel syndrome: A systematic review and meta-analysis","au":"Zhang J 외","j":"J Hand Ther","y":2026,"type":"체계적 고찰·메타분석","ko":"경증~중등도 손목터널증후군에서 수기치료·마사지·침 14개 RCT(1,110명) 통합 → 증상·기능 점수 개선. 마사지만의 효과는 따로 분리되지 않음.","tags":["wrist"],"url":"https://pubmed.ncbi.nlm.nih.gov/40087099/"},
+ "loew2014":{"t":"Deep transverse friction massage for treating lateral elbow or lateral knee tendinitis","au":"Loew LM 외","j":"Cochrane Database Syst Rev","y":2014,"type":"코크란 체계적 고찰","ko":"심부 횡마찰 마사지가 팔꿈치·무릎 바깥 건염의 통증·기능을 개선하는지 불확실(매우 낮은 근거). 더 큰 연구 필요.","tags":["elbow"],"url":"https://www.cochrane.org/evidence/CD003528_deep-transverse-friction-massage-treatment-lateral-elbow-or-lateral-knee-tendinitis"},
+ "guo2017":{"t":"Massage Alleviates Delayed Onset Muscle Soreness after Strenuous Exercise: A Systematic Review and Meta-Analysis","au":"Guo J 외","j":"Front Physiol","y":2017,"type":"체계적 고찰·메타분석","ko":"11개 RCT·504명. 운동 후 24·48·72시간 근육통 감소(48시간 SMD −1.51), 근손상 지표(CK) 감소, 근력 소폭 개선.","tags":["upper_arm","thigh","hamstring","calf"],"url":"https://pubmed.ncbi.nlm.nih.gov/29021762/"},
+ "davis2020":{"t":"Effect of sports massage on performance and recovery: a systematic review and meta-analysis","au":"Davis HL 외","j":"BMJ Open Sport Exerc Med","y":2020,"type":"체계적 고찰·메타분석","ko":"1,012명. 근육통 작은 감소·유연성 작은 개선. 스프린트·점프·근력·지구력 같은 경기력은 개선 없음.","tags":["upper_arm","thigh","hamstring","calf"],"url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7228568/"},
+ "hopayian2010":{"t":"The clinical features of the piriformis syndrome: a systematic review","au":"Hopayian K 외","j":"Eur Spine J","y":2010,"type":"체계적 고찰","ko":"이상근 증후군 문헌은 대부분 사례 보고·서술 고찰. 진단 기준이 정해지지 않아 치료 효과 연구가 어려움.","tags":["glute"],"url":"https://pubmed.ncbi.nlm.nih.gov/20596735/"},
+ "hopayian2018":{"t":"Four symptoms define the piriformis syndrome: an updated systematic review of its clinical features","au":"Hopayian K, Danielyan A","j":"Eur J Orthop Surg Traumatol","y":2018,"type":"체계적 고찰","ko":"선별 4증상: 엉덩이 통증, 앉으면 악화, 좌골 바깥 압통, 이상근 긴장을 높이는 동작에서 통증.","tags":["glute"],"url":"https://pubmed.ncbi.nlm.nih.gov/28836092/"},
+ "crump2010":{"t":"Venous thromboembolism following vigorous deep tissue massage","au":"Crump C 외","j":"Phys Sportsmed","y":2010,"type":"사례 보고","ko":"건강하던 67세가 강한 다리 심부 마사지 뒤 정맥 혈전색전증 발생. 특히 고령자에서 다리 강한 마사지를 위험 요인으로 고려.","tags":["safety","calf","thigh","hamstring"],"url":"https://pubmed.ncbi.nlm.nih.gov/21150153/"},
+ "nysed":{"t":"Precautions for Massage/Bodywork Therapy","au":"New York State Education Department","j":"Office of the Professions","y":2024,"type":"면허기관 지침","ko":"급성 정맥염·심부정맥혈전증, 발열, 급성 외상, 최근 수술, 감각 저하가 있으면 주의해서 시술하라고 안내.","tags":["safety"],"url":"https://www.op.nysed.gov/professions/massage-therapy/precautions-massagebodywork-therapy"}
+}
+}
+</script>
+
+<script>
+(() => {
+  const DB = JSON.parse(document.getElementById('massage-db').textContent);
+  const N = DB.names, P = DB.protocols, R = DB.refs;
+  const ORDER = Object.keys(N);
+  const CERT = {mod:'근거 중간', low:'근거 낮음', vlow:'근거 매우 낮음', none:'근거 부족'};
+  const SIDE_TXT = {R:'오른쪽', L:'왼쪽', C:''};
+  const STORE = 'massage-map-v1';
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  // 부위별 존재하는 좌/우/가운데
+  const SIDES = {};
+  DB.shapes.forEach(s => { (SIDES[s.k] ||= new Set()).add(s.s); });
+  const hasLR = (k) => SIDES[k].has('L') || SIDES[k].has('R');
+  const label = (id) => {
+    const [k, s] = id.split('|');
+    if (s === 'C') return (hasLR(k) ? '가운데 ' : '') + N[k];
+    return SIDE_TXT[s] + ' ' + N[k];
+  };
+
+  const EXAMPLE = {
+    text:'뒷목이 뻐근하고 두통이 자주 와요. 오른쪽 어깨도 결려요. 3개월 넘었고 통증은 6점',
+    pain:['neck|C','head|C','upper_trap|R'], done:['neck|C','occiput|C'], score:6, phase:'chronic', flags:[], doms:false, example:true
+  };
+  let st;
+  function fresh(){ return {text:'', pain:new Set(), done:new Set(), score:5, phase:'', flags:new Set(), doms:false, example:false, mode:'pain'}; }
+  function fromObj(o){ const s = fresh(); Object.assign(s, o, {pain:new Set(o.pain||[]), done:new Set(o.done||[]), flags:new Set(o.flags||[]), mode:'pain'}); return s; }
+  function load(){
+    try { const raw = localStorage.getItem(STORE); if (raw) return fromObj(JSON.parse(raw)); } catch(e) {}
+    return fromObj(EXAMPLE);
+  }
+  function save(){
+    try { localStorage.setItem(STORE, JSON.stringify({text:st.text, pain:[...st.pain], done:[...st.done], score:st.score, phase:st.phase, flags:[...st.flags], doms:st.doms, example:st.example})); } catch(e) {}
+  }
+
+  // ---------- 몸 그림 ----------
+  const svg = $('#bodymap'), NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs) => { const el = document.createElementNS(NS, tag); for (const k in attrs) el.setAttribute(k, attrs[k]); return el; };
+  function center(s){
+    const a = s.a;
+    if (s.t === 'rect') return [a.x + a.width/2, a.y + a.height/2];
+    if (s.t === 'circle' || s.t === 'ellipse') return [a.cx, a.cy];
+    if (s.t === 'polygon') { const p = a.points.split(' ').map(q => q.split(',').map(Number)); return [p.reduce((x,q)=>x+q[0],0)/p.length, p.reduce((y,q)=>y+q[1],0)/p.length]; }
+    return s.k === 'jaw' ? [s.s === 'R' ? 89 : 111, 51] : [100, 50];
+  }
+  const views = {f: mk('g', {}), b: mk('g', {transform:'translate(220 0)'})};
+  svg.append(views.f, views.b);
+  const zoneEls = [];
+  DB.shapes.forEach(s => {
+    const id = s.k + '|' + s.s;
+    const el = mk(s.t, Object.assign({class:'zone', tabindex:'0', role:'button', 'data-id':id, 'aria-label':label(id)}, s.a));
+    const t = mk('title', {}); t.textContent = label(id); el.append(t);
+    const [cx, cy] = center(s);
+    const chk = mk('text', {class:'chk', x:cx, y:cy}); chk.textContent = '✓'; chk.style.display = 'none';
+    views[s.v].append(el);
+    zoneEls.push({el, chk, id});
+  });
+  zoneEls.forEach(z => z.el.parentNode.append(z.chk));
+  [['f',100,'정면'],['b',100,'후면']].forEach(([v,x,txt]) => { const t = mk('text', {class:'vlabel strong', x, y:396}); t.textContent = txt; views[v].append(t); });
+  [['f',48,'오른쪽'],['f',152,'왼쪽'],['b',48,'왼쪽'],['b',152,'오른쪽']].forEach(([v,x,txt]) => { const t = mk('text', {class:'vlabel', x, y:384}); t.textContent = txt; views[v].append(t); });
+
+  function zoneAction(id){
+    if (st.mode === 'pain') { st.pain.has(id) ? st.pain.delete(id) : st.pain.add(id); }
+    else { st.done.has(id) ? st.done.delete(id) : st.done.add(id); }
+    st.example = false; save(); render();
+    $('#hoverline').innerHTML = '<b>' + esc(label(id)) + '</b> ' + (st.mode === 'pain' ? (st.pain.has(id) ? '아픈 곳으로 표시' : '표시 해제') : (st.done.has(id) ? '마사지 완료' : '완료 해제'));
+  }
+  svg.addEventListener('click', e => { const z = e.target.closest('.zone'); if (z) zoneAction(z.dataset.id); });
+  svg.addEventListener('keydown', e => { const z = e.target.closest('.zone'); if (z && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); zoneAction(z.dataset.id); } });
+  const hover = e => { const z = e.target.closest('.zone'); if (z) $('#hoverline').innerHTML = '<b>' + esc(label(z.dataset.id)) + '</b>' + (P[z.dataset.id.split('|')[0]] ? ' · ' + esc(P[z.dataset.id.split('|')[0]].focus) : ''); };
+  svg.addEventListener('mouseover', hover); svg.addEventListener('focusin', hover);
+
+  function setMode(m){
+    st.mode = m;
+    $('#mode-pain').setAttribute('aria-pressed', m === 'pain');
+    $('#mode-done').setAttribute('aria-pressed', m === 'done');
+    svg.classList.toggle('mode-done', m === 'done');
+    $('#hoverline').textContent = m === 'pain' ? '아픈 곳을 눌러 표시하세요.' : '점선 부위를 마사지한 뒤 눌러 완료 체크하세요.';
+  }
+  $('#mode-pain').onclick = () => setMode('pain');
+  $('#mode-done').onclick = () => setMode('done');
+
+  // ---------- 글 분석 ----------
+  const KW = DB.keywords.map(k => Object.assign({}, k, {rx:new RegExp(k.re), sx:k.strip ? new RegExp(k.strip, 'g') : null}));
+  const FL = DB.flags.map(f => Object.assign({}, f, {rx:new RegExp(f.re)}));
+  function sidesForText(c){
+    const l = /왼/.test(c), r = /오른\s*(쪽|편)|오른\s+(?=[가-힣])/.test(c), both = /양쪽|양\s*(어깨|팔|다리|무릎|손|발|종아리)/.test(c);
+    if (both || (l && r)) return ['L','R'];
+    if (l) return ['L']; if (r) return ['R']; return ['L','R'];
+  }
+  function parse(text){
+    const out = {ids:new Set(), flags:new Set(), phase:'', score:null, doms:false};
+    const clauses = text.split(/[,.\n!?;]|그리고|하고|이랑|그리고요|또한|\s또\s/).map(s => s.trim()).filter(Boolean);
+    clauses.forEach(c => {
+      const sides = sidesForText(c), groups = new Set(), keys = [];
+      KW.forEach(k => {
+        if (k.fb && groups.has(k.group)) return;
+        const txt = k.sx ? c.replace(k.sx, ' ') : c;
+        if (k.rx.test(txt)) { keys.push(...k.keys); if (k.group) groups.add(k.group); }
+      });
+      keys.forEach(k => {
+        if (!hasLR(k)) { out.ids.add(k + '|C'); return; }
+        sides.forEach(s => { if (SIDES[k].has(s)) out.ids.add(k + '|' + s); });
+      });
+    });
+    FL.forEach(f => { if (f.rx.test(text)) out.flags.add(f.id); });
+    if (new RegExp(DB.phase.chronic).test(text)) out.phase = 'chronic';
+    else if (new RegExp(DB.phase.acute).test(text)) out.phase = 'acute';
+    const m = text.match(/(\d{1,2})\s*(점|\/\s*10)/); if (m) out.score = Math.min(10, +m[1]);
+    out.doms = new RegExp(DB.doms).test(text);
+    return out;
+  }
+  function analyze(){
+    const text = $('#symptom').value.trim();
+    st.text = text;
+    if (!text) { $('#parsed').textContent = '증상을 한두 문장으로 적어 주세요.'; return; }
+    const r = parse(text);
+    if (st.example) { st.pain.clear(); st.done.clear(); st.flags.clear(); st.phase = ''; st.score = 5; }
+    r.ids.forEach(id => st.pain.add(id));
+    r.flags.forEach(f => st.flags.add(f));
+    if (r.phase) st.phase = r.phase;
+    if (r.score !== null) st.score = r.score;
+    st.doms = r.doms; st.example = false;
+    const bits = [];
+    if (r.ids.size) bits.push('<b>' + [...r.ids].map(label).map(esc).join(', ') + '</b>');
+    if (r.phase) bits.push(r.phase === 'chronic' ? '6주 이상' : '6주 미만');
+    if (r.score !== null) bits.push(r.score + '점');
+    if (r.flags.size) bits.push('위험 신호 ' + r.flags.size + '개');
+    if (r.doms) bits.push('운동 후 근육통');
+    $('#parsed').innerHTML = r.ids.size ? '찾은 부위: ' + bits.join(' · ') : '부위 단어를 못 찾았어요. 그림에서 직접 눌러 주세요.' + (bits.length ? ' (' + bits.join(' · ') + ')' : '');
+    save(); render();
+  }
+  $('#analyze').onclick = analyze;
+  $('#symptom').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) analyze(); });
+  $('#symptom').addEventListener('input', e => { st.text = e.target.value; save(); });
+
+  $('#score').addEventListener('input', e => { st.score = +e.target.value; st.example = false; save(); render(); });
+  document.querySelectorAll('#phase button').forEach(b => b.onclick = () => { st.phase = b.dataset.v; st.example = false; save(); render(); });
+
+  const flagsBox = $('#flags');
+  const LVL = {er:'응급', stop:'진료 먼저', caution:'주의'};
+  FL.forEach(f => {
+    const l = document.createElement('label');
+    l.innerHTML = '<input type="checkbox" id="flag-' + f.id + '"><span>' + esc(f.label) + '<span class="lv ' + f.level + '">' + LVL[f.level] + '</span></span>';
+    l.querySelector('input').onchange = (e) => { e.target.checked ? st.flags.add(f.id) : st.flags.delete(f.id); st.example = false; save(); render(); };
+    flagsBox.append(l);
+  });
+
+  // ---------- 추천 계산 ----------
+  function painByKey(){
+    const m = new Map();
+    ORDER.forEach(k => ['R','L','C'].forEach(s => { const id = k + '|' + s; if (st.pain.has(id)) { if (!m.has(k)) m.set(k, new Set()); m.get(k).add(s); } }));
+    return m;
+  }
+  function expand(tk, src){
+    const ts = SIDES[tk], out = [];
+    if (ts.has('C')) out.push('C');
+    const lr = ['R','L'].filter(s => ts.has(s));
+    if (!lr.length) return out;
+    const srcLR = [...src].filter(s => s !== 'C');
+    const use = srcLR.length ? lr.filter(s => srcLR.includes(s)) : lr;
+    return out.concat(use.length ? use : lr);
+  }
+  function compute(){
+    const groups = painByKey(), targets = new Map();
+    groups.forEach((sides, k) => {
+      P[k].targets.forEach(([tk, why]) => {
+        expand(tk, sides).forEach(s => {
+          const id = tk + '|' + s;
+          if (!targets.has(id)) targets.set(id, {id, why, from:new Set()});
+          targets.get(id).from.add(N[k]);
+        });
+      });
+    });
+    return {groups, targets};
+  }
+
+  // ---------- 화면 ----------
+  function sideText(k, sides){
+    if (!hasLR(k)) return '';
+    return [...sides].map(s => s === 'C' ? '가운데' : SIDE_TXT[s]).join('·');
+  }
+  function refItem(id){
+    const r = R[id];
+    return '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.t) + '</a><div>' + esc(r.ko) + '</div><div class="meta">' + esc(r.au) + ' · ' + esc(r.j) + ' ' + r.y + ' · ' + esc(r.type) + '</div></li>';
+  }
+  function render(){
+    const {groups, targets} = compute();
+    // 그림
+    zoneEls.forEach(({el, chk, id}) => {
+      el.classList.toggle('pain', st.pain.has(id));
+      el.classList.toggle('target', targets.has(id));
+      el.classList.toggle('done', st.done.has(id));
+      el.setAttribute('aria-pressed', st.mode === 'pain' ? st.pain.has(id) : st.done.has(id));
+      chk.style.display = st.done.has(id) ? '' : 'none';
+    });
+    // 입력값
+    if (document.activeElement !== $('#symptom')) $('#symptom').value = st.text;
+    $('#score').value = st.score; $('#score-out').textContent = st.score;
+    document.querySelectorAll('#phase button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === st.phase));
+    FL.forEach(f => { $('#flag-' + f.id).checked = st.flags.has(f.id); });
+
+    // 경고
+    const al = [];
+    if (st.example) al.push('<div class="alert example"><span>지금은 <b>예시 고객</b>이 들어가 있어요. 실제 고객을 입력하려면 새로 시작하세요.</span><button type="button" class="btn small" data-act="reset">새 고객 시작</button></div>');
+    const lv = (l) => FL.filter(f => f.level === l && st.flags.has(f.id)).map(f => esc(f.label));
+    if (lv('er').length) al.push('<div class="alert er" role="alert"><strong>응급 신호: 마사지하지 말고 119 또는 응급실</strong><span>' + lv('er').join(' · ') + '</span></div>');
+    if (lv('stop').length) al.push('<div class="alert stop"><strong>마사지 보류: 먼저 병원 진료를 권하세요</strong><span>' + lv('stop').join(' · ') + '</span></div>');
+    if (lv('caution').length) al.push('<div class="alert caution"><strong>임신 중</strong><span>배·허리 아래쪽 강한 압박은 피하고 옆으로 누운 자세를 쓰세요. 시술 전 산부인과 확인을 권합니다.</span></div>');
+    if (st.doms) al.push('<div class="alert caution"><strong>운동 후 근육통이면</strong><span>마사지는 운동 후 24–72시간 근육통을 줄이지만(Guo 2017) 근력·스프린트 같은 경기력은 올리지 않아요(Davis 2020). 가벼운~중간 압력으로 하세요.</span></div>');
+    $('#alerts').innerHTML = al.join('');
+
+    // 요약
+    const sum = $('#summary');
+    if (!groups.size) {
+      sum.innerHTML = '<h2 id="sum-h">요약</h2><p class="empty">아직 선택한 부위가 없어요. 위에 증상을 적고 <b>글에서 부위 찾기</b>를 누르거나, 몸 그림에서 아픈 곳을 눌러 주세요.</p>';
+    } else {
+      let min = 0; groups.forEach((_, k) => min += P[k].min);
+      const soft = st.score >= 7 || st.phase === 'acute';
+      if (soft) min = Math.round(min * 0.7 / 5) * 5;
+      const advice = soft ? '통증이 강하거나 6주 미만이에요. 압력을 한 단계 낮추고, 아픈 곳은 직접 누르기보다 주변 부위부터 짧게 해 주세요.'
+        : st.phase === 'chronic' ? '6주 이상 된 통증이에요. 마사지 효과는 주로 단기라서 스트레칭·운동 안내를 꼭 같이 해 주세요.'
+        : '압력은 고객이 10점 중 5점 이하로 느끼는 정도로 맞추세요.';
+      sum.innerHTML = '<h2 id="sum-h">요약</h2>'
+        + '<div class="chips">' + [...st.pain].sort((a,b) => ORDER.indexOf(a.split('|')[0]) - ORDER.indexOf(b.split('|')[0])).map(id => '<span class="chip">' + esc(label(id)) + '<button type="button" aria-label="' + esc(label(id)) + ' 빼기" data-unpain="' + id + '">×</button></span>').join('') + '</div>'
+        + '<div class="stats"><span>아픈 곳 <b class="data">' + st.pain.size + '</b></span><span>마사지 부위 <b class="data">' + targets.size + '</b></span><span>예상 시간 약 <b class="data">' + min + '</b>분</span><span>통증 <b class="data">' + st.score + '</b>/10</span></div>'
+        + '<p class="advice">' + advice + '</p>';
+    }
+
+    // 체크리스트
+    const cp = $('#checkpanel');
+    if (!targets.size) { cp.hidden = true; }
+    else {
+      cp.hidden = false;
+      const list = [...targets.values()].sort((a,b) => ORDER.indexOf(a.id.split('|')[0]) - ORDER.indexOf(b.id.split('|')[0]));
+      const doneN = list.filter(t => st.done.has(t.id)).length;
+      cp.innerHTML = '<div class="panel-head"><h2 id="chk-h">마사지 부위 체크 <span class="parsed data">' + doneN + '/' + list.length + ' 완료</span></h2>'
+        + '<div class="row"><button type="button" class="btn small" data-act="copy">기록 복사</button><button type="button" class="btn small" data-act="clear-done">체크 지우기</button></div></div>'
+        + '<div class="progress" aria-hidden="true"><i style="width:' + (doneN / list.length * 100) + '%"></i></div>'
+        + '<ul class="checklist">' + list.map(t => '<li><label class="' + (st.done.has(t.id) ? 'is-done' : '') + '"><input type="checkbox" data-done="' + t.id + '"' + (st.done.has(t.id) ? ' checked' : '') + '><span>' + esc(label(t.id)) + '<small>' + esc([...t.from].join(', ')) + ' 때문에</small></span></label></li>').join('') + '</ul>'
+        + '<div id="copyfallback"></div>';
+    }
+
+    // 카드
+    const cards = $('#cards');
+    if (!groups.size) { cards.innerHTML = '<p class="empty">부위를 고르면 여기에 시술 순서·압력·주의사항·논문 근거가 나와요.</p>'; return; }
+    cards.innerHTML = [...groups.entries()].map(([k, sides]) => {
+      const p = P[k];
+      const tl = p.targets.map(([tk, why]) => expand(tk, sides).map(s => {
+        const id = tk + '|' + s, on = st.done.has(id);
+        return '<li><button type="button" class="tbtn' + (on ? ' on' : '') + '" data-toggle="' + id + '" aria-pressed="' + on + '">' + (on ? '✓ ' : '') + esc(label(id)) + '</button><span class="why">' + esc(why) + '</span></li>';
+      }).join('')).join('');
+      return '<details class="card" open><summary><div class="card-head"><h3>' + esc(N[k]) + '<span class="side">' + esc(sideText(k, sides)) + '</span></h3><span class="cert ' + p.cert + '">' + CERT[p.cert] + '</span></div><p class="focus">' + esc(p.focus) + '</p></summary>'
+        + '<div class="card-body">'
+        + '<div><h4>마사지하면 좋은 부위 (눌러서 완료 체크)</h4><ul class="tlist">' + tl + '</ul></div>'
+        + '<div class="grid2"><div><h4>주요 근육</h4><p>' + esc(p.muscles.join(', ')) + '</p></div><div><h4>압력 · 시간</h4><p>' + esc(p.pressure) + ' · 약 <span class="data">' + p.min + '</span>분</p></div></div>'
+        + '<div><h4>시술 순서</h4><ol class="steps">' + p.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol></div>'
+        + '<div><h4>집에서 할 것 (고객 안내)</h4><ul class="plain">' + p.self.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul></div>'
+        + '<div><h4>주의</h4><ul class="warn">' + p.caution.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul></div>'
+        + '<div><h4>연구 근거</h4>' + (p.note ? '<p class="note">' + esc(p.note) + '</p>' : '') + (p.refs.length ? '<ul class="refs">' + p.refs.map(refItem).join('') + '</ul>' : '') + '</div>'
+        + '</div></details>';
+    }).join('');
+  }
+
+  // 결과 영역 클릭 처리
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-toggle],[data-unpain],[data-act]');
+    if (!t) return;
+    if (t.dataset.toggle) { const id = t.dataset.toggle; st.done.has(id) ? st.done.delete(id) : st.done.add(id); }
+    else if (t.dataset.unpain) { st.pain.delete(t.dataset.unpain); }
+    else if (t.dataset.act === 'reset') { st = fresh(); $('#parsed').textContent = ''; setMode('pain'); }
+    else if (t.dataset.act === 'clear-done') { st.done.clear(); }
+    else if (t.dataset.act === 'copy') { copyRecord(); return; }
+    st.example = false; save(); render();
+  });
+  document.addEventListener('change', e => {
+    const id = e.target.dataset && e.target.dataset.done;
+    if (!id) return;
+    e.target.checked ? st.done.add(id) : st.done.delete(id);
+    st.example = false; save(); render();
+  });
+
+  function record(){
+    const {targets} = compute();
+    const list = [...targets.keys()];
+    const d = new Date(), date = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const fl = FL.filter(f => st.flags.has(f.id)).map(f => f.label);
+    const done = list.filter(id => st.done.has(id)).map(label), todo = list.filter(id => !st.done.has(id)).map(label);
+    const self = [...painByKey().keys()].map(k => P[k].self[0]);
+    return ['[마사지 기록] ' + date,
+      '아픈 곳: ' + ([...st.pain].map(label).join(', ') || '없음'),
+      '통증: ' + st.score + '/10' + (st.phase ? ' · ' + (st.phase === 'chronic' ? '6주 이상' : '6주 미만') : ''),
+      '위험 신호: ' + (fl.join(', ') || '없음'),
+      '시행(' + done.length + '/' + list.length + '): ' + (done.join(', ') || '-'),
+      '미시행: ' + (todo.join(', ') || '-'),
+      '고객 안내: ' + (self.join(' / ') || '-'),
+      st.text ? '메모: ' + st.text : ''].filter(Boolean).join('\n');
+  }
+  function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('show'), 2200); }
+  function copyRecord(){
+    const txt = record();
+    const fallback = () => {
+      const box = $('#copyfallback');
+      box.innerHTML = '<textarea id="copybox" readonly></textarea>';
+      const ta = $('#copybox'); ta.value = txt; ta.focus(); ta.select();
+      toast('자동 복사가 막혀 있어요. 아래 글을 선택해 복사하세요');
+    };
+    try {
+      navigator.clipboard.writeText(txt).then(() => toast('기록을 복사했어요. 메모장이나 차트에 붙여 넣으세요'), fallback);
+    } catch (e) { fallback(); }
+  }
+
+  // ---------- 논문 DB ----------
+  const sel = $('#pf-region');
+  const tagSet = new Set(); Object.values(R).forEach(r => r.tags.forEach(t => tagSet.add(t)));
+  const tagName = (t) => N[t] || DB.tagNames[t] || t;
+  sel.innerHTML = '<option value="">전체</option>' + [...ORDER, 'general', 'safety'].filter(t => tagSet.has(t)).map(t => '<option value="' + t + '">' + esc(tagName(t)) + '</option>').join('');
+  function renderPapers(){
+    const rg = sel.value, q = $('#pf-q').value.trim().toLowerCase();
+    const list = Object.entries(R).filter(([id, r]) => (!rg || r.tags.includes(rg)) && (!q || [r.t, r.au, r.j, r.ko, r.type, String(r.y), ...r.tags.map(tagName)].join(' ').toLowerCase().includes(q)))
+      .sort((a, b) => b[1].y - a[1].y);
+    $('#pf-count').textContent = list.length + '편';
+    $('#pgrid').innerHTML = list.length ? list.map(([id, r]) => '<article class="paper"><div class="meta"><span class="data">' + r.y + '</span><span>' + esc(r.type) + '</span><span>' + esc(r.j) + '</span></div>'
+      + '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.t) + '</a><div class="meta">' + esc(r.au) + '</div><p>' + esc(r.ko) + '</p>'
+      + '<div class="tags">' + r.tags.map(t => '<span class="tag">' + esc(tagName(t)) + '</span>').join('') + '</div></article>').join('')
+      : '<p class="empty">조건에 맞는 논문이 없어요. 검색어를 줄여 보세요.</p>';
+  }
+  sel.onchange = renderPapers; $('#pf-q').oninput = renderPapers;
+
+  st = load();
+  setMode('pain');
+  if (st.example) $('#parsed').innerHTML = '찾은 부위: <b>목, 머리·관자놀이, 오른쪽 어깨 윗부분(승모근)</b> · 6주 이상 · 6점';
+  render(); renderPapers();
+})();
+</script>
