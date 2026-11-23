@@ -80,22 +80,141 @@ def parse_feed(xml_text):
     return out
 
 
+# 자동 추가 후보: 나라별 사업·트렌드 사이트 (검증 통과한 것만 매일 조금씩 추가)
+CANDIDATES = [
+    ("구글 트렌드 TW", "https://trends.google.com/trending/rss?geo=TW", "trend"),
+    ("구글 트렌드 GB", "https://trends.google.com/trending/rss?geo=GB", "trend"),
+    ("구글 트렌드 VN", "https://trends.google.com/trending/rss?geo=VN", "trend"),
+    ("플래텀", "https://platum.kr/feed", "business"),
+    ("벤처스퀘어", "https://www.venturesquare.net/feed", "business"),
+    ("전자신문", "https://rss.etnews.com/Section901.xml", "tech"),
+    ("TechCrunch", "https://techcrunch.com/feed/", "business"),
+    ("The Verge", "https://www.theverge.com/rss/index.xml", "tech"),
+    ("ITmedia", "https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml", "tech"),
+    ("GIGAZINE", "https://gigazine.net/news/rss_2.0/", "tech"),
+    ("GitHub 트렌딩", "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml", "ai"),
+    ("Hugging Face 블로그", "https://huggingface.co/blog/feed.xml", "ai"),
+    ("Shopify 블로그", "https://www.shopify.com/blog.atom", "business"),
+    ("Etsy 판매자 소식", "https://www.etsy.com/seller-handbook/rss", "business"),
+]
+MAX_FAILS = 7  # 연속 실패 7회(약 일주일) → 자동 탈락
+
+
+def _sources():
+    src = store.load_json("sources.json", None)
+    if src is None:  # 처음: 기본 출처 + config.yaml feeds 로 시작
+        extra = [(f["name"], f["url"], f.get("category", "custom")) for f in store.cfg().get("feeds", [])]
+        src = [{"name": n, "url": u, "category": c, "origin": "기본", "added": store.today(), "fails": 0, "ok": 0}
+               for n, u, c in DEFAULT_FEEDS + extra if u.startswith("https://")]
+        store.save_json("sources.json", src)
+    return src
+
+
 def feeds():
-    extra = [(f["name"], f["url"], f.get("category", "custom")) for f in store.cfg().get("feeds", [])]
-    return DEFAULT_FEEDS + [f for f in extra if f[1].startswith("https://")]
+    return [(x["name"], x["url"], x["category"]) for x in _sources() if not x.get("removed")]
+
+
+def _fetch_feed(url):
+    r = requests.get(url, headers={"User-Agent": UA}, timeout=15)
+    r.raise_for_status()
+    try:
+        entries = parse_feed(r.content[:2_000_000])
+        if entries:
+            return url, entries
+    except ET.ParseError:
+        pass
+    m = re.search(r'<link[^>]+type="application/(?:rss|atom)\+xml"[^>]*>', r.text[:200_000], re.I)  # 일반 사이트 → 피드 주소 찾기
+    href = re.search(r'href="([^"]+)"', m.group(0)) if m else None
+    if href:
+        from urllib.parse import urljoin
+        feed = urljoin(url, html.unescape(href.group(1)))
+        if feed.startswith("https://") and feed != url:
+            return _fetch_feed(feed)
+    raise ValueError("RSS/Atom 피드 없음")
+
+
+def add_source(url, name="", category="custom", origin="수동"):
+    """사이트 추가: 일반 주소를 넣어도 피드를 찾아 검증 후 등록. 이미 있으면 건너뜀."""
+    if not url.startswith("https://"):
+        return "https 주소만 추가할 수 있어요"
+    src = _sources()
+    try:
+        feed, entries = _fetch_feed(url)
+    except Exception as e:
+        return f"추가 실패({type(e).__name__}): 피드를 읽을 수 없는 사이트예요"
+    if any(normalize_url(x["url"]) == normalize_url(feed) for x in src):
+        return f"이미 있어요: {feed}"
+    if detect_injection(" ".join(e["title"] for e in entries[:10])):
+        return "추가 거부: AI 조작 시도 문장이 있는 사이트"
+    name = name or urlsplit(feed).netloc.removeprefix("www.")
+    src.append({"name": name[:40], "url": feed, "category": category, "origin": origin, "added": store.today(), "fails": 0, "ok": 0})
+    store.save_json("sources.json", src)
+    return f"추가됨: {name} ({len(entries)}개 글)"
+
+
+DISCOVER_PROMPT = ("1인 온라인 사업(디지털 상품·콘텐츠·이커머스·AI 서비스)에 도움 되는 최신 트렌드/시장 정보를 주는 사이트의 "
+                   "RSS 또는 Atom 피드 주소를 시장별({markets})로 찾아라. 이미 있는 사이트 제외: {have}. "
+                   "확실히 존재하는 https 피드 주소만, 한 줄에 하나씩 URL만 출력. 최대 6개.")
+
+
+def discover(max_new=3):
+    """매일 새 출처 자동 추가: ① 후보 목록 ② 수집 글에 자주 나온 사이트 ③ 무료 AI 추천 → 검증 통과한 것만."""
+    have = {urlsplit(x["url"]).netloc for x in _sources()}
+    tried = set(store.load_json("sources_tried.json", []))
+    added = []
+
+    def attempt(url, name="", cat="custom", origin="자동"):
+        if url in tried or urlsplit(url).netloc in have or len(added) >= max_new:
+            return
+        tried.add(url)
+        res = add_source(url, name, cat, origin)
+        if res.startswith("추가됨"):
+            added.append(res.removeprefix("추가됨: "))
+            have.add(urlsplit(url).netloc)
+
+    for n, u, c in CANDIDATES:
+        attempt(u, n, c, "후보목록")
+    counts = {}
+    for i in store.load_json("news.json", [])[-200:]:
+        d = urlsplit(i.get("url", "")).netloc
+        if d and d not in have and "google.com" not in d:
+            counts[d] = counts.get(d, 0) + 1
+    for d, n in sorted(counts.items(), key=lambda x: -x[1])[:5]:
+        if n >= 2:
+            attempt(f"https://{d}/", cat="tech", origin="자주 등장")
+    if len(added) < max_new:
+        try:
+            from . import providers
+            text, _ = providers.complete(DISCOVER_PROMPT.format(
+                markets=", ".join(m["code"] for m in store.cfg()["markets"]), have=", ".join(sorted(have))[:800]),
+                system="URL 목록만 출력한다.", agent="source_scout")
+            for u in re.findall(r"https://[^\s<>\"')\]]+", text)[:6]:
+                attempt(u.rstrip(".,"), cat="business", origin="AI 추천")
+        except Exception:
+            pass  # AI 없으면 후보·자동 발견만
+    store.save_json("sources_tried.json", sorted(tried)[-500:])
+    return added
 
 
 def collect():
     items = store.load_json("news.json", [])
     seen = {i["id"] for i in items}
     added, failed = 0, []
-    for name, url, cat in feeds():
+    src = _sources()
+    for x in src:
+        if x.get("removed"):
+            continue
+        name, url, cat = x["name"], x["url"], x["category"]
         try:
             r = requests.get(url, headers={"User-Agent": UA}, timeout=15)
             r.raise_for_status()
             entries = parse_feed(r.content[:2_000_000])
-        except Exception as e:  # 한 출처 실패는 건너뛰고 계속
+            x.update(fails=0, ok=x.get("ok", 0) + 1, last_ok=store.today())
+        except Exception as e:  # 한 출처 실패는 건너뛰고 계속, 계속 실패하면 탈락
             failed.append(f"{name}: {type(e).__name__}")
+            x["fails"] = x.get("fails", 0) + 1
+            if x["fails"] >= MAX_FAILS:
+                x["removed"] = store.today()
             continue
         for e in entries[:20]:
             title = strip_html(e["title"])[:200]
@@ -114,6 +233,7 @@ def collect():
                           "summary": summary, "published": e["published"], "collected": store.now().isoformat(timespec="minutes"),
                           "flag": detect_injection(f"{title} {summary}")})
     store.save_json("news.json", items[-MAX_ITEMS:])
+    store.save_json("sources.json", src)
     return added, failed
 
 

@@ -218,6 +218,11 @@ def hook_score(text, title="", thumb=""):
     return json.dumps(out, ensure_ascii=False)
 
 
+def add_site(url, category):
+    from . import collector
+    return collector.add_source(url, category=category or "custom", origin="에이전트")
+
+
 def news_search(query="", category=""):
     from . import collector
     return collector.search(query, category)
@@ -251,6 +256,8 @@ REGISTRY = {
                    _schema({"text": S, "title": S, "thumb": S}, ["text", "title", "thumb"])),
     "news_search": (news_search, "매일 수집한 트렌드·뉴스(구글트렌드 KR/US/JP, HN, Product Hunt, AI 릴리스) 검색. category: trend|tech|product|ai|devtools 또는 빈칸",
                     _schema({"query": S, "category": S}, ["query", "category"])),
+    "add_site": (add_site, "조사 중 찾은 유용한 사이트를 매일 정보 수집 목록에 추가(RSS 자동 탐색·검증). category: trend|business|tech|ai|product",
+                 _schema({"url": S, "category": S}, ["url", "category"])),
     "save_file": (save_file, "산출물을 workspace/<path> 에 저장.",
                   _schema({"path": S, "content": S}, ["path", "content"])),
 }

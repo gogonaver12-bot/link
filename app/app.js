@@ -279,6 +279,10 @@ function viewAI() {
   <div class="pgrid">${[...D.providers].sort((a, b) => b.connected - a.connected || b.free - a.free).map((p) => `
     <div class="card prov tap" data-prov="${esc(p.id)}"><span class="dot ${p.connected ? "" : "off"}"></span>
     <div class="grow"><div class="t">${esc(NAMES[p.id] || p.id)}</div><div class="m">${p.connected ? "연결됨" : "미연결"} · ${p.free ? "무료" : "유료"}</div></div></div>`).join("")}</div>
+  <div class="section-title"><h2>정보 출처 ${(D.sources || []).filter((x) => !x.removed).length}곳</h2><button data-open="addsite">＋ 사이트 추가</button></div>
+  <div class="card">${(D.sources || []).filter((x) => !x.removed).slice(0, 8).map((x) => `<div class="row"><div class="grow">
+    <div class="t">${esc(x.name)}</div><div class="m">${esc(x.category)} · ${esc(x.origin)} · ${esc(x.added || "")}</div></div>
+    ${x.origin !== "기본" ? '<span class="pill ok">자동 추가</span>' : ""}</div>`).join("") || '<div class="m">매일 자동으로 새 사이트를 찾아 추가해요</div>'}</div>
   <div class="section-title"><h2>모델 성적표</h2><button data-open="arena">AI 대결</button></div>
   ${D.models.length ? `<div class="card">${D.models.map((m) => `<div class="row"><div class="grow">
       <div class="t">${esc(m.model)}</div><div class="bar ${m.dropped ? "bad" : ""}"><i style="width:${m.avg * 10}%"></i></div></div>
@@ -323,6 +327,9 @@ const newAgentSheet = () => `<h3>＋ 새 팀 만들기</h3><p class="sub" style=
 const arenaSheet = () => `<h3>⚔️ AI 대결</h3><p class="sub" style="margin:0">연결된 모든 AI에게 같은 문제를 내고 Claude가 이름을 가린 채 채점해요. 낮은 점수의 AI는 자동 탈락</p>
   <div class="field"><textarea id="arenaTask" placeholder="예) 20대 대상 다이어트 쇼츠 훅 문장 5개"></textarea></div>
   <div style="margin-top:16px"><button class="btn" id="arenaBtn">대결 시작</button></div>`;
+const addSiteSheet = () => `<h3>＋ 사이트 추가</h3><p class="sub" style="margin:0">일반 주소를 넣어도 RSS를 자동으로 찾아 검증 후 매일 수집해요. 새 사이트는 매일 자동으로도 추가되고, 일주일 계속 안 되면 자동으로 빠져요</p>
+  <div class="field"><input id="siteUrl" type="url" inputmode="url" placeholder="https://example.com"></div>
+  <div style="margin-top:16px"><button class="btn" id="siteBtn">추가하기</button></div>`;
 const keysSheet = () => `<h3>🔑 AI 키 넣는 법</h3>
   <div class="note"><ol><li>아래 버튼으로 깃허브 Secrets 화면 열기</li><li>Name에 키 이름(예: <b>GEMINI_API_KEY</b>), Secret에 키 붙여넣기</li><li>저장 → 다음 실행부터 자동 연결</li></ol>
   무료 추천: <b>GEMINI_API_KEY</b>(aistudio.google.com) · <b>GROQ_API_KEY</b>(console.groq.com)</div>
@@ -368,7 +375,7 @@ function render() {
   const v = { "#home": viewHome, "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
-const SHEETS = { scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+const SHEETS = { addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
   const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-filter],[data-fill],[data-prov],[data-close],[data-v]");
@@ -397,6 +404,11 @@ document.addEventListener("click", async (e) => {
     const type = $("#ltype .on").dataset.v, note = $("#lnote").value.trim().slice(0, 60);
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
+  }
+  if (id === "siteBtn") {
+    const u = $("#siteUrl").value.trim();
+    if (!/^https:\/\/[^\s"]+$/.test(u)) return toast("https:// 로 시작하는 주소를 넣어 주세요");
+    dispatch(`news add ${q(u)}`, "", "사이트 추가");
   }
   if (id === "agentBtn") {
     const n = $("#aname").value.trim().toLowerCase().replace(/[^a-z0-9_]/g, "_"), d = $("#adesc").value.trim();
