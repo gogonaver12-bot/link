@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:56:59+00:00",
+ "updated": "2026-11-23T16:57:22+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1046,27 +1046,27 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T16:56+00:00"
+   "date": "2026-11-23T16:57+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T16:56+00:00"
+   "date": "2026-11-23T16:57+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T16:56+00:00"
+   "date": "2026-11-23T16:57+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T16:56+00:00"
+   "date": "2026-11-23T16:57+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T16:56+00:00"
+   "date": "2026-11-23T16:57+00:00"
   }
  ],
  "runs": [
@@ -1143,14 +1143,7 @@
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅 (국내 IT/가전 및 시즌 이슈 관심 소비자/네이버 블로그, 광고)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   }
  ],
- "errors": [
-  {
-   "ts": "2026-11-23T16:56:56+00:00",
-   "cmd": "run 미국 쇼츠 바이럴 공식 분석",
-   "error": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChLDJR579mHuH9c7LnVFs'}",
-   "msg": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_er"
-  }
- ],
+ "errors": [],
  "jobs": [
   {
    "id": "connection-test-002",
@@ -1341,7 +1334,19 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T16:57:21+00:00",
+   "cmd": "ai arena \"숏폼 대본 패키지를 파는 한 줄 홍보 문구 3개\"",
+   "ok": false,
+   "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
+  },
+  {
    "ts": "2026-11-23T16:56:57+00:00",
+   "cmd": "미국 쇼츠 바이럴 공식 분석",
+   "ok": false,
+   "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
+  },
+  {
+   "ts": "2026-11-23T16:56:50+00:00",
    "cmd": "미국 쇼츠 바이럴 공식 분석",
    "ok": false,
    "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
@@ -1387,18 +1392,6 @@
    "cmd": "biz approve I0002",
    "ok": true,
    "output": "I0002 진행 시작"
-  },
-  {
-   "ts": "2026-11-23T16:53:22+00:00",
-   "cmd": "ai status",
-   "ok": true,
-   "output": "⬜ anthropic   유료  Claude (마더·검수 담당, 최후 보루)\n✅ gemini      무료  키 연결됨 (GEMINI_API_KEY)\n✅ groq        무료  키 연결됨 (GROQ_API_KEY)\n⬜ cerebras    무료  cloud.cerebras.ai 무료 키\n⬜ openrouter  무료  무료 모델 수십개 한 키로\n⬜ mistral     무료  console.mistral.ai 무료 체험 등급\n⬜ ollama      무료  내 PC 무료 실행 (ollama.com)\n⬜ openai      유료  ChatGPT API\n⬜ deepseek    유료  저렴·중국어 강점\n⬜ xai         유료  Grok\n⬜ qwen        유료  알리바바 Qwen\n⬜ moonshot    유료  Kimi\n⬜ together    유료  오픈모델 다수\n⬜ upstage     유료  한국어 특화 Solar\n⬜ clova       유료  네이버 HyperCLOVA X\n⬜ perplexity  유료  검색 내장 AI (도구 없는 작업만)"
-  },
-  {
-   "ts": "2026-11-23T16:27:26+00:00",
-   "cmd": "search trending --region KR",
-   "ok": true,
-   "output": "- 3,844,113회 👍123,854 | GiiiRIP | BIGBANG - Topic | https://youtu.be/IQI2qaqHFlg\n- 17,415회 👍123 | [단독] 심형래 '디워', AI 입고 재개봉 한다...예고편 최초 공개 / YTN star | YTN star | https://youtu.be/NKJyM8z8qFo\n- 432,866회 👍1,112 | 멸망전 팀 결정 마지막날 클리드에게 선수들 다 뺏긴 맵교ㅋㅋㅋ | 튜브김민교 | https://youtu.be/u201uSiHiko\n- 159,208회 👍1,230 | Please Be Happy | Roy Kim - Topic | https://youtu.be/eZ_slVaJ9lo\n- 621,751회 👍1,756 | 비비는 맛 | 괴물쥐 유튜브 | https://youtu.be/tbWDrwQOq60\n- 658,044회 👍7,417 | 난 못해 (Feat. 이병철) | Private Story - Topic | https://youtu.be/XKYp0bYquv4\n- 269,787회 👍2,708 | *23,426*개의 벽돌을 직접 만들고 설치해 피라미드를 만드는 게임 | YouTube지누 | https://youtu.be/-RKmRsz6Jys\n- 197,365회 👍10,104 | 한해, 문세윤 - Love Again (feat. 제나 of RESCENE)｜야외녹음실｜Beyond the Studio｜LIVE | 1theK Live - 원더케이 라이브 | https://youtu.be/mXveasS7ZRY\n- 412,242회 👍1,514 | 역대급 하마냥이 등장 | 멸망전 EP.1 | 클리드 | https://youtu.be/M8YQQk19YJQ\n- 29,927회 👍191 | I Wish I’d Never Been Happy | Cha ga eul - Topic | https://youtu.be/bXGa92yC3t4"
   }
  ],
  "pipelines": [
