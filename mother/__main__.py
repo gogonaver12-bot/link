@@ -7,7 +7,7 @@ from . import agents, business, llm, mother, providers, store, tools
 
 
 def p(*a):
-    print(*a, flush=True)
+    print(*(store.redact(x) for x in a), flush=True)
 
 
 def cmd_status(_=None):
@@ -329,7 +329,7 @@ def safe_main(argv=None, wait=10):
             if attempt == 1 and any(k in name for k in RETRYABLE):
                 time.sleep(wait)
                 continue
-            sys.exit(f"⚠️ 실패: {name}: {str(e)[:150]} (기록: data/errors.jsonl)")
+            sys.exit(store.redact(f"⚠️ 실패: {name}: {str(e)[:150]} (기록: data/errors.jsonl)"))
 
 
 if __name__ == "__main__":

@@ -175,5 +175,5 @@ def build():
         "progress": _progress(rev),
         "keys_set": {k: bool(os.getenv(k)) for k in KEY_NAMES},  # 이름별 등록 여부만 (값은 절대 포함 안 함)
     }
-    (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
+    (store.DATA / "dashboard.json").write_text(store.redact(json.dumps(snap, ensure_ascii=False, indent=1)), encoding="utf-8")
     return snap
