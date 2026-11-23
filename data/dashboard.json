@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:40:31+00:00",
+ "updated": "2026-11-23T14:40:42+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -373,12 +373,18 @@
     "low_risk": 95
    },
    "score": 78.0,
-   "status": "candidate",
+   "status": "active",
    "created": "2026-11-23",
-   "started": null,
+   "started": "2026-11-23",
    "last_review": null,
    "product": null,
-   "metrics": null
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
   }
  ],
  "team": [
@@ -873,10 +879,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T14:40:29+00:00",
-   "cmd": "biz approve I0006",
+   "ts": "2026-11-23T14:40:40+00:00",
+   "cmd": "biz approve I0009",
    "ok": true,
-   "output": "I0006 진행 시작"
+   "output": "I0009 진행 시작"
   },
   {
    "ts": "2026-11-23T12:43:14+00:00",
