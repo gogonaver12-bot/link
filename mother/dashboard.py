@@ -15,6 +15,18 @@ def _report_list():
     return out
 
 
+def _news():
+    """앱 '오늘의 트렌드': 구글 트렌드(나라별) → 신상품 → 기술 순, 출처마다 최대 3개."""
+    order = {"trend": 0, "product": 1, "tech": 2}
+    per, out = {}, []
+    for n in reversed(store.load_json("news.json", [])):
+        if n.get("flag") or per.get(n["source"], 0) >= 3:
+            continue
+        per[n["source"]] = per.get(n["source"], 0) + 1
+        out.append({k: n.get(k) for k in ("source", "category", "title", "url")})
+    return sorted(out, key=lambda n: order.get(n["category"], 9))[:12]
+
+
 def build():
     c = store.cfg()
     usage = store.read_jsonl("usage.jsonl")
@@ -71,6 +83,7 @@ def build():
         "runs": [{k: r.get(k) for k in ("ts", "agent", "model", "task")} for r in store.read_jsonl("runs.jsonl")[-12:]][::-1],
         "errors": [{k: r.get(k) for k in ("ts", "cmd", "error")} for r in store.read_jsonl("errors.jsonl")[-5:]][::-1],
         "jobs": jobs[-10:],
+        "news": _news(),
     }
     (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
     return snap

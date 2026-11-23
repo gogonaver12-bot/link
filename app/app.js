@@ -199,6 +199,9 @@ function viewHome() {
     <button class="qbtn" data-open="log"><span class="ico">💵</span>매출 기록</button>
     <button class="qbtn" data-cmd="jobs" data-label="작업큐 처리"><span class="ico">📥</span>작업큐 처리</button>
   </div>
+  ${(D.news || []).length ? `<div class="section-title"><h2>오늘의 트렌드</h2></div><div class="card">${D.news.slice(0, 8).map((n) => `
+    <div class="row"><span class="pill ${n.category === "trend" ? "accent" : ""}">${esc(n.source.startsWith("구글 트렌드 ") ? "🔥" + n.source.slice(7) : n.source.split(" ")[0])}</span>
+    <div class="grow"><a class="t" style="display:block;color:var(--fg)" href="${/^https?:\/\//.test(n.url) ? esc(n.url) : "#"}" target="_blank" rel="noopener noreferrer">${esc(n.title)}</a></div></div>`).join("")}</div>` : ""}
   <div class="section-title"><h2>최근 활동</h2></div>
   ${D.runs.length ? `<div class="card">${D.runs.slice(0, 5).map((r) => `
     <div class="row"><div class="avatar" style="background:hsl(${hue(r.agent)} 70% 45%)">${esc(r.agent[0].toUpperCase())}</div>
