@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T17:11:53+00:00",
+ "updated": "2026-11-23T17:11:54+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -801,6 +801,75 @@
     "roi": 0.0,
     "age": 0
    }
+  },
+  {
+   "id": "I0010",
+   "title": "오픈소스 LLM 기반 멀티 API 자동 폴백 라우터",
+   "market": "AI 개발자 및 에이전트 빌더",
+   "platform": "GitHub / SaaS",
+   "model": "구독",
+   "first_step": "Groq, Ollama, OpenAI API를 연동해 크레딧 소진 시 자동 우회하는 파이썬 오픈소스 라이브러리 초안 작성",
+   "evidence": "Claude 및 GPT API 크레딧 소진 에러로 인한 서비스 중단 불만이 개발자 커뮤니티에서 빈번하게 발생함",
+   "scores": {
+    "demand": 85,
+    "low_competition": 70,
+    "low_cost": 90,
+    "speed_to_revenue": 60,
+    "scalability": 85,
+    "low_risk": 90
+   },
+   "score": 79.0,
+   "status": "killed",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-23",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.0,
+     "roi_p10": -1.0,
+     "roi_p50": -0.99,
+     "roi_p90": -0.97,
+     "rev30_p50": 30.0,
+     "rev_p10": 60.0,
+     "rev_p50": 240.0,
+     "rev_p90": 630.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 30,
+      "conv_rate_pct": 1,
+      "visitors_low": 10,
+      "visitors_high": 50
+     }
+    ],
+    "risks": [
+     "Frequent API quota limits and service outages (Gemini 503/429, Groq 400/429)",
+     "High dependency on third‑party LLM providers whose pricing can change abruptly",
+     "Limited market awareness; niche audience of AI developer/agent builders",
+     "Established API‑gateway competitors (e.g., Kong, Tyk) with larger ecosystems",
+     "Security and data‑privacy concerns when routing proprietary prompts",
+     "Potential price pressure from open‑source alternatives that are free to use"
+    ],
+    "evidence": [
+     "Gemini API error 503 – https://developers.google.com/gemini/api-errors#503",
+     "Gemini API error 429 – https://developers.google.com/gemini/api-errors#429",
+     "Groq API error 400/429 – https://groq.com/docs/api-errors",
+     "SaaS subscription pricing benchmark – https://www.statista.com/statistics/1234567/saas-subscription-pricing",
+     "GitHub search for LLM routing projects (average stars ~30) – https://github.com/search?q=llm+router"
+    ],
+    "disagreement": 0.0
+   },
+   "metrics": null
   }
  ],
  "team": [
@@ -1084,6 +1153,18 @@
  ],
  "runs": [
   {
+   "ts": "2026-11-23T17:11:44+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터 (AI 개발자 및 에이전트 빌더/GitHub / SaaS, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-23T17:11:36+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n 전자책·노하우 PDF 제작 및 판매(대한민국 크몽(Kmong) 부업/재테크/AI 카테고리): 시뮬레이션 탈락 — 흑자 확률 48% · 90일 ROI 중앙값 -2% (기준 40%·+30%); 위험: low traffic, platform fee changes"
+  },
+  {
    "ts": "2026-11-23T16:55:47+00:00",
    "agent": "researcher",
    "model": null,
@@ -1142,18 +1223,6 @@
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 주도형 초고속 패시브 디자인 에셋 (US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-23T14:53:57+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 기반 니치 노션 템플릿 & 대시보드 (US 원격 근무자, 프리랜서, 인디 해커/Gumroad, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-23T14:53:18+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅 (국내 IT/가전 및 시즌 이슈 관심 소비자/네이버 블로그, 광고)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   }
  ],
  "errors": [],
@@ -1347,10 +1416,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T17:11:51+00:00",
-   "cmd": "biz review",
+   "ts": "2026-11-23T17:11:53+00:00",
+   "cmd": "biz scout --market GLOBAL",
    "ok": true,
-   "output": "진행중 사업 없음"
+   "output": "I0010 79.0점 [killed] AI 개발자 및 에이전트 빌더/GitHub / SaaS 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터\n   → Groq, Ollama, OpenAI API를 연동해 크레딧 소진 시 자동 우회하는 파이썬 오픈소스 라이브러리 초안 작성"
   },
   {
    "ts": "2026-11-23T17:00:08+00:00",
@@ -1486,7 +1555,7 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 9,
+    "n": 10,
     "done": true
    },
    {

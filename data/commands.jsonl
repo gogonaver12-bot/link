@@ -35,3 +35,4 @@
 {"ts": "2026-11-23T17:00:08+00:00", "cmd": "ai check", "ok": true, "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ InvalidHeader: Invalid leading whitespace, reserved character(s), or return character(s) in header value: '***"}
 {"ts": "2026-11-23T17:11:32+00:00", "cmd": "agent upgrade", "ok": true, "output": "analyst: 유지\ncontent_creator: 유지\ndeveloper: 유지\ngithub_scout: 유지\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: 유지\nsales: 유지\nviral_analyst: 유지"}
 {"ts": "2026-11-23T17:11:51+00:00", "cmd": "biz review", "ok": true, "output": "진행중 사업 없음"}
+{"ts": "2026-11-23T17:11:53+00:00", "cmd": "biz scout --market GLOBAL", "ok": true, "output": "I0010 79.0점 [killed] AI 개발자 및 에이전트 빌더/GitHub / SaaS 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터\n   → Groq, Ollama, OpenAI API를 연동해 크레딧 소진 시 자동 우회하는 파이썬 오픈소스 라이브러리 초안 작성"}
