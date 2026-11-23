@@ -256,3 +256,24 @@ def test_sources_auto_add_discover_and_drop(monkeypatch):
         collector.collect()
     names = [n for n, _, _ in collector.feeds()]
     assert "죽은 사이트" not in names and "cand.com" in " ".join(u for _, u, _ in collector.feeds())
+
+
+def test_record_command_result_for_app(tmp_path):
+    from mother import __main__ as cli, dashboard
+    f = tmp_path / "out.txt"
+    f.write_text("새 작업 없음\n", encoding="utf-8")
+    cli.main(["record", "0", str(f), "jobs"])
+    cli.main(["record", "1", str(f), "biz scout --market US"])
+    d = dashboard.build()
+    assert [c["ok"] for c in d["commands"]] == [False, True] and d["commands"][1]["output"] == "새 작업 없음"
+    assert d["sources"]  # 기본 출처가 바로 보임
+
+
+def test_dashboard_hides_resolved_errors_and_explains_in_korean():
+    from mother import dashboard
+    store.append_jsonl("errors.jsonl", {"ts": "2026-11-23T10:00:00+00:00", "cmd": "x", "error": "TypeError: authentication"})
+    store.append_jsonl("usage.jsonl", {"ts": "2026-11-23T10:10:00+00:00", "usd": 0})
+    assert dashboard.build()["errors"] == []  # 그 뒤 AI가 정상 작동 → 해결된 에러는 숨김
+    store.append_jsonl("errors.jsonl", {"ts": "2026-11-23T10:20:00+00:00", "cmd": "y", "error": "gemini 429: quota exceeded"})
+    e = dashboard.build()["errors"]
+    assert len(e) == 1 and e[0]["msg"].startswith("AI 무료 사용량 초과")

@@ -115,6 +115,9 @@ def main(argv=None):
     hk = sp.add_parser("hook", help="숏츠 훅·제목 채점 (토큰 0)")
     hk.add_argument("text"); hk.add_argument("--title", default=""); hk.add_argument("--thumb", default="")
 
+    rc = sp.add_parser("record", help="(내부용) 명령 결과를 앱에 기록")
+    rc.add_argument("status"); rc.add_argument("file"); rc.add_argument("label", nargs="?", default="")
+
     for c in ("status", "jobs", "daily", "export"):
         sp.add_parser(c)
     x = ap.parse_args(argv)
@@ -208,6 +211,12 @@ def main(argv=None):
             p(f"새 소식 {added}건 수집" + (f" · 실패 {len(failed)}곳" if failed else ""))
     elif x.cmd == "hook":
         p(tools.hook_score(x.text, x.title, x.thumb))
+    elif x.cmd == "record":
+        import pathlib
+        f = pathlib.Path(x.file)
+        out = f.read_text(encoding="utf-8", errors="replace").strip() if f.exists() else ""
+        store.append_jsonl("commands.jsonl", {"ts": store.now().isoformat(timespec="seconds"), "cmd": x.label[:200],
+                                              "ok": x.status == "0", "output": out[-3000:] or "(출력 없음)"})
     elif x.cmd == "export":
         from . import dashboard
         d = dashboard.build()
