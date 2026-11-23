@@ -61,16 +61,17 @@ def _get(url, headers):
 def _post(url, headers, body):
     r = requests.post(url, headers=headers, json=body, timeout=240)
     if r.status_code >= 400:
-        raise ProviderError(f"{r.status_code}: {r.text[:300]}")
+        raise ProviderError(f"{body.get('model')} {r.status_code}: {r.text[:300]}")
     return r.json()
 
 
-def pick_model(p):
+def pick_models(p, n=1):
+    """사용 가능한 모델을 좋은 순서로 n개 (한 모델이 한도 초과면 다음 모델로 전환하기 위함)."""
     c = cfgp()[p]
     if c.get("model"):
-        return c["model"]
+        return [c["model"]]
     if p == "anthropic":
-        return store.cfg()["models"]["worker"]
+        return [store.cfg()["models"]["worker"]]
 
     def fetch():
         d = _get(c["base"] + "/models", _headers(p))
@@ -85,12 +86,21 @@ def pick_model(p):
     chat = [m for m in ids if not any(k in m.lower() for k in NOT_FOR_CHAT)] or ids
     if not chat:
         raise ProviderError(f"{p}: 사용 가능한 모델 없음")
-    for want in c.get("prefer", []):
-        hit = [m for m in chat if want.lower() in m.lower()]
-        if hit:
-            return hit[-1]  # 정렬상 뒤쪽 = 대체로 최신 버전
-    light = [m for m in chat if any(k in m.lower() for k in LIGHT)]
-    return (light or chat)[-1]
+    unstable = ("preview", "exp", "-0", "thinking")  # 미리보기·실험 모델은 무료 한도 0인 경우가 많아 뒤로
+    groups = []
+    for want in c.get("prefer", []) + ["__light__"]:
+        hit = [m for m in chat if (any(k in m.lower() for k in LIGHT) if want == "__light__" else want.lower() in m.lower())]
+        hit.sort(key=lambda m: (any(u in m.lower() for u in unstable), [-ord(ch) for ch in m]))  # 안정판·최신 우선
+        groups.append([m for m in hit if not (want == "flash" and "lite" in m)] if want == "flash" else hit)
+    ranked = []
+    for m in [g[0] for g in groups if g] + [m for g in groups for m in g] + list(reversed(chat)):
+        if m not in ranked:  # 선호 그룹마다 1등을 먼저 → 서로 다른 무료 한도의 모델을 번갈아 시도
+            ranked.append(m)
+    return ranked[:n]
+
+
+def pick_model(p):
+    return pick_models(p, 1)[0]
 
 
 # ───────────────────────── 모델 성적표 & 탈락 ─────────────────────────
@@ -135,11 +145,11 @@ def candidates(spec):
         if "web_search" in spec.get("tools", []) and not has_google and llm.has_claude():
             continue  # 웹검색이 필요한데 구글 키 없음 → Claude 웹검색 사용 (Claude 없으면 크롤링으로 대체)
         try:
-            m = want.split(":", 1)[1] if want.startswith(p + ":") else pick_model(p)
+            ms = [want.split(":", 1)[1]] if want.startswith(p + ":") else \
+                pick_models(p, store.cfg()["routing"].get("models_per_provider", 2))
         except ProviderError:
             continue
-        if not demoted(f"{p}:{m}"):
-            out.append((p, m))
+        out += [(p, m) for m in ms if not demoted(f"{p}:{m}")]
     if not llm.has_claude():
         return out
     if want.startswith("anthropic:"):

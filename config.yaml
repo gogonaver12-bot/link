@@ -48,7 +48,7 @@ agent_review:
 # price: [입력, 출력] USD/1M — 비용 장부용 추정치. 실제 요금은 각 사이트에서 확인 후 수정
 providers:
   anthropic:  {key: ANTHROPIC_API_KEY, note: "Claude (마더·검수 담당, 최후 보루)"}
-  gemini:     {base: "https://generativelanguage.googleapis.com/v1beta/openai", key: GEMINI_API_KEY, free: true, prefer: [flash], note: "aistudio.google.com 무료 키"}
+  gemini:     {base: "https://generativelanguage.googleapis.com/v1beta/openai", key: GEMINI_API_KEY, free: true, prefer: [flash-lite, flash], note: "aistudio.google.com 무료 키"}
   groq:       {base: "https://api.groq.com/openai/v1", key: GROQ_API_KEY, free: true, prefer: [gpt-oss-120b, llama-3.3-70b], note: "console.groq.com 무료 키"}
   cerebras:   {base: "https://api.cerebras.ai/v1", key: CEREBRAS_API_KEY, free: true, prefer: [gpt-oss, llama], note: "cloud.cerebras.ai 무료 키"}
   openrouter: {base: "https://openrouter.ai/api/v1", key: OPENROUTER_API_KEY, free: true, model_filter: ":free", prefer: [deepseek, qwen, llama], note: "무료 모델 수십개 한 키로"}
@@ -67,6 +67,7 @@ providers:
 routing:
   # 실무팀(worker) 시도 순서: 무료 → 저렴 → Claude. 키 없는 AI는 자동 건너뜀
   worker_order: [gemini, groq, cerebras, openrouter, mistral, ollama, deepseek, qwen, upstage, openai, xai, moonshot, together, clova]
+  models_per_provider: 2   # AI별로 모델 2개까지 시도 (한도 초과 시 같은 AI의 다른 모델로)
   min_model_score: 5.5     # 평균 점수 미만 모델은 자동 탈락
   min_samples: 3           # 최소 평가 횟수 이후 판정
   window: 10

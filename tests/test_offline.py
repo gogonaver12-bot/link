@@ -109,7 +109,7 @@ def test_routing_free_first_and_failover(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "x")
     monkeypatch.setenv("GROQ_API_KEY", "y")
     monkeypatch.setattr(providers, "_alive", {"ollama": False})
-    monkeypatch.setattr(providers, "pick_model", lambda p: {"gemini": "g-flash", "groq": "llama"}.get(p, "claude-opus-5-5"))
+    monkeypatch.setattr(providers, "pick_models", lambda p, n=1: [{"gemini": "g-flash", "groq": "llama"}.get(p, "claude-opus-5-5")])
     order = providers.candidates({"tier": "worker", "tools": ["save_file"]})
     assert order[:2] == [("gemini", "g-flash"), ("groq", "llama")] and order[-1][0] == "anthropic"
     # 웹검색 필요 + 구글키 없음 → Claude만
@@ -185,8 +185,25 @@ def test_gemini_only_mode_and_no_key_message(monkeypatch):
         llm.ask_json("mother", "s", "p", {"type": "object"})
     # Gemini 키만 있으면: 웹검색이 필요한 팀도 무료 AI가 처리, JSON도 무료 AI로 생성
     monkeypatch.setenv("GEMINI_API_KEY", "g")
-    monkeypatch.setattr(providers, "pick_model", lambda p: "g-flash")
+    monkeypatch.setattr(providers, "pick_models", lambda p, n=1: ["g-flash"])
     assert providers.candidates({"tier": "worker", "tools": ["web_search", "crawl"]}) == [("gemini", "g-flash")]
     monkeypatch.setattr(providers, "_post", lambda url, h, body: {
         "choices": [{"message": {"content": '```json\n{"ideas": []}\n```'}}], "usage": {}})
     assert llm.ask_json("mother", "s", "p", {"type": "object"}) == {"ideas": []}
+
+
+def test_model_level_failover_on_quota(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY")
+    monkeypatch.setenv("GEMINI_API_KEY", "g")
+    monkeypatch.delenv("GROQ_API_KEY", raising=False)
+    monkeypatch.setattr(providers, "_alive", {"ollama": False})
+    monkeypatch.setattr(tools, "_cached", lambda k, h, f: ["gemini-2.5-flash", "gemini-flash-latest", "gemini-flash-lite-latest", "text-embedding-004"])
+    assert [m for _, m in providers.candidates({"tier": "worker", "tools": []})] == ["gemini-flash-lite-latest", "gemini-flash-latest"]
+
+    def fake_post(url, h, body):
+        if body["model"] == "gemini-flash-lite-latest":
+            raise providers.ProviderError(f"{body['model']} 429: quota")
+        return {"choices": [{"message": {"content": "안녕하세요"}}], "usage": {}}
+
+    monkeypatch.setattr(providers, "_post", fake_post)
+    assert providers.complete("인사") == ("안녕하세요", "gemini:gemini-flash-latest")
