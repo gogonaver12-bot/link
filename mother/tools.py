@@ -167,11 +167,32 @@ def pathlib_safe(s):
 
 
 # ───────────────────────── 유튜브(바이럴) ─────────────────────────
+class YouTubeKeyError(RuntimeError):
+    pass
+
+
+def google_key():
+    """유튜브 전용 키가 없으면 같은 구글 프로젝트의 Gemini 키를 함께 사용."""
+    return os.getenv("YOUTUBE_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+
+
+def _yt_check(j):
+    err = (j or {}).get("error")
+    if not err:
+        return
+    msg = str(err.get("message", ""))
+    if "has not been used" in msg or "disabled" in msg or "SERVICE_DISABLED" in str(err):
+        raise YouTubeKeyError("구글 프로젝트에서 'YouTube Data API v3'가 꺼져 있어요 → 콘솔에서 '사용' 누르기")
+    if "blocked" in msg or "API_KEY_SERVICE_BLOCKED" in str(err) or "not valid for this API" in msg:
+        raise YouTubeKeyError("이 키는 Gemini 전용으로 제한돼 있어요 → 사용자 인증 정보에서 키의 'API 제한사항'에 YouTube Data API v3 추가")
+    raise YouTubeKeyError(f"유튜브 API 오류: {msg[:150]}")
+
+
 def youtube_search(query="", region="KR", days=14, limit=10, trending=False):
     """조회수 순 인기/바이럴 영상. YOUTUBE_API_KEY 필요. trending=True면 국가별 인기 급상승."""
-    key = os.getenv("YOUTUBE_API_KEY")
+    key = google_key()
     if not key:
-        return "YOUTUBE_API_KEY 미설정 → web_search로 대체하세요."
+        return "구글 API 키 없음(YOUTUBE_API_KEY 또는 GEMINI_API_KEY) → web_search로 대체하세요."
     base = "https://www.googleapis.com/youtube/v3/"
 
     def fetch():
@@ -179,12 +200,14 @@ def youtube_search(query="", region="KR", days=14, limit=10, trending=False):
             j = requests.get(base + "videos", timeout=15, params={
                 "part": "snippet,statistics", "chart": "mostPopular", "regionCode": region,
                 "maxResults": limit, "key": key}).json()
+            _yt_check(j)
             items = j.get("items", [])
         else:
             after = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - days * 86400))
             s = requests.get(base + "search", timeout=15, params={
                 "part": "id", "q": query, "type": "video", "order": "viewCount", "regionCode": region,
                 "publishedAfter": after, "maxResults": limit, "key": key}).json()
+            _yt_check(s)
             ids = ",".join(i["id"]["videoId"] for i in s.get("items", []))
             items = requests.get(base + "videos", timeout=15, params={
                 "part": "snippet,statistics", "id": ids, "key": key}).json().get("items", []) if ids else []
@@ -192,7 +215,10 @@ def youtube_search(query="", region="KR", days=14, limit=10, trending=False):
                  "views": int(v["statistics"].get("viewCount", 0)), "likes": int(v["statistics"].get("likeCount", 0)),
                  "url": f"https://youtu.be/{v['id']}"} for v in items]
 
-    rows = _cached(f"yt:{query}:{region}:{days}:{trending}", 6, fetch)
+    try:
+        rows = _cached(f"yt:{query}:{region}:{days}:{trending}", 6, fetch)
+    except YouTubeKeyError as e:
+        return str(e)
     return "\n".join(f"- {r['views']:,}회 👍{r['likes']:,} | {r['title']} | {r['channel']} | {r['url']}"
                      for r in rows) or "결과 없음"
 
@@ -266,9 +292,9 @@ REGISTRY = {
 def claude_tools(names):
     """에이전트 spec의 도구 이름 → Claude tools 배열 (순서 고정 = 캐시 안정)."""
     out = []
-    need_env = {"google_search": ("GOOGLE_API_KEY", "GOOGLE_CSE_ID"), "youtube_search": ("YOUTUBE_API_KEY",)}
+    need_env = {"google_search": ("GOOGLE_API_KEY", "GOOGLE_CSE_ID")}
     for n in sorted(set(names)):
-        if not all(os.getenv(k) for k in need_env.get(n, ())):
+        if not all(os.getenv(k) for k in need_env.get(n, ())) or (n == "youtube_search" and not google_key()):
             continue  # 키 없는 도구는 빼서 헛호출·토큰 낭비 방지
         if n == "web_search":
             out.append({"type": "web_search_20260209", "name": "web_search",
