@@ -445,6 +445,8 @@ function render() {
   document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", hash.startsWith("#" + a.dataset.tab) || (hash.startsWith("#report=") && a.dataset.tab === "reports")));
   if (!D) { $("#view").innerHTML = `<div class="skeleton"></div><div class="skeleton"></div>`; return; }
   if (hash.startsWith("#report=")) return viewReport(decodeURIComponent(hash.slice(8)));
+  const quick = { "#cmd": commandSheet, "#google": googleSheet, "#keys": keysSheet };  // 홈 화면 아이콘 바로가기
+  if (quick[hash]) { history.replaceState(null, "", "#home"); $("#view").innerHTML = `<div class="view-enter">${viewHome()}</div>`; return openSheet(quick[hash]()); }
   const v = { "#home": viewHome, "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
