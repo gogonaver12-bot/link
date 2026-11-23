@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:57:22+00:00",
+ "updated": "2026-11-23T16:58:01+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1035,7 +1035,20 @@
    "connected": false
   }
  ],
- "models": [],
+ "models": [
+  {
+   "model": "gemini:gemini-flash-lite-latest",
+   "avg": 9.0,
+   "n": 1,
+   "dropped": false
+  },
+  {
+   "model": "groq:openai/gpt-oss-120b",
+   "avg": 9.0,
+   "n": 1,
+   "dropped": false
+  }
+ ],
  "markets": [
   "KR",
   "US",
@@ -1334,6 +1347,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T16:58:00+00:00",
+   "cmd": "ai arena \"숏폼 대본 패키지를 파는 한 줄 홍보 문구 3개\"",
+   "ok": true,
+   "output": "9점 gemini:gemini-flash-lite-latest — Three clear, compelling one‑line slogans that highlight benefits and are concise and usable.\n 9점 groq:openai/gpt-oss-120b — Provides three effective, succinct taglines with strong calls to action and benefit focus."
+  },
+  {
    "ts": "2026-11-23T16:57:21+00:00",
    "cmd": "ai arena \"숏폼 대본 패키지를 파는 한 줄 홍보 문구 3개\"",
    "ok": false,
@@ -1386,12 +1405,6 @@
    "cmd": "ai arena \"소상공인에게 AI 블로그 대행을 파는 한 줄 홍보 문구 3개\"",
    "ok": false,
    "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
-  },
-  {
-   "ts": "2026-11-23T16:54:47+00:00",
-   "cmd": "biz approve I0002",
-   "ok": true,
-   "output": "I0002 진행 시작"
   }
  ],
  "pipelines": [
