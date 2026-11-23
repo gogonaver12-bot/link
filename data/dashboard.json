@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:32:04+00:00",
+ "updated": "2026-11-23T10:32:22+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -205,7 +205,8 @@
    "tools": [
     "github_search",
     "github_read",
-    "import_skill"
+    "import_skill",
+    "add_site"
    ],
    "model": "auto",
    "skills": [],
@@ -234,7 +235,8 @@
     "web_search",
     "crawl",
     "google_search",
-    "news_search"
+    "news_search",
+    "add_site"
    ],
    "model": "auto",
    "skills": [],
@@ -381,12 +383,12 @@
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T10:31+00:00"
+   "date": "2026-11-23T10:32+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T10:31+00:00"
+   "date": "2026-11-23T10:32+00:00"
   }
  ],
  "runs": [
@@ -511,5 +513,6 @@
    "title": "S3 audit log streaming with OpenID Connect expands to GHE.com",
    "url": "https://github.blog/changelog/2026-11-19-s3-audit-log-streaming-with-openid-connect-expands-to-ghe-com"
   }
- ]
+ ],
+ "sources": []
 }
