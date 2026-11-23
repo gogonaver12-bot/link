@@ -8,7 +8,7 @@ import hashlib
 import html
 import re
 import xml.etree.ElementTree as ET
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 
 import requests
 
@@ -105,9 +105,12 @@ def collect():
             if h in seen:
                 continue
             summary = strip_html(e["summary"])[:300]
+            link = e["url"]
+            if "trends.google.com/trending/rss" in link or not link:  # 구글 트렌드는 검색어 검색 링크로
+                link = "https://www.google.com/search?q=" + quote(title)
             seen.add(h)
             added += 1
-            items.append({"id": h, "source": name, "category": cat, "title": title, "url": e["url"],
+            items.append({"id": h, "source": name, "category": cat, "title": title, "url": link,
                           "summary": summary, "published": e["published"], "collected": store.now().isoformat(timespec="minutes"),
                           "flag": detect_injection(f"{title} {summary}")})
     store.save_json("news.json", items[-MAX_ITEMS:])
