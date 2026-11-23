@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:53:06+00:00",
+ "updated": "2026-11-23T10:56:38+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -383,12 +383,12 @@
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T10:52+00:00"
+   "date": "2026-11-23T10:56+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T10:52+00:00"
+   "date": "2026-11-23T10:56+00:00"
   }
  ],
  "runs": [
@@ -411,28 +411,7 @@
    "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
   }
  ],
- "errors": [
-  {
-   "ts": "2026-11-23T10:08:47+00:00",
-   "cmd": "ai ask 한국어로 한 문장 인사",
-   "error": "ProviderError: gemini: 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceed"
-  },
-  {
-   "ts": "2026-11-23T10:06:54+00:00",
-   "cmd": "ai ask 한국어로 한 문장 인사",
-   "error": "ProviderError: AI 키가 없어요. 저장소 Settings → Secrets → Actions 에 ANTHROPIC_API_KEY 또는 무료 GEMINI_API_KEY(aistudio.google.com)를 넣어주세요."
-  },
-  {
-   "ts": "2026-11-23T09:59:25+00:00",
-   "cmd": "biz scout --market KR",
-   "error": "TypeError: \"Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for the `Authorization` header to be explicitly omitted\""
-  },
-  {
-   "ts": "2026-11-23T09:02:23+00:00",
-   "cmd": "biz scout --market KR",
-   "error": "TypeError: \"Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for the `Authorization` header to be explicitly omitted\""
-  }
- ],
+ "errors": [],
  "jobs": [
   {
    "id": "connection-test-002",
@@ -514,5 +493,98 @@
    "url": "https://github.blog/changelog/2026-11-19-s3-audit-log-streaming-with-openid-connect-expands-to-ghe-com"
   }
  ],
- "sources": []
+ "sources": [
+  {
+   "name": "전자신문",
+   "category": "tech",
+   "origin": "후보목록",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "벤처스퀘어",
+   "category": "business",
+   "origin": "후보목록",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "플래텀",
+   "category": "business",
+   "origin": "후보목록",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "GitHub 변경 로그",
+   "category": "devtools",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "Ollama 릴리스",
+   "category": "ai",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "Google GenAI SDK 릴리스",
+   "category": "ai",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "Anthropic SDK 릴리스",
+   "category": "ai",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "Product Hunt",
+   "category": "product",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "Hacker News",
+   "category": "tech",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "구글 트렌드 JP",
+   "category": "trend",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "구글 트렌드 US",
+   "category": "trend",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "구글 트렌드 KR",
+   "category": "trend",
+   "origin": "기본",
+   "added": "2026-11-23",
+   "removed": null
+  }
+ ],
+ "commands": [
+  {
+   "ts": "2026-11-23T10:56:37+00:00",
+   "cmd": "news discover",
+   "ok": true,
+   "output": "새 출처: 플래텀 (30개 글), 벤처스퀘어 (30개 글), 전자신문 (30개 글)"
+  }
+ ]
 }

@@ -1,0 +1,110 @@
+[
+  {
+    "name": "구글 트렌드 KR",
+    "url": "https://trends.google.com/trending/rss?geo=KR",
+    "category": "trend",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "구글 트렌드 US",
+    "url": "https://trends.google.com/trending/rss?geo=US",
+    "category": "trend",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "구글 트렌드 JP",
+    "url": "https://trends.google.com/trending/rss?geo=JP",
+    "category": "trend",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "Hacker News",
+    "url": "https://hnrss.org/frontpage",
+    "category": "tech",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "Product Hunt",
+    "url": "https://www.producthunt.com/feed",
+    "category": "product",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "Anthropic SDK 릴리스",
+    "url": "https://github.com/anthropics/anthropic-sdk-python/releases.atom",
+    "category": "ai",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "Google GenAI SDK 릴리스",
+    "url": "https://github.com/googleapis/python-genai/releases.atom",
+    "category": "ai",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "Ollama 릴리스",
+    "url": "https://github.com/ollama/ollama/releases.atom",
+    "category": "ai",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "GitHub 변경 로그",
+    "url": "https://github.blog/changelog/feed/",
+    "category": "devtools",
+    "origin": "기본",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "플래텀",
+    "url": "https://platum.kr/feed",
+    "category": "business",
+    "origin": "후보목록",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "벤처스퀘어",
+    "url": "https://www.venturesquare.net/feed",
+    "category": "business",
+    "origin": "후보목록",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  },
+  {
+    "name": "전자신문",
+    "url": "https://rss.etnews.com/Section901.xml",
+    "category": "tech",
+    "origin": "후보목록",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 0
+  }
+]
