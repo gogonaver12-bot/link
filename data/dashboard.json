@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:08:49+00:00",
+ "updated": "2026-11-23T10:19:32+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -63,7 +63,9 @@
     "usd": 0.0
    }
   ],
-  "by_model": {}
+  "by_model": {
+   "gemini:gemini-flash-lite-latest": 0.0
+  }
  },
  "money": {
   "revenue": 0,
@@ -88,10 +90,13 @@
    "title": "콘텐츠 제작팀",
    "version": 1,
    "tools": [
-    "save_file"
+    "save_file",
+    "hook_score"
    ],
    "model": "auto",
-   "skills": [],
+   "skills": [
+    "video_prompt_dna"
+   ],
    "avg": null,
    "evals": 0,
    "last_feedback": ""
@@ -146,7 +151,8 @@
    "tools": [
     "web_search",
     "crawl",
-    "google_search"
+    "google_search",
+    "news_search"
    ],
    "model": "auto",
    "skills": [],
@@ -174,7 +180,8 @@
    "version": 1,
    "tools": [
     "youtube_search",
-    "web_search"
+    "web_search",
+    "hook_score"
    ],
    "model": "auto",
    "skills": [],
@@ -200,7 +207,7 @@
    "id": "groq",
    "free": true,
    "note": "console.groq.com 무료 키",
-   "connected": false
+   "connected": true
   },
   {
    "id": "cerebras",
@@ -331,5 +338,6 @@
    "task": "status",
    "done": false
   }
- ]
+ ],
+ "news": []
 }
