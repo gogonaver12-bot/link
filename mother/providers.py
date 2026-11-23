@@ -208,14 +208,22 @@ def run_openai(p, model, system, user, tool_names=(), agent="worker", max_turns=
 def complete(prompt, system="간결하게 답하라.", agent="worker", spec=None):
     """단발 질문을 가장 싼 사용 가능 AI에 → 실패 시 다음 AI. 반환: (text, 'provider:model')."""
     spec = spec or {"tier": "worker", "tools": []}
+    key = "ask:" + json.dumps([prompt, system, spec.get("tier"), spec.get("model", "auto")], ensure_ascii=False)
+    hit = tools._peek(key, 24)
+    if hit:  # 같은 질문은 24시간 동안 캐시 답변 (토큰 0)
+        return hit[0], hit[1] + " (캐시)"
     errs = []
     for p, m in candidates(spec):
         try:
             if p == "anthropic":
                 tier = "mother" if spec.get("tier") == "mother" else "worker"
                 r = llm.call(tier, system, [{"role": "user", "content": prompt}], agent=agent, model=m)
-                return llm.text_of(r), f"anthropic:{r.model}"
-            return run_openai(p, m, system, prompt, agent=agent, max_turns=1), f"{p}:{m}"
+                res = (llm.text_of(r), f"anthropic:{r.model}")
+            else:
+                res = (run_openai(p, m, system, prompt, agent=agent, max_turns=1), f"{p}:{m}")
+            if res[0]:
+                tools._cached(key, 24, lambda: list(res))
+            return res
         except llm.BudgetExceeded:
             raise
         except Exception as e:

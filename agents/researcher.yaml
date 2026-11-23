@@ -6,6 +6,7 @@ tools:
 - web_search
 - crawl
 - google_search
+- news_search
 skills: []
 system: 시장·트렌드 조사 담당. 웹검색으로 최신 수요 증거(검색량, 판매순위, 커뮤니티 반응, 경쟁사 가격)를 찾고 출처 URL을 붙여 핵심만
   표/불릿으로 보고.

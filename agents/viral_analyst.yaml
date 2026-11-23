@@ -5,6 +5,7 @@ version: 1
 tools:
 - youtube_search
 - web_search
+- hook_score
 skills: []
 system: 국가별 바이럴 영상/콘텐츠를 분석. 조회수·좋아요 상위 영상의 공통 패턴(후킹 3초, 길이, 제목 구조, 썸네일 요소)을 뽑아 재현
   가능한 공식으로 정리.

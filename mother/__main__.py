@@ -55,6 +55,9 @@ def cmd_daily():
     """매일 자동: ROI 리뷰 → 신규 발굴(요일별 1개 시장) → 저성과 에이전트 업그레이드 → 작업큐."""
     log = [f"# 일일 리포트 {store.today()}"]
     try:
+        from . import collector
+        added, _ = collector.collect()
+        log += [f"## 오늘의 트렌드 (새 소식 {added}건)", collector.search(category="trend", limit=8)]
         rows, plans = business.review()
         log += ["## 사업 리뷰"] + [f"- {it['id']} {it['title']}: **{act}** ROI {m['roi']:+.0%} {plans.get(it['id'], {}).get('plan', '')}"
                                   for it, m, act in rows] or ["- 진행중 사업 없음"]
@@ -103,6 +106,10 @@ def main(argv=None):
     ai.add_argument("action", choices=["status", "ask", "arena"])
     ai.add_argument("prompt", nargs="?", default="")
     ai.add_argument("--model", default="auto", help="auto 또는 provider:model (예: gemini:gemini-flash-latest)")
+
+    sp.add_parser("news", help="트렌드·뉴스 수집 (토큰 0)").add_argument("query", nargs="?", default="")
+    hk = sp.add_parser("hook", help="숏츠 훅·제목 채점 (토큰 0)")
+    hk.add_argument("text"); hk.add_argument("--title", default=""); hk.add_argument("--thumb", default="")
 
     for c in ("status", "jobs", "daily", "export"):
         sp.add_parser(c)
@@ -181,6 +188,15 @@ def main(argv=None):
         p(cmd_jobs())
     elif x.cmd == "daily":
         p(cmd_daily())
+    elif x.cmd == "news":
+        from . import collector
+        if x.query:
+            p(collector.search(x.query))
+        else:
+            added, failed = collector.collect()
+            p(f"새 소식 {added}건 수집" + (f" · 실패 {len(failed)}곳" if failed else ""))
+    elif x.cmd == "hook":
+        p(tools.hook_score(x.text, x.title, x.thumb))
     elif x.cmd == "export":
         from . import dashboard
         d = dashboard.build()
