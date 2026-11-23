@@ -132,14 +132,16 @@ def candidates(spec):
         c = cfgp()[p]
         if spec.get("tools") and not c.get("tools", True):
             continue  # 도구 호출 미지원 AI
-        if "web_search" in spec.get("tools", []) and not has_google:
-            continue  # 웹검색이 필요한데 구글 키 없음 → Claude 웹검색 사용
+        if "web_search" in spec.get("tools", []) and not has_google and llm.has_claude():
+            continue  # 웹검색이 필요한데 구글 키 없음 → Claude 웹검색 사용 (Claude 없으면 크롤링으로 대체)
         try:
             m = want.split(":", 1)[1] if want.startswith(p + ":") else pick_model(p)
         except ProviderError:
             continue
         if not demoted(f"{p}:{m}"):
             out.append((p, m))
+    if not llm.has_claude():
+        return out
     if want.startswith("anthropic:"):
         last = want.split(":", 1)[1]
     else:
@@ -208,7 +210,26 @@ def complete(prompt, system="간결하게 답하라.", agent="worker", spec=None
             raise
         except Exception as e:
             errs.append(f"{p}: {e}")
-    raise ProviderError(" / ".join(errs))
+    raise ProviderError(" / ".join(errs) or llm.NO_KEY)
+
+
+def json_complete(system, prompt, schema, agent="worker"):
+    """Claude 없이 구조화 출력: 무료 AI에 JSON 모드로 요청 → 파싱 실패 시 다음 AI."""
+    errs = []
+    for p, m in candidates({"tier": "worker", "tools": []}):
+        try:
+            body = {"model": m, "response_format": {"type": "json_object"}, "messages": [
+                {"role": "system", "content": f"{system}\n반드시 아래 JSON 스키마를 따르는 JSON 객체만 출력:\n{json.dumps(schema, ensure_ascii=False)}"},
+                {"role": "user", "content": prompt}]}
+            d = _post(cfgp()[p]["base"].rstrip("/") + "/chat/completions", _headers(p), body)
+            _log(p, m, agent, d.get("usage") or {})
+            t = d["choices"][0]["message"]["content"]
+            return json.loads(t[t.index("{"): t.rindex("}") + 1])
+        except llm.BudgetExceeded:
+            raise
+        except Exception as e:
+            errs.append(f"{p}: {str(e)[:100]}")
+    raise RuntimeError(llm.NO_KEY if not errs else " / ".join(errs))
 
 
 def status():

@@ -1,5 +1,6 @@
 """Claude 호출 래퍼: 예산 차단 · 자동 캐싱 · 거절 시 서버측 폴백 · 비용 장부."""
 import json
+import os
 
 import anthropic
 
@@ -11,6 +12,14 @@ FALLBACK_OK = {"claude-opus-5-5", "claude-opus-5", "claude-fable-5-2", "claude-f
 
 class BudgetExceeded(RuntimeError):
     pass
+
+
+NO_KEY = ("AI 키가 없어요. 저장소 Settings → Secrets → Actions 에 ANTHROPIC_API_KEY "
+          "또는 무료 GEMINI_API_KEY(aistudio.google.com)를 넣어주세요.")
+
+
+def has_claude():
+    return bool(os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_AUTH_TOKEN"))
 
 
 def client():
@@ -37,6 +46,8 @@ def call(tier, system, messages, tools=None, max_tokens=16000, agent="mother", s
     spent = store.spend_on()
     if spent >= c["budget"]["daily_usd"]:
         raise BudgetExceeded(f"오늘 예산 소진: ${spent} / ${c['budget']['daily_usd']}")
+    if not has_claude():
+        raise RuntimeError(NO_KEY)
     model = model or c["models"][tier]
     output_config = {"effort": c["effort"][tier]}
     if schema:
@@ -66,7 +77,10 @@ def text_of(resp):
 
 
 def ask_json(tier, system, prompt, schema, agent="mother", max_tokens=8000):
-    """구조화 출력: 스키마에 맞는 JSON을 보장받아 dict로 반환."""
+    """구조화 출력: 스키마에 맞는 JSON을 보장받아 dict로 반환. Claude 키가 없으면 무료 AI로 대체."""
+    if not has_claude():
+        from . import providers
+        return providers.json_complete(system, prompt, schema, agent=agent)
     resp = call(tier, system, [{"role": "user", "content": prompt}], schema=schema,
                 agent=agent, max_tokens=max_tokens)
     if resp.stop_reason == "refusal":
