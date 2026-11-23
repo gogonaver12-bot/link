@@ -104,7 +104,7 @@ def main(argv=None):
     ai.add_argument("prompt", nargs="?", default="")
     ai.add_argument("--model", default="auto", help="auto 또는 provider:model (예: gemini:gemini-flash-latest)")
 
-    for c in ("status", "jobs", "daily"):
+    for c in ("status", "jobs", "daily", "export"):
         sp.add_parser(c)
     x = ap.parse_args(argv)
 
@@ -181,6 +181,10 @@ def main(argv=None):
         p(cmd_jobs())
     elif x.cmd == "daily":
         p(cmd_daily())
+    elif x.cmd == "export":
+        from . import dashboard
+        d = dashboard.build()
+        p(f"앱 데이터 갱신: 사업 {len(d['ideas'])} · 팀 {len(d['team'])} · 보고서 {len(d['reports'])}")
 
 
 RETRYABLE = ("Timeout", "ConnectionError", "APIConnectionError", "RateLimitError", "InternalServerError",

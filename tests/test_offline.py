@@ -158,3 +158,16 @@ def test_error_auto_retry_and_log(monkeypatch):
         cli.safe_main(["status"], wait=0)
     assert len(calls) == 2 and "실패" in str(e.value)
     assert len(store.read_jsonl("errors.jsonl")) == 2
+
+
+def test_dashboard_export_has_no_secret_values(monkeypatch):
+    from mother import dashboard
+    monkeypatch.setenv("GEMINI_API_KEY", "super-secret-value")
+    monkeypatch.setattr(providers, "_alive", {"ollama": False})
+    store.save_json("ideas.json", [{"id": "I0001", "title": "A", "status": "active", "started": "2026-11-01", "score": 70}])
+    business.log("I0001", revenue=100, cost=20)
+    d = dashboard.build()
+    raw = (store.DATA / "dashboard.json").read_text(encoding="utf-8")
+    assert "super-secret-value" not in raw
+    assert d["money"]["profit"] == 80 and d["ideas"][0]["metrics"]["roi"] == 4.0
+    assert {p["id"]: p["connected"] for p in d["providers"]}["gemini"] is True

@@ -1,0 +1,301 @@
+{
+ "updated": "2026-11-23T08:40:52+00:00",
+ "company": "LINK AI Company",
+ "repo": "gogonaver12-bot/link",
+ "budget": {
+  "daily": 3.0,
+  "today": 0.0,
+  "days": [
+   {
+    "d": "2026-11-10",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-11",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-12",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-13",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-14",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-15",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-16",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-17",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-18",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-19",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-20",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-21",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-22",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-23",
+    "usd": 0.0
+   }
+  ],
+  "by_model": {}
+ },
+ "money": {
+  "revenue": 0,
+  "cost": 0,
+  "profit": 0
+ },
+ "ideas": [],
+ "team": [
+  {
+   "name": "analyst",
+   "title": "재무·성과분석팀",
+   "version": 1,
+   "tools": [],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "content_creator",
+   "title": "콘텐츠 제작팀",
+   "version": 1,
+   "tools": [
+    "save_file"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "developer",
+   "title": "개발팀",
+   "version": 1,
+   "tools": [
+    "github_search",
+    "github_read",
+    "save_file"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "github_scout",
+   "title": "오픈소스·프롬프트 탐색팀",
+   "version": 1,
+   "tools": [
+    "github_search",
+    "github_read",
+    "import_skill"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "localizer",
+   "title": "현지화팀",
+   "version": 1,
+   "tools": [
+    "save_file"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "researcher",
+   "title": "시장조사팀",
+   "version": 1,
+   "tools": [
+    "web_search",
+    "crawl",
+    "google_search"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "sales",
+   "title": "판매·마케팅팀",
+   "version": 1,
+   "tools": [
+    "web_search",
+    "save_file"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  },
+  {
+   "name": "viral_analyst",
+   "title": "바이럴 분석팀",
+   "version": 1,
+   "tools": [
+    "youtube_search",
+    "web_search"
+   ],
+   "model": "auto",
+   "skills": [],
+   "avg": null,
+   "evals": 0,
+   "last_feedback": ""
+  }
+ ],
+ "providers": [
+  {
+   "id": "anthropic",
+   "free": false,
+   "note": "Claude (마더·검수 담당, 최후 보루)",
+   "connected": false
+  },
+  {
+   "id": "gemini",
+   "free": true,
+   "note": "aistudio.google.com 무료 키",
+   "connected": false
+  },
+  {
+   "id": "groq",
+   "free": true,
+   "note": "console.groq.com 무료 키",
+   "connected": false
+  },
+  {
+   "id": "cerebras",
+   "free": true,
+   "note": "cloud.cerebras.ai 무료 키",
+   "connected": false
+  },
+  {
+   "id": "openrouter",
+   "free": true,
+   "note": "무료 모델 수십개 한 키로",
+   "connected": false
+  },
+  {
+   "id": "mistral",
+   "free": true,
+   "note": "console.mistral.ai 무료 체험 등급",
+   "connected": false
+  },
+  {
+   "id": "ollama",
+   "free": true,
+   "note": "내 PC 무료 실행 (ollama.com)",
+   "connected": false
+  },
+  {
+   "id": "openai",
+   "free": false,
+   "note": "ChatGPT API",
+   "connected": false
+  },
+  {
+   "id": "deepseek",
+   "free": false,
+   "note": "저렴·중국어 강점",
+   "connected": false
+  },
+  {
+   "id": "xai",
+   "free": false,
+   "note": "Grok",
+   "connected": false
+  },
+  {
+   "id": "qwen",
+   "free": false,
+   "note": "알리바바 Qwen",
+   "connected": false
+  },
+  {
+   "id": "moonshot",
+   "free": false,
+   "note": "Kimi",
+   "connected": false
+  },
+  {
+   "id": "together",
+   "free": false,
+   "note": "오픈모델 다수",
+   "connected": false
+  },
+  {
+   "id": "upstage",
+   "free": false,
+   "note": "한국어 특화 Solar",
+   "connected": false
+  },
+  {
+   "id": "clova",
+   "free": false,
+   "note": "네이버 HyperCLOVA X",
+   "connected": false
+  },
+  {
+   "id": "perplexity",
+   "free": false,
+   "note": "검색 내장 AI (도구 없는 작업만)",
+   "connected": false
+  }
+ ],
+ "models": [],
+ "markets": [
+  "KR",
+  "US",
+  "JP",
+  "GLOBAL"
+ ],
+ "reports": [],
+ "runs": [],
+ "errors": [],
+ "jobs": [
+  {
+   "id": "connection-test-002",
+   "task": "status",
+   "done": false
+  }
+ ]
+}

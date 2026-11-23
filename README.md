@@ -10,6 +10,11 @@
 
 로컬: `pip install -r requirements.txt && export ANTHROPIC_API_KEY=...`
 
+## 📱 휴대폰 앱
+**https://gogonaver12-bot.github.io/link/** — 홈 화면에 추가하면 앱처럼 실행 (사업·팀·AI·보고서·명령)
+- 최초 1회: 저장소 Settings → Pages → Branch `main` / `(root)` → Save
+- 앱에서 바로 실행하려면: 앱 ⚙️ 설정 → 깃허브 토큰(이 저장소만, Actions 읽기/쓰기) 붙여넣기
+
 ## 2. 모든 AI 통합 (16종)
 Claude · Gemini · Groq · Cerebras · OpenRouter · Mistral · Ollama(내 PC) · ChatGPT · DeepSeek · Grok · Qwen · Kimi · Together · Upstage Solar · 네이버 HyperCLOVA X · Perplexity
 - **키만 Secrets에 넣으면 자동 연결** (`.env.example` 참고). 새 AI는 `config.yaml → providers`에 한 줄 추가
