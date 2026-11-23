@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T16:56:08+00:00",
+ "updated": "2026-11-23T16:56:12+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1334,7 +1334,7 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-23T16:56:07+00:00",
+   "ts": "2026-11-23T16:56:11+00:00",
    "cmd": "agent upgrade",
    "ok": true,
    "output": "analyst: 유지\ncontent_creator: 유지\ndeveloper: 유지\ngithub_scout: 유지\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: 유지\nsales: 유지\nviral_analyst: 유지"
@@ -1344,6 +1344,12 @@
    "cmd": "test all",
    "ok": true,
    "output": "❌ 탈락 I0002 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행 — 흑자 확률 0% · 90일 ROI 중앙값 -91% (기준 40%·+30%)\n❌ 탈락 I0006 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%)"
+  },
+  {
+   "ts": "2026-11-23T16:55:25+00:00",
+   "cmd": "biz approve I0002",
+   "ok": true,
+   "output": "I0002 진행 시작"
   },
   {
    "ts": "2026-11-23T16:55:25+00:00",
