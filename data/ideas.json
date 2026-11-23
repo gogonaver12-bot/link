@@ -87,7 +87,34 @@
     "score": 80.5,
     "status": "active",
     "created": "2026-11-23",
-    "started": "2026-11-23"
+    "started": "2026-11-23",
+    "last_review": {
+      "date": "2026-11-23",
+      "action": "watch",
+      "revenue": 0,
+      "cost": 0,
+      "profit": 0,
+      "roi": 0.0,
+      "age": 0,
+      "plan": ""
+    },
+    "product": {
+      "made": "2026-11-23",
+      "title": "저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+      "dir": "workspace/products/I0003",
+      "pdf": "workspace/products/I0003/product.pdf",
+      "files": [
+        "00-목차.md",
+        "01-왜-지금-가전제품-쿠팡-파트너스-인가.md",
+        "02-떡상하는-가전-키워드-발굴-프로세스.md",
+        "03-AI-챗GPT-로-SEO-최적화-리뷰-초안-3분-만에-뚝딱.md",
+        "04-상위-노출을-부르는-시각-자료-및-본문-편집-기술.md",
+        "05-클릭을-구매로-바꾸는-마법의-문장-작성법.md",
+        "06-저품질-예방-및-블로그-지수-관리-실전-체크리스트.md",
+        "product.pdf",
+        "판매페이지.md"
+      ]
+    }
   },
   {
     "title": "AI 기반 니치 노션 템플릿 & 대시보드",
@@ -108,7 +135,17 @@
     "score": 85.5,
     "status": "active",
     "created": "2026-11-23",
-    "started": "2026-11-23"
+    "started": "2026-11-23",
+    "last_review": {
+      "date": "2026-11-23",
+      "action": "watch",
+      "revenue": 0,
+      "cost": 0,
+      "profit": 0,
+      "roi": 0.0,
+      "age": 0,
+      "plan": ""
+    }
   },
   {
     "title": "AI 주도형 초고속 패시브 디자인 에셋",
@@ -147,6 +184,67 @@
     },
     "id": "I0006",
     "score": 80.5,
+    "status": "candidate",
+    "created": "2026-11-23"
+  },
+  {
+    "title": "실무형 AI 프롬프트 패키지 및 템플릿 판매",
+    "market": "대한민국 직장인 및 1인 사업자",
+    "platform": "크몽",
+    "model": "판매",
+    "first_step": "타겟 실무자를 위한 프롬프트 50선 기획 및 노션 정리",
+    "evidence": "크몽 내 'AI 활용법', '챗GPT 부업' 카테고리의 꾸준한 상위 랭크 및 직장인의 반복적인 업무 자동화 수요",
+    "scores": {
+      "demand": 85,
+      "low_competition": 60,
+      "low_cost": 95,
+      "speed_to_revenue": 90,
+      "scalability": 95,
+      "low_risk": 90
+    },
+    "id": "I0007",
+    "score": 85.8,
+    "status": "active",
+    "created": "2026-11-23",
+    "started": "2026-11-23"
+  },
+  {
+    "title": "소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지",
+    "market": "국내 소상공인 및 초보 스마트스토어 셀러",
+    "platform": "크몽 및 셀러 커뮤니티",
+    "model": "외주",
+    "first_step": "포트폴리오용 가상 상품 상세페이지 3개 제작",
+    "evidence": "초보 셀러들의 고가 스튜디오 촬영 및 상세페이지 기획 비용 부담에 따른 외주 수요 지속 발생",
+    "scores": {
+      "demand": 90,
+      "low_competition": 70,
+      "low_cost": 95,
+      "speed_to_revenue": 85,
+      "scalability": 70,
+      "low_risk": 85
+    },
+    "id": "I0008",
+    "score": 83.2,
+    "status": "candidate",
+    "created": "2026-11-23"
+  },
+  {
+    "title": "AI 트렌드/이슈 큐레이션 블로그",
+    "market": "네이버 검색 사용자",
+    "platform": "네이버 블로그",
+    "model": "광고",
+    "first_step": "30일간 다룰 세부 검색 키워드 30개 리스트업",
+    "evidence": "네이버 검색 엔진의 정보성 키워드(지원금, IT기기 등) 압도적 유입량 및 쿠팡 파트너스/애드포스트를 통한 빠른 현금화 가능성",
+    "scores": {
+      "demand": 80,
+      "low_competition": 50,
+      "low_cost": 100,
+      "speed_to_revenue": 70,
+      "scalability": 80,
+      "low_risk": 95
+    },
+    "id": "I0009",
+    "score": 78.0,
     "status": "candidate",
     "created": "2026-11-23"
   }

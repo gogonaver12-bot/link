@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T11:22:53+00:00",
+ "updated": "2026-11-23T12:43:15+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -174,8 +174,33 @@
    "status": "active",
    "created": "2026-11-23",
    "started": "2026-11-23",
-   "last_review": null,
-   "product": null,
+   "last_review": {
+    "date": "2026-11-23",
+    "action": "watch",
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0,
+    "plan": ""
+   },
+   "product": {
+    "made": "2026-11-23",
+    "title": "저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+    "dir": "workspace/products/I0003",
+    "pdf": "workspace/products/I0003/product.pdf",
+    "files": [
+     "00-목차.md",
+     "01-왜-지금-가전제품-쿠팡-파트너스-인가.md",
+     "02-떡상하는-가전-키워드-발굴-프로세스.md",
+     "03-AI-챗GPT-로-SEO-최적화-리뷰-초안-3분-만에-뚝딱.md",
+     "04-상위-노출을-부르는-시각-자료-및-본문-편집-기술.md",
+     "05-클릭을-구매로-바꾸는-마법의-문장-작성법.md",
+     "06-저품질-예방-및-블로그-지수-관리-실전-체크리스트.md",
+     "product.pdf",
+     "판매페이지.md"
+    ]
+   },
    "metrics": {
     "revenue": 0,
     "cost": 0,
@@ -204,7 +229,16 @@
    "status": "active",
    "created": "2026-11-23",
    "started": "2026-11-23",
-   "last_review": null,
+   "last_review": {
+    "date": "2026-11-23",
+    "action": "watch",
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0,
+    "plan": ""
+   },
    "product": null,
    "metrics": {
     "revenue": 0,
@@ -255,6 +289,84 @@
     "low_risk": 90
    },
    "score": 80.5,
+   "status": "candidate",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "metrics": null
+  },
+  {
+   "id": "I0007",
+   "title": "실무형 AI 프롬프트 패키지 및 템플릿 판매",
+   "market": "대한민국 직장인 및 1인 사업자",
+   "platform": "크몽",
+   "model": "판매",
+   "first_step": "타겟 실무자를 위한 프롬프트 50선 기획 및 노션 정리",
+   "evidence": "크몽 내 'AI 활용법', '챗GPT 부업' 카테고리의 꾸준한 상위 랭크 및 직장인의 반복적인 업무 자동화 수요",
+   "scores": {
+    "demand": 85,
+    "low_competition": 60,
+    "low_cost": 95,
+    "speed_to_revenue": 90,
+    "scalability": 95,
+    "low_risk": 90
+   },
+   "score": 85.8,
+   "status": "active",
+   "created": "2026-11-23",
+   "started": "2026-11-23",
+   "last_review": null,
+   "product": null,
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
+  },
+  {
+   "id": "I0008",
+   "title": "소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지",
+   "market": "국내 소상공인 및 초보 스마트스토어 셀러",
+   "platform": "크몽 및 셀러 커뮤니티",
+   "model": "외주",
+   "first_step": "포트폴리오용 가상 상품 상세페이지 3개 제작",
+   "evidence": "초보 셀러들의 고가 스튜디오 촬영 및 상세페이지 기획 비용 부담에 따른 외주 수요 지속 발생",
+   "scores": {
+    "demand": 90,
+    "low_competition": 70,
+    "low_cost": 95,
+    "speed_to_revenue": 85,
+    "scalability": 70,
+    "low_risk": 85
+   },
+   "score": 83.2,
+   "status": "candidate",
+   "created": "2026-11-23",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "metrics": null
+  },
+  {
+   "id": "I0009",
+   "title": "AI 트렌드/이슈 큐레이션 블로그",
+   "market": "네이버 검색 사용자",
+   "platform": "네이버 블로그",
+   "model": "광고",
+   "first_step": "30일간 다룰 세부 검색 키워드 30개 리스트업",
+   "evidence": "네이버 검색 엔진의 정보성 키워드(지원금, IT기기 등) 압도적 유입량 및 쿠팡 파트너스/애드포스트를 통한 빠른 현금화 가능성",
+   "scores": {
+    "demand": 80,
+    "low_competition": 50,
+    "low_cost": 100,
+    "speed_to_revenue": 70,
+    "scalability": 80,
+    "low_risk": 95
+   },
+   "score": 78.0,
    "status": "candidate",
    "created": "2026-11-23",
    "started": null,
@@ -489,27 +601,38 @@
  ],
  "reports": [
   {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T11:22+00:00"
-  },
-  {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T11:20+00:00"
+   "date": "2026-11-23T12:43+00:00"
+  },
+  {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-23T12:43+00:00"
+  },
+  {
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-23T12:41+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T11:20+00:00"
+   "date": "2026-11-23T12:41+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T11:20+00:00"
+   "date": "2026-11-23T12:41+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-23T12:42:08+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n없음"
+  },
   {
    "ts": "2026-11-23T11:22:51+00:00",
    "agent": "analyst",
@@ -583,6 +706,12 @@
   {
    "source": "Product Hunt",
    "category": "product",
+   "title": "Strict",
+   "url": "https://www.producthunt.com/products/strict"
+  },
+  {
+   "source": "Product Hunt",
+   "category": "product",
    "title": "Orpheus",
    "url": "https://www.producthunt.com/products/orpheus-2"
   },
@@ -593,49 +722,64 @@
    "url": "https://www.producthunt.com/products/tinker-2"
   },
   {
-   "source": "Product Hunt",
-   "category": "product",
-   "title": "Open Source Solana Wallet",
-   "url": "https://www.producthunt.com/products/open-source-solana-wallet"
+   "source": "ITmedia",
+   "category": "tech",
+   "title": "[ITmedia News] AIは人並みに動画編集できる？ “バズる切り抜き”からガジェット開封動画まで2つのツールを試す",
+   "url": "https://www.itmedia.co.jp/news/article/2611/21/2000003387/"
   },
   {
-   "source": "전자신문",
+   "source": "ITmedia",
    "category": "tech",
-   "title": "오픈AI “GPT가 건설 현장 통역사”…음성 AI로 다국어 소통 지원",
-   "url": "https://www.etnews.com/20261123000395"
+   "title": "[ITmedia PC USER] Googleが「Gemini 4 Neon」をリリース／「Chrome 158」登場",
+   "url": "https://www.itmedia.co.jp/pcuser/articles/2611/22/news002.html"
   },
   {
-   "source": "전자신문",
+   "source": "ITmedia",
    "category": "tech",
-   "title": "국힘 전·현직 윤리위원, 張 텔레그램 공개…'한동훈 제명' 발표 시점 사전 조율 의혹",
-   "url": "https://www.etnews.com/20261123000403"
+   "title": "[ITmedia News] Anthropicの数学者、「Claude」と共同で「リーマン予想」を証明したと主張 Leanコミュニティが「正しい」と認定",
+   "url": "https://www.itmedia.co.jp/news/article/2611/22/2000003388/"
   },
   {
-   "source": "전자신문",
+   "source": "The Verge",
    "category": "tech",
-   "title": "SK텔레콤, 50대 이상 직원 희망퇴직 추진",
-   "url": "https://www.etnews.com/20261123000409"
+   "title": "‘The show is starting soon. Please turn on your headphones.’",
+   "url": "https://www.theverge.com/tech/1038879/off-broadway-love-me-auracast"
   },
   {
-   "source": "Hacker News",
+   "source": "The Verge",
    "category": "tech",
-   "title": "Show HN: I built a game where you are an LLM's subagent",
-   "url": "https://github.com/gulivan/worker755"
+   "title": "Nintendo’s Switch 2 console is $50 off for Black Friday",
+   "url": "https://www.theverge.com/gadgets/1038181/nintendo-switch-2-black-friday-deal-mario-kart-world-bundle-2026-sale"
   },
   {
-   "source": "Hacker News",
+   "source": "The Verge",
    "category": "tech",
-   "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
-   "url": "https://z.ai/blog/glm-5.4"
-  },
-  {
-   "source": "Hacker News",
-   "category": "tech",
-   "title": "Perplexity and Intelligence",
-   "url": "https://openai.com/index/perplexity-and-intelligence/"
+   "title": "Protesters storm Meta offices in India",
+   "url": "https://www.theverge.com/tech/1039732/protesters-storm-meta-offices-in-india"
   }
  ],
  "sources": [
+  {
+   "name": "ITmedia",
+   "category": "tech",
+   "origin": "후보목록",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "The Verge",
+   "category": "tech",
+   "origin": "후보목록",
+   "added": "2026-11-23",
+   "removed": null
+  },
+  {
+   "name": "TechCrunch",
+   "category": "business",
+   "origin": "후보목록",
+   "added": "2026-11-23",
+   "removed": null
+  },
   {
    "name": "전자신문",
    "category": "tech",
@@ -722,6 +866,12 @@
   }
  ],
  "commands": [
+  {
+   "ts": "2026-11-23T12:43:14+00:00",
+   "cmd": "daily",
+   "ok": true,
+   "output": "저장: reports/daily-2026-11-23.md\n# 일일 리포트 2026-11-23\n## 오늘의 트렌드 (새 소식 53건 · 출처 15곳 · 새 출처: TechCrunch (20개 글), The Verge (10개 글), ITmedia (50개 글))\n- [구글 트렌드 JP] 8時だョ 全員集合 | https://trends.google.com/trending/rss?geo=JP\n- [구글 트렌드 US] uefa champions league | https://trends.google.com/trending/rss?geo=US\n- [구글 트렌드 KR] fc서울 | https://trends.google.com/trending/rss?geo=KR\n## 사업 리뷰\n- I0001 크몽 AI 전자책·노하우 PDF 제작 및 판매: **watch** ROI +0% \n- I0003 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅: **watch** ROI +0% \n- I0004 AI 기반 니치 노션 템플릿 & 대시보드: **watch** ROI +0% \n## 신규 발굴 (KR)\n- I0007 85.8점 [active] 실무형 AI 프롬프트 패키지 및 템플릿 판매 — 타겟 실무자를 위한 프롬프트 50선 기획 및 노션 정리\n- I0008 83.2점 [candidate] 소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지 — 포트폴리오용 가상 상품 상세페이지 3개 제작\n- I0009 78.0점 [candidate] AI 트렌드/이슈 큐레이션 블로그 — 30일간 다룰 세부 검색 키워드 30개 리스트업\n## 상품 자동 제작\n- I0003 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드 · 6장 · 18,710자 · PDF\n## 숏츠 자동 업로드\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n제공된 성과 데이터가 없어 기존 성공 패턴(호기심을 자극하는 숫자와 과학적/생활밀착형 주제)을 분석하여 적용함. '99%가 모르는' 형태의 정보성 도입부와 시각적 상상을 자극하는 주제가 효과적일 것으로 판단됨.\n📝 003.json: 침대에 누워도 잠이 안 오는 진짜 이유\n001.json: 훅 41점 → 보류\n002.json: 훅 37점 → 보류\n003.json: 훅 38점 → 보류\n## 블로그 자동 게시\n📝 기획서와 보고서 작성, 챗GPT로 10분 만에 끝내는 법은? — 글만 저장(구글 연결 시 자동 게시) · gemini:gemini-flash-lite-latest\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 9개 · 진행중 4 · 탈락 0\n  I0001 크몽 AI 전자책·노하우 PDF 제작 및 판매 [대한민국 크몽(Kmong) 부업/재테크/AI 카테고리] 매출 $0 ROI +0% 0일차\n  I0003 네이버 블로그 기반 쿠팡 파트너스 제휴 마케팅 [국내 IT/가전 및 시즌 이슈 관심 소비자] 매출 $0 ROI +0% 0일차\n  I0004 AI 기반 니치 노션 템플릿 & 대시보드 [US 원격 근무자, 프리랜서, 인디 해커] 매출 $0 ROI +0% 0일차\n  I0007 실무형 AI 프롬프트 패키지 및 템플릿 판매 [대한민국 직장인 및 1인 사업자] 매출 $0 ROI +0% 0일차\n```"
+  },
   {
    "ts": "2026-11-23T11:22:52+00:00",
    "cmd": "pipeline run daily_trend_blog_and_report",

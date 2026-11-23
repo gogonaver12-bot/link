@@ -6,7 +6,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -16,7 +16,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -26,7 +26,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -36,7 +36,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -46,7 +46,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -56,7 +56,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -66,7 +66,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -76,7 +76,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -86,7 +86,7 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -96,7 +96,7 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
@@ -106,12 +106,42 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
+    "ok": 2,
     "last_ok": "2026-11-23"
   },
   {
     "name": "전자신문",
     "url": "https://rss.etnews.com/Section901.xml",
+    "category": "tech",
+    "origin": "후보목록",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 2,
+    "last_ok": "2026-11-23"
+  },
+  {
+    "name": "TechCrunch",
+    "url": "https://techcrunch.com/feed/",
+    "category": "business",
+    "origin": "후보목록",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 1,
+    "last_ok": "2026-11-23"
+  },
+  {
+    "name": "The Verge",
+    "url": "https://www.theverge.com/rss/index.xml",
+    "category": "tech",
+    "origin": "후보목록",
+    "added": "2026-11-23",
+    "fails": 0,
+    "ok": 1,
+    "last_ok": "2026-11-23"
+  },
+  {
+    "name": "ITmedia",
+    "url": "https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml",
     "category": "tech",
     "origin": "후보목록",
     "added": "2026-11-23",
