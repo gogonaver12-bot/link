@@ -55,6 +55,9 @@ Claude · Gemini · Groq · Cerebras · OpenRouter · Mistral · Ollama(내 PC) 
 ## 7. 원칙
 불법·약관위반(가짜 계정 대량생성, 허위리뷰, 스팸, 무단 크롤링)은 제외. 크롤러는 robots.txt를 지키고, 계정·API키는 `.env` / GitHub Secrets로만 관리합니다.
 
-## 8. 이전 프로젝트에서 가져온 것
+## 8. 회사 도우미 (전기·PLC 업무 프로그램)
+PPT 자동 생성 · 견적서 · 전기 계산기 · PLC 모니터(읽기 전용) · 작업일지 → [`office_suite/README.md`](office_suite/README.md). 윈도우 exe는 Releases에서 자동 배포.
+
+## 9. 이전 프로젝트에서 가져온 것
 - `jarvis-ai-hub` → 여러 AI 연결·모델 자동선택·장애 시 자동전환 방식 (`mother/providers.py`)
 - `shorts-video-monetization` 브랜치 → 숏츠 공장 (`shorts_factory/`, 피드백을 모든 AI 라우터로 교체)

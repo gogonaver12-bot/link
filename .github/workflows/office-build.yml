@@ -1,0 +1,46 @@
+name: office-suite-build
+# 회사 도우미: 코드가 바뀌면 자동 테스트 → 윈도우 exe 빌드 → (기본 브랜치면) Releases 에 최신판 게시
+on:
+  push:
+    paths: ["office_suite/**", "tests/test_office_suite.py", ".github/workflows/office-build.yml"]
+  workflow_dispatch:
+
+permissions: { contents: write }
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r office_suite/requirements.txt pytest
+      - run: python -m pytest tests/test_office_suite.py -q
+
+  windows-exe:
+    needs: test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r office_suite/requirements.txt pyinstaller
+      - name: build exe
+        run: >
+          pyinstaller --noconfirm --onefile --windowed --name OfficeHelper --paths .
+          --collect-submodules office_suite --collect-data pptx --exclude-module mother
+          office_suite/launch.py
+      - name: exe smoke test
+        shell: bash
+        run: OFFICE_HOME="$RUNNER_TEMP/oh" python -m office_suite list
+      - uses: actions/upload-artifact@v4
+        with: { name: OfficeHelper-windows, path: dist/OfficeHelper.exe }
+      - name: publish release
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: office-v1.0.${{ github.run_number }}
+          name: 회사 도우미 v1.0.${{ github.run_number }}
+          body: "OfficeHelper.exe 를 받아 더블클릭하면 실행됩니다. (설치 불필요)"
+          files: dist/OfficeHelper.exe
+          make_latest: true
