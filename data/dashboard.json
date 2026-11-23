@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T10:20:42+00:00",
+ "updated": "2026-11-23T10:32:04+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -142,11 +142,17 @@
     "low_risk": 85
    },
    "score": 80.5,
-   "status": "candidate",
+   "status": "active",
    "created": "2026-11-23",
-   "started": null,
+   "started": "2026-11-23",
    "last_review": null,
-   "metrics": null
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
   }
  ],
  "team": [
@@ -375,12 +381,12 @@
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T10:20+00:00"
+   "date": "2026-11-23T10:31+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T10:20+00:00"
+   "date": "2026-11-23T10:31+00:00"
   }
  ],
  "runs": [

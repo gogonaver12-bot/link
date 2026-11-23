@@ -57,7 +57,8 @@
     },
     "id": "I0003",
     "score": 80.5,
-    "status": "candidate",
-    "created": "2026-11-23"
+    "status": "active",
+    "created": "2026-11-23",
+    "started": "2026-11-23"
   }
 ]
