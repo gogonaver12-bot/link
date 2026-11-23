@@ -23,3 +23,9 @@
 {"ts": "2026-11-23T11:08:56+00:00", "agent": "product_writer", "model": "gemini:gemini-flash-lite-latest", "in": 289, "out": 3157, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-23T11:09:05+00:00", "agent": "product_sales", "model": "gemini:gemini-flash-lite-latest", "in": 368, "out": 1439, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-23T11:19:05+00:00", "agent": "pipeline_architect", "model": "gemini:gemini-flash-lite-latest", "in": 716, "out": 629, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T11:22:37+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 520, "out": 20, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T11:22:40+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 1399, "out": 622, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T11:22:45+00:00", "agent": "content_creator", "model": "gemini:gemini-flash-lite-latest", "in": 1523, "out": 1316, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T11:22:47+00:00", "agent": "content_creator", "model": "gemini:gemini-flash-lite-latest", "in": 2878, "out": 240, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T11:22:49+00:00", "agent": "blogger", "model": "gemini:gemini-flash-lite-latest", "in": 1568, "out": 748, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-23T11:22:51+00:00", "agent": "analyst", "model": "gemini:gemini-flash-lite-latest", "in": 1111, "out": 215, "cache_read": 0, "usd": 0.0}

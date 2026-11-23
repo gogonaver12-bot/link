@@ -15,4 +15,6 @@ steps:
   task: 주간 블로그 성과와 트렌드 대응 결과를 분석하여 보고서를 작성하세요.
 agents_created: []
 skills_equipped: []
-runs: []
+runs:
+- date: '2026-11-23'
+  ok: true
