@@ -70,7 +70,14 @@ def cmd_daily():
         from . import pipelines, product, publish
         ap = store.cfg().get("autopilot", {})
         if ap.get("make_products"):  # 진행 중인데 상품이 없는 사업 → 자동 제작 (하루 1개)
+            from . import viability
             todo = [i for i in store.load_json("ideas.json", []) if i["status"] == "active" and not i.get("product")]
+            for i in todo[:2]:  # 테스트 안 한 사업은 먼저 생존 테스트
+                if not i.get("viability"):
+                    _, r = viability.test_idea(i["id"])
+                    log += [f"- 🧪 {i['id']} {'생존' if r['pass'] else '탈락'}: {r['why']}"]
+            todo = [i for i in store.load_json("ideas.json", []) if i["status"] == "active" and not i.get("product")
+                    and (i.get("viability") or {}).get("pass")]
             if todo:
                 r = product.make(todo[0]["id"])
                 log += ["## 상품 자동 제작", f"- {todo[0]['id']} {r['title']} · {r['sections']}장 · {r['chars']:,}자" + (" · PDF" if r["pdf"] else "")]
@@ -81,6 +88,9 @@ def cmd_daily():
                 raise
             except Exception as e:
                 log += [f"## {name}", f"- 실패: {type(e).__name__}: {str(e)[:150]}"]
+        if store.now().weekday() == 0:  # 매주 월요일: 모든 사업·파이프라인 재검증 → 살아남은 것만 유지
+            from . import viability
+            log += ["## 🧪 주간 생존 토너먼트"] + [f"- {r}" for r in viability.test_all()]
         ran = pipelines.run_due()
         log += ["## 자동 파이프라인"] + ([f"- {r}" for r in ran] or ["- 오늘 실행할 것 없음"])
         ups = [agents.upgrade(n) for n in agents.all_agents()]
@@ -133,6 +143,8 @@ def main(argv=None):
 
     pl = sp.add_parser("pipeline", help="자동화 파이프라인: new \"하고 싶은 일\" / list / run <이름> / off <이름>")
     pl.add_argument("action", choices=["new", "list", "run", "off", "on"]); pl.add_argument("arg", nargs="?", default="")
+    tt = sp.add_parser("test", help="생존 테스트: 인터넷 조사→AI 경쟁 추정→수익 시뮬레이션 (test I0001 / test all / test pipeline 이름)")
+    tt.add_argument("target"); tt.add_argument("name", nargs="?", default="")
     sp.add_parser("shorts", help="숏츠 대본→영상→유튜브 자동 업로드")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
@@ -241,6 +253,7 @@ def main(argv=None):
             p(f"⚙️ 파이프라인 생성: {pp['title']} [{pp['schedule']}] · {len(pp['steps'])}단계"
               + (f"\n새 팀: {', '.join(pp['agents_created'])}" if pp["agents_created"] else "")
               + (f"\n장착 스킬: {', '.join(pp['skills_equipped'])}" if pp["skills_equipped"] else "")
+              + (f"\n🧪 {'생존' if pp['viability']['pass'] else '탈락(꺼짐)'}: {pp['viability']['why']}" if pp.get("viability") else "")
               + f"\n바로 실행: pipeline run {pp['name']}")
         elif x.action == "list":
             for pp in pipelines.all_pipes():
@@ -253,6 +266,18 @@ def main(argv=None):
             pp["enabled"] = x.action == "on"
             pipelines.save(pp)
             p(f"{pp['name']}: {'켜짐' if pp['enabled'] else '꺼짐'}")
+    elif x.cmd == "test":
+        from . import viability
+        if x.target == "all":
+            p("\n".join(viability.test_all()) or "테스트할 대상 없음")
+        else:
+            if x.target == "pipeline":
+                _, r = viability.test_pipeline(x.name)
+            else:
+                _, r = viability.test_idea(x.target)
+            sm = r["sim"]
+            p(f"{'✅ 생존' if r['pass'] else '❌ 탈락'} — {r['why']}\n90일 매출 P10/P50/P90: ${sm['rev_p10']}/${sm['rev_p50']}/${sm['rev_p90']} · 손익분기 {sm['breakeven_p50']}일"
+              + "\n" + "\n".join(f"- {e['role']} {e['model']}: 가격 ${e['price_usd']} 전환 {e['conv_rate_pct']}% 하루 {e['visitors_low']}~{e['visitors_high']}" for e in r["estimates"]))
     elif x.cmd == "shorts":
         from . import publish
         p(publish.shorts())

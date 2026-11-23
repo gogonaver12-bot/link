@@ -329,6 +329,7 @@ def test_pipeline_builder_creates_team_equips_skill_and_runs(monkeypatch):
     monkeypatch.setattr(skills_finder, "candidates", lambda q, n=5: [("me/seo", "SKILL.md")])
     monkeypatch.setattr(skills_finder, "relevant", lambda role, q, text: True)
     monkeypatch.setattr(tools, "github_read", lambda repo, path, n=8000: "# SEO 스킬\n제목은 질문형으로")
+    monkeypatch.setattr("mother.viability.test_pipeline", lambda n: (pipelines.load(n), {}))
     p = pipelines.create("매일 트렌드로 블로그")
     assert p["name"] == "trend_blog" and p["agents_created"] == ["seo_writer"]
     assert [s.get("command") or s.get("agent") for s in p["steps"]] == ["news", "seo_writer"]  # 위험 명령은 제거
@@ -372,3 +373,27 @@ def test_progress_shows_where_it_is_stuck(monkeypatch):
     pr = dashboard.build()["progress"]
     assert [s["done"] for s in pr["steps"]] == [True, True, True, False, False]
     assert pr["action"] == "google" and "ROI 0%" in pr["blocker"]
+
+
+def test_viability_simulation_competition_and_survival(monkeypatch):
+    from mother import viability
+    good = {"price_usd": 15, "conv_rate_pct": 2, "visitors_low": 80, "visitors_high": 300, "ramp_days": 20,
+            "setup_cost_usd": 20, "unit_cost_pct": 20, "monthly_cost_usd": 5, "competition": "mid", "disagreement": 0}
+    bad = {**good, "visitors_low": 1, "visitors_high": 4, "conv_rate_pct": 0.5, "setup_cost_usd": 300, "competition": "high"}
+    g, b = viability.simulate(good, runs=300, seed=1), viability.simulate(bad, runs=300, seed=1)
+    assert viability.verdict(g)[0] and not viability.verdict(b)[0]
+    assert g == viability.simulate(good, runs=300, seed=1)  # 같은 조건 = 같은 결과(재현 가능)
+    ests = [{**good, "model": "gemini:g", "role": "중립", "risks": ["경쟁"], "evidence": ["https://a"]},
+            {**bad, "model": "groq:l", "role": "비관", "risks": ["수요"], "evidence": []},
+            {**good, "visitors_high": 500, "model": "x:y", "role": "낙관", "risks": [], "evidence": []}]
+    agg = viability.aggregate(ests)
+    assert agg["visitors_high"] == 300 and agg["competition"] == "mid" and agg["disagreement"] > 0  # 중앙값 + 의견차
+
+    store.save_json("ideas.json", [{"id": "I0001", "title": "망할 사업", "market": "KR", "platform": "x", "model": "y",
+                                    "status": "candidate", "score": 70}])
+    monkeypatch.setattr(viability, "research", lambda s: "근거 없음")
+    monkeypatch.setattr(viability, "compete", lambda s, e: [dict(bad, model="gemini:g", role="중립", risks=["수요 없음"], evidence=[])])
+    idea, r = viability.test_idea("I0001")
+    assert not r["pass"] and idea["status"] == "killed" and "시뮬레이션 탈락" in (store.DATA / "lessons.md").read_text(encoding="utf-8")
+    viability.calibrate({"id": "I0001"}, actual_rev30=0)
+    assert providers.model_stats()["gemini:g"][1] == 1  # 30일 뒤 실제와 비교해 AI 예측력 채점

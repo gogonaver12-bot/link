@@ -16,6 +16,14 @@ def _report_list():
     return out
 
 
+def _via(v):
+    if not v:
+        return None
+    pr = v.get("params", {})
+    return {"date": v["date"], "pass": v["pass"], "why": v["why"], "sim": v["sim"], "estimates": v.get("estimates", []),
+            "risks": pr.get("risks", []), "evidence": pr.get("evidence", []), "disagreement": pr.get("disagreement")}
+
+
 def _progress(revenue):
     """사업이 어디까지 왔고 어디서 막혔는지: 발굴 → 승인 → 상품 → 업로드 → 첫 매출."""
     from .publish import google_ready
@@ -105,7 +113,8 @@ def build():
     ideas = []
     for i in store.load_json("ideas.json", []):
         ideas.append({k: i.get(k) for k in ("id", "title", "market", "platform", "model", "first_step", "evidence",
-                                            "scores", "score", "status", "created", "started", "last_review", "product")}
+                                            "scores", "score", "status", "created", "started", "last_review", "product", "killed_by")}
+                     | {"viability": _via(i.get("viability"))}
                      | {"metrics": business.metrics(i) if i.get("started") else None})
     ledger = store.read_jsonl("ledger.jsonl")
     rev, cost = sum(r["revenue_usd"] for r in ledger), sum(r["cost_usd"] for r in ledger)
@@ -150,7 +159,8 @@ def build():
         "sources": [{k: x.get(k) for k in ("name", "category", "origin", "added", "removed")}
                     for x in _sources()][::-1][:40],
         "commands": store.read_jsonl("commands.jsonl")[-10:][::-1],
-        "pipelines": [{k: pp.get(k) for k in ("name", "title", "schedule", "enabled", "steps", "agents_created", "skills_equipped", "created")}
+        "pipelines": [{k: pp.get(k) for k in ("name", "title", "schedule", "enabled", "steps", "agents_created", "skills_equipped", "created",
+                                              "viability", "disabled_reason")}
                       | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
         "channels": _channels(),
         "progress": _progress(rev),

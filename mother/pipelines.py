@@ -99,6 +99,13 @@ def create(description):
     pipe = {"name": spec["name"], "title": spec["title"], "description": description, "schedule": spec["schedule"],
             "enabled": True, "created": store.today(), "steps": steps, "agents_created": made, "skills_equipped": equipped, "runs": []}
     save(pipe)
+    try:  # 만들자마자 생존 테스트 → 탈락하면 꺼둠
+        from . import viability
+        pipe, _ = viability.test_pipeline(pipe["name"])
+    except llm.BudgetExceeded:
+        raise
+    except Exception:
+        pass
     return pipe
 
 
