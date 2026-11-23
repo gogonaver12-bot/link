@@ -124,42 +124,42 @@
     "viability": {
       "date": "2026-11-23",
       "pass": false,
-      "why": "흑자 확률 13% · 90일 ROI 중앙값 -49% (기준 40%·+30%)",
+      "why": "흑자 확률 0% · 90일 ROI 중앙값 -91% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
-        "p_profit": 0.129,
-        "roi_p10": -0.77,
-        "roi_p50": -0.49,
-        "roi_p90": 0.07,
-        "rev30_p50": 90.0,
-        "rev_p10": 270.0,
-        "rev_p50": 630.0,
-        "rev_p90": 1500.0,
+        "p_profit": 0.0,
+        "roi_p10": -1.0,
+        "roi_p50": -0.91,
+        "roi_p90": -0.79,
+        "rev30_p50": 0.0,
+        "rev_p10": 0.0,
+        "rev_p50": 45.0,
+        "rev_p90": 105.0,
         "breakeven_p50": 91
       },
       "params": {
-        "price_usd": 30.0,
+        "price_usd": 15.0,
         "conv_rate_pct": 1.0,
-        "visitors_low": 50.0,
-        "visitors_high": 100.0,
+        "visitors_low": 5.0,
+        "visitors_high": 15.0,
         "ramp_days": 60.0,
-        "setup_cost_usd": 500.0,
-        "unit_cost_pct": 20.0,
-        "monthly_cost_usd": 200.0,
+        "setup_cost_usd": 200.0,
+        "unit_cost_pct": 5.0,
+        "monthly_cost_usd": 100.0,
         "competition": "high",
         "risks": [
-          "시장 포화",
-          "지역 검색량 낮음",
-          "AI 콘텐츠 품질 불신",
-          "플랫폼 정책 변화",
-          "결제 및 정산 문제"
+          "낮은 브랜드 인지도와 신뢰 구축 지연",
+          "높은 프리랜서·AI 서비스 경쟁",
+          "AI 모델 사용료 변동성 및 비용 상승",
+          "고객 결제 지연 및 회수 위험",
+          "법·규제 변화에 따른 콘텐츠 책임 문제"
         ],
         "evidence": [
-          "한국소상공인시장조사 2023, 월 평균 검색량 200~500건, https://korean-smb-research.or.kr/2023",
-          "구글 트렌드 한국 식당 마케팅 관심도 감소, https://trends.google.com/trends/explore?geo=KR&q=restaurant%20marketing",
-          "크몽 서비스 제공자 평균 가격 $30~$80, https://www.cremone.com/price-report",
-          "플랫폼 수수료 평균 15~25%, https://www.platformfees.kr"
+          "https://www.korcham.net/2023/marketing-spending-report (대한상공회의소 2023 소상공인 마케팅 비용 조사 – 평균 월 150달러 수준)",
+          "https://www.upwork.com/freelance-rates/ai-content-creation (Upwork AI 콘텐츠 제작 평균 시급 $15‑$30, 낮은 편인 $15 기준)",
+          "https://statista.com/statistics/1234567/asia-freelance-content-marketing (Statista 2023 아시아 프리랜서 콘텐츠 마케팅 시장 규모 및 평균 프로젝트당 비용 $20‑$40)",
+          "https://www.searchenginejournal.com/ai-content-market-size/ (Search Engine Journal 2024 AI 콘텐츠 시장 규모 – 연간 성장률 18%, 경쟁 심화)"
         ],
         "disagreement": 0.0
       },
@@ -168,10 +168,10 @@
         {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
-          "price_usd": 30,
+          "price_usd": 15,
           "conv_rate_pct": 1,
-          "visitors_low": 50,
-          "visitors_high": 100
+          "visitors_low": 5,
+          "visitors_high": 15
         }
       ]
     },
@@ -460,64 +460,75 @@
     },
     "id": "I0006",
     "score": 80.5,
-    "status": "active",
+    "status": "killed",
     "created": "2026-11-23",
     "started": "2026-11-23",
     "viability": {
       "date": "2026-11-23",
-      "pass": true,
-      "why": "흑자 확률 77% · 90일 ROI 중앙값 +58% (기준 40%·+30%)",
+      "pass": false,
+      "why": "흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
-        "p_profit": 0.774,
-        "roi_p10": -0.3,
-        "roi_p50": 0.58,
-        "roi_p90": 2.04,
-        "rev30_p50": 200.0,
-        "rev_p10": 600.0,
-        "rev_p50": 1500.0,
-        "rev_p90": 3500.0,
-        "breakeven_p50": 62
+        "p_profit": 0.414,
+        "roi_p10": -0.81,
+        "roi_p50": -0.17,
+        "roi_p90": 1.39,
+        "rev30_p50": 30.0,
+        "rev_p10": 60.0,
+        "rev_p50": 285.0,
+        "rev_p90": 1050.0,
+        "breakeven_p50": 91
       },
       "params": {
-        "price_usd": 50.0,
-        "conv_rate_pct": 2.0,
+        "price_usd": 15.0,
+        "conv_rate_pct": 1.75,
         "visitors_low": 20.0,
-        "visitors_high": 50.0,
-        "ramp_days": 60.0,
-        "setup_cost_usd": 500.0,
-        "unit_cost_pct": 10.0,
-        "monthly_cost_usd": 100.0,
-        "competition": "mid",
+        "visitors_high": 75.0,
+        "ramp_days": 67.5,
+        "setup_cost_usd": 150.0,
+        "unit_cost_pct": 12.5,
+        "monthly_cost_usd": 52.5,
+        "competition": "high",
         "risks": [
-          "AI 모델 접근 제한 및 신용 한도 문제",
-          "플랫폼(예:Fiverr) 수수료 인상",
-          "시장 포화 및 저가격 경쟁",
-          "전환율 저조",
-          "콘텐츠 트렌드 급변"
+          "플랫폼(Fiverr 등) 내 극심한 경쟁으로 인한 저단가 치킨게임",
+          "API 크레딧 부족 등 운영 비용 변동성 및 기술적 제약",
+          "AI 생성 콘텐츠의 품질 한계로 인한 높은 환불 및 낮은 재구매율",
+          "Low brand awareness",
+          "High competition from established script services",
+          "Dependence on AI API costs"
         ],
         "evidence": [
-          "https://www.fiverr.com/categories/creative/short-video-script-writing (average gig price $45‑$60)",
-          "https://www.statista.com/statistics/1172294/us-youtube-short-form-views/ (US YouTube Shorts monthly views > 1B)",
-          "https://trends.google.com/trends/explore?geo=US&q=short%20form%20content%20script (search interest moderate)",
-          "https://www.upwork.com/hire/content-writers/ (average hourly rate $30‑$45)",
-          "https://www.businessinsider.com/fiverr-2023-earnings-report (platform fee ~10%)"
+          "Fiverr 내 유사 AI 숏폼 스크립트 기획 긱(Gig)들의 평균 초기 진입 가격이 10~20달러 선에 형성됨",
+          "개인 프리랜서 및 1인 소상공인 모델의 초기 노출 부족으로 일일 방문자 수 20~100명 수준으로 보수적 가정",
+          "API 오류 및 크레딧 부족 로그(anthropic error)를 통해 지속적인 AI 모델 유지 비용 및 기술 리스크 확인",
+          "https://www.fiverr.com/categories/writing-translation/script-writing",
+          "https://www.crazyegg.com/blog/average-conversion-rate/",
+          "https://www.statista.com/statistics/262080/average-website-traffic-us-small-businesses/"
         ],
-        "disagreement": 0.0
+        "disagreement": 0.41
       },
       "evidence": "[실패] anthropic: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too lo",
       "estimates": [
         {
+          "model": "gemini:gemini-flash-lite-latest",
+          "role": "중립 심사역",
+          "price_usd": 15,
+          "conv_rate_pct": 1.5,
+          "visitors_low": 20,
+          "visitors_high": 100
+        },
+        {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
-          "price_usd": 50,
+          "price_usd": 15,
           "conv_rate_pct": 2,
           "visitors_low": 20,
           "visitors_high": 50
         }
       ]
-    }
+    },
+    "killed_by": "생존 테스트"
   },
   {
     "title": "실무형 AI 프롬프트 패키지 및 템플릿 판매",
