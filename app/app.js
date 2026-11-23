@@ -281,6 +281,12 @@ function viewTeam() {
     <div class="bar ${t.avg != null && t.avg < 6.5 ? "bad" : ""}"><i style="width:${(t.avg || 0) * 10}%"></i></div>
     <div class="chips">${t.tools.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}${t.skills.map((x) => `<span class="pill accent">⚡${esc(x)}</span>`).join("")}</div>
     ${t.last_feedback ? `<div class="note">💬 ${esc(t.last_feedback)}</div>` : ""}</div>`).join("")}
+  <div class="section-title"><h2>⚙️ 자동 파이프라인</h2><button data-open="newpipe">＋ 만들기</button></div>
+  ${(D.pipelines || []).length ? D.pipelines.map((pp) => `<div class="card"><div class="row"><div class="grow">
+      <div class="t">${esc(pp.title)}</div><div class="m">${{ daily: "매일", weekly: "매주 월", manual: "수동" }[pp.schedule] || ""} · ${pp.steps.length}단계 · 실행 ${pp.runs}회${pp.enabled ? "" : " · 꺼짐"}</div></div>
+      <button class="btn small" data-cmd="pipeline run ${esc(pp.name)}" data-label="${esc(pp.title)}">▶ 실행</button></div>
+      <div class="chips">${pp.steps.map((st) => `<span class="pill">${esc(st.command || st.agent)}</span>`).join("")}${(pp.skills_equipped || []).map((k) => `<span class="pill accent">⚡${esc(k.split("←")[1] || k)}</span>`).join("")}</div></div>`).join("")
+    : empty("⚙️", "아직 파이프라인이 없어요", "하고 싶은 일을 말하면 팀·스킬·일정까지 알아서 만들어요", { attr: 'data-open="newpipe"', label: "＋ 파이프라인 만들기" })}
   <div class="btns"><button class="btn ghost" data-cmd="agent upgrade" data-label="팀 업그레이드">🧬 팀 업그레이드</button>
     <button class="btn" data-open="newagent">＋ 새 팀 만들기</button></div>`;
 }
@@ -297,6 +303,9 @@ function viewAI() {
     <span class="pill accent">오늘 ${usd(D.budget.today)}</span></div>
     <div class="chart">${days.map((d) => `<div class="${d.usd ? "" : "zero"}" style="height:${Math.max(4, (d.usd / max) * 100)}%" title="${esc(d.d)} ${usd(d.usd)}"></div>`).join("")}</div>
     <div class="axis"><span>${esc(days[0].d.slice(5))}</span><span>오늘</span></div></div>
+  <div class="section-title"><h2>🚀 자동 업로드</h2><button data-open="google">구글 연결 방법</button></div>
+  <div class="card">${(D.channels || []).map((c) => `<div class="row"><span class="dot ${c.ready ? "" : "off"}"></span>
+    <div class="grow"><div class="t">${esc(c.name)}</div><div class="m">${c.ready ? "자동 업로드 중" : esc(c.need)}</div></div></div>`).join("")}</div>
   <div class="section-title"><h2>연결된 AI</h2><button data-open="keys">키 넣는 법</button></div>
   <div class="pgrid">${[...D.providers].sort((a, b) => b.connected - a.connected || b.free - a.free).map((p) => `
     <div class="card prov tap" data-prov="${esc(p.id)}"><span class="dot ${p.connected ? "" : "off"}"></span>
@@ -356,6 +365,19 @@ const arenaSheet = () => `<h3>⚔️ AI 대결</h3><p class="sub" style="margin:
 const addSiteSheet = () => `<h3>＋ 사이트 추가</h3><p class="sub" style="margin:0">일반 주소를 넣어도 RSS를 자동으로 찾아 검증 후 매일 수집해요. 새 사이트는 매일 자동으로도 추가되고, 일주일 계속 안 되면 자동으로 빠져요</p>
   <div class="field"><input id="siteUrl" type="url" inputmode="url" placeholder="https://example.com"></div>
   <div style="margin-top:16px"><button class="btn" id="siteBtn">추가하기</button></div>`;
+const newPipeSheet = () => `<h3>⚙️ 파이프라인 만들기</h3><p class="sub" style="margin:0">하고 싶은 자동화를 말하면 단계 설계 → 필요한 팀 생성 → 깃허브에서 스킬 자동 장착 → 매일/매주 자동 실행까지 해요</p>
+  <div class="field"><textarea id="pipeDesc" placeholder="예) 매일 미국 트렌드로 영어 숏츠 1개 만들어 올리고, 주간 성과 보고"></textarea></div>
+  <div class="suggest">${["매일 트렌드로 블로그 글 1편 자동 게시", "매주 새 사업 발굴하고 상위 1개 상품까지 제작", "매일 숏츠 1개 제작·업로드하고 성과로 다음 대본 개선"].map((x) => `<button data-fill2="${esc(x)}">${esc(x)}</button>`).join("")}</div>
+  <div style="margin-top:16px"><button class="btn" id="pipeBtn">만들기</button></div>`;
+const googleSheet = () => `<h3>🔑 구글 1회 연결 (유튜브·블로그 자동 업로드)</h3>
+  <div class="note"><ol>
+  <li><a target="_blank" rel="noopener" href="https://console.cloud.google.com/projectcreate">구글 클라우드</a>에서 새 프로젝트 → <b>YouTube Data API v3</b>, <b>Blogger API v3</b> 사용 설정</li>
+  <li>OAuth 동의 화면: 외부 → 내 이메일을 테스트 사용자로 추가 → <b>게시 상태를 '프로덕션'</b>으로 (7일 만료 방지)</li>
+  <li>사용자 인증 정보 → OAuth 클라이언트 ID → <b>웹 애플리케이션</b>, 리디렉션 URI: <b>https://developers.google.com/oauthplayground</b></li>
+  <li><a target="_blank" rel="noopener" href="https://developers.google.com/oauthplayground">OAuth Playground</a> ⚙️ → Use your own OAuth credentials → ID·비밀번호 입력 → 범위에
+   <b>https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/blogger</b> 입력 → Authorize → Exchange → <b>Refresh token</b> 복사</li>
+  <li><a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/settings/secrets/actions/new">Secrets</a>에 <b>GOOGLE_OAUTH_CLIENT_ID</b>, <b>GOOGLE_OAUTH_CLIENT_SECRET</b>, <b>GOOGLE_OAUTH_REFRESH_TOKEN</b>, <b>BLOGGER_BLOG_ID</b>(blogger.com 주소의 blogID 숫자) 저장</li>
+  </ol>끝나면 매일 아침 자동으로 숏츠·블로그가 올라가요.</div>`;
 const keysSheet = () => `<h3>🔑 AI 키 넣는 법</h3>
   <div class="note"><ol><li>아래 버튼으로 깃허브 Secrets 화면 열기</li><li>Name에 키 이름(예: <b>GEMINI_API_KEY</b>), Secret에 키 붙여넣기</li><li>저장 → 다음 실행부터 자동 연결</li></ol>
   무료 추천: <b>GEMINI_API_KEY</b>(aistudio.google.com) · <b>GROQ_API_KEY</b>(console.groq.com)</div>
@@ -401,10 +423,10 @@ function render() {
   const v = { "#home": viewHome, "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
-const SHEETS = { addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+const SHEETS = { newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-prov],[data-close],[data-v]");
+  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-fill2],[data-prov],[data-close],[data-v]");
   if (!el) return;
   const ds = el.dataset;
   if (ds.close !== undefined) return closeSheet();
@@ -421,6 +443,7 @@ document.addEventListener("click", (e) => {
   if (ds.prov) return openSheet(provSheet(ds.prov));
   if (ds.filter) { bizFilter = ds.filter; return render(); }
   if (ds.fill) { $("#goal").value = ds.fill; return $("#goal").focus(); }
+  if (ds.fill2) { $("#pipeDesc").value = ds.fill2; return $("#pipeDesc").focus(); }
   if (ds.v) {
     el.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === el));
     if (el.parentElement.id === "theme") { store.set("theme", ds.v === "auto" ? "" : ds.v); applyTheme(); }
@@ -436,6 +459,10 @@ document.addEventListener("click", async (e) => {
     const type = $("#ltype .on").dataset.v, note = $("#lnote").value.trim().slice(0, 60);
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
+  }
+  if (id === "pipeBtn") {
+    const d = $("#pipeDesc").value.trim(); if (!d) return toast("하고 싶은 자동화를 적어 주세요");
+    dispatch(`pipeline new ${q(d)}`, "", "파이프라인 만들기");
   }
   if (id === "siteBtn") {
     const u = $("#siteUrl").value.trim();

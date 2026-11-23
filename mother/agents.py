@@ -98,7 +98,7 @@ def _run_claude(spec, user, model=None):
 # ───────────────────────── 생성 ─────────────────────────
 SPEC_SCHEMA = {
     "type": "object", "additionalProperties": False,
-    "required": ["name", "title", "tier", "model", "tools", "system"],
+    "required": ["name", "title", "tier", "model", "tools", "system", "skill_query"],
     "properties": {
         "name": {"type": "string", "description": "영문 소문자_밑줄"},
         "title": {"type": "string"},
@@ -106,6 +106,7 @@ SPEC_SCHEMA = {
         "model": {"type": "string", "description": "'auto'(무료 AI 우선 자동) 또는 'provider:model'. 특별한 이유 없으면 auto"},
         "tools": {"type": "array", "items": {"type": "string", "enum": ["web_search", *tools.REGISTRY]}},
         "system": {"type": "string", "description": "역할·절차·출력형식을 담은 간결한 시스템 프롬프트(300자 내외)"},
+        "skill_query": {"type": "string", "description": "이 역할에 도움 될 깃허브 SKILL.md 영어 검색어 2~3단어"},
     },
 }
 
@@ -114,8 +115,13 @@ def create(name, description):
     spec = llm.ask_json("mother", "너는 AI 회사의 CTO다. 새 직원(에이전트) 명세를 설계한다. 프롬프트는 짧고 구체적으로.",
                         f"이름: {name}\n역할 설명: {description}\n가장 적은 도구로 목표를 달성하도록 설계.",
                         SPEC_SCHEMA, agent="cto")
+    query = spec.pop("skill_query", "")
     spec.update(name=name, version=1, skills=[])
     save(spec)
+    from . import skills_finder
+    sk = skills_finder.equip(name, query)  # 새 팀마다 맞는 스킬(프롬프트) 자동 장착
+    if sk:
+        spec = load(name)
     return spec
 
 

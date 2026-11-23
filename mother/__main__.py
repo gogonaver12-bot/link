@@ -67,6 +67,22 @@ def cmd_daily():
         mk = store.cfg()["markets"][store.now().weekday() % len(store.cfg()["markets"])]["code"]
         new = business.scout(mk)
         log += [f"## 신규 발굴 ({mk})"] + [f"- {i['id']} {i['score']}점 [{i['status']}] {i['title']} — {i['first_step']}" for i in new]
+        from . import pipelines, product, publish
+        ap = store.cfg().get("autopilot", {})
+        if ap.get("make_products"):  # 진행 중인데 상품이 없는 사업 → 자동 제작 (하루 1개)
+            todo = [i for i in store.load_json("ideas.json", []) if i["status"] == "active" and not i.get("product")]
+            if todo:
+                r = product.make(todo[0]["id"])
+                log += ["## 상품 자동 제작", f"- {todo[0]['id']} {r['title']} · {r['sections']}장 · {r['chars']:,}자" + (" · PDF" if r["pdf"] else "")]
+        for name, fn in (("숏츠 자동 업로드", publish.shorts), ("블로그 자동 게시", publish.blog)):
+            try:
+                log += [f"## {name}", fn() or "- 없음"]
+            except llm.BudgetExceeded:
+                raise
+            except Exception as e:
+                log += [f"## {name}", f"- 실패: {type(e).__name__}: {str(e)[:150]}"]
+        ran = pipelines.run_due()
+        log += ["## 자동 파이프라인"] + ([f"- {r}" for r in ran] or ["- 오늘 실행할 것 없음"])
         ups = [agents.upgrade(n) for n in agents.all_agents()]
         log += ["## 에이전트 업그레이드"] + [f"- {u['name']} → v{u['version']}" for u in ups if u] or ["- 없음"]
         log += ["## 작업큐", cmd_jobs()]
@@ -115,6 +131,10 @@ def main(argv=None):
     hk = sp.add_parser("hook", help="숏츠 훅·제목 채점 (토큰 0)")
     hk.add_argument("text"); hk.add_argument("--title", default=""); hk.add_argument("--thumb", default="")
 
+    pl = sp.add_parser("pipeline", help="자동화 파이프라인: new \"하고 싶은 일\" / list / run <이름> / off <이름>")
+    pl.add_argument("action", choices=["new", "list", "run", "off", "on"]); pl.add_argument("arg", nargs="?", default="")
+    sp.add_parser("shorts", help="숏츠 대본→영상→유튜브 자동 업로드")
+    sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
     mk.add_argument("id"); mk.add_argument("--pages", type=int, default=30)
     mk.add_argument("--pdf-only", action="store_true", help="AI 없이 저장된 원고로 PDF만 다시 만들기")
@@ -214,6 +234,31 @@ def main(argv=None):
             p(f"새 소식 {added}건 수집" + (f" · 실패 {len(failed)}곳" if failed else ""))
     elif x.cmd == "hook":
         p(tools.hook_score(x.text, x.title, x.thumb))
+    elif x.cmd == "pipeline":
+        from . import pipelines
+        if x.action == "new":
+            pp = pipelines.create(x.arg)
+            p(f"⚙️ 파이프라인 생성: {pp['title']} [{pp['schedule']}] · {len(pp['steps'])}단계"
+              + (f"\n새 팀: {', '.join(pp['agents_created'])}" if pp["agents_created"] else "")
+              + (f"\n장착 스킬: {', '.join(pp['skills_equipped'])}" if pp["skills_equipped"] else "")
+              + f"\n바로 실행: pipeline run {pp['name']}")
+        elif x.action == "list":
+            for pp in pipelines.all_pipes():
+                p(f"{'✅' if pp.get('enabled') else '⏸'} {pp['name']} [{pp['schedule']}] {pp['title']} · 실행 {len(pp.get('runs', []))}회")
+        elif x.action == "run":
+            for label, out in pipelines.run(x.arg):
+                p(f"▶ {label}\n{out[:800]}\n")
+        else:
+            pp = pipelines.load(x.arg)
+            pp["enabled"] = x.action == "on"
+            pipelines.save(pp)
+            p(f"{pp['name']}: {'켜짐' if pp['enabled'] else '꺼짐'}")
+    elif x.cmd == "shorts":
+        from . import publish
+        p(publish.shorts())
+    elif x.cmd == "blog":
+        from . import publish
+        p(publish.blog())
     elif x.cmd == "make":
         from . import product
         if x.pdf_only:

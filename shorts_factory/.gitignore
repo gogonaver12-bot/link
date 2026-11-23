@@ -1,8 +1,7 @@
 out/.work_*
+out/*.mp4
 token.json
 client_secret.json
-uploads.json
-stats.csv
 assets/clips/
 assets/stock_cache/
 __pycache__/
