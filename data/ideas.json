@@ -184,8 +184,9 @@
     },
     "id": "I0006",
     "score": 80.5,
-    "status": "candidate",
-    "created": "2026-11-23"
+    "status": "active",
+    "created": "2026-11-23",
+    "started": "2026-11-23"
   },
   {
     "title": "실무형 AI 프롬프트 패키지 및 템플릿 판매",
