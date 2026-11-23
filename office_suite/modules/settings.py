@@ -9,6 +9,8 @@ FIELDS = [
     Field("phone", "전화번호"), Field("address", "주소"), Field("email", "이메일"),
     Field("ai_key", "AI 키 (선택)", help="Claude API 키. 없으면 AI 기능만 꺼지고 나머지는 정상 사용"),
     Field("ai_model", "AI 모델", default="claude-opus-5-5"),
+    Field("naver_id", "네이버 검색 Client ID (최저가 찾기용)", help="developers.naver.com 에서 무료 발급"),
+    Field("naver_secret", "네이버 검색 Client Secret"),
 ]
 
 

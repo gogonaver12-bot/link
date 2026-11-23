@@ -120,7 +120,7 @@ class App(tk.Tk):
                 get = var.get
             else:
                 var = tk.StringVar(value="" if val is None else (f"{val:g}" if isinstance(val, float) else str(val)))
-                w = ttk.Entry(self.form, textvariable=var, show="*" if "key" in f.key else "")
+                w = ttk.Entry(self.form, textvariable=var, show="*" if ("key" in f.key or "secret" in f.key) else "")
                 get = var.get
                 if f.kind == "file":
                     ttk.Button(self.form, text="찾기", command=lambda var=var: var.set(

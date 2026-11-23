@@ -17,7 +17,7 @@ SETTINGS = HOME / "settings.json"
 
 DEFAULT_SETTINGS = {
     "company": "", "ceo": "", "biz_no": "", "phone": "", "address": "", "email": "",
-    "ai_key": "", "ai_model": "claude-opus-5-5",
+    "ai_key": "", "ai_model": "claude-opus-5-5", "naver_id": "", "naver_secret": "",
 }
 
 
