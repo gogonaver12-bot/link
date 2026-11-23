@@ -71,3 +71,12 @@ routing:
   min_model_score: 5.5     # 평균 점수 미만 모델은 자동 탈락
   min_samples: 3           # 최소 평가 횟수 이후 판정
   window: 10
+
+# ── 완전 자동운영 (매일 06:43 KST) ──
+autopilot:
+  make_products: true      # 진행 중 사업에 상품이 없으면 자동 제작 (하루 1개)
+  shorts_per_day: 1        # 숏츠 대본→영상→유튜브 업로드 (구글 연결 시)
+  min_hook_score: 50       # 훅 점수 미만 대본은 올리지 않음
+  youtube_privacy: public  # public / private
+  blog_posts_per_day: 1    # 블로그 글 → Blogger 게시 (구글 연결 시)
+  blog_draft: false        # true 면 임시저장만

@@ -16,6 +16,16 @@ def _report_list():
     return out
 
 
+def _pipes():
+    from .pipelines import all_pipes
+    return all_pipes()
+
+
+def _channels():
+    from .publish import channels
+    return channels()
+
+
 def friendly(err):
     e = (err or "").lower()
     if "429" in e or "quota" in e or "rate limit" in e:
@@ -109,6 +119,9 @@ def build():
         "sources": [{k: x.get(k) for k in ("name", "category", "origin", "added", "removed")}
                     for x in _sources()][::-1][:40],
         "commands": store.read_jsonl("commands.jsonl")[-10:][::-1],
+        "pipelines": [{k: pp.get(k) for k in ("name", "title", "schedule", "enabled", "steps", "agents_created", "skills_equipped", "created")}
+                      | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
+        "channels": _channels(),
     }
     (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
     return snap

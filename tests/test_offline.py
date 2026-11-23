@@ -307,3 +307,45 @@ def test_pdf_renders_tables_quotes_code_and_rebuild(monkeypatch):
     (d / "01-a.md").write_text("## 1. 첫 장\n| 항목 | 값 |\n|---|---|\n| 가 | 1️⃣ ① |\n> 핵심\n```\n코드\n```\n- 목록 🚀\n", encoding="utf-8")
     out = product.rebuild_pdf("I0009")
     assert out and out.read_bytes()[:4] == b"%PDF"
+
+
+def test_pipeline_builder_creates_team_equips_skill_and_runs(monkeypatch):
+    from mother import pipelines, skills_finder
+    monkeypatch.setattr(pipelines, "PIPES", store.DATA / "pipes")
+    pipelines.PIPES.mkdir()
+    spec = {"name": "Trend Blog", "title": "트렌드 블로그", "schedule": "daily",
+            "steps": [{"kind": "command", "agent": "", "task": "", "command": "news"},
+                      {"kind": "agent", "agent": "seo_writer", "task": "트렌드로 글 쓰기", "command": ""},
+                      {"kind": "command", "agent": "", "task": "", "command": "rm -rf /"}],
+            "new_agents": [{"name": "seo_writer", "description": "SEO 글쓰기", "skill_query": "seo writing"}],
+            "skill_queries": []}
+
+    def fake_json(tier, system, prompt, schema, agent="mother", **k):
+        if "steps" in schema["properties"]:
+            return spec
+        return {"name": "x", "title": "SEO팀", "tier": "worker", "model": "auto", "tools": [], "system": "SEO", "skill_query": "seo"}
+
+    monkeypatch.setattr(llm, "ask_json", fake_json)
+    monkeypatch.setattr(skills_finder, "find_skill", lambda q: ("me/seo", "SKILL.md"))
+    monkeypatch.setattr(tools, "github_read", lambda repo, path, n=8000: "# SEO 스킬\n제목은 질문형으로")
+    p = pipelines.create("매일 트렌드로 블로그")
+    assert p["name"] == "trend_blog" and p["agents_created"] == ["seo_writer"]
+    assert [s.get("command") or s.get("agent") for s in p["steps"]] == ["news", "seo_writer"]  # 위험 명령은 제거
+    assert agents.load("seo_writer")["skills"]  # 스킬 자동 장착
+
+    monkeypatch.setattr(pipelines, "_command", lambda c: f"{c} 완료")
+    monkeypatch.setattr(agents, "run", lambda n, t, c="": f"{n} 글 완료")
+    log = pipelines.run("trend_blog")
+    assert [o for _, o in log] == ["news 완료", "seo_writer 글 완료"]
+    assert pipelines.run_due() == []  # 오늘 이미 실행 → 중복 실행 안 함
+
+
+def test_blog_and_shorts_autopublish_offline(monkeypatch):
+    from mother import publish
+    monkeypatch.setattr(providers, "complete", lambda prompt, **k: ("# 질문형 제목?\n## 요약\n- **핵심** 하나\n본문", "gemini:g"))
+    out = publish.blog(1)
+    assert "질문형 제목?" in out and "구글 연결 시" in out  # 키 없으면 글만 저장
+    assert "<h3>요약</h3>" in publish.md_to_html("## 요약") and "<b>핵심</b>" in publish.md_to_html("- **핵심**")
+    monkeypatch.setattr(publish.shutil, "which", lambda x: None)
+    assert "건너뜀" in publish.shorts(1)
+    assert publish.channels()[0]["ready"] is False

@@ -19,6 +19,12 @@ def yt():
     from google_auth_oauthlib.flow import InstalledAppFlow
     from google.auth.transport.requests import Request
     from googleapiclient.discovery import build
+    import os
+    if os.getenv("GOOGLE_OAUTH_REFRESH_TOKEN"):  # 깃허브 Actions: Secrets 의 refresh token 사용 (브라우저 로그인 없음)
+        creds = Credentials(None, refresh_token=os.environ["GOOGLE_OAUTH_REFRESH_TOKEN"], token_uri="https://oauth2.googleapis.com/token",
+                            client_id=os.environ["GOOGLE_OAUTH_CLIENT_ID"], client_secret=os.environ["GOOGLE_OAUTH_CLIENT_SECRET"])
+        creds.refresh(Request())
+        return build("youtube", "v3", credentials=creds)
     creds = Credentials.from_authorized_user_file(TOKEN, SCOPES) if TOKEN.exists() else None
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
