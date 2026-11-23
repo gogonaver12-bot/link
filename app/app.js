@@ -1,0 +1,418 @@
+/* JARVIS · LINK 모바일 앱 — 데이터: ../data/dashboard.json / 명령: GitHub Actions 실행 */
+"use strict";
+
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const store = {
+  get(k, d = "") { try { return localStorage.getItem(k) ?? d; } catch { return d; } },
+  set(k, v) { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch { /* 저장 불가 환경 */ } },
+};
+
+const guessRepo = () => {
+  const host = location.hostname.match(/^([\w-]+)\.github\.io$/);
+  const seg = location.pathname.split("/").filter(Boolean)[0];
+  return host && seg ? `${host[1]}/${seg}` : "gogonaver12-bot/link";
+};
+let REPO = guessRepo();
+let D = null;          // dashboard.json
+let bizFilter = "all";
+
+const NAMES = { anthropic: "Claude", gemini: "Gemini", groq: "Groq", cerebras: "Cerebras", openrouter: "OpenRouter", mistral: "Mistral",
+  ollama: "Ollama", openai: "ChatGPT", deepseek: "DeepSeek", xai: "Grok", qwen: "Qwen", moonshot: "Kimi", together: "Together",
+  upstage: "Upstage Solar", clova: "HyperCLOVA X", perplexity: "Perplexity" };
+const STATUS = { active: "진행중", candidate: "후보", killed: "탈락" };
+const ACTION = { scale: "확장", upgrade: "개선", kill: "탈락", watch: "관찰" };
+const CRIT = { demand: "수요", low_competition: "낮은 경쟁", low_cost: "낮은 비용", speed_to_revenue: "수익 속도", scalability: "확장성", low_risk: "낮은 위험" };
+const usd = (n) => "$" + Number(n || 0).toLocaleString("en-US", { maximumFractionDigits: n < 10 ? 2 : 0 });
+const ago = (iso) => {
+  if (!iso) return "";
+  const m = Math.round((Date.now() - new Date(iso)) / 60000);
+  return m < 1 ? "방금" : m < 60 ? `${m}분 전` : m < 1440 ? `${Math.round(m / 60)}시간 전` : `${Math.round(m / 1440)}일 전`;
+};
+const q = (s) => '"' + String(s).replace(/["\\]/g, "\\$&") + '"';  // 명령 인자 따옴표 처리(shlex 호환)
+const hue = (s) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 360, 7);
+
+/* ───────── 안전한 마크다운 렌더러 (HTML 전부 이스케이프 후 변환) ───────── */
+function md(src) {
+  const inline = (t) => esc(t)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/(^|\s)(https?:\/\/[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
+  const out = []; let list = null, code = null, table = null;
+  const flush = () => { if (list) { out.push(`<${list.t}>${list.items.join("")}</${list.t}>`); list = null; }
+    if (table) { out.push(`<table>${table.join("")}</table>`); table = null; } };
+  for (const line of String(src).split("\n")) {
+    if (line.startsWith("```")) { if (code) { out.push(`<pre><code>${esc(code.join("\n"))}</code></pre>`); code = null; } else { flush(); code = []; } continue; }
+    if (code) { code.push(line); continue; }
+    let m;
+    if ((m = line.match(/^(#{1,3})\s+(.*)/))) { flush(); out.push(`<h${m[1].length}>${inline(m[2])}</h${m[1].length}>`); }
+    else if ((m = line.match(/^\s*[-*]\s+(.*)/)) || (m = line.match(/^\s*\d+[.)]\s+(.*)/))) {
+      const t = /^\s*\d/.test(line) ? "ol" : "ul";
+      if (table) flush();
+      if (!list || list.t !== t) { flush(); list = { t, items: [] }; }
+      list.items.push(`<li>${inline(m[1])}</li>`);
+    } else if (/^\s*\|.*\|\s*$/.test(line)) {
+      if (list) flush();
+      if (/^\s*\|[\s:|-]+\|\s*$/.test(line)) continue;
+      table = table || [];
+      const cells = line.trim().slice(1, -1).split("|").map((c) => inline(c.trim()));
+      const tag = table.length ? "td" : "th";
+      table.push(`<tr>${cells.map((c) => `<${tag}>${c}</${tag}>`).join("")}</tr>`);
+    } else if ((m = line.match(/^>\s?(.*)/))) { flush(); out.push(`<blockquote>${inline(m[1])}</blockquote>`); }
+    else if (!line.trim()) flush();
+    else { flush(); out.push(`<p>${inline(line)}</p>`); }
+  }
+  if (code) out.push(`<pre><code>${esc(code.join("\n"))}</code></pre>`);
+  flush();
+  return out.join("");
+}
+
+/* ───────── 데이터 ───────── */
+async function fetchText(path) {
+  const urls = [`../${path}?t=${Date.now()}`, `https://raw.githubusercontent.com/${REPO}/main/${path}?t=${Date.now()}`];
+  for (const u of urls) {
+    try { const r = await fetch(u, { cache: "no-store" }); if (r.ok) return await r.text(); } catch { /* 다음 주소 시도 */ }
+  }
+  throw new Error("불러오기 실패");
+}
+async function load(silent) {
+  try {
+    D = JSON.parse(await fetchText("data/dashboard.json"));
+    if (D.repo) REPO = D.repo;
+    $("#company").textContent = D.company || "LINK AI Company";
+    if (!silent) toast("최신 데이터로 갱신했어요");
+  } catch {
+    if (!D) D = { empty: true };
+    if (!silent) toast("데이터를 불러오지 못했어요. 잠시 후 다시 시도해 주세요");
+  }
+  render();
+}
+
+/* ───────── GitHub 실행 ───────── */
+const token = () => store.get("gh_token");
+async function gh(path, opts = {}) {
+  const r = await fetch("https://api.github.com" + path, { ...opts, headers: {
+    Accept: "application/vnd.github+json", Authorization: "Bearer " + token(), "X-GitHub-Api-Version": "2022-11-28",
+    ...(opts.body ? { "Content-Type": "application/json" } : {}) } });
+  if (!r.ok) throw new Error(`${r.status} ${(await r.text()).slice(0, 100)}`);
+  return r.status === 204 ? null : r.json();
+}
+async function dispatch(command = "daily", goal = "", label = "") {
+  const text = goal || command;
+  if (!token()) {
+    try { await navigator.clipboard.writeText(text); } catch { /* 복사 불가 */ }
+    openSheet(noTokenSheet(text));
+    return;
+  }
+  try {
+    await gh(`/repos/${REPO}/actions/workflows/mother.yml/dispatches`, { method: "POST",
+      body: JSON.stringify({ ref: "main", inputs: { command, goal } }) });
+    closeSheet();
+    toast(`🚀 ${label || "명령"} 실행 시작 — 2~5분 뒤 결과가 반영돼요`);
+    setTimeout(pollRun, 4000);
+  } catch (e) {
+    toast("실행 실패: " + (String(e.message).startsWith("401") ? "토큰을 다시 확인해 주세요" : e.message));
+  }
+}
+let polling = 0;
+async function pollRun() {
+  if (polling) return;
+  const chip = $("#runchip");
+  for (polling = 1; polling < 50; polling++) {
+    try {
+      const j = await gh(`/repos/${REPO}/actions/workflows/mother.yml/runs?per_page=1`);
+      const run = j.workflow_runs[0];
+      if (!run) break;
+      chip.hidden = false;
+      if (run.status !== "completed") { chip.className = "runchip"; chip.textContent = run.status === "queued" ? "대기 중" : "실행 중…"; }
+      else {
+        const ok = run.conclusion === "success";
+        chip.className = "runchip " + (ok ? "ok" : "bad");
+        chip.textContent = ok ? "완료" : "실패";
+        toast(ok ? "✅ 완료! 결과를 불러오는 중…" : "⚠️ 실행 실패 — 다음 세션에서 자동 수정돼요");
+        setTimeout(() => load(true), 60000);
+        setTimeout(() => { chip.hidden = true; }, 90000);
+        break;
+      }
+    } catch { break; }
+    await new Promise((r) => setTimeout(r, 15000));
+  }
+  polling = 0;
+}
+
+/* ───────── 공통 UI ───────── */
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("show"), 3200);
+}
+function openSheet(html) { $("#sheetBody").innerHTML = html; $("#sheet").hidden = false; document.body.style.overflow = "hidden"; }
+function closeSheet() { $("#sheet").hidden = true; document.body.style.overflow = ""; }
+const empty = (icon, title, text, btn) => `<div class="card empty"><div class="big">${icon}</div><b>${title}</b>${text}
+  ${btn ? `<div style="margin-top:14px"><button class="btn small" ${btn.attr}>${btn.label}</button></div>` : ""}</div>`;
+
+/* ───────── 화면: 홈 ───────── */
+function ringSvg(pct, label) {
+  const r = 52, c = 2 * Math.PI * r, v = Math.min(1, Math.max(0, pct));
+  const color = v > .9 ? "var(--bad)" : v > .7 ? "var(--warn)" : "url(#g)";
+  return `<svg viewBox="0 0 140 140" role="img" aria-label="오늘 AI 비용 ${Math.round(v * 100)}%">
+    <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent2)"/></linearGradient></defs>
+    <circle class="spin" cx="70" cy="70" r="66" stroke="var(--line2)" stroke-width="1" stroke-dasharray="3 7"/>
+    <circle class="spin2" cx="70" cy="70" r="60" stroke="var(--accent)" stroke-opacity=".35" stroke-width="2" stroke-dasharray="40 18 6 18"/>
+    <circle cx="70" cy="70" r="${r}" stroke="var(--card2)" stroke-width="8"/>
+    <circle cx="70" cy="70" r="${r}" stroke="${color}" stroke-width="8" stroke-linecap="round"
+      stroke-dasharray="${c * v} ${c}" transform="rotate(-90 70 70)"/>
+    <text class="val" x="70" y="72" text-anchor="middle">${esc(label)}</text>
+    <text class="cap" x="70" y="90" text-anchor="middle">TODAY AI COST</text></svg>`;
+}
+function viewHome() {
+  if (D.empty) return `<div class="skeleton"></div><div class="skeleton"></div>`;
+  const b = D.budget, money = D.money, act = D.ideas.filter((i) => i.status === "active");
+  const scored = D.team.filter((t) => t.avg != null);
+  const teamAvg = scored.length ? (scored.reduce((a, t) => a + t.avg, 0) / scored.length).toFixed(1) : "–";
+  const errs = D.errors.length;
+  const conn = D.providers.filter((p) => p.connected).length;
+  const now = new Date();
+  return `
+  <section class="card hero">
+    <div class="ring">${ringSvg(b.today / b.daily, usd(b.today))}</div>
+    <div class="hero-info">
+      <div class="clock" id="clock">${now.toTimeString().slice(0, 5)}</div>
+      <div class="date">${now.toLocaleDateString("ko-KR", { month: "long", day: "numeric", weekday: "long" })}</div>
+      <span class="state"><span class="dot ${errs ? "bad" : conn ? "" : "warn"}"></span>${errs ? `에러 ${errs}건 · 자동 수정 대기` : conn ? `시스템 정상 · AI ${conn}개 연결` : "AI 키 연결 필요"}</span>
+      <div class="upd">예산 ${usd(b.daily)}/일 · 갱신 ${ago(D.updated)}</div>
+    </div>
+  </section>
+  <div class="kpis">
+    <div class="card kpi"><div class="lbl">💰 총매출</div><div class="num">${usd(money.revenue)}</div></div>
+    <div class="card kpi"><div class="lbl">📈 순이익</div><div class="num ${money.profit >= 0 ? "pos" : "neg"}">${usd(money.profit)}</div></div>
+    <div class="card kpi tap" data-go="#biz"><div class="lbl">🚀 진행 사업</div><div class="num">${act.length}<small>/ ${D.ideas.length}</small></div></div>
+    <div class="card kpi tap" data-go="#team"><div class="lbl">🧠 팀 평균</div><div class="num">${teamAvg}<small>점</small></div></div>
+  </div>
+  ${errs ? `<div class="card alert" style="margin-top:10px"><div class="t">⚠️ 최근 에러</div><div class="m wrap">${esc(D.errors[0].error)}</div></div>` : ""}
+  <div class="section-title"><h2>빠른 실행</h2></div>
+  <div class="quick">
+    <button class="qbtn" data-cmd="daily" data-label="일일 자동운영"><span class="ico">⚙️</span>일일 자동운영</button>
+    <button class="qbtn" data-open="scout"><span class="ico">🔎</span>사업 발굴</button>
+    <button class="qbtn" data-cmd="biz review" data-label="ROI 리뷰"><span class="ico">📊</span>ROI 리뷰</button>
+    <button class="qbtn" data-cmd="agent upgrade" data-label="팀 업그레이드"><span class="ico">🧬</span>팀 업그레이드</button>
+    <button class="qbtn" data-open="log"><span class="ico">💵</span>매출 기록</button>
+    <button class="qbtn" data-cmd="jobs" data-label="작업큐 처리"><span class="ico">📥</span>작업큐 처리</button>
+  </div>
+  <div class="section-title"><h2>최근 활동</h2></div>
+  ${D.runs.length ? `<div class="card">${D.runs.slice(0, 5).map((r) => `
+    <div class="row"><div class="avatar" style="background:hsl(${hue(r.agent)} 70% 45%)">${esc(r.agent[0].toUpperCase())}</div>
+    <div class="grow"><div class="t">${esc(r.task)}</div><div class="m">${esc(r.agent)} · ${esc(r.model || "실패")} · ${ago(r.ts)}</div></div></div>`).join("")}</div>`
+    : empty("🛰️", "아직 활동이 없어요", "아래 ⚡명령 버튼으로 첫 목표를 내려보세요")}
+  <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
+  ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
+}
+const reportRow = (r) => `<div class="row tap" data-go="#report=${encodeURIComponent(r.file)}"><div class="score" style="font-size:17px">📄</div>
+  <div class="grow"><div class="t">${esc(r.title)}</div><div class="m">${ago(r.date)} · ${esc(r.file.replace("reports/", ""))}</div></div></div>`;
+
+/* ───────── 화면: 사업 ───────── */
+function viewBiz() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  const list = D.ideas.filter((i) => bizFilter === "all" || i.status === bizFilter).sort((a, b) => b.score - a.score);
+  const cnt = (s) => D.ideas.filter((i) => s === "all" || i.status === s).length;
+  return `<h1 class="page">사업</h1><p class="sub">발굴 → 채점 → 실행 → ROI 판정 (확장 · 개선 · 탈락)</p>
+  <div class="seg">${["all", "active", "candidate", "killed"].map((s) =>
+    `<button data-filter="${s}" class="${bizFilter === s ? "on" : ""}">${s === "all" ? "전체" : STATUS[s]} ${cnt(s)}</button>`).join("")}</div>
+  ${list.length ? list.map((i) => {
+    const m = i.metrics, lr = i.last_review;
+    return `<div class="card tap" data-idea="${esc(i.id)}"><div class="row">
+      <div class="score">${Math.round(i.score)}</div>
+      <div class="grow"><div class="t">${esc(i.title)}</div><div class="m">${esc(i.market)} · ${esc(i.platform)} · ${esc(i.model)}</div></div>
+      <span class="pill ${esc(i.status)}">${STATUS[i.status] || esc(i.status)}</span></div>
+      ${m ? `<div class="chips"><span class="pill">매출 ${usd(m.revenue)}</span><span class="pill ${m.roi >= 0 ? "ok" : "bad"}">ROI ${(m.roi * 100).toFixed(0)}%</span>
+        <span class="pill">${m.age}일차</span>${lr ? `<span class="pill ${esc(lr.action)}">${ACTION[lr.action] || ""}</span>` : ""}</div>` : ""}</div>`;
+  }).join("") : empty("💡", "아직 사업 아이디어가 없어요", "AI가 국가별로 돈 되는 사업을 찾아 점수를 매겨요", { attr: 'data-open="scout"', label: "🔎 사업 발굴 시작" })}`;
+}
+function ideaSheet(id) {
+  const i = D.ideas.find((x) => x.id === id); if (!i) return "";
+  const m = i.metrics, lr = i.last_review;
+  return `<h3>${esc(i.title)}</h3><div class="chips"><span class="pill ${esc(i.status)}">${STATUS[i.status] || ""}</span>
+    <span class="pill accent">${esc(i.market)}</span><span class="pill">${esc(i.platform)}</span><span class="pill">${Math.round(i.score)}점</span></div>
+  ${m ? `<div class="kv"><div><b>${usd(m.revenue)}</b><span>매출</span></div><div><b>${usd(m.cost)}</b><span>비용</span></div>
+    <div><b class="${m.roi >= 0 ? "pos" : "neg"}">${(m.roi * 100).toFixed(0)}%</b><span>ROI</span></div><div><b>${m.age}</b><span>일차</span></div></div>` : ""}
+  ${lr && lr.plan ? `<div class="field"><label>최근 판정: ${ACTION[lr.action] || ""}</label><div class="card md">${md(lr.plan)}</div></div>` : ""}
+  <div class="field"><label>오늘 바로 할 첫 행동</label><div class="card">${esc(i.first_step)}</div></div>
+  <div class="field"><label>점수 상세</label>${Object.entries(i.scores || {}).map(([k, v]) =>
+    `<div class="crit"><span>${CRIT[k] || esc(k)}</span><div class="bar"><i style="width:${Math.max(0, Math.min(100, v))}%"></i></div><b>${v}</b></div>`).join("")}</div>
+  <div class="field"><label>근거</label><div class="card md">${md(i.evidence || "")}</div></div>
+  <div class="btns">${i.status === "candidate" ? `<button class="btn" data-cmd="biz approve ${esc(i.id)}" data-label="사업 승인">✅ 승인하고 시작</button>`
+    : `<button class="btn ghost" data-cmd="biz review" data-label="ROI 리뷰">📊 다시 판정</button>`}
+    <button class="btn ghost" data-open="log" data-id="${esc(i.id)}">💵 매출 기록</button></div>`;
+}
+
+/* ───────── 화면: 팀 ───────── */
+function viewTeam() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  return `<h1 class="page">팀</h1><p class="sub">점수가 낮은 팀은 프롬프트가 자동으로 업그레이드돼요</p>
+  ${D.team.map((t) => `<div class="card"><div class="row">
+    <div class="avatar" style="background:linear-gradient(135deg,hsl(${hue(t.name)} 75% 52%),hsl(${(hue(t.name) + 50) % 360} 70% 45%))">${esc(t.title[0])}</div>
+    <div class="grow"><div class="t">${esc(t.title)}</div><div class="m">${esc(t.name)} · v${t.version} · ${t.model === "auto" ? "무료 AI 우선" : esc(t.model)}</div></div>
+    <div class="score">${t.avg ?? "–"}</div></div>
+    <div class="bar ${t.avg != null && t.avg < 6.5 ? "bad" : ""}"><i style="width:${(t.avg || 0) * 10}%"></i></div>
+    <div class="chips">${t.tools.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}${t.skills.map((x) => `<span class="pill accent">⚡${esc(x)}</span>`).join("")}</div>
+    ${t.last_feedback ? `<div class="note">💬 ${esc(t.last_feedback)}</div>` : ""}</div>`).join("")}
+  <div class="btns"><button class="btn ghost" data-cmd="agent upgrade" data-label="팀 업그레이드">🧬 팀 업그레이드</button>
+    <button class="btn" data-open="newagent">＋ 새 팀 만들기</button></div>`;
+}
+
+/* ───────── 화면: AI ───────── */
+function viewAI() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  const days = D.budget.days, max = Math.max(...days.map((d) => d.usd), 0.0001);
+  const total = days.reduce((a, d) => a + d.usd, 0);
+  const conn = D.providers.filter((p) => p.connected).length;
+  return `<h1 class="page">AI 통합</h1><p class="sub">${conn}/${D.providers.length}개 연결 · 무료 AI 먼저, 막히면 다음 AI로 자동 전환</p>
+  <div class="card"><div class="row"><div class="grow"><div class="m">최근 14일 AI 비용</div>
+    <div class="num" style="font-family:var(--display);font-size:22px;font-weight:800">${usd(total)}</div></div>
+    <span class="pill accent">오늘 ${usd(D.budget.today)}</span></div>
+    <div class="chart">${days.map((d) => `<div class="${d.usd ? "" : "zero"}" style="height:${Math.max(4, (d.usd / max) * 100)}%" title="${esc(d.d)} ${usd(d.usd)}"></div>`).join("")}</div>
+    <div class="axis"><span>${esc(days[0].d.slice(5))}</span><span>오늘</span></div></div>
+  <div class="section-title"><h2>연결된 AI</h2><button data-open="keys">키 넣는 법</button></div>
+  <div class="pgrid">${[...D.providers].sort((a, b) => b.connected - a.connected || b.free - a.free).map((p) => `
+    <div class="card prov tap" data-prov="${esc(p.id)}"><span class="dot ${p.connected ? "" : "off"}"></span>
+    <div class="grow"><div class="t">${esc(NAMES[p.id] || p.id)}</div><div class="m">${p.connected ? "연결됨" : "미연결"} · ${p.free ? "무료" : "유료"}</div></div></div>`).join("")}</div>
+  <div class="section-title"><h2>모델 성적표</h2><button data-open="arena">AI 대결</button></div>
+  ${D.models.length ? `<div class="card">${D.models.map((m) => `<div class="row"><div class="grow">
+      <div class="t">${esc(m.model)}</div><div class="bar ${m.dropped ? "bad" : ""}"><i style="width:${m.avg * 10}%"></i></div></div>
+      <div style="text-align:right"><b>${m.avg}</b><div class="m">${m.n}회</div></div>${m.dropped ? '<span class="pill bad">탈락</span>' : ""}</div>`).join("")}</div>`
+    : empty("🏆", "아직 평가 기록이 없어요", "AI 대결을 돌리면 같은 문제로 채점해 순위를 매겨요", { attr: 'data-open="arena"', label: "⚔️ AI 대결 시작" })}`;
+}
+
+/* ───────── 화면: 보고서 ───────── */
+function viewReports() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  return `<h1 class="page">보고서</h1><p class="sub">결과만 깔끔하게 — 매일 자동으로 쌓여요</p>
+  ${D.reports.length ? `<div class="card">${D.reports.map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행해 보세요", { attr: 'data-cmd="daily" data-label="일일 자동운영"', label: "⚙️ 지금 실행" })}`;
+}
+async function viewReport(file) {
+  const v = $("#view");
+  v.innerHTML = `<button class="back" data-go="#reports">‹ 보고서 목록</button><div class="skeleton"></div>`;
+  try { v.innerHTML = `<button class="back" data-go="#reports">‹ 보고서 목록</button><article class="card md view-enter">${md(await fetchText(file))}</article>`; }
+  catch { v.innerHTML += empty("😵", "보고서를 열 수 없어요", "잠시 후 다시 시도해 주세요"); }
+}
+
+/* ───────── 시트들 ───────── */
+const commandSheet = () => `<h3>⚡ 무엇을 할까요?</h3><p class="sub" style="margin:0">CEO AI가 팀에 나눠서 처리하고 결과만 보고해요</p>
+  <div class="field"><textarea id="goal" placeholder="예) 일본 BOOTH에서 팔 AI 프롬프트 템플릿 만들어줘"></textarea></div>
+  <div class="suggest">${["미국 쇼츠 바이럴 공식 분석", "스마트스토어용 상품 3개 기획", "깃허브에서 쓸만한 마케팅 스킬 찾아 장착", "이번 주 수익 개선 계획"].map((s) =>
+    `<button data-fill="${esc(s)}">${esc(s)}</button>`).join("")}</div>
+  <div style="margin-top:16px"><button class="btn" id="goBtn">🚀 실행</button></div>`;
+const scoutSheet = () => `<h3>🔎 사업 발굴</h3><p class="sub" style="margin:0">시장별로 30일 안에 첫 매출 가능한 사업을 찾아 채점해요</p>
+  <div class="quick" style="margin-top:14px">${(D.markets || ["KR", "US", "JP", "GLOBAL"]).map((m) =>
+    `<button class="qbtn" data-cmd="biz scout --market ${esc(m)}" data-label="${esc(m)} 사업 발굴"><span class="ico">${{ KR: "🇰🇷", US: "🇺🇸", JP: "🇯🇵" }[m] || "🌍"}</span>${esc(m)}</button>`).join("")}</div>`;
+const logSheet = (id) => `<h3>💵 매출 · 비용 기록</h3>
+  <div class="field"><label>사업</label><select id="lid">${D.ideas.filter((i) => i.status !== "killed").map((i) =>
+    `<option value="${esc(i.id)}" ${i.id === id ? "selected" : ""}>${esc(i.id)} · ${esc(i.title)}</option>`).join("") || "<option value=''>진행 중인 사업 없음</option>"}</select></div>
+  <div class="field"><label>종류</label><div class="seg" id="ltype"><button class="on" data-v="revenue">매출</button><button data-v="cost">비용</button></div></div>
+  <div class="field"><label>금액</label><div style="display:grid;grid-template-columns:1fr 100px;gap:8px">
+    <input id="lamt" type="number" inputmode="decimal" placeholder="30000"><select id="lcur"><option>KRW</option><option>USD</option><option>JPY</option><option>EUR</option></select></div></div>
+  <div class="field"><label>메모 (선택)</label><input id="lnote" placeholder="첫 판매"></div>
+  <div style="margin-top:16px"><button class="btn" id="logBtn">기록하기</button></div>`;
+const newAgentSheet = () => `<h3>＋ 새 팀 만들기</h3><p class="sub" style="margin:0">CEO AI가 역할에 맞게 프롬프트와 도구를 설계해요</p>
+  <div class="field"><label>팀 이름 (영문)</label><input id="aname" placeholder="tiktok_ops"></div>
+  <div class="field"><label>하는 일</label><textarea id="adesc" placeholder="틱톡 계정 운영: 트렌드 분석, 대본, 해시태그"></textarea></div>
+  <div style="margin-top:16px"><button class="btn" id="agentBtn">만들기</button></div>`;
+const arenaSheet = () => `<h3>⚔️ AI 대결</h3><p class="sub" style="margin:0">연결된 모든 AI에게 같은 문제를 내고 Claude가 이름을 가린 채 채점해요. 낮은 점수의 AI는 자동 탈락</p>
+  <div class="field"><textarea id="arenaTask" placeholder="예) 20대 대상 다이어트 쇼츠 훅 문장 5개"></textarea></div>
+  <div style="margin-top:16px"><button class="btn" id="arenaBtn">대결 시작</button></div>`;
+const keysSheet = () => `<h3>🔑 AI 키 넣는 법</h3>
+  <div class="note"><ol><li>아래 버튼으로 깃허브 Secrets 화면 열기</li><li>Name에 키 이름(예: <b>GEMINI_API_KEY</b>), Secret에 키 붙여넣기</li><li>저장 → 다음 실행부터 자동 연결</li></ol>
+  무료 추천: <b>GEMINI_API_KEY</b>(aistudio.google.com) · <b>GROQ_API_KEY</b>(console.groq.com)</div>
+  <div style="margin-top:14px"><a class="btn" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/settings/secrets/actions/new">깃허브 Secrets 열기</a></div>`;
+const noTokenSheet = (text) => `<h3>실행하려면 한 번만 연결해 주세요</h3>
+  <p class="note">명령 <b>“${esc(text)}”</b> 을(를) 복사했어요. 지금은 깃허브 앱에서 <b>Run workflow</b>를 눌러 실행할 수 있어요.</p>
+  <a class="btn" style="display:block;text-align:center;margin-top:12px" target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}/actions/workflows/mother.yml">깃허브에서 실행</a>
+  <button class="btn ghost" style="margin-top:8px" data-open="settings">⚙️ 앱에서 바로 실행하도록 연결</button>`;
+const settingsSheet = () => {
+  const th = store.get("theme", "auto");
+  return `<h3>⚙️ 설정</h3>
+  <div class="field"><label>화면 테마</label><div class="seg" id="theme">${[["auto", "자동"], ["dark", "다크"], ["light", "라이트"]].map(([v, l]) =>
+    `<button data-v="${v}" class="${th === v ? "on" : ""}">${l}</button>`).join("")}</div></div>
+  <div class="field"><label>깃허브 토큰 (앱에서 바로 실행용 · 이 휴대폰에만 저장)</label>
+    <input id="tok" type="password" autocomplete="off" placeholder="${token() ? "저장됨 ●●●●" : "github_pat_..."}"></div>
+  <div class="btns"><button class="btn" id="tokSave">저장 · 연결 확인</button><button class="btn ghost" id="tokDel">토큰 삭제</button></div>
+  <div class="note"><b>토큰 만들기(1분):</b><ol><li><a target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens/new">새 토큰 만들기</a> 열기</li>
+    <li>Repository access → <b>Only select</b> → <b>${esc(REPO.split("/")[1])}</b></li><li>Permissions → <b>Actions: Read and write</b></li><li>생성된 토큰을 위에 붙여넣기</li></ol></div>
+  <div class="note"><b>홈 화면에 앱으로 추가:</b> 아이폰은 Safari 공유 버튼 → 홈 화면에 추가 · 안드로이드는 Chrome 메뉴 → 앱 설치</div>
+  <div class="note">저장소: <a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}">${esc(REPO)}</a> · 데이터 ${ago(D && D.updated)}</div>`;
+};
+const provSheet = (id) => {
+  const p = D.providers.find((x) => x.id === id);
+  return `<h3>${esc(NAMES[id] || id)}</h3><div class="chips"><span class="pill ${p.connected ? "ok" : ""}">${p.connected ? "연결됨" : "미연결"}</span><span class="pill">${p.free ? "무료 등급" : "유료"}</span></div>
+  <p class="note">${esc(p.note)}</p>${p.connected ? "" : keysSheet().replace("<h3>🔑 AI 키 넣는 법</h3>", "")}`;
+};
+
+/* ───────── 라우터 & 이벤트 ───────── */
+function render() {
+  const hash = location.hash || "#home";
+  document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", hash.startsWith("#" + a.dataset.tab) || (hash.startsWith("#report=") && a.dataset.tab === "reports")));
+  if (!D) { $("#view").innerHTML = `<div class="skeleton"></div><div class="skeleton"></div>`; return; }
+  if (hash.startsWith("#report=")) return viewReport(decodeURIComponent(hash.slice(8)));
+  const v = { "#home": viewHome, "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
+  $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
+}
+const SHEETS = { scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+
+document.addEventListener("click", (e) => {
+  const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-filter],[data-fill],[data-prov],[data-close],[data-v]");
+  if (!el) return;
+  const ds = el.dataset;
+  if (ds.close !== undefined) return closeSheet();
+  if (ds.go) { closeSheet(); location.hash = ds.go; return; }
+  if (ds.cmd) return dispatch(ds.cmd, "", ds.label);
+  if (ds.open) { if (D && !D.empty) openSheet(SHEETS[ds.open](ds.id)); else if (ds.open === "settings") openSheet(settingsSheet()); return; }
+  if (ds.idea) return openSheet(ideaSheet(ds.idea));
+  if (ds.prov) return openSheet(provSheet(ds.prov));
+  if (ds.filter) { bizFilter = ds.filter; return render(); }
+  if (ds.fill) { $("#goal").value = ds.fill; return $("#goal").focus(); }
+  if (ds.v) {
+    el.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === el));
+    if (el.parentElement.id === "theme") { store.set("theme", ds.v === "auto" ? "" : ds.v); applyTheme(); }
+  }
+});
+document.addEventListener("click", async (e) => {
+  const id = e.target.id;
+  if (id === "goBtn") { const g = $("#goal").value.trim(); if (!g) return toast("할 일을 입력해 주세요"); dispatch("daily", g, "목표"); }
+  if (id === "arenaBtn") { const g = $("#arenaTask").value.trim(); if (!g) return toast("문제를 입력해 주세요");
+    dispatch(`ai arena ${q(g)}`, "", "AI 대결"); }
+  if (id === "logBtn") {
+    const iid = $("#lid").value, amt = parseFloat($("#lamt").value), cur = $("#lcur").value;
+    const type = $("#ltype .on").dataset.v, note = $("#lnote").value.trim().slice(0, 60);
+    if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
+    dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
+  }
+  if (id === "agentBtn") {
+    const n = $("#aname").value.trim().toLowerCase().replace(/[^a-z0-9_]/g, "_"), d = $("#adesc").value.trim();
+    if (!n || !d) return toast("이름과 하는 일을 입력해 주세요");
+    dispatch(`agent new ${n} ${q(d)}`, "", "새 팀 만들기");
+  }
+  if (id === "tokSave") {
+    const v = $("#tok").value.trim(); if (v) store.set("gh_token", v);
+    if (!token()) return toast("토큰을 붙여넣어 주세요");
+    try { await gh(`/repos/${REPO}/actions/workflows/mother.yml`); toast("✅ 연결 성공! 이제 앱에서 바로 실행돼요"); closeSheet(); }
+    catch (err) { toast("연결 실패: 권한(Actions 읽기/쓰기)과 저장소 선택을 확인해 주세요"); }
+  }
+  if (id === "tokDel") { store.set("gh_token", ""); toast("토큰을 삭제했어요"); closeSheet(); }
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
+$("#fab").onclick = () => openSheet(commandSheet());
+$("#settingsBtn").onclick = () => openSheet(settingsSheet());
+$("#refreshBtn").onclick = () => load();
+window.addEventListener("hashchange", () => { closeSheet(); window.scrollTo(0, 0); render(); });
+
+function applyTheme() {
+  const t = store.get("theme");
+  t ? document.documentElement.setAttribute("data-theme", t) : document.documentElement.removeAttribute("data-theme");
+}
+applyTheme();
+setInterval(() => { const c = $("#clock"); if (c) c.textContent = new Date().toTimeString().slice(0, 5); }, 15000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) load(true); });
+if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+render();
+load(true);
+if (token()) pollRun();
