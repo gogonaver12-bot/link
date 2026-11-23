@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:40:42+00:00",
+ "updated": "2026-11-23T14:42:48+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -615,27 +615,27 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T14:40+00:00"
+   "date": "2026-11-23T14:42+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T14:40+00:00"
+   "date": "2026-11-23T14:42+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T14:40+00:00"
+   "date": "2026-11-23T14:42+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T14:40+00:00"
+   "date": "2026-11-23T14:42+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T14:40+00:00"
+   "date": "2026-11-23T14:42+00:00"
   }
  ],
  "runs": [
@@ -879,10 +879,22 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-23T14:42:47+00:00",
+   "cmd": "export",
+   "ok": true,
+   "output": "앱 데이터 갱신: 사업 9 · 팀 8 · 보고서 5"
+  },
+  {
    "ts": "2026-11-23T14:40:40+00:00",
    "cmd": "biz approve I0009",
    "ok": true,
    "output": "I0009 진행 시작"
+  },
+  {
+   "ts": "2026-11-23T14:40:29+00:00",
+   "cmd": "biz approve I0006",
+   "ok": true,
+   "output": "I0006 진행 시작"
   },
   {
    "ts": "2026-11-23T12:43:14+00:00",
@@ -925,18 +937,6 @@
    "cmd": "biz review",
    "ok": true,
    "output": "I0001 WATCH ROI +0% 매출 $0 | \nI0003 WATCH ROI +0% 매출 $0 |"
-  },
-  {
-   "ts": "2026-11-23T11:03:01+00:00",
-   "cmd": "jobs",
-   "ok": true,
-   "output": "새 작업 없음"
-  },
-  {
-   "ts": "2026-11-23T11:02:57+00:00",
-   "cmd": "jobs",
-   "ok": true,
-   "output": "새 작업 없음"
   }
  ],
  "pipelines": [
@@ -994,5 +994,38 @@
    "ready": false,
    "need": "자동 등록 API 없음 → 업로드 키트 준비"
   }
- ]
+ ],
+ "progress": {
+  "steps": [
+   {
+    "name": "사업 발굴",
+    "n": 9,
+    "done": true
+   },
+   {
+    "name": "진행 승인",
+    "n": 6,
+    "done": true
+   },
+   {
+    "name": "상품·콘텐츠 제작",
+    "n": 4,
+    "done": true
+   },
+   {
+    "name": "업로드(공개)",
+    "n": 0,
+    "done": false
+   },
+   {
+    "name": "첫 매출",
+    "n": 0,
+    "done": false
+   }
+  ],
+  "blocker": "만든 건 있는데 아무 데도 안 올라가서 ROI 0%예요. 구글 1회 연결이 필요해요(크몽은 직접 올려야 함)",
+  "action": "google",
+  "shorts": 0,
+  "blog": 0
+ }
 }
