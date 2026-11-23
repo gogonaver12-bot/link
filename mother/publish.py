@@ -140,6 +140,8 @@ def blog(n=None):
             r = api.posts().insert(blogId=os.environ["BLOGGER_BLOG_ID"], isDraft=_cfg().get("blog_draft", False),
                                    body={"title": title, "content": md_to_html(body), "labels": ["AI", "부업"]}).execute()
             url = r.get("url")
+            if url:
+                done.setdefault("blog_posted", []).append({"date": store.today(), "title": title, "url": url})
         done["blog"].append(key)
         out.append(f"📝 {title} — " + (url or "글만 저장(구글 연결 시 자동 게시)") + f" · {used}")
     store.save_json("published.json", done)

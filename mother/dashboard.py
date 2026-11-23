@@ -16,6 +16,37 @@ def _report_list():
     return out
 
 
+def _progress(revenue):
+    """사업이 어디까지 왔고 어디서 막혔는지: 발굴 → 승인 → 상품 → 업로드 → 첫 매출."""
+    from .publish import google_ready
+    ideas = store.load_json("ideas.json", [])
+    pub = store.load_json("published.json", {})
+    up = store.ROOT / "shorts_factory" / "uploads.json"
+    shorts = len(json.loads(up.read_text(encoding="utf-8"))) if up.exists() else 0
+    blog = len(pub.get("blog_posted", []))
+    made = sum(1 for i in ideas if i.get("product"))
+    steps = [
+        {"name": "사업 발굴", "n": len(ideas), "done": bool(ideas)},
+        {"name": "진행 승인", "n": sum(i["status"] == "active" for i in ideas), "done": any(i["status"] == "active" for i in ideas)},
+        {"name": "상품·콘텐츠 제작", "n": made + len(pub.get("blog", [])), "done": made > 0},
+        {"name": "업로드(공개)", "n": shorts + blog, "done": shorts + blog > 0},
+        {"name": "첫 매출", "n": round(revenue, 2), "done": revenue > 0},
+    ]
+    if not ideas:
+        blocker, action = "아직 사업이 없어요", "scout"
+    elif not made:
+        blocker, action = "상품이 아직 없어요 — 내일 아침 자동 제작돼요", "make"
+    elif not google_ready() and shorts + blog == 0:
+        blocker, action = "만든 건 있는데 아무 데도 안 올라가서 ROI 0%예요. 구글 1회 연결이 필요해요(크몽은 직접 올려야 함)", "google"
+    elif shorts + blog == 0:
+        blocker, action = "업로드 대기 중 — 다음 자동 실행 때 올라가요", ""
+    elif revenue <= 0:
+        blocker, action = "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록", "log"
+    else:
+        blocker, action = "", ""
+    return {"steps": steps, "blocker": blocker, "action": action, "shorts": shorts, "blog": blog}
+
+
 def _pipes():
     from .pipelines import all_pipes
     return all_pipes()
@@ -122,6 +153,7 @@ def build():
         "pipelines": [{k: pp.get(k) for k in ("name", "title", "schedule", "enabled", "steps", "agents_created", "skills_equipped", "created")}
                       | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
         "channels": _channels(),
+        "progress": _progress(rev),
     }
     (store.DATA / "dashboard.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1), encoding="utf-8")
     return snap

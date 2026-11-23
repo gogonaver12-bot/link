@@ -183,6 +183,12 @@ function viewHome() {
       <div class="upd">예산 ${usd(b.daily)}/일 · 갱신 ${ago(D.updated)}</div>
     </div>
   </section>
+  ${D.progress ? `<div class="card" style="margin-top:10px"><div class="t">진행 단계</div>
+    <div class="steps">${D.progress.steps.map((st, k) => `<div class="step ${st.done ? "on" : ""}"><b>${st.done ? "✓" : k + 1}</b><span>${esc(st.name)}</span><small>${k === 4 ? usd(st.n) : st.n}</small></div>`).join("")}</div>
+    ${D.progress.blocker ? `<div class="note" style="color:var(--fg)">⛔ ${esc(D.progress.blocker)}</div>
+      ${{ google: '<button class="btn small" style="margin-top:8px" data-open="google">🔑 구글 연결 방법</button>',
+          scout: '<button class="btn small" style="margin-top:8px" data-open="scout">🔎 사업 발굴</button>',
+          log: '<button class="btn small" style="margin-top:8px" data-open="log">💵 매출 기록</button>' }[D.progress.action] || ""}` : ""}</div>` : ""}
   <div class="kpis">
     <div class="card kpi"><div class="lbl">💰 총매출</div><div class="num">${usd(money.revenue)}</div></div>
     <div class="card kpi"><div class="lbl">📈 순이익</div><div class="num ${money.profit >= 0 ? "pos" : "neg"}">${usd(money.profit)}</div></div>
