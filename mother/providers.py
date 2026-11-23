@@ -263,6 +263,38 @@ def _why(code, text):
     return f"⚠️ 오류 {code}: {text[:120]}"
 
 
+def google_probe():
+    """유튜브(구글) API 키로 실제로 무엇이 되는지 하나씩 시험 (읽기 위주, 업로드는 빈 요청으로 권한만 확인)."""
+    key = os.getenv("YOUTUBE_API_KEY")
+    if not key:
+        return []
+    tests = [
+        ("유튜브 조회(인기·검색)", "GET", "https://www.googleapis.com/youtube/v3/videos", {"part": "id", "chart": "mostPopular", "regionCode": "KR", "maxResults": 1}),
+        ("Gemini AI", "GET", "https://generativelanguage.googleapis.com/v1beta/models", {"pageSize": 1}),
+        ("블로그(Blogger) 읽기", "GET", "https://www.googleapis.com/blogger/v3/blogs/byurl", {"url": "https://blogger.googleblog.com/"}),
+        ("유튜브 업로드", "POST", "https://www.googleapis.com/upload/youtube/v3/videos", {"part": "snippet", "uploadType": "resumable"}),
+        ("블로그 글쓰기", "POST", "https://www.googleapis.com/blogger/v3/blogs/0/posts", {}),
+    ]
+    out = []
+    for name, method, url, params in tests:
+        try:
+            r = requests.request(method, url, params={**params, "key": key}, json={} if method == "POST" else None, timeout=20)
+            t = r.text.lower()
+            if r.ok:
+                out.append(f"  ✅ {name}: 가능")
+            elif "login required" in t or "unauthenticated" in t or "oauth" in t or "api keys are not supported" in t or r.status_code == 401:
+                out.append(f"  🔒 {name}: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요")
+            elif "has not been used" in t or "disabled" in t:
+                out.append(f"  ⬜ {name}: 프로젝트에서 이 API가 꺼져 있음 (콘솔에서 '사용' 누르면 가능)")
+            elif "blocked" in t or "not valid for this api" in t:
+                out.append(f"  ⬜ {name}: 키의 'API 제한사항'에 막혀 있음")
+            else:
+                out.append(f"  ⚠️ {name}: 오류 {r.status_code}")
+        except requests.RequestException as e:
+            out.append(f"  ⚠️ {name}: {type(e).__name__}")
+    return ["유튜브(구글) API 키로 되는 것:"] + out
+
+
 def check_all():
     """연결 점검: 키가 있는 AI마다 실제로 1번 호출해 상태를 한국어로 진단 (토큰 거의 0)."""
     out = []
@@ -294,6 +326,7 @@ def check_all():
             msg = "키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기" if "Invalid" in str(e) and "header" in str(e) \
                 else store.redact(str(e))[:120]
             out.append(f"{p}: ⚠️ {msg}")
+    out += google_probe()
     return out or ["연결된 AI 키가 없어요"]
 
 
