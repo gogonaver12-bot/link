@@ -57,8 +57,9 @@ th,td{border:1px solid var(--line);padding:6px;text-align:center}
 th{background:var(--bg);font-weight:600}
 td.l{text-align:left;white-space:nowrap}
 table.wk{min-width:560px}
-.cal td{height:64px;vertical-align:top;cursor:pointer}
-.cal .n{font-size:12px;color:var(--sub)}
+.cal{table-layout:fixed;min-width:330px}.cal th:first-child{width:46px}
+.cal td{height:60px;vertical-align:top;cursor:pointer;overflow:hidden}
+.cal .n{font-size:11px;color:var(--sub)}
 .st-ok{background:color-mix(in srgb,var(--ok) 22%,transparent)}
 .st-part{background:color-mix(in srgb,var(--part) 22%,transparent)}
 .st-rest{color:var(--sub)}
@@ -79,6 +80,7 @@ figure img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;displa
 #toast.on{opacity:1}
 #timer{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;display:flex;gap:6px;align-items:center;background:var(--fg);color:var(--bg);padding:6px 8px 6px 16px;border-radius:999px;z-index:8;box-shadow:0 4px 16px #0004}
 #timer[hidden]{display:none}
+#timer,#timer *{white-space:nowrap}
 #timer b{font-size:20px;font-variant-numeric:tabular-nums;min-width:52px}
 #timer button{background:transparent;color:inherit;border-color:color-mix(in srgb,var(--bg) 35%,transparent);padding:4px 8px}
 .share .edit{display:none!important}
@@ -98,7 +100,7 @@ th,td{padding:4px 3px;font-size:13px}
 </head>
 <body>
 <div class="wrap" id="app">불러오는 중…</div>
-<div id="timer" hidden role="timer" aria-live="polite"><span>휴식</span><b>1:30</b><button data-act="tm" data-n="-15">-15</button><button data-act="tm" data-n="15">+15</button><button data-act="tm" data-n="0">건너뛰기</button></div>
+<div id="timer" hidden role="timer" aria-live="polite"><span>휴식</span><b>1:30</b><button data-act="tm" data-n="-15">-15</button><button data-act="tm" data-n="15">+15</button><button data-act="tm" data-n="0" aria-label="휴식 건너뛰기">⏭</button></div>
 <div id="toast" role="status"></div>
 <input type="file" id="file" accept=".json" hidden>
 <datalist id="lib"></datalist>
@@ -189,7 +191,7 @@ function mergeLog(s){try{const p=dec(s),m=D.members.find(x=>x.id===p.id);if(!m)r
 function render(){
   const m=M();
   let h=`<header><h1>${SHARE?esc(m.name)+'님 운동 루틴':'회원 운동·식단 관리'}</h1>`;
-  if(!SHARE)h+=`<button data-act="home" class="${tab==='home'?'pri':''}">👥 현황</button><select id="msel" aria-label="회원 선택">${D.members.map(x=>`<option value="${esc(x.id)}"${x.id===m?.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select><button data-act="addM">+ 회원</button><button data-act="share">공유</button><button data-act="more">파일</button>`;
+  if(!SHARE)h+=`<button data-act="home" class="${tab==='home'?'pri':''}">👥 현황</button><select id="msel" aria-label="회원 선택">${D.members.map(x=>`<option value="${esc(x.id)}"${x.id===m?.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select><button data-act="addM" aria-label="회원 추가">＋</button><button data-act="share">공유</button><button data-act="more" aria-label="파일·깃허브">⋯</button>`;
   else h+=`<button class="pri" data-act="sendlog">📤 기록 보내기</button>`;
   h+=`</header>`;
   if(SHARE)h+=`<div class="banner">트레이너가 보낸 루틴이에요. 세트·식단·습관을 체크하면 이 기기에 저장되고, <b>📤 기록 보내기</b>로 트레이너에게 전달돼요.</div>`;
@@ -280,8 +282,8 @@ function vSheet(m){
   let hb=0,ht=0;wk.forEach(w0=>{for(let i=0;i<7;i++){const d=add(w0,i);if(d<=TODAY){ht+=m.habits.length;hb+=(m.log[d]?.hab||[]).length}}});
   let h=`<div class="card"><div class="row"><h3 style="margin:0">${esc(m.name)} · 개인 운동 계획 관리표</h3><span class="noprint" style="margin-left:auto"><button data-act="day" data-n="-7" aria-label="이전 주">◀</button> <button data-act="day" data-n="7" aria-label="다음 주">▶</button> <button data-act="print">🖨 인쇄/PDF</button></span></div>
   <p class="sub">목표 ${esc(m.goal)} · ${esc(m.level)} · 시작 ${esc(m.start)} · 체중 ${m.weight??'-'} → <b>${last??'-'}</b> (목표 ${m.targetWeight??'-'}kg) · 4주 운동 달성 <b>${r}%</b> · 습관 <b>${ht?Math.round(hb/ht*100):0}%</b></p>
-  <div class="tw"><table class="cal"><tr><th>주</th>${WEEK.map(w=>`<th>${w}</th>`).join('')}</tr>${wk.map(w0=>`<tr><th>${md(w0)}~</th>${WEEK.map((_,i)=>{const d=add(w0,i),s=stat(m,d),c=!s.t?'st-rest':s.d===s.t?'st-ok':s.d?'st-part':'',wt=m.log[d]?.weight;return `<td class="${c}${d===TODAY?' today':''}" data-act="goDay" data-d="${d}"><div class="n">${md(d)}</div>${s.t?s.d+'/'+s.t:'휴식'}${wt?`<div class="n">${wt}kg</div>`:''}</td>`}).join('')}</tr>`).join('')}</table></div>
-  <p class="sub">초록=완료 · 노랑=일부 · 칸을 누르면 그날로 이동</p></div>
+  <div class="tw"><table class="cal"><tr><th>주</th>${WEEK.map(w=>`<th>${w}</th>`).join('')}</tr>${wk.map(w0=>`<tr><th>${md(w0)}~</th>${WEEK.map((_,i)=>{const d=add(w0,i),s=stat(m,d),c=!s.t?'st-rest':s.d===s.t?'st-ok':s.d?'st-part':'',wt=m.log[d]?.weight;return `<td class="${c}${d===TODAY?' today':''}" data-act="goDay" data-d="${d}"><div class="n">${md(d)}</div>${s.t?s.d+'/'+s.t:'휴식'}${wt?`<div class="n">${wt}</div>`:''}</td>`}).join('')}</tr>`).join('')}</table></div>
+  <p class="sub">초록=완료 · 노랑=일부 · 작은 숫자=체중(kg) · 칸을 누르면 그날로 이동</p></div>
   <div class="card"><h3>요일별 운동 체크표 (최근 4주)</h3><div class="tw"><table class="wk"><tr><th>요일</th><th>운동</th><th>세트×횟수</th><th>중량</th>${wk.map(w=>`<th>${md(w)}주</th>`).join('')}</tr>`;
   WEEK.forEach((w,wi)=>{const ex=m.routine[w];ex.forEach((e,i)=>{h+=`<tr>${i?'':`<th rowspan="${ex.length}">${w}</th>`}<td class="l">${esc(e.name)}</td><td>${e.sets}×${esc(e.reps)}</td><td>${+e.kg?e.kg+'kg':'-'}</td>${wk.map(w0=>{const d=add(w0,wi);return `<td class="ck" data-act="ck" data-d="${d}" data-name="${esc(e.name)}">${isDone(m,d,e)?'✅':d>TODAY?'':'⬜'}</td>`}).join('')}</tr>`})});
   const k=SLOTS.flatMap(s=>m.meals[s]).reduce((a,f)=>a+(+f.kcal||0),0);
