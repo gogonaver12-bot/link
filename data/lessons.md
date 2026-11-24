@@ -9,3 +9,4 @@
 - 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내 극심한 경쟁으로 인한 저단가 치킨게임, API 크레딧 부족 등 운영 비용 변동성 및 기술적 제약
 - 2026-11-23 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터(AI 개발자 및 에이전트 빌더): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%); 위험: Frequent API quota limits and service outages (Gemini 503/429, Groq 400/429), High dependency on third‑party LLM providers whose pricing can change abruptly
 - 2026-11-24 무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS(AI 개발자 및 에이전시): 시뮬레이션 탈락 — 흑자 확률 9% · 90일 ROI 중앙값 -60% (기준 40%·+30%); 위험: LiteLLM 등 오픈소스 대안과의 무료 경쟁 심화, API Key 위탁에 따른 보안 및 신뢰성 이슈
+- 2026-11-24 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 자동 폴백(Fallback) 미들웨어 서비스(개발자 및 AI SaaS 운영 기업): 시뮬레이션 탈락 — 흑자 확률 36% · 90일 ROI 중앙값 -47% (기준 40%·+30%); 위험: 강력한 오픈소스 대안(LiteLLM 등) 존재로 인한 낮은 유료 구독 전환율, Ollama 자체 호스팅 시 레이턴시 및 안정성 한계로 인한 고객 이탈

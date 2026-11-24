@@ -6,8 +6,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "구글 트렌드 US",
@@ -16,8 +16,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "구글 트렌드 JP",
@@ -26,8 +26,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "Hacker News",
@@ -36,8 +36,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "Product Hunt",
@@ -46,8 +46,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "Anthropic SDK 릴리스",
@@ -56,8 +56,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "Google GenAI SDK 릴리스",
@@ -66,8 +66,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "Ollama 릴리스",
@@ -76,8 +76,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "GitHub 변경 로그",
@@ -86,8 +86,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "플래텀",
@@ -96,8 +96,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "벤처스퀘어",
@@ -106,8 +106,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "전자신문",
@@ -116,8 +116,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-23"
+    "ok": 3,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "TechCrunch",
@@ -126,8 +126,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
-    "last_ok": "2026-11-23"
+    "ok": 2,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "The Verge",
@@ -136,8 +136,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 1,
-    "last_ok": "2026-11-23"
+    "ok": 2,
+    "last_ok": "2026-11-24"
   },
   {
     "name": "ITmedia",
@@ -146,7 +146,37 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
+    "ok": 2,
+    "last_ok": "2026-11-24"
+  },
+  {
+    "name": "GIGAZINE",
+    "url": "https://gigazine.net/news/rss_2.0/",
+    "category": "tech",
+    "origin": "후보목록",
+    "added": "2026-11-24",
+    "fails": 0,
     "ok": 1,
-    "last_ok": "2026-11-23"
+    "last_ok": "2026-11-24"
+  },
+  {
+    "name": "GitHub 트렌딩",
+    "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
+    "category": "ai",
+    "origin": "후보목록",
+    "added": "2026-11-24",
+    "fails": 0,
+    "ok": 1,
+    "last_ok": "2026-11-24"
+  },
+  {
+    "name": "Hugging Face 블로그",
+    "url": "https://huggingface.co/blog/feed.xml",
+    "category": "ai",
+    "origin": "후보목록",
+    "added": "2026-11-24",
+    "fails": 0,
+    "ok": 1,
+    "last_ok": "2026-11-24"
   }
 ]
