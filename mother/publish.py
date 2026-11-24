@@ -62,9 +62,16 @@ def shorts(n=None, private=False):
             continue
         meta = json.loads(s.read_text(encoding="utf-8"))
         score = (hook_score(meta.get("hook", "")) or {}).get("verdict", 0)
-        if score < _cfg().get("min_hook_score", 50):  # 약한 훅은 올리지 않음(품질 관리)
-            log.append(f"{s.name}: 훅 {score}점 → 보류")
-            continue
+        need = _cfg().get("min_hook_score", 50)
+        if score < need:  # 약한 훅 → AI가 채점 피드백대로 다시 써서 기준을 넘기면 진행
+            new, new_score = improve_hook(meta, need)
+            if new_score >= need:
+                log.append(f"{s.name}: 훅 {score}→{new_score}점으로 개선")
+                meta["hook"], score = new, new_score
+                s.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+            else:
+                log.append(f"{s.name}: 훅 {score}점(개선 후 최고 {new_score}점) → 보류")
+                continue
         log.append(_py("make_short.py", str(s)))
         mp4 = SHORTS / "out" / f"{s.stem}.mp4"
         if mp4.exists() and google_ready():
@@ -77,6 +84,31 @@ def shorts(n=None, private=False):
         if made >= n:
             break
     return "\n".join(x for x in log if x)
+
+
+def improve_hook(meta, need=50, rounds=3):
+    """채점기(skillscore)의 약점·고칠 점을 AI에게 주고 훅 후보를 받아 0토큰 채점 → 최고점 선택."""
+    from .skillscore import hook_score
+    best, best_score = meta.get("hook", ""), (hook_score(meta.get("hook", "")) or {}).get("verdict", 0)
+    for _ in range(rounds):
+        h = hook_score(best) or {}
+        prompt = (f"숏츠 주제: {meta.get('title')}\n본문: {' / '.join(meta.get('lines', [])[:4])}\n"
+                  f"현재 첫 문장: {best} (점수 {h.get('verdict')}, 약점: {h.get('weakest')} → {h.get('fix')})\n\n"
+                  "3초 안에 끝나는 첫 문장 후보 6개를 한 줄에 하나씩만 써라. 조건: 6~18어절, 구체적 숫자 1개 이상, "
+                  "시청자에게 직접 말 걸기(여러분/~하시나요), 모르면 잃는 것(손해), 왜/어떻게 궁금증, 물음표로 끝. "
+                  "과장·허위 금지, 내용과 맞게.")
+        try:
+            text, _ = providers.complete(prompt, system="숏츠 훅 카피라이터. 후보만 출력.", agent="hook_writer")
+        except Exception:
+            break
+        for line in text.splitlines():
+            cand = re.sub(r"^[\s\d.\-•*)]+", "", line).strip().strip('"')
+            sc = (hook_score(cand) or {}).get("verdict", 0) if cand else 0
+            if sc > best_score:
+                best, best_score = cand, sc
+        if best_score >= need:
+            break
+    return best, best_score
 
 
 # ───────────────────────── 블로그 ─────────────────────────
