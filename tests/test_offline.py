@@ -433,3 +433,28 @@ def test_weak_hook_is_rewritten_until_it_passes(monkeypatch):
     monkeypatch.setattr(providers, "complete", lambda *a, **k: (f"1. 그냥 잠 얘기\n2. {good}", "groq:g"))
     new, sc = publish.improve_hook({"title": "잠", "hook": "잠 얘기", "lines": ["a"]}, need=50)
     assert new == good and sc >= 50
+
+
+def test_benchmark_collects_recent_viral_shorts(monkeypatch):
+    from mother import benchmark
+    monkeypatch.setenv("YOUTUBE_API_KEY", "k")
+    now = store.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    class R:
+        def __init__(self, d): self.d = d
+        def json(self): return self.d
+
+    def fake_get(url, timeout=20, params=None):
+        if url.endswith("search"):
+            return R({"items": [{"id": {"videoId": "a"}}, {"id": {"videoId": "b"}}]})
+        return R({"items": [
+            {"id": "a", "snippet": {"title": "AI 고양이 이야기", "channelTitle": "c", "publishedAt": now, "tags": ["ai"]},
+             "statistics": {"viewCount": "900000"}, "contentDetails": {"duration": "PT45S"}},
+            {"id": "b", "snippet": {"title": "긴 영상", "channelTitle": "c", "publishedAt": now},
+             "statistics": {"viewCount": "5"}, "contentDetails": {"duration": "PT10M"}}]})
+
+    monkeypatch.setattr(benchmark.requests, "get", fake_get)
+    monkeypatch.setattr(benchmark.time, "sleep", lambda s: None)
+    d = benchmark.refresh()
+    assert [r["id"] for r in d["top"]] == ["a"] and d["top"][0]["seconds"] == 45  # 70초 넘는 영상 제외
+    assert "AI 고양이 이야기" in benchmark.brief()
