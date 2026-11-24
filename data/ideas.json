@@ -846,89 +846,88 @@
     "killed_by": "생존 테스트"
   },
   {
-    "title": "무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스",
-    "market": "개발자 및 소규모 AI 서비스 운영자 시장",
-    "platform": "Web / SaaS",
-    "model": "구독 및 사용량 기반 과금(API 크레딧)",
-    "first_step": "GitHub에서 무료 오픈소스 LLM(Llama-3, Mistral 등) API를 연동하는 파이썬 라우팅 스크립트 작성",
-    "evidence": "상용 LLM API(Anthropic, OpenAI)의 크레딧 고갈 및 키 오류 문제로 인해 개발자들이 대체재와 자동 폴백(Fallback) 시스템에 대한 수요가 급증함.",
+    "title": "오픈소스 LLM 기반 멀티 AI 자동 전환 프록시 API",
+    "market": "AI 개발자 및 소규모 SaaS 운영자",
+    "platform": "Web / GitHub / RapidAPI",
+    "model": "구독 및 사용량 기반 과금(Pay-as-you-go)",
+    "first_step": "Groq, Ollama, HuggingFace 등 무료/저가 AI API를 연동하여 Claude 키 오류 시 자동 우회하는 Python 기반 미니 프록시 오픈소스 PoC 작성",
+    "evidence": "Claude 및 OpenAI의 크레딧 부족 및 키 에러 이슈가 빈번하며, 개발자들이 API 안정성 확보를 위한 폴백(Fallback) 솔루션 수요가 급증함",
     "scores": {
       "demand": 85,
       "low_competition": 70,
       "low_cost": 90,
-      "speed_to_revenue": 75,
+      "speed_to_revenue": 80,
       "scalability": 85,
       "low_risk": 80
     },
     "id": "I0011",
-    "score": 81.0,
-    "status": "killed",
+    "score": 82.0,
+    "status": "active",
     "created": "2026-11-24",
     "viability": {
       "date": "2026-11-24",
-      "pass": false,
-      "why": "흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)",
+      "pass": true,
+      "why": "흑자 확률 59% · 90일 ROI 중앙값 +76% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
-        "p_profit": 0.0,
-        "roi_p10": -1.0,
-        "roi_p50": -1.0,
-        "roi_p90": -0.98,
-        "rev30_p50": 10.0,
-        "rev_p10": 15.0,
-        "rev_p50": 85.1,
-        "rev_p90": 335.3,
-        "breakeven_p50": 91
+        "p_profit": 0.589,
+        "roi_p10": -0.97,
+        "roi_p50": 0.76,
+        "roi_p90": 3.88,
+        "rev30_p50": 539.1,
+        "rev_p10": 49.0,
+        "rev_p50": 4803.0,
+        "rev_p90": 354611.9,
+        "breakeven_p50": 57
       },
       "params": {
-        "price_usd": 5.005,
-        "conv_rate_pct": 0.75,
-        "visitors_low": 75.0,
-        "visitors_high": 300.0,
-        "ramp_days": 135.0,
-        "setup_cost_usd": 15050.0,
-        "unit_cost_pct": 17.5,
-        "monthly_cost_usd": 1025.0,
+        "price_usd": 24.505,
+        "conv_rate_pct": 1.0,
+        "visitors_low": 515.0,
+        "visitors_high": 2575.0,
+        "ramp_days": 112.5,
+        "setup_cost_usd": 1100.0,
+        "unit_cost_pct": 20.0,
+        "monthly_cost_usd": 225.0,
         "competition": "high",
         "risks": [
-          "Free tier rate limit errors (HTTP 429) causing unstable multi-model failover",
-          "High infrastructure and proxy latency overhead",
-          "Intense competition from established API gateways and aggregators",
-          "Upstream model rate‑limits cause service interruptions (e.g., Gemini, Groq errors reported)",
-          "High cloud compute cost if traffic spikes",
-          "Developer community may prefer established providers (OpenAI, Anthropic)"
+          "무료 오픈소스 호스팅(LiteLLM 등 직접 구축)으로 인한 낮은 유료 전환율",
+          "대형 LLM 게이트웨이 및 클라우드 제공사의 유사 기능 기본 탑재",
+          "API 중개 마진의 한계로 인한 소규모 고객의 이탈 가능성",
+          "Free self‑hosted alternatives reduce willingness to pay",
+          "Low conversion from developer traffic",
+          "High operational cost for scaling compute"
         ],
         "evidence": [
-          "gemini: gemini-flash-lite-latest 429 quota exceeded error logs",
-          "groq: openai/gpt-oss-120b and qwen/qwen3.8-27b rate limit reached error logs",
-          "https://cloud.google.com/vertex-ai/docs/general/quotas – Gemini quota limits (429 errors)",
-          "https://groq.com/docs/usage‑limits – Groq rate‑limit documentation (429 errors)",
-          "https://openai.com/pricing – OpenAI API pricing used as benchmark for per‑thousand‑request pricing",
-          "https://aws.amazon.com/ec2/pricing/ – Cloud compute pricing supporting $2k/mo estimate for modest GPU fleet"
+          "LiteLLM Enterprise 연간 $5,000~$20,000 및 Portkey/Langfuse 월 $50~ 사용량 기반 과금 (https://github.com/BerriAI/litellm)",
+          "GitHub 스타 1.5만 개 이상을 기록하며 API 키 관리 및 로드밸런싱 수요 확인 (https://github.com/BerriAI/litellm)",
+          "LiteLLM Enterprise pricing $5,000–$20,000 per year (https://github.com/BerriAI/litellm)",
+          "Portkey/​Langfuse usage‑based plans start at $50/month (https://www.portkey.ai/pricing)",
+          "LiteLLM GitHub stars >15k indicating strong developer interest (https://github.com/BerriAI/litellm)"
         ],
-        "disagreement": 0.41
+        "disagreement": 2.84
       },
-      "evidence": "[실패] gemini: gemini-flash-lite-latest 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please c / gemini: gemini-omni-1.2-flash 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please chec / groq: openai/gpt-oss-120b 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01 / groq: qwen/qwen3.8-27b 429: {\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m444h7",
+      "evidence": "* **경쟁 상품 가격대**: 주요 오픈소스 프록시인 LiteLLM Enterprise는 연간 $5,000~$20,000 수준의 티어형 라이선스를 부과하며, Portkey나 Langfuse 등 SaaS 게이트웨이는 월 $50~선부터 사용량 기반 과금(Pay-as-you-go)을 적용함 ([LiteLLM](https://github.com/BerriAI/litellm)).\n* **시장 수요 (검색/커뮤니티)**: GitHub 스타 수 기준 LiteLLM이 1.5만 개 이상을 기록하며 API 키 관리, 로드밸런싱, 장애 조치(Failover) 기능에 대한 개발자 수요가 매우 높음 ([GitHub LiteLLM](https://github.com/BerriAI/litellm)).\n* **수익화 실패 사례 및 리스크**: 자체 프록시 서버 구축의 간편함(무료 오픈소스 직접 호스팅 선호)으로 인해 소규모 SaaS 운영자들이 단순 API 중개 마진 모델에 유료 구독을 꺼리는 경향이 큼.\n* **결론 (수익 가능성)**: 단순 프록시 기능만으로는 마진 확보가 어려우며, 기업용 거버넌스(보안·감사 로깅·비용 할당)를 결합한 B2B SaaS 형태로 전환해야 유의미한 수익 창출이 가능함.",
       "estimates": [
         {
           "model": "gemini:gemini-flash-lite-latest",
           "role": "중립 심사역",
-          "price_usd": 10.0,
-          "conv_rate_pct": 1.0,
-          "visitors_low": 50.0,
-          "visitors_high": 200.0
+          "price_usd": 49.0,
+          "conv_rate_pct": 1.5,
+          "visitors_low": 30,
+          "visitors_high": 150
         },
         {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
           "price_usd": 0.01,
           "conv_rate_pct": 0.5,
-          "visitors_low": 100,
-          "visitors_high": 400
+          "visitors_low": 1000,
+          "visitors_high": 5000
         }
       ]
     },
-    "killed_by": "생존 테스트"
+    "started": "2026-11-24"
   }
 ]

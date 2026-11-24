@@ -176,3 +176,10 @@
 {"ts": "2026-11-24T05:27:22+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 2536, "out": 97, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-24T05:27:31+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 700, "out": 205, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-24T05:27:33+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 765, "out": 802, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:26:57+00:00", "agent": "idea_scorer", "model": "gemini:gemini-flash-lite-latest", "in": 421, "out": 217, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:05+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 611, "out": 35, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:12+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 682, "out": 35, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:27+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 753, "out": 26, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:35+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 806, "out": 310, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:44+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 805, "out": 303, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:47+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 904, "out": 1075, "cache_read": 0, "usd": 0.0}
