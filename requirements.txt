@@ -6,3 +6,4 @@ fpdf2>=2.8
 google-api-python-client>=2.100
 google-auth>=2.20
 edge-tts>=6.1
+google-auth-oauthlib>=1.2
