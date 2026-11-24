@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T05:27:16+00:00",
+ "updated": "2026-11-24T05:27:37+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -873,73 +873,81 @@
   },
   {
    "id": "I0011",
-   "title": "무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스",
-   "market": "개발자 및 AI SaaS 운영 1인 창업가",
-   "platform": "Web / GitHub",
-   "model": "구독",
-   "first_step": "Ollama와 Hugging Face 무료 모델을 연동하는 기본 API 프록시 서버 Node.js 코드 작성",
-   "evidence": "상용 LLM 크레딧 고갈 리스크를 회피하려는 개발자들의 오픈소스 및 무료 모델 폴백(Fallback) 수요 증가",
+   "title": "무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스",
+   "market": "개발자 및 소규모 AI 서비스 운영자 시장",
+   "platform": "Web / SaaS",
+   "model": "구독 및 사용량 기반 과금(API 크레딧)",
+   "first_step": "GitHub에서 무료 오픈소스 LLM(Llama-3, Mistral 등) API를 연동하는 파이썬 라우팅 스크립트 작성",
+   "evidence": "상용 LLM API(Anthropic, OpenAI)의 크레딧 고갈 및 키 오류 문제로 인해 개발자들이 대체재와 자동 폴백(Fallback) 시스템에 대한 수요가 급증함.",
    "scores": {
     "demand": 85,
     "low_competition": 70,
-    "low_cost": 95,
-    "speed_to_revenue": 60,
-    "scalability": 80,
-    "low_risk": 85
+    "low_cost": 90,
+    "speed_to_revenue": 75,
+    "scalability": 85,
+    "low_risk": 80
    },
-   "score": 78.5,
-   "status": "active",
+   "score": 81.0,
+   "status": "killed",
    "created": "2026-11-24",
-   "started": "2026-11-24",
+   "started": null,
    "last_review": null,
    "product": null,
-   "killed_by": null,
+   "killed_by": "생존 테스트",
    "viability": {
     "date": "2026-11-24",
-    "pass": true,
-    "why": "흑자 확률 100% · 90일 ROI 중앙값 +726% (기준 40%·+30%)",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
-     "p_profit": 1.0,
-     "roi_p10": 5.42,
-     "roi_p50": 7.26,
-     "roi_p90": 8.23,
-     "rev30_p50": 2000.0,
-     "rev_p10": 7000.0,
-     "rev_p50": 18500.0,
-     "rev_p90": 46500.0,
-     "breakeven_p50": 12
+     "p_profit": 0.0,
+     "roi_p10": -1.0,
+     "roi_p50": -1.0,
+     "roi_p90": -0.98,
+     "rev30_p50": 10.0,
+     "rev_p10": 15.0,
+     "rev_p50": 85.1,
+     "rev_p90": 335.3,
+     "breakeven_p50": 91
     },
     "estimates": [
      {
       "model": "gemini:gemini-flash-lite-latest",
       "role": "중립 심사역",
-      "price_usd": 500,
-      "conv_rate_pct": 2.5,
-      "visitors_low": 50,
-      "visitors_high": 150
+      "price_usd": 10.0,
+      "conv_rate_pct": 1.0,
+      "visitors_low": 50.0,
+      "visitors_high": 200.0
+     },
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 0.01,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 100,
+      "visitors_high": 400
      }
     ],
     "risks": [
-     "LiteLLM 및 OpenRouter 등 기존 강력한 오픈소스/유료 대안 존재로 인한 고객 획득 비용 상승",
-     "API 버전 호환성 문제 및 Rate-limit 버그로 인한 서비스 중단 리스크",
-     "기업 고객 유치 전 초기 신뢰 확보의 어려움"
+     "Free tier rate limit errors (HTTP 429) causing unstable multi-model failover",
+     "High infrastructure and proxy latency overhead",
+     "Intense competition from established API gateways and aggregators",
+     "Upstream model rate‑limits cause service interruptions (e.g., Gemini, Groq errors reported)",
+     "High cloud compute cost if traffic spikes",
+     "Developer community may prefer established providers (OpenAI, Anthropic)"
     ],
     "evidence": [
-     "LiteLLM SaaS Enterprise 약 $500/mo 추정 (https://litellm.ai)",
-     "OpenRouter Pay-as-you-go $0.50 / 1k tokens (https://openrouter.ai/pricing)",
-     "주요 키워드 월간 검색량 평균 300~2,100건 (구글 키워드 분석 기준)"
+     "gemini: gemini-flash-lite-latest 429 quota exceeded error logs",
+     "groq: openai/gpt-oss-120b and qwen/qwen3.8-27b rate limit reached error logs",
+     "https://cloud.google.com/vertex-ai/docs/general/quotas – Gemini quota limits (429 errors)",
+     "https://groq.com/docs/usage‑limits – Groq rate‑limit documentation (429 errors)",
+     "https://openai.com/pricing – OpenAI API pricing used as benchmark for per‑thousand‑request pricing",
+     "https://aws.amazon.com/ec2/pricing/ – Cloud compute pricing supporting $2k/mo estimate for modest GPU fleet"
     ],
-    "disagreement": 0.0
+    "disagreement": 0.41
    },
-   "metrics": {
-    "revenue": 0,
-    "cost": 0,
-    "profit": 0,
-    "roi": 0.0,
-    "age": 0
-   }
+   "metrics": null
   }
  ],
  "team": [
@@ -1223,13 +1231,13 @@
  ],
  "runs": [
   {
-   "ts": "2026-11-24T05:27:07+00:00",
+   "ts": "2026-11-24T05:27:23+00:00",
    "agent": "researcher",
-   "model": "groq:openai/gpt-oss-120b",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스 (개발자 및 AI SaaS 운영 1인 창업가/Web / GitHub, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스 (개발자 및 소규모 AI 서비스 운영자 시장/Web / SaaS, 구독 및 사용량 기반 과금(API 크레딧))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   },
   {
-   "ts": "2026-11-24T05:26:40+00:00",
+   "ts": "2026-11-24T05:26:51+00:00",
    "agent": "researcher",
    "model": null,
    "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 4"
@@ -1486,10 +1494,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-24T05:27:15+00:00",
+   "ts": "2026-11-24T05:27:35+00:00",
    "cmd": "biz scout --market US",
    "ok": true,
-   "output": "I0011 78.5점 [active] 개발자 및 AI SaaS 운영 1인 창업가/Web / GitHub 무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스\n   → Ollama와 Hugging Face 무료 모델을 연동하는 기본 API 프록시 서버 Node.js 코드 작성"
+   "output": "I0011 81.0점 [killed] 개발자 및 소규모 AI 서비스 운영자 시장/Web / SaaS 무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스\n   → GitHub에서 무료 오픈소스 LLM(Llama-3, Mistral 등) API를 연동하는 파이썬 라우팅 스크립트 작성"
   },
   {
    "ts": "2026-11-23T17:20:29+00:00",

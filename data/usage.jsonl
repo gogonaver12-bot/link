@@ -166,3 +166,13 @@
 {"ts": "2026-11-24T05:27:01+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 868, "out": 119, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-24T05:27:07+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 2847, "out": 2221, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-24T05:27:14+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 2550, "out": 291, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:04+00:00", "agent": "idea_scorer", "model": "gemini:gemini-flash-lite-latest", "in": 421, "out": 252, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:11+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 648, "out": 35, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:17+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 719, "out": 35, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:19+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 653, "out": 269, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:19+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 711, "out": 92, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:20+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 894, "out": 183, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:21+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1164, "out": 74, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:22+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 2536, "out": 97, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:31+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 700, "out": 205, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-24T05:27:33+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 765, "out": 802, "cache_read": 0, "usd": 0.0}
