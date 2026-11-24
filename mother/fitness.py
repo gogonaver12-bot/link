@@ -34,6 +34,8 @@ def validate(data):
                     errs.append(f"{who}/{d}: 운동 이름·세트 확인 필요 {e}")
         if any(p.get("img") for p in m.get("photos") or []):
             errs.append(f"{who}: 사진은 저장소에 올리지 마세요(개인정보) — 앱의 '내보내기'는 자동 제외")
+        if m.get("pass") and not isinstance(m["pass"].get("total"), int):
+            errs.append(f"{who}: PT 이용권 총 횟수는 숫자여야 해요")
         for s in m.get("schedule") or []:
             if len(str(s.get("date", ""))) != 10:
                 errs.append(f"{who}: 일정 날짜 형식(YYYY-MM-DD) 오류 {s}")
@@ -67,6 +69,9 @@ def render_md(m):
         "| 요일 | 운동 | 세트×횟수 | 중량 | 1주 | 2주 | 3주 | 4주 |",
         "|---|---|---|---|---|---|---|---|",
     ]
+    pas = m.get("pass") or {}
+    if pas.get("total"):
+        out.insert(5, f"- PT 이용권: 총 {pas['total']}회 · 사용 {m.get('passUsed', 0)}회 · 만료 {pas.get('expiry', '-')}")
     for d in WEEK:
         exs = r.get(d, [])
         if not exs:
