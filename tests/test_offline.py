@@ -424,3 +424,11 @@ def test_secrets_never_written_to_logs(monkeypatch):
     store.append_jsonl("commands.jsonl", {"output": "Invalid header value: 'Bearer google-genai AQ.Ab8RNsecretvalue123'"})
     raw = (store.DATA / "commands.jsonl").read_text(encoding="utf-8")
     assert "Ab8RNsecret" not in raw and "AIza" not in store.redact("key=AIzaSyA1234567890abcdefghijklmnop")
+
+
+def test_weak_hook_is_rewritten_until_it_passes(monkeypatch):
+    from mother import publish
+    good = "여러분, 자기 전 휴대폰 30분 안 끄면 왜 매일 2시간씩 잠을 잃는지 아시나요?"
+    monkeypatch.setattr(providers, "complete", lambda *a, **k: (f"1. 그냥 잠 얘기\n2. {good}", "groq:g"))
+    new, sc = publish.improve_hook({"title": "잠", "hook": "잠 얘기", "lines": ["a"]}, need=50)
+    assert new == good and sc >= 50
