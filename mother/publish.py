@@ -44,7 +44,7 @@ def _py(*args):
     return (r.stdout + r.stderr).strip()[-1500:]
 
 
-def shorts(n=None):
+def shorts(n=None, private=False):
     """대본 생성(성과 반영) → 훅 점수 검사 → 영상 렌더 → 업로드 → 성과 수집."""
     n = n or _cfg().get("shorts_per_day", 1)
     if not shutil.which("ffmpeg"):
@@ -68,7 +68,7 @@ def shorts(n=None):
         log.append(_py("make_short.py", str(s)))
         mp4 = SHORTS / "out" / f"{s.stem}.mp4"
         if mp4.exists() and google_ready():
-            args = ["upload.py", str(mp4)] + (["--private"] if _cfg().get("youtube_privacy", "public") != "public" else [])
+            args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
             log.append(_py(*args))
         if mp4.exists():
             done["shorts"].append(s.stem)
