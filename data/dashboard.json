@@ -1,15 +1,11 @@
 {
- "updated": "2026-11-23T17:20:31+00:00",
+ "updated": "2026-11-24T05:27:16+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
   "daily": 3.0,
   "today": 0.0,
   "days": [
-   {
-    "d": "2026-11-10",
-    "usd": 0.0
-   },
    {
     "d": "2026-11-11",
     "usd": 0.0
@@ -60,6 +56,10 @@
    },
    {
     "d": "2026-11-23",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-24",
     "usd": 0.0
    }
   ],
@@ -170,7 +170,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -243,7 +243,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -342,7 +342,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -424,7 +424,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -575,7 +575,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -647,7 +647,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -799,7 +799,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -870,6 +870,76 @@
     "disagreement": 0.0
    },
    "metrics": null
+  },
+  {
+   "id": "I0011",
+   "title": "무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스",
+   "market": "개발자 및 AI SaaS 운영 1인 창업가",
+   "platform": "Web / GitHub",
+   "model": "구독",
+   "first_step": "Ollama와 Hugging Face 무료 모델을 연동하는 기본 API 프록시 서버 Node.js 코드 작성",
+   "evidence": "상용 LLM 크레딧 고갈 리스크를 회피하려는 개발자들의 오픈소스 및 무료 모델 폴백(Fallback) 수요 증가",
+   "scores": {
+    "demand": 85,
+    "low_competition": 70,
+    "low_cost": 95,
+    "speed_to_revenue": 60,
+    "scalability": 80,
+    "low_risk": 85
+   },
+   "score": 78.5,
+   "status": "active",
+   "created": "2026-11-24",
+   "started": "2026-11-24",
+   "last_review": null,
+   "product": null,
+   "killed_by": null,
+   "viability": {
+    "date": "2026-11-24",
+    "pass": true,
+    "why": "흑자 확률 100% · 90일 ROI 중앙값 +726% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 1.0,
+     "roi_p10": 5.42,
+     "roi_p50": 7.26,
+     "roi_p90": 8.23,
+     "rev30_p50": 2000.0,
+     "rev_p10": 7000.0,
+     "rev_p50": 18500.0,
+     "rev_p90": 46500.0,
+     "breakeven_p50": 12
+    },
+    "estimates": [
+     {
+      "model": "gemini:gemini-flash-lite-latest",
+      "role": "중립 심사역",
+      "price_usd": 500,
+      "conv_rate_pct": 2.5,
+      "visitors_low": 50,
+      "visitors_high": 150
+     }
+    ],
+    "risks": [
+     "LiteLLM 및 OpenRouter 등 기존 강력한 오픈소스/유료 대안 존재로 인한 고객 획득 비용 상승",
+     "API 버전 호환성 문제 및 Rate-limit 버그로 인한 서비스 중단 리스크",
+     "기업 고객 유치 전 초기 신뢰 확보의 어려움"
+    ],
+    "evidence": [
+     "LiteLLM SaaS Enterprise 약 $500/mo 추정 (https://litellm.ai)",
+     "OpenRouter Pay-as-you-go $0.50 / 1k tokens (https://openrouter.ai/pricing)",
+     "주요 키워드 월간 검색량 평균 300~2,100건 (구글 키워드 분석 기준)"
+    ],
+    "disagreement": 0.0
+   },
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
   }
  ],
  "team": [
@@ -1128,30 +1198,42 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-23T17:20+00:00"
+   "date": "2026-11-24T05:26+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-23T17:20+00:00"
+   "date": "2026-11-24T05:26+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-23T17:20+00:00"
+   "date": "2026-11-24T05:26+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-23T17:20+00:00"
+   "date": "2026-11-24T05:26+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-23T17:20+00:00"
+   "date": "2026-11-24T05:26+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-24T05:27:07+00:00",
+   "agent": "researcher",
+   "model": "groq:openai/gpt-oss-120b",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스 (개발자 및 AI SaaS 운영 1인 창업가/Web / GitHub, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-24T05:26:40+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 4"
+  },
   {
    "ts": "2026-11-23T17:11:44+00:00",
    "agent": "researcher",
@@ -1211,18 +1293,6 @@
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 실무형 AI 프롬프트 패키지 및 템플릿 판매 (대한민국 직장인 및 1인 사업자/크몽, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-23T14:54:37+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지 (US 소상공인 및 유튜브 숏폼 크리에이터/Fiverr, 외주)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-23T14:54:17+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 주도형 초고속 패시브 디자인 에셋 (US 홈데코, 파티 준비, 소셜미디어 크리에이터/Etsy, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   }
  ],
  "errors": [],
@@ -1416,6 +1486,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-24T05:27:15+00:00",
+   "cmd": "biz scout --market US",
+   "ok": true,
+   "output": "I0011 78.5점 [active] 개발자 및 AI SaaS 운영 1인 창업가/Web / GitHub 무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스\n   → Ollama와 Hugging Face 무료 모델을 연동하는 기본 API 프록시 서버 Node.js 코드 작성"
+  },
+  {
    "ts": "2026-11-23T17:20:29+00:00",
    "cmd": "ai check",
    "ok": true,
@@ -1465,12 +1541,6 @@
   },
   {
    "ts": "2026-11-23T16:56:57+00:00",
-   "cmd": "미국 쇼츠 바이럴 공식 분석",
-   "ok": false,
-   "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
-  },
-  {
-   "ts": "2026-11-23T16:56:50+00:00",
    "cmd": "미국 쇼츠 바이럴 공식 분석",
    "ok": false,
    "output": "⚠️ 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. (기록: data/errors.jsonl)"
@@ -1555,13 +1625,13 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 10,
+    "n": 11,
     "done": true
    },
    {
     "name": "진행 승인",
-    "n": 0,
-    "done": false
+    "n": 1,
+    "done": true
    },
    {
     "name": "상품·콘텐츠 제작",
