@@ -74,10 +74,13 @@ def shorts(n=None, private=False):
                 continue
         log.append(_py("make_short.py", str(s)))
         mp4 = SHORTS / "out" / f"{s.stem}.mp4"
+        uploaded = False
         if mp4.exists() and google_ready():
             args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
-            log.append(_py(*args))
-        if mp4.exists():
+            res = _py(*args)
+            log.append(res)
+            uploaded = "youtube.com/shorts/" in res
+        if uploaded or (mp4.exists() and not google_ready()):  # 업로드 실패한 건 다음에 다시 시도
             done["shorts"].append(s.stem)
             store.save_json("published.json", done)
         made += 1

@@ -16,7 +16,6 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googlea
 
 def yt():
     from google.oauth2.credentials import Credentials
-    from google_auth_oauthlib.flow import InstalledAppFlow
     from google.auth.transport.requests import Request
     from googleapiclient.discovery import build
     import os
@@ -30,6 +29,7 @@ def yt():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            from google_auth_oauthlib.flow import InstalledAppFlow  # PC에서 처음 로그인할 때만 필요
             creds = InstalledAppFlow.from_client_secrets_file(SECRET, SCOPES).run_local_server(port=0)
         TOKEN.write_text(creds.to_json())
     return build("youtube", "v3", credentials=creds)
