@@ -2,9 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>회원 운동 관리</title>
-<meta name="description" content="회원별 운동 루틴·스케줄·식단·개인 운동 관리표">
+<meta name="description" content="회원별 운동 루틴·세트 기록·식단·습관·성장 그래프·개인 운동 관리표">
+<meta name="theme-color" content="#2563eb">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../app/icon-192.png">
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--fg:#1c2330;--sub:#667085;--line:#e3e6eb;--pri:#2563eb;--pri-fg:#fff;--ok:#16a34a;--part:#f59e0b;--miss:#e5e7eb;--warn:#dc2626}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f141b;--card:#18202a;--fg:#e6e9ee;--sub:#98a2b3;--line:#2a3441;--pri:#60a5fa;--pri-fg:#0b1220;--ok:#22c55e;--part:#fbbf24;--miss:#2a3441;--warn:#f87171}}
@@ -15,34 +18,45 @@ body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-appl
 header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
 header h1{font-size:18px;margin:0 auto 0 0}
 button,select,input{font:inherit;color:inherit}
-button{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+button,label.btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;display:inline-block}
 button.pri{background:var(--pri);color:var(--pri-fg);border-color:var(--pri)}
 button.x{border:0;background:none;color:var(--sub);padding:0 4px}
 select,input{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px;min-width:0}
 .tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:16px}
 .tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:none;white-space:nowrap;color:var(--sub)}
 .tabs button.on{color:var(--fg);border-color:var(--pri);font-weight:600}
+.tabs .ic{margin-right:4px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
 .card h3{margin:0 0 8px;font-size:15px}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.card.ok{border-color:var(--ok)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .sub{color:var(--sub);font-size:13px}
+.warn{color:var(--warn);font-weight:600}
+.pr{color:var(--ok);font-weight:600}
 .item{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px solid var(--line)}
 .item:first-of-type{border-top:0}
 label.chk{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
-label.chk input{width:20px;height:20px}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--ok)}
 .bar{height:8px;background:var(--miss);border-radius:4px;overflow:hidden;margin:4px 0 10px}
+.bar.sm{height:6px;margin:2px 0}
 .bar i{display:block;height:100%;background:var(--pri)}
 .bar.over i{background:var(--warn)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px}
+.kpi>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpi b{display:block;font-size:20px;margin-top:2px}
+.set{display:grid;grid-template-columns:32px 1fr 1fr 48px;gap:6px;align-items:center;margin:4px 0;text-align:center}
+.set input{width:100%;text-align:center}
+.set button.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.set.hd{margin:8px 0 0}
 form.add{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 form.add input{flex:1 1 80px}
-form.add input.s{flex:0 1 64px}
+form.add input.s{flex:0 1 76px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{border:1px solid var(--line);padding:6px;text-align:center}
 th{background:var(--bg);font-weight:600}
 td.l{text-align:left;white-space:nowrap}
-table.wk{min-width:520px}
-@media (max-width:480px){th,td{padding:4px 3px;font-size:13px}}
+table.wk{min-width:560px}
 .cal td{height:64px;vertical-align:top;cursor:pointer}
 .cal .n{font-size:12px;color:var(--sub)}
 .st-ok{background:color-mix(in srgb,var(--ok) 22%,transparent)}
@@ -50,88 +64,179 @@ table.wk{min-width:520px}
 .st-rest{color:var(--sub)}
 .today{outline:2px solid var(--pri);outline-offset:-2px}
 .ck{cursor:pointer;font-size:16px}
+tr[data-act]{cursor:pointer}
 .banner{background:color-mix(in srgb,var(--pri) 14%,var(--card));border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+svg.ch{width:100%;height:auto;display:block;margin-top:6px}
+.ch .ax{stroke:var(--line)}.ch .ln{fill:none;stroke:var(--pri);stroke-width:2.5;stroke-linejoin:round}.ch .dt{fill:var(--pri)}.ch .br{fill:var(--pri)}.ch text{fill:var(--sub);font-size:10px}
+.ph{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+figure{margin:0}figcaption{font-size:12px;color:var(--sub);text-align:center}
+figure img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block}
 .modal{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}
 .modal .card{max-width:520px;width:100%}
 .modal input{width:100%;margin:4px 0 8px}
-#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 16px;border-radius:20px;opacity:0;transition:.2s;pointer-events:none}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 16px;border-radius:20px;opacity:0;transition:.2s;pointer-events:none;z-index:10;white-space:nowrap}
 #toast.on{opacity:1}
+#timer{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;display:flex;gap:6px;align-items:center;background:var(--fg);color:var(--bg);padding:6px 8px 6px 16px;border-radius:999px;z-index:8;box-shadow:0 4px 16px #0004}
+#timer[hidden]{display:none}
+#timer b{font-size:20px;font-variant-numeric:tabular-nums;min-width:52px}
+#timer button{background:transparent;color:inherit;border-color:color-mix(in srgb,var(--bg) 35%,transparent);padding:4px 8px}
 .share .edit{display:none!important}
 .tw{overflow-x:auto}
-@media print{header,.tabs,.edit,.noprint,#toast{display:none!important}body{background:#fff;color:#000}.card{border:0;padding:0}.wrap{max-width:none}}
+@media (max-width:640px){
+.wrap{padding-bottom:96px}
+header h1{font-size:16px;width:100%}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;margin:0;gap:0;background:var(--card);border-top:1px solid var(--line);border-bottom:0;padding:0 2px env(safe-area-inset-bottom)}
+.tabs button{flex:1 0 50px;display:flex;flex-direction:column;align-items:center;font-size:11px;padding:6px 2px;border-bottom:0;border-top:2px solid transparent}
+.tabs button.on{border-top-color:var(--pri)}
+.tabs .ic{margin:0;font-size:18px}
+#timer{bottom:76px}#toast{bottom:84px}
+th,td{padding:4px 3px;font-size:13px}
+}
+@media print{header,.tabs,.edit,.noprint,#toast,#timer{display:none!important}body{background:#fff;color:#000}.card{border:0;padding:0}.wrap{max-width:none;padding:0}}
 </style>
 </head>
 <body>
 <div class="wrap" id="app">불러오는 중…</div>
-<div id="toast"></div>
+<div id="timer" hidden role="timer" aria-live="polite"><span>휴식</span><b>1:30</b><button data-act="tm" data-n="-15">-15</button><button data-act="tm" data-n="15">+15</button><button data-act="tm" data-n="0">건너뛰기</button></div>
+<div id="toast" role="status"></div>
 <input type="file" id="file" accept=".json" hidden>
+<datalist id="lib"></datalist>
 <script>
-const WEEK=['월','화','수','목','금','토','일'],DAYS=['일','월','화','수','목','금','토'],SLOTS=['아침','점심','저녁','간식'];
+const WEEK=['월','화','수','목','금','토','일'],DAYS=['일','월','화','수','목','금','토'],SLOTS=['아침','점심','저녁','간식'],HAB=['물 2L 마시기','7시간 이상 수면','8천보 걷기'];
+const LIB='스쿼트,프론트 스쿼트,레그프레스,런지,불가리안 스플릿스쿼트,레그 익스텐션,레그 컬,힙쓰러스트,루마니안 데드리프트,데드리프트,카프 레이즈,벤치프레스,인클라인 벤치프레스,덤벨 프레스,체스트 플라이,푸시업,딥스,오버헤드 프레스,덤벨 숄더프레스,사이드 레터럴 레이즈,페이스풀,랫풀다운,풀업,풀업(보조),바벨 로우,시티드 로우,원암 덤벨 로우,바벨 컬,덤벨 컬,해머 컬,트라이셉스 푸시다운,라잉 트라이셉스 익스텐션,플랭크,크런치,레그 레이즈,러닝머신,사이클,로잉머신,스텝밀,버피,케틀벨 스윙'.split(',');
+const BODY={weight:['체중','kg'],fat:['체지방률','%'],muscle:['골격근량','kg'],waist:['허리둘레','cm']};
+const TABS=[['today','🏋️','오늘'],['routine','📋','루틴'],['diet','🥗','식단'],['sched','📅','일정'],['grow','📈','성장'],['sheet','🗂️','관리표'],['info','👤','회원']];
 const KEY='fit.v1',$=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const ymd=d=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
 const TODAY=ymd(new Date());
 const add=(s,n)=>{const d=new Date(s+'T00:00');d.setDate(d.getDate()+n);return ymd(d)};
 const dn=s=>DAYS[new Date(s+'T00:00').getDay()];
 const monday=s=>add(s,-((new Date(s+'T00:00').getDay()+6)%7));
 const md=s=>+s.slice(5,7)+'/'+ +s.slice(8);
+const num=s=>parseFloat(s)||0;
+const tog=(a,v)=>{const i=a.indexOf(v);i<0?a.push(v):a.splice(i,1)};
 const enc=o=>{let s='';new TextEncoder().encode(JSON.stringify(o)).forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
 const dec=s=>JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0))));
-let D={members:[]},BASE=null,cur=null,SHARE=false,tab=LS.get(KEY+'.tab')||'today',day=TODAY,modal='';
+let D={members:[]},BASE=null,cur=null,SHARE=false,tab=LS.get(KEY+'.tab')||'today',day=TODAY,modal='',chEx='',chBody='weight',AC=null;
+const T={end:0,id:0};
 const M=()=>D.members.find(m=>m.id===cur)||D.members[0];
-const L=(m,d)=>(m.log[d]=m.log[d]||{done:[],meals:[]});
-function stat(m,d){const ex=m.routine[dn(d)]||[],dn_=(m.log[d]?.done||[]).filter(n=>ex.some(e=>e.name===n)).length;return{t:ex.length,d:dn_}}
+const L=(m,d)=>(m.log[d]=m.log[d]||{});
+const fix=m=>{m.routine=m.routine||{};WEEK.forEach(w=>m.routine[w]=m.routine[w]||[]);m.meals=m.meals||{};SLOTS.forEach(s=>m.meals[s]=m.meals[s]||[]);m.schedule=m.schedule||[];m.log=m.log||{};m.habits=m.habits||HAB.slice();m.coach=m.coach||[];m.photos=m.photos||[];return m};
+
+/* ── 계산 ── */
+const raw=(m,d,n)=>m.log[d]?.sets?.[n]||[];
+const isDone=(m,d,e)=>(m.log[d]?.done||[]).includes(e.name)||raw(m,d,e.name).filter(Boolean).length>=(+e.sets||1);
+const timed=e=>/[분초]/.test(e.reps)||!(+e.sets);
+function stat(m,d){const ex=m.routine[dn(d)]||[];return{t:ex.length,d:ex.filter(e=>isDone(m,d,e)).length}}
 function rate(m,from,to){let t=0,d=0;for(let s=from;s<=to&&s<=TODAY;s=add(s,1)){const x=stat(m,s);t+=x.t;d+=x.d}return t?Math.round(d/t*100):0}
-function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
-function save(){const m=M();if(SHARE){LS.set('fit.log.'+m.id,m.log)}else{D.updated=TODAY;LS.set(KEY,D);LS.set(KEY+'.cur',cur)}}
+const e1=(kg,r)=>kg&&r?Math.round(kg*(1+Math.min(r,12)/30)*2)/2:0;
+const best1=(m,n)=>Math.max(0,...Object.values(m.log).flatMap(l=>(l.sets?.[n]||[]).filter(Boolean).map(s=>e1(s.kg,s.reps))));
+function lastSets(m,d,n){const ds=Object.keys(m.log).filter(x=>x<d&&raw(m,x,n).some(Boolean)).sort();return ds.length?{d:ds.at(-1),s:raw(m,ds.at(-1),n).filter(Boolean)}:null}
+function target(m,d,e){const p=lastSets(m,d,e.name),tr=num(e.reps);let kg=+e.kg||0,up=false;
+  if(p&&kg){kg=Math.max(kg,...p.s.map(x=>x.kg));if(tr&&p.s.length>=(+e.sets||1)&&p.s.every(x=>x.reps>=tr)){kg+=kg>=40?2.5:1;up=true}}
+  return{kg,reps:tr||'',up,prev:p}}
+function vol(m,d){const lg=m.log[d];if(!lg)return 0;let v=0;const s=lg.sets||{};
+  Object.values(s).forEach(a=>a.filter(Boolean).forEach(x=>v+=x.kg*x.reps));
+  (m.routine[dn(d)]||[]).forEach(e=>{if((lg.done||[]).includes(e.name)&&!(s[e.name]||[]).some(Boolean))v+=(+e.sets||0)*num(e.reps)*(+e.kg||0)});return v}
+const act=lg=>!!lg&&!!((lg.done||[]).length||Object.values(lg.sets||{}).some(a=>a.some(Boolean))||(lg.meals||[]).length||(lg.hab||[]).length||lg.weight);
+function streak(m){let d=act(m.log[TODAY])?TODAY:add(TODAY,-1),n=0;while(act(m.log[d])){n++;d=add(d,-1)}return n}
+const lastAct=m=>Object.keys(m.log).filter(d=>act(m.log[d])).sort().at(-1);
+function bodyPts(m,k){const p=Object.keys(m.log).sort().filter(d=>m.log[d][k]!=null&&m.log[d][k]!=='').map(d=>({x:d,y:+m.log[d][k]}));if(k==='weight'&&m.weight&&m.start&&(!p.length||p[0].x>m.start))p.unshift({x:m.start,y:+m.weight});return p}
+const lastW=m=>bodyPts(m,'weight').at(-1)?.y??m.weight;
+
+/* ── 공통 ── */
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2000)}
+function save(){const m=M();const ok=SHARE?LS.set('fit.log.'+m.id,m.log):(D.updated=TODAY,LS.set(KEY+'.cur',cur),LS.set(KEY,D));if(!ok)toast('저장 공간이 부족해요. 사진을 몇 장 지워주세요')}
 function dl(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 async function copy(t){try{await navigator.clipboard.writeText(t);toast('복사했어요')}catch(e){prompt('복사하세요',t)}}
-const fix=m=>{m.routine=m.routine||{};WEEK.forEach(w=>m.routine[w]=m.routine[w]||[]);m.meals=m.meals||{};SLOTS.forEach(s=>m.meals[s]=m.meals[s]||[]);m.schedule=m.schedule||[];m.log=m.log||{};return m};
+function togEx(m,d,n){const lg=L(m,d),e=(m.routine[dn(d)]||[]).find(x=>x.name===n)||{name:n,sets:1};lg.done=lg.done||[];
+  if(isDone(m,d,e)){lg.done=lg.done.filter(x=>x!==n);if(lg.sets)delete lg.sets[n]}else lg.done.push(n)}
+/* 휴식 타이머 */
+function rest(sec){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume()}catch(e){}T.end=Date.now()+sec*1000;clearInterval(T.id);T.id=setInterval(tick,250);tick()}
+function tick(){const el=$('#timer'),left=Math.ceil((T.end-Date.now())/1000);
+  if(left<=0){clearInterval(T.id);el.hidden=true;if(T.end){T.end=0;beep();toast('휴식 끝! 다음 세트 💪')}return}
+  el.hidden=false;el.querySelector('b').textContent=`${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}`}
+function beep(){try{navigator.vibrate?.([300,100,300]);if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=880;g.gain.value=.15;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+.4)}catch(e){}}
+/* 차트 (인라인 SVG) */
+function line(p,unit){if(p.length<2)return '<p class="sub">기록이 2개 이상 쌓이면 그래프가 보여요</p>';
+  const W=320,H=150,P=34,ys=p.map(v=>v.y),mn=Math.min(...ys),mx=Math.max(...ys),r=mx-mn||1,X=i=>P+i*(W-P-10)/(p.length-1),Y=v=>H-22-(v-mn)/r*(H-40);
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="${md(p[0].x)}부터 ${md(p.at(-1).x)}까지 ${p[0].y}에서 ${p.at(-1).y}${unit}"><line class="ax" x1="${P}" x2="${W-10}" y1="${H-22}" y2="${H-22}"/><text x="2" y="${Y(mx)+4}">${mx}</text><text x="2" y="${Y(mn)+4}">${mn}</text><text x="${P}" y="${H-6}">${md(p[0].x)}</text><text x="${W-10}" y="${H-6}" text-anchor="end">${md(p.at(-1).x)}</text><path class="ln" d="${p.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+','+Y(v.y).toFixed(1)).join('')}"/>${p.map((v,i)=>`<circle class="dt" cx="${X(i).toFixed(1)}" cy="${Y(v.y).toFixed(1)}" r="3.5"><title>${md(v.x)} ${v.y}${unit}</title></circle>`).join('')}</svg>`}
+function bars(it){const W=320,H=150,mx=Math.max(1,...it.map(i=>i.v)),bw=(W-8)/it.length;
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="주간 운동 볼륨">${it.map((x,i)=>{const h=x.v/mx*(H-44),cx=4+i*bw+bw/2;return `<rect class="br" x="${(4+i*bw+5).toFixed(1)}" y="${(H-22-h).toFixed(1)}" width="${(bw-10).toFixed(1)}" height="${h.toFixed(1)}" rx="3"><title>${x.l}주 ${x.v.toLocaleString()}kg</title></rect><text x="${cx}" y="${H-6}" text-anchor="middle">${x.l}</text>${x.v?`<text x="${cx}" y="${(H-26-h).toFixed(1)}" text-anchor="middle">${x.v>=1000?(x.v/1000).toFixed(1)+'t':x.v}</text>`:''}`}).join('')}</svg>`}
 
+/* ── 시작 ── */
 async function init(){
-  const q=new URLSearchParams(location.search);
+  $('#lib').innerHTML=LIB.map(x=>`<option value="${x}">`).join('');
+  const q=new URLSearchParams(location.search),h=location.hash;
   try{BASE=await(await fetch('members.json',{cache:'no-store'})).json()}catch(e){}
-  let sm=null;
-  if(location.hash.startsWith('#s=')){try{sm=dec(location.hash.slice(3))}catch(e){toast('공유 링크가 손상됐어요')}}
-  else if(q.get('m')){sm=BASE?.members.find(x=>x.id===q.get('m'));if(!sm)toast('회원을 찾지 못했어요')}
-  if(sm){SHARE=true;document.body.classList.add('share');sm=fix(structuredClone(sm));sm.log=LS.get('fit.log.'+sm.id)||sm.log;D={members:[sm]};cur=sm.id;if(tab==='info')tab='today'}
-  else{D=LS.get(KEY)||structuredClone(BASE)||{members:[]};D.members.forEach(fix);cur=LS.get(KEY+'.cur')||D.members[0]?.id}
+  let sm=null;if(q.has('trainer'))LS.del('fit.share');
+  if(h.startsWith('#s=')){try{sm=dec(h.slice(3));LS.set('fit.share',sm)}catch(e){toast('공유 링크가 손상됐어요')}}
+  else if(q.get('m')){sm=BASE?.members.find(x=>x.id===q.get('m'));if(sm)LS.set('fit.share',{ref:sm.id});else toast('회원을 찾지 못했어요')}
+  else if(!LS.get(KEY)&&!h.startsWith('#log=')){const st=LS.get('fit.share');sm=st?.ref?BASE?.members.find(x=>x.id===st.ref):st}
+  if(sm){SHARE=true;document.body.classList.add('share');sm=fix(structuredClone(sm));sm.log=LS.get('fit.log.'+sm.id)||sm.log;D={members:[sm]};cur=sm.id;if(tab==='info'||tab==='home')tab='today';render();return}
+  D=LS.get(KEY)||structuredClone(BASE)||{members:[]};D.members.forEach(fix);cur=LS.get(KEY+'.cur')||D.members[0]?.id;
+  if(h.startsWith('#log=')){mergeLog(h.slice(5));history.replaceState(null,'',location.pathname)}
   render();
 }
+function mergeLog(s){try{const p=dec(s),m=D.members.find(x=>x.id===p.id);if(!m)return toast('이 기기에 없는 회원의 기록이에요');
+  const u=(a,b)=>[...new Set([...(a||[]),...(b||[])])];let n=0;
+  for(const[d,v]of Object.entries(p.log||{})){const o=m.log[d]||{};m.log[d]={...o,...v,done:u(o.done,v.done),meals:u(o.meals,v.meals),hab:u(o.hab,v.hab),sets:{...(o.sets||{}),...(v.sets||{})}};n++}
+  cur=m.id;tab='today';save();toast(`${m.name}님 기록 ${n}일 반영했어요`)}catch(e){toast('기록 링크가 손상됐어요')}}
 
 function render(){
   const m=M();
-  const tabs=[['today','오늘'],['routine','주간 루틴'],['diet','식단'],['sched','스케줄'],['sheet','관리표'],['info','회원정보']].filter(t=>!(SHARE&&t[0]==='info'));
   let h=`<header><h1>${SHARE?esc(m.name)+'님 운동 루틴':'회원 운동·식단 관리'}</h1>`;
-  if(!SHARE)h+=`<select id="msel" aria-label="회원 선택">${D.members.map(x=>`<option value="${esc(x.id)}"${x.id===m?.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select>
-    <button data-act="addM">+ 회원</button><button class="pri" data-act="share">공유</button><button data-act="more">파일</button>`;
-  else h+=`<button class="pri" data-act="copylog">기록 보내기</button>`;
+  if(!SHARE)h+=`<button data-act="home" class="${tab==='home'?'pri':''}">👥 현황</button><select id="msel" aria-label="회원 선택">${D.members.map(x=>`<option value="${esc(x.id)}"${x.id===m?.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select><button data-act="addM">+ 회원</button><button data-act="share">공유</button><button data-act="more">파일</button>`;
+  else h+=`<button class="pri" data-act="sendlog">📤 기록 보내기</button>`;
   h+=`</header>`;
-  if(SHARE)h+=`<div class="banner">트레이너가 보낸 루틴이에요. 체크한 기록은 이 기기에 저장되고, <b>기록 보내기</b>로 카톡 등에 붙여넣어 전달할 수 있어요.</div>`;
+  if(SHARE)h+=`<div class="banner">트레이너가 보낸 루틴이에요. 세트·식단·습관을 체크하면 이 기기에 저장되고, <b>📤 기록 보내기</b>로 트레이너에게 전달돼요.</div>`;
   if(!m){$('#app').innerHTML=h+`<div class="card">회원이 없어요. <button class="pri" data-act="addM">+ 회원 추가</button></div>`;return}
-  h+=`<nav class="tabs">${tabs.map(([k,v])=>`<button data-act="tab" data-k="${k}" class="${tab===k?'on':''}">${v}</button>`).join('')}</nav>`;
-  h+=({today:vToday,routine:vRoutine,diet:vDiet,sched:vSched,sheet:vSheet,info:vInfo}[tab]||vToday)(m);
+  if(tab==='home'&&!SHARE){$('#app').innerHTML=h+vHome()+modal;return}
+  h+=`<nav class="tabs">${TABS.filter(t=>!(SHARE&&t[0]==='info')).map(([k,i,v])=>`<button data-act="tab" data-k="${k}" class="${tab===k?'on':''}"><span class="ic" aria-hidden="true">${i}</span><span>${v}</span></button>`).join('')}</nav>`;
+  h+=({today:vToday,routine:vRoutine,diet:vDiet,sched:vSched,grow:vGrow,sheet:vSheet,info:vInfo}[tab]||vToday)(m);
   $('#app').innerHTML=h+modal;
 }
 
+/* ── 화면 ── */
+function vHome(){
+  const mon=monday(TODAY),old=add(TODAY,-2);
+  const rows=D.members.map(m=>({m,r:rate(m,mon,add(mon,6)),s:streak(m),la:lastAct(m),w:lastW(m),nx:m.schedule.filter(x=>x.date>=TODAY).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0]}));
+  const idle=rows.filter(x=>!x.la||x.la<old).length,avg=rows.length?Math.round(rows.reduce((a,x)=>a+x.r,0)/rows.length):0;
+  const tdy=D.members.flatMap(m=>m.schedule.filter(x=>x.date===TODAY).map(x=>({...x,n:m.name,id:m.id}))).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+  return `<div class="kpi"><div><span class="sub">회원</span><b>${D.members.length}명</b></div><div><span class="sub">이번 주 평균 달성</span><b>${avg}%</b></div><div><span class="sub">오늘 PT</span><b>${tdy.length}건</b></div><div><span class="sub">3일+ 기록 없음</span><b class="${idle?'warn':''}">${idle}명</b></div></div>
+  ${tdy.length?`<div class="card"><h3>📅 오늘 일정</h3>${tdy.map(x=>`<div class="item" data-act="pick" data-id="${esc(x.id)}" style="cursor:pointer"><span><b>${esc(x.time)}</b> ${esc(x.n)} · ${esc(x.title)}</span><span class="sub">›</span></div>`).join('')}</div>`:''}
+  <div class="card"><h3>회원 현황</h3><div class="tw"><table class="wk"><tr><th>회원</th><th>목표</th><th>이번 주</th><th>연속</th><th>체중</th><th>다음 일정</th><th>최근 기록</th></tr>${rows.map(x=>`<tr data-act="pick" data-id="${esc(x.m.id)}"><td class="l"><b>${esc(x.m.name)}</b></td><td class="l">${esc(x.m.goal)}</td><td><div class="bar sm"><i style="width:${x.r}%"></i></div>${x.r}%</td><td>${x.s?'🔥'+x.s:'-'}</td><td>${x.w??'-'}</td><td>${x.nx?md(x.nx.date)+' '+esc(x.nx.time):'-'}</td><td class="${!x.la||x.la<old?'warn':''}">${x.la?md(x.la):'없음'}</td></tr>`).join('')}</table></div>
+  <p class="sub">빨간 글씨 = 3일 이상 기록 없음 → 연락 추천. 회원이 보낸 '기록 링크'를 이 기기에서 열면 자동 반영돼요.</p></div>`;
+}
+
+const exTxt=e=>`${e.sets}×${esc(e.reps)}${+e.kg?' · '+e.kg+'kg':''}`;
+function exCard(m,e){
+  const ok=isDone(m,day,e),ck=`<input type="checkbox" data-act="ex" data-name="${esc(e.name)}"${ok?' checked':''} aria-label="${esc(e.name)} 완료">`;
+  if(timed(e))return `<div class="card${ok?' ok':''}"><label class="row" style="cursor:pointer">${ck}<b>${esc(e.name)}</b><span class="sub">${exTxt(e)}</span></label></div>`;
+  const t=target(m,day,e),a=raw(m,day,e.name),n=Math.max(+e.sets||1,a.length);let rows='';
+  for(let i=0;i<n;i++){const v=a[i];rows+=`<div class="set"><span class="sub">${i+1}</span><input inputmode="decimal" aria-label="${i+1}세트 무게" value="${v?v.kg:t.kg||''}"><input inputmode="numeric" aria-label="${i+1}세트 횟수" value="${v?v.reps:t.reps}"><button data-act="set" data-name="${esc(e.name)}" data-i="${i}" data-rest="${+e.rest||90}" class="${v?'done':''}" aria-label="${i+1}세트 완료">✓</button></div>`}
+  return `<div class="card${ok?' ok':''}"><div class="row"><label class="row" style="cursor:pointer">${ck}<b>${esc(e.name)}</b></label><span class="sub" style="margin-left:auto">${exTxt(e)}${t.up?` · <span class="pr">⬆ ${t.kg}kg 도전</span>`:''}</span></div>${t.prev?`<div class="sub">지난번 ${md(t.prev.d)}: ${t.prev.s.map(x=>x.kg+'×'+x.reps).join(', ')}</div>`:''}<div class="set hd sub"><span>세트</span><span>kg</span><span>회</span><span></span></div>${rows}<button class="x" data-act="addSet" data-name="${esc(e.name)}">+ 세트 추가</button></div>`;
+}
 function vToday(m){
-  const ex=m.routine[dn(day)],lg=m.log[day]||{},done=lg.done||[],meals=lg.meals||[],s=stat(m,day);
-  const pct=s.t?Math.round(s.d/s.t*100):0;
-  const sc=m.schedule.filter(x=>x.date===day);
-  return `<div class="card row"><button data-act="day" data-n="-1" aria-label="전날">◀</button><b>${day.slice(0,4)}. ${md(day)} (${dn(day)})</b><button data-act="day" data-n="1" aria-label="다음날">▶</button>${day!==TODAY?'<button data-act="day" data-n="0">오늘</button>':''}<span class="sub" style="margin-left:auto">이번 주 달성률 ${rate(m,monday(day),add(monday(day),6))}%</span></div>
-  ${sc.length?`<div class="card"><h3>📅 오늘 일정</h3>${sc.map(x=>`<div class="item"><span>${esc(x.time)} ${esc(x.title)}</span><span class="sub">${esc(x.note)}</span></div>`).join('')}</div>`:''}
+  const ex=m.routine[dn(day)],lg=m.log[day]||{},s=stat(m,day),pct=s.t?Math.round(s.d/s.t*100):0,sc=m.schedule.filter(x=>x.date===day),c=m.coach[0];
+  return `<div class="card row"><button data-act="day" data-n="-1" aria-label="전날">◀</button><b>${md(day)} (${dn(day)})</b><button data-act="day" data-n="1" aria-label="다음날">▶</button>${day!==TODAY?'<button data-act="day" data-n="0">오늘</button>':''}<span class="sub" style="margin-left:auto">🔥 연속 ${streak(m)}일 · 이번 주 ${rate(m,monday(day),add(monday(day),6))}%</span></div>
+  ${c?`<div class="banner">💬 <b>코치 메시지</b> <span class="sub">${md(c.date)}</span><br>${esc(c.text)}</div>`:''}
+  ${sc.length?`<div class="card"><h3>📅 일정</h3>${sc.map(x=>`<div class="item"><span>${esc(x.time)} ${esc(x.title)}</span><span class="sub">${esc(x.note)}</span></div>`).join('')}</div>`:''}
+  <div class="card"><h3>🏋️ ${dn(day)}요일 운동 ${s.t?`<span class="sub">${s.d}/${s.t} 완료</span>`:''}</h3>${s.t?`<div class="bar"><i style="width:${pct}%"></i></div><p class="sub" style="margin:0">세트마다 ✓ 누르면 휴식 타이머가 시작되고, 지난 기록을 보고 다음 무게를 추천해요.</p>`:'<p class="sub">휴식일이에요. 가벼운 스트레칭 추천!</p>'}</div>
+  ${ex.map(e=>exCard(m,e)).join('')}
   <div class="grid">
-  <div class="card"><h3>🏋️ 운동 ${s.t?`<span class="sub">${s.d}/${s.t}</span>`:''}</h3>${s.t?`<div class="bar"><i style="width:${pct}%"></i></div>`+ex.map(e=>`<label class="chk"><input type="checkbox" data-act="ex" data-name="${esc(e.name)}"${done.includes(e.name)?' checked':''}><span>${esc(e.name)} <span class="sub">${exTxt(e)}</span></span></label>`).join(''):'<p class="sub">휴식일이에요. 가벼운 스트레칭 추천!</p>'}</div>
-  <div class="card"><h3>🥗 식단 지키기</h3>${SLOTS.map(sl=>`<label class="chk"><input type="checkbox" data-act="meal" data-slot="${sl}"${meals.includes(sl)?' checked':''}><span>${sl} <span class="sub">${esc(m.meals[sl].map(f=>f.food).join(', ')||'자유')}</span></span></label>`).join('')}</div>
-  <div class="card"><h3>⚖️ 체중·메모</h3><div class="row"><input type="number" step="0.1" inputmode="decimal" placeholder="체중 kg" data-log="weight" value="${lg.weight??''}" style="width:120px"> <span class="sub">목표 ${m.targetWeight??'-'}kg</span></div><input placeholder="컨디션 메모" data-log="memo" value="${esc(lg.memo)}" style="width:100%;margin-top:8px"></div>
+  <div class="card"><h3>🥗 식단 지키기 <span class="sub">${(lg.meals||[]).length}/4</span></h3>${SLOTS.map(sl=>`<label class="chk"><input type="checkbox" data-act="meal" data-slot="${sl}"${(lg.meals||[]).includes(sl)?' checked':''}><span>${sl} <span class="sub">${esc(m.meals[sl].map(f=>f.food).join(', ')||'자유')}</span></span></label>`).join('')}</div>
+  <div class="card"><h3>✅ 습관 <span class="sub">${(lg.hab||[]).length}/${m.habits.length}</span></h3>${m.habits.map(x=>`<label class="chk"><input type="checkbox" data-act="hab" data-h="${esc(x)}"${(lg.hab||[]).includes(x)?' checked':''}><span>${esc(x)}</span></label>`).join('')||'<p class="sub">회원 탭에서 습관을 정해요</p>'}</div>
+  <div class="card"><h3>⚖️ 체중·메모</h3><div class="row"><input type="number" step="0.1" inputmode="decimal" placeholder="체중 kg" data-log="weight" value="${lg.weight??''}" style="width:120px"><span class="sub">목표 ${m.targetWeight??'-'}kg</span></div><input placeholder="컨디션·통증 메모" data-log="memo" value="${esc(lg.memo)}" style="width:100%;margin-top:8px"></div>
   </div>`;
 }
-const exTxt=e=>`${e.sets}×${esc(e.reps)}${+e.kg?' · '+e.kg+'kg':''}`;
 
 function vRoutine(m){
   return `<div class="grid">${WEEK.map(w=>{const ex=m.routine[w];return `<div class="card"><h3>${w}요일 <span class="sub">${ex.length?ex.length+'종목 · '+ex.reduce((a,e)=>a+(+e.sets||0),0)+'세트':'휴식'}</span></h3>${ex.map((e,i)=>`<div class="item"><span>${esc(e.name)}</span><span class="sub">${exTxt(e)} <button class="x edit" data-act="delEx" data-w="${w}" data-i="${i}" aria-label="삭제">×</button></span></div>`).join('')}</div>`}).join('')}</div>
-  <div class="card edit"><h3>운동 추가</h3><form class="add" data-form="ex"><select name="w">${WEEK.map(w=>`<option>${w}</option>`).join('')}</select><input name="name" placeholder="운동 이름" required><input class="s" name="sets" type="number" min="1" placeholder="세트" required><input class="s" name="reps" placeholder="횟수" required><input class="s" name="kg" type="number" step="0.5" placeholder="kg"><button class="pri">추가</button></form>
+  <div class="card edit"><h3>운동 추가</h3><form class="add" data-form="ex"><select name="w">${WEEK.map(w=>`<option>${w}</option>`).join('')}</select><input name="name" list="lib" placeholder="운동 이름 (목록에서 선택 가능)" required><input class="s" name="sets" type="number" min="1" placeholder="세트" required><input class="s" name="reps" placeholder="횟수/분" required><input class="s" name="kg" type="number" step="0.5" placeholder="kg"><input class="s" name="rest" type="number" step="15" placeholder="휴식초"><button class="pri">추가</button></form>
   <div class="row" style="margin-top:10px"><span class="sub">요일 복사:</span><select id="cpf">${WEEK.map(w=>`<option>${w}</option>`).join('')}</select>→<select id="cpt">${WEEK.map(w=>`<option>${w}</option>`).join('')}</select><button data-act="cpDay">복사</button></div></div>`;
 }
 
@@ -149,73 +254,119 @@ function vSched(m){
   const row=x=>`<div class="item"><span><b>${md(x.date)}(${dn(x.date)})</b> ${esc(x.time)} ${esc(x.title)} <span class="sub">${esc(x.note)}</span></span><button class="x edit" data-act="delSch" data-i="${x.i}" aria-label="삭제">×</button></div>`;
   return `<div class="card"><div class="row"><h3 style="margin:0">다가오는 일정</h3><button style="margin-left:auto" data-act="ics">📲 내 캘린더에 저장</button></div>${up.map(row).join('')||'<p class="sub">예정된 일정이 없어요</p>'}</div>
   ${past.length?`<div class="card"><h3>지난 일정</h3>${past.slice(0,10).map(row).join('')}</div>`:''}
-  <div class="card edit"><h3>일정 추가</h3><form class="add" data-form="sch"><input name="date" type="date" value="${TODAY}" required><input class="s" name="time" type="time" value="19:00"><input name="title" placeholder="예: PT 세션" required><input name="note" placeholder="메모"><button class="pri">추가</button></form></div>`;
+  <div class="card edit"><h3>일정 추가</h3><form class="add" data-form="sch"><input name="date" type="date" value="${TODAY}" required><input class="s" name="time" type="time" value="19:00"><input name="title" placeholder="예: PT 세션" required><input name="note" placeholder="메모"><input class="s" name="rep" type="number" min="1" max="12" value="1" title="매주 반복 횟수" aria-label="매주 반복 횟수"><button class="pri">추가</button></form><p class="sub">마지막 칸 = 매주 반복 횟수 (예: 8 → 8주 동안 같은 요일·시간)</p></div>`;
 }
 
+function vGrow(m){
+  const mon=monday(TODAY),ws=bodyPts(m,'weight'),wd=ws.length>1?+(ws.at(-1).y-ws[0].y).toFixed(1):null;
+  let d28=0;for(let i=0;i<28;i++){const d=add(TODAY,-i);if(stat(m,d).d||Object.keys(m.log[d]?.sets||{}).length)d28++}
+  const names=[...new Set([...WEEK.flatMap(w=>m.routine[w].filter(e=>!timed(e)).map(e=>e.name)),...Object.values(m.log).flatMap(l=>Object.keys(l.sets||{}))])];
+  if(!names.includes(chEx))chEx=names[0]||'';
+  const ep=Object.keys(m.log).sort().map(d=>({x:d,y:Math.max(0,...raw(m,d,chEx).filter(Boolean).map(s=>e1(s.kg,s.reps)))})).filter(p=>p.y);
+  const vb=[-7,-6,-5,-4,-3,-2,-1,0].map(k=>{const w0=add(mon,k*7);let v=0;for(let i=0;i<7;i++)v+=vol(m,add(w0,i));return{l:md(w0),v:Math.round(v)}});
+  return `<div class="kpi"><div><span class="sub">연속 기록</span><b>🔥 ${streak(m)}일</b></div><div><span class="sub">최근 4주 운동일</span><b>${d28}일</b></div><div><span class="sub">4주 달성률</span><b>${rate(m,add(mon,-21),add(mon,6))}%</b></div><div><span class="sub">체중 변화</span><b>${wd===null?'-':(wd>0?'+':'')+wd+'kg'}</b></div></div>
+  <div class="card"><div class="row"><h3 style="margin:0">신체 변화</h3><select data-sel="body" style="margin-left:auto" aria-label="항목">${Object.entries(BODY).map(([k,v])=>`<option value="${k}"${k===chBody?' selected':''}>${v[0]}</option>`).join('')}</select></div>${line(bodyPts(m,chBody),BODY[chBody][1])}
+  <form class="add" data-form="body"><input type="date" name="d" value="${day}" aria-label="측정일">${Object.entries(BODY).map(([k,v])=>`<input class="s" name="${k}" type="number" step="0.1" inputmode="decimal" placeholder="${v[0]}" aria-label="${v[0]}" value="${m.log[day]?.[k]??''}">`).join('')}<button class="pri">기록</button></form><p class="sub">인바디 측정 결과를 넣으면 그래프로 쌓여요</p></div>
+  <div class="card"><div class="row"><h3 style="margin:0">근력 성장 (추정 1RM)</h3>${names.length?`<select data-sel="ex" style="margin-left:auto" aria-label="운동">${names.map(n=>`<option${n===chEx?' selected':''}>${esc(n)}</option>`).join('')}</select>`:''}</div>${ep.length?`<p class="sub">최고 ${Math.max(...ep.map(p=>p.y))}kg · '오늘' 탭에서 세트를 기록하면 쌓여요</p>`:''}${line(ep,'kg')}</div>
+  <div class="card"><h3>주간 운동 볼륨 (무게×횟수 합계)</h3>${bars(vb)}</div>
+  ${SHARE?'':photoCard(m)}`;
+}
+function photoCard(m){const p=m.photos;return `<div class="card"><div class="row"><h3 style="margin:0">📷 눈바디 사진</h3><label class="btn" style="margin-left:auto">+ 사진<input type="file" id="photo" accept="image/*" hidden></label></div><p class="sub">이 기기에만 저장돼요 (깃허브·공유 링크에 안 올라감)</p>
+  ${p.length>1?`<div class="cmp"><figure><img src="${p[0].img}" alt="처음 사진"><figcaption>${md(p[0].date)} 처음</figcaption></figure><figure><img src="${p.at(-1).img}" alt="최근 사진"><figcaption>${md(p.at(-1).date)} 최근</figcaption></figure></div>`:''}
+  <div class="ph">${p.map((x,i)=>`<figure><img src="${x.img}" alt="${md(x.date)} 사진"><figcaption>${md(x.date)} <button class="x" data-act="delPh" data-i="${i}" aria-label="삭제">×</button></figcaption></figure>`).join('')}</div></div>`}
+
 function vSheet(m){
-  const mon=monday(day),wk=[-21,-14,-7,0].map(n=>add(mon,n)),r=rate(m,wk[0],add(mon,6));
-  const ws=m.log&&Object.keys(m.log).sort().map(d=>m.log[d].weight).filter(Boolean),last=ws.length?ws[ws.length-1]:m.weight;
-  let h=`<div class="card"><div class="row"><h3 style="margin:0">${esc(m.name)} · 개인 운동 계획 관리표</h3><span class="noprint" style="margin-left:auto"><button data-act="day" data-n="-7">◀</button> <button data-act="day" data-n="7">▶</button> <button data-act="print">🖨 인쇄/PDF</button></span></div>
-  <p class="sub">목표 ${esc(m.goal)} · ${esc(m.level)} · 시작 ${esc(m.start)} · 체중 ${m.weight??'-'} → <b>${last??'-'}</b> (목표 ${m.targetWeight??'-'}kg) · 4주 달성률 <b>${r}%</b></p>
+  const mon=monday(day),wk=[-21,-14,-7,0].map(n=>add(mon,n)),r=rate(m,wk[0],add(mon,6)),last=lastW(m);
+  let hb=0,ht=0;wk.forEach(w0=>{for(let i=0;i<7;i++){const d=add(w0,i);if(d<=TODAY){ht+=m.habits.length;hb+=(m.log[d]?.hab||[]).length}}});
+  let h=`<div class="card"><div class="row"><h3 style="margin:0">${esc(m.name)} · 개인 운동 계획 관리표</h3><span class="noprint" style="margin-left:auto"><button data-act="day" data-n="-7" aria-label="이전 주">◀</button> <button data-act="day" data-n="7" aria-label="다음 주">▶</button> <button data-act="print">🖨 인쇄/PDF</button></span></div>
+  <p class="sub">목표 ${esc(m.goal)} · ${esc(m.level)} · 시작 ${esc(m.start)} · 체중 ${m.weight??'-'} → <b>${last??'-'}</b> (목표 ${m.targetWeight??'-'}kg) · 4주 운동 달성 <b>${r}%</b> · 습관 <b>${ht?Math.round(hb/ht*100):0}%</b></p>
   <div class="tw"><table class="cal"><tr><th>주</th>${WEEK.map(w=>`<th>${w}</th>`).join('')}</tr>${wk.map(w0=>`<tr><th>${md(w0)}~</th>${WEEK.map((_,i)=>{const d=add(w0,i),s=stat(m,d),c=!s.t?'st-rest':s.d===s.t?'st-ok':s.d?'st-part':'',wt=m.log[d]?.weight;return `<td class="${c}${d===TODAY?' today':''}" data-act="goDay" data-d="${d}"><div class="n">${md(d)}</div>${s.t?s.d+'/'+s.t:'휴식'}${wt?`<div class="n">${wt}kg</div>`:''}</td>`}).join('')}</tr>`).join('')}</table></div>
-  <p class="sub">초록=완료 · 노랑=일부 · 칸을 누르면 그날로 이동</p></div>`;
-  h+=`<div class="card"><h3>요일별 운동 체크표 (최근 4주)</h3><div class="tw"><table class="wk"><tr><th>요일</th><th>운동</th><th>세트×횟수</th><th>중량</th>${wk.map(w=>`<th>${md(w)}주</th>`).join('')}</tr>`;
-  WEEK.forEach((w,wi)=>{const ex=m.routine[w];ex.forEach((e,i)=>{h+=`<tr>${i?'':`<th rowspan="${ex.length}">${w}</th>`}<td class="l">${esc(e.name)}</td><td>${e.sets}×${esc(e.reps)}</td><td>${+e.kg?e.kg+'kg':'-'}</td>${wk.map(w0=>{const d=add(w0,wi),on=m.log[d]?.done?.includes(e.name);return `<td class="ck" data-act="ck" data-d="${d}" data-name="${esc(e.name)}">${on?'✅':d>TODAY?'':'⬜'}</td>`}).join('')}</tr>`})});
-  h+=`</table></div></div>`;
+  <p class="sub">초록=완료 · 노랑=일부 · 칸을 누르면 그날로 이동</p></div>
+  <div class="card"><h3>요일별 운동 체크표 (최근 4주)</h3><div class="tw"><table class="wk"><tr><th>요일</th><th>운동</th><th>세트×횟수</th><th>중량</th>${wk.map(w=>`<th>${md(w)}주</th>`).join('')}</tr>`;
+  WEEK.forEach((w,wi)=>{const ex=m.routine[w];ex.forEach((e,i)=>{h+=`<tr>${i?'':`<th rowspan="${ex.length}">${w}</th>`}<td class="l">${esc(e.name)}</td><td>${e.sets}×${esc(e.reps)}</td><td>${+e.kg?e.kg+'kg':'-'}</td>${wk.map(w0=>{const d=add(w0,wi);return `<td class="ck" data-act="ck" data-d="${d}" data-name="${esc(e.name)}">${isDone(m,d,e)?'✅':d>TODAY?'':'⬜'}</td>`}).join('')}</tr>`})});
   const k=SLOTS.flatMap(s=>m.meals[s]).reduce((a,f)=>a+(+f.kcal||0),0);
-  h+=`<div class="card"><h3>식단 계획 (하루 ${k}kcal / 목표 ${m.kcal||'-'}kcal)</h3><table><tr><th>끼니</th><th>메뉴</th><th>kcal</th><th>단백질</th></tr>${SLOTS.map(s=>`<tr><th>${s}</th><td class="l">${esc(m.meals[s].map(f=>f.food).join(', '))||'-'}</td><td>${m.meals[s].reduce((a,f)=>a+(+f.kcal||0),0)}</td><td>${m.meals[s].reduce((a,f)=>a+(+f.protein||0),0)}g</td></tr>`).join('')}</table></div>`;
-  return h;
+  return h+`</table></div></div><div class="card"><h3>식단 계획 (하루 ${k}kcal / 목표 ${m.kcal||'-'}kcal)</h3><table><tr><th>끼니</th><th>메뉴</th><th>kcal</th><th>단백질</th></tr>${SLOTS.map(s=>`<tr><th>${s}</th><td class="l" style="white-space:normal">${esc(m.meals[s].map(f=>f.food).join(', '))||'-'}</td><td>${m.meals[s].reduce((a,f)=>a+(+f.kcal||0),0)}</td><td>${m.meals[s].reduce((a,f)=>a+(+f.protein||0),0)}g</td></tr>`).join('')}</table></div>`;
 }
 
 function vInfo(m){
   const f=(k,l,t='text')=>`<label class="sub">${l}<br><input type="${t}" data-f="${k}" value="${esc(m[k])}"${t==='number'?' step="0.1"':''} style="width:100%"></label>`;
   const bmi=m.height&&m.weight?(m.weight/((m.height/100)**2)).toFixed(1):'-';
-  return `<div class="card"><div class="grid">${f('name','이름')}${f('goal','목표')}${f('level','수준')}${f('start','시작일','date')}${f('height','키(cm)','number')}${f('weight','시작 체중(kg)','number')}${f('targetWeight','목표 체중(kg)','number')}${f('kcal','하루 목표 kcal','number')}${f('protein','하루 목표 단백질(g)','number')}</div><p class="sub">BMI ${bmi} · 회원 ID ${esc(m.id)}</p><button data-act="delM" style="color:var(--warn)">회원 삭제</button></div>`;
+  const memos=Object.keys(m.log).sort().reverse().filter(d=>m.log[d].memo).slice(0,7);
+  return `<div class="card"><div class="grid">${f('name','이름')}${f('goal','목표')}${f('level','수준')}${f('start','시작일','date')}${f('height','키(cm)','number')}${f('weight','시작 체중(kg)','number')}${f('targetWeight','목표 체중(kg)','number')}${f('kcal','하루 목표 kcal','number')}${f('protein','하루 목표 단백질(g)','number')}</div>
+  <label class="sub" style="display:block;margin-top:10px">매일 습관 (쉼표로 구분)<br><input data-f="habits" value="${esc(m.habits.join(', '))}" style="width:100%"></label>
+  <p class="sub">BMI ${bmi} · 회원 ID ${esc(m.id)}</p><button data-act="delM" style="color:var(--warn)">회원 삭제</button></div>
+  <div class="card"><h3>💬 코치 메시지</h3><form class="add" data-form="coach"><input name="text" placeholder="예: 스쿼트 자세 좋아졌어요! 물 더 챙기기" required><button class="pri">등록</button></form><p class="sub">회원 화면 '오늘' 맨 위에 보여요 (공유 링크를 다시 보내야 반영)</p>${m.coach.map((c,i)=>`<div class="item"><span><span class="sub">${md(c.date)}</span> ${esc(c.text)}</span><button class="x" data-act="delCoach" data-i="${i}" aria-label="삭제">×</button></div>`).join('')}</div>
+  ${memos.length?`<div class="card"><h3>📝 회원 컨디션 메모</h3>${memos.map(d=>`<div class="item"><span>${esc(m.log[d].memo)}</span><span class="sub">${md(d)}</span></div>`).join('')}</div>`:''}`;
 }
 
-function shareLinks(m){const u=location.origin+location.pathname,inRepo=BASE?.members.some(x=>x.id===m.id);return{live:u+'#s='+enc({...m,log:{}}),repo:inRepo?u+'?m='+encodeURIComponent(m.id):''}}
-function weekText(m){const mon=monday(day);let t=`[${m.name}] 운동 기록 ${md(mon)}~${md(add(mon,6))}\n`;WEEK.forEach((w,i)=>{const d=add(mon,i),s=stat(m,d),lg=m.log[d]||{};t+=`${w} ${md(d)} ${s.t?(s.d===s.t?'✅':s.d?'🟨':'⬜')+` ${s.d}/${s.t}`:'휴식'}${lg.meals?.length?` · 식단 ${lg.meals.length}/4`:''}${lg.weight?` · ${lg.weight}kg`:''}${lg.memo?` · ${lg.memo}`:''}\n`});return t+`달성률 ${rate(m,mon,add(mon,6))}%`}
-function ics(m){const z=n=>String(n).padStart(2,'0'),now=new Date(),st=`${now.getUTCFullYear()}${z(now.getUTCMonth()+1)}${z(now.getUTCDate())}T${z(now.getUTCHours())}${z(now.getUTCMinutes())}00Z`,c=s=>String(s||'').replace(/[,;\\]/g,'\\$&').replace(/\n/g,'\\n');
-  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//LINK//fitness//KO'];m.schedule.forEach((s,i)=>{const dt=s.date.replace(/-/g,'')+'T'+(s.time||'09:00').replace(':','')+'00';L.push('BEGIN:VEVENT',`UID:${m.id}-${i}-${dt}@link`,'DTSTAMP:'+st,'DTSTART:'+dt,'DURATION:PT1H','SUMMARY:'+c(s.title),'DESCRIPTION:'+c(s.note),'END:VEVENT')});L.push('END:VCALENDAR');dl(m.name+'_스케줄.ics',L.join('\r\n'),'text/calendar')}
+/* ── 공유·파일 ── */
+function shareLinks(m){const u=location.origin+location.pathname,inRepo=BASE?.members.some(x=>x.id===m.id);return{live:u+'#s='+enc({...m,log:{},photos:[]}),repo:inRepo?u+'?m='+encodeURIComponent(m.id):''}}
+function logLink(m){const since=add(TODAY,-27),log={};Object.keys(m.log).filter(d=>d>=since).forEach(d=>log[d]=m.log[d]);return location.origin+location.pathname+'#log='+enc({id:m.id,log})}
+function weekText(m){const mon=monday(day);let t=`[${m.name}] 운동 기록 ${md(mon)}~${md(add(mon,6))}\n`;
+  WEEK.forEach((w,i)=>{const d=add(mon,i),s=stat(m,d),lg=m.log[d]||{};t+=`${w} ${md(d)} ${s.t?(s.d===s.t?'✅':s.d?'🟨':'⬜')+` 운동 ${s.d}/${s.t}`:'휴식'}${lg.meals?.length?` · 식단 ${lg.meals.length}/4`:''}${lg.hab?.length?` · 습관 ${lg.hab.length}/${m.habits.length}`:''}${lg.weight?` · ${lg.weight}kg`:''}${lg.memo?` · ${lg.memo}`:''}\n`});
+  return t+`달성률 ${rate(m,mon,add(mon,6))}% · 연속 ${streak(m)}일`}
+function ics(m){const z=n=>String(n).padStart(2,'0'),n=new Date(),st=`${n.getUTCFullYear()}${z(n.getUTCMonth()+1)}${z(n.getUTCDate())}T${z(n.getUTCHours())}${z(n.getUTCMinutes())}00Z`,c=s=>String(s||'').replace(/[,;\\]/g,'\\$&').replace(/\n/g,'\\n');
+  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//LINK//fitness//KO'];m.schedule.forEach((s,i)=>{const dt=s.date.replace(/-/g,'')+'T'+(s.time||'09:00').replace(':','')+'00';L.push('BEGIN:VEVENT',`UID:${m.id}-${i}-${dt}@link`,'DTSTAMP:'+st,'DTSTART:'+dt,'DURATION:PT1H','SUMMARY:'+c(s.title),'DESCRIPTION:'+c(s.note),'BEGIN:VALARM','TRIGGER:-PT1H','ACTION:DISPLAY','DESCRIPTION:'+c(s.title),'END:VALARM','END:VEVENT')});
+  L.push('END:VCALENDAR');dl(m.name+'_스케줄.ics',L.join('\r\n'),'text/calendar')}
+function addPhoto(file){const img=new Image();img.onload=()=>{const s=Math.min(1,480/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(img.src);
+  const m=M();m.photos.push({date:day,img:c.toDataURL('image/jpeg',.7)});m.photos.sort((a,b)=>a.date.localeCompare(b.date));save();render();toast('사진을 저장했어요')};img.onerror=()=>toast('사진을 읽지 못했어요');img.src=URL.createObjectURL(file)}
+const modalBox=(title,body)=>`<div class="modal" data-act="close"><div class="card" data-act="stay"><h3>${title}</h3>${body}<br><button data-act="close">닫기</button></div></div>`;
 
 const ACT={
-  tab:o=>{tab=o.k;LS.set(KEY+'.tab',tab);render()},
+  tab:o=>{tab=o.k;LS.set(KEY+'.tab',tab);render();scrollTo(0,0)},
+  home:()=>{tab='home';render()},
+  pick:o=>{cur=o.id;tab='today';day=TODAY;save();render()},
   day:o=>{day=+o.n?add(day,+o.n):TODAY;render()},
   goDay:o=>{day=o.d;tab='today';render()},
-  ex:o=>{const lg=L(M(),day),i=lg.done.indexOf(o.name);i<0?lg.done.push(o.name):lg.done.splice(i,1);save();render()},
-  ck:o=>{if(o.d>TODAY)return;const lg=L(M(),o.d);lg.done=lg.done||[];const i=lg.done.indexOf(o.name);i<0?lg.done.push(o.name):lg.done.splice(i,1);save();render()},
-  meal:o=>{const lg=L(M(),day);lg.meals=lg.meals||[];const i=lg.meals.indexOf(o.slot);i<0?lg.meals.push(o.slot):lg.meals.splice(i,1);save();render()},
+  ex:o=>{togEx(M(),day,o.name);save();render()},
+  ck:o=>{if(o.d>TODAY)return;togEx(M(),o.d,o.name);save();render()},
+  set:(o,b)=>{const m=M(),lg=L(m,day),[k,r]=b.parentElement.querySelectorAll('input'),a=((lg.sets=lg.sets||{})[o.name]=lg.sets[o.name]||[]),i=+o.i;
+    if(a[i]){a[i]=null}else{const kg=num(k.value),reps=num(r.value);if(!reps)return toast('횟수를 입력하세요');const pb=best1(m,o.name);a[i]={kg,reps};const v=e1(kg,reps);
+      if(v&&pb&&v>pb)toast(`🎉 신기록! 추정 1RM ${v}kg`);rest(+o.rest||90)}
+    save();render()},
+  addSet:o=>{const m=M(),lg=L(m,day),e=m.routine[dn(day)].find(x=>x.name===o.name),a=((lg.sets=lg.sets||{})[o.name]=lg.sets[o.name]||[]);while(a.length<(+e?.sets||1))a.push(null);a.push(null);save();render()},
+  tm:o=>{if(+o.n){T.end+=+o.n*1000;tick()}else{T.end=0;clearInterval(T.id);$('#timer').hidden=true}},
+  meal:o=>{const lg=L(M(),day);tog(lg.meals=lg.meals||[],o.slot);save();render()},
+  hab:o=>{const lg=L(M(),day);tog(lg.hab=lg.hab||[],o.h);save();render()},
   delEx:o=>{M().routine[o.w].splice(+o.i,1);save();render()},
   delMeal:o=>{M().meals[o.s].splice(+o.i,1);save();render()},
   delSch:o=>{M().schedule.splice(+o.i,1);save();render()},
+  delCoach:o=>{M().coach.splice(+o.i,1);save();render()},
+  delPh:o=>{if(!confirm('사진을 지울까요?'))return;M().photos.splice(+o.i,1);save();render()},
   cpDay:()=>{const f=$('#cpf').value,t=$('#cpt').value;if(f===t)return;M().routine[t]=structuredClone(M().routine[f]);save();render();toast(`${f}→${t} 복사`)},
-  addM:()=>{const n=prompt('회원 이름');if(!n)return;const id='m'+Date.now().toString(36);D.members.push(fix({id,name:n.trim(),goal:'',level:'초급',start:TODAY,kcal:2000,protein:100}));cur=id;tab='info';save();render()},
+  addM:()=>{const n=prompt('회원 이름 (공개 저장소면 별명·이니셜 추천)');if(!n)return;const id='m'+Date.now().toString(36);D.members.push(fix({id,name:n.trim(),goal:'',level:'초급',start:TODAY,kcal:2000,protein:100}));cur=id;tab='info';save();render()},
   delM:()=>{if(!confirm(M().name+' 회원을 삭제할까요? (되돌릴 수 없음)'))return;D.members=D.members.filter(x=>x.id!==cur);cur=D.members[0]?.id;save();render()},
-  share:()=>{const m=M(),s=shareLinks(m);modal=`<div class="modal" data-act="close"><div class="card" data-act="stay"><h3>${esc(m.name)}님에게 공유</h3><p class="sub">① 바로 공유 — 지금 화면 그대로 담긴 링크</p><input readonly value="${esc(s.live)}"><div class="row"><button class="pri" data-act="cp" data-u="live">복사</button>${navigator.share?'<button data-act="ns">카톡·문자로 보내기</button>':''}</div>${s.repo?`<p class="sub">② 짧은 링크 — 깃허브 저장소 기준 (파일→내보내기 후 커밋하면 최신 반영)</p><input readonly value="${esc(s.repo)}"><button data-act="cp" data-u="repo">복사</button>`:''}<p class="sub">회원은 보기 전용으로 열리고, 운동 체크만 할 수 있어요.</p><button data-act="close">닫기</button></div></div>`;render()},
+  share:()=>{const m=M(),s=shareLinks(m);modal=modalBox(`${esc(m.name)}님에게 공유`,`<p class="sub">① 바로 공유 — 지금 루틴·식단·코치 메시지가 담긴 링크</p><input readonly value="${esc(s.live)}" aria-label="공유 링크"><div class="row"><button class="pri" data-act="cp" data-u="live">복사</button>${navigator.share?'<button data-act="ns">카톡·문자로 보내기</button>':''}</div>${s.repo?`<p class="sub">② 짧은 링크 — 깃허브 저장소 기준 (파일→내보내기 후 커밋하면 최신 반영)</p><input readonly value="${esc(s.repo)}" aria-label="짧은 링크"><button data-act="cp" data-u="repo">복사</button>`:''}<p class="sub">회원은 보기 전용으로 열고 세트·식단·습관만 체크해요. 회원이 '기록 보내기'로 준 링크를 이 기기에서 열면 기록이 합쳐져요.</p>`);render()},
   cp:o=>copy(shareLinks(M())[o.u]),
   ns:()=>navigator.share({title:M().name+'님 운동 루틴',url:shareLinks(M()).live}).catch(()=>{}),
-  more:()=>{modal=`<div class="modal" data-act="close"><div class="card" data-act="stay"><h3>파일 · 깃허브</h3><p class="sub">수정 내용은 이 기기에 자동 저장돼요. 깃허브에 올리려면 내보낸 파일로 <code>fitness/members.json</code>을 덮어쓰세요.</p><div class="row"><button class="pri" data-act="export">members.json 내보내기</button><button data-act="import">가져오기</button><button data-act="repo">저장소 최신 불러오기</button></div><br><button data-act="close">닫기</button></div></div>`;render()},
-  export:()=>{dl('members.json',JSON.stringify(D,null,2),'application/json');toast('내보냈어요')},
+  sendlog:async()=>{const m=M(),t=weekText(m)+'\n\n▶ 트레이너용 기록 링크 (열면 자동 반영)\n'+logLink(m);if(navigator.share){try{await navigator.share({text:t});return}catch(e){if(e.name==='AbortError')return}}copy(t)},
+  more:()=>{modal=modalBox('파일 · 깃허브',`<p class="sub">수정 내용은 이 기기에 자동 저장돼요. 깃허브에 올리려면 내보낸 파일로 <code>fitness/members.json</code>을 덮어쓰세요 (사진은 자동 제외).</p><div class="row"><button class="pri" data-act="export">members.json 내보내기</button><button data-act="backup">전체 백업(사진 포함)</button><button data-act="import">가져오기</button><button data-act="repo">저장소 최신 불러오기</button></div>`);render()},
+  export:()=>{dl('members.json',JSON.stringify(D,(k,v)=>k==='photos'?undefined:v,2),'application/json');toast('내보냈어요')},
+  backup:()=>dl(`fitness_backup_${TODAY}.json`,JSON.stringify(D),'application/json'),
   import:()=>$('#file').click(),
-  repo:async()=>{if(!confirm('이 기기의 수정 내용을 저장소 데이터로 바꿀까요?'))return;try{D=await(await fetch('members.json',{cache:'no-store'})).json();D.members.forEach(fix);cur=D.members[0]?.id;modal='';save();render();toast('불러왔어요')}catch(e){toast('불러오기 실패')}},
+  repo:async()=>{if(!confirm('이 기기의 수정 내용을 저장소 데이터로 바꿀까요? (사진은 유지)'))return;try{const ph=Object.fromEntries(D.members.map(m=>[m.id,m.photos]));D=await(await fetch('members.json',{cache:'no-store'})).json();D.members.forEach(m=>{fix(m);m.photos=ph[m.id]||[]});cur=D.members[0]?.id;modal='';save();render();toast('불러왔어요')}catch(e){toast('불러오기 실패')}},
   print:()=>window.print(),
-  copylog:()=>copy(weekText(M())),
   ics:()=>ics(M()),
   close:(o,el,e)=>{if(e.target!==el)return;modal='';render()},
   stay:()=>{}
 };
-document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;ACT[b.dataset.act]?.(b.dataset,b,e)});
-document.addEventListener('submit',e=>{e.preventDefault();const f=e.target,v=Object.fromEntries(new FormData(f)),m=M();
-  if(f.dataset.form==='ex')m.routine[v.w].push({name:v.name.trim(),sets:+v.sets,reps:v.reps.trim(),kg:+v.kg||0});
-  if(f.dataset.form==='meal')m.meals[v.s].push({food:v.food.trim(),kcal:+v.kcal,protein:+v.protein||0});
-  if(f.dataset.form==='sch')m.schedule.push({date:v.date,time:v.time,title:v.title.trim(),note:v.note.trim()});
-  save();render();toast('추가했어요')});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b)ACT[b.dataset.act]?.(b.dataset,b,e)});
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target,v=Object.fromEntries(new FormData(f)),m=M(),t=f.dataset.form;
+  if(t==='ex')m.routine[v.w].push({name:v.name.trim(),sets:+v.sets,reps:v.reps.trim(),kg:+v.kg||0,...(+v.rest?{rest:+v.rest}:{})});
+  if(t==='meal')m.meals[v.s].push({food:v.food.trim(),kcal:+v.kcal,protein:+v.protein||0});
+  if(t==='sch')for(let i=0;i<Math.min(12,Math.max(1,+v.rep||1));i++)m.schedule.push({date:add(v.date,i*7),time:v.time,title:v.title.trim(),note:v.note.trim()});
+  if(t==='coach')m.coach.unshift({date:TODAY,text:v.text.trim()});
+  if(t==='body'){const lg=L(m,v.d||day);Object.keys(BODY).forEach(k=>{if(v[k]!=='')lg[k]=+v[k]})}
+  save();render();toast(t==='coach'?'등록했어요':t==='body'?'기록했어요':'추가했어요')});
 document.addEventListener('change',e=>{const t=e.target,m=M();
-  if(t.id==='msel'){cur=t.value;save();render()}
+  if(t.id==='msel'){cur=t.value;if(tab==='home')tab='today';save();render()}
+  else if(t.dataset.f==='habits'){m.habits=t.value.split(',').map(s=>s.trim()).filter(Boolean);save()}
   else if(t.dataset.f){m[t.dataset.f]=t.type==='number'?(t.value===''?null:+t.value):t.value;save();if(t.dataset.f==='name')render()}
-  else if(t.dataset.log){const lg=L(m,day);lg[t.dataset.log]=t.type==='number'?(t.value===''?undefined:+t.value):t.value;save()}
+  else if(t.dataset.log){const lg=L(m,day);if(t.type==='number'){if(t.value==='')delete lg.weight;else lg.weight=+t.value}else lg.memo=t.value;save()}
+  else if(t.dataset.sel){t.dataset.sel==='ex'?chEx=t.value:chBody=t.value;render()}
+  else if(t.id==='photo'&&t.files[0])addPhoto(t.files[0]);
   else if(t.id==='file'&&t.files[0]){t.files[0].text().then(s=>{const d=JSON.parse(s);if(!Array.isArray(d.members))throw 0;D=d;D.members.forEach(fix);cur=D.members[0]?.id;modal='';save();render();toast('가져왔어요')}).catch(()=>toast('올바른 members.json이 아니에요'));t.value=''}});
-addEventListener("hashchange",()=>location.reload());
+addEventListener('hashchange',()=>location.reload());
 init();
 </script>
 </body>

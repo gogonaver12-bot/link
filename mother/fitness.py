@@ -32,6 +32,8 @@ def validate(data):
             for e in exs:
                 if not e.get("name") or not isinstance(e.get("sets"), (int, float)):
                     errs.append(f"{who}/{d}: 운동 이름·세트 확인 필요 {e}")
+        if any(p.get("img") for p in m.get("photos") or []):
+            errs.append(f"{who}: 사진은 저장소에 올리지 마세요(개인정보) — 앱의 '내보내기'는 자동 제외")
         for s in m.get("schedule") or []:
             if len(str(s.get("date", ""))) != 10:
                 errs.append(f"{who}: 일정 날짜 형식(YYYY-MM-DD) 오류 {s}")
@@ -57,6 +59,7 @@ def render_md(m):
         f"- 목표: {m.get('goal', '-')} · 수준: {m.get('level', '-')} · 시작: {m.get('start', '-')}",
         f"- 체중: {m.get('weight', '-')}kg → 목표 {m.get('targetWeight', '-')}kg",
         f"- 식단: 하루 {kcal}kcal / 목표 {m.get('kcal', '-')}kcal · 단백질 {prot}g / 목표 {m.get('protein', '-')}g",
+        f"- 매일 습관: {', '.join(m.get('habits') or []) or '-'}",
         f"- 📱 체크·공유 화면: {PAGES}?m={m['id']}",
         "",
         "## 주간 루틴",
@@ -77,6 +80,8 @@ def render_md(m):
         fs = (m.get("meals") or {}).get(s, [])
         menu = ", ".join(f["food"] for f in fs) or "-"
         out.append(f"| {s} | {menu} | {sum(f.get('kcal', 0) for f in fs)} | {sum(f.get('protein', 0) for f in fs)}g |")
+    if m.get("coach"):
+        out += ["", f"> 💬 코치 메시지 ({m['coach'][0]['date']}): {m['coach'][0]['text']}"]
     sch = sorted(m.get("schedule") or [], key=lambda x: x["date"] + x.get("time", ""))
     if sch:
         out += ["", "## 일정", ""] + [f"- {x['date']} {x.get('time', '')} {x['title']} {x.get('note', '')}".rstrip() for x in sch]

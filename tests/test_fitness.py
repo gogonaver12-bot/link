@@ -14,9 +14,9 @@ def test_repo_data_valid_and_export(tmp_path):
 
 def test_validate_catches_errors():
     bad = {"members": [{"id": "a", "name": "x", "routine": {"월요일": [{"name": "", "sets": "3"}]}},
-                       {"id": "a", "name": "y", "schedule": [{"date": "11/25"}]}]}
+                       {"id": "a", "name": "y", "schedule": [{"date": "11/25"}], "photos": [{"img": "data:x"}]}]}
     errs = fitness.validate(bad)
-    assert any("중복" in e for e in errs) and any("요일" in e for e in errs) and any("날짜" in e for e in errs)
+    assert any("중복" in e for e in errs) and any("요일" in e for e in errs) and any("날짜" in e for e in errs) and any("사진" in e for e in errs)
 
 
 def test_totals():
