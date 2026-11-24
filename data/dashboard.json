@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T05:27:50+00:00",
+ "updated": "2026-11-24T05:27:58+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -873,86 +873,67 @@
   },
   {
    "id": "I0011",
-   "title": "오픈소스 LLM 기반 멀티 AI 자동 전환 프록시 API",
-   "market": "AI 개발자 및 소규모 SaaS 운영자",
-   "platform": "Web / GitHub / RapidAPI",
-   "model": "구독 및 사용량 기반 과금(Pay-as-you-go)",
-   "first_step": "Groq, Ollama, HuggingFace 등 무료/저가 AI API를 연동하여 Claude 키 오류 시 자동 우회하는 Python 기반 미니 프록시 오픈소스 PoC 작성",
-   "evidence": "Claude 및 OpenAI의 크레딧 부족 및 키 에러 이슈가 빈번하며, 개발자들이 API 안정성 확보를 위한 폴백(Fallback) 솔루션 수요가 급증함",
+   "title": "무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS",
+   "market": "AI 개발자 및 에이전시",
+   "platform": "Web / API Service",
+   "model": "구독",
+   "first_step": "Groq, Ollama, HuggingFace 무료 API를 연동하여 유료 API 키 오류 발생 시 자동 전환되는 오픈소스 라우터 파이썬 스크립트 작성",
+   "evidence": "상용 LLM 크레딧 고갈 문제로 인한 서비스 중단 사례 급증 및 비용 최적화(FinOps) 수요 증가",
    "scores": {
     "demand": 85,
     "low_competition": 70,
     "low_cost": 90,
-    "speed_to_revenue": 80,
-    "scalability": 85,
-    "low_risk": 80
+    "speed_to_revenue": 75,
+    "scalability": 80,
+    "low_risk": 85
    },
-   "score": 82.0,
-   "status": "active",
+   "score": 80.8,
+   "status": "killed",
    "created": "2026-11-24",
-   "started": "2026-11-24",
+   "started": null,
    "last_review": null,
    "product": null,
-   "killed_by": null,
+   "killed_by": "생존 테스트",
    "viability": {
     "date": "2026-11-24",
-    "pass": true,
-    "why": "흑자 확률 59% · 90일 ROI 중앙값 +76% (기준 40%·+30%)",
+    "pass": false,
+    "why": "흑자 확률 9% · 90일 ROI 중앙값 -60% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
-     "p_profit": 0.589,
-     "roi_p10": -0.97,
-     "roi_p50": 0.76,
-     "roi_p90": 3.88,
-     "rev30_p50": 539.1,
-     "rev_p10": 49.0,
-     "rev_p50": 4803.0,
-     "rev_p90": 354611.9,
-     "breakeven_p50": 57
+     "p_profit": 0.09,
+     "roi_p10": -0.93,
+     "roi_p50": -0.6,
+     "roi_p90": -0.03,
+     "rev30_p50": 99.0,
+     "rev_p10": 99.0,
+     "rev_p50": 594.0,
+     "rev_p90": 1584.0,
+     "breakeven_p50": 91
     },
     "estimates": [
      {
       "model": "gemini:gemini-flash-lite-latest",
       "role": "중립 심사역",
-      "price_usd": 49.0,
-      "conv_rate_pct": 1.5,
-      "visitors_low": 30,
-      "visitors_high": 150
-     },
-     {
-      "model": "groq:openai/gpt-oss-120b",
-      "role": "비관 분석가",
-      "price_usd": 0.01,
+      "price_usd": 99,
       "conv_rate_pct": 0.5,
-      "visitors_low": 1000,
-      "visitors_high": 5000
+      "visitors_low": 50,
+      "visitors_high": 200
      }
     ],
     "risks": [
-     "무료 오픈소스 호스팅(LiteLLM 등 직접 구축)으로 인한 낮은 유료 전환율",
-     "대형 LLM 게이트웨이 및 클라우드 제공사의 유사 기능 기본 탑재",
-     "API 중개 마진의 한계로 인한 소규모 고객의 이탈 가능성",
-     "Free self‑hosted alternatives reduce willingness to pay",
-     "Low conversion from developer traffic",
-     "High operational cost for scaling compute"
+     "LiteLLM 등 오픈소스 대안과의 무료 경쟁 심화",
+     "API Key 위탁에 따른 보안 및 신뢰성 이슈",
+     "단순 라우팅 기능만으로는 낮은 유료 전환율"
     ],
     "evidence": [
-     "LiteLLM Enterprise 연간 $5,000~$20,000 및 Portkey/Langfuse 월 $50~ 사용량 기반 과금 (https://github.com/BerriAI/litellm)",
-     "GitHub 스타 1.5만 개 이상을 기록하며 API 키 관리 및 로드밸런싱 수요 확인 (https://github.com/BerriAI/litellm)",
-     "LiteLLM Enterprise pricing $5,000–$20,000 per year (https://github.com/BerriAI/litellm)",
-     "Portkey/​Langfuse usage‑based plans start at $50/month (https://www.portkey.ai/pricing)",
-     "LiteLLM GitHub stars >15k indicating strong developer interest (https://github.com/BerriAI/litellm)"
+     "Portkey Pro pricing starts at $99/month (https://portkey.ai/pricing)",
+     "LiteLLM provides free open-source alternative for API fallback and routing (https://github.com/BerriAI/litellm)",
+     "B2B SaaS churn risk due to data security concerns regarding API key management"
     ],
-    "disagreement": 2.84
+    "disagreement": 0.0
    },
-   "metrics": {
-    "revenue": 0,
-    "cost": 0,
-    "profit": 0,
-    "roi": 0.0,
-    "age": 0
-   }
+   "metrics": null
   }
  ],
  "team": [
@@ -1236,16 +1217,16 @@
  ],
  "runs": [
   {
-   "ts": "2026-11-24T05:27:35+00:00",
+   "ts": "2026-11-24T05:27:45+00:00",
    "agent": "researcher",
    "model": "gemini:gemini-flash-lite-latest",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 오픈소스 LLM 기반 멀티 AI 자동 전환 프록시 API (AI 개발자 및 소규모 SaaS 운영자/Web / GitHub / RapidAPI, 구독 및 사용량 기반 과금(Pay-as-you-go))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS (AI 개발자 및 에이전시/Web / API Service, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   },
   {
-   "ts": "2026-11-24T05:26:49+00:00",
+   "ts": "2026-11-24T05:26:53+00:00",
    "agent": "researcher",
    "model": null,
-   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45%"
+   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 4"
   },
   {
    "ts": "2026-11-23T17:11:44+00:00",
@@ -1499,10 +1480,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-24T05:27:49+00:00",
-   "cmd": "biz scout --market GLOBAL",
+   "ts": "2026-11-24T05:27:56+00:00",
+   "cmd": "biz scout --market US",
    "ok": true,
-   "output": "I0011 82.0점 [active] AI 개발자 및 소규모 SaaS 운영자/Web / GitHub / RapidAPI 오픈소스 LLM 기반 멀티 AI 자동 전환 프록시 API\n   → Groq, Ollama, HuggingFace 등 무료/저가 AI API를 연동하여 Claude 키 오류 시 자동 우회하는 Python 기반 미니 프록시 오픈소스 PoC 작성"
+   "output": "I0011 80.8점 [killed] AI 개발자 및 에이전시/Web / API Service 무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS\n   → Groq, Ollama, HuggingFace 무료 API를 연동하여 유료 API 키 오류 발생 시 자동 전환되는 오픈소스 라우터 파이썬 스크립트 작성"
   },
   {
    "ts": "2026-11-23T17:20:29+00:00",
