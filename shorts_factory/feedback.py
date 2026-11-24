@@ -46,8 +46,17 @@ def ask_ai(rows, n):
     sys.path.insert(0, str(ROOT.parent))
     from mother import providers
     existing = [json.loads(p.read_text(encoding="utf-8"))["title"] for p in SCRIPTS.glob("*.json")]
+    from mother import benchmark
+    try:
+        benchmark.refresh()
+    except Exception as e:
+        print(f"(벤치마크 수집 실패: {e})")
+    ref = benchmark.brief()
     prompt = (f"유튜브 숏츠 채널 성과 데이터(조회수 순):\n{json.dumps(rows[:30], ensure_ascii=False)}\n"
-              f"이미 만든 제목: {existing}\n\n성과를 분석하고 다음 숏츠 대본 {n}개를 만들어줘.\n{SCHEMA_HINT}")
+              f"이미 만든 제목: {existing}\n\n"
+              + (f"[벤치마크 — 요즘 잘 되는 AI 숏츠]\n{ref}\n위에서 잘 되는 주제·훅 구조·길이를 분석해 응용하라(제목·내용 복제 금지, 사실만). "
+                 f"이미 만든 제목과 주제가 겹치지 않게 새로운 주제를 고를 것.\n\n" if ref else "")
+              + f"성과와 벤치마크를 분석하고 다음 숏츠 대본 {n}개를 만들어줘.\n{SCHEMA_HINT}")
     from mother import store
     writer = store.cfg().get("shorts", {}).get("writer", "auto")
     try:

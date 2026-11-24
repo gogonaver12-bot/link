@@ -147,6 +147,7 @@ def main(argv=None):
     tt.add_argument("target"); tt.add_argument("name", nargs="?", default="")
     sp.add_parser("shorts", help="숏츠 대본→영상→유튜브 자동 업로드 (--private: 비공개 시험 업로드)").add_argument("--private", action="store_true")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
+    sp.add_parser("benchmark", help="유튜브 인기 AI 숏츠 수집(대본 참고용)")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
     mk.add_argument("id"); mk.add_argument("--pages", type=int, default=30)
     mk.add_argument("--pdf-only", action="store_true", help="AI 없이 저장된 원고로 PDF만 다시 만들기")
@@ -293,6 +294,10 @@ def main(argv=None):
     elif x.cmd == "shorts":
         from . import publish
         p(publish.shorts(private=x.private))
+    elif x.cmd == "benchmark":
+        from . import benchmark
+        d = benchmark.refresh()
+        p(benchmark.brief(10) or "수집 결과 없음(유튜브 키 확인)")
     elif x.cmd == "blog":
         from . import publish
         p(publish.blog())
