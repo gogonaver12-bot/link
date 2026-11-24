@@ -88,3 +88,8 @@ viability:
   days: 90
   runs: 2000               # 시뮬레이션 반복 횟수
   max_ais: 3               # 경쟁시킬 AI 수 (회사별 1개: 중립·비관·낙관)
+
+# ── 숏츠 품질 ──
+shorts:
+  writer: "anthropic:claude-fable-5-2"   # 대본 작가 (Claude 충전 잔액 없으면 자동으로 무료 AI)
+  ai_images: true                       # 장면마다 Gemini AI 이미지 → 안 되면 Pexels/Pixabay 실사 영상

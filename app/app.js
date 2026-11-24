@@ -422,6 +422,9 @@ const KEYS = [
     ["GEMINI_API_KEY", "Get API key → Create", "https://aistudio.google.com/apikey"], ["GROQ_API_KEY", "Create API Key", "https://console.groq.com/keys"],
     ["CEREBRAS_API_KEY", "API Keys → Generate", "https://cloud.cerebras.ai/"], ["OPENROUTER_API_KEY", "Create Key (무료 모델만 사용)", "https://openrouter.ai/settings/keys"],
     ["MISTRAL_API_KEY", "Create new key (무료 체험 등급)", "https://console.mistral.ai/api-keys"]]],
+  ["🎬 영상 품질 (무료 · 추천)", [
+    ["PEXELS_API_KEY", "고화질 세로 실사 영상 · 무료", "https://www.pexels.com/api/new/"],
+    ["PIXABAY_API_KEY", "실사 영상 예비 · 무료", "https://pixabay.com/api/docs/"]]],
   ["⭐ 품질·분석 (선택)", [
     ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑ (CLAUDE_API_KEY 이름도 인식)", "https://console.anthropic.com/settings/keys"],
     ["OPENAI_API_KEY", "ChatGPT · 유료 (CHATGPT_API_KEY 이름도 인식)", "https://platform.openai.com/api-keys"],
