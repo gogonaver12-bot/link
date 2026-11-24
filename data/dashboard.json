@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T19:07:43+00:00",
+ "updated": "2026-11-24T19:10:16+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1268,34 +1268,34 @@
  ],
  "reports": [
   {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-24T19:05+00:00"
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-24T19:08+00:00"
   },
   {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-24T19:05+00:00"
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-24T19:08+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-24T19:05+00:00"
+   "date": "2026-11-24T19:08+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-24T19:08+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-24T19:05+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-24T19:05+00:00"
+   "date": "2026-11-24T19:08+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-24T19:05+00:00"
+   "date": "2026-11-24T19:08+00:00"
   }
  ],
  "runs": [
@@ -1584,6 +1584,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-24T19:10:14+00:00",
+   "cmd": "shorts --private",
+   "ok": true,
+   "output": "업로드 기록 없음\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n제공된 기존 제목들을 보면, 조회수가 높은 영상들은 '잠', '뇌', '비밀', '꿀팁' 같은 키워드와 숫자를 활용해 호기심을 유발하고, 3초 이내에 강렬한 훅을 제시한다는 공통점이 있습니다. 또한 짧고 임팩트 있는 문구와 시각적으로 강렬한 색상(어두운 배경에 대비되는 포인트 컬러)을 사용합니다. 반면 조회수가 낮은 영상들은 제목이 모호하거나, 훅이 약하고, 내용이 산만하게 전개되는 경향이 있습니다. 따라서 이번 스크립트는 ‘뇌가 숨기는 3가지 신호’를 중심으로 숫자와 ‘비밀’ 요소를 강조하고, 첫 훅을 3초 안에 강하게 전달하도록 구성했습니다.\n📝 007.json: 잠 못 이루는 밤, 뇌가 숨기는 3가지 신호\n✅ /home/runner/work/link/link/shorts_factory/out/001.mp4 (25.7초)\n✅ https://youtube.com/shorts/O9Wfuk4aSWU"
+  },
+  {
    "ts": "2026-11-24T19:07:42+00:00",
    "cmd": "shorts --private",
    "ok": true,
@@ -1636,12 +1642,6 @@
    "cmd": "ai check",
    "ok": true,
    "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기\n유튜브(구글) API 키로 되는 것:\n  ✅ 유튜브 조회(인기·검색): 가능\n  ⚠️ Gemini AI: 오류 403\n  ⚠️ 블로그(Blogger) 읽기: 오류 403\n  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요\n  ⚠️ 블로그 글쓰기: 오류 403"
-  },
-  {
-   "ts": "2026-11-23T17:11:53+00:00",
-   "cmd": "biz scout --market GLOBAL",
-   "ok": true,
-   "output": "I0010 79.0점 [killed] AI 개발자 및 에이전트 빌더/GitHub / SaaS 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터\n   → Groq, Ollama, OpenAI API를 연동해 크레딧 소진 시 자동 우회하는 파이썬 오픈소스 라이브러리 초안 작성"
   }
  ],
  "pipelines": [
@@ -1738,8 +1738,8 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 0,
-    "done": false
+    "n": 1,
+    "done": true
    },
    {
     "name": "첫 매출",
@@ -1747,9 +1747,9 @@
     "done": false
    }
   ],
-  "blocker": "업로드 대기 중 — 다음 자동 실행 때 올라가요",
-  "action": "",
-  "shorts": 0,
+  "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
+  "action": "log",
+  "shorts": 1,
   "blog": 0
  },
  "keys_set": {
