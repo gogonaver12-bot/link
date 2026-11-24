@@ -145,7 +145,7 @@ def main(argv=None):
     pl.add_argument("action", choices=["new", "list", "run", "off", "on"]); pl.add_argument("arg", nargs="?", default="")
     tt = sp.add_parser("test", help="생존 테스트: 인터넷 조사→AI 경쟁 추정→수익 시뮬레이션 (test I0001 / test all / test pipeline 이름)")
     tt.add_argument("target"); tt.add_argument("name", nargs="?", default="")
-    sp.add_parser("shorts", help="숏츠 대본→영상→유튜브 자동 업로드")
+    sp.add_parser("shorts", help="숏츠 대본→영상→유튜브 자동 업로드 (--private: 비공개 시험 업로드)").add_argument("--private", action="store_true")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
     mk.add_argument("id"); mk.add_argument("--pages", type=int, default=30)
@@ -282,7 +282,7 @@ def main(argv=None):
               + "\n" + "\n".join(f"- {e['role']} {e['model']}: 가격 ${e['price_usd']} 전환 {e['conv_rate_pct']}% 하루 {e['visitors_low']}~{e['visitors_high']}" for e in r["estimates"]))
     elif x.cmd == "shorts":
         from . import publish
-        p(publish.shorts())
+        p(publish.shorts(private=x.private))
     elif x.cmd == "blog":
         from . import publish
         p(publish.blog())
