@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T19:20:42+00:00",
+ "updated": "2026-11-24T19:22:37+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1268,34 +1268,34 @@
  ],
  "reports": [
   {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-24T19:18+00:00"
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-24T19:22+00:00"
   },
   {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-24T19:18+00:00"
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-24T19:22+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-24T19:18+00:00"
+   "date": "2026-11-24T19:22+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-24T19:22+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-24T19:18+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-24T19:18+00:00"
+   "date": "2026-11-24T19:22+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-24T19:18+00:00"
+   "date": "2026-11-24T19:22+00:00"
   }
  ],
  "runs": [
@@ -1584,6 +1584,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-24T19:22:36+00:00",
+   "cmd": "benchmark",
+   "ok": true,
+   "output": "최근 10개 인기 AI 숏츠(하루 조회수 순, 중앙 길이 33초):\n- 하루 2,193,975회 · 31초 · 1 Throw. infinite Chaos. 🎯🔥 #Shorts #ai #aishorts #dart #CGI #cinematic  #reels #fyp · 태그: the impossible throw, impossible throw, 1 shot 100 impacts, throwing star target\n- 하루 1,387,583회 · 31초 · The Hidden Secret in the Box 💚 #Shorts · 태그: minecraft, steve, animation, minecraftshorts\n- 하루 956,385회 · 50초 · No ordinary Love 🙂 | #shorts #lovers #animation · 태그: \n- 하루 722,763회 · 36초 · पुरानी गोदरेज को बना दिया लग्जरी! 😱 ऐसा बदलाव देखा है? ❤️ #shorts #diy #saasbahu #art #aishorts #bts · 태그: old Godrej makeover, Godrej wardrobe transformation, tiktok, aivedio\n- 하루 717,677회 · 68초 · 5 Most China’s Weirdest Farms Will Leave You Speechless!🙄#shorts #facts #farming  #animalsfacts #yt · 태그: \n- 하루 698,749회 · 14초 · Amazing AI Fantasy Exotic Birds &amp Rare Species Animation ​#Shorts #ViralBirds #ExoticBirds · 태그: fantasy birds, exotic birds, rare bird species, wildlife magic, viral shorts, AI animation birds, beautiful birds in the world, amazing nature creatures\n- 하루 693,234회 · 25초 · Real vs AI Image! #shorts · 태그: how to spot ai generated images, how to spot fake images, how to detect ai images, guess an ai image\n- 하루 414,071회 · 10초 · 트레이닝복 입고 나란히 앉은 두 형님의 현실 근황 😂 #shorts #쇼츠 #트럼프 #푸틴 #AI영상 #웃긴영상 #유머 #일상유머 · 태그: \n- 하루 411,200회 · 47초 · Eggs So Strange, You’ll Think They’re Alien!🙄#shorts #egg #animals  #facts #city #ytshorts #ytviral · 태그: \n- 하루 337,329회 · 33초 · Paiyan-kaga NASA Kitta Nilaavaye Vaangina Sheru Bhai! 🦁 | Tamil AI Shorts · 태그: Sheru Bhai, Sheru Bhai Tamil, Tamil AI animation, AI animated story Tamil, Tamil YouTube shorts, lion mass video Tamil, father and son Tamil status, Sheru Bhai and son, Tamil trending shorts 2026, AI video Tamil, cute lion cub video, Tamil comedy mass shorts, NASA moon comedy Tamil, animated shorts Tamil, viral Tamil shorts"
+  },
+  {
    "ts": "2026-11-24T19:20:41+00:00",
    "cmd": "shorts --private",
    "ok": true,
@@ -1636,12 +1642,6 @@
    "cmd": "biz scout --market US",
    "ok": true,
    "output": "I0011 81.0점 [killed] 개발자 및 소규모 AI 서비스 운영자 시장/Web / SaaS 무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스\n   → GitHub에서 무료 오픈소스 LLM(Llama-3, Mistral 등) API를 연동하는 파이썬 라우팅 스크립트 작성"
-  },
-  {
-   "ts": "2026-11-24T05:27:15+00:00",
-   "cmd": "biz scout --market US",
-   "ok": true,
-   "output": "I0011 78.5점 [active] 개발자 및 AI SaaS 운영 1인 창업가/Web / GitHub 무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스\n   → Ollama와 Hugging Face 무료 모델을 연동하는 기본 API 프록시 서버 Node.js 코드 작성"
   }
  ],
  "pipelines": [
@@ -1709,7 +1709,7 @@
   {
    "id": "blogger",
    "name": "블로그(Blogger)",
-   "ready": false,
+   "ready": true,
    "need": "구글 1회 연결 + BLOGGER_BLOG_ID"
   },
   {
@@ -1756,7 +1756,7 @@
   "GOOGLE_OAUTH_CLIENT_ID": true,
   "GOOGLE_OAUTH_CLIENT_SECRET": true,
   "GOOGLE_OAUTH_REFRESH_TOKEN": true,
-  "BLOGGER_BLOG_ID": false,
+  "BLOGGER_BLOG_ID": true,
   "GEMINI_API_KEY": true,
   "GROQ_API_KEY": true,
   "CEREBRAS_API_KEY": false,
