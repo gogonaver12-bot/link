@@ -150,6 +150,8 @@ def main(argv=None):
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
     mk.add_argument("id"); mk.add_argument("--pages", type=int, default=30)
     mk.add_argument("--pdf-only", action="store_true", help="AI 없이 저장된 원고로 PDF만 다시 만들기")
+    ft = sp.add_parser("fitness", help="회원 운동·식단 관리표 생성 (fitness/members.json → fitness/routines/)")
+    ft.add_argument("--check", action="store_true", help="데이터 오류만 검사")
     rc = sp.add_parser("record", help="(내부용) 명령 결과를 앱에 기록")
     rc.add_argument("status"); rc.add_argument("file"); rc.add_argument("label", nargs="?", default="")
 
@@ -189,6 +191,14 @@ def main(argv=None):
             p(tools.github_search(q, k))
         else:
             p(tools.youtube_search(q, x.region, trending=(k == "trending")))
+    elif x.cmd == "fitness":
+        from . import fitness
+        if x.check:
+            errs = fitness.validate(fitness.load())
+            p("\n".join(errs) or "오류 없음")
+        else:
+            out, n = fitness.export_all()
+            p(f"회원 {n}명 관리표 생성 → {out.relative_to(store.ROOT)}")
     elif x.cmd == "crawl":
         p(tools.crawl(x.url))
     elif x.cmd == "skill":

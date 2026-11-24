@@ -12,6 +12,7 @@
 
 ## 📱 휴대폰 앱
 **https://gogonaver12-bot.github.io/link/** — 홈 화면에 추가하면 앱처럼 실행 (사업·팀·AI·보고서·명령)
+- 🏋️ 회원 운동·식단 관리: **https://gogonaver12-bot.github.io/link/fitness/** (루틴·스케줄·식단·관리표, 회원 공유 링크) · 표 보기: `fitness/routines/` · 생성: `python -m mother fitness`
 - 최초 1회: 저장소 Settings → Pages → Branch `main` / `(root)` → Save
 - 앱에서 바로 실행하려면: 앱 ⚙️ 설정 → 깃허브 토큰(이 저장소만, Actions 읽기/쓰기) 붙여넣기
 
