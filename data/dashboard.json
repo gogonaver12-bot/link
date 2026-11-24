@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T05:31:43+00:00",
+ "updated": "2026-11-24T19:02:42+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1268,34 +1268,34 @@
  ],
  "reports": [
   {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-24T05:31+00:00"
-  },
-  {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-24T05:30+00:00"
+   "date": "2026-11-24T19:02+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-24T05:30+00:00"
+   "date": "2026-11-24T19:02+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-24T19:02+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-24T05:30+00:00"
-  },
-  {
-   "file": "reports/20261123-1109-상품-I0001.md",
-   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-24T05:30+00:00"
+   "date": "2026-11-24T19:02+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-24T05:30+00:00"
+   "date": "2026-11-24T19:02+00:00"
+  },
+  {
+   "file": "reports/20261123-1109-상품-I0001.md",
+   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
+   "date": "2026-11-24T19:02+00:00"
   }
  ],
  "runs": [
@@ -1584,6 +1584,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-24T19:02:40+00:00",
+   "cmd": "export",
+   "ok": true,
+   "output": "앱 데이터 갱신: 사업 12 · 팀 9 · 보고서 6"
+  },
+  {
    "ts": "2026-11-24T05:31:42+00:00",
    "cmd": "schedule",
    "ok": true,
@@ -1636,12 +1642,6 @@
    "cmd": "agent upgrade",
    "ok": true,
    "output": "analyst: 유지\ncontent_creator: 유지\ndeveloper: 유지\ngithub_scout: 유지\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: 유지\nsales: 유지\nviral_analyst: 유지"
-  },
-  {
-   "ts": "2026-11-23T17:00:08+00:00",
-   "cmd": "ai check",
-   "ok": true,
-   "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ InvalidHeader: Invalid leading whitespace, reserved character(s), or return character(s) in header value: '***"
   }
  ],
  "pipelines": [
@@ -1703,7 +1703,7 @@
   {
    "id": "youtube",
    "name": "유튜브 숏츠",
-   "ready": false,
+   "ready": true,
    "need": "구글 1회 연결"
   },
   {
@@ -1747,15 +1747,15 @@
     "done": false
    }
   ],
-  "blocker": "만든 건 있는데 아무 데도 안 올라가서 ROI 0%예요. 구글 1회 연결이 필요해요(크몽은 직접 올려야 함)",
-  "action": "google",
+  "blocker": "업로드 대기 중 — 다음 자동 실행 때 올라가요",
+  "action": "",
   "shorts": 0,
   "blog": 0
  },
  "keys_set": {
-  "GOOGLE_OAUTH_CLIENT_ID": false,
-  "GOOGLE_OAUTH_CLIENT_SECRET": false,
-  "GOOGLE_OAUTH_REFRESH_TOKEN": false,
+  "GOOGLE_OAUTH_CLIENT_ID": true,
+  "GOOGLE_OAUTH_CLIENT_SECRET": true,
+  "GOOGLE_OAUTH_REFRESH_TOKEN": true,
   "BLOGGER_BLOG_ID": false,
   "GEMINI_API_KEY": true,
   "GROQ_API_KEY": true,
