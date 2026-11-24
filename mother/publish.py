@@ -40,7 +40,8 @@ def _cfg():
 
 # ───────────────────────── 유튜브 숏츠 ─────────────────────────
 def _py(*args):
-    r = subprocess.run([sys.executable, *args], cwd=SHORTS, capture_output=True, text=True, timeout=900)
+    env = {**os.environ, "AI_IMAGES": "1" if store.cfg().get("shorts", {}).get("ai_images", True) else "0"}
+    r = subprocess.run([sys.executable, *args], cwd=SHORTS, capture_output=True, text=True, timeout=900, env=env)
     return (r.stdout + r.stderr).strip()[-1500:]
 
 

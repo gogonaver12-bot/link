@@ -48,8 +48,14 @@ def ask_ai(rows, n):
     existing = [json.loads(p.read_text(encoding="utf-8"))["title"] for p in SCRIPTS.glob("*.json")]
     prompt = (f"유튜브 숏츠 채널 성과 데이터(조회수 순):\n{json.dumps(rows[:30], ensure_ascii=False)}\n"
               f"이미 만든 제목: {existing}\n\n성과를 분석하고 다음 숏츠 대본 {n}개를 만들어줘.\n{SCHEMA_HINT}")
+    from mother import store
+    writer = store.cfg().get("shorts", {}).get("writer", "auto")
     try:
-        text, used = providers.complete(prompt, system="JSON만 출력한다.", agent="shorts_feedback")
+        try:  # 설정된 대본 작가(기본: Claude Fable) → 크레딧 없거나 실패하면 무료 AI
+            text, used = providers.complete(prompt, system="너는 조회수 높은 숏츠 작가다. JSON만 출력한다.", agent="shorts_writer",
+                                            spec={"tier": "worker", "tools": [], "model": writer})
+        except Exception:
+            text, used = providers.complete(prompt, system="JSON만 출력한다.", agent="shorts_feedback")
     except Exception as e:
         print(f"(AI 연결 없음 → 대본 생성 생략: {e})")
         return None

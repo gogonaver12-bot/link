@@ -18,7 +18,7 @@ def _report_list():
 
 KEY_NAMES = ["GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN", "BLOGGER_BLOG_ID",
              "GEMINI_API_KEY", "GROQ_API_KEY", "CEREBRAS_API_KEY", "OPENROUTER_API_KEY", "MISTRAL_API_KEY",
-             "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "YOUTUBE_API_KEY", "GH_SEARCH_TOKEN"]
+             "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "YOUTUBE_API_KEY", "PEXELS_API_KEY", "PIXABAY_API_KEY", "GH_SEARCH_TOKEN"]
 
 
 def _via(v):
@@ -29,12 +29,15 @@ def _via(v):
             "risks": pr.get("risks", []), "evidence": pr.get("evidence", []), "disagreement": pr.get("disagreement")}
 
 
+UPLOADS = store.ROOT / "shorts_factory" / "uploads.json"
+
+
 def _progress(revenue):
     """사업이 어디까지 왔고 어디서 막혔는지: 발굴 → 승인 → 상품 → 업로드 → 첫 매출."""
     from .publish import google_ready
     ideas = store.load_json("ideas.json", [])
     pub = store.load_json("published.json", {})
-    up = store.ROOT / "shorts_factory" / "uploads.json"
+    up = UPLOADS
     shorts = len(json.loads(up.read_text(encoding="utf-8"))) if up.exists() else 0
     blog = len(pub.get("blog_posted", []))
     made = sum(1 for i in ideas if i.get("product"))

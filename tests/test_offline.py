@@ -366,6 +366,7 @@ def test_skill_relevance_gate_rejects_hijack_and_foreign(monkeypatch):
 
 def test_progress_shows_where_it_is_stuck(monkeypatch):
     from mother import dashboard
+    monkeypatch.setattr(dashboard, "UPLOADS", store.DATA / "no_uploads.json")
     for k in ("GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN"):
         monkeypatch.delenv(k, raising=False)
     store.save_json("ideas.json", [{"id": "I0001", "title": "A", "status": "active", "started": "2026-11-01", "score": 80,

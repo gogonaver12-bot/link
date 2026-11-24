@@ -59,6 +59,29 @@ def nasa_images(query, limit=4):
     return urls
 
 
+def pexels(query, limit=4):
+    """Pexels 무료 실사 영상(세로·HD 우선). PEXELS_API_KEY 필요(pexels.com/api 무료)."""
+    key = os.environ.get("PEXELS_API_KEY")
+    if not key:
+        return []
+    q = urllib.parse.urlencode({"query": query, "orientation": "portrait", "per_page": 10, "size": "medium"})
+    req = urllib.request.Request(f"https://api.pexels.com/videos/search?{q}", headers={**UA, "Authorization": key})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        vids = json.load(r).get("videos", [])
+    out = []
+    for v in vids:
+        files = [f for f in v.get("video_files", []) if f.get("link") and (f.get("height") or 0) >= 1280 and (f.get("width") or 0) < (f.get("height") or 0)]
+        files.sort(key=lambda f: abs((f.get("height") or 0) - 1920))
+        if files:
+            out.append(files[0]["link"])
+        if len(out) >= limit:
+            break
+    return out
+
+
+SPACE = ("space", "galaxy", "planet", "nasa", "moon", "star", "rocket", "astronaut", "earth", "nebula", "sun", "mars")
+
+
 def pixabay(query, limit=4):
     key = os.environ.get("PIXABAY_API_KEY")
     if not key:
@@ -93,9 +116,21 @@ def fetch(keywords, cache: Path, want=6):
     cache.mkdir(parents=True, exist_ok=True)
     got = []
     per = max(1, -(-want // max(1, len(keywords))))
+    ai_failed = False
     for kw in keywords:
-        try:
-            urls = pixabay(kw, per) or nasa_images(kw, per)
+        if os.environ.get("AI_IMAGES", "1") == "1" and not ai_failed:  # ① 장면별 AI 이미지
+            try:
+                import aiimage
+                p = aiimage.generate(kw, cache)
+                if p:
+                    got.append(p)
+                    print(f"  🎨 AI 이미지 {kw}: {p.name}")
+                    continue
+            except Exception as e:
+                ai_failed = True  # 한도·권한 문제면 이번 영상은 실사 영상으로
+                print(f"  ⚠️ AI 이미지 불가({e}) → 무료 실사 영상 사용")
+        try:  # ② Pexels → ③ Pixabay → ④ (우주 주제만) NASA
+            urls = pexels(kw, per) or pixabay(kw, per) or (nasa_images(kw, per) if any(w in kw.lower() for w in SPACE) else [])
         except Exception as e:
             print(f"  ⚠️ '{kw}' 검색 실패: {e}")
             continue
