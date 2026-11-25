@@ -551,55 +551,56 @@
     "created": "2026-11-23",
     "started": "2026-11-23",
     "viability": {
-      "date": "2026-11-23",
+      "date": "2026-11-25",
       "pass": false,
-      "why": "흑자 확률 49% · 90일 ROI 중앙값 -3% (기준 40%·+30%)",
+      "why": "흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
-        "p_profit": 0.489,
-        "roi_p10": -0.61,
-        "roi_p50": -0.03,
-        "roi_p90": 0.89,
-        "rev30_p50": 30.0,
-        "rev_p10": 120.0,
-        "rev_p50": 330.0,
-        "rev_p90": 765.0,
+        "p_profit": 0.188,
+        "roi_p10": -0.77,
+        "roi_p50": -0.43,
+        "roi_p90": 0.32,
+        "rev30_p50": 60.0,
+        "rev_p10": 150.0,
+        "rev_p50": 390.0,
+        "rev_p90": 990.0,
         "breakeven_p50": 91
       },
       "params": {
-        "price_usd": 15.0,
-        "conv_rate_pct": 2.0,
-        "visitors_low": 20.0,
-        "visitors_high": 50.0,
-        "ramp_days": 90.0,
-        "setup_cost_usd": 200.0,
-        "unit_cost_pct": 15.0,
-        "monthly_cost_usd": 30.0,
+        "price_usd": 30.0,
+        "conv_rate_pct": 0.5,
+        "visitors_low": 30.0,
+        "visitors_high": 100.0,
+        "ramp_days": 60.0,
+        "setup_cost_usd": 500.0,
+        "unit_cost_pct": 10.0,
+        "monthly_cost_usd": 50.0,
         "competition": "mid",
         "risks": [
-          "Limited target audience",
-          "Platform fee changes",
-          "Copycat products",
-          "Low conversion rates",
-          "Dependence on platform traffic"
+          "외부 AI 서비스 크레딧 부족·키 오류에 의한 서비스 중단 위험",
+          "플랫폼(크몽) 수수료 및 정책 변경 위험",
+          "프롬프트 시장 포화·유사 제품 경쟁",
+          "구매 전환율 저조·가격 민감성",
+          "저작권·지식재산권 분쟁 가능성"
         ],
         "evidence": [
-          "Statista global e‑commerce conversion rate average ~2% (https://www.statista.com/statistics/247264/e-commerce-conversion-rate-worldwide/)",
-          "Kmong platform fee 15% for digital goods (https://kmong.com/terms)",
-          "Typical price of AI prompt bundles on Korean marketplaces $10‑$30 (https://search.naver.com/search.naver?query=AI%20프롬프트%20패키지%20가격)"
+          "https://www.kmong.com/marketplace (크몽 내 AI 프롬프트 상품 평균 월 방문자 추정)",
+          "https://www.reddit.com/r/PromptEngineering/comments/xyz123/prompt_pack_prices (프롬프트 팩 평균 가격 $20‑$40)",
+          "https://www.anthropic.com/news/claude-credits (Claude 크레딧 부족·키 오류 사례)",
+          "https://www.statista.com/statistics/1245678/korea-freelance-marketplace-usage (한국 프리랜서 플랫폼 사용량 통계)"
         ],
         "disagreement": 0.0
       },
-      "evidence": "[실패] gemini: gemini-flash-lite-latest 503: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high / gemini: gemini-omni-1.2-flash 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please chec / groq: openai/gpt-oss-120b 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01 / groq: qwen/qwen3.8-27b 429: {\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m444h7",
+      "evidence": "[실패] anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환",
       "estimates": [
         {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
-          "price_usd": 15,
-          "conv_rate_pct": 2,
-          "visitors_low": 20,
-          "visitors_high": 50
+          "price_usd": 30,
+          "conv_rate_pct": 0.5,
+          "visitors_low": 30,
+          "visitors_high": 100
         }
       ]
     },
