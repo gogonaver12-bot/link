@@ -310,3 +310,17 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .player iframe { width: 100%; height: 100%; border: 0; display: block; }
 .player-msg { height: 100%; display: grid; place-items: center; text-align: center; color: #cfd8e3; font-size: 14px; line-height: 1.7; padding: 20px; }
 .player.small { aspect-ratio: auto; height: 150px; }
+
+/* 영상제작 안 파트 전환 */
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin: 6px 0 4px; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); }
+.seg a { text-align: center; padding: 9px 0; border-radius: 10px; color: var(--dim); font-weight: 700; font-size: 14px; }
+.seg a.on { background: color-mix(in srgb, var(--accent) 18%, var(--card)); color: var(--accent); box-shadow: 0 1px 6px rgba(0, 0, 0, .18); }
+/* AI 실사 스토리 */
+#stGenre { margin-top: 10px; } #stGenre button { cursor: pointer; background: transparent; font: inherit; font-size: 12px; padding: 5px 10px; }
+.cast { display: flex; gap: 10px; overflow-x: auto; margin-top: 12px; padding-bottom: 4px; }
+.cast > div { flex: 0 0 76px; text-align: center; font-size: 12px; }
+.cast img, .cast .noimg { width: 76px; height: 100px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: grid; place-items: center; background: var(--card2); font-size: 26px; }
+.cast b { display: block; margin-top: 4px; } .cast small { color: var(--faint); font-size: 10px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eps { display: grid; gap: 6px; margin-top: 12px; }
+.ep { display: grid; grid-template-columns: 40px 1fr auto; gap: 8px; align-items: center; padding: 9px 10px; border-radius: 10px; background: var(--card2); color: var(--fg); font-size: 13px; }
+.ep b { color: var(--accent); } .ep small { color: var(--faint); font-size: 11px; }

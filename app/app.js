@@ -118,7 +118,7 @@ async function dispatch(command = "daily", goal = "", label = "") {
   }
 }
 let polling = 0, RUN = null;
-const EXPECT = [[/영상|shorts/, 330], [/일일|daily/, 1200], [/테스트|토너먼트|test/, 240], [/사업 발굴|scout/, 420], [/파이프라인/, 300]];
+const EXPECT = [[/스토리|다음 화/, 600], [/영상|shorts/, 330], [/일일|daily/, 1200], [/테스트|토너먼트|test/, 240], [/사업 발굴|scout/, 420], [/파이프라인/, 300]];
 const STEPNAME = { "Set up job": "준비", "Run actions/checkout@v4": "코드 받기", "Run actions/setup-python@v5": "파이썬 준비",
   "Run pip install -r requirements.txt": "도구 설치", "install ffmpeg (숏츠 영상 제작용)": "영상 도구 설치", run: "AI 작업 중", "save results": "결과 저장" };
 function runCard() {
@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -359,7 +359,7 @@ function viewMake() {
   const S = D.studio || {}, av = S.ai_video || {}, L = S.last;
   const chip = (ok, on, off, open) => `<span class="pill ${ok ? "ok" : "candidate"} ${!ok && open ? "tap" : ""}" ${!ok && open ? `data-open="${open}"` : ""}>${ok ? "✓ " + on : "✗ " + off}</span>`;
   const li = L ? (D.commands || []).findIndex((c) => c.ts === L.ts) : -1;
-  return `<div id="runbox">${runCard()}</div><h1 class="page">🎬 영상 제작</h1><p class="sub">${esc(S.channel || "")} · 매일 아침 ${S.per_day || 1}개 자동 제작</p>
+  return `<div id="runbox">${runCard()}</div>${makeSeg("shorts")}<h1 class="page">🎬 영상 제작</h1><p class="sub">${esc(S.channel || "")} · 매일 아침 ${S.per_day || 1}개 자동 제작</p>
   <div class="card"><div class="t">준비 상태</div><div class="chips">
     ${chip(S.new_channel, "새 채널 연결됨", "새 채널 미연결 → 비공개로 올림", "newchan")}
     ${chip(S.music, "배경음악", "배경음악 없음(효과음만)", "music")}
@@ -383,6 +383,34 @@ function viewMake() {
       <button class="btn small ghost" data-cmd="shorts --skip ${esc(x.id)}" data-label="대본 빼기">빼기</button></div>`).join("")}
     <div class="note">숫자 = 훅 점수 · 50점 미만은 AI가 고쳐 쓰고 만들어요 · 최신 대본부터 제작</div></div>`
     : empty("📝", "대기 중인 대본이 없어요", "만들기를 누르면 AI가 대본부터 써요")}`;
+}
+
+const makeSeg = (on) => `<div class="seg"><a href="#make" class="${on === "shorts" ? "on" : ""}">🎬 정보 숏츠</a><a href="#story" class="${on === "story" ? "on" : ""}">🎭 AI 실사 스토리</a></div>`;
+const GENRES = ["판타지", "SCP 인터뷰", "로맨스", "호러", "SF", "학원물"];
+
+/* ───────── 화면: AI 실사 스토리 ───────── */
+function viewStory() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  const SS = D.stories || [], S = D.studio || {};
+  const imgUrl = (p) => `../${p.split("/").map(encodeURIComponent).join("/")}`;
+  return `<div id="runbox">${runCard()}</div>${makeSeg("story")}<h1 class="page">🎭 AI 실사 스토리</h1>
+  <p class="sub">인물 사진을 먼저 만들고 장면마다 같은 얼굴로 그려요 · 대본 Fable(없으면 무료 AI) · 그림 Gemini · 인물별 목소리</p>
+  ${S.ai_images ? "" : `<div class="note">⚠️ AI 이미지가 꺼져 있어요</div>`}
+  <div class="card"><div class="field" style="margin-top:0"><label>새 시리즈 — 한 줄 줄거리</label>
+    <input id="stLog" maxlength="160" placeholder="예: 시골 소녀가 아무도 못 뽑던 바위 속 검을 뽑아버린다"></div>
+    <div class="chips" id="stGenre">${GENRES.map((g, k) => `<button class="pill ${k ? "" : "accent"}" data-genre="${esc(g)}">${esc(g)}</button>`).join("")}</div>
+    <button class="btn" id="stNew" style="margin-top:12px;width:100%">🎬 시리즈 만들고 1화 제작</button>
+    <div class="m" style="margin-top:8px">인물 설정 → 인물 사진 → 1화 대본 → 장면 이미지 → 목소리·자막·음악 → 업로드 · 약 6~10분<br>
+    오리지널 캐릭터만 써요(기존 작품 캐릭터는 저작권 문제로 제외)</div></div>
+  <div class="section-title"><h2>내 시리즈 ${SS.length}개</h2></div>
+  ${SS.length ? SS.map((b) => `<div class="card">
+    <div class="row" style="padding:0"><div class="grow"><div class="t">${esc(b.title)}</div><div class="m">${esc(b.genre)} · ${b.episodes.length}화 제작 / 계획 ${b.planned}화</div></div>
+      <button class="btn small" data-cmd="story next ${esc(b.slug)}" data-label="${esc(b.title)} 다음 화">▶ ${b.episodes.length + 1}화</button></div>
+    <div class="m wrap" style="margin-top:6px">${esc(b.logline)}</div>
+    <div class="cast">${b.characters.map((c) => `<div>${c.img ? `<img src="${imgUrl(c.img)}" alt="" loading="lazy">` : `<span class="noimg">🧑</span>`}<b>${esc(c.name)}</b><small>${esc(c.role)}</small></div>`).join("")}</div>
+    ${b.episodes.length ? `<div class="eps">${b.episodes.map((e) => `<a class="ep" ${e.video ? `href="https://youtube.com/shorts/${encodeURIComponent(e.video)}" target="_blank" rel="noopener"` : ""}>
+      <b>${e.n}화</b><span>${esc(e.title)}</span><small>${e.video ? "▶ 보기" : e.uploaded ? "" : "업로드 전"}</small></a>`).join("")}</div>` : ""}</div>`).join("")
+    : empty("🎭", "아직 시리즈가 없어요", "한 줄 줄거리를 넣고 만들기를 누르면 1화까지 자동으로 만들어요")}`;
 }
 
 /* ───────── 화면: 영상 확인 ───────── */
@@ -629,19 +657,21 @@ const provSheet = (id) => {
 /* ───────── 라우터 & 이벤트 ───────── */
 function render() {
   const hash = location.hash || "#home";
-  const tab = /^#(biz|team|ai|report)/.test(hash) ? "more" : hash.slice(1);
+  const tab = /^#(biz|team|ai|report)/.test(hash) ? "more" : hash === "#story" ? "make" : hash.slice(1);
   document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", tab === a.dataset.tab));
   if (!D) { $("#view").innerHTML = `<div class="skeleton"></div><div class="skeleton"></div>`; return; }
   if (hash.startsWith("#report=")) return viewReport(decodeURIComponent(hash.slice(8)));
   const quick = { "#cmd": commandSheet, "#google": googleSheet, "#keys": keysSheet };  // 홈 화면 아이콘 바로가기
   if (quick[hash]) { history.replaceState(null, "", "#home"); $("#view").innerHTML = `<div class="view-enter">${viewHome()}</div>`; return openSheet(quick[hash]()); }
-  const v = { "#home": viewHome, "#make": viewMake, "#videos": viewVideos, "#pipes": viewPipes, "#more": viewMore,
+  const v = { "#home": viewHome, "#make": viewMake, "#story": viewStory, "#videos": viewVideos, "#pipes": viewPipes, "#more": viewMore,
     "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
 const SHEETS = { newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
+  const gb = e.target.closest("[data-genre]");
+  if (gb) { gb.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("accent", b === gb)); return; }
   const vid = e.target.closest("[data-video]");
   if (vid && D) { e.preventDefault(); return openSheet(videoSheet(vid.dataset.video)); }
   const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-fill2],[data-copy],[data-prov],[data-close],[data-v]");
@@ -678,6 +708,11 @@ document.addEventListener("click", async (e) => {
     const type = $("#ltype .on").dataset.v, note = $("#lnote").value.trim().slice(0, 60);
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
+  }
+  if (id === "stNew") {
+    const lg = $("#stLog").value.trim(); if (!lg) return toast("한 줄 줄거리를 적어 주세요");
+    const g = $("#stGenre .accent")?.dataset.genre || "";
+    dispatch(`story new ${q(lg)}${g ? " --genre " + q(g) : ""}`, "", "새 AI 스토리 + 1화");
   }
   if (id === "vTest" || id === "vMake") {
     const t = $("#vTopic").value.trim();

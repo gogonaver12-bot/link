@@ -106,3 +106,6 @@ shorts:
     - ["AI generated shorts", "US", "en"]
     - ["ai animation story shorts", "US", "en"]
     - ["신기한 사실 쇼츠", "KR", "ko"]
+
+story:                                  # AI 실사 스토리 (대본: Fable → 없으면 무료 AI / 그림: Gemini 이미지, 결제 필요)
+  images_per_episode: 12
