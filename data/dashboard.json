@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:23:44+00:00",
+ "updated": "2026-11-25T17:24:50+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1701,8 +1701,23 @@
  ],
  "reports": [
   {
-   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
-   "title": "매일 업데이트및 영상확인",
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-25T17:22+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-25T17:22+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-25T17:22+00:00"
+  },
+  {
+   "file": "reports/20261123-1109-상품-I0001.md",
+   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
    "date": "2026-11-25T17:22+00:00"
   },
   {
@@ -1716,28 +1731,8 @@
    "date": "2026-11-25T17:22+00:00"
   },
   {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T17:22+00:00"
-  },
-  {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T17:22+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T17:22+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T17:22+00:00"
-  },
-  {
-   "file": "reports/20261123-1109-상품-I0001.md",
-   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
    "date": "2026-11-25T17:22+00:00"
   },
   {
@@ -2060,10 +2055,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:23:43+00:00",
+   "ts": "2026-11-25T17:24:49+00:00",
    "cmd": "shorts --private --topic \"Ai가 과연 얼마나 사람처럼 영상을만들수있을까?\"",
    "ok": true,
-   "output": "📊 stats.csv 갱신 (8개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널 성과를 보면 조회수 상위 영상은 강렬한 훅과 짧은 본문(문장당 3~5초)으로 구성돼 있으며, 대부분 30~45초 길이로 시청 유지율을 높이고 있다. 베ン치마크 AI 숏츠는 10~50초 사이에 명확한 주제와 시각적 충격을 주는 첫 3초를 활용한다. 따라서 이번 스크립트는 3초 안에 강한 질문형 훅을 두고, 7개의 짧은 문장(각 12~15자)으로 AI와 인간 영상 비교 실험 과정을 간결히 전달한다. 마지막에 구독·좋아요를 유도하는 CTA를 삽입해 행동을 이끌고, 색상은 눈에 띄는 파란색과 주황색을 사용해 AI와 인간을 시각적으로 대비한다.\n📝 015.json: AI가 만든 영상, 인간 눈을 속일까?\n015.json: 훅 36→63점으로 개선\n015.json: 표지 문구 → AI 영상 구별법 / 3가지 기준 / 속지 않는 비결\n🔎 무료 실사 영상 검색: ['AI video comparison', 'human video', 'frame analysis', 'color transition rhythm', 'natural AI footage', 'human detail', 'AI human collaboration']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/015.mp4 (32.9초)\n✅ https://youtube.com/shorts/l6w93JsQ4rY"
+   "output": "📊 stats.csv 갱신 (8개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\nChannel concept focuses on factual AI experiments without exaggeration. The benchmark shows short hooks, a clear structure (hook → twist/core → evidence → CTA), and concise sentences (~15 characters). This script follows that pattern with a strong 3‑second hook, 7 brief lines (≈30‑35 seconds total), and a clear call‑to‑action. Title is original and fits the requested topic while avoiding duplication with existing titles.\n📝 015.json: AI가 만든 영상, 인간 감각을 속일 수 있을까?\n015.json: 훅 36→65점으로 개선\n015.json: 표지 문구 → 가짜 영상 속이는 / 미세한 오류 3가지\n🔎 무료 실사 영상 검색: ['AI generated video', 'cinematography composition', 'color grading AI', 'AI voice synthesis', 'subtle motion differences', 'human perception error', 'AI near human level']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/015.mp4 (35.1초)\ntats() if a.stats else upload(a.video, a.private) if a.video else ap.print_help()\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 51, in upload\n    media_body=MediaFileUpload(path, resumable=True)).execute()\n                                                      ^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 982, in execute\n    _, body = self.next_chunk(http=http, num_retries=num_retries)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 1102, in next_chunk\n    raise ResumableUploadError(resp, content)\ngoogleapiclient.errors.ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">"
   },
   {
    "ts": "2026-11-25T17:21:05+00:00",
@@ -2305,6 +2300,13 @@
   "per_day": 1,
   "queue": [
    {
+    "id": "015",
+    "title": "AI가 만든 영상, 인간 감각을 속일 수 있을까?",
+    "hook": "AI 합성 음성을 1분 만에 구분할 수 있다면 여러분은 손해를 왜 놓치고 계시나요?",
+    "score": 65,
+    "lines": 7
+   },
+   {
     "id": "013",
     "title": "AI가 만든 완벽한 하루 루틴, 직접 실행해봤다",
     "hook": "AI가 나만을 위한 하루 일정을 설계했다고?!",
@@ -2347,12 +2349,12 @@
     "lines": 7
    }
   ],
-  "queue_total": 6,
+  "queue_total": 7,
   "last": {
-   "ts": "2026-11-25T17:23:43+00:00",
+   "ts": "2026-11-25T17:24:49+00:00",
    "cmd": "shorts --private --topic \"Ai가 과연 얼마나 사람처럼 영상을만들수있을까?\"",
    "ok": true,
-   "output": "📊 stats.csv 갱신 (8개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널 성과를 보면 조회수 상위 영상은 강렬한 훅과 짧은 본문(문장당 3~5초)으로 구성돼 있으며, 대부분 30~45초 길이로 시청 유지율을 높이고 있다. 베ン치마크 AI 숏츠는 10~50초 사이에 명확한 주제와 시각적 충격을 주는 첫 3초를 활용한다. 따라서 이번 스크립트는 3초 안에 강한 질문형 훅을 두고, 7개의 짧은 문장(각 12~15자)으로 AI와 인간 영상 비교 실험 과정을 간결히 전달한다. 마지막에 구독·좋아요를 유도하는 CTA를 삽입해 행동을 이끌고, 색상은 눈에 띄는 파란색과 주황색을 사용해 AI와 인간을 시각적으로 대비한다.\n📝 015.json: AI가 만든 영상, 인간 눈을 속일까?\n015.json: 훅 36→63점으로 개선\n015.json: 표지 문구 → AI 영상 구별법 / 3가지 기준 / 속지 않는 비결\n🔎 무료 실사 영상 검색: ['AI video comparison', 'human video', 'frame analysis', 'color transition rhythm', 'natural AI footage', 'human detail', 'AI human collaboration']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/015.mp4 (32.9초)\n✅ https://youtube.com/shorts/l6w93JsQ4rY"
+   "output": "📊 stats.csv 갱신 (8개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\nChannel concept focuses on factual AI experiments without exaggeration. The benchmark shows short hooks, a clear structure (hook → twist/core → evidence → CTA), and concise sentences (~15 characters). This script follows that pattern with a strong 3‑second hook, 7 brief lines (≈30‑35 seconds total), and a clear call‑to‑action. Title is original and fits the requested topic while avoiding duplication with existing titles.\n📝 015.json: AI가 만든 영상, 인간 감각을 속일 수 있을까?\n015.json: 훅 36→65점으로 개선\n015.json: 표지 문구 → 가짜 영상 속이는 / 미세한 오류 3가지\n🔎 무료 실사 영상 검색: ['AI generated video', 'cinematography composition', 'color grading AI', 'AI voice synthesis', 'subtle motion differences', 'human perception error', 'AI near human level']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/015.mp4 (35.1초)\ntats() if a.stats else upload(a.video, a.private) if a.video else ap.print_help()\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 51, in upload\n    media_body=MediaFileUpload(path, resumable=True)).execute()\n                                                      ^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 982, in execute\n    _, body = self.next_chunk(http=http, num_retries=num_retries)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 1102, in next_chunk\n    raise ResumableUploadError(resp, content)\ngoogleapiclient.errors.ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">"
   }
  },
  "progress": {

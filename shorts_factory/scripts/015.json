@@ -1,37 +1,37 @@
 {
-  "title": "AI가 만든 영상, 인간 눈을 속일까?",
-  "hook": "여러분, 3가지 기준을 모르면 진짠지 가짠지 구별 못 하는 손해 보시나요?",
+  "title": "AI가 만든 영상, 인간 감각을 속일 수 있을까?",
+  "hook": "AI 합성 음성을 1분 만에 구분할 수 있다면 여러분은 손해를 왜 놓치고 계시나요?",
   "lines": [
-    "AI 영상 vs 인간 영상, 바로 비교!",
-    "같은 주제로 두 영상을 준비했어요.",
-    "프레임을 한눈에 빠르게 살펴봅니다.",
-    "색감·전환·리듬, 세 기준을 체크!",
-    "AI가 만든 장면, 눈에 더 자연!",
-    "하지만 디테일은 인간 손맛이 남아.",
-    "다음엔 AI와 인간 협업을 시험해요."
+    "AI가 직접 촬영한 듯 보인다.",
+    "프레임마다 인간 감독과 동일한 구도.",
+    "색감, 조명까지 자동 보정 적용.",
+    "음성도 AI 합성, 자연스러운 톤.",
+    "하지만 미세한 움직임에 차이가 있다.",
+    "인간 눈은 여전히 미묘한 오류를 감지한다.",
+    "결론: AI, 인간 수준에 가까워졌지만 완벽은 아니다."
   ],
-  "cta": "구독·좋아요 잊지 말고, 다음 실험도 기대해주세요!",
-  "description": "AI가 만든 영상이 사람 눈에 얼마나 자연스러운지 직접 비교해봅니다. 색감·전환·리듬 세 가지 기준으로 분석하고, AI와 인간의 차이를 짧게 정리합니다. 다음 실험에서는 AI와 사람의 협업을 다룹니다.",
+  "cta": "AI 영상 실험, 더 보고 싶다면 구독!",
+  "description": "AI가 만든 영상이 인간과 얼마나 비슷한지 테스트합니다. 결과를 확인하고 싶다면 좋아요와 구독 부탁드려요!",
   "tags": [
-    "AI",
-    "영상비교",
-    "실험",
-    "shorts",
-    "AIvsHuman"
+    "#AI",
+    "#AI영상",
+    "#AI실험",
+    "#shorts",
+    "#AIvsHuman"
   ],
   "colors": [
     "0x1E90FF",
     "0xFF4500"
   ],
   "keywords": [
-    "AI video comparison",
-    "human video",
-    "frame analysis",
-    "color transition rhythm",
-    "natural AI footage",
-    "human detail",
-    "AI human collaboration"
+    "AI generated video",
+    "cinematography composition",
+    "color grading AI",
+    "AI voice synthesis",
+    "subtle motion differences",
+    "human perception error",
+    "AI near human level"
   ],
-  "visual_hook": "Close-up of a computer screen rapidly generating an AI video, camera pans from code to playback within the first three seconds.",
-  "cover": "AI 영상 구별법\n3가지 기준\n속지 않는 비결"
+  "visual_hook": "A close-up of a computer screen displaying a moving AI‑generated scene, camera panning slowly.",
+  "cover": "가짜 영상 속이는\n미세한 오류 3가지"
 }
