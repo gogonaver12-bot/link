@@ -27,7 +27,13 @@ jobs:
       - run: pip install -r requirements.txt
       - name: install ffmpeg (숏츠 영상 제작용)
         if: github.event_name == 'schedule' || contains(github.event.inputs.command, 'daily') || contains(github.event.inputs.command, 'shorts') || contains(github.event.inputs.command, 'pipeline')
-        run: sudo apt-get install -y -qq ffmpeg >/dev/null
+        run: |
+          command -v ffmpeg >/dev/null && exit 0
+          for i in 1 2 3; do   # 저장소 목록이 낡아 404 나면 새로 받고 재시도
+            sudo apt-get update -qq && sudo apt-get install -y -qq --fix-missing ffmpeg >/dev/null && exit 0
+            sleep 10
+          done
+          echo "⚠️ ffmpeg 설치 실패 — 숏츠만 건너뛰고 나머지는 계속"
       - name: run
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || secrets.CLAUDE_API_KEY || secrets.CLAUDE_API }}   # 다른 이름으로 저장해도 인식
