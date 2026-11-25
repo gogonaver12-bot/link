@@ -7,3 +7,8 @@
 5. 나온 값 4개를 GitHub Secrets에 붙여넣기 (GitHub CLI 로그인돼 있으면 자동 저장)
 
 `client_secret.json` 은 저장소에 올리지 마세요(.gitignore 처리됨).
+
+## 새 유튜브 채널(F ai-LAB)로 올리기
+1. youtube.com → 프로필 → 채널 전환 → **채널 만들기** → 이름 `F ai-LAB`
+2. 이 폴더의 `google_login_youtube.bat` 더블클릭 → 브라우저에서 **F ai-LAB** 선택 → 허용
+3. `YOUTUBE_OAUTH_REFRESH_TOKEN` 이 Secrets 에 저장되면 다음 실행부터 숏츠는 새 채널로 올라가요 (블로그는 기존 계정 그대로)

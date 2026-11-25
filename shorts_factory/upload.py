@@ -19,8 +19,9 @@ def yt():
     from google.auth.transport.requests import Request
     from googleapiclient.discovery import build
     import os
-    if os.getenv("GOOGLE_OAUTH_REFRESH_TOKEN"):  # 깃허브 Actions: Secrets 의 refresh token 사용 (브라우저 로그인 없음)
-        creds = Credentials(None, refresh_token=os.environ["GOOGLE_OAUTH_REFRESH_TOKEN"], token_uri="https://oauth2.googleapis.com/token",
+    token = os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") or os.getenv("GOOGLE_OAUTH_REFRESH_TOKEN")  # 새 채널 토큰 우선
+    if token:  # 깃허브 Actions: Secrets 의 refresh token 사용 (브라우저 로그인 없음)
+        creds = Credentials(None, refresh_token=token, token_uri="https://oauth2.googleapis.com/token",
                             client_id=os.environ["GOOGLE_OAUTH_CLIENT_ID"], client_secret=os.environ["GOOGLE_OAUTH_CLIENT_SECRET"])
         creds.refresh(Request())
         return build("youtube", "v3", credentials=creds)
@@ -39,7 +40,10 @@ def upload(path, private):
     from googleapiclient.http import MediaFileUpload
     meta = json.loads(Path(path).with_suffix(".json").read_text(encoding="utf-8"))
     title = meta["title"][:90] + " #shorts"
-    body = {"snippet": {"title": title, "description": meta.get("description", ""),
+    import os
+    brand = os.getenv("CHANNEL_NAME", "")
+    desc = meta.get("description", "") + (f"\n\n🔬 {brand} — AI로 만드는 신기한 실험실 · 구독하고 매일 받아보기" if brand else "")
+    body = {"snippet": {"title": title, "description": desc,
                         "tags": meta.get("tags", []), "categoryId": "22", "defaultLanguage": "ko"},
             "status": {"privacyStatus": "private" if private else "public",
                        "selfDeclaredMadeForKids": False, "containsSyntheticMedia": True}}
