@@ -29,13 +29,37 @@ def _cfg():
     return {"writer": store.cfg().get("shorts", {}).get("writer", "auto"), "images_per_episode": 12, **store.cfg().get("story", {})}
 
 
-def _json(prompt, agent):
+def parse(text):
+    """AI가 준 JSON을 너그럽게 읽기: 앞뒤 설명·끝 쉼표·둥근 따옴표·주석 정리."""
+    t = text[text.index("{"): text.rindex("}") + 1]
     try:
-        text, used = providers.complete(prompt, system="너는 조회수 높은 AI 실사 숏드라마 작가다. JSON만 출력한다.", agent=agent,
-                                        spec={"tier": "worker", "tools": [], "model": _cfg()["writer"]})
-    except Exception:
-        text, used = providers.complete(prompt, system="JSON만 출력한다.", agent=agent)
-    return json.loads(text[text.index("{"): text.rindex("}") + 1]), used
+        return json.loads(t)
+    except json.JSONDecodeError:
+        t = t.replace("\u201c", '"').replace("\u201d", '"').replace("\u2018", "'").replace("\u2019", "'")
+        t = re.sub(r"//[^\n\"]*\n", "\n", t)
+        t = re.sub(r",\s*\.\.\.\s*", "", t)          # "...", 같은 생략 표시
+        t = re.sub(r",\s*([}\]])", r"\1", t)            # 끝 쉼표
+        return json.loads(t, strict=False)
+
+
+def _json(prompt, agent):
+    last = None
+    for k in range(3):  # 형식이 깨지면 다시 요청(두 번째부터는 다른 AI)
+        try:
+            if k == 0:
+                text, used = providers.complete(prompt, system="너는 조회수 높은 AI 실사 숏드라마 작가다. JSON만 출력한다.", agent=agent,
+                                                spec={"tier": "worker", "tools": [], "model": _cfg()["writer"]})
+            else:
+                text, used = providers.complete(prompt + "\n\n반드시 올바른 JSON 객체 하나만 출력(설명·주석·생략 표시 없이).",
+                                                system="JSON만 출력한다.", agent=agent + f"_retry{k}")
+            return parse(text), used
+        except (ValueError, json.JSONDecodeError) as e:
+            last = e
+        except Exception as e:
+            last = e
+            if k == 0:
+                continue
+    raise RuntimeError(f"대본 JSON을 3번 받아도 형식이 깨짐: {last}")
 
 
 def slugify(title):
@@ -73,7 +97,7 @@ def new_series(logline, genre=""):
         '{"title":"한국어 제목","title_en":"english slug words","genre":"","logline":"","tone":"",'
         '"setting":"영어: 시대·장소·분위기를 그림으로 그릴 수 있게","characters":[{"id":"영문 소문자 한 단어","name":"한국어 이름",'
         '"role":"","voice":"female|girl|male|boy|old_male|old_female","look":"영어: 나이·얼굴·머리·눈·체형·의상·특징을 구체적으로(매 장면 똑같이 그릴 수 있게)"}],'
-        '"episodes":["1화 한 줄 요약","2화",...5개]}. 인물 2~4명. ' + RULES, "story_writer")
+        '"episodes":["1화 한 줄 요약","2화 한 줄 요약","3화 한 줄 요약","4화 한 줄 요약","5화 한 줄 요약"]}. 인물 2~4명. ' + RULES, "story_writer")
     bible["slug"] = slugify(bible.get("title_en") or bible.get("title", ""))
     if (DIR / bible["slug"]).exists():
         bible["slug"] += "-" + store.today()[5:].replace("-", "")
