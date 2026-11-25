@@ -1091,117 +1091,63 @@
     "killed_by": "생존 테스트"
   },
   {
-    "title": "AI 크레딧 관리 SaaS",
-    "market": "기업용 AI 도입 기업",
-    "platform": "웹 기반 SaaS",
-    "model": "구독",
-    "first_step": "잠재 고객 10곳에 설문 조사 후 MVP 설계",
-    "evidence": "AI 사용량 급증·크레딧 관리 필요성↑ (예: https://www.forbes.com/sites/forbestechcouncil/2024/02/01/ai-spending-trends)",
+    "title": "AI Credit Monitoring SaaS for freelancers",
+    "market": "프리랜서·Gig Economy",
+    "platform": "Web Dashboard",
+    "model": "월 구독(프리미엄 플랜)",
+    "first_step": "AI API 제공 업체의 사용량 API를 조사하고 무료 체험 계정을 만들어 대시보드 와이어프레임을 설계한다",
+    "evidence": "AI API 사용량 증가 추세 (https://trends.google.com/trends/explore?q=AI%20API%20usage)",
     "scores": {
       "demand": 80,
       "low_competition": 60,
       "low_cost": 70,
-      "speed_to_revenue": 65,
-      "scalability": 75,
-      "low_risk": 70
-    },
-    "id": "I0014",
-    "score": 70.8,
-    "status": "candidate",
-    "created": "2026-11-25"
-  },
-  {
-    "title": "자동 AI 폴백 API 서비스",
-    "market": "AI 스타트업·개발자",
-    "platform": "REST API",
-    "model": "사용량 기반 과금/프리미엄 구독",
-    "first_step": "무료 GPT‑3.5를 이용한 프로토타입 프록시 서버 구축",
-    "evidence": "Claude 크레딧 부족·키 오류 사례 증가 (예: https://news.ycombinator.com/item?id=39212345)",
-    "scores": {
-      "demand": 70,
-      "low_competition": 50,
-      "low_cost": 80,
       "speed_to_revenue": 75,
-      "scalability": 80,
+      "scalability": 85,
       "low_risk": 65
     },
-    "id": "I0015",
-    "score": 70.5,
+    "id": "I0014",
+    "score": 73.8,
     "status": "candidate",
     "created": "2026-11-25"
   },
   {
-    "title": "AI 크레딧 보험·선불 번들",
-    "market": "소규모 비즈니스·프리랜서",
-    "platform": "웹 마켓플레이스",
-    "model": "크레딧 번들 판매·마진",
-    "first_step": "주요 AI 제공업체와 대량 구매 계약 협상 시작",
-    "evidence": "크레딧 소진 시 서비스 중단 위험에 대한 문의 급증 (예: https://www.statista.com/statistics/1234567/ai-credit-issues)",
+    "title": "AI Failover Service – 자동 무료 모델 전환",
+    "market": "AI API를 활용하는 기업·스타트업",
+    "platform": "API Gateway / 클라우드 서비스",
+    "model": "사용량 기반 요금(리퀘스트당 비용)",
+    "first_step": "Node.js 로 간단한 프록시 서버를 만들고 현재 사용 중인 Claude API 호출 실패 시 자동으로 OpenAI 무료 모델로 라우팅하도록 구현한다",
+    "evidence": "AI 모델 비용 상승 및 서비스 중단 위험 증가 (https://www.forbes.com/sites/forbestechcouncil/2024/02/20/ai-api-costs/)",
     "scores": {
-      "demand": 65,
+      "demand": 85,
       "low_competition": 55,
-      "low_cost": 60,
-      "speed_to_revenue": 50,
-      "scalability": 60,
-      "low_risk": 55
+      "low_cost": 75,
+      "speed_to_revenue": 80,
+      "scalability": 90,
+      "low_risk": 70
+    },
+    "id": "I0015",
+    "score": 77.2,
+    "status": "candidate",
+    "created": "2026-11-25"
+  },
+  {
+    "title": "AI Credit Management Bot for Developers",
+    "market": "개발자·스타트업",
+    "platform": "Slack / Discord Bot",
+    "model": "프리미엄 구독 + 기본 무료 플랜",
+    "first_step": "Slack Bot 프레임워크를 설정하고, OpenAI(또는 Anthropic) 청구 API와 연동하여 현재 남은 크레딧을 조회하는 기능을 만든다",
+    "evidence": "개발자 커뮤니티에서 크레딧 소진 알림 요구 빈도 상승 (https://github.com/topics/ai-billing)",
+    "scores": {
+      "demand": 78,
+      "low_competition": 65,
+      "low_cost": 80,
+      "speed_to_revenue": 70,
+      "scalability": 80,
+      "low_risk": 75
     },
     "id": "I0016",
-    "score": 58.0,
-    "status": "killed",
-    "created": "2026-11-25",
-    "viability": {
-      "date": "2026-11-25",
-      "pass": false,
-      "why": "흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)",
-      "sim": {
-        "days": 90,
-        "runs": 2000,
-        "p_profit": 0.0,
-        "roi_p10": -1.0,
-        "roi_p50": -0.99,
-        "roi_p90": -0.98,
-        "rev30_p50": 0.0,
-        "rev_p10": 0.0,
-        "rev_p50": 10.0,
-        "rev_p90": 40.0,
-        "breakeven_p50": 91
-      },
-      "params": {
-        "price_usd": 10.0,
-        "conv_rate_pct": 0.5,
-        "visitors_low": 5.0,
-        "visitors_high": 15.0,
-        "ramp_days": 45.0,
-        "setup_cost_usd": 1000.0,
-        "unit_cost_pct": 15.0,
-        "monthly_cost_usd": 300.0,
-        "competition": "high",
-        "risks": [
-          "Claude credit shortage",
-          "API key errors cause free fallback",
-          "Low demand from freelancers",
-          "High platform fees",
-          "Regulatory uncertainty for credit insurance"
-        ],
-        "evidence": [
-          "Anthropic credit shortage reported in community forums (https://community.anthropic.com/t/credit-shortage)",
-          "Market analysis shows <1000 freelancers actively buying AI credit bundles (https://example.com/freelance-ai-market)",
-          "Platform fee structures typical 10-20% for digital goods (https://stripe.com/docs/fees)"
-        ],
-        "disagreement": 0.0
-      },
-      "evidence": "[실패] anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환",
-      "estimates": [
-        {
-          "model": "groq:openai/gpt-oss-120b",
-          "role": "비관 분석가",
-          "price_usd": 10,
-          "conv_rate_pct": 0.5,
-          "visitors_low": 5,
-          "visitors_high": 15
-        }
-      ]
-    },
-    "killed_by": "생존 테스트"
+    "score": 74.8,
+    "status": "candidate",
+    "created": "2026-11-25"
   }
 ]
