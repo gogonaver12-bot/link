@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:09:21+00:00",
+ "updated": "2026-11-25T17:09:31+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1380,9 +1380,9 @@
    "tools": [],
    "model": "auto",
    "skills": [],
-   "avg": null,
-   "evals": 0,
-   "last_feedback": ""
+   "avg": 8.0,
+   "evals": 1,
+   "last_feedback": "분석은 좋지만 가설 실험 제안이 더 구체적이면 좋음"
   },
   {
    "name": "content_creator",
@@ -1397,9 +1397,9 @@
     "video_prompt_dna",
     "reels_team_prompts"
    ],
-   "avg": null,
-   "evals": 0,
-   "last_feedback": ""
+   "avg": 2.0,
+   "evals": 1,
+   "last_feedback": "콘텐츠 초안 없이 결과만 제공, 구체적인 가이드와 자료 필요"
   },
   {
    "name": "developer",
@@ -1412,9 +1412,9 @@
    ],
    "model": "auto",
    "skills": [],
-   "avg": null,
-   "evals": 0,
-   "last_feedback": ""
+   "avg": 2.0,
+   "evals": 1,
+   "last_feedback": "실제 통합 작업 전 환경 설정 및 API 키 확보가 필요"
   },
   {
    "name": "github_scout",
@@ -1428,9 +1428,9 @@
    ],
    "model": "auto",
    "skills": [],
-   "avg": null,
-   "evals": 0,
-   "last_feedback": ""
+   "avg": 2.0,
+   "evals": 1,
+   "last_feedback": "외부 API 호출 오류 처리 및 재시도 로직 필요"
   },
   {
    "name": "localizer",
@@ -1473,9 +1473,9 @@
    ],
    "model": "auto",
    "skills": [],
-   "avg": null,
-   "evals": 0,
-   "last_feedback": ""
+   "avg": 2.0,
+   "evals": 1,
+   "last_feedback": "외부 API 호출 오류 처리 및 재시도 로직 필요"
   },
   {
    "name": "sales",
@@ -1616,8 +1616,8 @@
   },
   {
    "model": "groq:openai/gpt-oss-120b",
-   "avg": 9.0,
-   "n": 1,
+   "avg": 8.5,
+   "n": 2,
    "dropped": false
   }
  ],
@@ -1629,71 +1629,76 @@
  ],
  "reports": [
   {
+   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-25T17:09+00:00"
+  },
+  {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T17:05+00:00"
+   "date": "2026-11-25T17:04+00:00"
   }
  ],
  "runs": [
   {
-   "ts": "2026-11-25T17:09:17+00:00",
-   "agent": "office_assistant",
+   "ts": "2026-11-25T17:08:01+00:00",
+   "agent": "content_creator",
    "model": null,
-   "task": "구현된 솔루션의 적용 절차와 토큰 사용량 모니터링 대시보드 설정 문서를 작성한다."
+   "task": "콘텐츠 제작팀이 새로운 마케팅 스킬을 활용한 홍보 자료와 가이드를 제작하여 배포한다."
   },
   {
-   "ts": "2026-11-25T17:09:15+00:00",
+   "ts": "2026-11-25T17:07:59+00:00",
    "agent": "developer",
    "model": null,
-   "task": "조사·분석 결과를 바탕으로 영상 퀄리티 업그레이드 로직과 Gemini API 호출 최적화를 구현한다."
+   "task": "개발팀이 선정된 스킬을 코드베이스에 통합하고 필요한 API 키와 설정을 적용한다."
   },
   {
-   "ts": "2026-11-25T17:07:20+00:00",
-   "agent": "github_scout",
-   "model": null,
-   "task": "오픈소스 고품질 비디오 업스케일링 모델 및 Gemini 연동 샘플 코드를 찾아 정리한다."
-  },
-  {
-   "ts": "2026-11-25T17:07:00+00:00",
+   "ts": "2026-11-25T17:05:25+00:00",
    "agent": "analyst",
    "model": "groq:openai/gpt-oss-120b",
-   "task": "현재 영상 처리 파이프라인의 비용·성능 지표를 분석하여 개선 목표를 정의한다."
+   "task": "재무·성과분석팀이 수집된 스킬들의 예상 ROI와 비용을 분석하여 상위 후보를 선정한다."
   },
   {
-   "ts": "2026-11-25T17:06:55+00:00",
+   "ts": "2026-11-25T17:05:20+00:00",
+   "agent": "github_scout",
+   "model": null,
+   "task": "오픈소스·프롬프트 탐색팀이 GitHub에서 인기 있는 마케팅 자동화·콘텐츠 생성 스킬을 검색하고 상세 정보를 수집한다."
+  },
+  {
+   "ts": "2026-11-25T17:05:12+00:00",
    "agent": "researcher",
    "model": null,
-   "task": "Gemini API 최신 토큰 정책·비용 구조와 사용량 제한을 조사하고 요약한다."
+   "task": "시장 조사팀이 최신 마케팅 스킬 트렌드와 경쟁사 활용 사례를 웹 검색하고 정리한다."
   },
   {
    "ts": "2026-11-25T17:04:16+00:00",
@@ -1738,14 +1743,7 @@
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 자동 AI 폴백 API 서비스 (AI 스타트업·개발자/REST API, 사용량 기반 과금/프리미엄 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   }
  ],
- "errors": [
-  {
-   "ts": "2026-11-25T17:09:18+00:00",
-   "cmd": "run 영상 퀄리티 업데이트및 적용 제미나이 페이블사용 하는데 토근및 사용량최적화",
-   "error": "RuntimeError: gemini: gemini-flash-lite-latest 503: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is current / gemini: gemini-omni-1.2-flash 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your curren / groq: openai/gpt-oss-120b 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in  / groq: qwen/qwen3.8-27b 429: {\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organi",
-   "msg": "AI 무료 사용량 초과 — 다른 AI로 자동 전환 중. 계속되면 예비 AI 키(Groq 등)를 추가하세요"
-  }
- ],
+ "errors": [],
  "jobs": [
   {
    "id": "connection-test-002",
@@ -1985,16 +1983,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:09:20+00:00",
-   "cmd": "영상 퀄리티 업데이트및 적용 제미나이 페이블사용 하는데 토근및 사용량최적화",
-   "ok": false,
-   "output": "⚠️ 실패: RuntimeError: gemini: gemini-flash-lite-latest 503: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is current / gemini: gemini-omni-1.2-flash 429: [{\n  (기록: data/errors.jsonl)"
-  },
-  {
-   "ts": "2026-11-25T17:04:45+00:00",
-   "cmd": "shorts",
+   "ts": "2026-11-25T17:09:29+00:00",
+   "cmd": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
    "ok": true,
-   "output": "🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (6개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '잠 못 이루는 밤, 뇌가 숨기는 3가지 신호' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널은 AI 실험·툴 활용을 강조하고, 기존 영상은 수면·꿈 주제가 많아 새로운 AI 일상 활용 주제가 필요합니다. 벤치마크 인기 AI 숏츠는 강렬한 훅, 짧은 반전·핵심·근거·CTA 구조를 따르며 25~50초 내에 8~10문장을 배치합니다. 따라서 'AI가 만든 완벽한 하루 루틴'을 주제로, 첫 3초에 강한 질문형 훅을 넣고, AI 일정 설계 → 실제 실행 → 효과 검증 → 작은 반전 → 최종 행동 유도 순으로 스크립트를 구성했습니다. 영상 길이는 약 30초, 한 줄당 1문장, 한국어로 작성했으며, 저작권·실존인물·허위정보를 포함하지 않았습니다.\n📝 013.json: AI가 만든 완벽한 하루 루틴, 직접 실행해봤다\n007.json: 훅 32→60점으로 개선\n007.json: 표지 문구 → 잠 못 이루는 밤 / 3가지 신호로 깨달음\n🔎 무료 실사 영상 검색: ['brain wave', 'smartphone blue light', 'eye blinking', 'stress hormone', 'heart rate', 'sleep signal', 'sleep hygiene']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/007.mp4 (43.1초)\n✅ https://youtube.com/shorts/5Dal3S_nwX8"
+   "output": "분석팀은 ROI와 확장·개선·중단 방안을 명확히 제시해 큰 가치를 제공했습니다. 그러나 연구팀, 탐색팀, 개발팀, 콘텐츠팀은 외부 모델 호출 제한으로 작업을 수행하지 못했습니다. 향후 데이터 수집은 안정적인 소스와 재시도 로직을 도입하고, 개발은 API 키 확보 후 진행해야 합니다. 전체적으로 성공적인 전략 수립이 가능했으니 실행 단계에 집중해야 합니다. \n다음: \n- 연구팀과 탐색팀은 모델 호출 제한을 피하기 위해 공개된 보고서와 GitHub Trending API를 사용해 마케팅 스킬을 다시 조사한다. \n- 개발팀은 필요한 API 키와 환경 변수를 확보한 뒤 AI 코드 리뷰 스킬 통합 작업을 시작한다. \n- 콘텐츠팀은 분석팀의 ROI 보고서를 기반으로 마케팅 가이드와 홍보 자료 초안을 작성한다. \n- AI 코드 리뷰 확장을 위한 영업팀과 협업 계획을 수립하고, 프리미엄 실시간 협업 실험을 일정에 포함한다. \n- 전체 진행 상황을 공유하는 주간 회의를 설정하고, 각 팀의 진행률을 추적한다. \n보고서: reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md"
   },
   {
    "ts": "2026-11-25T17:04:20+00:00",
@@ -2043,6 +2035,12 @@
    "cmd": "daily",
    "ok": true,
    "output": "저장: reports/daily-2026-11-25.md\n# 일일 리포트 2026-11-25\n## 오늘의 트렌드 (새 소식 198건 · 출처 21곳 · 새 출처: rss.itmedia.co.jp (30개 글))\n- [구글 트렌드 JP] openai | https://www.google.com/search?q=openai\n- [구글 트렌드 US] kenneth walker | https://www.google.com/search?q=kenneth%20walker\n- [구글 트렌드 KR] qqq | https://www.google.com/search?q=qqq\n## 사업 리뷰\n## 신규 발굴 (JP)\n- I0014 70.8점 [candidate] AI 크레딧 관리 SaaS — 잠재 고객 10곳에 설문 조사 후 MVP 설계\n- I0015 70.5점 [candidate] 자동 AI 폴백 API 서비스 — 무료 GPT‑3.5를 이용한 프로토타입 프록시 서버 구축\n- I0016 58.0점 [candidate] AI 크레딧 보험·선불 번들 — 주요 AI 제공업체와 대량 구매 계약 협상 시작\n## 숏츠 자동 업로드\n📊 stats.csv 갱신 (6개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '잠 못 이루는 밤, 뇌가 숨기는 3가지 신호' 주제 중단\n🤖 사용 AI: groq:qwen/qwen3.8-27b\n\n🤖 AI 분석:\n성과 데이터 분석: 조회수 351회(1위) 영상은 '잠이 안 오는 진짜 이유'로, 단순 신비주의가 아닌 '진짜 이유'라는 구체적 해결제를 제시하는 직관적 제목이 효과적이었음. 조회수 0건 영상들은 추상적 뉘앙스(소름, 비밀, 신호)나 우주물리(상대성이론)처럼 시청자의 즉각적 공감대나 호기심을 자극하지 않는 주제임. 벤치마크 분석: 상위권 영상은 짧은 길이(20~30초)에서 직관적 시각적 충격(반전, 예측 불가 행위) 또는 강력한 감정적 시퀀스(자녀 사랑, 배신, 놀라움)를 활용함. 특히 'The Hidden Secret', 'Real vs AI', 'Ultimate Escape' 등은 시청자가 '무엇이 보이지 않는가' 또는 '무엇이 달랐는가'를 확인하는 구조가 강력한 이탈 방지 장치가 됨. 전략: '잠'이라는 기존 주제는 반복 피하고, 일상적인 시야에서 놓치는 '시각적/물리적 반전' 주제를 선택. 구체적으로 '우리가 매일 오해하는 일상 물리 법칙' 중 하나인 '유리창에 안개가 걷히는 원리'나 '거울 속 좌우 반전'의 왜곡된 현실을 다루되, 벤치마크처럼 '보여지지 않는 본질'을 드러내는 거울/시각 착시 주제를 활용하되, 기존 제목과 중복되지 않도록 '거울이 사실은 우리가 보는 모습을 왜곡하고 있다'는 물리적 사실(밝기 저하, 약한 손의 물리법칙 등) 중 '거울이 항상 더 어둡게 만드는 이유'와 같은 구체적 과학적 호기심을 자극하는 주제를 선택합니다. 구성: 3초 훅(충격적 질문) -> 반전(예상과 다른 결과) -> 근거(간편한 실험/법칙) -> CTA(인증/저장).\n📝 013.json: 거울이 당신을 속이는 3가지 이유\n007.json: 훅 32→63점으로 개선\n007.json: 표지 문구 → 잠 못 이루는 이유 / 3가지 신호\n🔎 무료 실사 영상 검색: ['brain wave', 'smartphone blue light', 'eye blinking', 'stress hormone', 'heart rate', 'sleep signal', 'sleep hygiene']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/007.mp4 (43.0초)\n✅ https://youtube.com/shorts/J1Tqi53zWCw\n## 블로그 자동 게시\n📝 유튜브·블로그·인스타그램, AI 한 번에 제작하는 방법은? — https://bigdataupdate12.blogspot.com/2026/11/ai.html · groq:openai/gpt-oss-120b\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 16개 · 진행중 0 · 탈락 13\n```"
+  },
+  {
+   "ts": "2026-11-25T17:02:47+00:00",
+   "cmd": "daily",
+   "ok": true,
+   "output": "❌ 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $150.0/$390.0/$990.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $30 전환 0.5% 하루 30~100"
   }
  ],
  "pipelines": [
