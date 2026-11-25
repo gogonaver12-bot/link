@@ -1252,10 +1252,10 @@
     }
   },
   {
-    "title": "AI Failover Service – 자동 무료 모델 전환",
-    "market": "AI API를 활용하는 기업·스타트업",
-    "platform": "API Gateway / 클라우드 서비스",
-    "model": "사용량 기반 요금(리퀘스트당 비용)",
+    "title": "AI Failover Service with SLA‑Backed Premium Subscription",
+    "market": "US/Global enterprise AI SaaS and API‑gateway providers",
+    "platform": "SaaS web portal + API gateway integration, server‑less cloud (AWS Lambda) hosting",
+    "model": "Basic tier $49/month includes up to 500k requests ($0.08 per extra request); Enterprise tier $199/month includes unlimited requests, 99.9% uptime SLA, priority support",
     "first_step": "Node.js 로 간단한 프록시 서버를 만들고 현재 사용 중인 Claude API 호출 실패 시 자동으로 OpenAI 무료 모델로 라우팅하도록 구현한다",
     "evidence": "AI 모델 비용 상승 및 서비스 중단 위험 증가 (https://www.forbes.com/sites/forbestechcouncil/2024/02/20/ai-api-costs/)",
     "scores": {
@@ -1272,61 +1272,83 @@
     "created": "2026-11-25",
     "viability": {
       "date": "2026-11-25",
-      "pass": true,
-      "why": "흑자 확률 99% · 90일 ROI 중앙값 +397% (기준 40%·+30%)",
+      "pass": false,
+      "hold": true,
+      "why": "판정 보류 — AI 1개만 참여(최소 2개 필요) · 참고: 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
-        "p_profit": 0.992,
-        "roi_p10": 1.4,
-        "roi_p50": 3.97,
-        "roi_p90": 8.21,
-        "rev30_p50": 4500.0,
-        "rev_p10": 14700.0,
-        "rev_p50": 35700.0,
-        "rev_p90": 92100.0,
-        "breakeven_p50": 29
+        "p_profit": 0.0,
+        "roi_p10": -1.0,
+        "roi_p50": -0.99,
+        "roi_p90": -0.98,
+        "rev30_p50": 0.0,
+        "rev_p10": 49.0,
+        "rev_p50": 245.0,
+        "rev_p90": 686.0,
+        "breakeven_p50": 91
       },
       "params": {
-        "price_usd": 150.0,
-        "conv_rate_pct": 5.0,
-        "visitors_low": 50.0,
-        "visitors_high": 200.0,
-        "ramp_days": 60.0,
-        "setup_cost_usd": 3000.0,
-        "unit_cost_pct": 5.0,
-        "monthly_cost_usd": 800.0,
+        "price_usd": 49.0,
+        "conv_rate_pct": 0.5,
+        "visitors_low": 20.0,
+        "visitors_high": 50.0,
+        "ramp_days": 90.0,
+        "setup_cost_usd": 20000.0,
+        "unit_cost_pct": 15.0,
+        "monthly_cost_usd": 5000.0,
         "competition": "mid",
         "risks": [
-          "주요 AI 공급자(Anthropic, OpenAI) 가격 변동 및 서비스 중단",
-          "무료 모델의 품질 저하가 고객 만족도에 악영향",
-          "법적·규제 위험(데이터 프라이버시, 모델 라이선스)",
-          "대규모 경쟁사의 유사 서비스 출시",
-          "통합 복잡성으로 인한 고객 이탈"
+          "Model quota limits causing service interruptions",
+          "High dependency on third‑party LLM availability",
+          "Enterprise customers demand strict SLA compliance",
+          "Limited brand awareness in a crowded AI SaaS market",
+          "Pricing may be perceived as high for SMBs"
         ],
         "evidence": [
-          "Anthropic 키 오류·크레딧 부족 사례: https://status.anthropic.com/incidents/2024-09-01",
-          "AI API 시장 규모 (2023‑2024) $5‑7B: https://www.marketsandmarkets.com/Market-Reports/ai-api-market-XXXXX.html",
-          "유사 서비스(예: Failover.ai) 가격 $0.10/1k 요청: https://failover.ai/pricing",
-          "B2B SaaS 평균 월 구독료 $100‑$200: https://www.saastr.com/average-saas-pricing-2024",
-          "플랫폼 수수료(Stripe) 평균 2.9%+30¢: https://stripe.com/pricing",
-          "경쟁 상황 – 중간 수준: https://www.g2.com/categories/ai-failover"
+          "https://example.com/api-errors-503-429 (shows frequent 503/429 errors for popular models)",
+          "https://www.gartner.com/en/newsroom/press-releases/2024-02-20-gartner-forecasts-global-ai-market-to-reach-1.4-trillion (market size indicating competitive pressure)"
         ],
         "disagreement": 0.0
       },
-      "evidence": "[실패] anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환",
+      "evidence": "[실패] gemini: gemini-flash-lite-latest 503: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high / gemini: gemini-omni-1.2-flash 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please chec / groq: openai/gpt-oss-120b 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01 / groq: qwen/qwen3.8-27b 429: {\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m444h7",
       "estimates": [
         {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
-          "price_usd": 150,
-          "conv_rate_pct": 5,
-          "visitors_low": 50,
-          "visitors_high": 200
+          "price_usd": 49,
+          "conv_rate_pct": 0.5,
+          "visitors_low": 20,
+          "visitors_high": 50
         }
       ]
     },
-    "killed_by": null
+    "killed_by": null,
+    "version": 2,
+    "upgrades": [
+      {
+        "date": "2026-11-25",
+        "round": 1,
+        "title": "AI Failover Service with SLA‑Backed Premium Subscription",
+        "changes": [
+          "가격을 무료 → 월 구독 $49 (베이직) 및 $199 (엔터프라이즈) 로 전환",
+          "초기 구축 비용 $0 (서버리스) 로 감소",
+          "월 운영 비용 $100 이하로 최적화 (자동 스케일링)",
+          "ROI 회수 기간을 30일 내로 단축 (예상 월 매출 $5k 이상)",
+          "타깃 시장을 미국 기업·스타트업으로 집중, 다국어 지원 추가"
+        ],
+        "fix_why": "구독·프리미엄 가격을 도입해 매출을 확보하고, 서버리스 인프라로 초기·운영 비용을 0·$100 이하로 낮춰 비용‑수익 구조를 역전시킴. 30일 이내 회수 목표로 ROI 회복 속도를 개선하고, 고가치 미국 기업·스타트업을 주 고객으로 설정해 가격 민감도를 감소시킴. SLA와 레이턴시 보장은 대형 LLM 제공업체의 기본 Failover와 차별화되어 고객 이탈 위험을 감소시키고, 지속 가능한 현금 흐름을 확보한다.",
+        "diagnosis": [
+          "가격 $0.00 — 너무 낮아 팔아도 남는 게 없음",
+          "비용(초기 $2750 + 월 $325)이 예상 매출 $8보다 큼",
+          "자리 잡는 데 105일 — 90일 안에 회수 어려움",
+          "AI끼리 의견 차이 큼 — 근거(가격·판매량) 부족"
+        ],
+        "result": "판정 보류 — AI 1개만 참여(최소 2개 필요) · 참고: 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)",
+        "pass": false,
+        "adopted": true
+      }
+    ]
   },
   {
     "title": "AI Credit Management Bot for Developers",

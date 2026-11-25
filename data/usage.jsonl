@@ -339,3 +339,15 @@
 {"ts": "2026-11-25T17:11:04+00:00", "agent": "check", "model": "groq:openai/gpt-oss-120b", "in": 84, "out": 106, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:11:28+00:00", "agent": "idea_scorer", "model": "groq:openai/gpt-oss-120b", "in": 512, "out": 193, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:11:32+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 600, "out": 1119, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:29+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 509, "out": 268, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:30+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 600, "out": 756, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:35+00:00", "agent": "biz_fixer", "model": "groq:openai/gpt-oss-120b", "in": 1418, "out": 907, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:36+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 1050, "out": 195, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:37+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 1111, "out": 92, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:37+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 1171, "out": 79, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:38+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 1218, "out": 118, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:39+00:00", "agent": "researcher", "model": "groq:openai/gpt-oss-120b", "in": 1278, "out": 424, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:42+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1352, "out": 177, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:43+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 1609, "out": 82, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:45+00:00", "agent": "researcher", "model": "groq:qwen/qwen3.8-27b", "in": 3321, "out": 120, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:13:50+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 797, "out": 937, "cache_read": 0, "usd": 0.0}
