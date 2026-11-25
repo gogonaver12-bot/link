@@ -60,6 +60,9 @@ def shorts(n=None, private=False):
     if not shutil.which("ffmpeg"):
         return "ffmpeg 없음 → 숏츠 건너뜀"
     log = []
+    if not private and store.cfg().get("shorts", {}).get("hold_until_new_channel") and not os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN"):
+        private = True  # 새 채널 연결 전엔 기존 채널에 공개로 올리지 않음
+        log.append("🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)")
     if youtube_ready():
         log.append(_py("upload.py", "--stats"))
     log.append(_py("feedback.py", "--n", str(n)))
