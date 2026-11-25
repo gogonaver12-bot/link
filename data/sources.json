@@ -6,8 +6,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "구글 트렌드 US",
@@ -16,8 +16,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "구글 트렌드 JP",
@@ -26,8 +26,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "Hacker News",
@@ -36,8 +36,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "Product Hunt",
@@ -46,8 +46,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "Anthropic SDK 릴리스",
@@ -56,8 +56,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "Google GenAI SDK 릴리스",
@@ -66,8 +66,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "Ollama 릴리스",
@@ -76,8 +76,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "GitHub 변경 로그",
@@ -86,8 +86,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "플래텀",
@@ -96,8 +96,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "벤처스퀘어",
@@ -106,8 +106,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "전자신문",
@@ -116,8 +116,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-24"
+    "ok": 4,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "TechCrunch",
@@ -126,8 +126,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-24"
+    "ok": 3,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "The Verge",
@@ -136,8 +136,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-24"
+    "ok": 3,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "ITmedia",
@@ -146,8 +146,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-24"
+    "ok": 3,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "GIGAZINE",
@@ -156,8 +156,8 @@
     "origin": "후보목록",
     "added": "2026-11-24",
     "fails": 0,
-    "ok": 1,
-    "last_ok": "2026-11-24"
+    "ok": 2,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "GitHub 트렌딩",
@@ -166,8 +166,8 @@
     "origin": "후보목록",
     "added": "2026-11-24",
     "fails": 0,
-    "ok": 1,
-    "last_ok": "2026-11-24"
+    "ok": 2,
+    "last_ok": "2026-11-25"
   },
   {
     "name": "Hugging Face 블로그",
@@ -176,7 +176,27 @@
     "origin": "후보목록",
     "added": "2026-11-24",
     "fails": 0,
+    "ok": 2,
+    "last_ok": "2026-11-25"
+  },
+  {
+    "name": "rss.itmedia.co.jp",
+    "url": "https://rss.itmedia.co.jp/rss/2.0/topstory.xml",
+    "category": "tech",
+    "origin": "자주 등장",
+    "added": "2026-11-25",
+    "fails": 0,
     "ok": 1,
-    "last_ok": "2026-11-24"
+    "last_ok": "2026-11-25"
+  },
+  {
+    "name": "qsantos.fr",
+    "url": "https://qsantos.fr/feed/",
+    "category": "tech",
+    "origin": "자주 등장",
+    "added": "2026-11-25",
+    "fails": 0,
+    "ok": 1,
+    "last_ok": "2026-11-25"
   }
 ]

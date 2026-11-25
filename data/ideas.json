@@ -1002,5 +1002,91 @@
       ]
     },
     "killed_by": "생존 테스트"
+  },
+  {
+    "title": "무료 오픈소스 LLM(Ollama, DeepSeek 등) 기반의 API 이중화 라우터 솔루션",
+    "market": "AI 개발자 및 에이전트 구축 기업",
+    "platform": "GitHub / SaaS",
+    "model": "구독",
+    "first_step": "Claude/OpenAI 크레딧 소진 시 Ollama나 무료 API로 자동 Fallback(전환)하는 오픈소스 Python 미들웨어 프로토타입 작성",
+    "evidence": "상용 LLM API 장애 및 크레딧 부족으로 인한 서비스 중단 방지 수요가 급증하고 있음",
+    "scores": {
+      "demand": 85,
+      "low_competition": 70,
+      "low_cost": 95,
+      "speed_to_revenue": 60,
+      "scalability": 80,
+      "low_risk": 90
+    },
+    "id": "I0013",
+    "score": 79.0,
+    "status": "killed",
+    "created": "2026-11-25",
+    "viability": {
+      "date": "2026-11-25",
+      "pass": false,
+      "why": "흑자 확률 2% · 90일 ROI 중앙값 -80% (기준 40%·+30%)",
+      "sim": {
+        "days": 90,
+        "runs": 2000,
+        "p_profit": 0.018,
+        "roi_p10": -0.94,
+        "roi_p50": -0.8,
+        "roi_p90": -0.42,
+        "rev30_p50": 64.5,
+        "rev_p10": 129.0,
+        "rev_p50": 451.5,
+        "rev_p90": 1354.5,
+        "breakeven_p50": 91
+      },
+      "params": {
+        "price_usd": 64.5,
+        "conv_rate_pct": 0.5,
+        "visitors_low": 50.0,
+        "visitors_high": 200.0,
+        "ramp_days": 135.0,
+        "setup_cost_usd": 1250.0,
+        "unit_cost_pct": 7.5,
+        "monthly_cost_usd": 325.0,
+        "competition": "high",
+        "risks": [
+          "무료 오픈소스 솔루션(LiteLLM 등)과의 극심한 경쟁으로 낮은 유료 전환율",
+          "대형 클라우드 플랫폼 자체 라우팅 기능 내재화 위협",
+          "단순 이중화 기능만으로는 구독 유지율 확보 곤란",
+          "극히 낮은 무료→유료 전환율",
+          "다수 무료 오픈소스 라우터 대체 가능",
+          "대형 클라우드(AWS Bedrock, Azure OpenAI)와의 직접 경쟁"
+        ],
+        "evidence": [
+          "LiteLLM 및 Portkey 공식 가격 정책 (팀당 월 $99~선)",
+          "GitHub 오픈소스 LLM Gateway/Router 트렌드 및 대체 가능성 지표",
+          "AI 개발자 커뮤니티의 오픈소스 기반 유료화 한계 토론",
+          "LiteLLM 가격 정책 (https://litellm.ai/pricing)",
+          "Portkey Enterprise 플랜 $99+/월 (https://portkey.ai/pricing)",
+          "GitHub 검색 결과: “LLM gateway” 스타 수천~만 개 (https://github.com/search?q=llm+gateway)"
+        ],
+        "disagreement": 0.0
+      },
+      "evidence": "- **경쟁 상품 가격대**: 오픈소스 기반 대표 솔루션인 LiteLLM은 엔터프라이즈 플랜 사용자당 월 $30~100+ 또는 커스텀 계약, Portkey 등은 팀당 월 $99~선으로 과금 [출처: LiteLLM/Portkey 공식 가격 정책]\n- **검색 수요 및 시장 반응**: GitHub에서 오픈소스 LLM Gateway/Router(LiteLLM 등) 관련 스타 수천~만 개 이상으로 수요가 매우 높으나, 단순 이중화 기능은 무료 오픈소스로 대체 가능해 진입장벽이 낮음 [출처: GitHub 트렌드 지표]\n- **실패/한계 사례**: 무료 오픈소스 자체가 강력하여 유료 전환율이 낮고, 대형 클라우드나 AI 플랫폼(AWS Bedrock, LangChain 등) 자체 라우팅 기능과의 경쟁이 치열함 [출처: AI 개발자 커뮤니티 토론]\n- **수익 가능성 결론**: 오픈소스 기반 API 이중화 자체만으로는 구독 모델 안착이 어려우며, 가드레일, 비용 최적화(캐싱), 세밀한 권한 관리 등의 엔터프라이즈 부가 기능을 결합해야만 유료화 가능 [출처: SaaS 비즈니스 분석 트렌드]",
+      "estimates": [
+        {
+          "model": "gemini:gemini-flash-lite-latest",
+          "role": "중립 심사역",
+          "price_usd": 99.0,
+          "conv_rate_pct": 0.5,
+          "visitors_low": 50.0,
+          "visitors_high": 200.0
+        },
+        {
+          "model": "groq:openai/gpt-oss-120b",
+          "role": "비관 분석가",
+          "price_usd": 30,
+          "conv_rate_pct": 0.5,
+          "visitors_low": 50,
+          "visitors_high": 200
+        }
+      ]
+    },
+    "killed_by": "생존 테스트"
   }
 ]

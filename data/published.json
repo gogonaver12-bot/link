@@ -2,10 +2,19 @@
   "blog": [
     "/home/runner/work/link/link/workspace/products/I0001/01-1장-챗GPT와-친해지기-초보자를-위한-기본-개념과-가입.md",
     "/home/runner/work/link/link/workspace/products/I0001/02-2장-기획서-보고서-작성-10분-만에-끝내는-법.md",
-    "/home/runner/work/link/link/workspace/products/I0001/03-3장-이메일-작성-및-비즈니스-커뮤니케이션-자동화.md"
+    "/home/runner/work/link/link/workspace/products/I0001/03-3장-이메일-작성-및-비즈니스-커뮤니케이션-자동화.md",
+    "/home/runner/work/link/link/workspace/products/I0001/04-4장-데이터-분석-및-엑셀-Excel-스프레드시트-200-활용.md"
   ],
   "shorts": [
     "001",
-    "002"
+    "002",
+    "003"
+  ],
+  "blog_posted": [
+    {
+      "date": "2026-11-25",
+      "title": "엑셀 함수 몰라도 챗GPT로 매출 정산하고 칼퇴하는 법",
+      "url": "https://bigdataupdate12.blogspot.com/2026/11/gpt.html"
+    }
   ]
 }

@@ -10,3 +10,4 @@
 - 2026-11-23 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터(AI 개발자 및 에이전트 빌더): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%); 위험: Frequent API quota limits and service outages (Gemini 503/429, Groq 400/429), High dependency on third‑party LLM providers whose pricing can change abruptly
 - 2026-11-24 무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS(AI 개발자 및 에이전시): 시뮬레이션 탈락 — 흑자 확률 9% · 90일 ROI 중앙값 -60% (기준 40%·+30%); 위험: LiteLLM 등 오픈소스 대안과의 무료 경쟁 심화, API Key 위탁에 따른 보안 및 신뢰성 이슈
 - 2026-11-24 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 자동 폴백(Fallback) 미들웨어 서비스(개발자 및 AI SaaS 운영 기업): 시뮬레이션 탈락 — 흑자 확률 36% · 90일 ROI 중앙값 -47% (기준 40%·+30%); 위험: 강력한 오픈소스 대안(LiteLLM 등) 존재로 인한 낮은 유료 구독 전환율, Ollama 자체 호스팅 시 레이턴시 및 안정성 한계로 인한 고객 이탈
+- 2026-11-25 무료 오픈소스 LLM(Ollama, DeepSeek 등) 기반의 API 이중화 라우터 솔루션(AI 개발자 및 에이전트 구축 기업): 시뮬레이션 탈락 — 흑자 확률 2% · 90일 ROI 중앙값 -80% (기준 40%·+30%); 위험: 무료 오픈소스 솔루션(LiteLLM 등)과의 극심한 경쟁으로 낮은 유료 전환율, 대형 클라우드 플랫폼 자체 라우팅 기능 내재화 위협

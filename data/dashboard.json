@@ -1,15 +1,11 @@
 {
- "updated": "2026-11-24T19:22:37+00:00",
+ "updated": "2026-11-25T04:36:33+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
   "daily": 3.0,
   "today": 0.0,
   "days": [
-   {
-    "d": "2026-11-11",
-    "usd": 0.0
-   },
    {
     "d": "2026-11-12",
     "usd": 0.0
@@ -60,6 +56,10 @@
    },
    {
     "d": "2026-11-24",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-25",
     "usd": 0.0
    }
   ],
@@ -170,7 +170,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -243,7 +243,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -342,7 +342,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -424,7 +424,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -575,7 +575,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -647,7 +647,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -799,7 +799,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -1010,6 +1010,84 @@
      "Reddit에서 Ollama 호스팅 시 안정성 한계 언급: https://www.reddit.com/r/LocalLLaMA/"
     ],
     "disagreement": 1.34
+   },
+   "metrics": null
+  },
+  {
+   "id": "I0013",
+   "title": "무료 오픈소스 LLM(Ollama, DeepSeek 등) 기반의 API 이중화 라우터 솔루션",
+   "market": "AI 개발자 및 에이전트 구축 기업",
+   "platform": "GitHub / SaaS",
+   "model": "구독",
+   "first_step": "Claude/OpenAI 크레딧 소진 시 Ollama나 무료 API로 자동 Fallback(전환)하는 오픈소스 Python 미들웨어 프로토타입 작성",
+   "evidence": "상용 LLM API 장애 및 크레딧 부족으로 인한 서비스 중단 방지 수요가 급증하고 있음",
+   "scores": {
+    "demand": 85,
+    "low_competition": 70,
+    "low_cost": 95,
+    "speed_to_revenue": 60,
+    "scalability": 80,
+    "low_risk": 90
+   },
+   "score": 79.0,
+   "status": "killed",
+   "created": "2026-11-25",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-25",
+    "pass": false,
+    "why": "흑자 확률 2% · 90일 ROI 중앙값 -80% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.018,
+     "roi_p10": -0.94,
+     "roi_p50": -0.8,
+     "roi_p90": -0.42,
+     "rev30_p50": 64.5,
+     "rev_p10": 129.0,
+     "rev_p50": 451.5,
+     "rev_p90": 1354.5,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "gemini:gemini-flash-lite-latest",
+      "role": "중립 심사역",
+      "price_usd": 99.0,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 50.0,
+      "visitors_high": 200.0
+     },
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 30,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 50,
+      "visitors_high": 200
+     }
+    ],
+    "risks": [
+     "무료 오픈소스 솔루션(LiteLLM 등)과의 극심한 경쟁으로 낮은 유료 전환율",
+     "대형 클라우드 플랫폼 자체 라우팅 기능 내재화 위협",
+     "단순 이중화 기능만으로는 구독 유지율 확보 곤란",
+     "극히 낮은 무료→유료 전환율",
+     "다수 무료 오픈소스 라우터 대체 가능",
+     "대형 클라우드(AWS Bedrock, Azure OpenAI)와의 직접 경쟁"
+    ],
+    "evidence": [
+     "LiteLLM 및 Portkey 공식 가격 정책 (팀당 월 $99~선)",
+     "GitHub 오픈소스 LLM Gateway/Router 트렌드 및 대체 가능성 지표",
+     "AI 개발자 커뮤니티의 오픈소스 기반 유료화 한계 토론",
+     "LiteLLM 가격 정책 (https://litellm.ai/pricing)",
+     "Portkey Enterprise 플랜 $99+/월 (https://portkey.ai/pricing)",
+     "GitHub 검색 결과: “LLM gateway” 스타 수천~만 개 (https://github.com/search?q=llm+gateway)"
+    ],
+    "disagreement": 0.0
    },
    "metrics": null
   }
@@ -1268,37 +1346,54 @@
  ],
  "reports": [
   {
+   "file": "reports/daily-2026-11-25.md",
+   "title": "일일 리포트 2026-11-25",
+   "date": "2026-11-25T04:36+00:00"
+  },
+  {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-24T19:22+00:00"
+   "date": "2026-11-25T04:34+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-24T19:22+00:00"
+   "date": "2026-11-25T04:34+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-24T19:22+00:00"
+   "date": "2026-11-25T04:34+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-24T19:22+00:00"
+   "date": "2026-11-25T04:34+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-24T19:22+00:00"
+   "date": "2026-11-25T04:34+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-24T19:22+00:00"
+   "date": "2026-11-25T04:34+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-25T04:35:32+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama, DeepSeek 등) 기반의 API 이중화 라우터 솔루션 (AI 개발자 및 에이전트 구축 기업/GitHub / SaaS, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T04:35:26+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "JP 시장(ja)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: BOOTH, note, ココナラ, YouTube. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n션 탈락 — 흑자 확률 49% · 90일 ROI 중앙값 -3% (기준 40%·+30%); 위험: Limited target audience, Platform fee changes\n- 2026-11-23 소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지(국내 소상공인 및 초보 스마트스토어 셀러):"
+  },
   {
    "ts": "2026-11-24T05:31:29+00:00",
    "agent": "researcher",
@@ -1358,18 +1453,6 @@
    "agent": "researcher",
    "model": null,
    "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 4"
-  },
-  {
-   "ts": "2026-11-23T17:11:44+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 오픈소스 LLM 기반 멀티 API 자동 폴백 라우터 (AI 개발자 및 에이전트 빌더/GitHub / SaaS, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-23T17:11:36+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n 전자책·노하우 PDF 제작 및 판매(대한민국 크몽(Kmong) 부업/재테크/AI 카테고리): 시뮬레이션 탈락 — 흑자 확률 48% · 90일 ROI 중앙값 -2% (기준 40%·+30%); 위험: low traffic, platform fee changes"
   }
  ],
  "errors": [],
@@ -1382,79 +1465,93 @@
  ],
  "news": [
   {
-   "source": "구글 트렌드 JP",
-   "category": "trend",
-   "title": "8時だョ 全員集合",
-   "url": "https://trends.google.com/trending/rss?geo=JP"
-  },
-  {
-   "source": "구글 트렌드 US",
-   "category": "trend",
-   "title": "uefa champions league",
-   "url": "https://trends.google.com/trending/rss?geo=US"
-  },
-  {
-   "source": "구글 트렌드 KR",
-   "category": "trend",
-   "title": "fc서울",
-   "url": "https://trends.google.com/trending/rss?geo=KR"
+   "source": "Product Hunt",
+   "category": "product",
+   "title": "Claude Ship",
+   "url": "https://www.producthunt.com/products/claude-code"
   },
   {
    "source": "Product Hunt",
    "category": "product",
-   "title": "Kopyo",
-   "url": "https://www.producthunt.com/products/kopyo"
+   "title": "Umami Manager",
+   "url": "https://www.producthunt.com/products/umami-manager"
   },
   {
    "source": "Product Hunt",
    "category": "product",
-   "title": "MAI Image 2.7",
-   "url": "https://www.producthunt.com/products/mai-image-2-3"
+   "title": "Tendor",
+   "url": "https://www.producthunt.com/products/tendor"
   },
   {
-   "source": "Product Hunt",
-   "category": "product",
-   "title": "Branchery",
-   "url": "https://www.producthunt.com/products/branchery"
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Arduino’s Automatic Reset",
+   "url": "https://qsantos.fr/2025/05/01/arduino-automatic-reset/"
+  },
+  {
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Linux always toggles DTR & RTS",
+   "url": "https://qsantos.fr/2025/05/03/linux-always-toggles-dtr-rts/"
+  },
+  {
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Espressif’s Automatic Reset",
+   "url": "https://qsantos.fr/2025/05/09/espressifs-automatic-reset/"
+  },
+  {
+   "source": "rss.itmedia.co.jp",
+   "category": "tech",
+   "title": "眠る「200兆円市場」、フィジカルAIを阻む「資源不足」 日立は独自技術で突破口探る",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003382/"
+  },
+  {
+   "source": "rss.itmedia.co.jp",
+   "category": "tech",
+   "title": "ジェンスン・フアン氏、NVIDIAのCEOに復帰 マスク氏「誤りは正された」 AI企業代表のコメントまとめ",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003402/"
+  },
+  {
+   "source": "rss.itmedia.co.jp",
+   "category": "tech",
+   "title": "国内で採れないAI人材、インドで確保 “日本に呼ばない”開発ラボをZenkenが始めた理由",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003396/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "NVIDIAのジェンスン・フアンがCEOに復帰",
-   "url": "https://gigazine.net/news/20261123-nvidia-jensen-huang-ceo/"
+   "title": "好みの柄の猫ちゃんを思う存分なでなでできる「猫撫でシミュレーター」が登場、デブ猫やちび猫やゴロゴロ音まで完全再現",
+   "url": "https://gigazine.net/news/20261124-cat-pet-simulator/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "精神的疲労によりタスク達成のモチベーションが低下する理由が示唆される",
-   "url": "https://gigazine.net/news/20261124-give-up-tough-tasks/"
+   "title": "温州みかん果汁のフルーティーな甘酸っぱさが楽しめる＆1日分のビタミンCも入った「三ツ矢ほっこりみかん」試飲レビュー",
+   "url": "https://gigazine.net/news/20261124-mitsuya-hokkori-mikan/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "特殊な靴下を履くだけで歩行時に消費するエネルギーを軽減できるという研究結果",
-   "url": "https://gigazine.net/news/20261124-foot-stiffening-socks-walking/"
-  },
-  {
-   "source": "ITmedia",
-   "category": "tech",
-   "title": "[ITmedia ビジネスオンライン] オフィスワークの“3M”──「面倒」「マンネリ」「ミスできない」を減らす リコーが進める「プロセスDX」とは？",
-   "url": "https://www.itmedia.co.jp/business/articles/2611/24/news008.html"
-  },
-  {
-   "source": "ITmedia",
-   "category": "tech",
-   "title": "[ITmedia エンタープライズ] 解約して1年以上の筆者にも届いた漏えい通知 「資産を持っている」「通院している」がひも付く日",
-   "url": "https://www.itmedia.co.jp/enterprise/articles/2611/24/news022.html"
-  },
-  {
-   "source": "ITmedia",
-   "category": "tech",
-   "title": "[ITmedia エンタープライズ] 脆弱性公開から約1日で攻撃コード Microsoft、守りをAIエージェントに任せる「Perception」一般提供",
-   "url": "https://www.itmedia.co.jp/enterprise/articles/2611/24/news013.html"
+   "title": "Googleが「ユーザー自身が主人公の番組」をAIで生成し続ける専用テレビチャンネルの特許を出願",
+   "url": "https://gigazine.net/news/20261124-google-ai-tv-channel/"
   }
  ],
  "sources": [
+  {
+   "name": "qsantos.fr",
+   "category": "tech",
+   "origin": "자주 등장",
+   "added": "2026-11-25",
+   "removed": null
+  },
+  {
+   "name": "rss.itmedia.co.jp",
+   "category": "tech",
+   "origin": "자주 등장",
+   "added": "2026-11-25",
+   "removed": null
+  },
   {
    "name": "Hugging Face 블로그",
    "category": "ai",
@@ -1584,6 +1681,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T04:36:32+00:00",
+   "cmd": "schedule",
+   "ok": true,
+   "output": "저장: reports/daily-2026-11-25.md\n# 일일 리포트 2026-11-25\n## 오늘의 트렌드 (새 소식 205건 · 출처 20곳 · 새 출처: rss.itmedia.co.jp (20개 글), qsantos.fr (20개 글))\n결과 없음 (먼저 python -m mother news 로 수집)\n## 사업 리뷰\n## 신규 발굴 (JP)\n- I0013 79.0점 [killed] 무료 오픈소스 LLM(Ollama, DeepSeek 등) 기반의 API 이중화 라우터 솔루션 — Claude/OpenAI 크레딧 소진 시 Ollama나 무료 API로 자동 Fallback(전환)하는 오픈소스 Python 미들웨어 프로토타입 작성\n## 숏츠 자동 업로드\n📊 stats.csv 갱신 (2개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '99%가 모르는 잠 꿀팁' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n기존의 수면 및 우주 관련 콘텐츠는 조회수와 시청 지속 타율이 낮았으며, 벤치마크 분석 결과 대중의 호기심을 극대화하는 미스터리, 숨겨진 비밀, 혹은 시각적 충격을 주는 AI 애니메이션/스토리 형태가 높은 조회수를 기록하고 있습니다. 특히 30초 내외의 길이와 직관적인 호기심 유발 훅(비밀, 숨겨진 진실)이 핵심입니다. 따라서 기존 수면 주제와 완전히 차별화된, 일상 속에서 누구나 궁금해하지만 쉽게 알 수 없는 '인간의 신체나 무의식의 미스터리' 주제를 선정하여 30초 분량의 강렬한 스토리텔링형 숏츠로 재구성합니다.\n📝 009.json: 거울을 볼 때마다 당신이 속고 있는 소름돋는 진실\n003.json: 훅 38→57점으로 개선\n🔎 무료 실사 영상 검색: ['smartphone in bed', 'blue light', 'brain awake', 'melatonin hormone', 'deep sleep', 'morning wakeup']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n✅ /home/runner/work/link/link/shorts_factory/out/003.mp4 (38.1초)\n✅ https://youtube.com/shorts/nPNjDKogOIU\n## 블로그 자동 게시\n📝 엑셀 함수 몰라도 챗GPT로 매출 정산하고 칼퇴하는 법 — https://bigdataupdate12.blogspot.com/2026/11/gpt.html · gemini:gemini-flash-lite-latest\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 13개 · 진행중 0 · 탈락 13\n```"
+  },
+  {
    "ts": "2026-11-24T19:22:36+00:00",
    "cmd": "benchmark",
    "ok": true,
@@ -1636,12 +1739,6 @@
    "cmd": "biz scout --market GLOBAL",
    "ok": true,
    "output": "I0011 82.0점 [active] AI 개발자 및 소규모 SaaS 운영자/Web / GitHub / RapidAPI 오픈소스 LLM 기반 멀티 AI 자동 전환 프록시 API\n   → Groq, Ollama, HuggingFace 등 무료/저가 AI API를 연동하여 Claude 키 오류 시 자동 우회하는 Python 기반 미니 프록시 오픈소스 PoC 작성"
-  },
-  {
-   "ts": "2026-11-24T05:27:35+00:00",
-   "cmd": "biz scout --market US",
-   "ok": true,
-   "output": "I0011 81.0점 [killed] 개발자 및 소규모 AI 서비스 운영자 시장/Web / SaaS 무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스\n   → GitHub에서 무료 오픈소스 LLM(Llama-3, Mistral 등) API를 연동하는 파이썬 라우팅 스크립트 작성"
   }
  ],
  "pipelines": [
@@ -1723,7 +1820,7 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 12,
+    "n": 13,
     "done": true
    },
    {
@@ -1733,12 +1830,12 @@
    },
    {
     "name": "상품·콘텐츠 제작",
-    "n": 5,
+    "n": 6,
     "done": true
    },
    {
     "name": "업로드(공개)",
-    "n": 2,
+    "n": 4,
     "done": true
    },
    {
@@ -1749,8 +1846,8 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 2,
-  "blog": 0
+  "shorts": 3,
+  "blog": 1
  },
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,

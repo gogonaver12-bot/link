@@ -207,3 +207,15 @@
 {"ts": "2026-11-24T19:09:25+00:00", "agent": "shorts_feedback", "model": "groq:openai/gpt-oss-120b", "in": 358, "out": 1380, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-24T19:19:55+00:00", "agent": "shorts_feedback", "model": "groq:openai/gpt-oss-120b", "in": 435, "out": 1319, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-24T19:19:56+00:00", "agent": "hook_writer", "model": "gemini:gemini-flash-lite-latest", "in": 222, "out": 177, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:14+00:00", "agent": "source_scout", "model": "gemini:gemini-flash-lite-latest", "in": 196, "out": 76, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:27+00:00", "agent": "idea_scorer", "model": "gemini:gemini-flash-lite-latest", "in": 421, "out": 235, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:27+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 645, "out": 36, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:28+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 717, "out": 34, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:29+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 787, "out": 25, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:30+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 840, "out": 38, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:32+00:00", "agent": "researcher", "model": "gemini:gemini-flash-lite-latest", "in": 914, "out": 288, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:33+00:00", "agent": "estimator", "model": "gemini:gemini-flash-lite-latest", "in": 778, "out": 277, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:35+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 891, "out": 778, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:41+00:00", "agent": "shorts_feedback", "model": "gemini:gemini-flash-lite-latest", "in": 1411, "out": 537, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:35:43+00:00", "agent": "hook_writer", "model": "gemini:gemini-flash-lite-latest", "in": 274, "out": 204, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T04:36:30+00:00", "agent": "blogger", "model": "gemini:gemini-flash-lite-latest", "in": 1838, "out": 760, "cache_read": 0, "usd": 0.0}
