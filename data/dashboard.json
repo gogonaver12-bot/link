@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T15:39:02+00:00",
+ "updated": "2026-11-25T16:28:57+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1351,37 +1351,37 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T15:36+00:00"
+   "date": "2026-11-25T16:25+00:00"
   }
  ],
  "runs": [
@@ -1684,6 +1684,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T16:28:56+00:00",
+   "cmd": "shorts --private",
+   "ok": true,
+   "output": "📊 stats.csv 갱신 (4개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우리가 매일 꾸는 꿈의 소름돋는 진실' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널의 현재 성과를 보면 가장 높은 조회수는 355회이며, 그 뒤는 4회, 0회로 급격히 감소한다. 성공적인 벤치마크 영상들은 강렬한 3초 훅, 짧은 문장 구조(대략 1문장당 3초), 시각적으로 눈길을 끄는 초반 장면, 그리고 명확한 CTA를 포함한다. 조회수가 낮은 기존 영상들은 훅이 약하고 내용이 중복되거나 구체성이 부족하다. 따라서 새로운 스크립트는 강한 훅을 앞에 배치하고, 25~50초(≈8~12문장) 분량으로 구성하며, 주제는 기존 제목과 겹치지 않는 ‘잠을 방해하는 숨은 소음 5가지’로 설정한다. 문장 순서는 훅 → 핵심/반전 → 근거(각 소음 설명) → 행동 유도(C​TA) 로 한다. 시각적 훅은 침실에서 마이크로폰을 잡고 소리를 분석하는 장면을 제시한다. 태그와 색상은 짧고 눈에 띄게 선택하고, 각 자막 라인마다 영어 검색 키워드를 제공한다.\n📝 011.json: 잠을 깨우는 5가지 숨은 소음, 당신 몰랐던 사실\n005.json: 훅 36→65점으로 개선\n005.json: 표지 문구 → 잠 못 자는 진짜 이유? / 내일 생산성 2배 올리는 / 3가지 수면 꿀팁\n🔎 무료 실사 영상 검색: ['blue light', 'caffeine', 'stress', 'sleep hygiene', 'warm water', '4-7-8 breathing', 'sleep onset', 'sweet dreams']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/005.mp4 (46.1초)\n✅ https://youtube.com/shorts/dIRzPobCyfA"
+  },
+  {
    "ts": "2026-11-25T15:39:00+00:00",
    "cmd": "shorts --private",
    "ok": true,
@@ -1736,12 +1742,6 @@
    "cmd": "schedule",
    "ok": true,
    "output": "저장: reports/daily-2026-11-24.md\n# 일일 리포트 2026-11-24\n## 오늘의 트렌드 (새 소식 193건 · 출처 18곳 · 새 출처: GIGAZINE (30개 글), GitHub 트렌딩 (16개 글), Hugging Face 블로그 (916개 글))\n- [구글 트렌드 JP] 8時だョ 全員集合 | https://trends.google.com/trending/rss?geo=JP\n- [구글 트렌드 US] uefa champions league | https://trends.google.com/trending/rss?geo=US\n- [구글 트렌드 KR] fc서울 | https://trends.google.com/trending/rss?geo=KR\n## 사업 리뷰\n## 신규 발굴 (US)\n- I0012 79.0점 [killed] 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 자동 폴백(Fallback) 미들웨어 서비스 — Claude/OpenAI API 호출 실패 시 Ollama(Llama 3)로 자동 우회하는 Node.js 오픈소스 미들웨어 PoC 작성\n## 숏츠 자동 업로드\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n제공된 성과 데이터가 비어있으나, 기존 성공적인 제목들('침대에 누워도 잠이 안 오는 진짜 이유', '99%가 모르는 잠 꿀팁', '우주에서 1초가 다르게 흐르는 이유')을 분석한 결과, 대중적이면서도 과학적 호기심을 자극하는 '일상 속 미스터리 및 인체/우주 지식' 주제가 높은 관심을 받을 것으로 판단됩니다. 특히 '99%가 모르는', '진짜 이유' 같은 후크 패턴을 활용하여 시청 지속 시간을 극대화합니다.\n📝 004.json: 우리가 매일 꾸는 꿈의 소름돋는 진실\n001.json: 훅 41점 → 보류\n002.json: 훅 37점 → 보류\n003.json: 훅 38점 → 보류\n004.json: 훅 39점 → 보류\n## 블로그 자동 게시\n📝 챗GPT로 이메일 업무 자동화하는 법: 복붙 프롬프트 3가지 — 글만 저장(구글 연결 시 자동 게시) · gemini:gemini-flash-lite-latest\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 12개 · 진행중 0 · 탈락 12\n```"
-  },
-  {
-   "ts": "2026-11-24T05:27:56+00:00",
-   "cmd": "biz scout --market US",
-   "ok": true,
-   "output": "I0011 80.8점 [killed] AI 개발자 및 에이전시/Web / API Service 무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS\n   → Groq, Ollama, HuggingFace 무료 API를 연동하여 유료 API 키 오류 발생 시 자동 전환되는 오픈소스 라우터 파이썬 스크립트 작성"
   }
  ],
  "pipelines": [
@@ -1802,7 +1802,7 @@
  "channels": [
   {
    "id": "youtube",
-   "name": "유튜브 숏츠",
+   "name": "유튜브 숏츠 (기존 계정 채널)",
    "ready": true,
    "need": "구글 1회 연결"
   },
@@ -1838,7 +1838,7 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 5,
+    "n": 6,
     "done": true
    },
    {
@@ -1849,13 +1849,14 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 4,
+  "shorts": 5,
   "blog": 1
  },
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,
   "GOOGLE_OAUTH_CLIENT_SECRET": true,
   "GOOGLE_OAUTH_REFRESH_TOKEN": true,
+  "YOUTUBE_OAUTH_REFRESH_TOKEN": false,
   "BLOGGER_BLOG_ID": true,
   "GEMINI_API_KEY": true,
   "GROQ_API_KEY": true,
@@ -1867,8 +1868,6 @@
   "YOUTUBE_API_KEY": true,
   "PEXELS_API_KEY": false,
   "PIXABAY_API_KEY": false,
-  "HF_API_KEY_ID": false,
-  "HF_API_KEY_SECRET": false,
   "GH_SEARCH_TOKEN": false
  }
 }
