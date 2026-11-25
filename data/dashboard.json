@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T16:41:31+00:00",
+ "updated": "2026-11-25T17:00:58+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1090,6 +1090,84 @@
     "disagreement": 0.0
    },
    "metrics": null
+  },
+  {
+   "id": "I0014",
+   "title": "AI Personal Finance Coach",
+   "market": "South Korean millennials (age 25-35) seeking budgeting tools",
+   "platform": "Mobile app (iOS/Android) with web dashboard",
+   "model": "Subscription (monthly) + premium one‑off reports",
+   "first_step": "Conduct 15‑minute survey on Naver Café to validate pain points",
+   "evidence": "2023 Korean fintech market projected to $12B, 48% of 20‑30 age use budgeting apps (Statista https://www.statista.com)",
+   "scores": {
+    "demand": 80,
+    "low_competition": 45,
+    "low_cost": 70,
+    "speed_to_revenue": 60,
+    "scalability": 85,
+    "low_risk": 65
+   },
+   "score": 68.5,
+   "status": "candidate",
+   "created": "2026-11-25",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "killed_by": null,
+   "viability": null,
+   "metrics": null
+  },
+  {
+   "id": "I0015",
+   "title": "Virtual Team‑Building Hub",
+   "market": "Remote companies in Asia‑Pacific, 50‑500 employees",
+   "platform": "Web SaaS with video integration",
+   "model": "Subscription per seat",
+   "first_step": "Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups",
+   "evidence": "Remote work adoption 71% post‑COVID, team‑building spend up 22% YoY (McKinsey 2024 https://www.mckinsey.com)",
+   "scores": {
+    "demand": 75,
+    "low_competition": 55,
+    "low_cost": 65,
+    "speed_to_revenue": 70,
+    "scalability": 80,
+    "low_risk": 70
+   },
+   "score": 69.8,
+   "status": "candidate",
+   "created": "2026-11-25",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "killed_by": null,
+   "viability": null,
+   "metrics": null
+  },
+  {
+   "id": "I0016",
+   "title": "Low‑Code Automation Marketplace",
+   "market": "Korean SMEs lacking IT staff",
+   "platform": "Web marketplace for drag‑and‑drop bots",
+   "model": "Transaction fee + subscription for premium templates",
+   "first_step": "Interview 5 small business owners via Zoom to map repetitive tasks",
+   "evidence": "Low‑code market CAGR 28% 2023‑2028 (Gartner), 62% SMEs plan automation (KISA 2024 https://www.kisa.or.kr)",
+   "scores": {
+    "demand": 85,
+    "low_competition": 60,
+    "low_cost": 80,
+    "speed_to_revenue": 55,
+    "scalability": 90,
+    "low_risk": 70
+   },
+   "score": 73.8,
+   "status": "candidate",
+   "created": "2026-11-25",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "killed_by": null,
+   "viability": null,
+   "metrics": null
   }
  ],
  "team": [
@@ -1351,40 +1429,58 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T16:39+00:00"
+   "date": "2026-11-25T17:00+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-25T17:00:56+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: Virtual Team‑Building Hub (Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration, Subscription per seat)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:52+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: Low‑Code Automation Marketplace (Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots, Transaction fee + subscription for premium templates)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:26+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n; 위험: AI 모델 API 호출 제한 및 비용 증가, 크몽 및 프리랜서 플랫폼 내 유사 경쟁 서비스 난립\n- 2026-11-23 AI 트렌드/이슈 큐레이션 블로그(네이버 검색 사용자): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%); 위험"
+  },
   {
    "ts": "2026-11-25T04:35:32+00:00",
    "agent": "researcher",
@@ -1438,24 +1534,6 @@
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 다중 AI 자동 전환 중개 API 서비스 (개발자 및 소규모 AI 서비스 운영자 시장/Web / SaaS, 구독 및 사용량 기반 과금(API 크레딧))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-24T05:26:51+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 4"
-  },
-  {
-   "ts": "2026-11-24T05:27:07+00:00",
-   "agent": "researcher",
-   "model": "groq:openai/gpt-oss-120b",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 다중 AI API 라우터 서비스 (개발자 및 AI SaaS 운영 1인 창업가/Web / GitHub, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-24T05:26:40+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n리즘 변화로 유입 감소 가능성, Coupang 파트너스 수수료 정책 변경 위험\n- 2026-11-23 AI 기반 니치 노션 템플릿 & 대시보드(US 원격 근무자, 프리랜서, 인디 해커): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -45% (기준 4"
   }
  ],
  "errors": [],
@@ -1684,6 +1762,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T17:00:57+00:00",
+   "cmd": "biz scout --market KR",
+   "ok": true,
+   "output": "I0014 68.5점 [candidate] South Korean millennials (age 25-35) seeking budgeting tools/Mobile app (iOS/Android) with web dashboard AI Personal Finance Coach\n   → Conduct 15‑minute survey on Naver Café to validate pain points\nI0015 69.8점 [candidate] Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration Virtual Team‑Building Hub\n   → Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups\nI0016 73.8점 [candidate] Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots Low‑Code Automation Marketplace\n   → Interview 5 small business owners via Zoom to map repetitive tasks"
+  },
+  {
    "ts": "2026-11-25T16:41:29+00:00",
    "cmd": "shorts --private",
    "ok": true,
@@ -1736,12 +1820,6 @@
    "cmd": "shorts --private",
    "ok": true,
    "output": "업로드 기록 없음\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n제공된 기존 제목들을 살펴보면 ‘잠’, ‘꿈’, ‘우주’ 등 호기심을 자극하는 키워드와 ‘비밀’, ‘진짜 이유’ 같은 강렬한 표현이 공통적으로 사용되었습니다. 조회수 상위 영상들은 짧은 훅 뒤에 구체적인 과학적 근거와 실천 가능한 팁을 리스트 형식으로 제시하고, 마지막에 구독·좋아요 요청을 넣는 구조를 가지고 있습니다. 따라서 새 대본은 3초 이내의 강한 훅을 앞에 두고, 8개의 짧은 라인으로 핵심 정보를 전달하며, 각 라인마다 영어 키워드를 제공해 검색 최적화를 도왔습니다. 저작권이 있는 내용이나 실존 인물, 허위 정보는 배제하고, 25~50초 읽는 시간에 맞춰 약 100단어 수준으로 구성했습니다.\n📝 005.json: 잠 못 이루는 이유? 뇌가 알려준 3가지 비밀\n001.json: 훅 41점 → 보류\n002.json: 훅 37점 → 보류\n003.json: 훅 38점 → 보류\n004.json: 훅 39점 → 보류\n005.json: 훅 36점 → 보류"
-  },
-  {
-   "ts": "2026-11-24T19:02:40+00:00",
-   "cmd": "export",
-   "ok": true,
-   "output": "앱 데이터 갱신: 사업 12 · 팀 9 · 보고서 6"
   }
  ],
  "pipelines": [
@@ -1823,7 +1901,7 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 13,
+    "n": 16,
     "done": true
    },
    {

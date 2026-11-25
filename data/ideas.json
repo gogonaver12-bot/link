@@ -1088,5 +1088,65 @@
       ]
     },
     "killed_by": "생존 테스트"
+  },
+  {
+    "title": "AI Personal Finance Coach",
+    "market": "South Korean millennials (age 25-35) seeking budgeting tools",
+    "platform": "Mobile app (iOS/Android) with web dashboard",
+    "model": "Subscription (monthly) + premium one‑off reports",
+    "first_step": "Conduct 15‑minute survey on Naver Café to validate pain points",
+    "evidence": "2023 Korean fintech market projected to $12B, 48% of 20‑30 age use budgeting apps (Statista https://www.statista.com)",
+    "scores": {
+      "demand": 80,
+      "low_competition": 45,
+      "low_cost": 70,
+      "speed_to_revenue": 60,
+      "scalability": 85,
+      "low_risk": 65
+    },
+    "id": "I0014",
+    "score": 68.5,
+    "status": "candidate",
+    "created": "2026-11-25"
+  },
+  {
+    "title": "Virtual Team‑Building Hub",
+    "market": "Remote companies in Asia‑Pacific, 50‑500 employees",
+    "platform": "Web SaaS with video integration",
+    "model": "Subscription per seat",
+    "first_step": "Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups",
+    "evidence": "Remote work adoption 71% post‑COVID, team‑building spend up 22% YoY (McKinsey 2024 https://www.mckinsey.com)",
+    "scores": {
+      "demand": 75,
+      "low_competition": 55,
+      "low_cost": 65,
+      "speed_to_revenue": 70,
+      "scalability": 80,
+      "low_risk": 70
+    },
+    "id": "I0015",
+    "score": 69.8,
+    "status": "candidate",
+    "created": "2026-11-25"
+  },
+  {
+    "title": "Low‑Code Automation Marketplace",
+    "market": "Korean SMEs lacking IT staff",
+    "platform": "Web marketplace for drag‑and‑drop bots",
+    "model": "Transaction fee + subscription for premium templates",
+    "first_step": "Interview 5 small business owners via Zoom to map repetitive tasks",
+    "evidence": "Low‑code market CAGR 28% 2023‑2028 (Gartner), 62% SMEs plan automation (KISA 2024 https://www.kisa.or.kr)",
+    "scores": {
+      "demand": 85,
+      "low_competition": 60,
+      "low_cost": 80,
+      "speed_to_revenue": 55,
+      "scalability": 90,
+      "low_risk": 70
+    },
+    "id": "I0016",
+    "score": 73.8,
+    "status": "candidate",
+    "created": "2026-11-25"
   }
 ]
