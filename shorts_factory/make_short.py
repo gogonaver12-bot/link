@@ -126,8 +126,13 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
         c = clips[i % len(clips)]
         seg = work / f"seg{i:02d}.mp4"
         frames = int(d * 30) + 1
-        if c.suffix.lower() in (".jpg", ".jpeg", ".png"):  # 사진·AI 이미지: 켄번스 줌
-            zp = f"scale={W*2}:{H*2}:force_original_aspect_ratio=increase,crop={W*2}:{H*2},zoompan=z='1+0.0015*on':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d={frames}:s={W}x{H}:fps=30"
+        if c.suffix.lower() in (".jpg", ".jpeg", ".png"):  # 사진·AI 이미지: 장면마다 다른 카메라 움직임(줌인·줌아웃·좌우 이동)
+            move = [("1+0.0015*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
+                    (f"1.25-0.0015*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
+                    ("1.18", f"(iw-iw/zoom)*on/{frames}", "ih/2-ih/zoom/2"),
+                    ("1.18", f"(iw-iw/zoom)*(1-on/{frames})", "ih/2-ih/zoom/2")][i % 4]
+            zp = (f"scale={W*2}:{H*2}:force_original_aspect_ratio=increase,crop={W*2}:{H*2},"
+                  f"zoompan=z='{move[0]}':x='{move[1]}':y='{move[2]}':d={frames}:s={W}x{H}:fps=30")
             sh(["ffmpeg", "-y", "-i", c, "-vf", f"{zp},eq=brightness=-0.08:saturation=1.15",
                 "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
             segs.append(seg); start = end
