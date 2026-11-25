@@ -9,6 +9,9 @@ from pathlib import Path
 
 import edge_tts
 
+sys.path.insert(0, str(Path(__file__).parent))
+import sound
+
 ROOT = Path(__file__).parent
 FONT = ROOT / "assets" / "BlackHanSans.ttf"
 MAX_SEC = 59.0
@@ -156,12 +159,9 @@ def main():
     build_ass(cues, s.get("cover") or s["title"], ass)
 
     out = Path(a.out) / f"{sp.stem}.mp4"
-    music = ROOT / "assets" / "music.mp3"  # 선택: 저작권 프리 음악
     cmd = ["ffmpeg", "-y", "-i", bg, "-i", voice_mp3]
-    afilter = "[1:a]anull[a]"
-    if music.exists():
-        cmd += ["-stream_loop", "-1", "-i", music]
-        afilter = "[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first[a]"
+    extra, afilter = sound.mix(cues, total, seed=sp.stem)  # 배경음악(목소리 나오면 자동으로 작아짐) + 효과음
+    cmd += extra
     cmd += ["-filter_complex", f"[0:v]ass={ass}:fontsdir={FONT.parent}[v];{afilter}",
             "-map", "[v]", "-map", "[a]", "-t", f"{total:.2f}",
             "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",

@@ -2,5 +2,8 @@
 __pycache__/
 *.pyc
 data/cache/
+shorts_factory/audio/
+audio_src/
+tools/audio_pack/.audio_key
 .venv/
 .pytest_cache/
