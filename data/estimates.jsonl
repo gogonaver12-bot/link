@@ -24,3 +24,4 @@
 {"date": "2026-11-25", "id": "I0015", "rev30_p50": 0.0, "estimates": [{"model": "groq:openai/gpt-oss-120b", "role": "비관 분석가", "price_usd": 0.02, "conv_rate_pct": 0.5, "visitors_low": 100, "visitors_high": 300}]}
 {"date": "2026-11-25", "id": "I0016", "rev30_p50": 0.0, "estimates": [{"model": "groq:openai/gpt-oss-120b", "role": "비관 분석가", "price_usd": 5, "conv_rate_pct": 0.5, "visitors_low": 10, "visitors_high": 30}]}
 {"date": "2026-11-25", "id": "I0014", "rev30_p50": 150.0, "estimates": [{"model": "groq:openai/gpt-oss-120b", "role": "비관 분석가", "price_usd": 150, "conv_rate_pct": 1, "visitors_low": 30, "visitors_high": 80}]}
+{"date": "2026-11-25", "id": "I0015", "rev30_p50": 0.0, "estimates": [{"model": "groq:openai/gpt-oss-120b", "role": "비관 분석가", "price_usd": 0.001, "conv_rate_pct": 100, "visitors_low": 500, "visitors_high": 2000}]}

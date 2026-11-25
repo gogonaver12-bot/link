@@ -287,3 +287,4 @@
 {"ts": "2026-11-25T17:03:18+00:00", "agent": "shorts_feedback", "model": "groq:openai/gpt-oss-120b", "in": 1944, "out": 1741, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:03:23+00:00", "agent": "hook_writer", "model": "gemini:gemini-flash-lite-latest", "in": 264, "out": 180, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:03:27+00:00", "agent": "cover_copywriter", "model": "groq:openai/gpt-oss-120b", "in": 388, "out": 1178, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:06:43+00:00", "agent": "estimator", "model": "groq:openai/gpt-oss-120b", "in": 600, "out": 903, "cache_read": 0, "usd": 0.0}
