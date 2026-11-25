@@ -395,9 +395,24 @@ def test_viability_simulation_competition_and_survival(monkeypatch):
     monkeypatch.setattr(viability, "research", lambda s: "근거 없음")
     monkeypatch.setattr(viability, "compete", lambda s, e: [dict(bad, model="gemini:g", role="중립", risks=["수요 없음"], evidence=[])])
     idea, r = viability.test_idea("I0001")
-    assert not r["pass"] and idea["status"] == "killed" and "시뮬레이션 탈락" in (store.DATA / "lessons.md").read_text(encoding="utf-8")
+    assert not r["pass"] and idea["status"] == "killed" and "후에도 탈락" in (store.DATA / "lessons.md").read_text(encoding="utf-8")
     viability.calibrate({"id": "I0001"}, actual_rev30=0)
     assert providers.model_stats()["gemini:g"][1] == 1  # 30일 뒤 실제와 비교해 AI 예측력 채점
+
+    # 탈락 → 원인 진단 → 개선안 → 재테스트 → 더 나은 버전 채택 → 생존
+    store.save_json("ideas.json", [{"id": "I0002", "title": "망할 사업", "market": "KR", "platform": "x", "model": "y",
+                                    "status": "candidate", "score": 70}])
+    monkeypatch.setattr(viability, "compete", lambda s, e: [dict(good if "살린" in s else bad, model="gemini:g", role="중립",
+                                                                 risks=[], evidence=[])])
+    seen = {}
+    def fake_improve(subject, res, tried):
+        seen["diag"] = viability.diagnose(res)
+        return {"title": "살린 사업", "model": "월 구독 $15", "platform": "Gumroad", "market": "US", "changes": ["가격 $1→$15"], "why": "가격"}
+    monkeypatch.setattr(viability, "improve", fake_improve)
+    idea, r = viability.test_idea("I0002")
+    assert r["pass"] and idea["status"] == "candidate" and idea["title"] == "살린 사업" and idea["version"] == 2
+    assert idea["upgrades"][0]["adopted"] and any("유입" in d for d in seen["diag"])
+    assert "개선으로 생존" in (store.DATA / "lessons.md").read_text(encoding="utf-8")
 
 
 def test_claude_out_of_credit_falls_back_to_free_ai(monkeypatch):

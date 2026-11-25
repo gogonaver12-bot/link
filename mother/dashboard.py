@@ -167,7 +167,8 @@ def build():
     ideas = []
     for i in store.load_json("ideas.json", []):
         ideas.append({k: i.get(k) for k in ("id", "title", "market", "platform", "model", "first_step", "evidence",
-                                            "scores", "score", "status", "created", "started", "last_review", "product", "killed_by")}
+                                            "scores", "score", "status", "created", "started", "last_review", "product", "killed_by", "version")}
+                     | {"upgrades": i.get("upgrades", [])[-4:]}
                      | {"viability": _via(i.get("viability"))}
                      | {"metrics": business.metrics(i) if i.get("started") else None})
     ledger = store.read_jsonl("ledger.jsonl")
@@ -214,7 +215,8 @@ def build():
                     for x in _sources()][::-1][:40],
         "commands": store.read_jsonl("commands.jsonl")[-10:][::-1],
         "pipelines": [{k: pp.get(k) for k in ("name", "title", "schedule", "enabled", "steps", "agents_created", "skills_equipped", "created",
-                                              "viability", "disabled_reason")}
+                                              "viability", "disabled_reason", "upgraded_from")}
+                      | {"upgrades": pp.get("upgrades", [])[-3:]}
                       | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
         "channels": _channels(),
         "videos": _videos(),

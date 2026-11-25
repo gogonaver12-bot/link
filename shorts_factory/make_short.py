@@ -137,13 +137,19 @@ def main():
     work = Path(a.out) / f".work_{sp.stem}"
     work.mkdir(parents=True, exist_ok=True)
     cues, parts, t = [], [], 0.0
+    segs = []
     for i, line in enumerate(lines):
         p = work / f"l{i:02d}.mp3"
         asyncio.run(tts(line, voice, rate, p))
-        d = dur(p)
-        if t + d > MAX_SEC:
-            print(f"⚠️ 59초 초과 -> {i}번째 줄부터 잘림")
-            break
+        segs.append((i, line, p, dur(p)))
+    cut = 0
+    while len(segs) > 2 and sum(d + 0.08 for *_, d in segs) + 0.6 > MAX_SEC:
+        segs.pop(-2 if s.get("cta", "").strip() else -1); cut += 1  # 훅·마무리(CTA)는 지키고 본문 끝쪽부터 줄임
+    if cut:
+        print(f"⚠️ 59초 초과 → 본문 {cut}줄 줄임(훅·마무리는 유지)")
+        kw = s.get("keywords", [])
+        s["keywords"] = [kw[i] for i, *_ in segs if i < len(kw)]
+    for _, line, p, d in segs:
         cues.append((t, t + d, line)); parts.append(p); t += d + 0.08
 
     lst = work / "a.txt"
