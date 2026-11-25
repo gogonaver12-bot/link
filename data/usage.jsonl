@@ -360,3 +360,6 @@
 {"ts": "2026-11-25T17:22:35+00:00", "agent": "viral_analyst", "model": "groq:openai/gpt-oss-120b", "in": 1172, "out": 348, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:22:43+00:00", "agent": "viral_analyst", "model": "groq:openai/gpt-oss-120b", "in": 1625, "out": 3072, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:22:45+00:00", "agent": "mother", "model": "gemini:gemini-flash-lite-latest", "in": 3299, "out": 264, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:22:58+00:00", "agent": "shorts_feedback", "model": "groq:openai/gpt-oss-120b", "in": 2167, "out": 1610, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:23:01+00:00", "agent": "hook_writer", "model": "gemini:gemini-flash-lite-latest", "in": 218, "out": 160, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:23:02+00:00", "agent": "cover_copywriter", "model": "gemini:gemini-flash-lite-latest", "in": 246, "out": 98, "cache_read": 0, "usd": 0.0}
