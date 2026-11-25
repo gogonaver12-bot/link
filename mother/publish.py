@@ -40,7 +40,9 @@ def _cfg():
 
 # ───────────────────────── 유튜브 숏츠 ─────────────────────────
 def _py(*args):
-    env = {**os.environ, "AI_IMAGES": "1" if store.cfg().get("shorts", {}).get("ai_images", True) else "0"}
+    sc = store.cfg().get("shorts", {})
+    env = {**os.environ, "AI_IMAGES": "1" if sc.get("ai_images", True) else "0",
+           "AI_VIDEO": "1" if sc.get("ai_video", True) else "0", "AI_VIDEO_BUDGET": str(sc.get("ai_video_budget_usd_month", 5))}
     r = subprocess.run([sys.executable, *args], cwd=SHORTS, capture_output=True, text=True, timeout=900, env=env)
     return (r.stdout + r.stderr).strip()[-1500:]
 
@@ -73,6 +75,10 @@ def shorts(n=None, private=False):
             else:
                 log.append(f"{s.name}: 훅 {score}점(개선 후 최고 {new_score}점) → 보류")
                 continue
+        if not meta.get("cover"):  # 표지 문구 5안 → 0토큰 채점으로 1안 선택
+            meta["cover"] = cover_copy(meta)
+            s.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+            log.append(f"{s.name}: 표지 문구 → {meta['cover'].replace(chr(10), ' / ')}")
         log.append(_py("make_short.py", str(s)))
         mp4 = SHORTS / "out" / f"{s.stem}.mp4"
         uploaded = False
@@ -88,6 +94,29 @@ def shorts(n=None, private=False):
         if made >= n:
             break
     return "\n".join(x for x in log if x)
+
+
+def cover_copy(meta):
+    """표지 문구 작가: 2~4줄, 보면 얻는 것 분명히, 강조어 딱 하나 → 제목 검사 점수로 최고안."""
+    from .skillscore import title_check
+    prompt = (f"숏츠 대본:\n제목: {meta.get('title')}\n첫 문장: {meta.get('hook')}\n본문: {' / '.join(meta.get('lines', [])[:6])}\n\n"
+              "너는 숏츠 표지 문구 작가다. 화면 위쪽에 계속 떠 있을 표지 문구 5안을 써라. 각 안은 2~3줄(줄바꿈은 ' / '), 줄당 12자 이내, "
+              "보면 얻는 것을 분명하게, '나만 모르는·N가지·진짜 이유' 같은 강조어는 안마다 딱 하나, 과장·허위 금지. "
+              "한 줄에 한 안씩만 출력.")
+    try:
+        text, _ = providers.complete(prompt, system="숏츠 표지 문구 카피라이터. 안만 출력.", agent="cover_copywriter")
+    except Exception:
+        return meta.get("title", "")
+    best, best_sc = meta.get("title", ""), -1
+    for line in text.splitlines():
+        cand = re.sub(r"^[\s\d.\-•*)안:]+", "", line).strip().strip('"')
+        if not cand:
+            continue
+        flat = cand.replace(" / ", " ")
+        sc = title_check(flat)["score"] - (20 if len(cand.split(" / ")) > 4 else 0)
+        if sc > best_sc:
+            best, best_sc = cand, sc
+    return best.replace(" / ", "\n")
 
 
 def improve_hook(meta, need=50, rounds=3):

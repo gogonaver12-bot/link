@@ -93,6 +93,8 @@ viability:
 shorts:
   writer: "anthropic:claude-fable-5-2"   # 대본 작가 (Claude 충전 잔액 없으면 자동으로 무료 AI)
   ai_images: true                       # 장면마다 Gemini AI 이미지 → 안 되면 Pexels/Pixabay 실사 영상
+  ai_video: true                        # 첫 장면(훅) 5초는 Higgsfield AI 영상 (HF 키 있을 때만)
+  ai_video_budget_usd_month: 5          # AI 영상 한 달 상한(USD) — 넘으면 자동으로 이미지/실사로
   benchmark_queries:                    # 매일 수집할 유튜브 인기 숏츠 검색어 [검색어, 국가, 언어]
     - ["AI 숏츠", "KR", "ko"]
     - ["AI 애니메이션 쇼츠", "KR", "ko"]

@@ -458,3 +458,24 @@ def test_benchmark_collects_recent_viral_shorts(monkeypatch):
     d = benchmark.refresh()
     assert [r["id"] for r in d["top"]] == ["a"] and d["top"][0]["seconds"] == 45  # 70초 넘는 영상 제외
     assert "AI 고양이 이야기" in benchmark.brief()
+
+
+def test_cover_copy_picks_best_option(monkeypatch):
+    from mother import publish
+    monkeypatch.setattr(providers, "complete", lambda *a, **k: ("1. 대박 충격 레전드 !!! / 꼭 보세요\n2. 잠 3배 빨리 드는 / 1분 습관", "g"))
+    cover = publish.cover_copy({"title": "잠", "hook": "h", "lines": ["a"]})
+    assert cover == "잠 3배 빨리 드는\n1분 습관"  # 숫자 있고 막연한 말 없는 안 선택
+
+
+def test_ai_video_respects_budget_and_missing_keys(monkeypatch, tmp_path):
+    import importlib, sys
+    sys.path.insert(0, str(store.ROOT / "shorts_factory"))
+    aivideo = importlib.import_module("aivideo")
+    monkeypatch.setattr(aivideo, "LOG", tmp_path / "log.json")
+    monkeypatch.delenv("HF_API_KEY_ID", raising=False)
+    monkeypatch.setenv("AI_VIDEO", "1")
+    assert aivideo.hook_clip("cat", tmp_path) is None  # 키 없으면 건너뜀
+    monkeypatch.setenv("HF_API_KEY_ID", "i"); monkeypatch.setenv("HF_API_KEY_SECRET", "s"); monkeypatch.setenv("AI_VIDEO_BUDGET", "1")
+    (tmp_path / "log.json").write_text('[{"date": "%s", "usd": 0.9}]' % store.today(), encoding="utf-8")
+    monkeypatch.setattr(aivideo, "_call", lambda m, u, b=None: {"usd": "0.25"})
+    assert aivideo.hook_clip("cat", tmp_path) is None  # 이번 달 예산 초과 → 생성 안 함
