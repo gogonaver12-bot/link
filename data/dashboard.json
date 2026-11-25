@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T16:28:57+00:00",
+ "updated": "2026-11-25T16:41:31+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1351,37 +1351,37 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T16:25+00:00"
+   "date": "2026-11-25T16:39+00:00"
   }
  ],
  "runs": [
@@ -1684,6 +1684,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T16:41:29+00:00",
+   "cmd": "shorts --private",
+   "ok": true,
+   "output": "📊 stats.csv 갱신 (5개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '잠 못 이루는 이유? 뇌가 알려준 3가지 비밀' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널의 현재 데이터는 하나의 영상(348뷰)만이 약간의 관심을 얻고 나머지는 0~4뷰 수준이다. 조회수를 높이기 위해서는 벤치마크 영상들의 공통 요소를 활용해야 한다. 성공 영상들은 강렬한 훅을 3초 이내에 제시하고, 영상 길이 10~60초 사이에서 문장을 길이÷3초 비율로 배치한다. 구조는 ‘훅 → 핵심/반전 → 근거 → 행동 유도’이며, 시각적으로 눈길을 끄는 첫 3초가 중요하다. 또한 짧고 리듬감 있는 문장을 사용해 시청자가 끝까지 보게 만든다. 기존에 만든 제목들은 모두 수면·꿈·뇌와 직접 연관돼 있으므로 새로운 주제로 ‘파워냅(짧은 낮잠)’을 선택했다. 이는 수면 카테고리이면서도 아직 다루지 않은 주제로 차별화가 가능하며, 25~50초 내에 9~10개의 짧은 문장으로 구성해 시청 유지율을 높일 수 있다.\n📝 012.json: 뇌가 알려주는 3분 완벽 낮잠 비밀\n006.json: 훅 43→65점으로 개선\n006.json: 표지 문구 → 뇌가 말하는 신호 / 3가지 포인트\n🔎 무료 실사 영상 검색: ['sleep deprivation', 'melatonin', 'blue light', 'caffeine', 'stress hormones', 'room temperature', 'sleep hygiene']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/006.mp4 (47.6초)\n✅ https://youtube.com/shorts/C_8dX1drF7s"
+  },
+  {
    "ts": "2026-11-25T16:28:56+00:00",
    "cmd": "shorts --private",
    "ok": true,
@@ -1736,12 +1742,6 @@
    "cmd": "export",
    "ok": true,
    "output": "앱 데이터 갱신: 사업 12 · 팀 9 · 보고서 6"
-  },
-  {
-   "ts": "2026-11-24T05:31:42+00:00",
-   "cmd": "schedule",
-   "ok": true,
-   "output": "저장: reports/daily-2026-11-24.md\n# 일일 리포트 2026-11-24\n## 오늘의 트렌드 (새 소식 193건 · 출처 18곳 · 새 출처: GIGAZINE (30개 글), GitHub 트렌딩 (16개 글), Hugging Face 블로그 (916개 글))\n- [구글 트렌드 JP] 8時だョ 全員集合 | https://trends.google.com/trending/rss?geo=JP\n- [구글 트렌드 US] uefa champions league | https://trends.google.com/trending/rss?geo=US\n- [구글 트렌드 KR] fc서울 | https://trends.google.com/trending/rss?geo=KR\n## 사업 리뷰\n## 신규 발굴 (US)\n- I0012 79.0점 [killed] 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 자동 폴백(Fallback) 미들웨어 서비스 — Claude/OpenAI API 호출 실패 시 Ollama(Llama 3)로 자동 우회하는 Node.js 오픈소스 미들웨어 PoC 작성\n## 숏츠 자동 업로드\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n제공된 성과 데이터가 비어있으나, 기존 성공적인 제목들('침대에 누워도 잠이 안 오는 진짜 이유', '99%가 모르는 잠 꿀팁', '우주에서 1초가 다르게 흐르는 이유')을 분석한 결과, 대중적이면서도 과학적 호기심을 자극하는 '일상 속 미스터리 및 인체/우주 지식' 주제가 높은 관심을 받을 것으로 판단됩니다. 특히 '99%가 모르는', '진짜 이유' 같은 후크 패턴을 활용하여 시청 지속 시간을 극대화합니다.\n📝 004.json: 우리가 매일 꾸는 꿈의 소름돋는 진실\n001.json: 훅 41점 → 보류\n002.json: 훅 37점 → 보류\n003.json: 훅 38점 → 보류\n004.json: 훅 39점 → 보류\n## 블로그 자동 게시\n📝 챗GPT로 이메일 업무 자동화하는 법: 복붙 프롬프트 3가지 — 글만 저장(구글 연결 시 자동 게시) · gemini:gemini-flash-lite-latest\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 12개 · 진행중 0 · 탈락 12\n```"
   }
  ],
  "pipelines": [
@@ -1838,7 +1838,7 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 6,
+    "n": 7,
     "done": true
    },
    {
@@ -1849,7 +1849,7 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 5,
+  "shorts": 6,
   "blog": 1
  },
  "keys_set": {
@@ -1868,6 +1868,7 @@
   "YOUTUBE_API_KEY": true,
   "PEXELS_API_KEY": false,
   "PIXABAY_API_KEY": false,
+  "AUDIO_KEY": false,
   "GH_SEARCH_TOKEN": false
  }
 }
