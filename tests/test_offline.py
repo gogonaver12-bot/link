@@ -485,3 +485,20 @@ def test_cover_copy_rejects_placeholder_n(monkeypatch):
     from mother import publish
     monkeypatch.setattr(providers, "complete", lambda *a, **k: ("1. 꿈의 진실 / N가지\n2. 꿈의 99%는 / 내 기억이 아니다", "g"))
     assert "N가지" not in publish.cover_copy({"title": "꿈", "hook": "h", "lines": ["a"]})
+
+
+def test_sound_unpack_and_mix(tmp_path, monkeypatch):
+    import io, sys, zipfile
+    from cryptography.fernet import Fernet
+    sys.path.insert(0, str(ROOT / "shorts_factory")) if "ROOT" in globals() else sys.path.insert(0, "shorts_factory")
+    import sound
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("music/a.mp3", b"m"); z.writestr("sfx/pop1.mp3", b"p"); z.writestr("../evil.mp3", b"x")
+    key = Fernet.generate_key()
+    monkeypatch.setattr(sound, "ENC", tmp_path / "audio.enc"); monkeypatch.setattr(sound, "DIR", tmp_path / "audio")
+    sound.ENC.write_bytes(Fernet(key).encrypt(buf.getvalue()))
+    monkeypatch.setenv("AUDIO_KEY", key.decode())
+    extra, af = sound.mix([(0, 1, "a"), (1, 2, "b")], 2.0, seed="x")
+    assert str(tmp_path / "audio" / "music" / "a.mp3") in extra and str(tmp_path / "audio" / "sfx" / "pop1.mp3") in extra
+    assert "sidechaincompress" in af and af.endswith("[a]") and not (tmp_path / "evil.mp3").exists()

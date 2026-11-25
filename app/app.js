@@ -426,6 +426,7 @@ const KEYS = [
   ["🎬 영상 품질 (무료 · 추천)", [
     ["PEXELS_API_KEY", "고화질 세로 실사 영상 · 무료", "https://www.pexels.com/api/new/"],
     ["PIXABAY_API_KEY", "실사 영상 · 무료 (Pexels 신규 발급 중단 → 이것 추천)", "https://pixabay.com/api/docs/"],
+    ["AUDIO_KEY", "배경음악·효과음 · PC에서 audio_pack.bat 실행하면 자동 저장 (유튜브 오디오 보관함)", "https://studio.youtube.com/"],
     ["GEMINI_API_KEY", "AI 영상·이미지도 이 키로 만듦 (AI Studio에서 결제 연결해야 영상 가능 · 월 $5 한도)", "https://aistudio.google.com/usage"]]],
   ["⭐ 품질·분석 (선택)", [
     ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑ (CLAUDE_API_KEY 이름도 인식)", "https://console.anthropic.com/settings/keys"],
