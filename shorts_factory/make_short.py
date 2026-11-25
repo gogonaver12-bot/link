@@ -63,7 +63,7 @@ Style: Title,Black Han Sans,78,&H00FFFFFF,&H00FFFFFF,&H00000000,&HC0000000,0,0,0
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     total = cues[-1][1] if cues else 1
-    ev = [f"Dialogue: 1,{ass_time(0)},{ass_time(total)},Title,,0,0,0,,{wrap(title, 14)}"]
+    ev = [f"Dialogue: 1,{ass_time(0)},{ass_time(total)},Title,,0,0,0,,{title.replace(chr(10), chr(92) + 'N') if chr(10) in title else wrap(title, 14)}"]
     for i, (s, e, txt) in enumerate(cues):
         style = "Hi" if i == 0 else "Sub"  # 첫 줄(훅) 노란색 강조
         pop = r"{\fscx80\fscy80\t(0,120,\fscx100\fscy100)}"
@@ -71,12 +71,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     path.write_text(head + "\n".join(ev) + "\n", encoding="utf-8")
 
 
-def background(total, colors, work, cues, keywords):
+def background(total, colors, work, cues, keywords, subject=""):
     clips = sorted((ROOT / "assets" / "clips").glob("*.mp4"))
     if not clips and keywords:
         import stock
         print("🔎 무료 실사 영상 검색:", keywords)
         clips = stock.fetch(keywords, ROOT / "assets" / "stock_cache", want=len(keywords))
+    try:  # 첫 장면(훅)은 AI 영상 (Higgsfield, 예산 안에서만)
+        import aivideo
+        hook = aivideo.hook_clip(subject or (keywords[0] if keywords else "mysterious cinematic scene"), work)
+        if hook:
+            clips = [hook] + list(clips)
+    except Exception as e:
+        print(f"  ⚠️ AI 훅 영상 건너뜀: {e}")
     bg = work / "bg.mp4"
     fit = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30"
     if not clips:
@@ -143,9 +150,10 @@ def main():
         "-c:a", "aac", "-b:a", "160k", voice_mp3])
     total = min(dur(voice_mp3), MAX_SEC)
 
-    bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work, cues, s.get("keywords", []))
+    bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work, cues, s.get("keywords", []),
+                    s.get("visual_hook", ""))
     ass = work / "sub.ass"
-    build_ass(cues, s["title"], ass)
+    build_ass(cues, s.get("cover") or s["title"], ass)
 
     out = Path(a.out) / f"{sp.stem}.mp4"
     music = ROOT / "assets" / "music.mp3"  # 선택: 저작권 프리 음악

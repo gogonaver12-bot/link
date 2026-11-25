@@ -424,7 +424,9 @@ const KEYS = [
     ["MISTRAL_API_KEY", "Create new key (무료 체험 등급)", "https://console.mistral.ai/api-keys"]]],
   ["🎬 영상 품질 (무료 · 추천)", [
     ["PEXELS_API_KEY", "고화질 세로 실사 영상 · 무료", "https://www.pexels.com/api/new/"],
-    ["PIXABAY_API_KEY", "실사 영상 예비 · 무료", "https://pixabay.com/api/docs/"]]],
+    ["PIXABAY_API_KEY", "실사 영상 · 무료 (Pexels 신규 발급 중단 → 이것 추천)", "https://pixabay.com/api/docs/"],
+    ["HF_API_KEY_ID", "힉스필드 API 키 ID · 첫 장면 AI 영상 (API 잔액 $5부터, 웹 구독과 별개)", "https://console.higgsfield.ai/"],
+    ["HF_API_KEY_SECRET", "힉스필드 API 키 비밀값 (발급 때 한 번만 보임)", "https://console.higgsfield.ai/"]]],
   ["⭐ 품질·분석 (선택)", [
     ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑ (CLAUDE_API_KEY 이름도 인식)", "https://console.anthropic.com/settings/keys"],
     ["OPENAI_API_KEY", "ChatGPT · 유료 (CHATGPT_API_KEY 이름도 인식)", "https://platform.openai.com/api-keys"],

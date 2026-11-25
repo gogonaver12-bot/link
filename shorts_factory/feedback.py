@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SCRIPTS = ROOT / "scripts"
 
-SCHEMA_HINT = """각 대본은 JSON 객체: {"title":"","hook":"","lines":["",...],"cta":"","description":"","tags":[""],"colors":["0xRRGGBB","0xRRGGBB"],"keywords":["자막 줄마다 1개, 순서대로 영어 검색어(예: black hole, galaxy)"]}
+SCHEMA_HINT = """각 대본은 JSON 객체: {"title":"","hook":"","lines":["",...],"cta":"","description":"","tags":[""],"colors":["0xRRGGBB","0xRRGGBB"],"keywords":["자막 줄마다 1개, 순서대로 영어 검색어(예: black hole, galaxy)"],"visual_hook":"첫 3초 장면을 영어 한 문장으로 구체적으로(주인공·동작·장소·카메라)"}
 규칙: 한국어, 읽는 시간 25~50초, 첫 줄은 3초 안에 끝나는 강한 훅, 저작권/실존인물/허위정보 금지,
 조회 상위 영상의 공통점은 강화하고 하위 영상의 패턴은 피할 것. 출력은 {"analysis":"...","scripts":[...]} 만."""
 
@@ -55,6 +55,8 @@ def ask_ai(rows, n):
     prompt = (f"유튜브 숏츠 채널 성과 데이터(조회수 순):\n{json.dumps(rows[:30], ensure_ascii=False)}\n"
               f"이미 만든 제목: {existing}\n\n"
               + (f"[벤치마크 — 요즘 잘 되는 AI 숏츠]\n{ref}\n위에서 잘 되는 주제·훅 구조·길이를 분석해 응용하라(제목·내용 복제 금지, 사실만). "
+                 f"대본 각색 규칙: 잘 된 영상의 구조(문장 수 ≈ 길이÷3초, 문장 순서: 훅→반전/핵심→근거→행동 유도)를 그대로 따르고 내용만 내 주제로, "
+                 f"한 줄에 한 가지 내용만 짧게. "
                  f"이미 만든 제목과 주제가 겹치지 않게 새로운 주제를 고를 것.\n\n" if ref else "")
               + f"성과와 벤치마크를 분석하고 다음 숏츠 대본 {n}개를 만들어줘.\n{SCHEMA_HINT}")
     from mother import store
