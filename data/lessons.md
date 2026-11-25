@@ -11,6 +11,4 @@
 - 2026-11-24 무료 오픈소스 LLM 기반 다중 API 폴백(Fallback) 라우터 SaaS(AI 개발자 및 에이전시): 시뮬레이션 탈락 — 흑자 확률 9% · 90일 ROI 중앙값 -60% (기준 40%·+30%); 위험: LiteLLM 등 오픈소스 대안과의 무료 경쟁 심화, API Key 위탁에 따른 보안 및 신뢰성 이슈
 - 2026-11-24 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 자동 폴백(Fallback) 미들웨어 서비스(개발자 및 AI SaaS 운영 기업): 시뮬레이션 탈락 — 흑자 확률 36% · 90일 ROI 중앙값 -47% (기준 40%·+30%); 위험: 강력한 오픈소스 대안(LiteLLM 등) 존재로 인한 낮은 유료 구독 전환율, Ollama 자체 호스팅 시 레이턴시 및 안정성 한계로 인한 고객 이탈
 - 2026-11-25 무료 오픈소스 LLM(Ollama, DeepSeek 등) 기반의 API 이중화 라우터 솔루션(AI 개발자 및 에이전트 구축 기업): 시뮬레이션 탈락 — 흑자 확률 2% · 90일 ROI 중앙값 -80% (기준 40%·+30%); 위험: 무료 오픈소스 솔루션(LiteLLM 등)과의 극심한 경쟁으로 낮은 유료 전환율, 대형 클라우드 플랫폼 자체 라우팅 기능 내재화 위협
-- 2026-11-25 AI 크레딧 관리 SaaS(기업용 AI 도입 기업): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -97% (기준 40%·+30%); 위험: AI 공급자 크레딧 부족 시 서비스 중단 위험, 키 오류·인증 문제로 고객 이탈 가능성
-- 2026-11-25 자동 AI 폴백 API 서비스(AI 스타트업·개발자): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%); 위험: High competition from established AI providers (OpenAI, Google, Anthropic), Frequent rate‑limit throttling and quota exhaustion (evidenced by 429/503 errors)
-- 2026-11-25 AI 크레딧 보험·선불 번들(소규모 비즈니스·프리랜서): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%); 위험: Regulatory uncertainty on AI credit insurance, Limited market awareness among freelancers
+- 2026-11-25 AI 크레딧 관리 SaaS(기업용 AI 도입 기업): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -95% (기준 40%·+30%); 위험: credit exhaustion leading to free‑alternative switch, enterprise budget constraints

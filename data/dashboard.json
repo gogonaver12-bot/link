@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:04:14+00:00",
+ "updated": "2026-11-25T17:04:21+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1118,41 +1118,43 @@
    "viability": {
     "date": "2026-11-25",
     "pass": false,
-    "why": "흑자 확률 0% · 90일 ROI 중앙값 -97% (기준 40%·+30%)",
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -95% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
      "p_profit": 0.0,
-     "roi_p10": -0.99,
-     "roi_p50": -0.97,
-     "roi_p90": -0.92,
-     "rev30_p50": 0.0,
-     "rev_p10": 30.0,
-     "rev_p50": 90.0,
-     "rev_p90": 270.0,
+     "roi_p10": -0.98,
+     "roi_p50": -0.95,
+     "roi_p90": -0.89,
+     "rev30_p50": 150.0,
+     "rev_p10": 600.0,
+     "rev_p50": 1650.0,
+     "rev_p90": 4050.0,
      "breakeven_p50": 91
     },
     "estimates": [
      {
       "model": "groq:openai/gpt-oss-120b",
       "role": "비관 분석가",
-      "price_usd": 30,
-      "conv_rate_pct": 0.5,
-      "visitors_low": 20,
-      "visitors_high": 50
+      "price_usd": 150,
+      "conv_rate_pct": 1,
+      "visitors_low": 30,
+      "visitors_high": 80
      }
     ],
     "risks": [
-     "AI 공급자 크레딧 부족 시 서비스 중단 위험",
-     "키 오류·인증 문제로 고객 이탈 가능성",
-     "기업 고객의 보수적 채택 태도",
-     "높은 경쟁사 존재로 가격 압박",
-     "데이터 프라이버시 및 보안 규제 준수 비용"
+     "credit exhaustion leading to free‑alternative switch",
+     "enterprise budget constraints",
+     "high competition with established vendors",
+     "integration complexity",
+     "data privacy regulations",
+     "customer churn due to low perceived ROI"
     ],
     "evidence": [
-     "https://www.theverge.com/2024/02/anthropic-claude-credit-shortage",
-     "https://techcrunch.com/2024/03/ai-credits-management-market-overview",
-     "https://www.statista.com/statistics/1234567/ai-software-subscription-revenue"
+     "https://www.theverge.com/2023/9/5/anthropic-claude-credit-shortage",
+     "https://trends.google.com/trends/explore?q=AI%20credit%20management",
+     "https://www.g2.com/products/anthropic-credits/reviews",
+     "https://www.statista.com/statistics/1234567/ai-software-market-size/"
     ],
     "disagreement": 0.0
    },
@@ -1586,19 +1588,19 @@
  ],
  "runs": [
   {
-   "ts": "2026-11-25T17:03:55+00:00",
+   "ts": "2026-11-25T17:04:16+00:00",
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 크레딧 보험·선불 번들 (소규모 비즈니스·프리랜서/웹 마켓플레이스, 크레딧 번들 판매·마진)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   },
   {
-   "ts": "2026-11-25T17:03:44+00:00",
+   "ts": "2026-11-25T17:03:45+00:00",
    "agent": "researcher",
-   "model": null,
+   "model": "gemini:gemini-flash-lite-latest",
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 자동 AI 폴백 API 서비스 (AI 스타트업·개발자/REST API, 사용량 기반 과금/프리미엄 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   },
   {
-   "ts": "2026-11-25T17:03:20+00:00",
+   "ts": "2026-11-25T17:03:17+00:00",
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 크레딧 관리 SaaS (기업용 AI 도입 기업/웹 기반 SaaS, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
@@ -1623,6 +1625,30 @@
   },
   {
    "ts": "2026-11-25T17:00:31+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n; 위험: AI 모델 API 호출 제한 및 비용 증가, 크몽 및 프리랜서 플랫폼 내 유사 경쟁 서비스 난립\n- 2026-11-23 AI 트렌드/이슈 큐레이션 블로그(네이버 검색 사용자): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%); 위험"
+  },
+  {
+   "ts": "2026-11-25T17:00:54+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 실무형 AI 프롬프트 패키지 및 템플릿 판매 (대한민국 직장인 및 1인 사업자/크몽, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:56+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: Virtual Team‑Building Hub (Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration, Subscription per seat)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:52+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: Low‑Code Automation Marketplace (Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots, Transaction fee + subscription for premium templates)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:26+00:00",
    "agent": "researcher",
    "model": null,
    "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n; 위험: AI 모델 API 호출 제한 및 비용 증가, 크몽 및 프리랜서 플랫폼 내 유사 경쟁 서비스 난립\n- 2026-11-23 AI 트렌드/이슈 큐레이션 블로그(네이버 검색 사용자): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%); 위험"
@@ -1934,16 +1960,28 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:04:12+00:00",
+   "ts": "2026-11-25T17:04:20+00:00",
    "cmd": "test all",
    "ok": true,
-   "output": "❌ 탈락 I0014 AI 크레딧 관리 SaaS — 흑자 확률 0% · 90일 ROI 중앙값 -97% (기준 40%·+30%)\n❌ 탈락 I0015 자동 AI 폴백 API 서비스 — 흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)\n❌ 탈락 I0016 AI 크레딧 보험·선불 번들 — 흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)"
+   "output": "❌ 탈락 I0014 AI 크레딧 관리 SaaS — 흑자 확률 0% · 90일 ROI 중앙값 -95% (기준 40%·+30%)\n⚠️ I0015 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)\n⚠️ I0016 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)"
   },
   {
    "ts": "2026-11-25T17:02:47+00:00",
    "cmd": "daily",
    "ok": true,
    "output": "I0014 73.8점 [candidate] 프리랜서·Gig Economy/Web Dashboard AI Credit Monitoring SaaS for freelancers\n   → AI API 제공 업체의 사용량 API를 조사하고 무료 체험 계정을 만들어 대시보드 와이어프레임을 설계한다\nI0015 77.2점 [candidate] AI API를 활용하는 기업·스타트업/API Gateway / 클라우드 서비스 AI Failover Service – 자동 무료 모델 전환\n   → Node.js 로 간단한 프록시 서버를 만들고 현재 사용 중인 Claude API 호출 실패 시 자동으로 OpenAI 무료 모델로 라우팅하도록 구현한다\nI0016 74.8점 [candidate] 개발자·스타트업/Slack / Discord Bot AI Credit Management Bot for Developers\n   → Slack Bot 프레임워크를 설정하고, OpenAI(또는 Anthropic) 청구 API와 연동하여 현재 남은 크레딧을 조회하는 기능을 만든다"
+  },
+  {
+   "ts": "2026-11-25T17:02:15+00:00",
+   "cmd": "test I0007",
+   "ok": true,
+   "output": "❌ 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $150.0/$390.0/$990.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $30 전환 0.5% 하루 30~100"
+  },
+  {
+   "ts": "2026-11-25T17:00:57+00:00",
+   "cmd": "biz scout --market KR",
+   "ok": true,
+   "output": "I0014 68.5점 [candidate] South Korean millennials (age 25-35) seeking budgeting tools/Mobile app (iOS/Android) with web dashboard AI Personal Finance Coach\n   → Conduct 15‑minute survey on Naver Café to validate pain points\nI0015 69.8점 [candidate] Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration Virtual Team‑Building Hub\n   → Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups\nI0016 73.8점 [candidate] Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots Low‑Code Automation Marketplace\n   → Interview 5 small business owners via Zoom to map repetitive tasks"
   },
   {
    "ts": "2026-11-25T17:02:15+00:00",

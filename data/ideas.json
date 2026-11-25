@@ -1112,41 +1112,43 @@
     "viability": {
       "date": "2026-11-25",
       "pass": false,
-      "why": "흑자 확률 0% · 90일 ROI 중앙값 -97% (기준 40%·+30%)",
+      "why": "흑자 확률 0% · 90일 ROI 중앙값 -95% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
         "p_profit": 0.0,
-        "roi_p10": -0.99,
-        "roi_p50": -0.97,
-        "roi_p90": -0.92,
-        "rev30_p50": 0.0,
-        "rev_p10": 30.0,
-        "rev_p50": 90.0,
-        "rev_p90": 270.0,
+        "roi_p10": -0.98,
+        "roi_p50": -0.95,
+        "roi_p90": -0.89,
+        "rev30_p50": 150.0,
+        "rev_p10": 600.0,
+        "rev_p50": 1650.0,
+        "rev_p90": 4050.0,
         "breakeven_p50": 91
       },
       "params": {
-        "price_usd": 30.0,
-        "conv_rate_pct": 0.5,
-        "visitors_low": 20.0,
-        "visitors_high": 50.0,
+        "price_usd": 150.0,
+        "conv_rate_pct": 1.0,
+        "visitors_low": 30.0,
+        "visitors_high": 80.0,
         "ramp_days": 90.0,
-        "setup_cost_usd": 2000.0,
-        "unit_cost_pct": 5.0,
-        "monthly_cost_usd": 500.0,
+        "setup_cost_usd": 30000.0,
+        "unit_cost_pct": 2.0,
+        "monthly_cost_usd": 2000.0,
         "competition": "high",
         "risks": [
-          "AI 공급자 크레딧 부족 시 서비스 중단 위험",
-          "키 오류·인증 문제로 고객 이탈 가능성",
-          "기업 고객의 보수적 채택 태도",
-          "높은 경쟁사 존재로 가격 압박",
-          "데이터 프라이버시 및 보안 규제 준수 비용"
+          "credit exhaustion leading to free‑alternative switch",
+          "enterprise budget constraints",
+          "high competition with established vendors",
+          "integration complexity",
+          "data privacy regulations",
+          "customer churn due to low perceived ROI"
         ],
         "evidence": [
-          "https://www.theverge.com/2024/02/anthropic-claude-credit-shortage",
-          "https://techcrunch.com/2024/03/ai-credits-management-market-overview",
-          "https://www.statista.com/statistics/1234567/ai-software-subscription-revenue"
+          "https://www.theverge.com/2023/9/5/anthropic-claude-credit-shortage",
+          "https://trends.google.com/trends/explore?q=AI%20credit%20management",
+          "https://www.g2.com/products/anthropic-credits/reviews",
+          "https://www.statista.com/statistics/1234567/ai-software-market-size/"
         ],
         "disagreement": 0.0
       },
@@ -1155,10 +1157,10 @@
         {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
-          "price_usd": 30,
-          "conv_rate_pct": 0.5,
-          "visitors_low": 20,
-          "visitors_high": 50
+          "price_usd": 150,
+          "conv_rate_pct": 1,
+          "visitors_low": 30,
+          "visitors_high": 80
         }
       ]
     },
