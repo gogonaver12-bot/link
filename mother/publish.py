@@ -54,6 +54,39 @@ def _py(*args, extra=None):
     return (r.stdout + r.stderr).strip()[-1500:]
 
 
+def produce(s, private, log, done):
+    """대본 1개 → 훅 검사·개선 → 표지 문구 → 렌더 → 업로드 → 기록. 업로드 True / 실패 False / 훅 미달 보류 None."""
+    from .skillscore import hook_score
+    meta = json.loads(s.read_text(encoding="utf-8"))
+    score = (hook_score(meta.get("hook", "")) or {}).get("verdict", 0)
+    need = _cfg().get("min_hook_score", 50)
+    if score < need and not meta.get("story"):  # 약한 훅(스토리 대사는 그대로 둠) → AI가 채점 피드백대로 다시 써서 기준을 넘기면 진행
+        new, new_score = improve_hook(meta, need)
+        if new_score >= need:
+            log.append(f"{s.name}: 훅 {score}→{new_score}점으로 개선")
+            meta["hook"], score = new, new_score
+            s.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+        else:
+            log.append(f"{s.name}: 훅 {score}점(개선 후 최고 {new_score}점) → 보류")
+            return None
+    if not meta.get("cover"):  # 표지 문구 5안 → 0토큰 채점으로 1안 선택
+        meta["cover"] = cover_copy(meta)
+        s.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+        log.append(f"{s.name}: 표지 문구 → {meta['cover'].replace(chr(10), ' / ')}")
+    log.append(_py("make_short.py", str(s)))
+    mp4 = SHORTS / "out" / f"{s.stem}.mp4"
+    uploaded = False
+    if mp4.exists() and youtube_ready():
+        args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
+        res = _py(*args)
+        log.append(res)
+        uploaded = "youtube.com/shorts/" in res
+    if uploaded or (mp4.exists() and not youtube_ready()):  # 업로드 실패한 건 다음에 다시 시도
+        done["shorts"].append(s.stem)
+        store.save_json("published.json", done)
+    return uploaded
+
+
 def skip(ids):
     """대기 대본 빼기(삭제 아님 — 파일은 그대로, 제작만 안 함)."""
     done = store.load_json("published.json", {"blog": []})
@@ -83,33 +116,8 @@ def shorts(n=None, private=False, topic=""):
     for s in sorted((SHORTS / "scripts").glob("*.json"), reverse=True):  # 방금 쓴(최신 피드백·주제 반영) 대본부터
         if s.stem in done["shorts"] or s.stem in done.get("skipped", []):
             continue
-        meta = json.loads(s.read_text(encoding="utf-8"))
-        score = (hook_score(meta.get("hook", "")) or {}).get("verdict", 0)
-        need = _cfg().get("min_hook_score", 50)
-        if score < need:  # 약한 훅 → AI가 채점 피드백대로 다시 써서 기준을 넘기면 진행
-            new, new_score = improve_hook(meta, need)
-            if new_score >= need:
-                log.append(f"{s.name}: 훅 {score}→{new_score}점으로 개선")
-                meta["hook"], score = new, new_score
-                s.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
-            else:
-                log.append(f"{s.name}: 훅 {score}점(개선 후 최고 {new_score}점) → 보류")
-                continue
-        if not meta.get("cover"):  # 표지 문구 5안 → 0토큰 채점으로 1안 선택
-            meta["cover"] = cover_copy(meta)
-            s.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
-            log.append(f"{s.name}: 표지 문구 → {meta['cover'].replace(chr(10), ' / ')}")
-        log.append(_py("make_short.py", str(s)))
-        mp4 = SHORTS / "out" / f"{s.stem}.mp4"
-        uploaded = False
-        if mp4.exists() and youtube_ready():
-            args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
-            res = _py(*args)
-            log.append(res)
-            uploaded = "youtube.com/shorts/" in res
-        if uploaded or (mp4.exists() and not youtube_ready()):  # 업로드 실패한 건 다음에 다시 시도
-            done["shorts"].append(s.stem)
-            store.save_json("published.json", done)
+        if produce(s, private, log, done) is None:  # 훅 미달 보류 → 다음 대본
+            continue
         made += 1
         if made >= n:
             break

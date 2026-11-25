@@ -522,3 +522,33 @@ def test_sound_unpack_and_mix(tmp_path, monkeypatch):
     extra, af = sound.mix([(0, 1, "a"), (1, 2, "b")], 2.0, seed="x")
     assert str(tmp_path / "audio" / "music" / "a.mp3") in extra and str(tmp_path / "audio" / "sfx" / "pop1.mp3") in extra
     assert "sidechaincompress" in af and af.endswith("[a]") and not (tmp_path / "evil.mp3").exists()
+
+
+def test_story_series_and_episode(monkeypatch, tmp_path):
+    from mother import story, publish, providers as pv
+    monkeypatch.setattr(story, "DIR", tmp_path / "stories")
+    monkeypatch.setattr(story, "SHORTS", tmp_path / "sf")
+    (tmp_path / "sf" / "scripts").mkdir(parents=True)
+    replies = iter([
+        json.dumps({"title": "검을 뽑은 소녀", "title_en": "Sword Girl", "genre": "판타지", "logline": "소녀가 검을 뽑는다", "tone": "",
+                    "setting": "medieval village", "episodes": ["1화", "2화"],
+                    "characters": [{"id": "mira", "name": "미라", "role": "주인공", "voice": "girl", "look": "12-year-old girl, red braid"},
+                                   {"id": "elder", "name": "촌장", "role": "", "voice": "old_male", "look": "old man, white beard"}]}),
+        json.dumps({"title": "바위 속 검", "summary": "미라가 검을 뽑는다", "cta": "2화에서 계속",
+                    "scenes": [{"speaker": "narrator", "line": "아무도 못 뽑던 검", "shot": "a sword in a stone, wide"},
+                               {"speaker": "mira", "line": "내가 해볼게요", "shot": "[mira] grabs the hilt, close-up"},
+                               {"speaker": "elder", "line": "안 된다, 얘야!", "shot": "[elder] shouts, medium"}]}),
+    ])
+    monkeypatch.setattr(pv, "complete", lambda *a, **k: (next(replies), "groq:test"))
+    monkeypatch.setattr(story, "_img", lambda: types.SimpleNamespace(generate=lambda *a, **k: None))  # Gemini 없음 → 무료 영상 대체
+    got = {}
+    monkeypatch.setattr(publish, "produce", lambda sp, private, log, done: got.setdefault("s", json.loads(sp.read_text(encoding="utf-8"))) and True)
+    b, log = story.new_series("소녀가 검을 뽑는다", "판타지")
+    assert b["slug"] == "sword-girl" and (tmp_path / "stories" / "sword-girl" / "bible.json").exists()
+    out = story.episode("sword-girl", private=True)
+    s = got["s"]
+    assert s["story"] and s["hook"] == "아무도 못 뽑던 검" and len(s["voices"]) == 1 + len(s["lines"]) + 1 == len(s["clips"])
+    assert s["voices"][1].startswith("ko-KR-SunHiNeural|+30Hz") and "-20Hz" in s["voices"][2]  # 인물별 목소리(소녀·노인)
+    assert story.load("sword-girl")["made"][0]["n"] == 1 and "1화" in out
+    text, refs = story._shot_prompt(b, "[mira] grabs the hilt")
+    assert "red braid" in text and refs[0].name == "mira.jpg"

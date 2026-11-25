@@ -105,6 +105,21 @@ def _studio():
             "queue": queue[:8], "queue_total": len(queue), "last": last}
 
 
+def _stories():
+    """AI 실사 스토리 파트: 시리즈·인물 사진·회차(올린 영상 연결)."""
+    from . import story
+    ups = {u["file"].rsplit(".", 1)[0]: u["id"] for u in (json.loads(UPLOADS.read_text(encoding="utf-8")) if UPLOADS.exists() else [])}
+    out = []
+    for b in story.all_series():
+        chars = [{"name": c["name"], "role": c.get("role", ""),
+                  "img": f"stories/{b['slug']}/chars/{c['id']}.jpg" if (story.DIR / b["slug"] / "chars" / f"{c['id']}.jpg").exists() else ""}
+                 for c in b.get("characters", [])]
+        eps = [{**m, "video": ups.get(m.get("file", ""), "")} for m in b.get("made", [])]
+        out.append({"slug": b["slug"], "title": b["title"], "genre": b.get("genre", ""), "logline": b.get("logline", ""),
+                    "characters": chars, "episodes": eps[::-1], "planned": len(b.get("episodes", []))})
+    return out[::-1]
+
+
 def _pipes():
     from .pipelines import all_pipes
     return all_pipes()
@@ -221,6 +236,7 @@ def build():
         "channels": _channels(),
         "videos": _videos(),
         "studio": _studio(),
+        "stories": _stories(),
         "progress": _progress(rev),
         "keys_set": {k: bool(os.getenv(k)) for k in KEY_NAMES},  # 이름별 등록 여부만 (값은 절대 포함 안 함)
     }

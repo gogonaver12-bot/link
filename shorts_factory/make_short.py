@@ -30,8 +30,19 @@ def dur(p):
                      "-of", "csv=p=0", str(p)]).strip())
 
 
-async def tts(text, voice, rate, path):
-    await edge_tts.Communicate(text, voice, rate=rate).save(str(path))
+async def tts(text, voice, rate, path, pitch="+0Hz"):
+    await edge_tts.Communicate(text, voice, rate=rate, pitch=pitch).save(str(path))
+
+
+def say(text, spec, rate, path):
+    """spec: '목소리|음높이|속도' (예: ko-KR-SunHiNeural|+25Hz|+5%) — 없는 목소리면 기본 목소리로."""
+    v, *rest = (spec or "ko-KR-SunHiNeural").split("|")
+    pitch = rest[0] if rest else "+0Hz"
+    r = rest[1] if len(rest) > 1 else rate
+    try:
+        asyncio.run(tts(text, v, r, path, pitch))
+    except Exception:
+        asyncio.run(tts(text, "ko-KR-InJoonNeural" if "InJoon" in v or "Hyunsu" in v else "ko-KR-SunHiNeural", r, path, pitch))
 
 
 def ass_time(t):
@@ -74,9 +85,21 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     path.write_text(head + "\n".join(ev) + "\n", encoding="utf-8")
 
 
-def background(total, colors, work, cues, keywords, subject=""):
+def background(total, colors, work, cues, keywords, subject="", scene_clips=None):
     clips = sorted((ROOT / "assets" / "clips").glob("*.mp4"))
-    if not clips and keywords:
+    if scene_clips:  # 스토리: 줄마다 정해진 장면(AI 이미지) — 없는 장면만 무료 영상으로 채움
+        import stock
+        clips = []
+        for i, c in enumerate(scene_clips):
+            p = (ROOT / c) if c and not Path(c).is_absolute() else Path(c or "")
+            if c and p.exists():
+                clips.append(p)
+            else:
+                got = stock.fetch([keywords[i] if i < len(keywords) else "cinematic scene"], ROOT / "assets" / "stock_cache", want=1)
+                clips.append(got[0] if got else None)
+        clips = [c for c in clips if c]
+        keywords = []
+    elif not clips and keywords:
         import stock
         print("🔎 무료 실사 영상 검색:", keywords)
         clips = stock.fetch(keywords, ROOT / "assets" / "stock_cache", want=len(keywords))
@@ -84,7 +107,7 @@ def background(total, colors, work, cues, keywords, subject=""):
         import aivideo
         hook = aivideo.hook_clip(subject or (keywords[0] if keywords else "mysterious cinematic scene"), work)
         if hook:
-            clips = [hook] + list(clips)
+            clips = [hook] + list(clips[1:] if scene_clips else clips)  # 스토리는 첫 장면을 영상으로 교체(순서 유지)
     except Exception as e:
         print(f"  ⚠️ AI 훅 영상 건너뜀: {e}")
     bg = work / "bg.mp4"
@@ -138,9 +161,10 @@ def main():
     work.mkdir(parents=True, exist_ok=True)
     cues, parts, t = [], [], 0.0
     segs = []
+    voices = s.get("voices") or []  # 스토리: 줄마다 말하는 사람 목소리
     for i, line in enumerate(lines):
         p = work / f"l{i:02d}.mp3"
-        asyncio.run(tts(line, voice, rate, p))
+        say(line, voices[i] if i < len(voices) and voices[i] else voice, rate, p)
         segs.append((i, line, p, dur(p)))
     cut = 0
     while len(segs) > 2 and sum(d + 0.08 for *_, d in segs) + 0.6 > MAX_SEC:
@@ -149,6 +173,8 @@ def main():
         print(f"⚠️ 59초 초과 → 본문 {cut}줄 줄임(훅·마무리는 유지)")
         kw = s.get("keywords", [])
         s["keywords"] = [kw[i] for i, *_ in segs if i < len(kw)]
+        if s.get("clips"):
+            s["clips"] = [s["clips"][i] for i, *_ in segs if i < len(s["clips"])]
     for _, line, p, d in segs:
         cues.append((t, t + d, line)); parts.append(p); t += d + 0.08
 
@@ -160,7 +186,7 @@ def main():
     total = min(dur(voice_mp3), MAX_SEC)
 
     bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work, cues, s.get("keywords", []),
-                    s.get("visual_hook", ""))
+                    s.get("visual_hook", ""), scene_clips=s.get("clips"))
     ass = work / "sub.ass"
     build_ass(cues, s.get("cover") or s["title"], ass)
 
