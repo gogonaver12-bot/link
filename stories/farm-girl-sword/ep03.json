@@ -1,0 +1,68 @@
+{
+  "title": "3화: 검의 부름",
+  "summary": "루나, 검의 비밀을 마주한다",
+  "scenes": [
+    {
+      "speaker": "narrator",
+      "line": "바위가 다시 흔들리기 시작한다",
+      "shot": "wide shot of ancient mossy boulder with faint glow, lighting dimming, focus on [luna] approaching"
+    },
+    {
+      "speaker": "luna",
+      "line": "뭐? 또 빛이!",
+      "shot": "close-up on [luna]'s surprised face, bright daylight"
+    },
+    {
+      "speaker": "ignis",
+      "line": "내가 기다렸다",
+      "shot": "medium shot of floating crimson flame [ignis] near the sword, sparks crackling, low angle"
+    },
+    {
+      "speaker": "boris",
+      "line": "그 검, 내게 줘!",
+      "shot": "wide shot of [boris] charging with broadsword, sunlit field"
+    },
+    {
+      "speaker": "luna",
+      "line": "아니, 내가 잡을게!",
+      "shot": "close-up on [luna]'s determined eyes, hand reaching toward sword"
+    },
+    {
+      "speaker": "ignis",
+      "line": "시험은 아직 남았다",
+      "shot": "medium shot, [ignis] flickers, magical runes glow on boulder, eerie lighting"
+    },
+    {
+      "speaker": "luna",
+      "line": "무엇을 해야 해?",
+      "shot": "close-up of [luna] looking at [ignis], confusion evident"
+    },
+    {
+      "speaker": "ignis",
+      "line": "검을 두 번 휘두르면",
+      "shot": "medium shot, [ignis] gestures, sword glows, flame swirling"
+    },
+    {
+      "speaker": "luna",
+      "line": "시도한다!",
+      "shot": "wide shot, [luna] swings sword, burst of light, camera follows motion"
+    },
+    {
+      "speaker": "narrator",
+      "line": "검이 사라졌다…",
+      "shot": "wide shot of empty space where sword was, [ignis] smirks, shadows lengthen"
+    },
+    {
+      "speaker": "narrator",
+      "line": "새 검이 빛을 뿜는다?",
+      "shot": "close-up of faint glint in grass, new sword emerging, soft lighting"
+    }
+  ],
+  "cta": "다음 화가 궁금하면 구독 눌러 주세요!",
+  "description": "루나는 검이 사라진 뒤 나타난 새로운 검의 비밀을 마주하고, 이그니스와 보리스와의 갈등이 고조된다.",
+  "tags": [
+    "판타지",
+    "모험",
+    "단편"
+  ]
+}

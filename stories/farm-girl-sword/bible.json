@@ -58,6 +58,14 @@
       "date": "2026-11-25",
       "file": "story-farm-girl-sword-ep02",
       "uploaded": false
+    },
+    {
+      "n": 3,
+      "title": "3화: 검의 부름",
+      "summary": "루나, 검의 비밀을 마주한다",
+      "date": "2026-11-25",
+      "file": "story-farm-girl-sword-ep03",
+      "uploaded": false
     }
   ],
   "writer": "gemini:gemini-flash-lite-latest"
