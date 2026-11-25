@@ -331,3 +331,7 @@
 {"ts": "2026-11-25T17:07:55+00:00", "agent": "developer", "model": "groq:qwen/qwen3.8-27b", "in": 1924, "out": 164, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:07:58+00:00", "agent": "developer", "model": "groq:qwen/qwen3.8-27b", "in": 2595, "out": 85, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-25T17:09:28+00:00", "agent": "mother", "model": "groq:openai/gpt-oss-120b", "in": 2209, "out": 1229, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:07:45+00:00", "agent": "shorts_feedback", "model": "groq:openai/gpt-oss-120b", "in": 2026, "out": 1938, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:07:48+00:00", "agent": "hook_writer", "model": "groq:qwen/qwen3.8-27b", "in": 253, "out": 116, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:07:50+00:00", "agent": "hook_writer", "model": "gemini:gemini-flash-lite-latest", "in": 255, "out": 221, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-25T17:07:51+00:00", "agent": "cover_copywriter", "model": "groq:qwen/qwen3.8-27b", "in": 297, "out": 43, "cache_read": 0, "usd": 0.0}

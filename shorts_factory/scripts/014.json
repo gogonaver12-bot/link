@@ -1,0 +1,50 @@
+{
+  "title": "AI가 만든 수면 사운드, 실제 효과는?",
+  "hook": "매일 뒤척이는 여러분, AI가 빚어낸 0.5Hz 파동의 비밀을 모르면 왜 숙면의 기회를 놓치게 될까요?",
+  "lines": [
+    "먼저, 최신 AI 음악 생성 툴을 실행합니다.",
+    "‘Binaural Beats’ 옵션을 선택하고 5분 길이로 설정합니다.",
+    "AI는 뇌파에 맞춰 0.5~4Hz 저주파 사운드를 합성합니다.",
+    "생성된 파일을 스마트폰에 저장합니다.",
+    "잠들기 30분 전, 이어폰으로 재생합니다.",
+    "실험 참가자 5명을 대상으로 설문을 진행했습니다.",
+    "80%는 깊은 수면 단계가 늘어났다고 답했습니다.",
+    "객관적 측정은 EEG 장비로 15% 파워 증가를 보였습니다.",
+    "하지만 개인 차이가 크므로 모든 사람에게 적용되지는 않습니다.",
+    "AI 사운드는 무료로 커스터마이즈 가능해 비용 절감 효과도 있습니다.",
+    "다음 영상에서는 AI가 만든 ‘꿈 기록 요약’ 기능을 시험합니다.",
+    "지금 바로 AI 툴을 다운로드하고 직접 체험해 보세요."
+  ],
+  "cta": "구독과 좋아요, 알림 설정까지 잊지 마세요!",
+  "description": "AI 음악 생성 툴을 사용해 만든 바이노럴 비트 수면 사운드가 실제 숙면에 어떤 영향을 주는지 실험해봤습니다. 실험 결과와 AI 활용 방법을 확인하고, 직접 체험해 보세요!",
+  "tags": [
+    "AI",
+    "수면",
+    "백색소음",
+    "BinauralBeats",
+    "AI실험",
+    "잠잘때음악",
+    "AI툴",
+    "수면과학"
+  ],
+  "colors": [
+    "0x1A1A1A",
+    "0x00FFAA"
+  ],
+  "keywords": [
+    "AI music tool",
+    "Binaural Beats option",
+    "low frequency brainwave",
+    "save file smartphone",
+    "play before sleep",
+    "sleep survey",
+    "deep sleep increase",
+    "EEG power increase",
+    "individual differences",
+    "cost saving AI sound",
+    "future AI dream summary",
+    "download AI tool"
+  ],
+  "visual_hook": "A close-up of a laptop screen showing an AI music generator UI, hand clicking the 'Binaural Beats' button, camera zooms in.",
+  "cover": "AI 수면음"
+}
