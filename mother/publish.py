@@ -54,6 +54,26 @@ def _py(*args, extra=None):
     return (r.stdout + r.stderr).strip()[-1500:]
 
 
+_limit = {"hit": False}
+PREVIEWS = SHORTS.parent / "app" / "previews"
+
+
+def preview(mp4, meta, keep=4):
+    """앱 '영상확인'에서 바로 볼 가벼운 미리보기(360p) — 최근 몇 개만 남김. 업로드 전·한도 초과여도 폰에서 확인 가능."""
+    PREVIEWS.mkdir(parents=True, exist_ok=True)
+    out = PREVIEWS / mp4.name
+    r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4), "-vf", "scale=360:-2", "-c:v", "libx264", "-crf", "33",
+                        "-preset", "veryfast", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", str(out)], capture_output=True)
+    if r.returncode:
+        return None
+    idx = store.load_json("previews.json", [])
+    idx = [x for x in idx if x["file"] != out.name] + [{"file": out.name, "title": meta.get("title", ""), "date": store.today()}]
+    for old in idx[:-keep]:
+        (PREVIEWS / old["file"]).unlink(missing_ok=True)
+    store.save_json("previews.json", idx[-keep:])
+    return out
+
+
 def produce(s, private, log, done):
     """대본 1개 → 훅 검사·개선 → 표지 문구 → 렌더 → 업로드 → 기록. 업로드 True / 실패 False / 훅 미달 보류 None."""
     from .skillscore import hook_score
@@ -76,11 +96,14 @@ def produce(s, private, log, done):
     log.append(_py("make_short.py", str(s)))
     mp4 = SHORTS / "out" / f"{s.stem}.mp4"
     uploaded = False
-    if mp4.exists() and youtube_ready():
+    if mp4.exists():
+        preview(mp4, meta)
+    if mp4.exists() and youtube_ready() and not _limit["hit"]:
         args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
         res = _py(*args)
-        log.append(res)
+        log.append(res[-400:] if "Traceback" in res else res)
         uploaded = "youtube.com/shorts/" in res
+        _limit["hit"] = "업로드 한도 초과" in res  # 오늘은 더 올려도 실패 → 이번 실행의 남은 업로드는 건너뜀
     if uploaded or (mp4.exists() and not youtube_ready()):  # 업로드 실패한 건 다음에 다시 시도
         done["shorts"].append(s.stem)
         store.save_json("published.json", done)

@@ -422,6 +422,8 @@ function viewVideos() {
   return `<h1 class="page">▶️ 영상 확인</h1><p class="sub">누르면 바로 재생 · 조회수는 매일 아침 갱신</p>
   <div class="kpis"><div class="card kpi"><div class="lbl">🎞️ 올린 영상</div><div class="num">${V.length}</div></div>
     <div class="card kpi"><div class="lbl">👀 총 조회수</div><div class="num">${views.toLocaleString()}</div></div></div>
+  ${(D.previews || []).length ? `<div class="section-title"><h2>🆕 방금 만든 영상 (미리보기)</h2></div><div class="pv">${D.previews.map((p) => `
+    <div class="pv-item"><video src="previews/${encodeURIComponent(p.file)}" controls playsinline preload="metadata"></video><div class="t clamp2">${esc(p.title)}</div><div class="m">${esc(p.date)}</div></div>`).join("")}</div>` : ""}
   ${best && best.views ? `<div class="card" style="margin-top:10px"><div class="m">🏆 최고 조회</div><div class="t">${esc(best.title)} · ${best.views.toLocaleString()}회</div></div>` : ""}
   ${V.length ? `<div class="vgrid">${V.map((v, k) => `<a class="vcard" href="https://youtube.com/shorts/${yid(v)}" target="_blank" rel="noopener noreferrer" data-video="${k}">
       <div class="thumb"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/${yid(v)}/oardefault.jpg" data-fb="https://i.ytimg.com/vi/${yid(v)}/hqdefault.jpg">

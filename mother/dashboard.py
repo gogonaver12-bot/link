@@ -132,6 +132,8 @@ def _channels():
 
 def friendly(err):
     e = (err or "").lower()
+    if "uploadlimitexceeded" in e or "업로드 한도" in e or "exceeded the number of videos" in e:
+        return "유튜브 하루 업로드 한도 초과 — 영상은 만들어 뒀고 내일 자동으로 올려요 (영상확인에서 미리보기 가능)"
     if "429" in e or "quota" in e or "rate limit" in e:
         return "AI 무료 사용량 초과 — 다른 AI로 자동 전환 중. 계속되면 예비 AI 키(Groq 등)를 추가하세요"
     if "credit balance" in e or "크레딧 부족" in e:
@@ -235,6 +237,7 @@ def build():
                       | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
         "channels": _channels(),
         "videos": _videos(),
+        "previews": [p for p in store.load_json("previews.json", []) if (store.ROOT / "app" / "previews" / p["file"]).exists()][::-1],
         "studio": _studio(),
         "stories": _stories(),
         "progress": _progress(rev),

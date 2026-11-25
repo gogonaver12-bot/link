@@ -324,3 +324,8 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .eps { display: grid; gap: 6px; margin-top: 12px; }
 .ep { display: grid; grid-template-columns: 40px 1fr auto; gap: 8px; align-items: center; padding: 9px 10px; border-radius: 10px; background: var(--card2); color: var(--fg); font-size: 13px; }
 .ep b { color: var(--accent); } .ep small { color: var(--faint); font-size: 11px; }
+
+/* 방금 만든 영상 미리보기 */
+.pv { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+.pv-item { flex: 0 0 150px; } .pv-item video { width: 150px; aspect-ratio: 9 / 16; border-radius: 12px; background: #000; display: block; }
+.pv-item .t { font-size: 12px; margin-top: 6px; }
