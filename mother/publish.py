@@ -136,7 +136,9 @@ def shorts(n=None, private=False, topic=""):
     done = store.load_json("published.json", {"blog": []})
     done.setdefault("shorts", [])
     made = 0
-    for s in sorted((SHORTS / "scripts").glob("*.json"), reverse=True):  # 방금 쓴(최신 피드백·주제 반영) 대본부터
+    files = sorted((SHORTS / "scripts").glob("*.json"), reverse=True)  # 방금 쓴(최신 피드백·주제 반영) 대본부터
+    files = sorted(f for f in files if f.name.startswith("story-")) + [f for f in files if not f.name.startswith("story-")]  # 스토리는 1화부터 순서대로
+    for s in files:
         if s.stem in done["shorts"] or s.stem in done.get("skipped", []):
             continue
         if produce(s, private, log, done) is None:  # 훅 미달 보류 → 다음 대본
