@@ -291,3 +291,22 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .vcard:active { transform: scale(.97); }
 .steps-ol { padding-left: 20px; line-height: 1.7; }
 .tabs a span { white-space: nowrap; }
+
+/* 실시간 진행률 */
+.run-card { border-color: var(--line2); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, var(--card)), var(--card)); }
+.run-card .pct { font-family: Orbitron, system-ui, sans-serif; font-size: 20px; color: var(--accent); }
+.run-card.ok .pct { color: var(--ok); } .run-card.bad .pct { color: var(--bad); }
+.bar.run i { background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 1s linear; position: relative; overflow: hidden; }
+.run-card:not(.ok):not(.bad) .bar.run i::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+  animation: shimmer 1.4s infinite; }
+@keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.run-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.run-steps span { font-size: 11px; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--faint); }
+.run-steps span.on { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, transparent); }
+.run-steps span.now { color: var(--accent); border-color: var(--line2); animation: pulse 1.2s infinite; }
+.run-steps span.bad { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+/* 앱 안 플레이어 */
+.player { margin-top: 12px; aspect-ratio: 9 / 16; max-height: 62vh; margin-inline: auto; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid var(--line); }
+.player iframe { width: 100%; height: 100%; border: 0; display: block; }
+.player-msg { height: 100%; display: grid; place-items: center; text-align: center; color: #cfd8e3; font-size: 14px; line-height: 1.7; padding: 20px; }
+.player.small { aspect-ratio: auto; height: 150px; }

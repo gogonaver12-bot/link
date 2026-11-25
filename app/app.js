@@ -109,21 +109,51 @@ async function dispatch(command = "daily", goal = "", label = "") {
     await gh(`/repos/${REPO}/actions/workflows/mother.yml/dispatches`, { method: "POST",
       body: JSON.stringify({ ref: "main", inputs: { command, goal } }) });
     closeSheet();
-    toast(`🚀 ${label || "명령"} 실행 시작 — 2~5분 뒤 결과가 반영돼요`);
+    store.set("last_run", JSON.stringify({ label: label || cmdName(command), cmd: command, ts: Date.now() }));
+    RUN = { status: "queued", label: label || cmdName(command), started: Date.now(), steps: [] }; render();
+    toast(`🚀 ${label || "명령"} 실행 시작 — 진행률은 위에서 실시간으로 보여요`);
     setTimeout(pollRun, 4000);
   } catch (e) {
     openSheet(tokenFixSheet(String(e.message).slice(0, 3)));
   }
 }
-let polling = 0;
+let polling = 0, RUN = null;
+const EXPECT = [[/영상|shorts/, 330], [/일일|daily/, 1200], [/테스트|토너먼트|test/, 240], [/사업 발굴|scout/, 420], [/파이프라인/, 300]];
+const STEPNAME = { "Set up job": "준비", "Run actions/checkout@v4": "코드 받기", "Run actions/setup-python@v5": "파이썬 준비",
+  "Run pip install -r requirements.txt": "도구 설치", "install ffmpeg (숏츠 영상 제작용)": "영상 도구 설치", run: "AI 작업 중", "save results": "결과 저장" };
+function runCard() {
+  if (!RUN) return "";
+  const done = RUN.status === "completed", ok = RUN.conclusion === "success";
+  const exp = (EXPECT.find(([re]) => re.test(RUN.label || "")) || [0, 300])[1];
+  const sec = Math.max(0, ((RUN.ended || Date.now()) - RUN.started) / 1000);
+  const pct = done ? 100 : Math.min(95, Math.round(sec / exp * 100));
+  const mmss = (s) => `${Math.floor(s / 60)}분 ${String(Math.floor(s % 60)).padStart(2, "0")}초`;
+  const steps = (RUN.steps || []).filter((s) => STEPNAME[s.name]);
+  return `<div class="card run-card ${done ? (ok ? "ok" : "bad") : ""}"><div class="row" style="padding:0">
+    <span class="dot ${done ? (ok ? "" : "bad") : "warn"}"></span><div class="grow"><div class="t">${esc(RUN.label || "실행")} · ${done ? (ok ? "완료" : "실패") : RUN.status === "queued" ? "대기 중" : "진행 중"}</div>
+    <div class="m">${mmss(sec)} 경과${done ? "" : ` · 보통 ${Math.round(exp / 60)}분`}</div></div><b class="pct">${pct}%</b></div>
+    <div class="bar run"><i style="width:${pct}%"></i></div>
+    ${steps.length ? `<div class="run-steps">${steps.map((s) => `<span class="${s.status === "completed" ? (s.conclusion === "success" || s.conclusion === "skipped" ? "on" : "bad") : s.status === "in_progress" ? "now" : ""}">${STEPNAME[s.name]}</span>`).join("")}</div>` : ""}
+    ${done ? `<button class="btn small ghost" style="margin-top:10px" data-go="${/영상/.test(RUN.label) ? "#videos" : "#home"}">${/영상/.test(RUN.label) ? "▶️ 만든 영상 보기" : "결과 보기"}</button>` : ""}</div>`;
+}
+function paintRun() { const el = $("#runbox"); if (el) el.innerHTML = runCard(); }
+setInterval(() => { if (RUN && RUN.status !== "completed") paintRun(); }, 1000);
 async function pollRun() {
   if (polling) return;
   const chip = $("#runchip");
-  for (polling = 1; polling < 50; polling++) {
+  for (polling = 1; polling < 80; polling++) {
     try {
       const j = await gh(`/repos/${REPO}/actions/workflows/mother.yml/runs?per_page=1`);
       const run = j.workflow_runs[0];
       if (!run) break;
+      const last = JSON.parse(store.get("last_run") || "{}");
+      const mine = last.ts && Math.abs(new Date(run.created_at) - last.ts) < 180000;
+      if (run.status === "completed" && polling === 1 && Date.now() - new Date(run.updated_at) > 600000) break;  // 오래전에 끝난 실행은 표시 안 함
+      let steps = [];
+      try { steps = ((await gh(`/repos/${REPO}/actions/runs/${run.id}/jobs`)).jobs[0] || {}).steps || []; } catch { /* 단계 정보 없음 */ }
+      RUN = { status: run.status, conclusion: run.conclusion, label: mine ? last.label : run.event === "schedule" ? "일일 자동운영" : "자동 실행",
+              started: new Date(run.run_started_at || run.created_at).getTime(), ended: run.status === "completed" ? new Date(run.updated_at).getTime() : 0, steps };
+      paintRun();
       chip.hidden = false;
       if (run.status !== "completed") { chip.className = "runchip"; chip.textContent = run.status === "queued" ? "대기 중" : "실행 중…"; }
       else {
@@ -132,7 +162,7 @@ async function pollRun() {
         chip.textContent = ok ? "완료" : "실패";
         toast(ok ? "✅ 완료! 결과를 불러오는 중…" : "⚠️ 실행 실패 — 다음 세션에서 자동 수정돼요");
         setTimeout(() => load(true), 60000);
-        setTimeout(() => { chip.hidden = true; }, 90000);
+        setTimeout(() => { chip.hidden = true; RUN = null; paintRun(); }, 180000);
         break;
       }
     } catch { break; }
@@ -173,7 +203,7 @@ function viewHome() {
   const errs = D.errors.length;
   const conn = D.providers.filter((p) => p.connected).length;
   const now = new Date();
-  return `
+  return `<div id="runbox">${runCard()}</div>
   <section class="card hero">
     <div class="ring">${ringSvg(b.today / b.daily, usd(b.today))}</div>
     <div class="hero-info">
@@ -329,7 +359,7 @@ function viewMake() {
   const S = D.studio || {}, av = S.ai_video || {}, L = S.last;
   const chip = (ok, on, off, open) => `<span class="pill ${ok ? "ok" : "candidate"} ${!ok && open ? "tap" : ""}" ${!ok && open ? `data-open="${open}"` : ""}>${ok ? "✓ " + on : "✗ " + off}</span>`;
   const li = L ? (D.commands || []).findIndex((c) => c.ts === L.ts) : -1;
-  return `<h1 class="page">🎬 영상 제작</h1><p class="sub">${esc(S.channel || "")} · 매일 아침 ${S.per_day || 1}개 자동 제작</p>
+  return `<div id="runbox">${runCard()}</div><h1 class="page">🎬 영상 제작</h1><p class="sub">${esc(S.channel || "")} · 매일 아침 ${S.per_day || 1}개 자동 제작</p>
   <div class="card"><div class="t">준비 상태</div><div class="chips">
     ${chip(S.new_channel, "새 채널 연결됨", "새 채널 미연결 → 비공개로 올림", "newchan")}
     ${chip(S.music, "배경음악", "배경음악 없음(효과음만)", "music")}
@@ -361,11 +391,11 @@ function viewVideos() {
   const V = D.videos || [], views = V.reduce((a, v) => a + v.views, 0);
   const best = V.slice().sort((a, b) => b.views - a.views)[0];
   const yid = (v) => encodeURIComponent(v.id);
-  return `<h1 class="page">▶️ 영상 확인</h1><p class="sub">누르면 유튜브 앱에서 열려요 · 조회수는 매일 아침 갱신</p>
+  return `<h1 class="page">▶️ 영상 확인</h1><p class="sub">누르면 바로 재생 · 조회수는 매일 아침 갱신</p>
   <div class="kpis"><div class="card kpi"><div class="lbl">🎞️ 올린 영상</div><div class="num">${V.length}</div></div>
     <div class="card kpi"><div class="lbl">👀 총 조회수</div><div class="num">${views.toLocaleString()}</div></div></div>
   ${best && best.views ? `<div class="card" style="margin-top:10px"><div class="m">🏆 최고 조회</div><div class="t">${esc(best.title)} · ${best.views.toLocaleString()}회</div></div>` : ""}
-  ${V.length ? `<div class="vgrid">${V.map((v) => `<a class="vcard" href="https://youtube.com/shorts/${yid(v)}" target="_blank" rel="noopener noreferrer">
+  ${V.length ? `<div class="vgrid">${V.map((v, k) => `<a class="vcard" href="https://youtube.com/shorts/${yid(v)}" target="_blank" rel="noopener noreferrer" data-video="${k}">
       <div class="thumb"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/${yid(v)}/oardefault.jpg" data-fb="https://i.ytimg.com/vi/${yid(v)}/hqdefault.jpg">
       ${v.private ? '<span class="badge">🔒 비공개</span>' : ""}<span class="views">▶ ${v.views.toLocaleString()}</span></div>
       <div class="t clamp2">${esc(v.title)}</div><div class="m">❤ ${v.likes}${v.date ? " · " + esc(v.date.slice(5)) : ""}${v.channel === "new" ? " · F ai-LAB" : ""}</div></a>`).join("")}</div>`
@@ -410,6 +440,17 @@ function viewMore() {
     ${item('data-open="keys"', "🔑", "키 도우미", "API 키 이름 복사 · 발급 링크")}
     ${item('data-open="google"', "🔗", "구글 연결", "유튜브 · 블로그 1회 연결")}
     ${item('data-open="settings"', "⚙️", "설정", "토큰 · 테마")}</div>`;
+}
+function videoSheet(k) {
+  const v = (D.videos || [])[+k]; if (!v) return "";
+  const id = encodeURIComponent(v.id);
+  return `<h3 class="wrap">${esc(v.title)}</h3><div class="chips">${v.private ? '<span class="pill candidate">🔒 비공개</span>' : '<span class="pill ok">공개</span>'}
+    <span class="pill">▶ ${v.views.toLocaleString()}</span><span class="pill">❤ ${v.likes}</span>${v.date ? `<span class="pill">${esc(v.date)}</span>` : ""}</div>
+    <div class="player${v.private ? " small" : ""}">${v.private ? `<div class="player-msg">🔒 비공개 영상은 앱 안에서 재생이 안 돼요<br>아래 버튼으로 유튜브 앱에서 보세요</div>`
+      : `<iframe src="https://www.youtube-nocookie.com/embed/${id}?playsinline=1&rel=0" title="영상" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>`}</div>
+    ${v.cover ? `<div class="note">🏷 표지 문구: ${esc(v.cover.replace(/\n/g, " / "))}</div>` : ""}
+    <div class="btns"><a class="btn" href="https://youtube.com/shorts/${id}" target="_blank" rel="noopener">▶️ 유튜브 앱에서</a>
+      <a class="btn ghost" href="https://studio.youtube.com/video/${id}/edit" target="_blank" rel="noopener">✏️ 스튜디오 수정</a></div>`;
 }
 const newChanSheet = () => `<h3>📺 새 채널 F ai-LAB 연결</h3><ol class="steps-ol">
   <li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel_switcher">유튜브 채널 전환</a> → <b>채널 만들기</b> → 이름 <b>F ai-LAB</b></li>
@@ -601,6 +642,8 @@ function render() {
 const SHEETS = { newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
+  const vid = e.target.closest("[data-video]");
+  if (vid && D) { e.preventDefault(); return openSheet(videoSheet(vid.dataset.video)); }
   const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-fill2],[data-copy],[data-prov],[data-close],[data-v]");
   if (!el) return;
   const ds = el.dataset;
