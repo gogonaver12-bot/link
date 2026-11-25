@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T18:37:28+00:00",
+ "updated": "2026-11-25T18:41:44+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1701,49 +1701,49 @@
  ],
  "reports": [
   {
-   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
-   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-25T18:36+00:00"
-  },
-  {
-   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
-   "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-25T18:36+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T18:36+00:00"
-  },
-  {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T18:36+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-25.md",
-   "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T18:36+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T18:36+00:00"
+   "date": "2026-11-25T18:38+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T18:36+00:00"
+   "date": "2026-11-25T18:38+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-25T18:38+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T18:36+00:00"
+   "date": "2026-11-25T18:38+00:00"
+  },
+  {
+   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-25T18:38+00:00"
+  },
+  {
+   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
+   "title": "매일 업데이트및 영상확인",
+   "date": "2026-11-25T18:38+00:00"
+  },
+  {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-25T18:38+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-25.md",
+   "title": "일일 리포트 2026-11-25",
+   "date": "2026-11-25T18:38+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T18:36+00:00"
+   "date": "2026-11-25T18:38+00:00"
   }
  ],
  "runs": [
@@ -2060,6 +2060,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T18:41:43+00:00",
+   "cmd": "story next farm-girl-sword --private",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n🎬 농부소녀와 전설의 검 2화 '2화: 운명의 검' — 장면 9개 · 작가 무료 AI(JSON 모드)\n🖼 장면 이미지 1/9장 (나머지는 무료 영상)\n⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep02.mp4 (28.7초)\n⏸ 유튜브 하루 업로드 한도 초과 — 영상은 만들어 뒀고 내일 자동으로 다시 올려요"
+  },
+  {
    "ts": "2026-11-25T18:37:27+00:00",
    "cmd": "story next farm-girl-sword --private",
    "ok": false,
@@ -2112,12 +2118,6 @@
    "cmd": "biz scout --market GLOBAL",
    "ok": true,
    "output": "(출력 없음)"
-  },
-  {
-   "ts": "2026-11-25T17:11:20+00:00",
-   "cmd": "jobs",
-   "ok": true,
-   "output": "새 작업 없음"
   }
  ],
  "pipelines": [
@@ -2289,7 +2289,13 @@
    "likes": 0
   }
  ],
- "previews": [],
+ "previews": [
+  {
+   "file": "story-farm-girl-sword-ep02.mp4",
+   "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
+   "date": "2026-11-25"
+  }
+ ],
  "studio": {
   "channel": "F ai-LAB",
   "concept": "F ai-LAB — AI로 직접 해보는 실험실: 요즘 화제인 AI 툴·기능을 실제로 써보고 결과 공개, AI가 바꾼 생활 꿀팁, 사람 vs AI 대결, 'AI한테 OO 시켜봤더니' 류. 사실만, 과장 금지",
@@ -2305,6 +2311,13 @@
   "ai_images": true,
   "per_day": 1,
   "queue": [
+   {
+    "id": "story-farm-girl-sword-ep02",
+    "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
+    "hook": "바위에 빛이 깜빡인다",
+    "score": 28,
+    "lines": 8
+   },
    {
     "id": "story-farm-girl-sword-ep01",
     "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
@@ -2355,7 +2368,7 @@
     "lines": 7
    }
   ],
-  "queue_total": 7,
+  "queue_total": 8,
   "last": {
    "ts": "2026-11-25T17:24:49+00:00",
    "cmd": "shorts --private --topic \"Ai가 과연 얼마나 사람처럼 영상을만들수있을까?\"",
@@ -2387,6 +2400,15 @@
     }
    ],
    "episodes": [
+    {
+     "n": 2,
+     "title": "2화: 운명의 검",
+     "summary": "루나가 우연히 검을 뽑는다",
+     "date": "2026-11-25",
+     "file": "story-farm-girl-sword-ep02",
+     "uploaded": false,
+     "video": ""
+    },
     {
      "n": 1,
      "title": "1화: 전설의 검을 뽑다",

@@ -1,0 +1,78 @@
+{
+  "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
+  "story": true,
+  "hook": "바위에 빛이 깜빡인다",
+  "lines": [
+    "우리 힘을 모아보자!",
+    "조심해, 너무 무거워",
+    "…잠깐, 기다려",
+    "청년들 몸을 맞춘다",
+    "한 번에 뽑아보자!",
+    "앗! 발이 미끄러워!",
+    "검이 빛을 내며 떠오른다",
+    "새 주인… 기대해"
+  ],
+  "cta": "다음 화가 궁금하다면 구독해주세요!",
+  "voices": [
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "",
+    "보리스",
+    "루나",
+    "이그니스",
+    "",
+    "보리스",
+    "루나",
+    "",
+    "이그니스",
+    ""
+  ],
+  "clips": [
+    "assets/story/farm-girl-sword/ep02-00.jpg",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "keywords": [
+    "Wide shot of the mossy",
+    "Medium shot of person flexing,",
+    "Close-up of person eyes, worried,",
+    "Medium shot of floating flame",
+    "Wide shot of villagers forming",
+    "Close-up of person shouting, clenched",
+    "Medium shot of person slipping,",
+    "Wide shot of the sword",
+    "Close-up of person smirking, eyes",
+    "cinematic"
+  ],
+  "cover": "농부소녀와 전설의 검\n2화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "루나가 마을 청년들과 함께 전설의 검을 끌어올리려다, 실수로 검을 뽑아버리는 순간을 그린 코믹 판타지 2화\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)",
+  "tags": [
+    "판타지",
+    "단편",
+    "농부소녀",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ]
+}

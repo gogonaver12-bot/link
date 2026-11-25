@@ -50,6 +50,14 @@
       "date": "2026-11-25",
       "file": "story-farm-girl-sword-ep01",
       "uploaded": false
+    },
+    {
+      "n": 2,
+      "title": "2화: 운명의 검",
+      "summary": "루나가 우연히 검을 뽑는다",
+      "date": "2026-11-25",
+      "file": "story-farm-girl-sword-ep02",
+      "uploaded": false
     }
   ],
   "writer": "gemini:gemini-flash-lite-latest"
