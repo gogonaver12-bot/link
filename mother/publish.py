@@ -122,7 +122,9 @@ def cover_copy(meta):
         flat = cand.replace(" / ", " ")
         if re.search(r"(?<![A-Za-z])N\s?(가지|개|배)", flat):  # 예시의 'N가지'를 그대로 베낀 안은 제외
             continue
-        sc = title_check(flat)["score"] - (20 if len(cand.split(" / ")) > 4 else 0)
+        sc = (title_check(flat)["score"] - (20 if len(cand.split(" / ")) > 4 else 0)
+              - (15 if len(re.findall(r"\d+", flat)) > 1 else 0)   # 숫자 강조는 안마다 하나만
+              - (10 if re.search(r"\d+\s?배", flat) else 0))        # '2배' 같은 검증 안 되는 과장 감점
         if sc > best_sc:
             best, best_sc = cand, sc
     return best.replace(" / ", "\n")
