@@ -63,6 +63,48 @@ def _progress(revenue):
     return {"steps": steps, "blocker": blocker, "action": action, "shorts": shorts, "blog": blog}
 
 
+def _videos():
+    """영상 확인: 올린 영상(최신순) + 조회수·좋아요 (stats.csv)."""
+    import csv
+    sf = store.ROOT / "shorts_factory"
+    st = {}
+    if (sf / "stats.csv").exists():
+        with (sf / "stats.csv").open(encoding="utf-8") as f:
+            st = {r["file"]: r for r in csv.DictReader(f)}
+    ups = json.loads(UPLOADS.read_text(encoding="utf-8")) if UPLOADS.exists() else []
+    return [{"id": u["id"], "title": u["title"], "date": u.get("date", ""), "private": u.get("private"),
+             "channel": u.get("channel", "old"), "cover": u.get("cover", ""),
+             "views": int(st.get(u["file"], {}).get("views", 0) or 0), "likes": int(st.get(u["file"], {}).get("likes", 0) or 0)}
+            for u in ups][::-1][:40]
+
+
+def _studio():
+    """영상 제작 파트: 채널·설정 상태 + 대기 중 대본 + 최근 제작 결과."""
+    from .skillscore import hook_score
+    sf = store.ROOT / "shorts_factory"
+    sc = store.cfg().get("shorts", {})
+    pub = store.load_json("published.json", {})
+    done = set(pub.get("shorts", [])) | set(pub.get("skipped", []))
+    queue = []
+    for p in sorted((sf / "scripts").glob("*.json"), reverse=True):
+        if p.stem in done:
+            continue
+        m = json.loads(p.read_text(encoding="utf-8"))
+        queue.append({"id": p.stem, "title": m.get("title", ""), "hook": m.get("hook", ""),
+                      "score": (hook_score(m.get("hook", "")) or {}).get("verdict", 0), "lines": len(m.get("lines", []))})
+    log = sf / "aivideo_log.json"
+    month = dt.date.today().isoformat()[:7]
+    spent = sum(r["usd"] for r in (json.loads(log.read_text(encoding="utf-8")) if log.exists() else []) if r["date"].startswith(month))
+    last = next((c for c in reversed(store.read_jsonl("commands.jsonl")) if (c.get("cmd") or "").startswith("shorts")), None)
+    return {"channel": sc.get("channel_name", ""), "concept": sc.get("concept", ""),
+            "new_channel": bool(os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN")), "hold": bool(sc.get("hold_until_new_channel")),
+            "music": (sf / "audio.enc").exists() and bool(os.getenv("AUDIO_KEY")),
+            "ai_video": {"on": bool(sc.get("ai_video")), "provider": sc.get("ai_video_provider", "gemini"),
+                         "spent": round(spent, 2), "budget": sc.get("ai_video_budget_usd_month", 5)},
+            "ai_images": bool(sc.get("ai_images")), "per_day": store.cfg().get("autopilot", {}).get("shorts_per_day", 1),
+            "queue": queue[:8], "queue_total": len(queue), "last": last}
+
+
 def _pipes():
     from .pipelines import all_pipes
     return all_pipes()
@@ -175,6 +217,8 @@ def build():
                                               "viability", "disabled_reason")}
                       | {"runs": len(pp.get("runs", [])), "last": (pp.get("runs") or [{}])[-1]} for pp in _pipes()],
         "channels": _channels(),
+        "videos": _videos(),
+        "studio": _studio(),
         "progress": _progress(rev),
         "keys_set": {k: bool(os.getenv(k)) for k in KEY_NAMES},  # 이름별 등록 여부만 (값은 절대 포함 안 함)
     }

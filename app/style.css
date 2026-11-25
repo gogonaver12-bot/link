@@ -276,3 +276,18 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .step.on { color: var(--fg); }
 .step small { font-family: var(--display); font-size: 11px; }
 .kb { flex: 1; white-space: nowrap; text-align: center; padding: 9px 6px; }
+
+/* 영상 확인 */
+.vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.vcard { display: block; color: var(--fg); text-decoration: none; min-width: 0; }
+.vcard .thumb { position: relative; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--card2), color-mix(in srgb, var(--accent) 22%, var(--bg2))); }
+.vcard .thumb::after { content: "▶"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 28px; color: rgba(255, 255, 255, .45); }
+.vcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.vcard .badge, .vcard .views { position: absolute; z-index: 2; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: rgba(0, 0, 0, .62); color: #fff; }
+.vcard .badge { top: 8px; left: 8px; }
+.vcard .views { bottom: 8px; left: 8px; }
+.vcard .t { margin-top: 7px; font-size: 13px; font-weight: 700; line-height: 1.35; }
+.vcard:active { transform: scale(.97); }
+.steps-ol { padding-left: 20px; line-height: 1.7; }
+.tabs a span { white-space: nowrap; }

@@ -189,6 +189,10 @@ function viewHome() {
       ${{ google: '<button class="btn small" style="margin-top:8px" data-open="google">🔑 구글 연결 방법</button>',
           scout: '<button class="btn small" style="margin-top:8px" data-open="scout">🔎 사업 발굴</button>',
           log: '<button class="btn small" style="margin-top:8px" data-open="log">💵 매출 기록</button>' }[D.progress.action] || ""}` : ""}</div>` : ""}
+  ${D.studio ? (() => { const S = D.studio, V = D.videos || [], L = S.last;
+    return `<div class="card tap" data-go="#make" style="margin-top:10px"><div class="row"><div class="score" style="font-size:20px">🎬</div>
+      <div class="grow"><div class="t">영상 파트 · ${esc(S.channel)}</div><div class="m">올린 영상 ${V.length}개 · 조회 ${V.reduce((a, v) => a + v.views, 0).toLocaleString()}회 · 대기 대본 ${S.queue_total}개</div>
+      ${L ? `<div class="m">${L.ok ? "✅" : "⚠️"} 최근 제작 ${ago(L.ts)}</div>` : ""}</div><span class="m">›</span></div></div>`; })() : ""}
   <div class="kpis">
     <div class="card kpi"><div class="lbl">💰 총매출</div><div class="num">${usd(money.revenue)}</div></div>
     <div class="card kpi"><div class="lbl">📈 순이익</div><div class="num ${money.profit >= 0 ? "pos" : "neg"}">${usd(money.profit)}</div></div>
@@ -217,7 +221,8 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
+const CMDNAME = [[/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+  [/^benchmark/, "인기 영상 분석"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
 const cmdName = (c) => { const hit = CMDNAME.find(([re]) => re.test(c || "")); return hit ? hit[1] + (/--market (\w+)/.exec(c) ? " " + /--market (\w+)/.exec(c)[1] : "") : "목표: " + (c || "").slice(0, 30); };
@@ -305,16 +310,106 @@ function viewTeam() {
     <div class="bar ${t.avg != null && t.avg < 6.5 ? "bad" : ""}"><i style="width:${(t.avg || 0) * 10}%"></i></div>
     <div class="chips">${t.tools.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}${t.skills.map((x) => `<span class="pill accent">⚡${esc(x)}</span>`).join("")}</div>
     ${t.last_feedback ? `<div class="note">💬 ${esc(t.last_feedback)}</div>` : ""}</div>`).join("")}
-  <div class="section-title"><h2>⚙️ 자동 파이프라인</h2><button data-open="newpipe">＋ 만들기</button></div>
+  <div class="btns"><button class="btn ghost" data-cmd="agent upgrade" data-label="팀 업그레이드">🧬 팀 업그레이드</button>
+    <button class="btn" data-open="newagent">＋ 새 팀 만들기</button></div>`;
+}
+
+/* ───────── 화면: 영상 제작 ───────── */
+function viewMake() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  const S = D.studio || {}, av = S.ai_video || {}, L = S.last;
+  const chip = (ok, on, off, open) => `<span class="pill ${ok ? "ok" : "candidate"} ${!ok && open ? "tap" : ""}" ${!ok && open ? `data-open="${open}"` : ""}>${ok ? "✓ " + on : "✗ " + off}</span>`;
+  const li = L ? (D.commands || []).findIndex((c) => c.ts === L.ts) : -1;
+  return `<h1 class="page">🎬 영상 제작</h1><p class="sub">${esc(S.channel || "")} · 매일 아침 ${S.per_day || 1}개 자동 제작</p>
+  <div class="card"><div class="t">준비 상태</div><div class="chips">
+    ${chip(S.new_channel, "새 채널 연결됨", "새 채널 미연결 → 비공개로 올림", "newchan")}
+    ${chip(S.music, "배경음악", "배경음악 없음(효과음만)", "music")}
+    ${chip(av.on, `AI 영상 ${usd(av.spent)}/${usd(av.budget)}`, "AI 영상 꺼짐")}
+    ${chip(S.ai_images, "AI 이미지", "AI 이미지 꺼짐")}</div>
+    ${S.concept ? `<div class="note">🧪 ${esc(S.concept)}</div>` : ""}</div>
+  <div class="section-title"><h2>지금 만들기</h2></div>
+  <div class="card"><div class="field" style="margin-top:0"><label>주제 (비우면 AI가 인기 영상 분석해서 골라요)</label>
+    <input id="vTopic" maxlength="120" placeholder="예: AI한테 내 하루 일정 짜달라 했더니"></div>
+    <div class="btns"><button class="btn ghost" id="vTest">🔒 테스트</button><button class="btn" id="vMake">🚀 만들기</button></div>
+    <div class="m" style="margin-top:8px">대본 → 훅 채점 → 표지 문구 → 영상·음악·자막 → 업로드 · 약 5분 · 끝나면 ‘영상확인’에 떠요</div></div>
+  <div class="quick" style="margin-top:10px">
+    <button class="qbtn" data-cmd="benchmark" data-label="인기 영상 분석"><span class="ico">📈</span>인기 영상 분석</button>
+    <button class="qbtn" data-go="#videos"><span class="ico">▶️</span>영상 확인</button>
+    <button class="qbtn" data-open="music"><span class="ico">🎵</span>음악 등록</button></div>
+  ${L ? `<div class="section-title"><h2>최근 제작 결과</h2></div><div class="card">${li >= 0 ? cmdRow(L, li)
+    : `<div class="row"><span class="dot ${L.ok ? "" : "bad"}"></span><div class="grow"><div class="t">${esc(cmdName(L.cmd))}</div><div class="m">${ago(L.ts)}</div></div></div>`}</div>` : ""}
+  <div class="section-title"><h2>대기 중인 대본 ${S.queue_total || 0}개</h2></div>
+  ${(S.queue || []).length ? `<div class="card">${S.queue.map((x) => `<div class="row"><div class="score" style="color:${x.score < 50 ? "var(--warn)" : "var(--ok)"}">${x.score}</div>
+      <div class="grow"><div class="t">${esc(x.title)}</div><div class="m clamp2">🎣 ${esc(x.hook)} · ${x.lines}문장</div></div>
+      <button class="btn small ghost" data-cmd="shorts --skip ${esc(x.id)}" data-label="대본 빼기">빼기</button></div>`).join("")}
+    <div class="note">숫자 = 훅 점수 · 50점 미만은 AI가 고쳐 쓰고 만들어요 · 최신 대본부터 제작</div></div>`
+    : empty("📝", "대기 중인 대본이 없어요", "만들기를 누르면 AI가 대본부터 써요")}`;
+}
+
+/* ───────── 화면: 영상 확인 ───────── */
+function viewVideos() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  const V = D.videos || [], views = V.reduce((a, v) => a + v.views, 0);
+  const best = V.slice().sort((a, b) => b.views - a.views)[0];
+  const yid = (v) => encodeURIComponent(v.id);
+  return `<h1 class="page">▶️ 영상 확인</h1><p class="sub">누르면 유튜브 앱에서 열려요 · 조회수는 매일 아침 갱신</p>
+  <div class="kpis"><div class="card kpi"><div class="lbl">🎞️ 올린 영상</div><div class="num">${V.length}</div></div>
+    <div class="card kpi"><div class="lbl">👀 총 조회수</div><div class="num">${views.toLocaleString()}</div></div></div>
+  ${best && best.views ? `<div class="card" style="margin-top:10px"><div class="m">🏆 최고 조회</div><div class="t">${esc(best.title)} · ${best.views.toLocaleString()}회</div></div>` : ""}
+  ${V.length ? `<div class="vgrid">${V.map((v) => `<a class="vcard" href="https://youtube.com/shorts/${yid(v)}" target="_blank" rel="noopener noreferrer">
+      <div class="thumb"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/${yid(v)}/oardefault.jpg" data-fb="https://i.ytimg.com/vi/${yid(v)}/hqdefault.jpg">
+      ${v.private ? '<span class="badge">🔒 비공개</span>' : ""}<span class="views">▶ ${v.views.toLocaleString()}</span></div>
+      <div class="t clamp2">${esc(v.title)}</div><div class="m">❤ ${v.likes}${v.date ? " · " + esc(v.date.slice(5)) : ""}${v.channel === "new" ? " · F ai-LAB" : ""}</div></a>`).join("")}</div>`
+    : empty("🎞️", "아직 올린 영상이 없어요", "영상제작에서 만들기를 눌러보세요", { attr: 'data-go="#make"', label: "🎬 영상 만들러 가기" })}
+  <div class="btns"><a class="btn ghost" href="https://studio.youtube.com/" target="_blank" rel="noopener">📊 유튜브 스튜디오</a></div>`;
+}
+
+/* ───────── 화면: 파이프라인 (영상 외 자동화) ───────── */
+function viewPipes() {
+  if (D.empty) return `<div class="skeleton"></div>`;
+  return `<h1 class="page">⚙️ 파이프라인</h1><p class="sub">영상 말고 다른 자동화 · 하고 싶은 일을 말하면 팀·스킬·일정까지 자동으로</p>
+  <div class="quick">
+    <button class="qbtn" data-cmd="daily" data-label="일일 자동운영"><span class="ico">⚙️</span>일일 자동운영</button>
+    <button class="qbtn" data-cmd="blog" data-label="블로그 글"><span class="ico">📝</span>블로그 글</button>
+    <button class="qbtn" data-cmd="news" data-label="정보 수집"><span class="ico">📰</span>트렌드 수집</button>
+    <button class="qbtn" data-open="scout"><span class="ico">🔎</span>사업 발굴</button>
+    <button class="qbtn" data-cmd="biz review" data-label="ROI 리뷰"><span class="ico">📊</span>ROI 리뷰</button>
+    <button class="qbtn" data-open="addsite"><span class="ico">🌐</span>사이트 추가</button></div>
+  ${(D.channels || []).length ? `<div class="section-title"><h2>올리는 곳</h2></div><div class="card">${D.channels.map((c) => `<div class="row">
+    <span class="dot ${c.ready ? "" : "warn"}"></span><div class="grow"><div class="t">${esc(c.name)}</div><div class="m">${c.ready ? "자동 업로드 중" : esc(c.need || "")}</div></div></div>`).join("")}</div>` : ""}
+  <div class="section-title"><h2>내 파이프라인</h2><button data-open="newpipe">＋ 만들기</button></div>
   ${(D.pipelines || []).length ? D.pipelines.map((pp) => `<div class="card"><div class="row"><div class="grow">
       <div class="t">${esc(pp.title)}</div><div class="m">${{ daily: "매일", weekly: "매주 월", manual: "수동" }[pp.schedule] || ""} · ${pp.steps.length}단계 · 실행 ${pp.runs}회${pp.enabled ? "" : " · 꺼짐"}</div>
       ${pp.viability ? `<div class="m">🧪 ${pp.viability.pass ? "생존" : "탈락"} · 흑자 확률 ${Math.round(pp.viability.sim.p_profit * 100)}%</div>` : ""}</div>
       <button class="btn small" data-cmd="pipeline run ${esc(pp.name)}" data-label="${esc(pp.title)}">▶ 실행</button></div>
       <div class="chips">${pp.steps.map((st) => `<span class="pill">${esc(st.command || st.agent)}</span>`).join("")}${(pp.skills_equipped || []).map((k) => `<span class="pill accent">⚡${esc(k.split("←")[1] || k)}</span>`).join("")}</div></div>`).join("")
-    : empty("⚙️", "아직 파이프라인이 없어요", "하고 싶은 일을 말하면 팀·스킬·일정까지 알아서 만들어요", { attr: 'data-open="newpipe"', label: "＋ 파이프라인 만들기" })}
-  <div class="btns"><button class="btn ghost" data-cmd="agent upgrade" data-label="팀 업그레이드">🧬 팀 업그레이드</button>
-    <button class="btn" data-open="newagent">＋ 새 팀 만들기</button></div>`;
+    : empty("⚙️", "아직 파이프라인이 없어요", "하고 싶은 일을 말하면 팀·스킬·일정까지 알아서 만들어요", { attr: 'data-open="newpipe"', label: "＋ 파이프라인 만들기" })}`;
 }
+
+/* ───────── 화면: 더보기 ───────── */
+function viewMore() {
+  const item = (attr, ico, t, m) => `<div class="row tap" ${attr}><div class="score" style="font-size:20px">${ico}</div>
+    <div class="grow"><div class="t">${t}</div><div class="m">${m}</div></div><span class="m">›</span></div>`;
+  return `<h1 class="page">더보기</h1><div class="card">
+    ${item('data-go="#biz"', "💼", "사업", "발굴 · 생존 테스트 · ROI")}
+    ${item('data-go="#team"', "🧠", "팀", "에이전트 점수 · 자동 업그레이드")}
+    ${item('data-go="#ai"', "🤖", "AI", "연결된 AI · 모델 점수 · AI 대결")}
+    ${item('data-go="#reports"', "📄", "보고서", "매일 쌓이는 결과물")}</div>
+  <div class="card">
+    ${item('data-open="keys"', "🔑", "키 도우미", "API 키 이름 복사 · 발급 링크")}
+    ${item('data-open="google"', "🔗", "구글 연결", "유튜브 · 블로그 1회 연결")}
+    ${item('data-open="settings"', "⚙️", "설정", "토큰 · 테마")}</div>`;
+}
+const newChanSheet = () => `<h3>📺 새 채널 F ai-LAB 연결</h3><ol class="steps-ol">
+  <li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel_switcher">유튜브 채널 전환</a> → <b>채널 만들기</b> → 이름 <b>F ai-LAB</b></li>
+  <li>PC에서 <b>C:\\link\\tools\\google_login\\google_login_youtube.bat</b> 더블클릭</li>
+  <li>브라우저에서 <b>F ai-LAB</b> 선택 → 허용 → 끝 (다음 제작부터 새 채널에 공개)</li></ol>
+  <p class="sub">연결 전엔 기존 채널에 비공개로만 올라가요</p>`;
+const musicSheet = () => `<h3>🎵 배경음악·효과음 등록</h3><ol class="steps-ol">
+  <li><a target="_blank" rel="noopener" href="https://studio.youtube.com/">유튜브 스튜디오</a> → 오디오 보관함 → <b>저작자 표시 필요 없음</b> 필터</li>
+  <li>음악 10곡 → <b>C:\\link\\audio_src\\music</b>, 효과음 → <b>audio_src\\sfx</b> (이름에 whoosh·pop·ding 있으면 자리 맞춰 들어가요)</li>
+  <li>PC에서 <b>C:\\link\\tools\\audio_pack\\audio_pack.bat</b> 더블클릭 → 자동 암호화·업로드</li></ol>
+  <p class="sub">공개 저장소라 원본은 암호화해서 올려요 · 지금은 합성 효과음만 들어가요</p>`;
 
 /* ───────── 화면: AI ───────── */
 function viewAI() {
@@ -482,15 +577,17 @@ const provSheet = (id) => {
 /* ───────── 라우터 & 이벤트 ───────── */
 function render() {
   const hash = location.hash || "#home";
-  document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", hash.startsWith("#" + a.dataset.tab) || (hash.startsWith("#report=") && a.dataset.tab === "reports")));
+  const tab = /^#(biz|team|ai|report)/.test(hash) ? "more" : hash.slice(1);
+  document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", tab === a.dataset.tab));
   if (!D) { $("#view").innerHTML = `<div class="skeleton"></div><div class="skeleton"></div>`; return; }
   if (hash.startsWith("#report=")) return viewReport(decodeURIComponent(hash.slice(8)));
   const quick = { "#cmd": commandSheet, "#google": googleSheet, "#keys": keysSheet };  // 홈 화면 아이콘 바로가기
   if (quick[hash]) { history.replaceState(null, "", "#home"); $("#view").innerHTML = `<div class="view-enter">${viewHome()}</div>`; return openSheet(quick[hash]()); }
-  const v = { "#home": viewHome, "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
+  const v = { "#home": viewHome, "#make": viewMake, "#videos": viewVideos, "#pipes": viewPipes, "#more": viewMore,
+    "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
-const SHEETS = { newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+const SHEETS = { newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
   const el = e.target.closest("[data-go],[data-cmd],[data-open],[data-idea],[data-cmdlog],[data-errlog],[data-filter],[data-fill],[data-fill2],[data-copy],[data-prov],[data-close],[data-v]");
@@ -528,6 +625,10 @@ document.addEventListener("click", async (e) => {
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
   }
+  if (id === "vTest" || id === "vMake") {
+    const t = $("#vTopic").value.trim();
+    dispatch(`shorts${id === "vTest" ? " --private" : ""}${t ? " --topic " + q(t) : ""}`, "", id === "vTest" ? "영상 테스트 제작" : "영상 제작");
+  }
   if (id === "pipeBtn") {
     const d = $("#pipeDesc").value.trim(); if (!d) return toast("하고 싶은 자동화를 적어 주세요");
     dispatch(`pipeline new ${q(d)}`, "", "파이프라인 만들기");
@@ -555,6 +656,10 @@ document.addEventListener("click", async (e) => {
   }
   if (id === "tokDel") { store.set("gh_token", ""); toast("토큰을 삭제했어요"); closeSheet(); }
 });
+document.addEventListener("error", (e) => { const t = e.target; if (t.tagName !== "IMG" || !t.closest(".thumb")) return;
+  if (t.dataset.fb) { t.src = t.dataset.fb; delete t.dataset.fb; } else t.remove(); }, true);
+document.addEventListener("load", (e) => { const t = e.target;  // 유튜브의 '썸네일 없음' 회색 그림(120px)도 대체
+  if (t.tagName === "IMG" && t.closest(".thumb") && t.naturalWidth <= 120) t.dispatchEvent(new Event("error")); }, true);
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
 $("#fab").onclick = () => openSheet(commandSheet());
 $("#settingsBtn").onclick = () => openSheet(settingsSheet());

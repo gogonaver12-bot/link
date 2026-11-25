@@ -50,7 +50,10 @@ def upload(path, private):
     r = yt().videos().insert(part="snippet,status", body=body,
                              media_body=MediaFileUpload(path, resumable=True)).execute()
     log = json.loads(LOG.read_text()) if LOG.exists() else []
-    log.append({"id": r["id"], "file": Path(path).name, "title": meta["title"]})
+    from datetime import date
+    log.append({"id": r["id"], "file": Path(path).name, "title": meta["title"], "date": date.today().isoformat(),
+                "private": bool(private), "channel": "new" if os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") else "old",
+                "cover": meta.get("cover", ""), "duration": meta.get("duration")})
     LOG.write_text(json.dumps(log, ensure_ascii=False, indent=2))
     print(f"✅ https://youtube.com/shorts/{r['id']}")
 

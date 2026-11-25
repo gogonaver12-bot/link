@@ -168,7 +168,7 @@ def main():
             "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", out]
     sh(cmd)
     meta = {"title": s["title"], "description": s.get("description", ""), "tags": s.get("tags", []),
-            "duration": round(total, 1), "file": out.name}
+            "duration": round(total, 1), "file": out.name, "cover": s.get("cover", "")}
     out.with_suffix(".json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"✅ {out} ({total:.1f}초)")
 
