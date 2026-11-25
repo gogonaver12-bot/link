@@ -88,6 +88,7 @@ viability:
   days: 90
   runs: 2000               # 시뮬레이션 반복 횟수
   max_ais: 3               # 경쟁시킬 AI 수 (회사별 1개: 중립·비관·낙관)
+  upgrade_rounds: 2        # 탈락하면 원인 진단 → 개선안 → 재테스트 (최대 N번)
 
 # ── 숏츠 품질 ──
 shorts:

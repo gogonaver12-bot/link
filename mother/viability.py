@@ -35,7 +35,8 @@ COMP = {"low": 1.15, "mid": 0.85, "high": 0.55}
 
 
 def _cfg():
-    return {"min_p_profit": 0.4, "min_roi_p50": 0.3, "days": 90, "runs": 2000, "max_ais": 3, **store.cfg().get("viability", {})}
+    return {"min_p_profit": 0.4, "min_roi_p50": 0.3, "days": 90, "runs": 2000, "max_ais": 3, "upgrade_rounds": 2,
+            **store.cfg().get("viability", {})}
 
 
 # ───────────────────────── 1. 인터넷 조사 ─────────────────────────
@@ -169,10 +170,101 @@ def test(subject, seed=0):
             "estimates": [{k: e.get(k) for k in ("model", "role", "price_usd", "conv_rate_pct", "visitors_low", "visitors_high")} for e in ests]}
 
 
+# ───────────────────────── 5. 탈락 → 원인 진단 → 개선안 → 재테스트 ─────────────────────────
+FIX = {
+    "type": "object", "additionalProperties": False, "required": ["title", "model", "platform", "market", "changes", "why"],
+    "properties": {
+        "title": {"type": "string", "description": "개선된 사업을 한 줄로"},
+        "model": {"type": "string", "description": "수익 모델: 무엇을 얼마에 어떻게 파는지"},
+        "platform": {"type": "string"}, "market": {"type": "string", "description": "KR/US/JP/GLOBAL 등"},
+        "changes": {"type": "array", "items": {"type": "string"}, "description": "무엇을 바꿨는지(숫자 포함)"},
+        "why": {"type": "string", "description": "이 변경이 탈락 원인을 어떻게 고치는지"},
+    },
+}
+
+
+def diagnose(res):
+    """탈락 원인을 숫자로: 어떤 변수가 발목을 잡았는지."""
+    p, s, out = res["params"], res["sim"], []
+    if p["conv_rate_pct"] < 100 and p["price_usd"] < 5:
+        out.append(f"가격 ${p['price_usd']:.2f} — 너무 낮아 팔아도 남는 게 없음")
+    if p["conv_rate_pct"] >= 100 and p["price_usd"] < 2:
+        out.append(f"광고 수익 1천회당 ${p['price_usd']:.2f} — 조회수로 돈 벌기 어려운 구조")
+    if 0 < p["conv_rate_pct"] < 1:
+        out.append(f"전환율 {p['conv_rate_pct']:.2f}% — 방문자가 거의 안 삼")
+    if p["visitors_high"] < 100:
+        out.append(f"하루 유입 {p['visitors_low']:.0f}~{p['visitors_high']:.0f}명 — 유입 경로가 약함")
+    if p["setup_cost_usd"] + p["monthly_cost_usd"] * 3 > max(s["rev_p50"], 1):
+        out.append(f"비용(초기 ${p['setup_cost_usd']:.0f} + 월 ${p['monthly_cost_usd']:.0f})이 예상 매출 ${s['rev_p50']:.0f}보다 큼")
+    if p["competition"] == "high":
+        out.append("경쟁 심함 — 틈새(나라·언어·대상) 필요")
+    if p["ramp_days"] > 45:
+        out.append(f"자리 잡는 데 {p['ramp_days']:.0f}일 — 90일 안에 회수 어려움")
+    if p.get("disagreement", 0) > 1:
+        out.append("AI끼리 의견 차이 큼 — 근거(가격·판매량) 부족")
+    return out or ["매출 규모 자체가 작음"]
+
+
+def improve(subject, res, tried):
+    lessons = (store.DATA / "lessons.md").read_text(encoding="utf-8")[-1200:] if (store.DATA / "lessons.md").exists() else "없음"
+    prompt = (f"생존 테스트(인터넷 조사 → AI 경쟁 추정 → 2,000번 시뮬레이션)에서 탈락한 사업: {subject}\n"
+              f"결과: {res['why']}\n탈락 원인(숫자): {'; '.join(diagnose(res))}\n"
+              f"위험: {', '.join(res['params'].get('risks', [])[:4])}\n근거: {' / '.join(res['params'].get('evidence', [])[:4])}\n"
+              f"이미 해본 개선(반복 금지): {'; '.join(tried) or '없음'}\n과거 실패 교훈:\n{lessons}\n\n"
+              "탈락 원인을 직접 고친 개선안 1개: 가격·판매 방식(단건→구독/번들/B2B)·타깃 나라와 언어·플랫폼·비용 중 숫자가 바뀌게. "
+              "1인+AI가 바로 실행 가능하고 합법·약관 준수, 과장 금지.")
+    return llm.ask_json("worker", "너는 탈락한 사업을 살리는 사업 개선 컨설턴트다. 원인을 정확히 고친다.", prompt, FIX, agent="biz_fixer")
+
+
+def _better(a, b):
+    key = lambda r: (r["pass"], r["sim"]["p_profit"], r["sim"]["roi_p50"])
+    return key(a) > key(b)
+
+
+def _subject(i):
+    return f"{i['title']} ({i.get('market')}/{i.get('platform')}, {i.get('model')})"
+
+
+def upgrade_loop(subject_of, item, res, seed, rounds=None):
+    """탈락하면 진단→개선안→재테스트를 rounds번. 더 나은 버전은 채택해서 그 버전에서 다시 개선.
+    반환: (최종 결과, 시도 기록). item 은 제자리에서 바뀜(title·model·platform·market)."""
+    rounds = _cfg()["upgrade_rounds"] if rounds is None else rounds
+    tried, log = [], []
+    for k in range(rounds):
+        if res["pass"]:
+            break
+        try:
+            fix = improve(subject_of(item), res, tried)
+        except llm.BudgetExceeded:
+            raise
+        except Exception as e:
+            log.append({"date": store.today(), "error": str(e)[:120]})
+            break
+        cand = {**item, **{f: fix[f] for f in ("title", "model", "platform", "market") if fix.get(f)}}
+        r2 = test(subject_of(cand), seed=seed + k + 1)
+        adopt = _better(r2, res)
+        log.append({"date": store.today(), "round": k + 1, "title": fix["title"], "changes": fix["changes"][:5], "fix_why": fix["why"],
+                    "diagnosis": diagnose(res), "result": r2["why"], "pass": r2["pass"], "adopted": adopt})
+        tried.append(f"{fix['title']} → {r2['why']}")
+        if adopt:
+            item.update({f: cand[f] for f in ("title", "model", "platform", "market") if f in cand})
+            item["version"] = item.get("version", 1) + 1
+            res = r2
+    return res, log
+
+
 def test_idea(idea_id, kill=True):
     ideas = store.load_json("ideas.json", [])
     idea = next(i for i in ideas if i["id"] == idea_id)
-    res = test(f"{idea['title']} ({idea.get('market')}/{idea.get('platform')}, {idea.get('model')})", seed=zlib.crc32(idea_id.encode()))
+    seed = zlib.crc32(idea_id.encode())
+    before = idea["title"]
+    res = test(_subject(idea), seed=seed)
+    if not res["pass"] and kill and idea["status"] in ("active", "candidate"):
+        res, log = upgrade_loop(_subject, idea, res, seed)
+        idea.setdefault("upgrades", []).extend(log)
+        if res["pass"]:
+            with (store.DATA / "lessons.md").open("a", encoding="utf-8") as f:
+                f.write(f"- {store.today()} 개선으로 생존: {before} → {idea['title']} ({res['why']})\n")
     idea["viability"] = res
     store.append_jsonl("estimates.jsonl", {"date": store.today(), "id": idea_id, "rev30_p50": res["sim"]["rev30_p50"],
                                            "estimates": res["estimates"]})
@@ -180,20 +272,39 @@ def test_idea(idea_id, kill=True):
         idea["status"] = "killed"
         idea["killed_by"] = "생존 테스트"
         with (store.DATA / "lessons.md").open("a", encoding="utf-8") as f:
-            f.write(f"- {store.today()} {idea['title']}({idea.get('market')}): 시뮬레이션 탈락 — {res['why']}; 위험: {', '.join(res['params']['risks'][:2])}\n")
+            f.write(f"- {store.today()} {idea['title']}({idea.get('market')}): 개선 {len(idea.get('upgrades', []))}회 후에도 탈락 — {res['why']}; "
+                    f"원인: {', '.join(diagnose(res)[:2])}\n")
     store.save_json("ideas.json", ideas)
     return idea, res
 
 
-def test_pipeline(name):
+def test_pipeline(name, upgrade=True):
     from . import pipelines
     p = pipelines.load(name)
-    res = test(f"자동화 파이프라인: {p['title']} — {p.get('description', '')} / 단계: "
-               + ", ".join(s.get("command") or s.get("agent") for s in p["steps"]), seed=zlib.crc32(name.encode()))
+    seed = zlib.crc32(name.encode())
+    subj = lambda x: (f"자동화 파이프라인: {x['title']} — {x.get('description', '')} / 수익 모델: {x.get('model', '')} / 단계: "
+                      + ", ".join(s.get("command") or s.get("agent") for s in p["steps"]))
+    res = test(subj(p), seed=seed)
+    if not res["pass"] and upgrade:  # 탈락 → 개선안으로 재테스트 → 통과하면 그 설계로 새 파이프라인을 만들어 교체
+        item = {"title": p["title"], "description": p.get("description", ""), "model": "", "platform": "", "market": ""}
+        res2, log = upgrade_loop(lambda x: f"자동화 파이프라인: {x['title']} — {x.get('description', '')} / 수익 모델: {x.get('model')} "
+                                           f"/ 플랫폼: {x.get('platform')} / 시장: {x.get('market')}", item, res, seed)
+        p.setdefault("upgrades", []).extend(log)
+        if res2["pass"]:
+            new = pipelines.create(f"{item['title']} — {item['model']} (플랫폼 {item['platform']}, 시장 {item['market']}). "
+                                   f"개선점: {'; '.join(log[-1].get('changes', []))}", test=False)
+            new["viability"] = {k: res2[k] for k in ("date", "pass", "why", "sim")}
+            new["upgraded_from"] = p["name"]
+            pipelines.save(new)
+            p["enabled"] = False
+            p["disabled_reason"] = f"업그레이드됨 → {new['title']}"
+            p["viability"] = {k: res[k] for k in ("date", "pass", "why", "sim")}
+            pipelines.save(p)
+            return new, res2
     p["viability"] = {k: res[k] for k in ("date", "pass", "why", "sim")}
     if not res["pass"]:
         p["enabled"] = False
-        p["disabled_reason"] = "생존 테스트 탈락: " + res["why"]
+        p["disabled_reason"] = "생존 테스트 탈락(개선 후에도): " + res["why"]
     pipelines.save(p)
     return p, res
 

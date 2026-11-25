@@ -65,7 +65,7 @@ def allowed(cmd):
     return any(cmd.strip().startswith(k) for k in COMMANDS)
 
 
-def create(description):
+def create(description, test=True):
     team = "\n".join(f"- {n}: {s.get('title', '')}" for n, s in agents.all_agents().items())
     spec = llm.ask_json(
         "mother", "너는 AI 회사의 자동화 설계자다. 사람 손이 가지 않는 반복 파이프라인을 최소 단계로 설계한다. "
@@ -99,7 +99,9 @@ def create(description):
     pipe = {"name": spec["name"], "title": spec["title"], "description": description, "schedule": spec["schedule"],
             "enabled": True, "created": store.today(), "steps": steps, "agents_created": made, "skills_equipped": equipped, "runs": []}
     save(pipe)
-    try:  # 만들자마자 생존 테스트 → 탈락하면 꺼둠
+    if not test:
+        return pipe
+    try:  # 만들자마자 생존 테스트 → 탈락하면 개선 시도 → 그래도 탈락하면 꺼둠
         from . import viability
         pipe, _ = viability.test_pipeline(pipe["name"])
     except llm.BudgetExceeded:

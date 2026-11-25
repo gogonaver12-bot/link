@@ -6,6 +6,11 @@ import sys
 from . import agents, business, llm, mother, providers, store, tools
 
 
+def _ROUNDS():
+    from .viability import _cfg
+    return _cfg()["upgrade_rounds"]
+
+
 def p(*a):
     print(*(store.redact(x) for x in a), flush=True)
 
@@ -289,7 +294,15 @@ def main(argv=None):
             if x.target == "pipeline":
                 _, r = viability.test_pipeline(x.name)
             else:
-                _, r = viability.test_idea(x.target)
+                ideas = store.load_json("ideas.json", [])
+                for i in ideas:  # 탈락한 사업을 직접 테스트하면 '살리기' 시도: 후보로 되돌리고 개선 루프부터
+                    if i["id"] == x.target and i["status"] == "killed":
+                        i["status"], i["killed_by"] = "candidate", None
+                        store.save_json("ideas.json", ideas)
+                idea, r = viability.test_idea(x.target)
+                for u in idea.get("upgrades", [])[-_ROUNDS():]:
+                    if u.get("title"):
+                        p(f"🔧 개선 {u['round']}차: {u['title']} → {'생존' if u['pass'] else '채택' if u['adopted'] else '버림'} ({u['result']})")
             sm = r["sim"]
             p(f"{'✅ 생존' if r['pass'] else '❌ 탈락'} — {r['why']}\n90일 매출 P10/P50/P90: ${sm['rev_p10']}/${sm['rev_p50']}/${sm['rev_p90']} · 손익분기 {sm['breakeven_p50']}일"
               + "\n" + "\n".join(f"- {e['role']} {e['model']}: 가격 ${e['price_usd']} 전환 {e['conv_rate_pct']}% 하루 {e['visitors_low']}~{e['visitors_high']}" for e in r["estimates"]))

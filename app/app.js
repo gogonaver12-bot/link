@@ -222,7 +222,7 @@ function viewHome() {
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
 const CMDNAME = [[/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
-  [/^benchmark/, "인기 영상 분석"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
+  [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
 const cmdName = (c) => { const hit = CMDNAME.find(([re]) => re.test(c || "")); return hit ? hit[1] + (/--market (\w+)/.exec(c) ? " " + /--market (\w+)/.exec(c)[1] : "") : "목표: " + (c || "").slice(0, 30); };
@@ -266,7 +266,15 @@ function viaBox(i) {
     ${(v.estimates || []).length ? `<div class="note"><b>AI 경쟁 추정</b>${v.estimates.map((e) => `<div>· ${esc(e.role)} <span class="m">${esc(e.model)}</span> — 가격 ${usd(e.price_usd)}, 전환 ${esc(e.conv_rate_pct)}%, 하루 ${esc(e.visitors_low)}~${esc(e.visitors_high)}명</div>`).join("")}</div>` : ""}
     ${(v.risks || []).length ? `<div class="note"><b>위험</b> ${v.risks.map(esc).join(" · ")}</div>` : ""}
     ${(v.evidence || []).length ? `<div class="note md"><b>근거</b>${md(v.evidence.map((x) => "- " + x).join("\n"))}</div>` : ""}
-    <button class="btn ghost small" style="margin-top:10px" data-cmd="test ${esc(i.id)}" data-label="생존 테스트">🔁 다시 테스트</button></div></div>`;
+    <button class="btn ghost small" style="margin-top:10px" data-cmd="test ${esc(i.id)}" data-label="생존 테스트">${i.status === "killed" ? "🩺 개선해서 살리기" : "🔁 다시 테스트"}</button></div></div>`;
+}
+function upBox(ups, ver) {  // 탈락 → 진단 → 개선안 → 재테스트 기록
+  if (!(ups || []).length) return "";
+  return `<div class="field"><label>🔧 자동 개선 기록${ver > 1 ? " · 지금 v" + ver : ""}</label><div class="card">${ups.map((u) => u.error
+    ? `<div class="m">⚠️ 개선안 만들기 실패: ${esc(u.error)}</div>`
+    : `<div class="row" style="align-items:flex-start"><span class="pill ${u.pass ? "ok" : u.adopted ? "candidate" : "bad"}">${u.round}차 ${u.pass ? "생존" : u.adopted ? "채택" : "버림"}</span>
+      <div class="grow"><div class="t wrap">${esc(u.title)}</div><div class="m wrap">🩺 ${esc((u.diagnosis || []).join(" · "))}</div>
+      <div class="m wrap">🔧 ${esc((u.changes || []).join(" · "))}</div><div class="m wrap">📊 ${esc(u.result)}</div></div></div>`).join("")}</div></div>`;
 }
 function productBox(i) {
   const pr = i.product;
@@ -293,6 +301,7 @@ function ideaSheet(id) {
     `<div class="crit"><span>${CRIT[k] || esc(k)}</span><div class="bar"><i style="width:${Math.max(0, Math.min(100, v))}%"></i></div><b>${v}</b></div>`).join("")}</div>
   <div class="field"><label>근거</label><div class="card md">${md(i.evidence || "")}</div></div>
   ${viaBox(i)}
+  ${upBox(i.upgrades, i.version)}
   ${productBox(i)}
   <div class="btns">${i.status === "candidate" ? `<button class="btn" data-cmd="biz approve ${esc(i.id)}" data-label="사업 승인">✅ 승인하고 시작</button>`
     : `<button class="btn ghost" data-cmd="biz review" data-label="ROI 리뷰">📊 다시 판정</button>`}
@@ -380,7 +389,9 @@ function viewPipes() {
   <div class="section-title"><h2>내 파이프라인</h2><button data-open="newpipe">＋ 만들기</button></div>
   ${(D.pipelines || []).length ? D.pipelines.map((pp) => `<div class="card"><div class="row"><div class="grow">
       <div class="t">${esc(pp.title)}</div><div class="m">${{ daily: "매일", weekly: "매주 월", manual: "수동" }[pp.schedule] || ""} · ${pp.steps.length}단계 · 실행 ${pp.runs}회${pp.enabled ? "" : " · 꺼짐"}</div>
-      ${pp.viability ? `<div class="m">🧪 ${pp.viability.pass ? "생존" : "탈락"} · 흑자 확률 ${Math.round(pp.viability.sim.p_profit * 100)}%</div>` : ""}</div>
+      ${pp.viability ? `<div class="m">🧪 ${pp.viability.pass ? "생존" : "탈락"} · 흑자 확률 ${Math.round(pp.viability.sim.p_profit * 100)}%</div>` : ""}
+      ${pp.upgraded_from ? `<div class="m">🔧 탈락한 파이프라인을 개선해서 만든 새 버전</div>` : ""}
+      ${!pp.enabled && pp.disabled_reason ? `<div class="m">⏸ ${esc(pp.disabled_reason)}</div>` : ""}</div>
       <button class="btn small" data-cmd="pipeline run ${esc(pp.name)}" data-label="${esc(pp.title)}">▶ 실행</button></div>
       <div class="chips">${pp.steps.map((st) => `<span class="pill">${esc(st.command || st.agent)}</span>`).join("")}${(pp.skills_equipped || []).map((k) => `<span class="pill accent">⚡${esc(k.split("←")[1] || k)}</span>`).join("")}</div></div>`).join("")
     : empty("⚙️", "아직 파이프라인이 없어요", "하고 싶은 일을 말하면 팀·스킬·일정까지 알아서 만들어요", { attr: 'data-open="newpipe"', label: "＋ 파이프라인 만들기" })}`;
