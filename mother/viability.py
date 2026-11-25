@@ -82,17 +82,31 @@ def _ask(p, m, system, prompt):
 
 
 def compete(subject, evidence):
-    ests = []
-    for k, (p, m) in enumerate(_estimators()):
-        role, rule = PERSONAS[k % len(PERSONAS)]
-        try:
-            e = _ask(p, m, f"너는 {role}다. {rule} 1인+AI 온라인 사업의 수익 변수를 추정한다.",
-                     f"대상: {subject}\n\n인터넷 조사 결과:\n{evidence}\n\n위 근거로 수익 변수를 추정하라. 근거 없는 낙관 금지.")
-            ests.append({"model": f"{p}:{m}", "role": role, **e})
-        except llm.BudgetExceeded:
-            raise
-        except Exception:
+    """추정 AI를 max_ais개 모을 때까지 후보 전체를 차례로 시도 (무료 AI 사용량 초과·형식 오류면 다음 AI/잠시 후 재시도)."""
+    import time
+    want = _cfg()["max_ais"]
+    pool = _estimators() + [pm for pm in providers.candidates({"tier": "worker", "tools": []})]
+    ests, tried = [], set()
+    for p, m in pool:
+        if len(ests) >= want:
+            break
+        if (p, m) in tried:
             continue
+        tried.add((p, m))
+        role, rule = PERSONAS[len(ests) % len(PERSONAS)]
+        for attempt in range(2):
+            try:
+                e = _ask(p, m, f"너는 {role}다. {rule} 1인+AI 온라인 사업의 수익 변수를 추정한다.",
+                         f"대상: {subject}\n\n인터넷 조사 결과:\n{evidence}\n\n위 근거로 수익 변수를 추정하라. 근거 없는 낙관 금지.")
+                ests.append({"model": f"{p}:{m}", "role": role, **e})
+                break
+            except llm.BudgetExceeded:
+                raise
+            except Exception as ex:
+                if attempt == 0 and ("429" in str(ex) or "rate" in str(ex).lower()):
+                    time.sleep(8)  # 분당 한도 → 잠깐 쉬고 한 번 더
+                    continue
+                break
     return ests
 
 
@@ -225,6 +239,8 @@ def improve(subject, res, tried):
 
 
 def _better(a, b):
+    if a.get("hold"):  # AI 1개짜리 결과는 비교 근거가 안 됨 → 채택 안 함
+        return False
     key = lambda r: (r["pass"], r["sim"]["p_profit"], r["sim"]["roi_p50"])
     return key(a) > key(b)
 

@@ -417,6 +417,7 @@ def test_viability_simulation_competition_and_survival(monkeypatch):
     assert r["pass"] and idea["status"] == "candidate" and idea["title"] == "살린 사업" and idea["version"] == 2
     assert idea["upgrades"][0]["adopted"] and any("유입" in d for d in seen["diag"])
     assert "개선으로 생존" in (store.DATA / "lessons.md").read_text(encoding="utf-8")
+    assert not viability._better({**r, "hold": True}, {**r, "pass": False})  # AI 1개짜리 결과는 채택 안 함
 
 
 def test_claude_out_of_credit_falls_back_to_free_ai(monkeypatch):
