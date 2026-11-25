@@ -8,7 +8,7 @@ def test_repo_data_valid_and_export(tmp_path):
     out, n = fitness.export_all(data, tmp_path)
     assert n == len(data["members"]) >= 1
     md = (tmp_path / f"{data['members'][0]['id']}.md").read_text(encoding="utf-8")
-    assert "주간 루틴" in md and "식단 계획" in md and "?m=" in md
+    assert "PT 이용권" in md and "주간 루틴" in md and "식단 계획" in md and "?m=" in md
     assert (tmp_path / "README.md").exists()
 
 
