@@ -417,7 +417,8 @@ const googleSheet = () => `<h3>🔑 구글 1회 연결 (유튜브·블로그 자
 const KEYS = [
   ["🚀 자동 업로드 (가장 중요 · ROI 0% 해결)", [
     ["GOOGLE_OAUTH_CLIENT_ID", "구글 1회 연결 ①", "#google"], ["GOOGLE_OAUTH_CLIENT_SECRET", "구글 1회 연결 ②", "#google"],
-    ["GOOGLE_OAUTH_REFRESH_TOKEN", "구글 1회 연결 ③", "#google"], ["BLOGGER_BLOG_ID", "blogger.com 내 블로그 주소의 blogID 숫자", "https://www.blogger.com/"]]],
+    ["GOOGLE_OAUTH_REFRESH_TOKEN", "구글 1회 연결 ③", "#google"], ["BLOGGER_BLOG_ID", "blogger.com 내 블로그 주소의 blogID 숫자", "https://www.blogger.com/"],
+    ["YOUTUBE_OAUTH_REFRESH_TOKEN", "새 채널(F ai-LAB) 전용 · PC에서 google_login_youtube.bat 실행하면 자동 저장", "https://www.youtube.com/channel_switcher"]]],
   ["🆓 무료 AI (막히면 자동 전환)", [
     ["GEMINI_API_KEY", "Get API key → Create", "https://aistudio.google.com/apikey"], ["GROQ_API_KEY", "Create API Key", "https://console.groq.com/keys"],
     ["CEREBRAS_API_KEY", "API Keys → Generate", "https://cloud.cerebras.ai/"], ["OPENROUTER_API_KEY", "Create Key (무료 모델만 사용)", "https://openrouter.ai/settings/keys"],
@@ -425,8 +426,7 @@ const KEYS = [
   ["🎬 영상 품질 (무료 · 추천)", [
     ["PEXELS_API_KEY", "고화질 세로 실사 영상 · 무료", "https://www.pexels.com/api/new/"],
     ["PIXABAY_API_KEY", "실사 영상 · 무료 (Pexels 신규 발급 중단 → 이것 추천)", "https://pixabay.com/api/docs/"],
-    ["HF_API_KEY_ID", "힉스필드 API 키 ID · 첫 장면 AI 영상 (API 잔액 $5부터, 웹 구독과 별개)", "https://console.higgsfield.ai/"],
-    ["HF_API_KEY_SECRET", "힉스필드 API 키 비밀값 (발급 때 한 번만 보임)", "https://console.higgsfield.ai/"]]],
+    ["GEMINI_API_KEY", "AI 영상·이미지도 이 키로 만듦 (AI Studio에서 결제 연결해야 영상 가능 · 월 $5 한도)", "https://aistudio.google.com/usage"]]],
   ["⭐ 품질·분석 (선택)", [
     ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑ (CLAUDE_API_KEY 이름도 인식)", "https://console.anthropic.com/settings/keys"],
     ["OPENAI_API_KEY", "ChatGPT · 유료 (CHATGPT_API_KEY 이름도 인식)", "https://platform.openai.com/api-keys"],

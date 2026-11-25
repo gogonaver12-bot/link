@@ -21,8 +21,14 @@ def google_ready():
     return all(os.getenv(k) for k in ("GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN"))
 
 
+def youtube_ready():  # 새 채널(F ai-LAB) 전용 토큰이 있으면 그 채널로 업로드
+    return bool(os.getenv("GOOGLE_OAUTH_CLIENT_ID") and os.getenv("GOOGLE_OAUTH_CLIENT_SECRET")
+                and (os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") or os.getenv("GOOGLE_OAUTH_REFRESH_TOKEN")))
+
+
 def channels():
-    return [{"id": "youtube", "name": "유튜브 숏츠", "ready": google_ready(), "need": "구글 1회 연결"},
+    yt = "새 채널" if os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") else "기존 계정 채널"
+    return [{"id": "youtube", "name": f"유튜브 숏츠 ({yt})", "ready": youtube_ready(), "need": "구글 1회 연결"},
             {"id": "blogger", "name": "블로그(Blogger)", "ready": google_ready() and bool(os.getenv("BLOGGER_BLOG_ID")),
              "need": "구글 1회 연결 + BLOGGER_BLOG_ID"},
             {"id": "kmong", "name": "크몽·Gumroad", "ready": False, "need": "자동 등록 API 없음 → 업로드 키트 준비"}]
@@ -42,7 +48,8 @@ def _cfg():
 def _py(*args):
     sc = store.cfg().get("shorts", {})
     env = {**os.environ, "AI_IMAGES": "1" if sc.get("ai_images", True) else "0",
-           "AI_VIDEO": "1" if sc.get("ai_video", True) else "0", "AI_VIDEO_BUDGET": str(sc.get("ai_video_budget_usd_month", 5))}
+           "AI_VIDEO": "1" if sc.get("ai_video", True) else "0", "AI_VIDEO_BUDGET": str(sc.get("ai_video_budget_usd_month", 5)),
+           "AI_VIDEO_PROVIDER": sc.get("ai_video_provider", "gemini"), "CHANNEL_NAME": sc.get("channel_name", "")}
     r = subprocess.run([sys.executable, *args], cwd=SHORTS, capture_output=True, text=True, timeout=900, env=env)
     return (r.stdout + r.stderr).strip()[-1500:]
 
@@ -53,7 +60,7 @@ def shorts(n=None, private=False):
     if not shutil.which("ffmpeg"):
         return "ffmpeg 없음 → 숏츠 건너뜀"
     log = []
-    if google_ready():
+    if youtube_ready():
         log.append(_py("upload.py", "--stats"))
     log.append(_py("feedback.py", "--n", str(n)))
     from .skillscore import hook_score
@@ -82,12 +89,12 @@ def shorts(n=None, private=False):
         log.append(_py("make_short.py", str(s)))
         mp4 = SHORTS / "out" / f"{s.stem}.mp4"
         uploaded = False
-        if mp4.exists() and google_ready():
+        if mp4.exists() and youtube_ready():
             args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
             res = _py(*args)
             log.append(res)
             uploaded = "youtube.com/shorts/" in res
-        if uploaded or (mp4.exists() and not google_ready()):  # 업로드 실패한 건 다음에 다시 시도
+        if uploaded or (mp4.exists() and not youtube_ready()):  # 업로드 실패한 건 다음에 다시 시도
             done["shorts"].append(s.stem)
             store.save_json("published.json", done)
         made += 1
