@@ -552,3 +552,18 @@ def test_story_series_and_episode(monkeypatch, tmp_path):
     assert story.load("sword-girl")["made"][0]["n"] == 1 and "1화" in out
     text, refs = story._shot_prompt(b, "[mira] grabs the hilt")
     assert "red braid" in text and refs[0].name == "mira.jpg"
+
+
+def test_aiimage_free_fallback(monkeypatch, tmp_path):
+    import sys
+    sys.path.insert(0, str(store.ROOT / "shorts_factory"))
+    import aiimage
+    monkeypatch.setattr(aiimage, "gemini", lambda prompt, refs, out: None)  # Gemini 무료 한도 초과 상황
+    seen = {}
+    def fake(prompt, out, seed=0, w=1080, h=1920):
+        seen["seed"] = seed
+        out.write_bytes(b"\xff\xd8\xff")
+        return out
+    monkeypatch.setattr(aiimage, "pollinations", fake)
+    p = aiimage.generate("a girl pulls a sword", tmp_path, name="s.png", seed=42)
+    assert p.suffix == ".jpg" and p.exists() and seen["seed"] == 42

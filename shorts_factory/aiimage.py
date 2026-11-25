@@ -29,20 +29,20 @@ def model():
     return _model
 
 
-def generate(keyword, cache: Path, refs=None, style=None, name=None):
-    """refs: 같은 인물로 그리기 위한 참조 이미지 경로들(캐릭터 시트). style: 기본 스타일 대신 쓸 문장."""
-    if not os.environ.get("GEMINI_API_KEY"):
+_gemini_down = False  # 이번 실행에서 Gemini 가 막혔으면(무료 한도 429 등) 다시 부르지 않음
+
+
+def gemini(prompt, refs, out):
+    global _gemini_down
+    if _gemini_down or not os.environ.get("GEMINI_API_KEY"):
         return None
-    cache.mkdir(parents=True, exist_ok=True)
-    prompt = f"{keyword}. {style or STYLE}"
-    refs = [Path(r) for r in (refs or []) if Path(r).exists()]
-    key = prompt + "|".join(r.name for r in refs)
-    out = cache / (name or ("ai_" + hashlib.md5(key.encode()).hexdigest()[:12] + ".png"))
-    if out.exists():
-        return out
-    m = model()
+    try:
+        m = model()
+    except Exception:
+        _gemini_down = True
+        return None
     if not m:
-        raise RuntimeError("이미지 생성 모델 없음")
+        return None
     parts = [{"inline_data": {"mime_type": "image/jpeg" if r.suffix.lower() in (".jpg", ".jpeg") else "image/png",
                                 "data": base64.b64encode(r.read_bytes()).decode()}} for r in refs[:3]]
     if parts:
@@ -56,10 +56,53 @@ def generate(keyword, cache: Path, refs=None, style=None, name=None):
             body["generationConfig"] = {"responseModalities": ["IMAGE", "TEXT"]}
             res = _req(f"{BASE}/{m}:generateContent", body)
         else:
-            raise RuntimeError(f"이미지 생성 실패 {e.code}") from e
+            _gemini_down = True
+            print(f"  ⚠️ Gemini 이미지 불가({e.code}) → 무료 이미지 AI(Pollinations)로")
+            return None
     for part in (res.get("candidates") or [{}])[0].get("content", {}).get("parts", []):
         data = (part.get("inlineData") or part.get("inline_data") or {}).get("data")
         if data:
             out.write_bytes(base64.b64decode(data))
             return out
+    return None
+
+
+def pollinations(prompt, out, seed=0, w=1080, h=1920):
+    """무료 이미지 AI (FLUX, 키 없이 사용). POLLINATIONS_TOKEN 이 있으면 로고 없이·더 빠르게."""
+    import time, urllib.parse
+    q = urllib.parse.urlencode({"width": w, "height": h, "seed": seed, "model": "flux", "nologo": "true", "private": "true",
+                                "enhance": "false"})
+    url = f"https://image.pollinations.ai/prompt/{urllib.parse.quote(prompt[:900])}?{q}"
+    tok = os.environ.get("POLLINATIONS_TOKEN")
+    for k in range(3):
+        try:
+            r = urllib.request.Request(url, headers={"User-Agent": "link-shorts/1.0", **({"Authorization": f"Bearer {tok}"} if tok else {})})
+            with urllib.request.urlopen(r, timeout=150) as f:
+                data = f.read()
+            if data[:3] == b"\xff\xd8\xff" or data[:4] == b"\x89PNG":
+                out.write_bytes(data)
+                return out
+        except urllib.error.HTTPError as e:
+            if e.code != 429:
+                return None
+        except Exception:
+            pass
+        time.sleep(16 * (k + 1))  # 무료 등급은 15초에 1장 — 기다렸다 재시도
+    return None
+
+
+def generate(keyword, cache: Path, refs=None, style=None, name=None, seed=None):
+    """refs: 같은 인물로 그리기 위한 참조 이미지(캐릭터 시트). 순서: Gemini(참조 사진으로 같은 얼굴) → Pollinations(무료, 같은 seed)."""
+    cache.mkdir(parents=True, exist_ok=True)
+    prompt = f"{keyword}. {style or STYLE}"
+    refs = [Path(r) for r in (refs or []) if Path(r).exists()]
+    key = prompt + "|".join(r.name for r in refs)
+    out = cache / (name or ("ai_" + hashlib.md5(key.encode()).hexdigest()[:12] + ".png"))
+    if out.exists():
+        return out
+    if gemini(prompt, refs, out):
+        return out
+    if os.environ.get("FREE_IMAGES", "1") == "1":
+        jpg = out.with_suffix(".jpg")
+        return pollinations(prompt, jpg, seed if seed is not None else int(hashlib.md5(key.encode()).hexdigest()[:6], 16))
     return None

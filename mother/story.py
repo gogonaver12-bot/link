@@ -5,6 +5,7 @@ stories/<slug>/bible.json · chars/<id>.jpg(참조 사진, 회차가 바뀌어�
 """
 import json
 import re
+import zlib
 import subprocess
 import sys
 
@@ -94,7 +95,8 @@ def character_sheets(b):
         try:
             png = ai.generate(f"Character reference photo of {c['look']}. Full body and face clearly visible, standing, front view, "
                               f"plain neutral studio background, soft even light. Setting hint: {b.get('setting', '')}",
-                              SHORTS / "assets" / "story" / b["slug"], style=STYLE, name=f"char-{c['id']}.png")
+                              SHORTS / "assets" / "story" / b["slug"], style=STYLE, name=f"char-{c['id']}.png",
+                              seed=zlib.crc32((b["slug"] + c["id"]).encode()) % 100000)
             if png:
                 _jpg(png, d / f"{c['id']}.jpg")
                 out.append(f"🧑 {c['name']} 참조 사진 완료")
@@ -131,7 +133,8 @@ def episode(slug, private=False):
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):
         prompt, refs = _shot_prompt(b, sc.get("shot", ""))
         try:
-            p = ai.generate(prompt, cache, refs=refs, style=STYLE, name=f"ep{n:02d}-{i:02d}.png") if fails < 2 else None
+            p = ai.generate(prompt, cache, refs=refs, style=STYLE, name=f"ep{n:02d}-{i:02d}.png",
+                            seed=zlib.crc32(slug.encode()) % 100000 + i) if fails < 2 else None
         except Exception as e:
             p, fails = None, fails + 1
             if fails == 2:
