@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:58:18+00:00",
+ "updated": "2026-11-25T18:37:28+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1703,47 +1703,47 @@
   {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
    "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T17:50+00:00"
+   "date": "2026-11-25T18:36+00:00"
   }
  ],
  "runs": [
@@ -2060,6 +2060,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T18:37:27+00:00",
+   "cmd": "story next farm-girl-sword --private",
+   "ok": false,
+   "output": "⚠️ 실패: RuntimeError: 대본 JSON을 3번 받아도 형식이 깨짐: Expecting value: line 27 column 14 (char 975) (기록: data/errors.jsonl)"
+  },
+  {
    "ts": "2026-11-25T17:58:17+00:00",
    "cmd": "story new \"시골 소녀가 수백 년간 아무도 뽑지 못한 바위 속 검을 뽑아버린다\" --genre 판타지 --private",
    "ok": true,
@@ -2112,12 +2118,6 @@
    "cmd": "jobs",
    "ok": true,
    "output": "새 작업 없음"
-  },
-  {
-   "ts": "2026-11-25T17:11:05+00:00",
-   "cmd": "ai check",
-   "ok": true,
-   "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기\n유튜브(구글) API 키로 되는 것:\n  ✅ 유튜브 조회(인기·검색): 가능\n  ⚠️ Gemini AI: 오류 403\n  ⚠️ 블로그(Blogger) 읽기: 오류 403\n  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요\n  ⚠️ 블로그 글쓰기: 오류 403"
   }
  ],
  "pipelines": [
@@ -2289,6 +2289,7 @@
    "likes": 0
   }
  ],
+ "previews": [],
  "studio": {
   "channel": "F ai-LAB",
   "concept": "F ai-LAB — AI로 직접 해보는 실험실: 요즘 화제인 AI 툴·기능을 실제로 써보고 결과 공개, AI가 바꾼 생활 꿀팁, 사람 vs AI 대결, 'AI한테 OO 시켜봤더니' 류. 사실만, 과장 금지",
@@ -2449,6 +2450,7 @@
   "PEXELS_API_KEY": false,
   "PIXABAY_API_KEY": false,
   "AUDIO_KEY": false,
+  "POLLINATIONS_TOKEN": false,
   "GH_SEARCH_TOKEN": false
  }
 }
