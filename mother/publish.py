@@ -45,16 +45,26 @@ def _cfg():
 
 
 # ───────────────────────── 유튜브 숏츠 ─────────────────────────
-def _py(*args):
+def _py(*args, extra=None):
     sc = store.cfg().get("shorts", {})
     env = {**os.environ, "AI_IMAGES": "1" if sc.get("ai_images", True) else "0",
            "AI_VIDEO": "1" if sc.get("ai_video", True) else "0", "AI_VIDEO_BUDGET": str(sc.get("ai_video_budget_usd_month", 5)),
-           "AI_VIDEO_PROVIDER": sc.get("ai_video_provider", "gemini"), "CHANNEL_NAME": sc.get("channel_name", "")}
+           "AI_VIDEO_PROVIDER": sc.get("ai_video_provider", "gemini"), "CHANNEL_NAME": sc.get("channel_name", ""), **(extra or {})}
     r = subprocess.run([sys.executable, *args], cwd=SHORTS, capture_output=True, text=True, timeout=900, env=env)
     return (r.stdout + r.stderr).strip()[-1500:]
 
 
-def shorts(n=None, private=False):
+def skip(ids):
+    """대기 대본 빼기(삭제 아님 — 파일은 그대로, 제작만 안 함)."""
+    done = store.load_json("published.json", {"blog": []})
+    sk = done.setdefault("skipped", [])
+    ids = [i.strip() for i in ids.split(",") if i.strip()]
+    sk += [i for i in ids if i not in sk and (SHORTS / "scripts" / f"{i}.json").exists()]
+    store.save_json("published.json", done)
+    return f"대기열에서 뺌: {', '.join(ids)}"
+
+
+def shorts(n=None, private=False, topic=""):
     """대본 생성(성과 반영) → 훅 점수 검사 → 영상 렌더 → 업로드 → 성과 수집."""
     n = n or _cfg().get("shorts_per_day", 1)
     if not shutil.which("ffmpeg"):
@@ -65,13 +75,13 @@ def shorts(n=None, private=False):
         log.append("🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)")
     if youtube_ready():
         log.append(_py("upload.py", "--stats"))
-    log.append(_py("feedback.py", "--n", str(n)))
+    log.append(_py("feedback.py", "--n", str(n), extra={"SHORTS_TOPIC": topic[:200]} if topic else None))
     from .skillscore import hook_score
     done = store.load_json("published.json", {"blog": []})
     done.setdefault("shorts", [])
     made = 0
-    for s in sorted((SHORTS / "scripts").glob("*.json")):
-        if s.stem in done["shorts"]:
+    for s in sorted((SHORTS / "scripts").glob("*.json"), reverse=True):  # 방금 쓴(최신 피드백·주제 반영) 대본부터
+        if s.stem in done["shorts"] or s.stem in done.get("skipped", []):
             continue
         meta = json.loads(s.read_text(encoding="utf-8"))
         score = (hook_score(meta.get("hook", "")) or {}).get("verdict", 0)

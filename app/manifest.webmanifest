@@ -1,7 +1,7 @@
 {
   "name": "JARVIS · LINK",
   "short_name": "JARVIS",
-  "description": "AI 회사 자동 운영 — 사업·팀·AI·보고서를 한눈에",
+  "description": "AI 회사 자동 운영 — 진행률·영상 제작·영상 확인·파이프라인",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -29,57 +29,45 @@
   ],
   "shortcuts": [
     {
+      "name": "🎬 영상 만들기",
+      "short_name": "영상제작",
+      "url": "./#make",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "▶️ 영상 확인",
+      "short_name": "영상확인",
+      "url": "./#videos",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "⚙️ 파이프라인",
+      "short_name": "파이프라인",
+      "url": "./#pipes",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "⚡ 명령 내리기",
       "short_name": "명령",
       "url": "./#cmd",
-      "icons": [
-        {
-          "src": "icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "🔑 구글 연결 (자동 업로드)",
-      "short_name": "구글 연결",
-      "url": "./#google",
-      "icons": [
-        {
-          "src": "icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "🔑 키 발급 도우미",
-      "short_name": "키 발급",
-      "url": "./#keys",
-      "icons": [
-        {
-          "src": "icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "💼 사업 현황",
-      "short_name": "사업",
-      "url": "./#biz",
-      "icons": [
-        {
-          "src": "icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "📄 보고서",
-      "short_name": "보고서",
-      "url": "./#reports",
       "icons": [
         {
           "src": "icon-192.png",
