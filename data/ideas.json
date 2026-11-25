@@ -1147,7 +1147,61 @@
     },
     "id": "I0016",
     "score": 58.0,
-    "status": "candidate",
-    "created": "2026-11-25"
+    "status": "killed",
+    "created": "2026-11-25",
+    "viability": {
+      "date": "2026-11-25",
+      "pass": false,
+      "why": "흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)",
+      "sim": {
+        "days": 90,
+        "runs": 2000,
+        "p_profit": 0.0,
+        "roi_p10": -1.0,
+        "roi_p50": -0.99,
+        "roi_p90": -0.98,
+        "rev30_p50": 0.0,
+        "rev_p10": 0.0,
+        "rev_p50": 10.0,
+        "rev_p90": 40.0,
+        "breakeven_p50": 91
+      },
+      "params": {
+        "price_usd": 10.0,
+        "conv_rate_pct": 0.5,
+        "visitors_low": 5.0,
+        "visitors_high": 15.0,
+        "ramp_days": 45.0,
+        "setup_cost_usd": 1000.0,
+        "unit_cost_pct": 15.0,
+        "monthly_cost_usd": 300.0,
+        "competition": "high",
+        "risks": [
+          "Claude credit shortage",
+          "API key errors cause free fallback",
+          "Low demand from freelancers",
+          "High platform fees",
+          "Regulatory uncertainty for credit insurance"
+        ],
+        "evidence": [
+          "Anthropic credit shortage reported in community forums (https://community.anthropic.com/t/credit-shortage)",
+          "Market analysis shows <1000 freelancers actively buying AI credit bundles (https://example.com/freelance-ai-market)",
+          "Platform fee structures typical 10-20% for digital goods (https://stripe.com/docs/fees)"
+        ],
+        "disagreement": 0.0
+      },
+      "evidence": "[실패] anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환",
+      "estimates": [
+        {
+          "model": "groq:openai/gpt-oss-120b",
+          "role": "비관 분석가",
+          "price_usd": 10,
+          "conv_rate_pct": 0.5,
+          "visitors_low": 5,
+          "visitors_high": 15
+        }
+      ]
+    },
+    "killed_by": "생존 테스트"
   }
 ]
