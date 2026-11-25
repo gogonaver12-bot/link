@@ -43,23 +43,17 @@ def parse(text):
 
 
 def _json(prompt, agent):
-    last = None
-    for k in range(3):  # 형식이 깨지면 다시 요청(두 번째부터는 다른 AI)
-        try:
-            if k == 0:
-                text, used = providers.complete(prompt, system="너는 조회수 높은 AI 실사 숏드라마 작가다. JSON만 출력한다.", agent=agent,
-                                                spec={"tier": "worker", "tools": [], "model": _cfg()["writer"]})
-            else:
-                text, used = providers.complete(prompt + "\n\n반드시 올바른 JSON 객체 하나만 출력(설명·주석·생략 표시 없이).",
-                                                system="JSON만 출력한다.", agent=agent + f"_retry{k}")
-            return parse(text), used
-        except (ValueError, json.JSONDecodeError) as e:
-            last = e
-        except Exception as e:
-            last = e
-            if k == 0:
-                continue
-    raise RuntimeError(f"대본 JSON을 3번 받아도 형식이 깨짐: {last}")
+    """1순위 Fable(설정된 작가) 자유 출력 → 형식이 깨지면 무료 AI 'JSON 모드'(형식 보장)로 다시 받음."""
+    try:
+        text, used = providers.complete(prompt, system="너는 조회수 높은 AI 실사 숏드라마 작가다. JSON만 출력한다.", agent=agent,
+                                        spec={"tier": "worker", "tools": [], "model": _cfg()["writer"]})
+        return parse(text), used
+    except Exception as e:
+        first = e
+    try:
+        return providers.json_complete("너는 조회수 높은 AI 실사 숏드라마 작가다.", prompt, {"type": "object"}, agent=agent + "_json"), "무료 AI(JSON 모드)"
+    except Exception as e:
+        raise RuntimeError(f"대본을 받지 못함: {str(first)[:80]} / {str(e)[:80]}")
 
 
 def slugify(title):
