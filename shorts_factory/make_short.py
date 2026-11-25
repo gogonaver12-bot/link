@@ -97,6 +97,11 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
             else:
                 got = stock.fetch([keywords[i] if i < len(keywords) else "cinematic scene"], ROOT / "assets" / "stock_cache", want=1)
                 clips.append(got[0] if got else None)
+        have = [c for c in clips if c]
+        # 빈 장면은 바로 앞(없으면 뒤) 장면 그림으로 채워 순서 유지 — 한 장이 영상 내내 반복되지 않게
+        for i, c in enumerate(clips):
+            if not c and have:
+                clips[i] = next((clips[j] for j in range(i - 1, -1, -1) if clips[j]), have[0])
         clips = [c for c in clips if c]
         keywords = []
     elif not clips and keywords:

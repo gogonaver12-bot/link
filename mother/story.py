@@ -146,6 +146,7 @@ def episode(slug, private=False):
         '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES, "story_writer")
     scenes = [s for s in ep.get("scenes", []) if s.get("line")][:12]
     ai, imgs, log = _img(), [], [f"🎬 {b['title']} {n}화 '{ep.get('title', '')}' — 장면 {len(scenes)}개 · 작가 {used}"]
+    log += character_sheets(b)  # 지난번에 못 만든 인물 사진이 있으면 이번에 만듦
     cache = SHORTS / "assets" / "story" / slug
     fails = 0
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):

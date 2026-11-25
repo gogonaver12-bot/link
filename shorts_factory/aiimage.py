@@ -74,7 +74,8 @@ def pollinations(prompt, out, seed=0, w=1080, h=1920):
                                 "enhance": "false"})
     url = f"https://image.pollinations.ai/prompt/{urllib.parse.quote(prompt[:900])}?{q}"
     tok = os.environ.get("POLLINATIONS_TOKEN")
-    for k in range(3):
+    for k in range(6):
+        wait = 15 * (k + 1)
         try:
             r = urllib.request.Request(url, headers={"User-Agent": "link-shorts/1.0", **({"Authorization": f"Bearer {tok}"} if tok else {})})
             with urllib.request.urlopen(r, timeout=150) as f:
@@ -83,11 +84,13 @@ def pollinations(prompt, out, seed=0, w=1080, h=1920):
                 out.write_bytes(data)
                 return out
         except urllib.error.HTTPError as e:
-            if e.code != 429:
+            if e.code not in (402, 429, 500, 502, 503):  # 402·429 = 무료 사용량 잠깐 초과(Retry-After 초 뒤 다시)
                 return None
+            wait = int(e.headers.get("Retry-After") or wait) + 3
         except Exception:
             pass
-        time.sleep(16 * (k + 1))  # 무료 등급은 15초에 1장 — 기다렸다 재시도
+        print(f"  ⏳ 무료 이미지 AI 잠깐 대기 {min(wait, 90)}초", flush=True)
+        time.sleep(min(wait, 90))
     return None
 
 
