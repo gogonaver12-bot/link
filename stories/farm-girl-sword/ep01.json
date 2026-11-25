@@ -1,0 +1,60 @@
+{
+  "title": "1화: 전설의 검을 뽑다",
+  "summary": "루나는 바위 속 빛을 보고 전설의 검에 도전한다.",
+  "scenes": [
+    {
+      "speaker": "narrator",
+      "line": "바위 속에 빛이 깜빡인다.",
+      "shot": "Wide shot of the ancient mossy boulder with glowing runes, morning daylight, camera slowly pans to reveal a faint shimmer."
+    },
+    {
+      "speaker": "luna",
+      "line": "뭔가 끌려…",
+      "shot": "Medium shot of Luna walking toward the boulder, curious expression, soft sunlight filtering through trees."
+    },
+    {
+      "speaker": "ignis",
+      "line": "오! 드디어 왔군.",
+      "shot": "Close‑up of a floating crimson flame (Ignis) near the sword, orange eyes glowing, sparks crackling, low-angle lighting."
+    },
+    {
+      "speaker": "boris",
+      "line": "내가 뽑을게!",
+      "shot": "Medium shot of Boris standing confidently, iron shoulder plates gleaming, hand on his broadsword, confident grin."
+    },
+    {
+      "speaker": "luna",
+      "line": "잠깐, 조심해!",
+      "shot": "Close‑up on Luna's face, eyebrows furrowed, slight gasp, warm light accentuating her freckles."
+    },
+    {
+      "speaker": "ignis",
+      "line": "그냥 힘만으론 못 뽑아.",
+      "shot": "Close‑up on Ignis, mischievous spark flickering, flame swirling around the sword hilt."
+    },
+    {
+      "speaker": "luna",
+      "line": "한 번만…!",
+      "shot": "Medium shot of Luna placing both hands on the runic boulder, muscles tensed, camera focused on her grip."
+    },
+    {
+      "speaker": "narrator",
+      "line": "빛이 폭발한다!",
+      "shot": "Wide shot as the sword erupts from the stone, blinding flash, both Luna and Boris shield eyes, dust scattering."
+    },
+    {
+      "speaker": "ignis",
+      "line": "그냥 장난이었어.",
+      "shot": "Close‑up on Ignis smirking, the sword now empty, a subtle dark silhouette hidden behind the flame, hinting at something deeper."
+    }
+  ],
+  "cta": "다음에 무슨 일? 구독해주세요!",
+  "description": "루나가 전설의 검을 꺼내려는 순간, 예상치 못한 반전이 찾아온다. 하이판타지의 밝은 분위기와 깜짝 트위스트를 만나보세요.",
+  "tags": [
+    "판타지",
+    "모험",
+    "반전",
+    "전설의 검",
+    "고대 정령"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "농부소녀와 전설의 검",
+  "title_en": "farm_girl_sword",
+  "genre": "판타지",
+  "logline": "시골 소녀가 수백 년간 아무도 뽑지 못한 바위 속 검을 뽑아버린다",
+  "tone": "경쾌하고 유쾌한 하이판타지, 반전 매력",
+  "setting": "English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.",
+  "characters": [
+    {
+      "id": "luna",
+      "name": "루나",
+      "role": "주인공, 평범한 시골 소녀",
+      "voice": "girl",
+      "look": "English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots."
+    },
+    {
+      "id": "ignis",
+      "name": "이그니스",
+      "role": "검에 봉인된 고대의 까칠한 정령",
+      "voice": "male",
+      "look": "English: Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword."
+    },
+    {
+      "id": "boris",
+      "name": "보리스",
+      "role": "마을의 덩치 큰 자칭 검호 청년",
+      "voice": "male",
+      "look": "English: 20-year-old muscular young man, square jaw, short black crew cut, sharp brown eyes, wearing heavy iron shoulder plates over a leather vest, holding a standard broadsword."
+    }
+  ],
+  "episodes": [
+    1,
+    "마을 청년들이 힘을 합쳐 뽑으려던 전설의 검에 루나가 우연히 발을 걸 넘어지며 가볍게 뽑아버린다.",
+    2,
+    "검이 뽑히자마자 봉인이 해제되며 검 속에 잠들어 있던 정령 이그니스가 나타나 루나를 주인으로 인정하며 잔소리를 시작한다.",
+    3,
+    "검을 뽑은 소녀의 소문이 왕국 전역에 퍼지고, 왕국의 오만한 기사단장이 검을 빼앗기 위해 마을로 찾아온다.",
+    4,
+    "기사단장과의 결투에서 루나는 이그니스의 잔소리를 한 귀로 흘리며 의외의 농촌 체력으로 가볍게 제압한다.",
+    5,
+    "진정한 주인의 힘을 깨달은 루나가 검을 어깨에 짊어지고 평화로운 마을을 떠나 더 넓은 세상으로 모험을 떠난다."
+  ],
+  "slug": "farm-girl-sword",
+  "created": "2026-11-25",
+  "made": [
+    {
+      "n": 1,
+      "title": "1화: 전설의 검을 뽑다",
+      "summary": "루나는 바위 속 빛을 보고 전설의 검에 도전한다.",
+      "date": "2026-11-25",
+      "file": "story-farm-girl-sword-ep01",
+      "uploaded": false
+    }
+  ],
+  "writer": "gemini:gemini-flash-lite-latest"
+}
