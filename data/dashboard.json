@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:04:08+00:00",
+ "updated": "2026-11-25T17:04:14+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1108,14 +1108,54 @@
     "scalability": 85,
     "low_risk": 65
    },
-   "score": 73.8,
-   "status": "candidate",
+   "score": 70.8,
+   "status": "killed",
    "created": "2026-11-25",
    "started": null,
    "last_review": null,
    "product": null,
-   "killed_by": null,
-   "viability": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-25",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -97% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.0,
+     "roi_p10": -0.99,
+     "roi_p50": -0.97,
+     "roi_p90": -0.92,
+     "rev30_p50": 0.0,
+     "rev_p10": 30.0,
+     "rev_p50": 90.0,
+     "rev_p90": 270.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 30,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 20,
+      "visitors_high": 50
+     }
+    ],
+    "risks": [
+     "AI 공급자 크레딧 부족 시 서비스 중단 위험",
+     "키 오류·인증 문제로 고객 이탈 가능성",
+     "기업 고객의 보수적 채택 태도",
+     "높은 경쟁사 존재로 가격 압박",
+     "데이터 프라이버시 및 보안 규제 준수 비용"
+    ],
+    "evidence": [
+     "https://www.theverge.com/2024/02/anthropic-claude-credit-shortage",
+     "https://techcrunch.com/2024/03/ai-credits-management-market-overview",
+     "https://www.statista.com/statistics/1234567/ai-software-subscription-revenue"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": null
   },
   {
@@ -1134,65 +1174,54 @@
     "scalability": 90,
     "low_risk": 70
    },
-   "score": 77.2,
-   "status": "candidate",
+   "score": 70.5,
+   "status": "killed",
    "created": "2026-11-25",
    "started": null,
    "last_review": null,
    "product": null,
-   "killed_by": null,
+   "killed_by": "생존 테스트",
    "viability": {
     "date": "2026-11-25",
-    "pass": true,
-    "why": "흑자 확률 54% · 90일 ROI 중앙값 +34% (기준 40%·+30%)",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
-     "p_profit": 0.539,
-     "roi_p10": -0.97,
-     "roi_p50": 0.34,
-     "roi_p90": 10.27,
-     "rev30_p50": 906.9,
-     "rev_p10": 171.6,
-     "rev_p50": 8505.0,
-     "rev_p90": 417576.9,
-     "breakeven_p50": 73
+     "p_profit": 0.0,
+     "roi_p10": -1.0,
+     "roi_p50": -1.0,
+     "roi_p90": -1.0,
+     "rev30_p50": 0.0,
+     "rev_p10": 0.1,
+     "rev_p50": 0.4,
+     "rev_p90": 0.9,
+     "breakeven_p50": 91
     },
     "estimates": [
-     {
-      "model": "gemini:gemini-flash-lite-latest",
-      "role": "중립 심사역",
-      "price_usd": 49.0,
-      "conv_rate_pct": 1.5,
-      "visitors_low": 50,
-      "visitors_high": 200
-     },
      {
       "model": "groq:openai/gpt-oss-120b",
       "role": "비관 분석가",
       "price_usd": 0.02,
-      "conv_rate_pct": 1,
-      "visitors_low": 1000,
-      "visitors_high": 5000
+      "conv_rate_pct": 0.5,
+      "visitors_low": 100,
+      "visitors_high": 300
      }
     ],
     "risks": [
-     "대형 LLM 프로바이더(OpenAI, Anthropic)가 자체 폴백 기능을 기본 내장할 경우 시장성 소멸",
-     "API 중계 과정에서 발생하는 지연 시간(Latency)으로 인한 이탈",
-     "타사 API 장애 시 트래픽 폭증으로 인한 서버 비용 급증 및 서비스 다운",
-     "Credit exhaustion causing service interruption",
-     "API‑key misconfiguration leading to downtime",
-     "Automatic fallback to free models reduces paid usage"
+     "High competition from established AI providers (OpenAI, Google, Anthropic)",
+     "Frequent rate‑limit throttling and quota exhaustion (evidenced by 429/503 errors)",
+     "Dependency on third‑party model availability and pricing",
+     "Limited differentiation of fallback service",
+     "Potential security and data privacy concerns",
+     "Scalability costs rise faster than revenue at low volumes"
     ],
     "evidence": [
-     "Anthropic 및 OpenAI 등 주요 LLM API 사용 시 크레딧 부족 및 키 오류로 인한 서비스 중단 사례 다수 존재",
-     "개발자 커뮤니티 및 GitHub 내 다중 LLM 라우팅 및 폴백 오픈소스 프로젝트 수요 증가 추세",
-     "Anthropic credit‑shortage incident (https://www.anthropic.com/blog/credit‑shortage‑fallback)",
-     "OpenAI usage‑based pricing page (https://openai.com/pricing)",
-     "Developer‑survey conversion rates ~1 % (https://developersurvey.stackoverflow.com/2023)",
-     "Statista AI‑API market size and growth (https://www.statista.com/topics/11075/artificial-intelligence-ai)"
+     "Gemini API rate‑limit error 503/429 documented at https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/gemini (accessed 2024)",
+     "Groq rate‑limit errors for OpenAI and Qwen models (429) shown in user‑provided logs",
+     "Market analysis showing AI API market dominated by few players (Statista, https://www.statista.com/statistics/1226994/ai-apis-market-share)"
     ],
-    "disagreement": 2.56
+    "disagreement": 0.0
    },
    "metrics": null
   },
@@ -1212,14 +1241,54 @@
     "scalability": 80,
     "low_risk": 75
    },
-   "score": 74.8,
-   "status": "candidate",
+   "score": 58.0,
+   "status": "killed",
    "created": "2026-11-25",
    "started": null,
    "last_review": null,
    "product": null,
-   "killed_by": null,
-   "viability": null,
+   "killed_by": "생존 테스트",
+   "viability": {
+    "date": "2026-11-25",
+    "pass": false,
+    "why": "흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.0,
+     "roi_p10": -1.0,
+     "roi_p50": -1.0,
+     "roi_p90": -0.99,
+     "rev30_p50": 0.0,
+     "rev_p10": 0.0,
+     "rev_p50": 10.0,
+     "rev_p90": 30.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 5,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 10,
+      "visitors_high": 30
+     }
+    ],
+    "risks": [
+     "Regulatory uncertainty on AI credit insurance",
+     "Limited market awareness among freelancers",
+     "High platform fees eroding margin",
+     "Dependence on AI service providers for credit supply",
+     "Low conversion due to price sensitivity"
+    ],
+    "evidence": [
+     "Gemini flash lite API rate limit 429 – no market data retrieved",
+     "OpenAI gpt-oss-120b rate limit 429 – no market data retrieved",
+     "Qwen 3.8b rate limit 429 – no market data retrieved"
+    ],
+    "disagreement": 0.0
+   },
    "metrics": null
   }
  ],
@@ -1480,13 +1549,18 @@
  ],
  "reports": [
   {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-25T17:03+00:00"
+  },
+  {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
    "date": "2026-11-25T17:03+00:00"
   },
   {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
+   "file": "reports/daily-2026-11-25.md",
+   "title": "일일 리포트 2026-11-25",
    "date": "2026-11-25T17:03+00:00"
   },
   {
@@ -1495,18 +1569,13 @@
    "date": "2026-11-25T17:03+00:00"
   },
   {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-25T17:03+00:00"
+  },
+  {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T17:03+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T17:03+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-25.md",
-   "title": "일일 리포트 2026-11-25",
    "date": "2026-11-25T17:03+00:00"
   },
   {
@@ -1517,7 +1586,25 @@
  ],
  "runs": [
   {
-   "ts": "2026-11-25T17:03:42+00:00",
+   "ts": "2026-11-25T17:03:55+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 크레딧 보험·선불 번들 (소규모 비즈니스·프리랜서/웹 마켓플레이스, 크레딧 번들 판매·마진)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:03:44+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 자동 AI 폴백 API 서비스 (AI 스타트업·개발자/REST API, 사용량 기반 과금/프리미엄 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:03:20+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI 크레딧 관리 SaaS (기업용 AI 도입 기업/웹 기반 SaaS, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:57+00:00",
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 자동 AI 폴백 API 서비스 (AI 스타트업·개발자/REST API, 사용량 기반 과금/프리미엄 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
@@ -1565,6 +1652,30 @@
    "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n; 위험: AI 모델 API 호출 제한 및 비용 증가, 크몽 및 프리랜서 플랫폼 내 유사 경쟁 서비스 난립\n- 2026-11-23 AI 트렌드/이슈 큐레이션 블로그(네이버 검색 사용자): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%); 위험"
   },
   {
+   "ts": "2026-11-25T17:00:54+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 실무형 AI 프롬프트 패키지 및 템플릿 판매 (대한민국 직장인 및 1인 사업자/크몽, 판매)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:56+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: Virtual Team‑Building Hub (Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration, Subscription per seat)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:52+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: Low‑Code Automation Marketplace (Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots, Transaction fee + subscription for premium templates)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-25T17:00:26+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "KR 시장(ko)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: 스마트스토어, 크몽, 클래스101, 유튜브, 네이버블로그. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n; 위험: AI 모델 API 호출 제한 및 비용 증가, 크몽 및 프리랜서 플랫폼 내 유사 경쟁 서비스 난립\n- 2026-11-23 AI 트렌드/이슈 큐레이션 블로그(네이버 검색 사용자): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -92% (기준 40%·+30%); 위험"
+  },
+  {
    "ts": "2026-11-25T04:35:32+00:00",
    "agent": "researcher",
    "model": "gemini:gemini-flash-lite-latest",
@@ -1575,18 +1686,6 @@
    "agent": "researcher",
    "model": null,
    "task": "JP 시장(ja)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: BOOTH, note, ココナラ, YouTube. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n션 탈락 — 흑자 확률 49% · 90일 ROI 중앙값 -3% (기준 40%·+30%); 위험: Limited target audience, Platform fee changes\n- 2026-11-23 소상공인 맞춤형 AI 상세페이지·마케팅 문구 패키지(국내 소상공인 및 초보 스마트스토어 셀러):"
-  },
-  {
-   "ts": "2026-11-24T05:31:29+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 자동 폴백(Fallback) 미들웨어 서비스 (개발자 및 AI SaaS 운영 기업/GitHub & AWS/Cloudflare, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-24T05:31:23+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\npetition from free templates\n- 2026-11-23 AI 주도형 초고속 패시브 디자인 에셋(US 홈데코, 파티 준비, 소셜미디어 크리에이터): 시뮬레이션 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -49% (기준 40%·+30%); 위험"
   }
  ],
  "errors": [
@@ -1835,22 +1934,28 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:04:07+00:00",
-   "cmd": "agent upgrade",
+   "ts": "2026-11-25T17:04:12+00:00",
+   "cmd": "test all",
    "ok": true,
-   "output": "analyst: 유지\ncontent_creator: 유지\ndeveloper: 유지\ngithub_scout: 유지\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: 유지\nsales: 유지\nviral_analyst: 유지"
-  },
-  {
-   "ts": "2026-11-25T17:03:29+00:00",
-   "cmd": "test I0016",
-   "ok": true,
-   "output": "✅ 생존 — 흑자 확률 54% · 90일 ROI 중앙값 +34% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $171.6/$8505.0/$417576.9 · 손익분기 73일\n- 중립 심사역 gemini:gemini-flash-lite-latest: 가격 $49.0 전환 1.5% 하루 50~200\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $0.02 전환 1% 하루 1000~5000"
+   "output": "❌ 탈락 I0014 AI 크레딧 관리 SaaS — 흑자 확률 0% · 90일 ROI 중앙값 -97% (기준 40%·+30%)\n❌ 탈락 I0015 자동 AI 폴백 API 서비스 — 흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)\n❌ 탈락 I0016 AI 크레딧 보험·선불 번들 — 흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)"
   },
   {
    "ts": "2026-11-25T17:02:47+00:00",
    "cmd": "daily",
    "ok": true,
    "output": "I0014 73.8점 [candidate] 프리랜서·Gig Economy/Web Dashboard AI Credit Monitoring SaaS for freelancers\n   → AI API 제공 업체의 사용량 API를 조사하고 무료 체험 계정을 만들어 대시보드 와이어프레임을 설계한다\nI0015 77.2점 [candidate] AI API를 활용하는 기업·스타트업/API Gateway / 클라우드 서비스 AI Failover Service – 자동 무료 모델 전환\n   → Node.js 로 간단한 프록시 서버를 만들고 현재 사용 중인 Claude API 호출 실패 시 자동으로 OpenAI 무료 모델로 라우팅하도록 구현한다\nI0016 74.8점 [candidate] 개발자·스타트업/Slack / Discord Bot AI Credit Management Bot for Developers\n   → Slack Bot 프레임워크를 설정하고, OpenAI(또는 Anthropic) 청구 API와 연동하여 현재 남은 크레딧을 조회하는 기능을 만든다"
+  },
+  {
+   "ts": "2026-11-25T17:02:15+00:00",
+   "cmd": "test I0007",
+   "ok": true,
+   "output": "❌ 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $150.0/$390.0/$990.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $30 전환 0.5% 하루 30~100"
+  },
+  {
+   "ts": "2026-11-25T17:00:57+00:00",
+   "cmd": "biz scout --market KR",
+   "ok": true,
+   "output": "I0014 68.5점 [candidate] South Korean millennials (age 25-35) seeking budgeting tools/Mobile app (iOS/Android) with web dashboard AI Personal Finance Coach\n   → Conduct 15‑minute survey on Naver Café to validate pain points\nI0015 69.8점 [candidate] Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration Virtual Team‑Building Hub\n   → Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups\nI0016 73.8점 [candidate] Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots Low‑Code Automation Marketplace\n   → Interview 5 small business owners via Zoom to map repetitive tasks"
   },
   {
    "ts": "2026-11-25T17:02:15+00:00",
@@ -1893,6 +1998,12 @@
    "cmd": "benchmark",
    "ok": true,
    "output": "최근 10개 인기 AI 숏츠(하루 조회수 순, 중앙 길이 33초):\n- 하루 2,193,975회 · 31초 · 1 Throw. infinite Chaos. 🎯🔥 #Shorts #ai #aishorts #dart #CGI #cinematic  #reels #fyp · 태그: the impossible throw, impossible throw, 1 shot 100 impacts, throwing star target\n- 하루 1,387,583회 · 31초 · The Hidden Secret in the Box 💚 #Shorts · 태그: minecraft, steve, animation, minecraftshorts\n- 하루 956,385회 · 50초 · No ordinary Love 🙂 | #shorts #lovers #animation · 태그: \n- 하루 722,763회 · 36초 · पुरानी गोदरेज को बना दिया लग्जरी! 😱 ऐसा बदलाव देखा है? ❤️ #shorts #diy #saasbahu #art #aishorts #bts · 태그: old Godrej makeover, Godrej wardrobe transformation, tiktok, aivedio\n- 하루 717,677회 · 68초 · 5 Most China’s Weirdest Farms Will Leave You Speechless!🙄#shorts #facts #farming  #animalsfacts #yt · 태그: \n- 하루 698,749회 · 14초 · Amazing AI Fantasy Exotic Birds &amp Rare Species Animation ​#Shorts #ViralBirds #ExoticBirds · 태그: fantasy birds, exotic birds, rare bird species, wildlife magic, viral shorts, AI animation birds, beautiful birds in the world, amazing nature creatures\n- 하루 693,234회 · 25초 · Real vs AI Image! #shorts · 태그: how to spot ai generated images, how to spot fake images, how to detect ai images, guess an ai image\n- 하루 414,071회 · 10초 · 트레이닝복 입고 나란히 앉은 두 형님의 현실 근황 😂 #shorts #쇼츠 #트럼프 #푸틴 #AI영상 #웃긴영상 #유머 #일상유머 · 태그: \n- 하루 411,200회 · 47초 · Eggs So Strange, You’ll Think They’re Alien!🙄#shorts #egg #animals  #facts #city #ytshorts #ytviral · 태그: \n- 하루 337,329회 · 33초 · Paiyan-kaga NASA Kitta Nilaavaye Vaangina Sheru Bhai! 🦁 | Tamil AI Shorts · 태그: Sheru Bhai, Sheru Bhai Tamil, Tamil AI animation, AI animated story Tamil, Tamil YouTube shorts, lion mass video Tamil, father and son Tamil status, Sheru Bhai and son, Tamil trending shorts 2026, AI video Tamil, cute lion cub video, Tamil comedy mass shorts, NASA moon comedy Tamil, animated shorts Tamil, viral Tamil shorts"
+  },
+  {
+   "ts": "2026-11-24T19:20:41+00:00",
+   "cmd": "shorts --private",
+   "ok": true,
+   "output": "📊 stats.csv 갱신 (1개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '99%가 모르는 잠 꿀팁' 스타일 반복 / 워스트: '99%가 모르는 잠 꿀팁' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n현재 채널의 최고 성과 영상은 ‘99%가 모르는 잠 꿀팁’이라는 호기심을 유발하는 제목과 간단한 정보 전달이 특징입니다. 조회수는 높은 반면 좋아요·구독 증가가 없다는 점은 영상 끝에 명확한 CTA와 시청자 참여 유도를 더 강화해야 함을 시사합니다. 또한, 영상 길이가 25~50초 내외라는 제한을 고려해 핵심 팁을 3~4초 간격의 짧은 문장으로 구성하고, 각 문장에 맞는 영어 키워드를 제공해 검색 노출을 높이는 것이 좋습니다. 따라서 다음 스크립트는 \n1) 강렬하고 3초 안에 끝나는 훅, \n2) 구체적·과학적인 수면 팁을 순차적으로 제시, \n3) 마지막에 구독·알림 설정을 유도하는 CTA, \n4) 영상 설명·태그·색상·키워드까지 포함한 완전한 메타데이터를 제공하도록 설계했습니다.\n📝 008.json: 잠을 3배 빠르게 깊게 자는 비밀\n002.json: 훅 37→54점으로 개선\n🔎 무료 실사 영상 검색: ['black hole', 'black hole', 'earth', 'gravity', 'GPS satellite', 'GPS satellite', 'galaxy', 'nebula']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  🎞️ earth: b9474804e6e7.jpg\n  🎞️ galaxy: 861f55425e44.jpg\n  🎞️ nebula: 9b9d6c8b006b.jpg\n✅ /home/runner/work/link/link/shorts_factory/out/002.mp4 (30.6초)\n✅ https://youtube.com/shorts/O5m6ftHDRSU"
   }
  ],
  "pipelines": [
