@@ -73,3 +73,4 @@
 {"ts": "2026-11-25T17:11:05+00:00", "cmd": "ai check", "ok": true, "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기\n유튜브(구글) API 키로 되는 것:\n  ✅ 유튜브 조회(인기·검색): 가능\n  ⚠️ Gemini AI: 오류 403\n  ⚠️ 블로그(Blogger) 읽기: 오류 403\n  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요\n  ⚠️ 블로그 글쓰기: 오류 403"}
 {"ts": "2026-11-25T17:11:20+00:00", "cmd": "jobs", "ok": true, "output": "새 작업 없음"}
 {"ts": "2026-11-25T17:11:30+00:00", "cmd": "biz scout --market GLOBAL", "ok": true, "output": "(출력 없음)"}
+{"ts": "2026-11-25T17:11:34+00:00", "cmd": "test I0015", "ok": true, "output": "✅ 생존 — 흑자 확률 99% · 90일 ROI 중앙값 +397% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $14700.0/$35700.0/$92100.0 · 손익분기 29일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $150 전환 5% 하루 50~200"}

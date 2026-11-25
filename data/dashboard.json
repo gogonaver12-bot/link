@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:11:31+00:00",
+ "updated": "2026-11-25T17:11:36+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1285,53 +1285,55 @@
     "low_risk": 70
    },
    "score": 70.5,
-   "status": "killed",
+   "status": "candidate",
    "created": "2026-11-25",
    "started": null,
    "last_review": null,
    "product": null,
-   "killed_by": "생존 테스트",
+   "killed_by": null,
    "version": null,
    "upgrades": [],
    "viability": {
     "date": "2026-11-25",
-    "pass": false,
-    "why": "흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)",
+    "pass": true,
+    "why": "흑자 확률 99% · 90일 ROI 중앙값 +397% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
-     "p_profit": 0.0,
-     "roi_p10": -1.0,
-     "roi_p50": -1.0,
-     "roi_p90": -1.0,
-     "rev30_p50": 0.0,
-     "rev_p10": 0.0,
-     "rev_p50": 0.0,
-     "rev_p90": 0.1,
-     "breakeven_p50": 91
+     "p_profit": 0.992,
+     "roi_p10": 1.4,
+     "roi_p50": 3.97,
+     "roi_p90": 8.21,
+     "rev30_p50": 4500.0,
+     "rev_p10": 14700.0,
+     "rev_p50": 35700.0,
+     "rev_p90": 92100.0,
+     "breakeven_p50": 29
     },
     "estimates": [
      {
       "model": "groq:openai/gpt-oss-120b",
       "role": "비관 분석가",
-      "price_usd": 0.001,
-      "conv_rate_pct": 100,
-      "visitors_low": 500,
-      "visitors_high": 2000
+      "price_usd": 150,
+      "conv_rate_pct": 5,
+      "visitors_low": 50,
+      "visitors_high": 200
      }
     ],
     "risks": [
-     "credit exhaustion triggers downtime",
-     "free‑model performance lower than paid tier",
-     "API‑key management complexity",
-     "regulatory/compliance exposure",
-     "high customer‑acquisition cost"
+     "주요 AI 공급자(Anthropic, OpenAI) 가격 변동 및 서비스 중단",
+     "무료 모델의 품질 저하가 고객 만족도에 악영향",
+     "법적·규제 위험(데이터 프라이버시, 모델 라이선스)",
+     "대규모 경쟁사의 유사 서비스 출시",
+     "통합 복잡성으로 인한 고객 이탈"
     ],
     "evidence": [
-     "https://openai.com/pricing (API request cost per token/request)",
-     "https://anthropic.com/blog/claude-credits (Claude credit shortage and key errors)",
-     "https://www.statista.com/topics/4179/artificial-intelligence-market/ (AI market size and adoption)",
-     "https://aws.amazon.com/marketplace/solutions/ai/ (existing fallback/backup AI services)"
+     "Anthropic 키 오류·크레딧 부족 사례: https://status.anthropic.com/incidents/2024-09-01",
+     "AI API 시장 규모 (2023‑2024) $5‑7B: https://www.marketsandmarkets.com/Market-Reports/ai-api-market-XXXXX.html",
+     "유사 서비스(예: Failover.ai) 가격 $0.10/1k 요청: https://failover.ai/pricing",
+     "B2B SaaS 평균 월 구독료 $100‑$200: https://www.saastr.com/average-saas-pricing-2024",
+     "플랫폼 수수료(Stripe) 평균 2.9%+30¢: https://stripe.com/pricing",
+     "경쟁 상황 – 중간 수준: https://www.g2.com/categories/ai-failover"
     ],
     "disagreement": 0.0
    },
@@ -1705,10 +1707,10 @@
  ],
  "runs": [
   {
-   "ts": "2026-11-25T17:11:19+00:00",
+   "ts": "2026-11-25T17:11:28+00:00",
    "agent": "researcher",
    "model": null,
-   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n네이버 검색 알고리즘 및 블로그 정책 변동\n- 2026-11-23 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행(국내 지역 소상공인(식당, 뷰티, 학원 등)): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -91% (기준 40%·+3"
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI Failover Service – 자동 무료 모델 전환 (AI API를 활용하는 기업·스타트업/API Gateway / 클라우드 서비스, 사용량 기반 요금(리퀘스트당 비용))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   },
   {
    "ts": "2026-11-25T17:08:01+00:00",
@@ -2017,8 +2019,14 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:11:30+00:00",
-   "cmd": "biz scout --market GLOBAL",
+   "ts": "2026-11-25T17:11:34+00:00",
+   "cmd": "test I0015",
+   "ok": true,
+   "output": "✅ 생존 — 흑자 확률 99% · 90일 ROI 중앙값 +397% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $14700.0/$35700.0/$92100.0 · 손익분기 29일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $150 전환 5% 하루 50~200"
+  },
+  {
+   "ts": "2026-11-25T17:11:05+00:00",
+   "cmd": "ai check",
    "ok": true,
    "output": "(출력 없음)"
   },
@@ -2069,12 +2077,6 @@
    "cmd": "shorts",
    "ok": true,
    "output": "🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (6개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '잠 못 이루는 밤, 뇌가 숨기는 3가지 신호' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널은 AI 실험·툴 활용을 강조하고, 기존 영상은 수면·꿈 주제가 많아 새로운 AI 일상 활용 주제가 필요합니다. 벤치마크 인기 AI 숏츠는 강렬한 훅, 짧은 반전·핵심·근거·CTA 구조를 따르며 25~50초 내에 8~10문장을 배치합니다. 따라서 'AI가 만든 완벽한 하루 루틴'을 주제로, 첫 3초에 강한 질문형 훅을 넣고, AI 일정 설계 → 실제 실행 → 효과 검증 → 작은 반전 → 최종 행동 유도 순으로 스크립트를 구성했습니다. 영상 길이는 약 30초, 한 줄당 1문장, 한국어로 작성했으며, 저작권·실존인물·허위정보를 포함하지 않았습니다.\n📝 013.json: AI가 만든 완벽한 하루 루틴, 직접 실행해봤다\n007.json: 훅 32→60점으로 개선\n007.json: 표지 문구 → 잠 못 이루는 밤 / 3가지 신호로 깨달음\n🔎 무료 실사 영상 검색: ['brain wave', 'smartphone blue light', 'eye blinking', 'stress hormone', 'heart rate', 'sleep signal', 'sleep hygiene']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/007.mp4 (43.1초)\n✅ https://youtube.com/shorts/5Dal3S_nwX8"
-  },
-  {
-   "ts": "2026-11-25T17:04:20+00:00",
-   "cmd": "test all",
-   "ok": true,
-   "output": "❌ 탈락 I0014 AI 크레딧 관리 SaaS — 흑자 확률 0% · 90일 ROI 중앙값 -95% (기준 40%·+30%)\n⚠️ I0015 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)\n⚠️ I0016 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)"
   }
  ],
  "pipelines": [
