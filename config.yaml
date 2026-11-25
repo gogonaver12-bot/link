@@ -96,6 +96,8 @@ shorts:
   ai_video: true                        # 첫 장면(훅) AI 영상
   ai_video_provider: gemini             # gemini (AI Studio 결제 필요) | higgsfield
   channel_name: "F ai-LAB"              # 유튜브 채널 이름 (설명란·마무리 문구에 사용)
+  concept: "F ai-LAB — AI로 직접 해보는 실험실: 요즘 화제인 AI 툴·기능을 실제로 써보고 결과 공개, AI가 바꾼 생활 꿀팁, 사람 vs AI 대결, 'AI한테 OO 시켜봤더니' 류. 사실만, 과장 금지"
+  hold_until_new_channel: true          # 새 채널 토큰 전엔 비공개 업로드
   ai_video_budget_usd_month: 5          # AI 영상 한 달 상한(USD) — 넘으면 자동으로 이미지/실사로
   benchmark_queries:                    # 매일 수집할 유튜브 인기 숏츠 검색어 [검색어, 국가, 언어]
     - ["AI 숏츠", "KR", "ko"]

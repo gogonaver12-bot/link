@@ -52,8 +52,11 @@ def ask_ai(rows, n):
     except Exception as e:
         print(f"(벤치마크 수집 실패: {e})")
     ref = benchmark.brief()
+    from mother import store as _st
+    concept = _st.cfg().get("shorts", {}).get("concept", "")
     prompt = (f"유튜브 숏츠 채널 성과 데이터(조회수 순):\n{json.dumps(rows[:30], ensure_ascii=False)}\n"
-              f"이미 만든 제목: {existing}\n\n"
+              f"이미 만든 제목: {existing}\n"
+              + (f"채널 콘셉트(반드시 이 안에서 주제 선택): {concept}\n" if concept else "") + "\n"
               + (f"[벤치마크 — 요즘 잘 되는 AI 숏츠]\n{ref}\n위에서 잘 되는 주제·훅 구조·길이를 분석해 응용하라(제목·내용 복제 금지, 사실만). "
                  f"대본 각색 규칙: 잘 된 영상의 구조(문장 수 ≈ 길이÷3초, 문장 순서: 훅→반전/핵심→근거→행동 유도)를 그대로 따르고 내용만 내 주제로, "
                  f"한 줄에 한 가지 내용만 짧게. "
