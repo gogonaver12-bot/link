@@ -1108,7 +1108,72 @@
     "id": "I0014",
     "score": 73.8,
     "status": "candidate",
-    "created": "2026-11-25"
+    "created": "2026-11-25",
+    "viability": {
+      "date": "2026-11-25",
+      "pass": true,
+      "why": "흑자 확률 54% · 90일 ROI 중앙값 +34% (기준 40%·+30%)",
+      "sim": {
+        "days": 90,
+        "runs": 2000,
+        "p_profit": 0.539,
+        "roi_p10": -0.97,
+        "roi_p50": 0.34,
+        "roi_p90": 10.27,
+        "rev30_p50": 906.9,
+        "rev_p10": 171.6,
+        "rev_p50": 8505.0,
+        "rev_p90": 417576.9,
+        "breakeven_p50": 73
+      },
+      "params": {
+        "price_usd": 24.51,
+        "conv_rate_pct": 1.25,
+        "visitors_low": 525.0,
+        "visitors_high": 2600.0,
+        "ramp_days": 135.0,
+        "setup_cost_usd": 2600.0,
+        "unit_cost_pct": 7.5,
+        "monthly_cost_usd": 1040.0,
+        "competition": "mid",
+        "risks": [
+          "대형 LLM 프로바이더(OpenAI, Anthropic)가 자체 폴백 기능을 기본 내장할 경우 시장성 소멸",
+          "API 중계 과정에서 발생하는 지연 시간(Latency)으로 인한 이탈",
+          "타사 API 장애 시 트래픽 폭증으로 인한 서버 비용 급증 및 서비스 다운",
+          "Credit exhaustion causing service interruption",
+          "API‑key misconfiguration leading to downtime",
+          "Automatic fallback to free models reduces paid usage"
+        ],
+        "evidence": [
+          "Anthropic 및 OpenAI 등 주요 LLM API 사용 시 크레딧 부족 및 키 오류로 인한 서비스 중단 사례 다수 존재",
+          "개발자 커뮤니티 및 GitHub 내 다중 LLM 라우팅 및 폴백 오픈소스 프로젝트 수요 증가 추세",
+          "Anthropic credit‑shortage incident (https://www.anthropic.com/blog/credit‑shortage‑fallback)",
+          "OpenAI usage‑based pricing page (https://openai.com/pricing)",
+          "Developer‑survey conversion rates ~1 % (https://developersurvey.stackoverflow.com/2023)",
+          "Statista AI‑API market size and growth (https://www.statista.com/topics/11075/artificial-intelligence-ai)"
+        ],
+        "disagreement": 2.56
+      },
+      "evidence": "[실패] anthropic: Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환",
+      "estimates": [
+        {
+          "model": "gemini:gemini-flash-lite-latest",
+          "role": "중립 심사역",
+          "price_usd": 49.0,
+          "conv_rate_pct": 1.5,
+          "visitors_low": 50,
+          "visitors_high": 200
+        },
+        {
+          "model": "groq:openai/gpt-oss-120b",
+          "role": "비관 분석가",
+          "price_usd": 0.02,
+          "conv_rate_pct": 1,
+          "visitors_low": 1000,
+          "visitors_high": 5000
+        }
+      ]
+    }
   },
   {
     "title": "AI Failover Service – 자동 무료 모델 전환",
