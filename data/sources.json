@@ -208,5 +208,15 @@
     "fails": 0,
     "ok": 1,
     "last_ok": "2026-11-25"
+  },
+  {
+    "name": "inc.com",
+    "url": "https://www.inc.com/rss",
+    "category": "business",
+    "origin": "AI 추천",
+    "added": "2026-11-25",
+    "fails": 0,
+    "ok": 1,
+    "last_ok": "2026-11-25"
   }
 ]

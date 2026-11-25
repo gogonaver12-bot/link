@@ -1,225 +1,5 @@
 [
   {
-    "id": "5164124b7a31b1b8",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Button Sounds – collection of professionally-recorded button clicks and presses",
-    "url": "https://buttons.joshwcomeau.com/",
-    "summary": "Article URL: https://buttons.joshwcomeau.com/ Comments URL: https://news.ycombinator.com/item?id=50638032 Points: 43 # Comments: 3",
-    "published": "Wed, 25 Nov 2026 03:23:07 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "08bee0fe1cc4c96a",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Show HN: Sliding-panes React UI library (inspired by WebOS Enyo)",
-    "url": "https://vcarl.com/sashay/",
-    "summary": "Article URL: https://vcarl.com/sashay/ Comments URL: https://news.ycombinator.com/item?id=50637936 Points: 8 # Comments: 1",
-    "published": "Wed, 25 Nov 2026 03:10:18 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "3a04439ef9020952",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Macrohistory in Six Facts",
-    "url": "https://basilhalperin.com/essays/macrohistory.html",
-    "summary": "Article URL: https://basilhalperin.com/essays/macrohistory.html Comments URL: https://news.ycombinator.com/item?id=50637891 Points: 11 # Comments: 0",
-    "published": "Wed, 25 Nov 2026 03:04:46 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "b24a1e423eb45b03",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Bypassing iOS Safari's 60 FPS Limit to Build Web Applications That Feel Native",
-    "url": "https://rida.dev/blog/bypassing-ios-safari-60-fps-limit",
-    "summary": "Article URL: https://rida.dev/blog/bypassing-ios-safari-60-fps-limit Comments URL: https://news.ycombinator.com/item?id=50637890 Points: 22 # Comments: 6",
-    "published": "Wed, 25 Nov 2026 03:04:37 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "5548c8606fa03707",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Lua for Data Representation",
-    "url": "https://citrons.xyz/journal/2025-07-23",
-    "summary": "Article URL: https://citrons.xyz/journal/2025-07-23 Comments URL: https://news.ycombinator.com/item?id=50637888 Points: 11 # Comments: 0",
-    "published": "Wed, 25 Nov 2026 03:04:12 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "bb657d304bb9e7d9",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "I've been drinking wine in my kitchen",
-    "url": "https://scottaaronson.blog/?p=10362",
-    "summary": "Article URL: https://scottaaronson.blog/?p=10362 Comments URL: https://news.ycombinator.com/item?id=50637874 Points: 36 # Comments: 10",
-    "published": "Wed, 25 Nov 2026 03:02:10 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "d1fc227c961d22e9",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Top open problems in mathematics ranked by LLM-assessed importance",
-    "url": "https://www.proofatlas.ai/open-problems/",
-    "summary": "Article URL: https://www.proofatlas.ai/open-problems/ Comments URL: https://news.ycombinator.com/item?id=50637871 Points: 11 # Comments: 3",
-    "published": "Wed, 25 Nov 2026 03:01:36 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "0798d40e0f2fd24d",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Bo3mac: Static ARM64 Recompiler and Direct Metal Port of Black Ops III",
-    "url": "https://github.com/mawlicious/bo3mac",
-    "summary": "Article URL: https://github.com/mawlicious/bo3mac Comments URL: https://news.ycombinator.com/item?id=50637863 Points: 8 # Comments: 0",
-    "published": "Wed, 25 Nov 2026 03:00:12 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "a279a61d80e00f54",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Models Can Communicate via Inference Servers Despite Being Sandboxed",
-    "url": "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being",
-    "summary": "Article URL: https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being Comments URL: https://news.ycombinator.com/item?id=50637686 Points: 56 # Comments: 16",
-    "published": "Wed, 25 Nov 2026 02:34:21 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "22f7a46f7fe9f580",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Matrix Multiplication is Θ(n^2.25) [pdf]",
-    "url": "https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf",
-    "summary": "Article URL: https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf Comments URL: https://news.ycombinator.com/item?id=50637220 Points: 276 # Comments: 124",
-    "published": "Wed, 25 Nov 2026 01:19:26 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "8c8608987e1105c0",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "PenGPT: A Generative Transformer for Handwriting and Sketches",
-    "url": "https://greydanus.github.io/2026/11/12/pengpt/",
-    "summary": "Article URL: https://greydanus.github.io/2026/11/12/pengpt/ Comments URL: https://news.ycombinator.com/item?id=50637056 Points: 124 # Comments: 18",
-    "published": "Wed, 25 Nov 2026 00:54:49 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "655e5ccffe188473",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Here in the World: Letters of Albert Camus, 1944–1959",
-    "url": "https://literaryreview.co.uk/here-in-the-world",
-    "summary": "Article URL: https://literaryreview.co.uk/here-in-the-world Comments URL: https://news.ycombinator.com/item?id=50636925 Points: 33 # Comments: 2",
-    "published": "Wed, 25 Nov 2026 00:36:43 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "9ee11b87ddc3e78f",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Heart attack and stroke risk detectable decades in advance",
-    "url": "https://www.ed.ac.uk/news/heart-attack-and-stroke-risk-detectable-decades-in-advance",
-    "summary": "Article URL: https://www.ed.ac.uk/news/heart-attack-and-stroke-risk-detectable-decades-in-advance Comments URL: https://news.ycombinator.com/item?id=50635271 Points: 193 # Comments: 96",
-    "published": "Tue, 24 Nov 2026 21:51:21 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "ac2f786b30f6d457",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
-    "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/",
-    "summary": "Article URL: https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/ Comments URL: https://news.ycombinator.com/item?id=50634658 Points: 210 # Comments: 65",
-    "published": "Tue, 24 Nov 2026 21:02:22 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "f13f50765ddb35d9",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Launch HN: Versine (YC F26) – MCP to send and receive money",
-    "url": "https://news.ycombinator.com/item?id=50634426",
-    "summary": "Hey HN, we’re Harshith, Param, and Vishnu and we're building Versine ( https://versine.com ). Versine lets you send and request money just by talking or texting with your AI (think Venmo with an MCP). We’re software engineers who have worked on distributed systems at Stripe, Databricks, and Amazon. ",
-    "published": "Tue, 24 Nov 2026 20:44:15 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "57993858eb1cb093",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "Ternary Bonsai 2.5 27B",
-    "url": "https://prismml.com/news/bonsai-2-5-27b",
-    "summary": "Article URL: https://prismml.com/news/bonsai-2-5-27b Comments URL: https://news.ycombinator.com/item?id=50633922 Points: 376 # Comments: 127",
-    "published": "Tue, 24 Nov 2026 20:08:03 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "55e2044b7b9eea21",
-    "source": "Hacker News",
-    "category": "tech",
-    "title": "From CUDA and Jax to TorchTPU: Lessons from a Cayley Graph Solver",
-    "url": "https://andlukyane.com/blog/cayley-graphs-and-torchtpu",
-    "summary": "Article URL: https://andlukyane.com/blog/cayley-graphs-and-torchtpu Comments URL: https://news.ycombinator.com/item?id=50633424 Points: 78 # Comments: 1",
-    "published": "Tue, 24 Nov 2026 19:40:43 +0000",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "c169ccf8078dbf97",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Viktor Code",
-    "url": "https://www.producthunt.com/products/viktor",
-    "summary": "Coding agents know your repo. Viktor knows your company. Discussion | Link",
-    "published": "2026-11-24T20:20:22-08:00",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "b3e055e868ea471d",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "distribution.dev",
-    "url": "https://www.producthunt.com/products/distribution-dev",
-    "summary": "Advertise to developers on many sites with one campaign Discussion | Link",
-    "published": "2026-11-24T20:33:41-08:00",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
-    "id": "b9a080f23ce83672",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Granular.Build",
-    "url": "https://www.producthunt.com/products/granular-build",
-    "summary": "Put your AI agents to work in a visual workspace Discussion | Link",
-    "published": "2026-11-24T20:33:59-08:00",
-    "collected": "2026-11-25T04:35+00:00",
-    "flag": false
-  },
-  {
     "id": "75c5263ecc83ecae",
     "source": "Product Hunt",
     "category": "product",
@@ -2225,22 +2005,22 @@
     "id": "6da98bcc60739225",
     "source": "구글 트렌드 KR",
     "category": "trend",
-    "title": "qqq",
-    "url": "https://www.google.com/search?q=qqq",
+    "title": "선수",
+    "url": "https://www.google.com/search?q=%EC%84%A0%EC%88%98",
     "summary": "",
-    "published": "Wed, 25 Nov 2026 07:20:00 -0800",
-    "collected": "2026-11-25T17:00+00:00",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0800",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
     "id": "b2e86c0dabf20ac9",
     "source": "구글 트렌드 US",
     "category": "trend",
-    "title": "kenneth walker",
-    "url": "https://www.google.com/search?q=kenneth%20walker",
+    "title": "sabah vs barcelona",
+    "url": "https://www.google.com/search?q=sabah%20vs%20barcelona",
     "summary": "",
-    "published": "Wed, 25 Nov 2026 08:40:00 -0800",
-    "collected": "2026-11-25T17:00+00:00",
+    "published": "Wed, 25 Nov 2026 08:50:00 -0800",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2251,7 +2031,7 @@
     "url": "https://www.google.com/search?q=openai",
     "summary": "",
     "published": "Wed, 25 Nov 2026 07:50:00 -0800",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2262,7 +2042,7 @@
     "url": "https://www.anthropic.com/research/migrating-api-to-rust",
     "summary": "Article URL: https://www.anthropic.com/research/migrating-api-to-rust Comments URL: https://news.ycombinator.com/item?id=50644162 Points: 8 # Comments: 0",
     "published": "Wed, 25 Nov 2026 16:28:28 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2273,7 +2053,7 @@
     "url": "https://www.githubstatus.com/incidents/qn8mfv6q5hlx",
     "summary": "Article URL: https://www.githubstatus.com/incidents/qn8mfv6q5hlx Comments URL: https://news.ycombinator.com/item?id=50643720 Points: 80 # Comments: 37",
     "published": "Wed, 25 Nov 2026 15:59:23 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2284,7 +2064,7 @@
     "url": "https://www.vox.com/down-to-earth/511999/home-depot-retention-pond-snorkel-joseph-ricketts",
     "summary": "Article URL: https://www.vox.com/down-to-earth/511999/home-depot-retention-pond-snorkel-joseph-ricketts Comments URL: https://news.ycombinator.com/item?id=50643129 Points: 174 # Comments: 49",
     "published": "Wed, 25 Nov 2026 15:14:32 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2295,7 +2075,7 @@
     "url": "https://www.reddit.com/r/singularity/comments/1y59ef1/rumor_that_openai_or_anthropic_found_a_way_to/",
     "summary": "Article URL: https://www.reddit.com/r/singularity/comments/1y59ef1/rumor_that_openai_or_anthropic_found_a_way_to/ Comments URL: https://news.ycombinator.com/item?id=50643065 Points: 148 # Comments: 84",
     "published": "Wed, 25 Nov 2026 15:08:44 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2306,7 +2086,7 @@
     "url": "https://s.conao3.com/blog/2026/e4f733",
     "summary": "Article URL: https://s.conao3.com/blog/2026/e4f733 Comments URL: https://news.ycombinator.com/item?id=50642939 Points: 9 # Comments: 0",
     "published": "Wed, 25 Nov 2026 14:56:52 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2317,7 +2097,7 @@
     "url": "https://www.upi.com/Top_News/US/2026/11/25/jury-convicts-Huawei/3151795587204/",
     "summary": "Article URL: https://www.upi.com/Top_News/US/2026/11/25/jury-convicts-Huawei/3151795587204/ Comments URL: https://news.ycombinator.com/item?id=50642496 Points: 130 # Comments: 118",
     "published": "Wed, 25 Nov 2026 14:12:29 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2328,7 +2108,7 @@
     "url": "https://github.com/google-research/google-research/tree/master/cogentic_research_papers",
     "summary": "Article URL: https://github.com/google-research/google-research/tree/master/cogentic_research_papers Comments URL: https://news.ycombinator.com/item?id=50642086 Points: 242 # Comments: 204",
     "published": "Wed, 25 Nov 2026 13:33:07 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2339,7 +2119,7 @@
     "url": "https://www.ycombinator.com/companies/hazel-2/jobs/8EhsvYE-product-designer-contract",
     "summary": "Article URL: https://www.ycombinator.com/companies/hazel-2/jobs/8EhsvYE-product-designer-contract Comments URL: https://news.ycombinator.com/item?id=50641323 Points: 0 # Comments: 0",
     "published": "Wed, 25 Nov 2026 12:00:34 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2350,7 +2130,7 @@
     "url": "https://github.com/xoxorwr/pw-loudness-eq",
     "summary": "Article URL: https://github.com/xoxorwr/pw-loudness-eq Comments URL: https://news.ycombinator.com/item?id=50641171 Points: 226 # Comments: 127",
     "published": "Wed, 25 Nov 2026 11:34:25 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2361,7 +2141,7 @@
     "url": "https://gpu-demo-gallery.pages.dev/",
     "summary": "Article URL: https://gpu-demo-gallery.pages.dev/ Comments URL: https://news.ycombinator.com/item?id=50638503 Points: 268 # Comments: 60",
     "published": "Wed, 25 Nov 2026 04:31:48 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2372,7 +2152,7 @@
     "url": "https://www.intruder.io/research/taking-over-us-treasury-subdomains-for-3-each",
     "summary": "Article URL: https://www.intruder.io/research/taking-over-us-treasury-subdomains-for-3-each Comments URL: https://news.ycombinator.com/item?id=50638478 Points: 183 # Comments: 38",
     "published": "Wed, 25 Nov 2026 04:27:55 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2383,194 +2163,7 @@
     "url": "https://engram.com/blog/lora-size",
     "summary": "Article URL: https://engram.com/blog/lora-size Comments URL: https://news.ycombinator.com/item?id=50635783 Points: 18 # Comments: 0",
     "published": "Tue, 24 Nov 2026 22:34:29 +0000",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "7fe65c42e48399b4",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "MyClaw 3.0",
-    "url": "https://www.producthunt.com/products/myclaw-3-0",
-    "summary": "Build an always-on AI team with shared memory Discussion | Link",
-    "published": "2026-11-25T08:58:51-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "7e757af485340b51",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Canva MCP",
-    "url": "https://www.producthunt.com/products/canva",
-    "summary": "Turn any AI agent into a creative powerhouse Discussion | Link",
-    "published": "2026-11-25T08:59:14-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "c95037a7a2cf17fc",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "MemoryWorks",
-    "url": "https://www.producthunt.com/products/memoryworks",
-    "summary": "Company memory for people and AI agents Discussion | Link",
-    "published": "2026-11-25T08:34:06-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "06505681722795f7",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "SteerLatch",
-    "url": "https://www.producthunt.com/products/steerlatch",
-    "summary": "Connect MCP-compatible AIs to your computer Discussion | Link",
-    "published": "2026-11-25T06:37:04-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "2891e0e512538fc8",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "3way.Social MCP",
-    "url": "https://www.producthunt.com/products/3way-social",
-    "summary": "Ask your AI to find link partners. You approve the deals. Discussion | Link",
-    "published": "2026-11-25T08:14:13-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "aae788f7333685c9",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Hai",
-    "url": "https://www.producthunt.com/products/hai-4",
-    "summary": "Your AI assistant that actually makes the phone call Discussion | Link",
-    "published": "2026-11-25T08:34:25-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "4374a7675241dd43",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "RelayRunner",
-    "url": "https://www.producthunt.com/products/relayrunner",
-    "summary": "Swap CI runners on-demand with zero code changes. Discussion | Link",
-    "published": "2026-11-25T08:59:48-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "60ba88fff17fdbe4",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "MAGI-2",
-    "url": "https://www.producthunt.com/products/magi-1",
-    "summary": "Sand AI's 480B model for cinematic video generation Discussion | Link",
-    "published": "2026-11-25T08:00:29-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "fc82da3d3c3ca4ce",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Hiring Right Now",
-    "url": "https://www.producthunt.com/products/hiring-right-now",
-    "summary": "Which startups would hire you? Discussion | Link",
-    "published": "2026-11-25T08:54:31-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "29cd65cc53fea0c1",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Falcon by Vybe",
-    "url": "https://www.producthunt.com/products/vybe-4",
-    "summary": "Falcon analyzes your competitors for free, then gets to work Discussion | Link",
-    "published": "2026-11-25T08:58:47-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "e1b3da208a81ea09",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Fompi",
-    "url": "https://www.producthunt.com/products/fompi",
-    "summary": "Personal security & privacy companion that calls out risks Discussion | Link",
-    "published": "2026-11-25T08:55:15-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "0504514e44fe23b2",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Blink",
-    "url": "https://www.producthunt.com/products/blink-35",
-    "summary": "Describe any trade and watch Blink build it Discussion | Link",
-    "published": "2026-11-25T07:20:34-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "74149ae59243f536",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "CodeRabbit Verify",
-    "url": "https://www.producthunt.com/products/coderabbit",
-    "summary": "AI agent that tests your running app on every pull request Discussion | Link",
-    "published": "2026-11-25T07:23:17-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "fe2b859f1fe9a951",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Continual-ARC",
-    "url": "https://www.producthunt.com/products/unify-5",
-    "summary": "OpenClaw doesn't learn from experience. Does your agent? Discussion | Link",
-    "published": "2026-11-25T08:43:42-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "6ab605b6f6923022",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Koed",
-    "url": "https://www.producthunt.com/products/koed",
-    "summary": "Supercharged Agents! Discussion | Link",
-    "published": "2026-11-25T08:58:03-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "dd556579819acea1",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Qube",
-    "url": "https://www.producthunt.com/products/qube-6",
-    "summary": "An AI agent for anyone with the model of your choice Discussion | Link",
-    "published": "2026-11-25T07:20:14-08:00",
-    "collected": "2026-11-25T17:00+00:00",
-    "flag": false
-  },
-  {
-    "id": "dd3390582bec09e7",
-    "source": "Product Hunt",
-    "category": "product",
-    "title": "Airbot",
-    "url": "https://www.producthunt.com/products/airbots",
-    "summary": "The AI chief of staff that texts you first Discussion | Link",
-    "published": "2026-11-25T08:58:36-08:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2581,7 +2174,194 @@
     "url": "https://www.producthunt.com/products/truastra",
     "summary": "Small practices based on your birthday + the current weather Discussion | Link",
     "published": "2026-11-25T06:34:48-08:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "60ba88fff17fdbe4",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "MAGI-2",
+    "url": "https://www.producthunt.com/products/magi-1",
+    "summary": "Sand AI's 480B model for cinematic video generation Discussion | Link",
+    "published": "2026-11-25T08:00:29-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "dd556579819acea1",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Qube",
+    "url": "https://www.producthunt.com/products/qube-6",
+    "summary": "An AI agent for anyone with the model of your choice Discussion | Link",
+    "published": "2026-11-25T07:20:14-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "29cd65cc53fea0c1",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Falcon by Vybe",
+    "url": "https://www.producthunt.com/products/vybe-4",
+    "summary": "Falcon analyzes your competitors for free, then gets to work Discussion | Link",
+    "published": "2026-11-25T08:58:47-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "7fe65c42e48399b4",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "MyClaw 3.0",
+    "url": "https://www.producthunt.com/products/myclaw-3-0",
+    "summary": "Build an always-on AI team with shared memory Discussion | Link",
+    "published": "2026-11-25T09:06:35-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "0504514e44fe23b2",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Blink",
+    "url": "https://www.producthunt.com/products/blink-35",
+    "summary": "Describe any trade and watch Blink build it Discussion | Link",
+    "published": "2026-11-25T07:20:34-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "06505681722795f7",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "SteerLatch",
+    "url": "https://www.producthunt.com/products/steerlatch",
+    "summary": "Connect MCP-compatible AIs to your computer Discussion | Link",
+    "published": "2026-11-25T09:01:25-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "71138b68466008de",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "OpenEight",
+    "url": "https://www.producthunt.com/products/openeight",
+    "summary": "The deterministic control layer for AI agents Discussion | Link",
+    "published": "2026-11-25T09:06:36-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "dd3390582bec09e7",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Airbot",
+    "url": "https://www.producthunt.com/products/airbots",
+    "summary": "The AI chief of staff that texts you first Discussion | Link",
+    "published": "2026-11-25T09:06:35-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "6ab605b6f6923022",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Koed",
+    "url": "https://www.producthunt.com/products/koed",
+    "summary": "Supercharged Agents! Discussion | Link",
+    "published": "2026-11-25T08:58:03-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "4374a7675241dd43",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "RelayRunner",
+    "url": "https://www.producthunt.com/products/relayrunner",
+    "summary": "Swap CI runners on-demand with zero code changes. Discussion | Link",
+    "published": "2026-11-25T08:59:48-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "74149ae59243f536",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "CodeRabbit Verify",
+    "url": "https://www.producthunt.com/products/coderabbit",
+    "summary": "AI agent that tests your running app on every pull request Discussion | Link",
+    "published": "2026-11-25T07:23:17-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "aae788f7333685c9",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Hai",
+    "url": "https://www.producthunt.com/products/hai-4",
+    "summary": "Your AI assistant that actually makes the phone call Discussion | Link",
+    "published": "2026-11-25T08:34:25-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "fc82da3d3c3ca4ce",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Hiring Right Now",
+    "url": "https://www.producthunt.com/products/hiring-right-now",
+    "summary": "Which startups would hire you? Discussion | Link",
+    "published": "2026-11-25T09:01:01-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "2891e0e512538fc8",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "3way.Social MCP",
+    "url": "https://www.producthunt.com/products/3way-social",
+    "summary": "Ask your AI to find link partners. You approve the deals. Discussion | Link",
+    "published": "2026-11-25T09:05:15-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "7e757af485340b51",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Canva MCP",
+    "url": "https://www.producthunt.com/products/canva",
+    "summary": "Turn any AI agent into a creative powerhouse Discussion | Link",
+    "published": "2026-11-25T09:02:49-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "c95037a7a2cf17fc",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "MemoryWorks",
+    "url": "https://www.producthunt.com/products/memoryworks",
+    "summary": "Company memory for people and AI agents Discussion | Link",
+    "published": "2026-11-25T09:04:04-08:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "fe2b859f1fe9a951",
+    "source": "Product Hunt",
+    "category": "product",
+    "title": "Continual-ARC",
+    "url": "https://www.producthunt.com/products/unify-5",
+    "summary": "OpenClaw doesn't learn from experience. Does your agent? Discussion | Link",
+    "published": "2026-11-25T09:05:48-08:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2592,18 +2372,18 @@
     "url": "https://www.producthunt.com/products/file-spot",
     "summary": "File transfer for creative professionals Discussion | Link",
     "published": "2026-11-25T08:47:40-08:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
-    "id": "f184f2ec60de81d8",
+    "id": "e1b3da208a81ea09",
     "source": "Product Hunt",
     "category": "product",
-    "title": "PartGenie 2.0",
-    "url": "https://www.producthunt.com/products/partgenie",
-    "summary": "The AI workspace for hardware engineering Discussion | Link",
-    "published": "2026-11-25T08:15:58-08:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "title": "Fompi",
+    "url": "https://www.producthunt.com/products/fompi",
+    "summary": "Personal security & privacy companion that calls out risks Discussion | Link",
+    "published": "2026-11-25T09:03:00-08:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2614,7 +2394,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.12.0",
     "summary": "Features api: add the image_dimensions_too_large error code Bug Fixes bedrock: send the user profile ID in the request body Amazon Bedrock reads user_profile_id from the request body and ignores the anthropic-user-profile-id header, so a profile ID given to AnthropicBedrock or AsyncAnthropicBedrock ",
     "published": "2026-11-20T15:56:21Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2625,7 +2405,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.11.0",
     "summary": "Features api: add Claude Code managed settings to the Admin API api: add the sandbox_egress_restricted error to Admin API plugin methods Bug Fixes client: encode spaces in query strings as %20 The AWS SigV4 signature of a request now matches its query string when a parameter contains a space. Perfor",
     "published": "2026-11-19T19:14:21Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2636,7 +2416,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.10.0",
     "summary": "Features api: add beta support for the billing_policy request parameter api: add contract_spend_limit_reached error code to messages api: add error codes for linked billing refusals api: add the user_profile_billing_not_authorized error code api: add webhook events for external key failure and recov",
     "published": "2026-11-17T18:28:13Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2647,7 +2427,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.9.0",
     "summary": "Features api: add source and error codes to the RBAC Role read endpoints api: add Update Bundle, which sets a Claude Tag Bundle's instructions, and return instructions on Bundle Bug Fixes credentials: write the credentials file on Windows with Python 3.12 and earlier tools: compare directory names e",
     "published": "2026-11-16T16:47:17Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2658,7 +2438,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.8.0",
     "summary": "Features api: add Claude Tag metrics to the analytics summaries and users reports api: add reply_mode to Claude Tag Slack channel settings Bug Fixes bedrock: send \";\" in a model ID as is, and refuse a model ID whose part before the first \";\" is empty, \".\" or \"..\" google-cloud: percent-encode the pro",
     "published": "2026-11-10T16:32:58Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2669,7 +2449,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.7.0",
     "summary": "Features api: accept user_profile.program_status_updated on organization webhook endpoints api: add claude-fable-5-2 and claude-mythos-5-2 api: add parent organization filtering and grouping to the usage and cost reports api: add the sandbox_egress_restricted error to Admin API write methods api: ad",
     "published": "2026-11-09T18:52:17Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2680,7 +2460,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.6.0",
     "summary": "Features api: add error code for ramp limit errors api: add error codes for External Key validation failures api: add support for signing organization members out everywhere Bug Fixes bedrock,vertex: raise error-code and status exception classes on platform clients bedrock: keep a custom http_client",
     "published": "2026-11-05T18:58:47Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2691,7 +2471,7 @@
     "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.5.0",
     "summary": "Features api: add error details types and new error type values api: add ids filter to list workspaces client: add error classes for HTTP statuses and API error codes, and error_code, details and api_message on APIStatusError Bug Fixes api: capitalize CMEK in error details type names api: move some ",
     "published": "2026-11-04T20:27:20Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2702,7 +2482,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.6.1",
     "summary": "3.6.1 (2026-11-18) Bug Fixes Update sdk enum ( 4c4ab16 )",
     "published": "2026-11-18T21:51:55Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2713,7 +2493,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.6.0",
     "summary": "3.6.0 (2026-11-18) Features sdk: Add tool retrieval and function result schemas in public SDK ( 34e62b1 ) Bug Fixes api_client: Retry google.auth TransportError when retries are enabled ( 6fc8357 ), refs #2869 Exclude derived parsed field when reparsing merged continuation responses ( bbdca2a ), ref",
     "published": "2026-11-18T07:12:53Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2724,7 +2504,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.5.0",
     "summary": "3.5.0 (2026-11-18) Features environments: Introduce self-hosted BYOS mode, system_instruction, custom_config, and environment_key in SDKs and CLI ( d76a21d ) Generate Live Interactions types and auth-token client in the public SDKs. ( f209666 ) interactions: Add experimental Live Interactions (WebSo",
     "published": "2026-11-18T02:20:03Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2735,7 +2515,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.4.0",
     "summary": "3.4.0 (2026-11-16) Features Add tool search types to the Interactions SDKs ( ce09088 ) Deprecate non-interactions names in google.genai.interactions. ( f551f8f ) interactions: Expose static file processing options ( 36c3c5f ) Support batch inputs and usage metadata for Gemini embedding models on Gem",
     "published": "2026-11-16T21:33:28Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2746,7 +2526,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.3.0",
     "summary": "3.3.0 (2026-11-12) Features Add --flavor=interactions-eap packaging and scrub private exports ( 39f6abe ) Add XHIGH and xhigh to ThinkingLevel across GenAI SDKs and CLI. ( 300f12f ) Add missing enum values to FinishReason and ReinforcementTuningThinkingLevel ( b07a895 ) interactions: Add gemini-4-hy",
     "published": "2026-11-12T19:46:21Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2757,7 +2537,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.2.0",
     "summary": "3.2.0 (2026-11-11) Features Add the Decisions API ( client.decisions.create ) to the GenAI SDKs ( 9efe1e4 ) environments: Introduce self-hosted BYOS mode, system_instruction, custom_config, and environment_key in SDKs and CLI ( 96b79b3 )",
     "published": "2026-11-11T17:27:29Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2768,7 +2548,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.1.0",
     "summary": "3.1.0 (2026-11-10) Features Add gemini-omni-1.2-flash and make it the gemini-api video default ( 8e9cce3 ) Add proactive_video to ProactivityConfig for the Live API. ( 97d0678 ) Add xhigh thinking level to Interactions ThinkingLevel ( 0f29f4d ) Add usage_metadata (including traffic_type) and truncat",
     "published": "2026-11-10T20:16:30Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2779,7 +2559,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v3.0.0",
     "summary": "3.0.0 (2026-11-05) ⚠ BREAKING CHANGES Default Gemini Developer API version is now v1 (was v1beta ) ( 2d0f947 ) Clients targeting the Gemini Developer API now default to API version v1 instead of v1beta . No effect on Gemini Enterprise (Vertex AI) defaults: Clients with vertexai=True / enterprise=Tru",
     "published": "2026-11-17T00:17:21Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2790,7 +2570,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v2.34.0",
     "summary": "2.34.0 (2026-10-29) Features Add support for continuation_token and requires_continuation status ( daac53e ) Add support for Python 3.15. ( cb1408b ) Add video upscale task parameter ( 0456043 ) Drop support for Python 3.10 ( 2677298 ) interactions: Add automatic_continuation to interactions.create ",
     "published": "2026-10-29T06:23:11Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2801,7 +2581,7 @@
     "url": "https://github.com/googleapis/python-genai/releases/tag/v2.33.0",
     "summary": "2.33.0 (2026-10-22) Features Add store to GenerateContentConfig (Gemini Developer API only) and labels to LiveConnectConfig . ( 16a29c9 ) Add support for Python 3.15. ( e1c4fc7 ) Add support for Python 3.15. ( 1a64450 ) client: Support httpx2 with GOOGLE_GENAI_HTTP_CLIENT configuration ( 87ddba1 ) I",
     "published": "2026-10-23T00:04:36Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2812,7 +2592,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17",
     "summary": "Inkling 2 Mini Inkling 2 Mini from Thinking Machines is a 26B parameter model with 5.4B active. Its looped layers give it more computation per token than its size suggests, and it still fits on a Mac at about 20GB. It handles text and images, tool calls, and thinking, and scores 79.2% on SWE-Bench V",
     "published": "2026-11-21T04:05:14Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2823,7 +2603,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17-rc4",
     "summary": "Merge remote-tracking branch 'upstream/main' into release_v0.40.17",
     "published": "2026-11-20T23:04:26Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2834,7 +2614,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17-rc3",
     "summary": "mlxrunner: add Inkling 2 Mini",
     "published": "2026-11-20T18:37:07Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2845,7 +2625,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17-rc2",
     "summary": "mlxrunner: adapt saved history to memory pressure Retain Metal prefix history using observed memory headroom and execution workspace rather than a fixed 8 GiB allowance. Release unused buffers and cold history when system compression grows, preserving reusable paths and active requests. Cover pressu",
     "published": "2026-11-19T23:41:42Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2856,7 +2636,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17-rc1",
     "summary": "mlxrunner: batch speculative verification Keep drafting active for concurrent generation by sharing target verification while preserving per-request sampling and cache rollback. Learn draft depth for each concurrent workload separately from isolated requests, and preserve probes that short requests ",
     "published": "2026-11-16T16:43:54Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2867,7 +2647,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17-rc0",
     "summary": "MLX, MLX-C: version bump ( #19647 )",
     "published": "2026-11-10T21:42:11Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2878,7 +2658,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.16",
     "summary": "Ripple Preview Ripple Preview from Ricursive Intelligence is a 65B dense model built for agentic coding. ollama run ripple-preview What's Changed Qwen3.8 Flash Next uses about 27 GiB less memory on Apple silicon ollama launch claude always routes Claude Code to the selected model ollama launch expla",
     "published": "2026-11-09T23:45:36Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2889,7 +2669,7 @@
     "url": "https://github.com/ollama/ollama/releases/tag/v0.40.16-rc0",
     "summary": "Add the Ripple model, renderer, parser and import registration. Support per-layer NoPE in DFlash drafts. Fuse MLP activation, value blending and attention gating. Add reference fixtures and model/runner regression tests.",
     "published": "2026-11-08T00:36:53Z",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2900,7 +2680,7 @@
     "url": "https://github.blog/changelog/2026-11-20-security-advisory-permissions-are-now-generally-available",
     "summary": "Organization owners can now let people work on repository security advisories, including private vulnerability reports, through custom repository roles. You no longer have to make them repository administrators or give… The post Security advisory permissions are now generally available appeared firs",
     "published": "Fri, 20 Nov 2026 21:49:29 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2911,7 +2691,7 @@
     "url": "https://github.blog/changelog/2026-11-20-github-enterprise-server-3-23-release-candidate",
     "summary": "GitHub Enterprise Server (GHES) 3.23 is now available and introduces new capabilities across the platform. Here are a few highlights in the 3.23 release: When working in GitHub Projects, you… The post GitHub Enterprise Server 3.23 release candidate appeared first on The GitHub Blog .",
     "published": "Fri, 20 Nov 2026 20:41:26 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2922,7 +2702,7 @@
     "url": "https://github.blog/changelog/2026-11-20-pin-your-favorite-repositories-to-your-dashboard",
     "summary": "Editor’s note (November 23, 2026): We have temporarily rolled back this change while we improve the experience based on user feedback. Choose which repositories appear on the Dashboard with the… The post Pin your favorite repositories to your dashboard appeared first on The GitHub Blog .",
     "published": "Fri, 20 Nov 2026 14:12:05 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2933,7 +2713,7 @@
     "url": "https://github.blog/changelog/2026-11-19-github-desktop-now-supports-multiple-accounts-per-host",
     "summary": "GitHub Desktop now lets you sign in with more than one account on the same host, including GitHub.com, GitHub Enterprise Server, and GHE.com. This has been one of the most… The post GitHub Desktop now supports multiple accounts per host appeared first on The GitHub Blog .",
     "published": "Fri, 20 Nov 2026 02:06:01 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2944,7 +2724,7 @@
     "url": "https://github.blog/changelog/2026-11-19-improvements-on-the-pull-request-overview-in-public-preview",
     "summary": "Your feedback has helped improve the new pull request Overview page since its November 5, 2026 public preview. Here’s what’s new! Clearer merge status and next steps Failed optional checks… The post Improvements on the pull request overview in public preview appeared first on The GitHub Blog .",
     "published": "Fri, 20 Nov 2026 00:02:21 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2955,7 +2735,7 @@
     "url": "https://platum.kr/archives/299484?utm_source=rss&utm_medium=rss&utm_campaign=%25ea%25b8%25b0%25eb%25a1%259d-%25eb%258c%2580%25ec%258b%25a0-%25ec%25b7%25a8%25ed%2596%25a5-%25eb%258f%2584%25ec%258b%25ac-%25eb%258c%2580%25ec%258b%25a0-%25eb%25a1%259c%25ec%25bb%25ac%25ed%2581%25b4%25ed%2588%25ac%25ea%25b0%2580-%25ea%25bc%25bd%25ec%259d%2580-2027-%25eb%259f%25ac%25eb%258b%259d",
     "summary": "올해 국내 오프라인 러닝 대회 706건 가운데 252건, 35.7%가 10~11월에 몰렸다. 수도권 개최 비중은 45.9%였다. 러닝 액티베이션 플랫폼 클투(CLTOO)가 25일 처음 공개한 ‘2026 국내 러닝 대회 리포트’의 수치다. 클투는 이날 서울 중구 한국관광공사 서울센터에서 ‘2027 러닝 트렌드 세미나’를 열었다. 러닝 업계 관계자와 신청한 일반 러너 60여 명이 참석했다. 문현우 공동대표는 1시간 30분 넘게 국내외 시장 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 11:37:41 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2966,7 +2746,7 @@
     "url": "https://platum.kr/archives/299479?utm_source=rss&utm_medium=rss&utm_campaign=%25eb%2585%25b9%25ec%25a1%25b0%25c2%25b7%25ed%2599%258d%25ec%2588%2598-%25ec%259e%2590%25ec%25a3%25bc-%25eb%2593%25a4%25ec%2597%25ac%25eb%258b%25a4%25eb%25b3%25bc-%25ec%2588%2598%25ec%259e%2590%25ec%259b%2590-%25ec%25a0%2584%25ec%259a%25a9-%25ec%25b4%2588%25ec%2586%258c%25ed%2598%2595%25ec%259c%2584%25ec%2584%25b1",
     "summary": "하천과 저수지, 댐을 위성으로 자주 들여다보며 녹조 확산과 수해 피해를 살피는 수자원 전용 초소형위성 4기를 나라스페이스테크놀로지가 만든다. 나라스페이스는 한국수자원공사(K-water)와 약 101억원(부가가치세 별도) 규모의 ‘K-waterSAT 수자원 초소형 군집위성 개발 사업’ 공급계약을 맺었다고 25일 밝혔다. 지난 10월 26일 우선협상대상자로 선정된 뒤 협상을 거쳐 최종 계약에 이르렀다. 계약에 따라 나라스페이스는 수자원 모니터링용 광학 초소형위성 4기의 설계·제작·시험을 맡고, 발사 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 07:54:13 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2977,7 +2757,7 @@
     "url": "https://platum.kr/archives/299476?utm_source=rss&utm_medium=rss&utm_campaign=blt%25ec%25b9%25bc%25eb%259f%25bc-ai%25ea%25b0%2580-%25ec%259d%25bc%25ec%259e%2590%25eb%25a6%25ac%25eb%25a5%25bc-%25ea%25b0%2580%25ec%25a0%25b8%25ea%25b0%2580%25eb%258a%2594-%25ec%258b%259c%25eb%258c%2580-%25eb%2582%25b4-%25ec%2595%2584%25ec%259d%25b4%25ec%2597%2590%25ea%25b2%258c-%25eb%25ac%25bc%25eb%25a0%25a4",
     "summary": "– 20년차 변리사가 말하는 AI 시대의 생존 전략, ‘권리자’가 되는 법 프롤로그 | 아이의 장래희망을 묻다가 말문이 막혔다 얼마 전 저녁 식탁에서 아이에게 물었습니다. “커서 뭐 하고 싶어?” 아이는 잠시 고민하더니 되물었습니다. “아빠, 그런데 그 일도 나중엔 AI가 하는 거 아니야?” 웃어넘기려 했지만 말문이 막혔습니다. 20년 동안 수많은 발명과 브랜드를 지켜온 변리사였지만, 그 질문에는 바로 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 07:49:49 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2988,7 +2768,7 @@
     "url": "https://platum.kr/archives/299473?utm_source=rss&utm_medium=rss&utm_campaign=%25ec%25a7%2584%25eb%25a3%258c-%25eb%258c%2580%25ed%2599%2594-%25eb%2593%25a3%25ea%25b3%25a0-%25ec%25b0%25a8%25ed%258a%25b8-%25ec%2593%25b0%25eb%258a%2594-ai-%25eb%258f%2599%25eb%2584%25a4-%25ec%259d%2598%25ec%259b%2590%25ec%2597%2590%25ec%2584%259c-%25eb%258c%2580%25ed%2595%2599%25eb%25b3%2591%25ec%259b%2590%25ec%259c%25bc",
     "summary": "의사 한 명이 한 달 평균 713건의 진료 기록을 AI에 맡기고 있다. 가장 많이 쓰는 의사는 한 달 2,109건을 AI로 기록했다. 하루 진료 대부분을 AI 차팅으로 처리하는 셈이다. 의료 AI 스타트업 스튜디오키코가 지난 5월 정식 출시한 앰비언트 AI 스크라이브 ‘니어닥(Neardoc)’의 이용 현황이다. 앰비언트 AI 스크라이브는 진료실 대화를 옆에서 듣고 진료 기록을 대신 작성하는 AI 서비스를 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 07:44:54 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -2999,7 +2779,7 @@
     "url": "https://platum.kr/archives/299455?utm_source=rss&utm_medium=rss&utm_campaign=%25ed%2581%25ac%25eb%259e%2598%25ed%2594%2584%25ed%2586%25a4-%25ec%259e%2590%25ec%25b2%25b4-%25ea%25b0%259c%25eb%25b0%259c-llm-%25eb%259d%25bc%25ec%2598%25a8-1-%25eb%25af%25b8%25eb%258b%2588-%25ec%25a0%2595%25ec%258b%259d-%25ec%25b6%259c%25ec%258b%259c-%25ec%2583%2581%25ec%2597%2585%25ec%25a0%2581",
     "summary": "크래프톤이 자체 개발한 거대언어모델(LLM) ‘라온-1 미니(Raon-1 mini)’의 정식 버전을 공개했다. 프리뷰 버전을 낸 뒤 추론 능력과 복잡한 작업 수행 성능을 끌어올리고, 작업에 따라 생각하는 깊이를 고를 수 있는 기능을 더했다. 라온-1 미니는 크래프톤이 모델 구조 설계부터 처음부터 학습시키는 ‘프롬 스크래치’ 학습까지 전 과정을 직접 수행한 30B급 모델이다. 30B는 모델의 규모를 나타내는 파라미터가 약 300억 개라는 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 04:59:18 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3010,7 +2790,7 @@
     "url": "https://platum.kr/archives/299450?utm_source=rss&utm_medium=rss&utm_campaign=%25ea%25b0%2584%25ec%259e%25a5%25eb%25b6%2580%25ed%2584%25b0-%25ec%2588%2598%25ec%2586%258c-%25ec%2595%2595%25ec%25b6%2595%25ea%25b8%25b0%25ea%25b9%258c%25ec%25a7%2580-%25ec%2584%25b8%25eb%258c%2580-%25ec%259d%25b4%25ec%2596%25b4-%25ec%2598%25a8-%25ec%25a4%2591%25ec%2586%258c%25c2%25b7%25ec%25a4%2591%25ea%25b2%25ac",
     "summary": "간장·고추장을 81년째 만드는 순천의 식품회사와 50년 넘게 산업용 압축기를 만들어 수소 압축기까지 개발한 함안의 기계회사가 올해 명문장수기업 명단에 이름을 올렸다. 중소벤처기업부는 25일 서울 중소기업 DMC타워에서 ‘2026년 명문장수기업 수여식’을 열고 중소기업 10곳과 중견기업 2곳에 확인서를 줬다. 명문장수기업은 업력 45년 이상인 중소·중견기업 가운데 경제적·사회적 기여와 혁신 활동을 종합 평가해 정부가 확인하는 제도다. 2016년 중소기업진흥법에 근거가 마련돼 2017년 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 03:06:57 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3021,7 +2801,7 @@
     "url": "https://platum.kr/archives/299447?utm_source=rss&utm_medium=rss&utm_campaign=%25eb%25b0%2594%25ec%259d%25b4%25ec%2598%25a4-%25ec%258a%25a4%25ed%2583%2580%25ed%258a%25b8%25ec%2597%2585%25ec%2597%2590-%25ea%25b3%25a0%25ea%25b0%2580-%25ec%2597%25b0%25ea%25b5%25ac%25ec%259e%25a5%25eb%25b9%2584-%25ea%25b0%259c%25eb%25b0%25a9-%25ec%2586%25a1%25eb%258f%2584-k-%25eb%25b0%2594%25ec%259d%25b4%25ec%2598%25a4",
     "summary": "신약 후보물질을 찾고 세포를 분석하는 데 쓰는 고가 연구장비를 제약바이오 스타트업이 시중보다 싼 사용료로 쓸 수 있는 실험실이 인천 송도에 문을 열었다. 중소벤처기업부는 인천경제자유구역청, 연세대학교와 함께 추진하는 ‘K-바이오 랩허브 구축사업’의 하나로 25일 연세대 국제캠퍼스에서 연구장비 실험실 개소식을 열었다. K-바이오 랩허브는 제약바이오 스타트업이 연구개발에 집중할 수 있도록 공간과 장비, 전문인력, 네트워크를 한곳에서 지원하는 국가사업으로, 2023년부터 2031년까지 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 03:04:19 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3032,7 +2812,7 @@
     "url": "https://platum.kr/archives/299444?utm_source=rss&utm_medium=rss&utm_campaign=%25ec%2596%25b8%25ea%25b8%2589%25ec%259d%2580-%25ec%25b1%2597gpt-%25ea%25b2%25b0%25ec%25a0%259c%25eb%258a%2594-%25ed%2581%25b4%25eb%25a1%259c%25eb%2593%259c-%25ec%2595%25b1%25c2%25b7%25ec%25b9%25b4%25eb%2593%259c-%25eb%258d%25b0%25ec%259d%25b4%25ed%2584%25b0%25eb%25a1%259c-%25eb%25b3%25b8-%25ec%2598%25ac",
     "summary": "올해 국내 소비자는 많이 이야기한 곳과 실제로 돈을 쓴 곳이 달랐다. 생성형 AI는 챗GPT가 더 많이 언급됐지만, 카드 결제액은 3월부터 클로드 운영사 앤트로픽이 오픈AI를 앞섰다. 한정판을 찾아 세븐일레븐 앱을 연 사람은 크게 늘었지만, 결제액이 늘어난 곳은 다이소였다. 아이지에이웍스 모바일인덱스가 바이브컴퍼니 썸트렌드의 소셜 데이터와 결합해 공개한 소비 트렌드 결산 리포트 ‘TREND CROSS 2026’에 따르면, 관심과 지출이 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 02:48:57 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3043,7 +2823,7 @@
     "url": "https://platum.kr/archives/299440?utm_source=rss&utm_medium=rss&utm_campaign=%25eb%25b0%25b0%25eb%258b%25ac-%25ec%25a3%25bc%25eb%25ac%25b8-%25ec%2596%25b4%25eb%2594%2594%25ec%2584%259c-%25eb%258a%25a6%25ec%2596%25b4%25ec%25a7%2580%25eb%2582%2598-%25ed%2594%2584%25eb%259e%259c%25ec%25b0%25a8%25ec%259d%25b4%25ec%25a6%2588-%25eb%25b3%25b8%25ec%2582%25ac%25ec%259a%25a9-%25eb%25b0%25b0%25eb%258b%25ac",
     "summary": "프랜차이즈 본사가 자기 브랜드 매장의 배달 주문이 어느 단계에서, 어느 지역과 건물에서 늦어지는지 한 화면에서 확인하는 플랫폼이 나왔다. 라스트마일 물류기업 래티브는 프랜차이즈 브랜드 본사를 위한 B2B 배달 데이터 플랫폼 ‘래티브온(Ractive On)’의 운영을 시작한다고 25일 밝혔다. 래티브온은 배달대행 시스템의 주문 데이터를 자동으로 모아, 주문 접수부터 배달 완료까지 전 과정을 한 화면에서 보여 준다. 진행 중인 주문은 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 02:28:44 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3054,7 +2834,7 @@
     "url": "https://platum.kr/archives/299429?utm_source=rss&utm_medium=rss&utm_campaign=%25ed%2595%259c%25ea%25b5%25ad%25ec%259d%2580-%25ec%259d%25b4%25ec%25a0%259c-%25eb%25b0%2598%25eb%2593%259c%25ec%258b%259c-%25ec%25a7%2584%25ec%25b6%259c%25ed%2595%25b4%25ec%2595%25bc-%25ed%2595%25a0-%25ec%258b%259c%25ec%259e%25a5-%25ec%258b%25a4%25eb%25a6%25ac%25ec%25bd%2598%25eb%25b0%25b8%25eb%25a6%25ac",
     "summary": "“3년 전 한국은 탐색과 관심의 대상이었지만, 이제는 글로벌 성장을 위해 반드시 진출해야 하는 시장이다.” 미국 샌프란시스코의 초기 단계 벤처캐피털 킨드레드 벤처스(Kindred Ventures)를 세운 스티브 장 대표 파트너의 말이다. 킨드레드 벤처스는 지난 23일 서울 용산구 몬드리안 서울 이태원에서 국내 투자사 SBVA, DS투자증권과 함께 ‘AI 웨이브: 서울 2026’을 열고, 실리콘밸리와 한국의 AI·로보틱스·딥테크 창업자들을 한자리에 모았다. AI 웨이브는 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 02:25:28 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3065,7 +2845,7 @@
     "url": "https://platum.kr/archives/299403?utm_source=rss&utm_medium=rss&utm_campaign=%25ec%25a7%2584%25eb%25a3%258c-%25ea%25b8%25b0%25eb%25a1%259d%25eb%25b6%2580%25ed%2584%25b0-%25eb%25b3%25b4%25ed%2597%2598-%25ec%25b2%25ad%25ea%25b5%25ac%25ea%25b9%258c%25ec%25a7%2580-ai-%25ec%2597%2590%25ec%259d%25b4%25ec%25a0%2584%25ed%258a%25b8%25ea%25b0%2580-%25ec%25b2%2598%25eb%25a6%25ac-%25ec%259d%2598%25eb%25a3%258c",
     "summary": "미국 클리닉에서는 의사와 직원들이 진료 기록 작성, 전화 응대, 예약 조율, 보험 확인에 서로 다른 도구를 쓴다. 진료 대화를 받아 적는 AI 서비스나 의학 근거 검색 서비스가 늘고 있지만, 대부분 병원 업무의 한 단계만 다룬다. 의료 AI 스타트업 휴버(HUVER)는 여러 AI 에이전트가 이 업무들을 나눠 맡아 처리하는 플랫폼 ‘HUVON’을 만든다. 휴버는 디지털 헬스케어 전문 투자사 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 02:20:07 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3076,7 +2856,7 @@
     "url": "https://platum.kr/archives/299425?utm_source=rss&utm_medium=rss&utm_campaign=ai-%25ed%2595%2599%25ec%258a%25b5%25eb%258d%25b0%25ec%259d%25b4%25ed%2584%25b0-%25ed%2592%2588%25ec%25a7%2588%25ec%259d%2584-%25ea%25b3%25b5%25ec%259d%25b8%25ec%258b%259c%25ed%2597%2598%25ec%2584%25b1%25ec%25a0%2581%25ec%2584%259c%25eb%25a1%259c-%25ed%258e%2598%25eb%25b8%2594%25eb%259f%25ac%25ec%258a%25a4-ai%25ec%258b%259c",
     "summary": "AI가 어떤 데이터로 학습됐는지, 실제 환경에서 얼마나 안정적으로 작동하는지를 개발사가 아닌 제3자가 시험해 성적서로 증명해 주는 서비스가 나왔다. AI 데이터 품질 관리 기업 페블러스는 ‘AI시험평가센터’를 열고 AI 학습데이터의 품질과 AI 모델의 성능·신뢰성을 검증하는 시험평가 서비스를 시작한다고 25일 밝혔다. AI를 들여오는 기업과 기관은 AI가 어떤 데이터로 학습됐고 현장에서 얼마나 안정적으로 작동하는지에 대한 객관적인 근거를 요구받는 경우가 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 02:17:19 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3087,7 +2867,7 @@
     "url": "https://platum.kr/archives/299419?utm_source=rss&utm_medium=rss&utm_campaign=%25ea%25b0%2580%25ec%259d%2584-%25ec%259d%25b4%25ec%25a7%2581-%25ec%258b%259c%25ec%25a6%258c-7%25eb%2585%2584-%25ec%25b0%25a8-%25ec%259d%25b4%25ec%2583%2581-%25ec%25a7%2581%25ec%259e%25a5%25ec%259d%25b8-%25ec%259d%25b4%25eb%25a0%25a5%25ec%2584%259c-%25ec%25a0%2595%25eb%25b9%2584-%25eb%258a%2598%25ec%2597%2588%25eb%258b%25a4",
     "summary": "올가을 이직 시즌에는 경력 7년 차 이상 직장인들이 이력서를 다듬는 움직임이 두드러졌다. 반면 1~3년 차의 이력서 업데이트는 1년 전보다 줄었다. 채용 플랫폼 잡코리아를 운영하는 웍스피어가 올해 9~10월 자사 회원의 이력서 업데이트와 입사지원 데이터를 분석해 25일 내놓은 결과다. 올해 9~10월 잡코리아 경력직 회원의 이력서 업데이트 건수는 1년 전보다 5.3% 늘었다. 증가세는 7년 차 이상이 이끌었다. 이들의 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 01:19:37 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3098,7 +2878,7 @@
     "url": "https://platum.kr/archives/299415?utm_source=rss&utm_medium=rss&utm_campaign=%25eb%25aa%25bb-%25ea%25b0%2580%25ea%25b2%258c-%25eb%2590%259c-%25ec%2588%2599%25ec%2586%258c-%25ec%2598%2588%25ec%2595%25bd%25ea%25b6%258c-%25ea%25b0%259c%25ec%259d%25b8%25eb%2581%25bc%25eb%25a6%25ac-%25ec%2582%25ac%25ea%25b3%25a0-%25ed%258c%258c%25eb%258a%2594-%25ec%2584%259c%25eb%25b9%2584%25ec%258a%25a4-%25eb%2582%2598",
     "summary": "일정이 바뀌어 쓰지 못하게 된 숙박 예약권이나 레저 이용권을 다른 사람에게 넘길 수 있는 거래 플랫폼이 나온다. 공연·스포츠 티켓 거래 플랫폼 ‘티켓베이’를 운영하는 팀플러스가 개인 간 여행상품 거래 플랫폼 ‘트립베이(TRIPBAY)’를 12월 9일 정식 출시한다. 여행상품은 환불이 안 되거나 취소 수수료가 높은 경우가 많다. 트립베이에서는 판매자가 이런 상품을 다른 이용자에게 팔아 비용 일부를 돌려받을 수 있고, ... 더 읽기",
     "published": "Wed, 25 Nov 2026 01:15:19 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3109,7 +2889,7 @@
     "url": "https://platum.kr/archives/299409?utm_source=rss&utm_medium=rss&utm_campaign=%25eb%25b6%2580%25ec%259a%25b8%25ea%25b2%25bd-%25ec%25b4%2588%25ea%25b8%25b0-%25ec%258a%25a4%25ed%2583%2580%25ed%258a%25b8%25ec%2597%2585-15%25ea%25b3%25b3-1%25eb%25b0%2595-2%25ec%259d%25bc-%25ed%2588%25ac%25ec%259e%2590-%25ec%25ba%25a0%25ed%2594%2584%25ec%2584%259c-%25ed%2588%25ac%25ec%259e%2590%25ed%2599%2595",
     "summary": "부산·울산·경남 지역 초기 스타트업 15곳이 1박 2일 동안 투자사 13곳과 기업별 상담을 하고 IR 대회를 치렀다. 행사가 끝난 뒤 투자확약서 3건과 투자의향서 62건이 나왔다. 한국엔젤투자협회 동남권 엔젤투자허브가 주관해 23일부터 24일까지 경남 김해 롯데호텔앤리조트에서 연 ‘제4회 동남권 엔젤웨이브(Angelwave) IR 캠프’다. 중소벤처기업부와 경상남도, 부산시, 울산시가 주최했다. 엔젤투자허브는 권역별 초기 창업기업과 투자자를 잇는 엔젤투자 지원 거점으로, 엔젤웨이브 IR ... 더 읽기",
     "published": "Wed, 25 Nov 2026 01:03:44 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3120,7 +2900,7 @@
     "url": "https://platum.kr/archives/299398?utm_source=rss&utm_medium=rss&utm_campaign=%25ed%2595%2599%25ed%259a%258c%25c2%25b7%25eb%25b9%2585%25ed%2585%258c%25ed%2581%25ac-%25ed%2596%2589%25ec%2582%25ac%25ec%2597%2590-ai-%25ec%258b%25a4%25ec%258b%259c%25ea%25b0%2584-%25ed%2586%25b5%25ec%2597%25ad-%25ed%2594%258c%25eb%25a6%25ac%25ed%2586%25a0-%25eb%25b3%25b4%25ea%25b8%2580-%25ec%2598%25ac%25ed%2595%25b4",
     "summary": "플리토의 AI 통번역 솔루션 ‘보글(Vogl)’을 쓴 컨퍼런스·강연 행사가 올해 850건에 이를 전망이다. 플리토는 행사 무대용 ‘보글 스테이지(Vogl Stage)’를 도입한 행사가 10월까지 645건이었고, 11~12월 예정된 행사를 더하면 지난해 442건보다 92%가량 늘어난다고 25일 밝혔다. 보글 스테이지는 연사의 발언을 실시간으로 번역해 무대 스크린에 자막으로 띄우는 서비스다. 보글에는 보글 스테이지 외에도 매장 안내 데스크나 상담 창구에서 1대1 대화를 통역하는 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 00:05:35 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3131,7 +2911,7 @@
     "url": "https://platum.kr/archives/299392?utm_source=rss&utm_medium=rss&utm_campaign=%25ec%258a%25a4%25ed%2583%2580%25ed%258a%25b8%25ec%2597%2585-%25eb%25aa%25a8%25eb%258b%259d%25ec%25bb%25a4%25ed%2594%25bc-1445%25ed%259a%258c-%25ec%2595%258c%25ea%25b3%25a0%25ec%25bc%2580%25ec%2596%25b4-%25ec%25b6%2594%25ec%25b2%259c-%25ec%2586%258c%25ed%2594%2584%25ed%258a%25b8%25ec%259b%25a8%25ec%2596%25b4",
     "summary": "알고케어, 추천 소프트웨어와 전용 기기를 연결한 영양관리…여성 생애주기 확장 구상 스타트업 모닝커피 1445회는 추천 소프트웨어와 영양제 토출 기기, 전용 영양제를 연결하는 영양관리 서비스를 제공하는 알고케어(Algocare)를 소개한다. 현재 공식 홈페이지에서는 가정용 기기와 기업용 서비스를 각각 안내한다. 회사는 이번 방송 자료에서 이러한 서비스 기반을 여성의 생애주기를 고려한 영양관리로 넓히려는 방향을 제시했다. 서비스의 추천 소프트웨어는 마이알고(My Algo)다. 회사는 ... 더 읽기",
     "published": "Wed, 25 Nov 2026 00:02:53 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3142,7 +2922,7 @@
     "url": "https://platum.kr/archives/299395?utm_source=rss&utm_medium=rss&utm_campaign=%25eb%25b0%25b0%25ec%259a%25b0-%25eb%25aa%25a9%25ec%2586%258c%25eb%25a6%25ac%25c2%25b7%25ec%259e%2585-%25eb%25aa%25a8%25ec%2596%2591-%25ec%2582%25b4%25eb%25a0%25a4-90%25ec%2597%25ac-%25ea%25b0%259c-%25ec%2596%25b8%25ec%2596%25b4%25eb%25a1%259c-%25ec%2598%2581%25ec%2583%2581-ai-%25ed%2594%258c%25eb%259e%25ab%25ed%258f%25bc",
     "summary": "영화나 드라마 속 배우의 목소리 톤을 살린 채 대사를 다른 언어로 바꾸고, 입 모양까지 번역된 대사에 맞춰 다시 그리는 AI 더빙 기능이 영상 제작 플랫폼에 들어갔다. 여러 인물의 대사가 겹치는 장면도 한 번에 처리한다. AI 영상 제작 플랫폼 모픽(Morphic)은 25일 AI 더빙 기능 ‘모픽 더빙(Morphic Dub)’을 공개했다. 한국어와 영어, 중국어, 일본어, 스페인어 등 90개 이상 ... 더 읽기",
     "published": "Tue, 24 Nov 2026 23:59:30 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3153,7 +2933,7 @@
     "url": "https://platum.kr/archives/299391?utm_source=rss&utm_medium=rss&utm_campaign=ai-%25ec%2598%2581%25ec%2583%2581-%25eb%25aa%25a8%25eb%258d%25b8-%25ea%25b3%25a8%25eb%259d%25bc-%25ec%2593%25b0%25eb%258a%2594-%25ed%2594%258c%25eb%259e%25ab%25ed%258f%25bc-%25ec%2588%25a8ai-%25ec%25b6%259c%25ec%258b%259c-%25ed%2595%259c-%25eb%258b%25ac-%25ea%25b2%25b0%25ec%25a0%259c%25ec%2595%25a1-10",
     "summary": "AI 스타트업 숨랩스가 지난 10월 정식 출시한 AI 영상 생성 플랫폼 ‘숨AI(Sume)’의 누적 결제액이 출시 한 달 만에 10억원을 넘었다. 같은 기간 가입자는 약 2만5,000명, 유료 고객은 3,300명을 넘었고, 결제액의 60%는 미국 이용자에게서 나왔다. 숨AI는 여러 회사가 내놓은 영상·이미지·음성 생성 AI 모델을 한곳에 모은 플랫폼이다. 이용자가 원하는 영상을 설명하면 목적에 맞는 모델을 고르고, 모델마다 다른 ... 더 읽기",
     "published": "Tue, 24 Nov 2026 23:45:29 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3164,7 +2944,7 @@
     "url": "https://platum.kr/archives/299439?utm_source=rss&utm_medium=rss&utm_campaign=%25ec%258b%25a4%25ec%25a0%259c-%25ea%25b3%25a0%25ea%25b0%259d-%25eb%258d%25b0%25ec%259d%25b4%25ed%2584%25b0%25eb%25a1%259c-%25ec%2583%2581%25eb%258b%25b4-%25ec%2597%25b0%25ec%258a%25b5-%25ed%2581%25ac%25eb%2594%2594%25eb%259e%25a9-%25ea%25b8%2588%25ec%259c%25b5%25ea%25b6%258c%25ec%259a%25a9-ai-%25ec%2583%2581%25eb%258b%25b4",
     "summary": "AI 기반 커뮤니케이션 교육 기업 크디랩이 금융사 내부 고객 데이터로 직원 상담 훈련을 할 수 있는 금융권 맞춤형 AI 상담 훈련 솔루션을 25일 출시했다. 이번 제품은 직무 화법 코칭 플랫폼 ‘쏘카인드(Sokind)’의 기업형 온프레미스 모델이다. 온프레미스는 기업이 자체 서버에 시스템을 설치해 운영하는 방식을 말한다. 쏘카인드는 보험설계사, 은행 창구 직원, 상담원이 AI가 연기하는 가상 고객과 대화하며 상담을 ... 더 읽기",
     "published": "Tue, 24 Nov 2026 22:25:00 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3175,7 +2955,7 @@
     "url": "https://www.venturesquare.net/1131597/",
     "summary": "어크로스가 운영하는 AI 가시성 지수 젠랭크가 챗GPT와 제미나이, 네이버 AI 등 8개 AI 서비스의 김치 및 김치냉장고 추천 답변을 분석했다. 포기김치 추천에서는 8개 서비스 모두 종가를 언급했지만, 가성비 김치 질문에서는 이마트 자체 브랜드인 노브랜드 포기김치가 ... The post 어크로스, AI에 김치 추천을 물었더니…질문 하나에 달라지는 브랜드 경쟁력 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:54:20 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3186,7 +2966,7 @@
     "url": "https://www.venturesquare.net/1131586/",
     "summary": "응급 상황 대응 헬스케어 스타트업 위코멧이 기업·기관 특화 응급 대응 솔루션 ‘원 케어’를 통해 B2B·B2G 시장을 공략한다. 원 케어는 자동심장충격기의 소모품 교체 및 장비 이상 알림 기능과 심폐소생술 자기주도훈련 서비스를 하나로 통합한 솔루션이다. 학습관리시스템 ... The post 위코멧, AED 설치부터 응급처치 훈련까지 하나로…기업·기관 안전관리 시장 문 두드린다 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:51:28 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3197,7 +2977,7 @@
     "url": "https://www.venturesquare.net/1131584/",
     "summary": "AI 영상인식 전문기업 에이아이매틱스가 CES 2027에서 제조 현장의 외관검사 업무를 자동화하는 AI 비전검사 플랫폼 ‘AIM-T1’을 선보인다. AIM-T1은 소프트웨어 기반으로 검사 기준을 변경하고 양품 샘플을 활용해 신규 검사 모델을 생성할 수 있으며, 3㎛급 ... The post 에이아이매틱스, 40명 검사 공정을 2명으로…CES 2027서 AI 비전검사 기술 공개 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:48:56 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3208,7 +2988,7 @@
     "url": "https://www.venturesquare.net/1131572/",
     "summary": "글로벌 여행 플랫폼 클룩이 한국인 이용자의 일본 호텔 예약 데이터를 분석한 결과, 올해 10월 1일부터 11월 15일까지 예약 건수가 전년 동기 대비 13.9% 증가했다. 온천 명소 6곳의 예약은 여름 대비 153.8%, 설경 명소 5곳은 61.9% 늘었으며 유후인이 ... The post 클룩, 일본 겨울여행 수요 온천·설경 명소로 집중…유후인 호텔 예약 415.8% 증가 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:46:00 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3219,7 +2999,7 @@
     "url": "https://www.venturesquare.net/1131569/",
     "summary": "헥토이노베이션이 카이아 DLT 재단과 블록체인 지갑 인프라 및 스테이블코인 결제·정산 사업 협력을 위한 업무협약을 체결했다. 양측은 헥토그룹 임직원 복지포인트 ‘헥토코인’을 활용해 디지털자산의 발행부터 지급, 결제, 소각까지 전 과정을 제한된 환경에서 검증해 왔다. 이... The post 헥토이노베이션, 복지포인트 실증에서 기업 결제까지…카이아와 스테이블코인 인프라 구축 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:43:07 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3230,7 +3010,7 @@
     "url": "https://www.venturesquare.net/1131558/",
     "summary": "와콤코리아가 11월 26일부터 29일까지 서울 코엑스에서 열리는 제25회 서울디자인페스티벌에 참가한다. ‘차원이 다른 와콤’을 테마로 전시 부스를 운영하고 현장 구매 고객에게 특별 할인 혜택과 무빙크패드 전용 스탠드 증정 프로모션을 제공한다. 수험표를 인증한 액정타블렛... The post 와콤, 서울디자인페스티벌서 예비 창작자 만난다…디지털 드로잉 고객층 확대 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:41:08 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3241,7 +3021,7 @@
     "url": "https://www.venturesquare.net/1131555/",
     "summary": "AI 기반 커뮤니케이션 교육 기업 크디랩이 금융권 맞춤형 상담 훈련 솔루션 ‘쏘카인드’의 기업형 온프레미스 모델을 출시했다. 기업 내부망에서 개인정보를 사전 처리하고 외부 고성능 언어모델을 활용하는 하이브리드 구조를 적용해 실제 고객 특성을 반영한 상담 훈련 환경을 구... The post 크디랩, 실제 고객 데이터로 AI 가상 고객 구현…금융권 상담 교육 시장 공략한다 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:38:13 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3252,7 +3032,7 @@
     "url": "https://www.venturesquare.net/1131553/",
     "summary": "글로벌 영상 AI 플랫폼 모픽이 영화·드라마 등 영상 콘텐츠의 해외 배급과 현지화를 지원하는 AI 더빙 툴 ‘모픽 더빙’을 출시했다. 90개 이상의 언어를 지원하며 원본 배우의 음색을 반영한 더빙 음성 생성과 립싱크, 다인물 대사 처리 기능을 갖췄다. 제작사가 검수한 ... The post 모픽AI, 배우 목소리 살려 90개 이상 언어로 더빙…영상 콘텐츠 해외 유통 장벽 낮춘다 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:36:02 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3263,7 +3043,7 @@
     "url": "https://www.venturesquare.net/1131546/",
     "summary": "웨어러블 로봇 하이퍼쉘이 MBC ‘기분 좋은 날’에 등장해 시니어의 보행과 야외 활동을 지원하는 착용형 로봇 기술을 소개했다. 하이퍼쉘은 사용자의 움직임에 맞춰 보조 동력을 제공하며 산책과 등산 등 다양한 아웃도어 활동에 활용할 수 있도록 설계됐다. 국내 총판인 브이디... The post 하이퍼쉘, 입는 로봇의 무대는 일상으로…시니어 산책·등산 시장에 활용 가능성 제시 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:21:53 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3274,7 +3054,7 @@
     "url": "https://www.venturesquare.net/1131514/",
     "summary": "프롭핀테크 기업 엘엔디씨가 부동산 중개업무 지원 서비스 ‘부동산렛츠(RETS)’를 운영하는 넥스텝코리아와 업무협약을 체결했다. 양사는 AI 기반 부동산 사업성 분석 솔루션 랜드업과 매물정보 서비스를 연계해 중개업 종사자의 물건 비교 및 고객 상담 업무를 지원한다. 서울... The post 엘엔디씨, 부동산 매물 탐색에 사업성 분석 더한다…넥스텝코리아와 중개시장 공략 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:09:54 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3285,7 +3065,7 @@
     "url": "https://www.venturesquare.net/1131533/",
     "summary": "AI 기반 모빌리티 리스크 전문기업 스몰티켓이 ‘코리아 핀테크 위크 2026’에서 자동차 사고 분석 및 과실비율 판단 지원 솔루션 ‘SMT Ratio’를 공개한다. SMT Ratio는 블랙박스 영상과 사고 관련 정보를 분석하고 관련 기준과 사례를 검토해 손해사정사의 의... The post 스몰티켓, 블랙박스 영상으로 교통사고 과실 판단 지원…보험 보상 업무에 AI를 접목하다 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:07:48 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3296,7 +3076,7 @@
     "url": "https://www.venturesquare.net/1131522/",
     "summary": "중소벤처기업부가 2026년 명문장수기업 수여식을 개최하고 중소기업 10개사와 중견기업 2개사 등 총 12개사를 신규 선정하거나 자격을 연장했다. 올해 기업들은 수십 년간 축적한 기술력을 기반으로 친환경 에너지, 항공·방산, 의료기기, 식품 등 다양한 산업에서 사업 경쟁... The post 중기부, 45년 넘어 100년 기업으로…2026년 명문장수기업 12개사 선정·자격 연장 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 14:03:46 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3307,7 +3087,7 @@
     "url": "https://www.venturesquare.net/1131515/",
     "summary": "구글이 한국야구위원회(KBO)와 2027 KBO 리그 공식 검색 파트너십 협약을 체결했다. 양측은 구글 검색과 제미나이의 AI 기술을 활용해 프로야구 팬들이 선수와 구단, 경기 기록 등 다양한 정보를 편리하게 탐색할 수 있도록 지원한다. 스프링캠프와 유소년 야구 육성 ... The post 구글, 프로야구 팬덤에 AI 검색 접목…KBO와 2027 시즌 공식 파트너십 체결 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 13:57:16 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3318,7 +3098,7 @@
     "url": "https://www.venturesquare.net/1131490/",
     "summary": "전자문서·전자계약 솔루션 기업 포시에스가 대만 현지 파트너사 글로벌디지털과 함께 유안타은행의 페이퍼리스 브랜치 프로젝트를 수주했다. 2022년 국내 유안타증권에 이어 한국과 대만에서 동일 금융그룹의 디지털 창구 구축 사업을 수행하게 됐다. 이번 프로젝트에는 전자서식뿐 ... The post 포시에스, 한국 이어 대만 유안타금융그룹 디지털 창구 구축…아시아 전자문서 시장 공략 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 13:50:36 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3329,7 +3109,7 @@
     "url": "https://www.venturesquare.net/1131501/",
     "summary": "의료 AI 스타트업 스튜디오키코의 앰비언트 AI 스크라이브 ‘니어닥’이 출시 6개월 만에 563개 의료기관에 도입되며 누적 진료 기록 114만5,868건을 달성했다. 자체 개발한 의료 특화 추론 엔진을 기반으로 진료 대화를 구조화하고 의료진 개개인의 기록 방식을 반영한... The post 스튜디오키코, 의사의 차트 작성 시간을 70% 줄였다…‘니어닥’ 출시 6개월 만에 누적 진료 114만건 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 13:46:43 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3340,7 +3120,7 @@
     "url": "https://www.venturesquare.net/1131488/",
     "summary": "도도한콜라보와 리맨, CJ대한통운이 공동 제작한 디지털기기 자원순환 캠페인 영상 ‘리플러스’가 2026 CSR 필름 페스티벌 어워드에서 환경 임팩트 부문 대상인 기후에너지환경부 장관상을 수상했다. 경기도사회적경제원의 지원을 받아 제작한 영상은 디지털기기 기부부터 개인정... The post 도도한콜라보·리맨·CJ대한통운, 잠자는 디지털기기에 새로운 가치를…기후에너지환경부 장관상 수상 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 13:41:33 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3351,7 +3131,7 @@
     "url": "https://www.venturesquare.net/1131486/",
     "summary": "에듀테크 기업 위키드스톰의 AI 기반 학습경험플랫폼 ‘LearnHubble AI’가 2026 아시아 에듀테크 서밋 글로벌 어워드 최고상인 플래티넘에 선정됐다. LearnHubble AI는 국제표준 xAPI를 기반으로 여러 교육 서비스에 분산된 학습 기록을 연결하고 AI... The post 위키드스톰, 흩어진 학습데이터를 하나로…‘LearnHubble AI’ 아시아 에듀테크 최고상 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 13:38:06 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3362,7 +3142,7 @@
     "url": "https://www.venturesquare.net/1131448/",
     "summary": "교육 전문 사회적협동조합 인사이드아웃과 개인안전 솔루션 기업 세이픽스가 치안·개인안전 교육 확산을 위한 업무협약을 체결했다. 양 기관은 교육 기획·운영 역량과 개인안전 교육 경험을 결합해 청소년부터 어르신까지 대상별 맞춤형 교육 프로그램과 온라인 콘텐츠를 공동 개발한다... The post 인사이드아웃·세이픽스, 개인안전을 생활 속 교육으로…대상별 안전교육 콘텐츠 공동 개발 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 13:36:09 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3373,7 +3153,7 @@
     "url": "https://www.venturesquare.net/1131447/",
     "summary": "킨드레드 벤처스가 SBVA, DS투자증권과 함께 23일 몬드리안 서울 이태원에서 ‘AI Wave: Seoul 2026’을 개최했다. 실리콘밸리와 한국의 AI·로보틱스·딥테크 창업자 및 투자자들은 AI 추론, 맞춤형 반도체, 피지컬 AI, 컴퓨팅 및 전력 인프라 분야의 ... The post 실리콘밸리 AI 창업자들이 서울로 모인 이유…킨드레드 벤처스가 주목한 한국의 경쟁력 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 06:58:10 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3384,7 +3164,7 @@
     "url": "https://www.venturesquare.net/1131427/",
     "summary": "AI 인베스트테크 기업 머니스테이션이 홍콩 핀테크위크에 참가해 자체 개발한 AI 투자분석 엔진 ‘시그널엔진’을 소개했다. 홍콩 선화그룹과 공식 개념검증에 착수했으며 현지 증권사 2곳과도 기술 실증 추진을 위한 비밀유지계약을 체결했다. 시그널엔진은 글로벌 금융시장 데이터... The post 머니스테이션, AI 투자분석 엔진으로 홍콩 금융시장 진출…선화그룹과 기술 실증 착수 appeared first on 벤처스퀘어 .",
     "published": "Wed, 25 Nov 2026 06:47:06 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3395,7 +3175,7 @@
     "url": "https://www.etnews.com/20261125000609",
     "summary": "국내 증시의 급격한 변동성이 개인투자자들의 자산을 압박하는 가운데, 대출까지 동원해 주식에 투자했다가 8억원의 손실을 입은 직장인의 사례가 주목받고 있다. 25일 소셜미디어(SNS) 스레드에는 한 직장인이 자신의 상사가 마이너스통장 대출 한도까지 끌어다 주식에 추가 투자했다가 막대한 손실을 입었다는 사연을 공개했다. 게시글에 따르면 해당 상사는 보유 종목의 주가가 하락하자 추가 매수하는 이른바 '물타기' 전략을 반복했다. 투자 재원을 확보하기",
     "published": "Wed, 25 Nov 2026 21:03:45 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3406,7 +3186,7 @@
     "url": "https://www.etnews.com/20261125000606",
     "summary": "가상자산거래소 빗썸에서 해킹으로 개인정보가 유출된 피해자가 당초 알려진 7159명보다 많은 것으로 뒤늦게 확인됐다. 빗썸은 25일 공지를 내고 “사내 모바일 그룹웨어 시스템 다우오피스 정보 유출 사고에 대한 후속 점검 과정에서 유출 정보주체와 항목을 추가 확인했다”고 밝혔다. 빗썸은 당초 고객 6444명, 임직원 715명의 개인정보가 유출됐다고 공지했지만 실제로 정보가 유출된 인원은 더 많았다. 추가로 확인된 내용에서는 고객 피해가 추가로 확인",
     "published": "Wed, 25 Nov 2026 20:46:19 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3417,7 +3197,7 @@
     "url": "https://www.etnews.com/20261125000528",
     "summary": "이재명 대통령이 공적주택(공공임대주택) 정책의 대전환을 예고했다. '저소득층 주택'이라는 인식에서 벗어나 중산층도 기꺼이 선택할 수 있는 '주거 사다리'로 만들겠다는 구상이다. 이를 위해 정부는 역세권·도심에 중형 주택을 늘리고 민간 기술을 활용해 품질을 높이는 한편 입주 문턱도 낮출 계획이다. 이 대통령은 25일 서울 은평구청에서 열린 '공적주택 소통간담회'에서 “앞으로는 위치·면적·품질 측면에서 중산층도 얼마든지 선택할 수 있는, 또는 새집",
     "published": "Wed, 25 Nov 2026 20:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3428,7 +3208,7 @@
     "url": "https://www.etnews.com/20261125000570",
     "summary": "삼성전자가 내년 2월 열리는 세계 최고 권위 반도체 회로 학회 '국제고체회로학회(ISSCC 2027)'에서 500단대 3D 낸드플래시와 4나노(㎚) 공정 기반 커스텀(맞춤형) 고대역폭메모리(HBM) 핵심 기술을 공개한다. 25일 ISSCC 2027 사전 프로그램에 따르면 삼성전자는 3D 낸드 세션(세션 30)에서 '초당 290MB 쓰기 처리량과 핀당 6.8Gbps 입출력 속도를 갖춘 42Gb/㎟ 밀도의 500단대(5XX-Layer) 1.5Tb",
     "published": "Wed, 25 Nov 2026 18:19:44 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3439,7 +3219,7 @@
     "url": "https://www.etnews.com/20261125000550",
     "summary": "노소영 아트센터 나비 관장이 최태원 SK그룹 회장 측의 화해권고 요청에 동의하지 않는다는 입장을 밝혔다. 노 관장의 대리인은 25일 입장문을 내고 “최 회장 측 화해권고 요청에 동의하지 않는다는 취지의 서면을 (재판부에) 제출했다”고 밝혔다. 대리인은 “최 회장에게 조기 해결의 진정성이 있다면 즉시 상고를 취하하길 바란다는 말씀을 드린다”고 덧붙였다. 최 회장이 지난 23일 재산분할 재상고심 재판부인 대법관 2부(주심 김성수 대법관)에 제출한",
     "published": "Wed, 25 Nov 2026 17:55:37 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3450,7 +3230,7 @@
     "url": "https://www.etnews.com/20261125000540",
     "summary": "25일 오후 경기 용인 에버랜드 스피드웨이. 지난 봄 가상 트랙에서 실력을 검증한 대학생 엔드투엔드(E2E) 자율주행 인공지능(AI) 팀들이 실제 포뮬러 차량으로 서킷 위 진검승부에 벌였다. 5월 서울에서 시뮬레이션 본선을 통과한 상위 3개 팀이 알고리즘을 전기차 기반 실제 포뮬러 차량에 이식해 단독 주행과 3대 동시 자율주행 레이싱까지 치렀다. 산업통상부와 지능형자동차부품진흥원(KIAPI)이 마련한 '2026 A1 챌린지 레이스(A1 CHAL",
     "published": "Wed, 25 Nov 2026 17:36:12 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3461,7 +3241,7 @@
     "url": "https://www.etnews.com/20261125000537",
     "summary": "김정관 산업통상부 장관이 반도체부터 연구개발(R&D) 인력에 주52시간 특례를 적용해야 한다고 강조했다. 중국과의 기술 경쟁에서 'R&D 시간'부터 밀리고 있다는 판단에서다. 김 장관은 25일 출입기자 간담회를 갖고 “중국과의 경쟁에서 우리는 R&D 시간에서부터 밀린다. 좋은 일자리인 R&D 일자리가 중국으로 넘어가게 생겼다”며 이런 입장을 밝혔다. 위기의식은 김 장관이 지난주 방문한 중국 선전에서 더 커졌다. 선전은 지난주 아시아태평양경제협력",
     "published": "Wed, 25 Nov 2026 17:31:37 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3472,7 +3252,7 @@
     "url": "https://www.etnews.com/20261125000525",
     "summary": "드라마 '서울 자가에 대기업 다니는 김 부장 이야기'의 원작을 쓴 송희구 작가가 직장에 다니던 시절 월급 대부분을 저축해 부동산 투자에 필요한 자금을 마련한 과정을 공개했다. 현재 200억원대 자산가로 알려진 그는 당시 소득의 약 90%를 모으며 재테크 기반을 다졌다고 밝혔다. 송 작가는 지난 12일 유튜브 채널 '플러스클로버 TV'에 출연해 “처음 시작한 재테크는 돈을 모으는 일이었다”고 회상했다. 직장 근무와 함께 퇴근 후 별도의 아르바이트",
     "published": "Wed, 25 Nov 2026 17:13:30 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3483,7 +3263,7 @@
     "url": "https://www.etnews.com/20261125000468",
     "summary": "같은 양의 술을 마시더라도 음주 횟수가 잦은 사람이 한꺼번에 마시는 사람보다 위암에 걸릴 가능성이 더 높다는 연구 결과가 나왔다. 중앙대·국립암센터·이화여대·연세대·한림대 공동 연구팀은 2010~2011년 국가건강검진을 받은 50~69세 성인 600만7469명의 건강 자료를 분석했다. 연구 결과는 지난 8월 22일 국제학술지 '유럽역학저널(European Journal of Epidemiology)'에 게재됐다. 관찰연구로 진행됐으며, 연구팀은",
     "published": "Wed, 25 Nov 2026 17:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3494,7 +3274,7 @@
     "url": "https://www.etnews.com/20261125000145",
     "summary": "메르세데스-벤츠 코리아가 차세대 전기 스포츠유틸리티차(SUV) '디 올-뉴 일렉트릭 벤츠 GLB'를 국내에 처음 공개하고, 연말 부분변경 모델 '더 뉴 EQS' 출시를 끝으로 올해 총 11종 신차 라인업을 완성한다. 지난달 성수에서 선보인 '디 올-뉴 일렉트릭 CLA'와 '디 올-뉴 일렉트릭 GLC'에 이어 전동화 핵심 신차를 전면에 배치하며 국내 전기차 시장 공략에 속도를 내는 모습이다. 쉬린 에미라 메르세데스-벤츠 코리아 CEO는 24일 제",
     "published": "Wed, 25 Nov 2026 17:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3505,7 +3285,7 @@
     "url": "https://www.etnews.com/20261125000352",
     "summary": "인공지능(AI) 확산으로 반도체와 함께 기판 수요도 급증하며 업계가 제조 장비 수급난에 빠졌다. 일부 기판 제조 장비의 경우 확보에 2년 이상 걸리는 것으로 나타났다. 최근 반도체 제조 장비 납품이 최대 3년 이상 걸리는 데 이어 기판 제조업계까지 수급난이 확산하는 모습이다. 〈본지 11월4일자 1면 참조〉 25일 업계에 따르면 플립칩-볼그레이드어레이(FC-BGA) 기판 생산을 위한 일부 가공 장비 납기가 평시 대비 5배 가까이 늘어난 것으로",
     "published": "Wed, 25 Nov 2026 16:15:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3516,7 +3296,7 @@
     "url": "https://www.etnews.com/20261125000461",
     "summary": "젠슨 황 엔비디아 최고경영자(CEO) 복귀에 따른 국내 증시 반등이 하루 만에 무너졌다. 코스피는 외국인이 2조원 가까이 순매도하면서 4700선 아래로 밀렸다. 삼성전자와 SK하이닉스도 각각 9%, 11%대 급락하며 전날 상승분을 모두 반납했다. 한국거래소에 따르면 25일 코스피는 전 거래일 대비 6.16% 하락한 4697.51에 거래를 마쳤다. 전날 6.32% 급등해 5006.03을 기록했지만 하루 만에 23일 종가인 4708.54도 밑돌았다",
     "published": "Wed, 25 Nov 2026 16:03:54 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3527,7 +3307,7 @@
     "url": "https://www.etnews.com/20261125000342",
     "summary": "카카오가 두 번째 자체 데이터센터로 추진하는 남양주 '디지털 허브(가칭)'의 착공 일정조차 확정하지 못하고 있다. 최현덕 현 남양주시장이 기존 협약과 달리 기업에 추가 상생안을 요구하면서 데이터센터 건립 논의가 공전하고 있기 때문이다. 전문가는 지방자치단체장이 바뀌더라도 행정 신뢰 보호의 원칙을 유지해야 한다고 지적했다. 25일 업계에 따르면 카카오와 우리은행이 추가 기여 방안을 발표했음에도 남양주시는 데이터센터 건립에 대해 여전히 재검토가 필",
     "published": "Wed, 25 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3538,7 +3318,7 @@
     "url": "https://www.etnews.com/20261125000277",
     "summary": "프로바이오틱스(유산균) 체감 효과가 개인별 장내 미생물 생태계와 먹이 공급 여부에 좌우된다는 조사결과가 나왔다. 획일적 유산균 섭취의 한계가 드러나면서 장내 환경을 먼저 진단해 맞춤 영양소와 균주를 설계하는 '정밀 영양 솔루션'이 대안으로 부상했다. CJ바이오사이언스는 CJ웰케어·마크로밀 엠브레인과 전국 19~69세 성인 140명을 대상으로 진행한 장내 미생물 맞춤 솔루션 '맥플랜' 추적·조사에서 30일간 제품을 섭취한 참여자의 배변 지표가 뚜",
     "published": "Wed, 25 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3549,7 +3329,7 @@
     "url": "https://www.etnews.com/20261125000196",
     "summary": "로보락이 중국 로봇청소기 시장에서 점유율 선두 에코백스를 빠르게 추격하고 있다. 주력 로봇청소기 판매 호조와 프리미엄 신제품 출시에 힘입어 중국 본토에서 시장점유율을 대폭 높였다. 시장조사업체 룬토에 따르면, 3분기 중국 온라인 로봇청소기 시장에서 판매액 기준 로보락 점유율은 31.7%로 집계됐다. 지난해 같은 기간 23.9%보다 7.8%포인트 상승했다. 반면, 에코백스 3분기 점유율은 34.2%로, 전년 동기 대비 0.7%포인트 하락했다. 양",
     "published": "Wed, 25 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3560,7 +3340,7 @@
     "url": "https://www.etnews.com/20261125000070",
     "summary": "중국이 가전산업의 국가표준 체계를 대대적으로 정비하고 있다. 저가·대량생산을 앞세웠던 기존 방식에서 벗어나 기술·품질·서비스까지 아우르는 종합 경쟁력을 확보하려는 포석이다. 가격 경쟁력에 품질과 서비스 경쟁력까지 겸비해 세계 시장에서 삼성전자와 LG전자 등 한국 기업에 정면 도전하려는 전략으로 풀이된다. 중국 정부는 가전 분야에서 강제 국가표준과 제품별 기술규격을 잇달아 개정하고 있다. 중국 내수시장의 제품 품질 개선을 넘어 글로벌 시장에서 통",
     "published": "Wed, 25 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3571,7 +3351,7 @@
     "url": "https://www.etnews.com/20261125000449",
     "summary": "삼성디스플레이가 오스트리아 발광다이오드(LED) 기업인 ams 오스람 최대주주에 오르며 차세대 디스플레이 핵심 기술인 '마이크로 발광다이오드(LED)' 개발에 속도를 낸다. 삼성디스플레이는 약 2억1000만유로(약 3085억원)를 투자해 ams 오스람이 신규 발행하는 주식 998만4439주(지분율 9.1%)를 취득하는 계약을 체결했다고 25일 밝혔다. 관련 기관의 심의와 승인 절차를 거쳐 내년 초 지분 인수가 마무리될 예정이다. 이번 인수로 삼",
     "published": "Wed, 25 Nov 2026 15:36:38 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3582,7 +3362,7 @@
     "url": "https://www.etnews.com/20261125000447",
     "summary": "게임을 국가전략콘텐츠자산으로 지정하고 세제·금융·인공지능(AI) 전환까지 국가 차원에서 집중 지원해야 한다는 목소리가 커지고 있다. 콘텐츠 수출의 절반 이상을 게임이 담당하고 가전·이차전지와 맞먹는 수출 규모를 기록하고 있지만, 현행 산업 지원체계가 제조업 중심으로 설계돼 게임이 정책 사각지대에 놓여 있다는 지적이다. 김성회 더불어민주당 의원은 25일 국회에서 열린 'K-콘텐츠의 국가전략자산화, 게임에서 시작하다' 정책토론회에서 게임을 국가전략",
     "published": "Wed, 25 Nov 2026 15:34:58 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3593,7 +3373,7 @@
     "url": "https://www.etnews.com/20261125000445",
     "summary": "최규동 전 국민의힘 윤리위원은 25일 6·3 지방선거 자문 대가로 10억원을 요구했다는 장동혁 대표 측 주장을 반박했다. 최 전 위원은 장 대표 요청으로 구성을 추진한 선거 전략기획단의 운영비로 5억~10억원을 논의했다고 밝혔다. 최 전 위원은 이날 '10억 요구설의 진실'이라는 제목의 보도자료에서 “장 대표가 올해 2월부터 최 교수에게 공천관리위원장 후보, 선거 구도, 지선 전략 등을 물어봤고 이후 장 대표가 공관위 부위원장을 맡아줄 것을 요",
     "published": "Wed, 25 Nov 2026 15:34:11 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3604,7 +3384,7 @@
     "url": "https://www.etnews.com/20261125000418",
     "summary": "전국 60개 대학 인공지능(AI)·소프트웨어(SW) 인재의 우수 프로젝트 소개와 성과 교류의 장 '2026 AI·SW 인재 페스티벌' 막이 올랐다. 과학기술정보통신부 주최, 정보통신기획평가원(IITP)과 AI·SW중심대학협의회 주관으로 25일 서울 용산구 드래곤시티에서 'Enter the AI World'를 주제로 페스티벌이 개최됐다. 올해 10회째로 개최된 이번 행사는 내일까지 개최되는 가운데, 대학별 AI·SW 교육 성과와 아마존웹서비스(A",
     "published": "Wed, 25 Nov 2026 15:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3615,7 +3395,7 @@
     "url": "https://techcrunch.com/2026/11/25/whatsapp-now-lets-you-schedule-messages-in-group-and-individual-chats/",
     "summary": "Users can schedule messages from 10 minutes later to after 14 days",
     "published": "Wed, 25 Nov 2026 16:57:51 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3626,7 +3406,7 @@
     "url": "https://techcrunch.com/2026/11/25/allstate-suffers-multi-day-tech-outage-ahead-of-thanksgiving/",
     "summary": "The disruption comes at a particularly bad time for the insurance giant, as millions of Americans prepare to travel for the Thanksgiving holiday weekend.",
     "published": "Wed, 25 Nov 2026 15:08:37 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3637,7 +3417,7 @@
     "url": "https://techcrunch.com/2026/11/25/todoist-confirms-6-of-customers-details-were-stolen-in-data-breach/",
     "summary": "Todoist said a hacker gained access to its production systems and stole customer data, including email IDs, password hashes, and account creation dates.",
     "published": "Wed, 25 Nov 2026 14:20:28 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3648,7 +3428,7 @@
     "url": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/",
     "summary": "Amazon and Meta are discussing a potential deal that would end a two-month-long blockade of Muse.",
     "published": "Wed, 25 Nov 2026 14:10:18 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3659,7 +3439,7 @@
     "url": "https://techcrunch.com/2026/11/25/flipkart-ceo-kalyan-krishnamurthy-to-step-down-next-week-amid-ipo-uncertainty/",
     "summary": "Flipkart's product and technology chief Balaji Thiagarajan will lead the company alongside its board until a successor is found.",
     "published": "Wed, 25 Nov 2026 13:08:19 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3670,7 +3450,7 @@
     "url": "https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed/",
     "summary": "Huang still faces questions from Congress and his own board about his romantic relationship with an alleged chip smuggler.",
     "published": "Wed, 25 Nov 2026 13:00:00 +0000",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3681,7 +3461,7 @@
     "url": "https://www.theverge.com/gadgets/1028004/best-gifts-under-100-2026",
     "summary": "Even in an era of inflation like the one we're living through now, $100 can still buy a lot… if you know where to look. In fact, it's enough to get something useful and well-made, but not so pricey that it's likely to leave you with lingering guilt or lead to insurmountable debt. As reviewers, […]",
     "published": "2026-11-25T12:00:24-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3692,7 +3472,7 @@
     "url": "https://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal",
     "summary": "Nothing is showing off a much more detailed look at its upcoming AI earbuds ahead of their December 8th release. The Ear Note buds can record your calls, while their charging case can record, transcribe, and summarize your conversations. Like the Ear 3, the Ear Note's microphone-equipped case comes ",
     "published": "2026-11-25T11:00:59-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3703,7 +3483,7 @@
     "url": "https://www.theverge.com/gadgets/1023735/best-gifts-under-25-2026",
     "summary": "Gift-giving on a tight budget is tough, but constraints can also encourage some creative thinking. We thought for a long while (and asked other Verge staffers) about the best items out there, and we're pretty happy with what we came up with. For this list, we've rounded up a barrage of fun gadgets a",
     "published": "2026-11-25T09:33:07-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3714,7 +3494,7 @@
     "url": "https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions",
     "summary": "Amazon has held talks about letting Meta's Muse AI agent shop on its online marketplace, according to a report from Fortune. The discussions, which could end Amazon's block on Muse, reportedly center on the kinds of products the AI agent recommends and the potential impact on the ecommerce giant's a",
     "published": "2026-11-25T09:12:33-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3725,7 +3505,7 @@
     "url": "https://www.theverge.com/gadgets/1040178/xteink-x4-classic-e-reader-black-friday-2026-deal-sale",
     "summary": "Unsurprisingly, we’re already seeing some solid Black Friday deals on a wide variety of e-readers. Everything from the Kobo Libra Colour to last-gen Kindle Paperwhite is on sale, but if you’re looking for something much cheaper — or considerably smaller — the Xteink X4 Classic is in a league of its ",
     "published": "2026-11-23T19:36:46-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3736,7 +3516,7 @@
     "url": "https://www.theverge.com/entertainment/1041596/blade-runner-2099-interview-showrunner-silka-luisa",
     "summary": "As a longtime fan of the films, Blade Runner 2099 showrunner Silka Luisa says she was more excited than scared when it came to adapting the series for TV. The new show is set 50 years after the 2017 film Blade Runner 2049 and imagines a bleak future where artificial humans known as replicants have [",
     "published": "2026-11-24T16:29:14-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3747,7 +3527,7 @@
     "url": "https://www.theverge.com/tech/1041221/tapo-c825-security-indoor-2k-camera-video-calls-tracking-pan-tilt",
     "summary": "TP-Link's Tapo smart home brand announced a new indoor security camera that can help keep an eye on your house while you're away or connect you to family and friends while you're at home. The C825 upgrades a 2K pan-and-tilt camera with a 4-inch touchscreen, so when it's not watching for intruders or",
     "published": "2026-11-25T10:02:14-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3758,7 +3538,7 @@
     "url": "https://www.theverge.com/ai-artificial-intelligence/1040081/vibe-coding-open-source-music-firmware",
     "summary": "The emergence of powerful vibe-coding agents and tools like Reverse Engineer Anything has caused chaos in the music gear world, leaving companies scrambling to figure out how to respond. While some, like Roland, have remained silent for now, others have embraced the modding community. In the last se",
     "published": "2026-11-24T10:35:01-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3769,7 +3549,7 @@
     "url": "https://www.theverge.com/news/1042025/microsoft-code-red-outlook-outage",
     "summary": "This month's Exchange Online and Microsoft Outlook outage has prompted the software giant to declare an unusual \"Code Red\" internally, Reuters reports. The nearly 24-hour outage took down email for millions of customers, and was triggered by a bug that had been sitting on Microsoft 365 networking ga",
     "published": "2026-11-25T09:10:55-05:00",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3780,7 +3560,7 @@
     "url": "https://www.itmedia.co.jp/mobile/articles/2611/25/news070.html",
     "summary": "モトローラ・モビリティ・ジャパンは11月25日、国内初となるストレート型フラグシップスマートフォン「motorola signature」を発表した。発売日は12月4日で、直販価格は17万9800円だ。端末の購入者には、24時間365日体制で人間の専任スタッフが手配を代行する新サービス「モトローラ・シグネチャー・クラブ」が2年間無料で付帯する。",
     "published": "Wed, 25 Nov 2026 19:24:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3791,7 +3571,7 @@
     "url": "https://www.itmedia.co.jp/mobile/articles/2611/25/news069.html",
     "summary": "KEIYOは、3軸ジンバルカメラ「Buren（KEGZ1）」を発売。片手に収まるコンパクトボディに3軸物理ブラシレスジンバル、有効約5,000万画素1/2型CMOSセンサー、AI被写体追尾も可能な4Kジンバルカメラなどを備える。",
     "published": "Wed, 25 Nov 2026 18:33:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3802,7 +3582,7 @@
     "url": "https://www.itmedia.co.jp/news/article/2611/25/2000003458/",
     "summary": "総務省は11月20日、漏えいした個人情報の二次被害の抑止策を議論する作業部会の初会合を開き、通信事業者がWebサイトへのアクセスを強制的に遮断する「ブロッキング」の法制化に向けた議論をスタートした。",
     "published": "Wed, 25 Nov 2026 18:16:02 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3813,7 +3593,7 @@
     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/25/news067.html",
     "summary": "ASUS JAPANが、法人向けノートPC「ASUS ExpertBook」の新モデルを発表した。中でも14型の「ASUS ExpertBook A7」は、とても“気合い”が入っているという。そのAMDモデルを先んじて試すことができたので、感想を述べてみたい。",
     "published": "Wed, 25 Nov 2026 18:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3824,7 +3604,7 @@
     "url": "https://www.itmedia.co.jp/mobile/articles/2611/25/news068.html",
     "summary": "ベルキンは、初の追跡機能付き製品「SureFind 紛失防止機能付きウォレットスタンド」を発売。Apple「探す」とGoogle「Find Hub」に両対応し、最大80dBのアラート音や置き忘れアラームも利用できる。Amazonの価格は6991円。",
     "published": "Wed, 25 Nov 2026 17:04:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3835,7 +3615,7 @@
     "url": "https://www.itmedia.co.jp/mobile/articles/2611/25/news066.html",
     "summary": "1900万会員を突破したPayPayカードは、PayPayアプリを中心に決済後の体験を磨いている。2026年6月のゴールド特典改定も影響は軽微で、18歳からの若年層取り込みや銀行一体型カードも推進する。アプリ内でのパーソナライズ提案を強化し、カードを意識させず自然に使える金融体験の構築を目指す。",
     "published": "Wed, 25 Nov 2026 16:33:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3846,7 +3626,7 @@
     "url": "https://www.itmedia.co.jp/mobile/articles/2611/25/news062.html",
     "summary": "ソフトバンクは、Y!mobileオンラインストアでソフトバンク認定中古品「iPhone SE（第3世代）」を安価に販売中。MNPかつ「シンプル3 M／L」で契約すると通常2万1600円のところ1円になる。",
     "published": "Wed, 25 Nov 2026 15:57:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3857,7 +3637,7 @@
     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/25/news064.html",
     "summary": "三陽合同は、左右分割レイアウトを採用したワイヤレスキーボード「conductor」を発表した。",
     "published": "Wed, 25 Nov 2026 15:27:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3868,7 +3648,7 @@
     "url": "https://www.itmedia.co.jp/news/article/2611/25/2000003445/",
     "summary": "22日朝「日曜日なのに、2日後の24日付の約定通知メールが届いた」「誤配信だと思うが不安」という声がXで相次いでいた。",
     "published": "Wed, 25 Nov 2026 15:12:33 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3879,7 +3659,7 @@
     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/25/news063.html",
     "summary": "ASUS JAPANは、法人向けとなる薄型軽量設計の14型ノートPC「ASUS ExpertBook A7」シリーズを発表した。",
     "published": "Wed, 25 Nov 2026 15:12:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3890,7 +3670,7 @@
     "url": "https://www.itmedia.co.jp/news/article/2611/25/2000003443/",
     "summary": "対象は、暗号化された運転免許証などの本人確認書類の画像データへの不正アクセスと、外部送信を示す痕跡が確認された約146万件。",
     "published": "Wed, 25 Nov 2026 14:51:07 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3901,7 +3681,7 @@
     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/25/news061.html",
     "summary": "エプソンダイレクトは、スリム筐体を採用したBTOカスタマイズ対応のスタンダードデスクトップPC「Endeavor AT999」を発表した。",
     "published": "Wed, 25 Nov 2026 14:37:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3912,7 +3692,7 @@
     "url": "https://www.itmedia.co.jp/news/article/2611/25/2000003440/",
     "summary": "漏えいした可能性がある顧客情報は、保護者の氏名、子どもの氏名、兄弟姉妹情報、住所、電話番号、メールアドレスなど。",
     "published": "Wed, 25 Nov 2026 14:08:34 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3923,7 +3703,7 @@
     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/25/news057.html",
     "summary": "ジャストシステムは、日本語ワープロアプリ「一太郎」の最新版と、日本語入力ソフト「ATOK Passport」のアップデートを発表した。いずれも2027年2月のリリースを予定している。",
     "published": "Wed, 25 Nov 2026 14:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3934,7 +3714,7 @@
     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/25/news060.html",
     "summary": "マウスコンピューターは、Ryzen 5／7プロセッサを備えたミニデスクトップPC「mouse CA-A5A01」を発表した。",
     "published": "Wed, 25 Nov 2026 13:33:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3945,7 +3725,7 @@
     "url": "https://www.itmedia.co.jp/news/article/2611/25/2000003439/",
     "summary": "退会後3年以内の人の情報も含まれているという。",
     "published": "Wed, 25 Nov 2026 13:27:21 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3956,7 +3736,7 @@
     "url": "https://www.itmedia.co.jp/mobile/articles/2611/25/news059.html",
     "summary": "NTTドコモは、5G対応ホームルーター「home 5G HR03」を発売。従来モデルで4本だった受信アンテナを8本に強化し、Wi-Fi 7や10Gbps／2.5Gbps対応有線LANポートを搭載する。カラーはDark Grayと限定カラーのWhite。",
     "published": "Wed, 25 Nov 2026 13:06:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3967,7 +3747,7 @@
     "url": "https://gigazine.net/news/20261125-talorys/",
     "summary": "自分専用のAIエージェントを自前で動かそうとすると、VPSなどのサーバー契約や管理の手間に加えて有料AIのAPI利用料といったコストがかかります。そこでCloudflareの無料アカウントを使ってコマンド1つで構築でき、AIチャット・タスク管理・メモリー・リマインダーなどの機能を備えたオープンソースの「Talorys」を使ってみました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 23:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3978,7 +3758,7 @@
     "url": "https://gigazine.net/news/20261125-inside-criminal-gangs-making-fake-wine/",
     "summary": "ワインは世界中の人々に愛されており、市場には1本数百万円する高級ワインも出回っていますが、同時に犯罪組織による「偽造ワイン」の製造・売買も問題となっています。そんな犯罪組織による偽造ワイン製造の手口や司法当局の捜査について、ジャーナリストであるウィリアム・ラルストン氏がまとめています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 22:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -3989,7 +3769,7 @@
     "url": "https://gigazine.net/news/20261125-kradlebench-ai-benchmark-minecraft/",
     "summary": "AIにMinecraftをプレイさせて性能を測定する「KradleBench」がAI研究組織のKradleによって公開されました。単体のAIにプレイさせるのではなく、複数のAIエージェントにマルチプレイさせるのが特徴で、協力プレイだけでなく競合プレイの性能も測定されています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 21:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4000,7 +3780,7 @@
     "url": "https://gigazine.net/news/20261125-anthropic-openai-employees-fear-unreleased-ai-models/",
     "summary": "大手AI企業のAnthropicやOpenAIで、複数の従業員が未公開の最先端AIモデルの能力が高くなりすぎたことを懸念していることがわかりました。この情報を伝えたニュースサイト・Axiosによると、すでにAIモデルを制御するための技術的解決策を凌駕し始めているそうです。 続きを読む...",
     "published": "Wed, 25 Nov 2026 20:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4011,7 +3791,7 @@
     "url": "https://gigazine.net/news/20261125-no-speaker-macbook-trackpad/",
     "summary": "MacBookのトラックパッドにはクリックした感触を指先に伝えるための振動モーターが内蔵されています。この振動モーターを高速で駆動することで、スピーカーを一切使わずに音声や音楽を再生できるオープンソースのソフトウェア「NO SPEAKER」を、開発者のコーディー・コリアー氏が公開しました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 20:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4022,7 +3802,7 @@
     "url": "https://gigazine.net/news/20261125-wilkinson-ginger-apple/",
     "summary": "アサヒ飲料の炭酸水ブランド「ウィルキンソン」に、2026年11月24日(火)から新しく「ウィルキンソン ドライジンジャエールアップル」が登場したので、買ってきて飲んでみました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 19:45:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4033,7 +3813,7 @@
     "url": "https://gigazine.net/news/20261125-microsoft-ai-use-gpu-capacity/",
     "summary": "AIのトレーニングには膨大なコンピューティングリソースが必要ですが、GPUの生産量には限りがあり、AI開発企業はGPUの確保に奔走しています。そんな中でMicrosoftが、「使われていないゲーミングPCやノートPCのGPUをAIトレーニングに利用して、計算量に応じて報酬を支払う仕組み」の(PDFファイル)特許を出願したことが判明しました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 19:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4044,7 +3824,7 @@
     "url": "https://gigazine.net/news/20261125-headline/",
     "summary": "牛丼チェーンのすき家が、本日2026年11月25日(水)9時から「白髪ねぎ牛丼」と、新商品の「食べラー白髪ねぎ牛丼」の販売を開始しました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 18:55:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4055,7 +3835,7 @@
     "url": "https://gigazine.net/news/20261125-china-spy-nvidia-chips/",
     "summary": "「中国の情報機関である国家安全部(MSS)が中国企業による高性能AIチップの入手を支援する秘密工作を少なくとも2年前から展開している」とアメリカやアジア、ヨーロッパの現職および元当局者らがThe New York Timesに証言しました。国家安全部はアメリカなどが課す輸出規制に対抗するための専門チームを設置し、半導体の調達支援や情報収集を進めているとのことです。 続きを読む...",
     "published": "Wed, 25 Nov 2026 18:45:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4066,7 +3846,7 @@
     "url": "https://gigazine.net/news/20261125-microsoft-code-red/",
     "summary": "Microsoftのクラウドサービス「Microsoft 365」で2026年11月13日に世界規模の大規模障害が発生しました。これを受けてMicrosoftは、重大なサービス障害の防止および対応方法を抜本的に見直すため、「コードレッド」体制を宣言しました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 18:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4077,7 +3857,7 @@
     "url": "https://gigazine.net/news/20261125-phone-pc-shopping/",
     "summary": "「スマートフォンでオンラインショッピングすると判断力が鈍る」と感じている人は多いはず。ところが、マイアミ大学と香港城市大学の研究チームが「スマートフォンを使用しても判断力の低下は確認されない」という研究結果を発表しました。また、「考える必要なし」ということを示すことでスマートフォンでの購買意欲低下を抑えられることも判明しています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 18:05:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4088,7 +3868,7 @@
     "url": "https://gigazine.net/news/20261125-firefox-161/",
     "summary": "ウェブブラウザ「Firefox 161」の正式版が公開されました。内蔵VPNの有効・無効をウェブサイトごとに設定したり、キーボードショートカットで閲覧中のタブのURLをコピーしたりできるようになっています。またデスクトップ版では閲覧データを素早く消去できるボタンが追加されたほか、Android版ではウェブページの読み上げ機能が利用可能になりました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 17:50:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4099,7 +3879,7 @@
     "url": "https://gigazine.net/news/20261125-uber-kids/",
     "summary": "Uberが10歳から12歳の子ども専用の配車サービス「Uber Kids」の試験運用を開始しました。学校や習い事などの送り迎えなどを代替することが期待されています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 17:45:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4110,7 +3890,7 @@
     "url": "https://gigazine.net/news/20261125-alice-huang/",
     "summary": "NVIDIAのジェンスン・フアンCEOの不倫相手で中国のスパイであることが疑われているアリス・フアン氏が、中国へNVIDIA製半導体を違法に輸出する巨大ネットワークに関与していたことが報じられています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 17:38:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4121,7 +3901,7 @@
     "url": "https://gigazine.net/news/20261125-gta6-bird-watching/",
     "summary": "100年以上の歴史を持つ野生生物保護団体「全米オーデュボン協会」のウェブサイトに、ゲーム「グランド・セフト・オートVI(GTA6)」でバードウォッチングを楽しむためのガイドが寄稿されました。現実のバードウォッチング専門家がゲーム内で鳥を見つける方法を解説しています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4132,7 +3912,7 @@
     "url": "https://gigazine.net/news/20261125-openclaw-shellbench-real-world-task/",
     "summary": "オープンソースのAIエージェント「OpenClaw」の開発を支えるOpenClaw Foundationが、2026年11月24日にAIエージェントの日常的な作業能力を評価する新たなベンチマーク「ShellBench」を発表しました。実際のAI利用状況を参考に作成された100種類のタスクでテストを実施した結果、最上位のAIモデルでも日常的なタスクの完了率は約60％にとどまることが明らかになりました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 15:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4143,7 +3923,7 @@
     "url": "https://gigazine.net/news/20261125-nvidia-asia/",
     "summary": "中国のスパイであることが疑われている女性との不倫が発覚して2026年11月12日にCEOを辞任していたNVIDIAのジェンスン・フアン氏は、日本時間の2026年11月23日23時頃に取締役会がCEOに再任しました。この決定に中国と台湾では祝賀ムードが高まっています。 続きを読む...",
     "published": "Wed, 25 Nov 2026 15:10:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4154,7 +3934,7 @@
     "url": "https://gigazine.net/news/20261125-no-vehicle-subscription-fee-act/",
     "summary": "一部の自動車メーカーは、自動車に搭載された特定の機能をサブスクリプション形式で提供しています。この「自動車は普通買い切りのはずなのに実はサブスクが必要」問題を是正すべく、ニューヨーク州が新たな法律を成立させました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 15:09:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4165,7 +3945,7 @@
     "url": "https://gigazine.net/news/20261125-jensen-huang-apologizes-to-nvidia-employees/",
     "summary": "不倫問題発覚後にNVIDIAのCEOを辞任したジェンスン・フアン氏が、辞任から2週間弱でCEOに復帰しました。フアン氏のCEO復帰を巡っては、トランプ大統領が「取締役会の会議に電話で参加してフアン氏の復帰を求めた」と主張していますが、フアン氏は従業員全員を集めた会議で「政治の関与があったなどと思わないでください」「NVIDIAは最も政治と縁のない会社」と述べました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 14:40:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4176,7 +3956,7 @@
     "url": "https://gigazine.net/news/20261125-anthropic-working-with-ai/",
     "summary": "現地時間の2026年11月23日、Anthropicが「企業がAIを導入すると仕事の進め方や雇用はどう変わるのか」を調べた報告書「Working with AI」を公開しました。 続きを読む...",
     "published": "Wed, 25 Nov 2026 14:35:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4187,7 +3967,7 @@
     "url": "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga",
     "summary": "",
     "published": "Wed, 25 Nov 2026 10:22:09 GMT",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4198,7 +3978,7 @@
     "url": "https://built.itmedia.co.jp/bt/articles/2611/25/news072.html",
     "summary": "L is Bはユーザーイベント「LUC2026」で新たな事業戦略を発表した。導入1万社を超えた「direct」をAI搭載の「現場OS」へと進化させ、近々提供を予定する「directアシスタント」やグループ3社協業で構築するBIM活用基盤「BIM LENS」の構想をレポート形式で詳報する。",
     "published": "Wed, 25 Nov 2026 23:45:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4209,7 +3989,7 @@
     "url": "https://built.itmedia.co.jp/bt/articles/2611/25/news056.html",
     "summary": "KKGは、図面の読み込みや生成支援に特化した国産建設AIを提供している。国内の建設図面を数十万件学習し、図面生成や検図照査、積算、BIM生成までを一気通貫で支援し、各社の独自ルールに合わせた柔軟なカスタマイズ実装が強みだ。個社ごとにカスタマイズが可能なAIツールとして利用が広がっている。",
     "published": "Wed, 25 Nov 2026 12:43:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4220,7 +4000,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news042.html",
     "summary": "三菱ガス化学は、サプライチェーンリスク管理クラウド「Resilire（レジリア）」を導入した。",
     "published": "Wed, 25 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4231,7 +4011,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news040.html",
     "summary": "堀場製作所は、同社のラマン分光装置の中で最小となるA4サイズのプローブ型ラマン分光装置「Ramilon（ラミロン）」を2026年11月24日に発売する。",
     "published": "Wed, 25 Nov 2026 15:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4242,7 +4022,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news034.html",
     "summary": "日本精工（NSK）とNTNは、共同持ち株会社となるNTN日本精工を2027年10月1日に設立し、経営統合することで最終合意したと発表した。",
     "published": "Wed, 25 Nov 2026 14:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4253,7 +4033,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news023.html",
     "summary": "出光興産と信越化学工業は、CO2を固定化した合成炭酸カルシウム「カルカーボ」を配合したポリ塩化ビニール（PVC）材料を開発した。",
     "published": "Wed, 25 Nov 2026 13:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4264,7 +4044,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news051.html",
     "summary": "2026年11月25日に公開されたMONOistの新着記事をピックアップしてお届けします。",
     "published": "Wed, 25 Nov 2026 10:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4275,7 +4055,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news028.html",
     "summary": "アナログ・デバイセズは、自動車技術の変化について紹介するとともに、これらに貢献する通信技術などを紹介した。",
     "published": "Wed, 25 Nov 2026 10:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4286,7 +4066,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news050.html",
     "summary": "国内ティア1サプライヤーであるアルプスアルパイン、東海理化、日本精機の3社は、サプライチェーンの強靭化に向けた調達分野における連携を推進するため「共同購買 基本合意書」を締結したと発表した。",
     "published": "Wed, 25 Nov 2026 07:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4297,7 +4077,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news039.html",
     "summary": "マツダは広島港出島地区に新設した「マツダKDセンター」の内部を公開した。MujinのAGVやダイフクの自動倉庫など最新設備の組み合わせによって、処理能力を従来の約5倍に高め、現場人員の半減を目指す。また、ドライバーの負担を減らすホワイト物流の取り組みなど、持続可能な物流現場の実装も進めている。",
     "published": "Wed, 25 Nov 2026 06:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4308,7 +4088,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/25/news038.html",
     "summary": "SiMa.aiは、「EdgeTech+ 2026」において、フィジカルAIプロセッサ「MLSoC Modalix」を搭載した評価キット「Modalix SoM DevKit」を活用した、実機デモンストレーションを披露した。",
     "published": "Wed, 25 Nov 2026 06:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4319,7 +4099,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news059.html",
     "summary": "ALGO ARTISは、明治の愛知工場における市乳製品の製造工程に計画DXソリューション「OPTIUM」を試験導入した。AIによる稼働計画の自動立案により、一部工程で最大約17％の稼働直数削減を確認した。",
     "published": "Tue, 24 Nov 2026 16:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4330,7 +4110,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news050.html",
     "summary": "NVIDIAは、2026年11月12日に社長兼CEOおよび取締役を辞任したジェンスン・フアン氏が同職に復帰したと発表した。",
     "published": "Tue, 24 Nov 2026 15:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4341,7 +4121,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news029.html",
     "summary": "タカラバイオは、トヨタ自動車の解析技術「GRAS-Di」を活用した次世代シーケンサー（NGS）用ライブラリー調製キット2製品を2026年11月20日に発売する。ゲノム情報を低コストかつ簡便に取得でき、育種を支援する。",
     "published": "Tue, 24 Nov 2026 15:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4352,7 +4132,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news047.html",
     "summary": "EMTは、開発中の軽自動車タイプEVの試作車を用いた日本国内での公道走行確認を2026年10月から実施していることを明らかにした。",
     "published": "Tue, 24 Nov 2026 14:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4363,7 +4143,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news025.html",
     "summary": "次世代EVの切り札「全固体電池」の量産化に立ちはだかる、製造時の「金属異物混入」による品質リスク。日立と日立ハイテクは、異物の種類やサイズによる性能への影響を体系的に解析する新技術を開発した。",
     "published": "Tue, 24 Nov 2026 14:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4374,7 +4154,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news009.html",
     "summary": "活用のハードルがぐっと下がってきた印象です。",
     "published": "Tue, 24 Nov 2026 13:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4385,7 +4165,7 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news019.html",
     "summary": "JX金属は、NASAの最新宇宙望遠鏡「ナンシーグレースローマン宇宙望遠鏡」の赤外線検出器に、同社の「CdZnTe基板」が採用されたと発表した。",
     "published": "Tue, 24 Nov 2026 13:00:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   },
   {
@@ -4396,7 +4176,227 @@
     "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news010.html",
     "summary": "MONOistに掲載した主要な記事を、読みやすいPDF形式の電子ブックレットに再編集した「エンジニア電子ブックレット」。今回は、2025年に提供を開始し、導入数が増え続けているミスミの間接材トータルコストダウンサービス「MISUMI floow（フロー）」の取材内容をまとめたブックレットをお送りします。",
     "published": "Tue, 24 Nov 2026 12:30:00 +0900",
-    "collected": "2026-11-25T17:00+00:00",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "9c378e666532d58d",
+    "source": "inc.com",
+    "category": "business",
+    "title": "How Can You Tell Someone Has Bad Leadership Skills? Look for These 5 Warning Signs",
+    "url": "https://www.inc.com/marcel-schwantes/how-can-you-tell-someone-has-bad-leadership-skills-look-for-these-5-warning-signs/91442587",
+    "summary": "These five management behaviors will destroy trust and eventually drive good people away.",
+    "published": "Wed, 25 Nov 2026 11:30:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "21f3a1a1b42e1496",
+    "source": "inc.com",
+    "category": "business",
+    "title": "My LinkedIn Content Reaches 5.5 Million People Per Year. Here’s How to Get More Eyeballs on Your Content",
+    "url": "https://www.inc.com/ashley-couto/linkedin-content-millions-people-per-year-grow-audience-marketing/91442007",
+    "summary": "Founders who want to be seen as experts often skip the step that makes people listen. Here’s how to earn the right to your big ideas.",
+    "published": "Wed, 25 Nov 2026 11:29:16 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "b4e481a781f4d17f",
+    "source": "inc.com",
+    "category": "business",
+    "title": "EOS Won Gen Z Over With Its Egg-Shaped Lip Balm. Here’s How It Kept Them",
+    "url": "https://www.inc.com/divya-bhardwaj/eos-gen-z-growth-body-care-fragrance-community-feedback/91441914",
+    "summary": "Years after its lip balm became a viral favorite, EOS is following Gen Z into fragrance and body care, consumer feedback to fuel its growth.",
+    "published": "Wed, 25 Nov 2026 11:20:38 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "1a3b70a15a4721c4",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Jensen Huang Faces Congress in 1 Week. Trump Is Already Floating a Pardon",
+    "url": "https://www.inc.com/chris-morris/jensen-huang-faces-congress-1-week-trump-already-floating-pardon/91442744",
+    "summary": "The Nvidia CEO is scheduled to testify in front of four different Congressional committees next month.",
+    "published": "Wed, 25 Nov 2026 11:09:36 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "94caeada59152f88",
+    "source": "inc.com",
+    "category": "business",
+    "title": "American Express Invented Small Business Saturday to Sell Cards. 15 Years Later, the Numbers Are Fading",
+    "url": "https://www.inc.com/michael-tasner/small-business-saturday-2026-spending-drop-how-owners-win-now/91442567",
+    "summary": "With the universal Amex credit long gone and 2025 spending down about 18 percent, treat Small Business Saturday as a prompt—not your growth plan.",
+    "published": "Wed, 25 Nov 2026 10:41:39 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "1036f897bfc652f3",
+    "source": "inc.com",
+    "category": "business",
+    "title": "An AI Ad Got 1 Million Views. Then LeBron James Got His Lawyers Involved",
+    "url": "https://www.inc.com/peter-economy/lebron-james-just-sued-an-ai-startup-its-biggest-mistake-may-have-come-after-the-warning/91441515",
+    "summary": "Going viral is great. Getting sued? Not so much.",
+    "published": "Wed, 25 Nov 2026 10:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "4f18467b708d89bb",
+    "source": "inc.com",
+    "category": "business",
+    "title": "A Local Resident Took On Google’s $3 Billion Data Center Over a Secret Meeting. Now Construction Is Frozen",
+    "url": "https://www.inc.com/moses-jeanfrancois/local-resident-took-on-google-3-billion-dollar-data-center-now-construction-frozen/91442075",
+    "summary": "The project, which has been in development for several years, is now on hold after a judge found problems with how local officials approved the deal.",
+    "published": "Wed, 25 Nov 2026 09:44:17 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "20a1d9d68462801b",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Anthropic’s $93.5 Billion IPO Is Already Underwater. Jensen Huang Offers a Clue to the Divide",
+    "url": "https://www.inc.com/phil-rosen/anthropics-ipo-stock-price-dario-amodei-jensen-huang-scandal-nvidia-ceo/91442716",
+    "summary": "Huang’s return to Nvidia could have something to do with selling pressure on Anthropic.",
+    "published": "Wed, 25 Nov 2026 09:11:45 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "72ee5441c07e34bd",
+    "source": "inc.com",
+    "category": "business",
+    "title": "An AI Just Saw Its Own Reflection for the First Time. The Reaction Is Fascinating",
+    "url": "https://www.inc.com/sophie-meharenna/an-ai-just-saw-its-own-reflection-for-the-first-time-the-reaction-is-fascinating/91441919",
+    "summary": "Mirror, mirror on the wall, who’s the most human of them all?",
+    "published": "Wed, 25 Nov 2026 09:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "dcfde70fd6282fbe",
+    "source": "inc.com",
+    "category": "business",
+    "title": "What Are You Actually Waiting For?",
+    "url": "https://www.inc.com/nelson-tepfer/what-are-you-actually-waiting-for/91441783",
+    "summary": "Some business decisions deserve more time. Others need a clearer answer about what is holding them up.",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "d2087aa009e4f422",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Stop Treating Ad Spend Like a Vending Machine",
+    "url": "https://www.inc.com/greg-wildman/stop-treating-ad-spend-like-a-vending-machine/91441774",
+    "summary": "Paid advertising can amplify a strong marketing system, but it does not replace that system.",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "bee221c1f3c9ffe0",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Why Smart CEOs Are Getting Out of the Insurance Business",
+    "url": "https://www.inc.com/dan-cosgrove/why-smart-ceos-are-getting-out-of-the-insurance-business/91441761",
+    "summary": "The Individual Coverage Health Reimbursement Arrangement could become the new 401(k).",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "5f0a6ad0b77bcf65",
+    "source": "inc.com",
+    "category": "business",
+    "title": "The Unseen Influences Behind Our Most Consequential Decisions",
+    "url": "https://www.inc.com/paul-gunn/the-unseen-influences-behind-our-most-consequential-decisions/91441744",
+    "summary": "Wisdom can lie in trusting the best insight available at the time, while remaining curious enough to learn from unexpected people and perspectives.",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "cf3487999fb50cfb",
+    "source": "inc.com",
+    "category": "business",
+    "title": "AI Regulation Is No Longer Only the Legal Team’s Job",
+    "url": "https://www.inc.com/charisma-glassman/ai-regulation-is-no-longer-only-the-legal-teams-job/91441685",
+    "summary": "These are the current and forthcoming rules every leader needs to know before 2027.",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "e269ee127bfaacb9",
+    "source": "inc.com",
+    "category": "business",
+    "title": "How to Build With AI to Recover More of Your Time",
+    "url": "https://www.inc.com/anna-anisin/how-to-build-with-ai-to-recover-more-of-your-time/91441674",
+    "summary": "Before writing a single prompt, decide what you want to make easier and where you’d rather spend your time.",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "229dc594df79ebce",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Beauty Is Moving Into the Weekly Errand Run. Founders Can Learn Where to Show Up in Person",
+    "url": "https://www.inc.com/temilola-agbede/beauty-weekly-errand-run-where-brands-show-up-in-person/91440013",
+    "summary": "Costco, Target, and Trader Joe’s are meeting beauty shoppers in everyday routines—while pop-ups like Krave Beauty’s show smaller brands how to show up in person.",
+    "published": "Wed, 25 Nov 2026 08:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "0f17cb0c8944e0d8",
+    "source": "inc.com",
+    "category": "business",
+    "title": "An Apartment Bot Told a Tenant She Had Until November 30 to Pay. Then She Got an Eviction Notice",
+    "url": "https://www.inc.com/esther-lian/apartment-bot-tenant-had-until-november-30-pay-then-got-an-eviction-notice/91442540",
+    "summary": "Laura Mack thought she was emailing leasing office staff. Instead, she was communicating with the complex’s AI assistant.",
+    "published": "Wed, 25 Nov 2026 07:30:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "a257ced3ac7f4bde",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Total Wine Is Fighting to Save Its Fastest-Growing Category. In 16 Days, a Federal Ban Takes Effect",
+    "url": "https://www.inc.com/lucia-auerbach/total-wine-fighting-save-fastest-growing-category-federal-ban-takes-effect/91442324",
+    "summary": "With a federal ban looming, the retail giant is rallying hundreds of thousands of customers to speak out against it.",
+    "published": "Wed, 25 Nov 2026 07:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "f1444d7ef1505a59",
+    "source": "inc.com",
+    "category": "business",
+    "title": "61 Percent of Employees Don’t Feel Appreciated at Work. Here’s What Leaders Get Wrong",
+    "url": "https://www.inc.com/scott-hutcheson/61-percent-of-employees-dont-feel-appreciated-at-work-heres-what-leaders-get-wrong-about-gratitude/91440357",
+    "summary": "Your employees don’t want applause. They want to know their work matters.",
+    "published": "Wed, 25 Nov 2026 07:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
+    "flag": false
+  },
+  {
+    "id": "7518622b74ef7824",
+    "source": "inc.com",
+    "category": "business",
+    "title": "Every Agency Promises ChatGPT Recommendations—Ask These 7 Questions Before Signing With Them",
+    "url": "https://www.inc.com/john-hall/every-agency-promises-chatgpt-recommendations-ask-these-7-questions-before-signing-with-them/91434670",
+    "summary": "AI visibility pitches all sound the same. Here is how founders can test real results, tracking, content strategy, and contract terms before hiring.",
+    "published": "Wed, 25 Nov 2026 07:00:00 -0500",
+    "collected": "2026-11-25T17:07+00:00",
     "flag": false
   }
 ]

@@ -1,10 +1,11 @@
 [
   "https://api.adoptium.net/feed.rss",
   "https://gigazine.net/news/rss_2.0/",
-  "https://hbr.org/feed/10099150-podcast/rss",
+  "https://hbr.org/feed",
   "https://huggingface.co/blog/feed.xml",
   "https://japan.cnet.com/rss/index.rdf",
-  "https://japan.example.com/rss",
+  "https://japan.zdnet.com/rss",
+  "https://koreabizwire.com/feed",
   "https://monoist.itmedia.co.jp/",
   "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
   "https://platum.kr/feed",
@@ -16,8 +17,7 @@
   "https://www.eijustice.com/rss",
   "https://www.etnews.com/",
   "https://www.etsy.com/seller-handbook/rss",
-  "https://www.fastcompany.com/feed",
-  "https://www.forbes.com/feed/geek",
+  "https://www.inc.com/rss",
   "https://www.itmedia.co.jp/",
   "https://www.korea.kr/rss/policy.xml",
   "https://www.nextwonder.com/rss",
@@ -25,5 +25,6 @@
   "https://www.shopify.com/blog.atom",
   "https://www.startupisland.tokyo/feed/",
   "https://www.theverge.com/rss/index.xml",
-  "https://www.venturesquare.net/feed"
+  "https://www.venturesquare.net/feed",
+  "https://zdnet.co.kr/rss"
 ]
