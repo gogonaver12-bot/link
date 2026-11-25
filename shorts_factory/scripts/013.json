@@ -1,37 +1,40 @@
 {
-  "title": "거울이 당신을 속이는 3가지 이유",
-  "hook": "거울 속 당신, 실제로보다 훨씬 왜소해 보이죠?",
+  "title": "AI가 만든 완벽한 하루 루틴, 직접 실행해봤다",
+  "hook": "AI가 나만을 위한 하루 일정을 설계했다고?!",
   "lines": [
-    "거울은 빛을 약 10% 이상 반사시키지 못합니다.",
-    "이때 발생하는 빛 손실이 그림자를 만들어 신체 비율을 왜곡하죠.",
-    "또한 거울은 좌우를 반전시키며 뇌의 공간 인식을 교란시킵니다.",
-    "결국 거울 속의 나는 내가 아닌, 빛의 통계적 오류에 불과합니다."
+    "AI는 6시 기상, 30분 스트레칭, 1시간 명상 등으로 시작했어요.",
+    "점심은 15분 안에 만들 수 있는 고단백 샐러드라고 제안했죠.",
+    "오후 업무는 90분 집중, 10분 휴식 사이클을 권했어요.",
+    "놀라운 건, AI가 제 피로도 데이터를 실시간으로 분석해 일정 조정까지 했다는 점이에요.",
+    "실제로 따라해보니 집중도가 20% 상승했고, 스트레스 점수가 크게 낮아졌어요.",
+    "하지만 AI가 제안한 5분 요가 동작은 저에게는 좀 힘들었어요, 약간의 반전이 있었죠.",
+    "그래도 전체적인 생산성은 하루 평균 3시간 늘어난 느낌이었어요.",
+    "AI와 함께 만든 루틴, 여러분도 직접 시도해 보세요!"
   ],
-  "cta": "오늘 저녁 어두운 곳에서 거울 실험해 보세요. 댓글로 인증해 주세요.",
-  "description": "거울이 우리를 왜소하게 보이는 이유와 빛의 반사율 분석을 다룹니다. #물리학 #거울 #시각착시 #과학상식 #AI숏츠",
+  "cta": "구독하고 AI 일상 실험을 놓치지 마세요!",
+  "description": "AI에게 나만의 하루 루틴을 설계하게 하고 직접 따라한 결과를 공유합니다. AI가 만든 일정이 실제 생활에 어떤 변화를 주는지 확인해 보세요!",
   "tags": [
-    "거울 과학",
-    "빛의 반사",
-    "시각 착시",
-    "물리 법칙",
-    "AI 숏츠",
-    "과학 지식",
-    "요즘 트렌드",
-    "비하인드 스토리"
+    "AI",
+    "DailyRoutine",
+    "Productivity",
+    "AIExperiment",
+    "LifestyleHack",
+    "한국어",
+    "짧은동영상"
   ],
   "colors": [
-    "0x101828",
-    "0x3A506B"
+    "0x1A73E8",
+    "0xFF5722"
   ],
   "keywords": [
-    "mirror",
-    "reflection",
-    "light",
-    "physics",
-    "science",
-    "perception",
-    "shadow",
-    "distortion"
+    "AI daily schedule",
+    "morning routine",
+    "protein salad",
+    "productivity cycle",
+    "real-time fatigue analysis",
+    "stress reduction",
+    "yoga challenge",
+    "AI lifestyle experiment"
   ],
-  "visual_hook": "A person suddenly pulls the cover off a large mirror in a dark room, revealing a distinct shadow behind them that doesn't match their body shape."
+  "visual_hook": "Close-up of a laptop screen showing an AI chat interface, a hand typing a prompt, and the camera quickly zooming to the creator’s surprised face."
 }

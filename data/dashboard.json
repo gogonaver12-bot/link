@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:04:21+00:00",
+ "updated": "2026-11-25T17:04:46+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1553,37 +1553,37 @@
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T17:03+00:00"
+   "date": "2026-11-25T17:01+00:00"
   }
  ],
  "runs": [
@@ -1960,46 +1960,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:04:20+00:00",
-   "cmd": "test all",
+   "ts": "2026-11-25T17:04:45+00:00",
+   "cmd": "shorts",
    "ok": true,
-   "output": "❌ 탈락 I0014 AI 크레딧 관리 SaaS — 흑자 확률 0% · 90일 ROI 중앙값 -95% (기준 40%·+30%)\n⚠️ I0015 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)\n⚠️ I0016 테스트 실패: 추정에 참여한 AI가 없어요 (AI 키 확인)"
-  },
-  {
-   "ts": "2026-11-25T17:02:47+00:00",
-   "cmd": "daily",
-   "ok": true,
-   "output": "I0014 73.8점 [candidate] 프리랜서·Gig Economy/Web Dashboard AI Credit Monitoring SaaS for freelancers\n   → AI API 제공 업체의 사용량 API를 조사하고 무료 체험 계정을 만들어 대시보드 와이어프레임을 설계한다\nI0015 77.2점 [candidate] AI API를 활용하는 기업·스타트업/API Gateway / 클라우드 서비스 AI Failover Service – 자동 무료 모델 전환\n   → Node.js 로 간단한 프록시 서버를 만들고 현재 사용 중인 Claude API 호출 실패 시 자동으로 OpenAI 무료 모델로 라우팅하도록 구현한다\nI0016 74.8점 [candidate] 개발자·스타트업/Slack / Discord Bot AI Credit Management Bot for Developers\n   → Slack Bot 프레임워크를 설정하고, OpenAI(또는 Anthropic) 청구 API와 연동하여 현재 남은 크레딧을 조회하는 기능을 만든다"
-  },
-  {
-   "ts": "2026-11-25T17:02:15+00:00",
-   "cmd": "test I0007",
-   "ok": true,
-   "output": "❌ 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $150.0/$390.0/$990.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $30 전환 0.5% 하루 30~100"
-  },
-  {
-   "ts": "2026-11-25T17:00:57+00:00",
-   "cmd": "biz scout --market KR",
-   "ok": true,
-   "output": "I0014 68.5점 [candidate] South Korean millennials (age 25-35) seeking budgeting tools/Mobile app (iOS/Android) with web dashboard AI Personal Finance Coach\n   → Conduct 15‑minute survey on Naver Café to validate pain points\nI0015 69.8점 [candidate] Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration Virtual Team‑Building Hub\n   → Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups\nI0016 73.8점 [candidate] Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots Low‑Code Automation Marketplace\n   → Interview 5 small business owners via Zoom to map repetitive tasks"
-  },
-  {
-   "ts": "2026-11-25T17:02:15+00:00",
-   "cmd": "test I0007",
-   "ok": true,
-   "output": "❌ 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $150.0/$390.0/$990.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $30 전환 0.5% 하루 30~100"
-  },
-  {
-   "ts": "2026-11-25T17:00:57+00:00",
-   "cmd": "biz scout --market KR",
-   "ok": true,
-   "output": "I0014 68.5점 [candidate] South Korean millennials (age 25-35) seeking budgeting tools/Mobile app (iOS/Android) with web dashboard AI Personal Finance Coach\n   → Conduct 15‑minute survey on Naver Café to validate pain points\nI0015 69.8점 [candidate] Remote companies in Asia‑Pacific, 50‑500 employees/Web SaaS with video integration Virtual Team‑Building Hub\n   → Create landing page on Carrd and collect 20 email sign‑ups from LinkedIn groups\nI0016 73.8점 [candidate] Korean SMEs lacking IT staff/Web marketplace for drag‑and‑drop bots Low‑Code Automation Marketplace\n   → Interview 5 small business owners via Zoom to map repetitive tasks"
-  },
-  {
-   "ts": "2026-11-25T17:02:15+00:00",
-   "cmd": "test I0007",
-   "ok": true,
-   "output": "❌ 탈락 — 흑자 확률 19% · 90일 ROI 중앙값 -43% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $150.0/$390.0/$990.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $30 전환 0.5% 하루 30~100"
+   "output": "🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (6개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '잠 못 이루는 밤, 뇌가 숨기는 3가지 신호' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널은 AI 실험·툴 활용을 강조하고, 기존 영상은 수면·꿈 주제가 많아 새로운 AI 일상 활용 주제가 필요합니다. 벤치마크 인기 AI 숏츠는 강렬한 훅, 짧은 반전·핵심·근거·CTA 구조를 따르며 25~50초 내에 8~10문장을 배치합니다. 따라서 'AI가 만든 완벽한 하루 루틴'을 주제로, 첫 3초에 강한 질문형 훅을 넣고, AI 일정 설계 → 실제 실행 → 효과 검증 → 작은 반전 → 최종 행동 유도 순으로 스크립트를 구성했습니다. 영상 길이는 약 30초, 한 줄당 1문장, 한국어로 작성했으며, 저작권·실존인물·허위정보를 포함하지 않았습니다.\n📝 013.json: AI가 만든 완벽한 하루 루틴, 직접 실행해봤다\n007.json: 훅 32→60점으로 개선\n007.json: 표지 문구 → 잠 못 이루는 밤 / 3가지 신호로 깨달음\n🔎 무료 실사 영상 검색: ['brain wave', 'smartphone blue light', 'eye blinking', 'stress hormone', 'heart rate', 'sleep signal', 'sleep hygiene']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/007.mp4 (43.1초)\n✅ https://youtube.com/shorts/5Dal3S_nwX8"
   },
   {
    "ts": "2026-11-25T17:00:57+00:00",
@@ -2042,6 +2006,18 @@
    "cmd": "shorts --private",
    "ok": true,
    "output": "📊 stats.csv 갱신 (1개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '99%가 모르는 잠 꿀팁' 스타일 반복 / 워스트: '99%가 모르는 잠 꿀팁' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n현재 채널의 최고 성과 영상은 ‘99%가 모르는 잠 꿀팁’이라는 호기심을 유발하는 제목과 간단한 정보 전달이 특징입니다. 조회수는 높은 반면 좋아요·구독 증가가 없다는 점은 영상 끝에 명확한 CTA와 시청자 참여 유도를 더 강화해야 함을 시사합니다. 또한, 영상 길이가 25~50초 내외라는 제한을 고려해 핵심 팁을 3~4초 간격의 짧은 문장으로 구성하고, 각 문장에 맞는 영어 키워드를 제공해 검색 노출을 높이는 것이 좋습니다. 따라서 다음 스크립트는 \n1) 강렬하고 3초 안에 끝나는 훅, \n2) 구체적·과학적인 수면 팁을 순차적으로 제시, \n3) 마지막에 구독·알림 설정을 유도하는 CTA, \n4) 영상 설명·태그·색상·키워드까지 포함한 완전한 메타데이터를 제공하도록 설계했습니다.\n📝 008.json: 잠을 3배 빠르게 깊게 자는 비밀\n002.json: 훅 37→54점으로 개선\n🔎 무료 실사 영상 검색: ['black hole', 'black hole', 'earth', 'gravity', 'GPS satellite', 'GPS satellite', 'galaxy', 'nebula']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  🎞️ earth: b9474804e6e7.jpg\n  🎞️ galaxy: 861f55425e44.jpg\n  🎞️ nebula: 9b9d6c8b006b.jpg\n✅ /home/runner/work/link/link/shorts_factory/out/002.mp4 (30.6초)\n✅ https://youtube.com/shorts/O5m6ftHDRSU"
+  },
+  {
+   "ts": "2026-11-24T19:10:14+00:00",
+   "cmd": "shorts --private",
+   "ok": true,
+   "output": "업로드 기록 없음\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n제공된 기존 제목들을 보면, 조회수가 높은 영상들은 '잠', '뇌', '비밀', '꿀팁' 같은 키워드와 숫자를 활용해 호기심을 유발하고, 3초 이내에 강렬한 훅을 제시한다는 공통점이 있습니다. 또한 짧고 임팩트 있는 문구와 시각적으로 강렬한 색상(어두운 배경에 대비되는 포인트 컬러)을 사용합니다. 반면 조회수가 낮은 영상들은 제목이 모호하거나, 훅이 약하고, 내용이 산만하게 전개되는 경향이 있습니다. 따라서 이번 스크립트는 ‘뇌가 숨기는 3가지 신호’를 중심으로 숫자와 ‘비밀’ 요소를 강조하고, 첫 훅을 3초 안에 강하게 전달하도록 구성했습니다.\n📝 007.json: 잠 못 이루는 밤, 뇌가 숨기는 3가지 신호\n✅ /home/runner/work/link/link/shorts_factory/out/001.mp4 (25.7초)\n✅ https://youtube.com/shorts/O9Wfuk4aSWU"
+  },
+  {
+   "ts": "2026-11-24T19:07:42+00:00",
+   "cmd": "shorts --private",
+   "ok": true,
+   "output": "업로드 기록 없음\n📊 규칙 피드백:\n아직 데이터 없음. 최소 5개 업로드 후 48시간 뒤 stats.csv 작성.\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n제공된 기존 제목들을 보면 ‘숨겨진 사실’, ‘과학적·심리적 이유’, ‘짧고 강렬한 호기심 유발’이 공통된 핵심 포인트다. 시청자들은 짧은 시간 안에 놀라운 정보를 얻고 싶어한다. 따라서 스크립트는 강렬한 훅으로 시작해, 구체적인 뇌·수면 메커니즘을 3가지 핵심 포인트로 압축하고, 시각적 연출을 돕는 색상·키워드(영어 검색어)를 매줄 제공한다. 낮은 성과 영상에서 흔히 보이는 과도한 설명이나 억지 유머는 배제하고, 과학적 근거를 기반으로 하지만 허위 정보는 절대 포함하지 않는다.\n📝 006.json: 잠 못 이루는 밤, 뇌가 숨기는 3가지 신호\n001.json: 훅 41→62점으로 개선\n✅ /home/runner/work/link/link/shorts_factory/out/001.mp4 (25.7초)\nTraceback (most recent call last):\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 80, in <module>\n    stats() if a.stats else upload(a.video, a.private) if a.video else ap.print_help()\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 46, in upload\n    r = yt().videos().insert(part=\"snippet,status\", body=body,\n        ^^^^\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 19, in yt\n    from google_auth_oauthlib.flow import InstalledAppFlow\nModuleNotFoundError: No module named 'google_auth_oauthlib'"
   }
  ],
  "pipelines": [
@@ -2138,7 +2114,7 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 9,
+    "n": 8,
     "done": true
    },
    {
@@ -2150,7 +2126,7 @@
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
   "shorts": 7,
-  "blog": 2
+  "blog": 1
  },
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,
