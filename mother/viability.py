@@ -61,6 +61,11 @@ def _estimators():
         if p not in seen:
             seen.add(p)
             uniq.append((p, m))
+    for pm in out:  # 연결된 회사가 적으면 같은 회사의 다른 모델로 채움 (최소 2개가 경쟁해야 판정)
+        if len(uniq) >= _cfg()["max_ais"]:
+            break
+        if pm not in uniq:
+            uniq.append(pm)
     return uniq[:_cfg()["max_ais"]]
 
 
@@ -166,7 +171,10 @@ def test(subject, seed=0):
     params = aggregate(ests)
     sim = simulate(params, seed=seed)
     ok, why = verdict(sim)
-    return {"date": store.today(), "pass": ok, "why": why, "sim": sim, "params": params, "evidence": evidence[:1500],
+    hold = len(ests) < 2  # AI 1개만 답하면 경쟁이 아님 → 통과도 탈락도 아닌 '보류'
+    if hold:
+        ok, why = False, f"판정 보류 — AI {len(ests)}개만 참여(최소 2개 필요) · 참고: {why}"
+    return {"date": store.today(), "pass": ok, "hold": hold, "why": why, "sim": sim, "params": params, "evidence": evidence[:1500],
             "estimates": [{k: e.get(k) for k in ("model", "role", "price_usd", "conv_rate_pct", "visitors_low", "visitors_high")} for e in ests]}
 
 
@@ -231,7 +239,7 @@ def upgrade_loop(subject_of, item, res, seed, rounds=None):
     rounds = _cfg()["upgrade_rounds"] if rounds is None else rounds
     tried, log = [], []
     for k in range(rounds):
-        if res["pass"]:
+        if res["pass"] or res.get("hold"):
             break
         try:
             fix = improve(subject_of(item), res, tried)
@@ -259,7 +267,7 @@ def test_idea(idea_id, kill=True):
     seed = zlib.crc32(idea_id.encode())
     before = idea["title"]
     res = test(_subject(idea), seed=seed)
-    if not res["pass"] and kill and idea["status"] in ("active", "candidate"):
+    if not res["pass"] and not res.get("hold") and kill and idea["status"] in ("active", "candidate"):
         res, log = upgrade_loop(_subject, idea, res, seed)
         idea.setdefault("upgrades", []).extend(log)
         if res["pass"]:
@@ -268,7 +276,7 @@ def test_idea(idea_id, kill=True):
     idea["viability"] = res
     store.append_jsonl("estimates.jsonl", {"date": store.today(), "id": idea_id, "rev30_p50": res["sim"]["rev30_p50"],
                                            "estimates": res["estimates"]})
-    if not res["pass"] and kill and idea["status"] in ("active", "candidate"):
+    if not res["pass"] and not res.get("hold") and kill and idea["status"] in ("active", "candidate"):
         idea["status"] = "killed"
         idea["killed_by"] = "생존 테스트"
         with (store.DATA / "lessons.md").open("a", encoding="utf-8") as f:
@@ -285,7 +293,7 @@ def test_pipeline(name, upgrade=True):
     subj = lambda x: (f"자동화 파이프라인: {x['title']} — {x.get('description', '')} / 수익 모델: {x.get('model', '')} / 단계: "
                       + ", ".join(s.get("command") or s.get("agent") for s in p["steps"]))
     res = test(subj(p), seed=seed)
-    if not res["pass"] and upgrade:  # 탈락 → 개선안으로 재테스트 → 통과하면 그 설계로 새 파이프라인을 만들어 교체
+    if not res["pass"] and not res.get("hold") and upgrade:  # 탈락 → 개선안으로 재테스트 → 통과하면 그 설계로 새 파이프라인을 만들어 교체
         item = {"title": p["title"], "description": p.get("description", ""), "model": "", "platform": "", "market": ""}
         res2, log = upgrade_loop(lambda x: f"자동화 파이프라인: {x['title']} — {x.get('description', '')} / 수익 모델: {x.get('model')} "
                                            f"/ 플랫폼: {x.get('platform')} / 시장: {x.get('market')}", item, res, seed)
@@ -302,7 +310,7 @@ def test_pipeline(name, upgrade=True):
             pipelines.save(p)
             return new, res2
     p["viability"] = {k: res[k] for k in ("date", "pass", "why", "sim")}
-    if not res["pass"]:
+    if not res["pass"] and not res.get("hold"):
         p["enabled"] = False
         p["disabled_reason"] = "생존 테스트 탈락(개선 후에도): " + res["why"]
     pipelines.save(p)
@@ -328,7 +336,7 @@ def test_all(limit=None):
     for i in ideas[:limit or len(ideas)]:
         try:
             _, r = test_idea(i["id"])
-            out.append(f"{'✅ 생존' if r['pass'] else '❌ 탈락'} {i['id']} {i['title'][:30]} — {r['why']}")
+            out.append(f"{'✅ 생존' if r['pass'] else '⏸ 보류' if r.get('hold') else '❌ 탈락'} {i['id']} {i['title'][:30]} — {r['why']}")
         except llm.BudgetExceeded:
             raise
         except Exception as e:

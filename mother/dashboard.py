@@ -25,7 +25,7 @@ def _via(v):
     if not v:
         return None
     pr = v.get("params", {})
-    return {"date": v["date"], "pass": v["pass"], "why": v["why"], "sim": v["sim"], "estimates": v.get("estimates", []),
+    return {"date": v["date"], "pass": v["pass"], "hold": v.get("hold", False), "why": v["why"], "sim": v["sim"], "estimates": v.get("estimates", []),
             "risks": pr.get("risks", []), "evidence": pr.get("evidence", []), "disagreement": pr.get("disagreement")}
 
 

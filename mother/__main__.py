@@ -304,7 +304,7 @@ def main(argv=None):
                     if u.get("title"):
                         p(f"🔧 개선 {u['round']}차: {u['title']} → {'생존' if u['pass'] else '채택' if u['adopted'] else '버림'} ({u['result']})")
             sm = r["sim"]
-            p(f"{'✅ 생존' if r['pass'] else '❌ 탈락'} — {r['why']}\n90일 매출 P10/P50/P90: ${sm['rev_p10']}/${sm['rev_p50']}/${sm['rev_p90']} · 손익분기 {sm['breakeven_p50']}일"
+            p(f"{'✅ 생존' if r['pass'] else '⏸ 보류' if r.get('hold') else '❌ 탈락'} — {r['why']}\n90일 매출 P10/P50/P90: ${sm['rev_p10']}/${sm['rev_p50']}/${sm['rev_p90']} · 손익분기 {sm['breakeven_p50']}일"
               + "\n" + "\n".join(f"- {e['role']} {e['model']}: 가격 ${e['price_usd']} 전환 {e['conv_rate_pct']}% 하루 {e['visitors_low']}~{e['visitors_high']}" for e in r["estimates"]))
     elif x.cmd == "shorts":
         from . import publish

@@ -259,7 +259,7 @@ function viaBox(i) {
     <button class="btn" style="margin-top:12px" data-cmd="test ${esc(i.id)}" data-label="생존 테스트">🧪 테스트하기</button></div></div>`;
   const s = v.sim;
   return `<div class="field"><label>🧪 생존 테스트 · ${esc(v.date)}</label><div class="card">
-    <div class="row"><span class="pill ${v.pass ? "ok" : "bad"}">${v.pass ? "생존" : "탈락"}</span><div class="grow m wrap">${esc(v.why)}</div></div>
+    <div class="row"><span class="pill ${v.pass ? "ok" : v.hold ? "candidate" : "bad"}">${v.pass ? "생존" : v.hold ? "보류" : "탈락"}</span><div class="grow m wrap">${esc(v.why)}</div></div>
     <div class="kv"><div><b>${Math.round(s.p_profit * 100)}%</b><span>흑자 확률</span></div><div><b>${(s.roi_p50 * 100).toFixed(0)}%</b><span>ROI 중앙</span></div>
       <div><b>${usd(s.rev_p50)}</b><span>90일 매출</span></div><div><b>${s.breakeven_p50 > s.days ? "–" : s.breakeven_p50 + "일"}</b><span>손익분기</span></div></div>
     <div class="note">90일 매출 범위(비관~낙관): ${usd(s.rev_p10)} ~ ${usd(s.rev_p90)} · ${s.runs.toLocaleString()}번 시뮬레이션</div>
