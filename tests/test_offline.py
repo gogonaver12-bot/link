@@ -567,3 +567,10 @@ def test_aiimage_free_fallback(monkeypatch, tmp_path):
     monkeypatch.setattr(aiimage, "pollinations", fake)
     p = aiimage.generate("a girl pulls a sword", tmp_path, name="s.png", seed=42)
     assert p.suffix == ".jpg" and p.exists() and seen["seed"] == 42
+
+
+def test_story_json_repair():
+    from mother import story
+    bad = '설명입니다 {"title": "A", "scenes": [{"speaker": "narrator", "line": "안녕",},], "tags": ["x",],} 끝'
+    assert story.parse(bad)["scenes"][0]["line"] == "안녕"
+    assert story.parse('{"a": [1, 2, ...], "b": “q”}')["a"] == [1, 2]

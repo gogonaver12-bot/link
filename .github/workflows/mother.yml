@@ -85,7 +85,7 @@ jobs:
         run: |
           git config user.name "mother-agent"
           git config user.email "mother-agent@users.noreply.github.com"
-          git add -A data reports agents skills workspace pipelines shorts_factory stories app/previews || true
+          git add -A -- $(ls -d data reports agents skills workspace pipelines shorts_factory stories app/previews 2>/dev/null) || true
           git diff --cached --quiet || git commit -qm "mother: auto update $(date -u +%F)"
           for i in 1 2 3; do   # 다른 실행과 겹치면: 기록은 합치고(jsonl) 나머지는 이번 결과 우선
             git pull --rebase -X theirs -q origin main && git push -q && break || { git rebase --abort 2>/dev/null; sleep 5; }
