@@ -47,8 +47,13 @@ def upload(path, private):
                         "tags": meta.get("tags", []), "categoryId": "22", "defaultLanguage": "ko"},
             "status": {"privacyStatus": "private" if private else "public",
                        "selfDeclaredMadeForKids": False, "containsSyntheticMedia": True}}
-    r = yt().videos().insert(part="snippet,status", body=body,
-                             media_body=MediaFileUpload(path, resumable=True)).execute()
+    try:
+        r = yt().videos().insert(part="snippet,status", body=body,
+                                 media_body=MediaFileUpload(path, resumable=True)).execute()
+    except Exception as e:
+        if "uploadLimitExceeded" in str(e) or "exceeded the number of videos" in str(e):
+            sys.exit("⏸ 유튜브 하루 업로드 한도 초과 — 영상은 만들어 뒀고 내일 자동으로 다시 올려요")
+        raise
     log = json.loads(LOG.read_text()) if LOG.exists() else []
     from datetime import date
     log.append({"id": r["id"], "file": Path(path).name, "title": meta["title"], "date": date.today().isoformat(),
