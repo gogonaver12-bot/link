@@ -1,3 +1,4 @@
 {"ts": "2026-11-23T16:57:59+00:00", "model": "gemini:gemini-flash-lite-latest", "score": 9, "note": "Three clear, compelling one‑line slogans that highlight benefits and are concise and usable.", "source": "arena"}
 {"ts": "2026-11-23T16:57:59+00:00", "model": "groq:openai/gpt-oss-120b", "score": 9, "note": "Provides three effective, succinct taglines with strong calls to action and benefit focus.", "source": "arena"}
 {"ts": "2026-11-25T17:09:28+00:00", "model": "groq:openai/gpt-oss-120b", "score": 8, "note": "분석은 좋지만 가설 실험 제안이 더 구체적이면 좋음", "source": "review"}
+{"ts": "2026-11-25T17:22:45+00:00", "model": "groq:openai/gpt-oss-120b", "score": 9, "note": "숏폼 성공 공식과 레퍼런스 분석이 매우 구체적이며 즉시 활용 가능하다.", "source": "review"}

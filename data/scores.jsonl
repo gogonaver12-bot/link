@@ -3,3 +3,5 @@
 {"ts": "2026-11-25T17:09:28+00:00", "model": "groq:openai/gpt-oss-120b", "agent": "analyst", "score": 8, "feedback": "분석은 좋지만 가설 실험 제안이 더 구체적이면 좋음"}
 {"ts": "2026-11-25T17:09:28+00:00", "model": null, "agent": "developer", "score": 2, "feedback": "실제 통합 작업 전 환경 설정 및 API 키 확보가 필요"}
 {"ts": "2026-11-25T17:09:28+00:00", "model": null, "agent": "content_creator", "score": 2, "feedback": "콘텐츠 초안 없이 결과만 제공, 구체적인 가이드와 자료 필요"}
+{"ts": "2026-11-25T17:22:45+00:00", "model": null, "agent": "developer", "score": 3, "feedback": "API 호출 제한 및 파싱 오류가 발생했으니 에러 핸들링과 모델 폴백 로직을 보완하라."}
+{"ts": "2026-11-25T17:22:45+00:00", "model": "groq:openai/gpt-oss-120b", "agent": "viral_analyst", "score": 9, "feedback": "숏폼 성공 공식과 레퍼런스 분석이 매우 구체적이며 즉시 활용 가능하다."}

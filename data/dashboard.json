@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:21:07+00:00",
+ "updated": "2026-11-25T17:22:47+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1484,9 +1484,9 @@
    ],
    "model": "auto",
    "skills": [],
-   "avg": 2.0,
-   "evals": 1,
-   "last_feedback": "실제 통합 작업 전 환경 설정 및 API 키 확보가 필요"
+   "avg": 2.5,
+   "evals": 2,
+   "last_feedback": "API 호출 제한 및 파싱 오류가 발생했으니 에러 핸들링과 모델 폴백 로직을 보완하라."
   },
   {
    "name": "github_scout",
@@ -1576,9 +1576,9 @@
    "skills": [
     "reels_team_prompts"
    ],
-   "avg": null,
-   "evals": 0,
-   "last_feedback": ""
+   "avg": 9.0,
+   "evals": 1,
+   "last_feedback": "숏폼 성공 공식과 레퍼런스 분석이 매우 구체적이며 즉시 활용 가능하다."
   }
  ],
  "providers": [
@@ -1688,8 +1688,8 @@
   },
   {
    "model": "groq:openai/gpt-oss-120b",
-   "avg": 8.5,
-   "n": 2,
+   "avg": 8.67,
+   "n": 3,
    "dropped": false
   }
  ],
@@ -1701,47 +1701,64 @@
  ],
  "reports": [
   {
+   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
+   "title": "매일 업데이트및 영상확인",
+   "date": "2026-11-25T17:22+00:00"
+  },
+  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T17:20+00:00"
+   "date": "2026-11-25T17:21+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-25T17:22:43+00:00",
+   "agent": "viral_analyst",
+   "model": "groq:openai/gpt-oss-120b",
+   "task": "매일 업데이트된 대상 플랫폼의 영상 데이터와 성과 지표를 실시간으로 확인하고 리포트를 작성하라."
+  },
+  {
+   "ts": "2026-11-25T17:22:30+00:00",
+   "agent": "developer",
+   "model": null,
+   "task": "매일 자동으로 소스코드 및 콘텐츠를 업데이트하는 파이프라인의 상태를 점검하고 수정하라."
+  },
   {
    "ts": "2026-11-25T17:13:47+00:00",
    "agent": "researcher",
@@ -1801,18 +1818,6 @@
    "agent": "office_assistant",
    "model": null,
    "task": "구현된 솔루션의 적용 절차와 토큰 사용량 모니터링 대시보드 설정 문서를 작성한다."
-  },
-  {
-   "ts": "2026-11-25T17:09:15+00:00",
-   "agent": "developer",
-   "model": null,
-   "task": "조사·분석 결과를 바탕으로 영상 퀄리티 업그레이드 로직과 Gemini API 호출 최적화를 구현한다."
-  },
-  {
-   "ts": "2026-11-25T17:07:20+00:00",
-   "agent": "github_scout",
-   "model": null,
-   "task": "오픈소스 고품질 비디오 업스케일링 모델 및 Gemini 연동 샘플 코드를 찾아 정리한다."
   }
  ],
  "errors": [],
@@ -2055,6 +2060,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-25T17:22:46+00:00",
+   "cmd": "매일 업데이트및 영상확인",
+   "ok": true,
+   "output": "개발자 파이프라인에서 API 쿼터 초과 및 파싱 에러가 발생하여 긴급 수정이 필요합니다. 반면 바이럴 분석팀은 숏폼 트렌드와 성공 공식을 완벽하게 도출해 높은 성과를 냈습니다. 에러를 해결하고 분석 결과를 콘텐츠 제작에 즉시 반영하겠습니다. \n다음: \n- developer 팀은 API 에러 핸들링 및 모델 분산 로직을 즉시 재구축하라. \n- viral_analyst 팀의 숏폼 성공 공식을 바탕으로 콘텐츠 자동 생성 파이프라인에 적용하라. \n보고서: reports/20261125-1722-매일-업데이트및-영상확인.md"
+  },
+  {
    "ts": "2026-11-25T17:21:05+00:00",
    "cmd": "benchmark",
    "ok": true,
@@ -2105,12 +2116,6 @@
   {
    "ts": "2026-11-25T17:09:20+00:00",
    "cmd": "영상 퀄리티 업데이트및 적용 제미나이 페이블사용 하는데 토근및 사용량최적화",
-   "ok": false,
-   "output": "⚠️ 실패: RuntimeError: gemini: gemini-flash-lite-latest 503: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is current / gemini: gemini-omni-1.2-flash 429: [{\n  (기록: data/errors.jsonl)"
-  },
-  {
-   "ts": "2026-11-25T17:07:49+00:00",
-   "cmd": "daily",
    "ok": false,
    "output": "⚠️ 실패: RuntimeError: gemini: gemini-flash-lite-latest 503: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is current / gemini: gemini-omni-1.2-flash 429: [{\n  (기록: data/errors.jsonl)"
   }
