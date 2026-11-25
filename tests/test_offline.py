@@ -479,3 +479,9 @@ def test_ai_video_respects_budget_and_missing_keys(monkeypatch, tmp_path):
     (tmp_path / "log.json").write_text('[{"date": "%s", "usd": 0.9}]' % store.today(), encoding="utf-8")
     monkeypatch.setattr(aivideo, "_call", lambda m, u, b=None: {"usd": "0.25"})
     assert aivideo.hook_clip("cat", tmp_path) is None  # 이번 달 예산 초과 → 생성 안 함
+
+
+def test_cover_copy_rejects_placeholder_n(monkeypatch):
+    from mother import publish
+    monkeypatch.setattr(providers, "complete", lambda *a, **k: ("1. 꿈의 진실 / N가지\n2. 꿈의 99%는 / 내 기억이 아니다", "g"))
+    assert "N가지" not in publish.cover_copy({"title": "꿈", "hook": "h", "lines": ["a"]})

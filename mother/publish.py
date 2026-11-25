@@ -101,7 +101,7 @@ def cover_copy(meta):
     from .skillscore import title_check
     prompt = (f"숏츠 대본:\n제목: {meta.get('title')}\n첫 문장: {meta.get('hook')}\n본문: {' / '.join(meta.get('lines', [])[:6])}\n\n"
               "너는 숏츠 표지 문구 작가다. 화면 위쪽에 계속 떠 있을 표지 문구 5안을 써라. 각 안은 2~3줄(줄바꿈은 ' / '), 줄당 12자 이내, "
-              "보면 얻는 것을 분명하게, '나만 모르는·N가지·진짜 이유' 같은 강조어는 안마다 딱 하나, 과장·허위 금지. "
+              "보면 얻는 것을 분명하게, '나만 모르는·3가지·진짜 이유'처럼 실제 숫자를 쓴 강조어는 안마다 딱 하나, 과장·허위 금지. "
               "한 줄에 한 안씩만 출력.")
     try:
         text, _ = providers.complete(prompt, system="숏츠 표지 문구 카피라이터. 안만 출력.", agent="cover_copywriter")
@@ -113,6 +113,8 @@ def cover_copy(meta):
         if not cand:
             continue
         flat = cand.replace(" / ", " ")
+        if re.search(r"(?<![A-Za-z])N\s?(가지|개|배)", flat):  # 예시의 'N가지'를 그대로 베낀 안은 제외
+            continue
         sc = title_check(flat)["score"] - (20 if len(cand.split(" / ")) > 4 else 0)
         if sc > best_sc:
             best, best_sc = cand, sc
