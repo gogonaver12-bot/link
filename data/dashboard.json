@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T17:11:07+00:00",
+ "updated": "2026-11-25T17:11:22+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -124,6 +124,8 @@
     ]
    },
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -196,6 +198,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -294,6 +298,8 @@
     ]
    },
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -377,6 +383,8 @@
    },
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -450,6 +458,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -517,6 +527,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -601,6 +613,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-25",
     "pass": false,
@@ -674,6 +688,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -752,6 +768,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -826,6 +844,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-23",
     "pass": false,
@@ -895,6 +915,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-24",
     "pass": false,
@@ -959,6 +981,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-24",
     "pass": false,
@@ -1037,6 +1061,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-25",
     "pass": false,
@@ -1115,6 +1141,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-25",
     "pass": false,
@@ -1183,6 +1211,8 @@
    "last_review": null,
    "product": null,
    "killed_by": null,
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-25",
     "pass": true,
@@ -1261,6 +1291,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-25",
     "pass": false,
@@ -1328,6 +1360,8 @@
    "last_review": null,
    "product": null,
    "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [],
    "viability": {
     "date": "2026-11-25",
     "pass": false,
@@ -1629,44 +1663,44 @@
  ],
  "reports": [
   {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T17:10+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T17:10+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T17:10+00:00"
-  },
-  {
-   "file": "reports/20261123-1109-상품-I0001.md",
-   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T17:10+00:00"
-  },
-  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-25T17:10+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T17:10+00:00"
+   "date": "2026-11-25T17:11+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T17:10+00:00"
+   "date": "2026-11-25T17:11+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-25T17:11+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-25T17:11+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T17:10+00:00"
+   "date": "2026-11-25T17:11+00:00"
+  },
+  {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-25T17:11+00:00"
+  },
+  {
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-25T17:11+00:00"
+  },
+  {
+   "file": "reports/20261123-1109-상품-I0001.md",
+   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
+   "date": "2026-11-25T17:11+00:00"
   }
  ],
  "runs": [
@@ -1983,10 +2017,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-25T17:11:05+00:00",
-   "cmd": "ai check",
+   "ts": "2026-11-25T17:11:20+00:00",
+   "cmd": "jobs",
    "ok": true,
-   "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\nopenai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기\n유튜브(구글) API 키로 되는 것:\n  ✅ 유튜브 조회(인기·검색): 가능\n  ⚠️ Gemini AI: 오류 403\n  ⚠️ 블로그(Blogger) 읽기: 오류 403\n  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요\n  ⚠️ 블로그 글쓰기: 오류 403"
+   "output": "새 작업 없음"
   },
   {
    "ts": "2026-11-25T17:09:48+00:00",
@@ -2091,6 +2125,8 @@
     }
    },
    "disabled_reason": "생존 테스트 탈락: 흑자 확률 22% · 90일 ROI 중앙값 -70% (기준 40%·+30%)",
+   "upgraded_from": null,
+   "upgrades": [],
    "runs": 1,
    "last": {
     "date": "2026-11-23",
