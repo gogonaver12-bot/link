@@ -704,3 +704,18 @@ def test_doctor_and_skill_factory(monkeypatch):
     assert "AI 진단 1건" in out and "알려진 원인" in rp and "scenes 키 없음" in rp  # 알려진 에러는 AI 안 부름
     name = skills_finder.write_skill("블로그팀", "네이버 블로그 상위노출")
     assert name == "co-blog-seo" and "Use when" in (store.SKILLS / f"{name}.md").read_text(encoding="utf-8")
+
+
+def test_local_shorts_plan_and_validate(monkeypatch, tmp_path):
+    from mother import localshorts as ls, providers as pv
+    monkeypatch.setattr(ls, "JOBS", tmp_path / "jobs.json"); monkeypatch.setattr(ls, "PLANS", tmp_path / "plans")
+    good = {"stories": [{"id": "night_hall", "title": "복도의 불", "hook": ["불이 켜진다", "하나씩"], "scenes": [
+        {"ko": f"복도 끝에서 불이 켜졌다 {i}", "en": "A light switched on at the end of the hallway", "key": "불이 켜졌다", "tag": "복도"}
+        for i in range(5)]}]}
+    assert ls.validate(json.loads(json.dumps(good)), "horror")
+    bad = json.loads(json.dumps(good)); bad["stories"][0]["scenes"][0]["key"] = "없는 말"
+    with pytest.raises(ValueError):
+        ls.validate(bad, "horror")
+    monkeypatch.setattr(pv, "complete", lambda *a, **k: (json.dumps(good, ensure_ascii=False), "groq:t"))
+    out = ls.plan("horror", "아파트 복도 공포", 0.85)
+    assert "PC 대기열" in out and ls.jobs()[0]["status"] == "pending" and ls.jobs()[0]["speed"] == 0.85

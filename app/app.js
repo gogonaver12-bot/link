@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Gemini 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^local plan/, "PC 렌더 쇼츠 대본"], [/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Gemini 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -371,6 +371,13 @@ function viewMake() {
     <input id="vTopic" maxlength="120" placeholder="예: AI한테 내 하루 일정 짜달라 했더니"></div>
     <div class="btns"><button class="btn ghost" id="vTest">🔒 테스트</button><button class="btn" id="vMake">🚀 만들기</button></div>
     <div class="m" style="margin-top:8px">대본 → 훅 채점 → 표지 문구 → 영상·음악·자막 → 업로드 · 약 5분 · 끝나면 ‘영상확인’에 떠요</div></div>
+  <div class="card"><div class="t">🖥 PC 렌더 쇼츠 (호러 3D · AI 뉴스)</div>
+    <div class="m">대본은 여기서 만들고, 렌더는 PC(영상 공장)에서 — PC에서 run_local_jobs.bat 실행하면 '방금 만든 영상'으로 와요</div>
+    <div class="chips" id="lcKind"><button class="pill accent" data-lk="horror">👻 호러 3D</button><button class="pill" data-lk="ainews">📰 AI 뉴스</button></div>
+    <input id="lcBrief" maxlength="160" style="margin-top:8px;width:100%" placeholder="브리프 (예: 아파트 복도 불이 하나씩 켜지는 이야기)">
+    <button class="btn small" id="lcBtn" style="margin-top:8px;width:100%">📝 대본 만들고 PC 대기열에</button>
+    ${(D.local_jobs || []).length ? D.local_jobs.slice(0, 4).map((j) => `<div class="row" style="padding:6px 0"><span class="pill ${j.status === "done" ? "ok" : j.status === "failed" ? "bad" : "candidate"}">${{ done: "완료", failed: "실패", pending: "PC 대기" }[j.status] || j.status}</span>
+      <div class="grow"><div class="t">${esc(j.title)}</div><div class="m">${esc(j.kind)}${j.mb ? " · " + j.mb + "MB" : ""}</div></div></div>`).join("") : ""}</div>
   <div class="quick" style="margin-top:10px">
     <button class="qbtn" data-cmd="benchmark" data-label="인기 영상 분석"><span class="ico">📈</span>인기 영상 분석</button>
     <button class="qbtn" data-go="#videos"><span class="ico">▶️</span>영상 확인</button>
@@ -745,6 +752,8 @@ const hubSheet = () => `<h3>🔎 통합 검색</h3><p class="sub" style="margin:
 const SHEETS = { storychan: storyChanSheet, hubsearch: hubSheet, kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
+  const lk = e.target.closest("[data-lk]");
+  if (lk) { lk.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("accent", b === lk)); return; }
   const sv = e.target.closest("[data-svc]");
   if (sv) { sv.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("accent", b === sv)); return; }
   const gb = e.target.closest("[data-genre]");
@@ -788,6 +797,8 @@ document.addEventListener("click", async (e) => {
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
   }
+  if (id === "lcBtn") { const br = $("#lcBrief").value.trim(); const k = $("#lcKind .accent")?.dataset.lk || "horror";
+    dispatch(`local plan ${k} ${q(br || (k === "ainews" ? "이번 주 AI 소식" : "아파트 복도 공포"))}`, "", "PC 렌더 쇼츠 대본"); }
   if (id === "hubBtn") { const v = $("#hubQ").value.trim(); if (!v) return toast("찾을 내용을 적어 주세요"); dispatch(`search all ${q(v)}`, "", "통합 검색"); }
   if (id === "odBtn") {
     const r = $("#odReq").value.trim(); if (!r) return toast("고객 요청을 붙여넣어 주세요");

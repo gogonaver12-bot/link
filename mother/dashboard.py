@@ -246,6 +246,7 @@ def build():
         "previews": [p for p in store.load_json("previews.json", []) if (store.ROOT / "app" / "previews" / p["file"]).exists()][::-1],
         "studio": _studio(),
         "stories": _stories(),
+        "local_jobs": __import__("mother.localshorts", fromlist=["jobs"]).jobs()[-8:][::-1],
         "progress": _progress(rev),
         "keys_set": {k: bool(os.getenv(k)) for k in KEY_NAMES},  # 이름별 등록 여부만 (값은 절대 포함 안 함)
     }

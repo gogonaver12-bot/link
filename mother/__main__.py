@@ -164,6 +164,9 @@ def main(argv=None):
     od = sp.add_parser("order", help="크몽·숨고 주문 처리: order <blog|review|detail|translate|ppt> \"고객 요청\"")
     od.add_argument("service"); od.add_argument("request")
     sp.add_parser("hub", help="스킬·프롬프트·에이전트를 .claude/ 로 묶어 모든 세션이 쓰게 함")
+    lc = sp.add_parser("local", help="PC 렌더 쇼츠: local plan <horror|ainews> \"브리프\" [--speed 0.85] / local list")
+    lc.add_argument("action", choices=["plan", "list"]); lc.add_argument("kind", nargs="?", default="horror")
+    lc.add_argument("brief", nargs="?", default=""); lc.add_argument("--speed", type=float)
     sp.add_parser("doctor", help="최근 에러를 systematic-debugging 방식으로 진단 → reports/doctor/")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     sp.add_parser("benchmark", help="유튜브 인기 AI 숏츠 수집(대본 참고용)")
@@ -338,6 +341,12 @@ def main(argv=None):
     elif x.cmd == "order":
         from . import orders
         p(orders.make(x.service, x.request))
+    elif x.cmd == "local":
+        from . import localshorts
+        if x.action == "list":
+            p("\n".join(f"- [{j['status']}] {j['title']} ({j['kind']})" for j in localshorts.jobs()) or "대기열 없음")
+        else:
+            p(localshorts.plan(x.kind, x.brief or "요즘 화제가 될 만한 주제", x.speed))
     elif x.cmd == "doctor":
         from . import doctor
         p(doctor.run())

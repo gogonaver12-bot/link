@@ -344,3 +344,6 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .gem-sc.done > b { background: var(--ok); color: #fff; }
 .gem-refs { display: flex; gap: 6px; margin-top: 6px; } .gem-refs img { width: 46px; height: 62px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
 label.btn { cursor: pointer; display: block; }
+
+#lcKind{margin-top:8px} #lcKind button{cursor:pointer;background:transparent;font:inherit;font-size:12px;padding:5px 10px}
+#lcBrief{border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--fg);padding:9px;font:inherit;box-sizing:border-box}
