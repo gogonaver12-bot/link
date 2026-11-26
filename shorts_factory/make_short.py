@@ -4,7 +4,7 @@
 사용: python make_short.py scripts/001.json [--out out/]
 배경: assets/clips/ 에 본인 소유/상업 라이선스 영상(mp4)을 넣으면 사용, 없으면 자동 그라데이션.
 """
-import argparse, asyncio, json, subprocess, sys, random
+import argparse, asyncio, json, shutil, subprocess, sys, random
 from pathlib import Path
 
 import edge_tts
@@ -147,7 +147,7 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
             continue
         if scene_clips and c.suffix.lower() == ".mp4":  # 스토리: AI로 움직인 장면 — 대사 길이에 맞춰 천천히 늘이고(최대 2배) 모자라면 반복
             L = max(0.5, dur(c))
-            k = min(2.0, max(1.0, d / L))
+            k = 1.0 if "-talk" in c.stem else min(2.0, max(1.0, d / L))  # 말하는 영상은 입 모양이 어긋나지 않게 속도 그대로
             look = (f"eq=contrast=1.07:brightness=-0.03:saturation=1.12,vignette=PI/5,noise=alls=5:allf=t,"
                     f"fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
             sh(["ffmpeg", "-y", "-stream_loop", "-1", "-i", c, "-t", f"{d:.2f}",
@@ -187,7 +187,11 @@ def main():
     voices = s.get("voices") or []  # 스토리: 줄마다 말하는 사람 목소리
     for i, line in enumerate(lines):
         p = work / f"l{i:02d}.mp3"
-        say(line, voices[i] if i < len(voices) and voices[i] else voice, rate, p)
+        pre = (s.get("audio") or [])[i] if i < len(s.get("audio") or []) else ""
+        if pre and (ROOT / pre).exists():  # 스토리: 말하는 영상 만들 때 쓴 바로 그 목소리(입 모양과 정확히 맞음)
+            shutil.copy(ROOT / pre, p)
+        else:
+            say(line, voices[i] if i < len(voices) and voices[i] else voice, rate, p)
         segs.append((i, line, p, dur(p)))
     cut = 0
     while len(segs) > 2 and sum(d + 0.08 for *_, d in segs) + 0.6 > MAX_SEC:
@@ -199,7 +203,7 @@ def main():
         if s.get("clips"):
             s["clips"] = [s["clips"][i] for i, *_ in segs if i < len(s["clips"])]
     for _, line, p, d in segs:
-        cues.append((t, t + d, line)); parts.append(p); t += d + 0.08
+        cues.append((t, t + d, line)); parts.append(p); t += d  # 음성은 사이 공백 없이 이어 붙임 → 화면·자막·입 모양과 정확히 맞춤
 
     lst = work / "a.txt"
     lst.write_text("".join(f"file '{p.resolve()}'\n" for p in parts))
@@ -217,7 +221,8 @@ def main():
     cmd = ["ffmpeg", "-y", "-i", bg, "-i", voice_mp3]
     extra, afilter = sound.mix(cues, total, seed=sp.stem)  # 배경음악(목소리 나오면 자동으로 작아짐) + 효과음
     cmd += extra
-    cmd += ["-filter_complex", f"[0:v]ass={ass}:fontsdir={FONT.parent}[v];{afilter}",
+    vf = "[0:v]null[v]" if s.get("no_subtitles") else f"[0:v]ass={ass}:fontsdir={FONT.parent}[v]"  # 실사 스토리: 자막 없이 영상과 말로
+    cmd += ["-filter_complex", f"{vf};{afilter}",
             "-map", "[v]", "-map", "[a]", "-t", f"{total:.2f}",
             "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
             "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", out]
