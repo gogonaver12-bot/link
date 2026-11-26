@@ -5,3 +5,6 @@
 {"ts": "2026-11-25T17:09:28+00:00", "model": null, "agent": "content_creator", "score": 2, "feedback": "콘텐츠 초안 없이 결과만 제공, 구체적인 가이드와 자료 필요"}
 {"ts": "2026-11-25T17:22:45+00:00", "model": null, "agent": "developer", "score": 3, "feedback": "API 호출 제한 및 파싱 오류가 발생했으니 에러 핸들링과 모델 폴백 로직을 보완하라."}
 {"ts": "2026-11-25T17:22:45+00:00", "model": "groq:openai/gpt-oss-120b", "agent": "viral_analyst", "score": 9, "feedback": "숏폼 성공 공식과 레퍼런스 분석이 매우 구체적이며 즉시 활용 가능하다."}
+{"ts": "2026-11-26T18:01:07+00:00", "model": "gemini:gemini-flash-lite-latest", "agent": "analyst", "score": 9, "feedback": "과거 실패 교훈과 재무적 근거를 바탕으로 저단가 아이템 배제 및 고단가 B2B 솔루션 중심의 명확한 가설 도출"}
+{"ts": "2026-11-26T18:01:07+00:00", "model": "gemini:gemini-flash-lite-latest", "agent": "researcher", "score": 9, "feedback": "웹 검색 기반으로 B2B SaaS 시장의 성장세와 버티컬 틈새시장 타겟팅의 필요성을 정확히 검증함"}
+{"ts": "2026-11-26T18:01:07+00:00", "model": "gemini:gemini-flash-lite-latest", "agent": "sales", "score": 9, "feedback": "국내외 플랫폼별 가격 책정 및 구체적인 실행 계획(MVP 테스트 및 케이스 스터디 확보)을 훌륭히 수립함"}

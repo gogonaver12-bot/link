@@ -2,3 +2,6 @@
 {"ts": "2026-11-23T16:57:59+00:00", "model": "groq:openai/gpt-oss-120b", "score": 9, "note": "Provides three effective, succinct taglines with strong calls to action and benefit focus.", "source": "arena"}
 {"ts": "2026-11-25T17:09:28+00:00", "model": "groq:openai/gpt-oss-120b", "score": 8, "note": "분석은 좋지만 가설 실험 제안이 더 구체적이면 좋음", "source": "review"}
 {"ts": "2026-11-25T17:22:45+00:00", "model": "groq:openai/gpt-oss-120b", "score": 9, "note": "숏폼 성공 공식과 레퍼런스 분석이 매우 구체적이며 즉시 활용 가능하다.", "source": "review"}
+{"ts": "2026-11-26T18:01:07+00:00", "model": "gemini:gemini-flash-lite-latest", "score": 9, "note": "과거 실패 교훈과 재무적 근거를 바탕으로 저단가 아이템 배제 및 고단가 B2B 솔루션 중심의 명확한 가설 도출", "source": "review"}
+{"ts": "2026-11-26T18:01:07+00:00", "model": "gemini:gemini-flash-lite-latest", "score": 9, "note": "웹 검색 기반으로 B2B SaaS 시장의 성장세와 버티컬 틈새시장 타겟팅의 필요성을 정확히 검증함", "source": "review"}
+{"ts": "2026-11-26T18:01:07+00:00", "model": "gemini:gemini-flash-lite-latest", "score": 9, "note": "국내외 플랫폼별 가격 책정 및 구체적인 실행 계획(MVP 테스트 및 케이스 스터디 확보)을 훌륭히 수립함", "source": "review"}
