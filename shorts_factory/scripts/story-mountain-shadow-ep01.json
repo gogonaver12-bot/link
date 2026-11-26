@@ -1,0 +1,76 @@
+{
+  "title": "산속의 그림자 1화 | 산속의 그림자",
+  "story": true,
+  "hook": "사람이 사라지는 산, 그곳에 그들이 갔다",
+  "lines": [
+    "여기서 마지막 신호가 끊겼어",
+    "발견했어요, 이상한 흔적이에요",
+    "이게 사람 발자국이라고?",
+    "뼈가 변형된 형태예요, 동물 게 아닙니다",
+    "거기서 당장 나와, 밤이 되면 놈들이 와",
+    "당신 누구야? 이 발자국은 뭐고",
+    "이미 늦었어, 그 그림자가 너희를 보고 있다"
+  ],
+  "cta": "과연 조사팀의 운명은? 다음 화를 기대하고 구독하세요!",
+  "voices": [
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "",
+    "민호",
+    "지은",
+    "민호",
+    "지은",
+    "상우",
+    "민호",
+    "상우",
+    ""
+  ],
+  "clips": [
+    "assets/story/mountain-shadow/ep01-00.mp4",
+    "assets/story/mountain-shadow/ep01-01.mp4",
+    "assets/story/mountain-shadow/ep01-02.mp4",
+    "assets/story/mountain-shadow/ep01-03.jpg",
+    "assets/story/mountain-shadow/ep01-04.jpg",
+    "assets/story/mountain-shadow/ep01-05.jpg",
+    "assets/story/mountain-shadow/ep01-06.jpg",
+    "assets/story/mountain-shadow/ep01-07.jpg",
+    "assets/story/mountain-shadow/ep01-07.jpg"
+  ],
+  "keywords": [
+    "Wide shot: person and person",
+    "Medium shot: person pointing at",
+    "Medium shot: person kneeling down",
+    "Close-up: person looking down at",
+    "Close-up: person shining a UV",
+    "Medium shot: person suddenly appearing",
+    "Medium shot: person standing up",
+    "Extreme close-up: person whispering with",
+    "cinematic"
+  ],
+  "cover": "산속의 그림자\n1화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "산속 실종 사건의 진실을 파헤치는 조사팀, 그들이 마주한 첫 번째 공포.\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)",
+  "tags": [
+    "호러",
+    "숏드라마",
+    "산속의그림자",
+    "미스터리",
+    "괴물",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}

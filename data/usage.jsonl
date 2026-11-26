@@ -444,3 +444,6 @@
 {"ts": "2026-11-26T07:23:07+00:00", "agent": "prompt_engineer", "model": "gemini:gemini-flash-lite-latest", "in": 339, "out": 151, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-26T07:23:11+00:00", "agent": "prompt_engineer", "model": "gemini:gemini-flash-lite-latest", "in": 334, "out": 171, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-26T07:23:14+00:00", "agent": "prompt_engineer", "model": "gemini:gemini-flash-lite-latest", "in": 293, "out": 127, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T14:46:07+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 319, "out": 1002, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T14:46:10+00:00", "agent": "story_writer_json", "model": "groq:openai/gpt-oss-120b", "in": 430, "out": 867, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T14:49:33+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 558, "out": 543, "cache_read": 0, "usd": 0.0}

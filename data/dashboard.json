@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T07:23:17+00:00",
+ "updated": "2026-11-26T15:03:33+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1947,59 +1947,59 @@
  ],
  "reports": [
   {
-   "file": "reports/daily-2026-11-26.md",
-   "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-26T07:23+00:00"
+   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/20261126-0712-상품-I0019.md",
    "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
-   "date": "2026-11-26T07:12+00:00"
-  },
-  {
-   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
-   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
    "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-26T07:09+00:00"
+   "date": "2026-11-26T14:45+00:00"
   }
  ],
  "runs": [
@@ -2011,6 +2011,18 @@
   },
   {
    "ts": "2026-11-26T07:10:27+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
+  },
+  {
+   "ts": "2026-11-26T07:10:10+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어 (AI 개발자 및 소규모 스타트업/GitHub & AWS, 구독 (SaaS 프리미엄))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-26T07:09:51+00:00",
    "agent": "researcher",
    "model": null,
    "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
@@ -2062,18 +2074,6 @@
    "agent": "researcher",
    "model": null,
    "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI Failover Service – 자동 무료 모델 전환 (AI API를 활용하는 기업·스타트업/API Gateway / 클라우드 서비스, 사용량 기반 요금(리퀘스트당 비용))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-25T17:11:28+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: AI Failover Service – 자동 무료 모델 전환 (AI API를 활용하는 기업·스타트업/API Gateway / 클라우드 서비스, 사용량 기반 요금(리퀘스트당 비용))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-25T17:11:19+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n네이버 검색 알고리즘 및 블로그 정책 변동\n- 2026-11-23 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행(국내 지역 소상공인(식당, 뷰티, 학원 등)): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -91% (기준 40%·+3"
   }
  ],
  "errors": [],
@@ -2337,10 +2337,28 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-26T15:03:31+00:00",
+   "cmd": "story new \"산속 괴물미스터리 스토리\" --genre \"호러\"",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n📚 시리즈 '산속의 그림자' (mountain-shadow) — 인물 3명 · 작가 무료 AI(JSON 모드)\n🧑 민호 참조 사진 완료\n🧑 지은 참조 사진 완료\n🧑 상우 참조 사진 완료\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 7초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 7초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 9초\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n  ⏳ 무료 이미지 AI 잠깐 대기 39초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 32초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n🎬 산속의 그림자 1화 '산속의 그림자' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: Gemini 영상 0 · 움직이는 무료 영상 3 · 사진 5\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-mountain-shadow-ep01.mp4 (36.7초)\n✅ https://youtube.com/shorts/bFy4AUzb7fM"
+  },
+  {
    "ts": "2026-11-26T07:23:15+00:00",
    "cmd": "daily",
    "ok": true,
    "output": "드 JP] 青龍映画賞 | https://www.google.com/search?q=%E9%9D%92%E9%BE%8D%E6%98%A0%E7%94%BB%E8%B3%9E\n- [구글 트렌드 US] battlestar galactica | https://www.google.com/search?q=battlestar%20galactica\n- [구글 트렌드 KR] 백철승 | https://www.google.com/search?q=%EB%B0%B1%EC%B2%A0%EC%8A%B9\n## 사업 리뷰\n## 신규 발굴 (GLOBAL)\n- I0019 79.0점 [active] 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS — GitHub에 무료 LLM(Ollama, Groq 등) 폴백(Fallback) 라우팅 오픈소스 초안 작성\n## 상품 자동 제작\n- I0019 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드 · 7장 · 30,509자 · PDF\n## 숏츠 자동 업로드\n🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (11개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다' 주제 중단\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n기존 채널 데이터에서 수면 관련 콘텐츠('침대에 누워도 잠이 안 오는 진짜 이유' 등)가 394회로 유일하게 높은 조회수를 기록했으나, 채널 콘셉트인 'F ai-LAB (AI 실험실)'에 부합하는 AI 관련 툴, 실증, 'AI에게 시켜보기' 형태의 콘텐츠로 전환이 필요함. 벤치마크 분석 결과, 'Real vs AI Image' 및 'AI Animation' 같이 시각적 호기심을 자극하고 '진짜와 가짜 판별' 또는 'AI의 예상치 못한 결과'를 다룬 25~35초 길이의 영상이 폭발적인 조회수(60만~180만 회)를 기록함. 따라서 수면/생활 정보 대신 채널 콘셉트인 AI 기술(예: AI 이미지 디테일 테스트, AI가 생성한 초실사 영상의 함정 등)을 다루어 참신성과 시청 지속 시간을 높인다.\n📝 016.json: AI가 그린 손가락, 아직도 이상할까?\n⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  🎨 AI 이미지 Wide shot of the mossy: ai_8cba4d7eef3d.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Medium shot of person flexing,: ai_91a669323366.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  🎨 AI 이미지 Medium shot of floating flame: ai_9d5075568e40.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 Wide shot of villagers forming: ai_a47f6c28abd4.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Close-up of person shouting, clenched: ai_745ef716eefb.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Medium shot of person slipping,: ai_4acb73151950.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Wide shot of the sword: ai_9f2dac3e9f6f.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Close-up of person smirking, eyes: ai_a3e33c51c10d.jpg\n  🎨 AI 이미지 cinematic: ai_83062b504948.jpg\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep02.mp4 (28.7초)\n✅ https://youtube.com/shorts/HnHVZU6S2T0\n## 블로그 자동 게시\n📝 업무 속도를 2배 올리는 AI 프롬프트 30선, 바로 복사해서 쓸 수 있다면? — https://bigdataupdate12.blogspot.com/2026/11/2-ai-30.html · groq:openai/gpt-oss-120b\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n- content_creator → v3\n- developer → v3\n- github_scout → v3\n- researcher → v3\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 19개 · 진행중 1 · 탈락 16\n  I0019 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS [API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업] 매출 $0 ROI +0% 0일차\n  에이전트 analyst: 평균 8.0점 (1회)\n  에이전트 content_creator: 평균 2.0점 (1회)\n  에이전트 developer: 평균 2.5점 (2회)\n  에이전트 github_scout: 평균 2.0점 (1회)\n  에이전트 researcher: 평균 2.0점 (1회)\n  에이전트 viral_analyst: 평균 9.0점 (1회)\n```"
+  },
+  {
+   "ts": "2026-11-26T07:10:29+00:00",
+   "cmd": "biz scout --market GLOBAL",
+   "ok": true,
+   "output": "I0019 78.0점 [active] AI 개발자 및 소규모 스타트업/GitHub & AWS 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어\n   → FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성"
+  },
+  {
+   "ts": "2026-11-26T07:10:18+00:00",
+   "cmd": "news",
+   "ok": true,
+   "output": "새 소식 134건 수집"
   },
   {
    "ts": "2026-11-26T06:10:21+00:00",
@@ -2377,24 +2395,6 @@
    "cmd": "story new \"시골 소녀가 수백 년간 아무도 뽑지 못한 바위 속 검을 뽑아버린다\" --genre 판타지 --private",
    "ok": true,
    "output": "📚 시리즈 '농부소녀와 전설의 검' (farm-girl-sword) — 인물 3명 · 작가 gemini:gemini-flash-lite-latest\n⚠️ 루나 참조 사진 실패(이미지 생성 실패 429) — Gemini 결제 연결이 필요할 수 있어요\n⚠️ 이그니스 참조 사진 실패(이미지 생성 실패 429) — Gemini 결제 연결이 필요할 수 있어요\n⚠️ 보리스 참조 사진 실패(이미지 생성 실패 429) — Gemini 결제 연결이 필요할 수 있어요\n🎬 농부소녀와 전설의 검 1화 '1화: 전설의 검을 뽑다' — 장면 9개 · 작가 groq:openai/gpt-oss-120b\n⚠️ 장면 이미지 실패(이미지 생성 실패 429) → 남은 장면은 무료 영상으로\n🖼 장면 이미지 0/9장 (나머지는 무료 영상)\n⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep01.mp4 (25.7초)\ntats() if a.stats else upload(a.video, a.private) if a.video else ap.print_help()\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 51, in upload\n    media_body=MediaFileUpload(path, resumable=True)).execute()\n                                                      ^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 982, in execute\n    _, body = self.next_chunk(http=http, num_retries=num_retries)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 1102, in next_chunk\n    raise ResumableUploadError(resp, content)\ngoogleapiclient.errors.ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">"
-  },
-  {
-   "ts": "2026-11-25T17:24:49+00:00",
-   "cmd": "shorts --private --topic \"Ai가 과연 얼마나 사람처럼 영상을만들수있을까?\"",
-   "ok": true,
-   "output": "📊 stats.csv 갱신 (8개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\nChannel concept focuses on factual AI experiments without exaggeration. The benchmark shows short hooks, a clear structure (hook → twist/core → evidence → CTA), and concise sentences (~15 characters). This script follows that pattern with a strong 3‑second hook, 7 brief lines (≈30‑35 seconds total), and a clear call‑to‑action. Title is original and fits the requested topic while avoiding duplication with existing titles.\n📝 015.json: AI가 만든 영상, 인간 감각을 속일 수 있을까?\n015.json: 훅 36→65점으로 개선\n015.json: 표지 문구 → 가짜 영상 속이는 / 미세한 오류 3가지\n🔎 무료 실사 영상 검색: ['AI generated video', 'cinematography composition', 'color grading AI', 'AI voice synthesis', 'subtle motion differences', 'human perception error', 'AI near human level']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/015.mp4 (35.1초)\ntats() if a.stats else upload(a.video, a.private) if a.video else ap.print_help()\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/upload.py\", line 51, in upload\n    media_body=MediaFileUpload(path, resumable=True)).execute()\n                                                      ^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 982, in execute\n    _, body = self.next_chunk(http=http, num_retries=num_retries)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/_helpers.py\", line 130, in positional_wrapper\n    return wrapped(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/googleapiclient/http.py\", line 1102, in next_chunk\n    raise ResumableUploadError(resp, content)\ngoogleapiclient.errors.ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">"
-  },
-  {
-   "ts": "2026-11-25T17:23:43+00:00",
-   "cmd": "shorts --private --topic \"Ai가 과연 얼마나 사람처럼 영상을만들수있을까?\"",
-   "ok": true,
-   "output": "📊 stats.csv 갱신 (8개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '우주에서 1초가 다르게 흐르는 이유' 주제 중단\n🤖 사용 AI: groq:openai/gpt-oss-120b\n\n🤖 AI 분석:\n채널 성과를 보면 조회수 상위 영상은 강렬한 훅과 짧은 본문(문장당 3~5초)으로 구성돼 있으며, 대부분 30~45초 길이로 시청 유지율을 높이고 있다. 베ン치마크 AI 숏츠는 10~50초 사이에 명확한 주제와 시각적 충격을 주는 첫 3초를 활용한다. 따라서 이번 스크립트는 3초 안에 강한 질문형 훅을 두고, 7개의 짧은 문장(각 12~15자)으로 AI와 인간 영상 비교 실험 과정을 간결히 전달한다. 마지막에 구독·좋아요를 유도하는 CTA를 삽입해 행동을 이끌고, 색상은 눈에 띄는 파란색과 주황색을 사용해 AI와 인간을 시각적으로 대비한다.\n📝 015.json: AI가 만든 영상, 인간 눈을 속일까?\n015.json: 훅 36→63점으로 개선\n015.json: 표지 문구 → AI 영상 구별법 / 3가지 기준 / 속지 않는 비결\n🔎 무료 실사 영상 검색: ['AI video comparison', 'human video', 'frame analysis', 'color transition rhythm', 'natural AI footage', 'human detail', 'AI human collaboration']\n  ⚠️ AI 이미지 불가(이미지 생성 실패 429) → 무료 실사 영상 사용\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/015.mp4 (32.9초)\n✅ https://youtube.com/shorts/l6w93JsQ4rY"
-  },
-  {
-   "ts": "2026-11-25T17:22:46+00:00",
-   "cmd": "매일 업데이트및 영상확인",
-   "ok": true,
-   "output": "개발자 파이프라인에서 API 쿼터 초과 및 파싱 에러가 발생하여 긴급 수정이 필요합니다. 반면 바이럴 분석팀은 숏폼 트렌드와 성공 공식을 완벽하게 도출해 높은 성과를 냈습니다. 에러를 해결하고 분석 결과를 콘텐츠 제작에 즉시 반영하겠습니다. \n다음: \n- developer 팀은 API 에러 핸들링 및 모델 분산 로직을 즉시 재구축하라. \n- viral_analyst 팀의 숏폼 성공 공식을 바탕으로 콘텐츠 자동 생성 파이프라인에 적용하라. \n보고서: reports/20261125-1722-매일-업데이트및-영상확인.md"
   }
  ],
  "pipelines": [
@@ -2462,6 +2462,12 @@
    "need": "구글 1회 연결"
   },
   {
+   "id": "youtube_story",
+   "name": "유튜브 AI 실사 드라마 (AI 실사 드라마)",
+   "ready": false,
+   "need": "스토리 채널 만들고 google_login_story.bat 실행 (그전엔 비공개로 올림)"
+  },
+  {
    "id": "blogger",
    "name": "블로그(Blogger)",
    "ready": true,
@@ -2475,6 +2481,16 @@
   }
  ],
  "videos": [
+  {
+   "id": "bFy4AUzb7fM",
+   "title": "산속의 그림자 1화 | 산속의 그림자",
+   "date": "2026-11-26",
+   "private": true,
+   "channel": "old",
+   "cover": "산속의 그림자\n1화",
+   "views": 0,
+   "likes": 0
+  },
   {
    "id": "HnHVZU6S2T0",
    "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
@@ -2598,6 +2614,11 @@
  ],
  "previews": [
   {
+   "file": "story-mountain-shadow-ep01.mp4",
+   "title": "산속의 그림자 1화 | 산속의 그림자",
+   "date": "2026-11-26"
+  },
+  {
    "file": "story-farm-girl-sword-ep02.mp4",
    "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
    "date": "2026-11-26"
@@ -2611,11 +2632,6 @@
    "file": "story-farm-girl-sword-ep01.mp4",
    "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
    "date": "2026-11-26"
-  },
-  {
-   "file": "story-farm-girl-sword-ep03.mp4",
-   "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
-   "date": "2026-11-25"
   }
  ],
  "studio": {
@@ -2700,6 +2716,42 @@
  },
  "stories": [
   {
+   "slug": "mountain-shadow",
+   "title": "산속의 그림자",
+   "genre": "호러",
+   "logline": "산속에서 사라지는 등산객들의 비밀을 파헤치는 조사팀이 괴물의 정체와 마주한다.",
+   "characters": [
+    {
+     "name": "민호",
+     "role": "조사팀 리더",
+     "img": "stories/mountain-shadow/chars/hoon.jpg"
+    },
+    {
+     "name": "지은",
+     "role": "생물학자",
+     "img": "stories/mountain-shadow/chars/ji.jpg"
+    },
+    {
+     "name": "상우",
+     "role": "지역 주민",
+     "img": "stories/mountain-shadow/chars/sang.jpg"
+    }
+   ],
+   "episodes": [
+    {
+     "n": 1,
+     "title": "산속의 그림자",
+     "summary": "실종 사건 현장을 찾은 조사팀이 기괴한 발자국을 발견한다",
+     "date": "2026-11-26",
+     "file": "story-mountain-shadow-ep01",
+     "uploaded": true,
+     "video": "bFy4AUzb7fM"
+    }
+   ],
+   "planned": 5,
+   "plan": null
+  },
+  {
    "slug": "farm-girl-sword",
    "title": "농부소녀와 전설의 검",
    "genre": "판타지",
@@ -2782,7 +2834,7 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 16,
+    "n": 17,
     "done": true
    },
    {
@@ -2793,7 +2845,7 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 12,
+  "shorts": 13,
   "blog": 4
  },
  "keys_set": {
@@ -2801,6 +2853,7 @@
   "GOOGLE_OAUTH_CLIENT_SECRET": true,
   "GOOGLE_OAUTH_REFRESH_TOKEN": true,
   "YOUTUBE_OAUTH_REFRESH_TOKEN": false,
+  "YOUTUBE_STORY_REFRESH_TOKEN": false,
   "BLOGGER_BLOG_ID": true,
   "GEMINI_API_KEY": true,
   "GROQ_API_KEY": true,

@@ -1,0 +1,51 @@
+{
+  "title": "산속의 그림자",
+  "title_en": "mountain-shadow",
+  "genre": "호러",
+  "logline": "산속에서 사라지는 등산객들의 비밀을 파헤치는 조사팀이 괴물의 정체와 마주한다.",
+  "tone": "긴장감·절박함·공포",
+  "setting": "Modern day, remote Korean mountain forest, foggy and eerie atmosphere",
+  "characters": [
+    {
+      "id": "hoon",
+      "name": "민호",
+      "role": "조사팀 리더",
+      "voice": "male",
+      "look": "30s, short black hair, sharp eyes, lean build, wearing a worn hiking jacket, scar on left cheek"
+    },
+    {
+      "id": "ji",
+      "name": "지은",
+      "role": "생물학자",
+      "voice": "female",
+      "look": "28, long dark hair in ponytail, glasses, petite, lab coat over casual clothes, carries a field notebook"
+    },
+    {
+      "id": "sang",
+      "name": "상우",
+      "role": "지역 주민",
+      "voice": "male",
+      "look": "45, rugged, grizzled beard, deep-set eyes, sturdy, traditional hanbok with a weathered coat, carries a lantern"
+    }
+  ],
+  "episodes": [
+    "1화 조사팀이 실종 사건 현장을 찾아가며 이상한 발자국을 발견한다",
+    "2화 현지 주민 상우가 전설의 괴물 이야기를 꺼내며 분위기가 고조된다",
+    "3화 지은이 현장에서 이상한 생물 조직을 채취하고 분석한다",
+    "4화 괴물의 실루엣이 밤 안개 속에 드러나며 팀은 공포에 휩싸인다",
+    "5화 팀은 괴물의 정체를 밝혀내고 마지막 대치를 벌인다"
+  ],
+  "slug": "mountain-shadow",
+  "created": "2026-11-26",
+  "made": [
+    {
+      "n": 1,
+      "title": "산속의 그림자",
+      "summary": "실종 사건 현장을 찾은 조사팀이 기괴한 발자국을 발견한다",
+      "date": "2026-11-26",
+      "file": "story-mountain-shadow-ep01",
+      "uploaded": true
+    }
+  ],
+  "writer": "무료 AI(JSON 모드)"
+}
