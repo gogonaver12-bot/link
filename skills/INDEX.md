@@ -5,8 +5,12 @@
 ## 스킬
 - **company_work_prompts** — 업무 비서용 프롬프트 15종 — 이메일, 회의록, 주간보고, 기획서, 엑셀, 요약, 보고 문장, 우선순위, 클레임, PPT, 채용, 협상, 매뉴얼, 브레인스토밍 (`skills/company_work_prompts.md`)
 - **reels_team_prompts** — 숏폼 팀 프롬프트 — 레퍼런스 탐색, 성과 분석(조회수 ≥ 구독자 3배), 대본 각색(구조 유지·내용 교체), 표지 문구 5안, 목소리 선택 (`skills/reels_team_prompts.md`)
+- **superpowers-code-review** — Use when completing tasks, implementing major features, or before merging to verify work meets requirements (`skills/superpowers-code-review.md`)
+- **superpowers-systematic-debugging** — Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes (`skills/superpowers-systematic-debugging.md`)
 - **superpowers-tdd** — Use when implementing any feature or bugfix, before writing implementation code (`skills/superpowers-tdd.md`)
+- **superpowers-verification** — Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and  (`skills/superpowers-verification.md`)
 - **superpowers-writing-plans** — Use when you have a spec or requirements for a multi-step task, before touching code (`skills/superpowers-writing-plans.md`)
+- **superpowers-writing-skills** — Use when creating new skills, editing existing skills, or verifying skills work before deployment (`skills/superpowers-writing-skills.md`)
 - **video_prompt_dna** — 영상 장면 프롬프트 규칙 (AI 영상·배경 생성용) (`skills/video_prompt_dna.md`)
 
 ## 프롬프트

@@ -101,6 +101,11 @@ def cmd_daily():
         ups = [agents.upgrade(n) for n in agents.all_agents()]
         log += ["## 에이전트 업그레이드"] + [f"- {u['name']} → v{u['version']}" for u in ups if u] or ["- 없음"]
         log += ["## 작업큐", cmd_jobs()]
+        try:  # Superpowers systematic-debugging 방식으로 최근 에러 자동 진단
+            from . import doctor
+            log += ["## 🩺 자동 진단", doctor.run()]
+        except Exception as e:
+            log += ["## 🩺 자동 진단", f"- 실패: {str(e)[:120]}"]
     except llm.BudgetExceeded as e:
         log.append(f"⚠️ {e}")
     log += ["## 현황", "```", cmd_status(), "```"]
@@ -159,6 +164,7 @@ def main(argv=None):
     od = sp.add_parser("order", help="크몽·숨고 주문 처리: order <blog|review|detail|translate|ppt> \"고객 요청\"")
     od.add_argument("service"); od.add_argument("request")
     sp.add_parser("hub", help="스킬·프롬프트·에이전트를 .claude/ 로 묶어 모든 세션이 쓰게 함")
+    sp.add_parser("doctor", help="최근 에러를 systematic-debugging 방식으로 진단 → reports/doctor/")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     sp.add_parser("benchmark", help="유튜브 인기 AI 숏츠 수집(대본 참고용)")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
@@ -332,6 +338,9 @@ def main(argv=None):
     elif x.cmd == "order":
         from . import orders
         p(orders.make(x.service, x.request))
+    elif x.cmd == "doctor":
+        from . import doctor
+        p(doctor.run())
     elif x.cmd == "hub":
         from . import hub
         p(hub.sync_claude())
