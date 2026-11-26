@@ -641,3 +641,31 @@ def test_hub_find_local_assets():
     out = hub.find("영상 대본 훅", remote=False)
     assert "이미 있는 것" in out and "viral_analyst" in out and "통합한 것" in out
     assert hub._slug("company_work_prompts") == "company-work-prompts"
+
+
+def test_veo_animate_flow(monkeypatch, tmp_path):
+    import io, sys, json as _j
+    sys.path.insert(0, str(store.ROOT / "shorts_factory"))
+    import aivideo
+    monkeypatch.setenv("GEMINI_API_KEY", "k"); monkeypatch.setenv("AI_VIDEO_BUDGET", "5")
+    monkeypatch.setattr(aivideo, "LOG", tmp_path / "log.json"); monkeypatch.setattr(aivideo, "_veo", {"model": None, "down": False})
+    monkeypatch.setattr(aivideo.time, "sleep", lambda s: None)
+    calls = []
+    def fake(req, timeout=0):
+        url = req.full_url if hasattr(req, "full_url") else req
+        calls.append(url)
+        if "models?" in url:
+            body = {"models": [{"name": "models/veo-3.0-generate-001", "supportedGenerationMethods": ["predictLongRunning"]},
+                               {"name": "models/veo-3.0-fast-generate-001", "supportedGenerationMethods": ["predictLongRunning"]}]}
+        elif url.endswith(":predictLongRunning"):
+            body = {"name": "models/veo-3.0-fast-generate-001/operations/abc"}
+        elif "operations/abc" in url:
+            body = {"done": True, "response": {"generateVideoResponse": {"generatedSamples": [{"video": {"uri": "https://x/v.mp4?alt=media"}}]}}}
+        else:
+            return io.BytesIO(b"MP4DATA")
+        return io.BytesIO(_j.dumps(body).encode())
+    monkeypatch.setattr(aivideo.urllib.request, "urlopen", fake)
+    img = tmp_path / "s.png"; img.write_bytes(b"png")
+    out = aivideo.veo_animate(img, "girl pulls the sword", tmp_path / "s-veo.mp4")
+    assert out and out.read_bytes() == b"MP4DATA" and any("veo-3.0-fast" in c for c in calls)  # 빠른 모델 우선
+    assert aivideo.month_spent() == 1.2  # 8초 × $0.15 기록 → 월 예산에 반영

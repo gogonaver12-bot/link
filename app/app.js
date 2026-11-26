@@ -660,7 +660,7 @@ const KEYS = [
     ["AUDIO_KEY", "배경음악·효과음 · PC에서 audio_pack.bat 실행하면 자동 저장 (유튜브 오디오 보관함)", "https://studio.youtube.com/"],
     ["HF_TOKEN", "사진→움직이는 영상(무료) · huggingface.co 가입 → Settings → Access Tokens → Create(Read)", "https://huggingface.co/settings/tokens"],
     ["POLLINATIONS_TOKEN", "무료 이미지 AI · 로고 없이·더 빠르게 (선택, 없어도 무료로 그림)", "https://auth.pollinations.ai/"],
-    ["GEMINI_API_KEY", "AI 영상·이미지도 이 키로 만듦 (AI Studio에서 결제 연결해야 영상 가능 · 월 $5 한도)", "https://aistudio.google.com/usage"]]],
+    ["GEMINI_API_KEY", "AI 영상(Veo: 사진→움직이는 영상)·이미지도 이 키로 · AI Studio 결제 연결하면 스토리 앞 장면을 자동으로 영상화 (월 $5 한도, config에서 조정)", "https://aistudio.google.com/usage"]]],
   ["⭐ 품질·분석 (선택)", [
     ["ANTHROPIC_API_KEY", "Claude · 유료 · 계획·검수 품질↑ (CLAUDE_API_KEY 이름도 인식)", "https://console.anthropic.com/settings/keys"],
     ["OPENAI_API_KEY", "ChatGPT · 유료 (CHATGPT_API_KEY 이름도 인식)", "https://platform.openai.com/api-keys"],

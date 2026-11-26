@@ -187,6 +187,8 @@ def render_episode(slug, private=False):
     log += character_sheets(b)  # 지난번에 못 만든 인물 사진이 있으면 이번에 만듦
     cache = SHORTS / "assets" / "story" / slug
     fails, gem = 0, 0
+    import os
+    os.environ.setdefault("AI_VIDEO_BUDGET", str(store.cfg().get("shorts", {}).get("ai_video_budget_usd_month", 5)))  # Gemini 영상 월 예산
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):
         up = clip_path(slug, n, i)
         if up.exists():  # 폰 Gemini 앱으로 만들어 올린 장면 영상
@@ -201,10 +203,12 @@ def render_episode(slug, private=False):
             p, fails = None, fails + 1
             if fails == 2:
                 log.append(f"⚠️ 장면 이미지 실패({str(e)[:50]}) → 남은 장면은 무료 영상으로")
-        if p and i < _cfg()["motion_scenes"]:  # 앞 장면들은 사진을 실제로 움직이는 영상으로(무료 영상 AI, 하루 사용량 안에서)
+        if p and i < _cfg()["motion_scenes"]:  # 앞 장면들은 사진을 실제로 움직이는 영상으로: Gemini Veo(결제·예산 안) → 무료 영상 AI
             sys.path.insert(0, str(SHORTS))
-            import hfvideo
-            v = hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
+            import aivideo, hfvideo
+            veo_prompt, _ = _veo_prompt(b, sc)
+            v = aivideo.veo_animate(p, veo_prompt, p.with_name(p.stem + "-veo.mp4"))
+            v = v or hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
             if v:
                 p = v
         imgs.append(str(p.relative_to(SHORTS)) if p else "")
@@ -228,7 +232,8 @@ def render_episode(slug, private=False):
     sp = SHORTS / "scripts" / f"story-{slug}-ep{n:02d}.json"
     sp.write_text(json.dumps(script, ensure_ascii=False, indent=2), encoding="utf-8")
     (DIR / slug / f"ep{n:02d}.json").write_text(json.dumps(ep, ensure_ascii=False, indent=2), encoding="utf-8")
-    log.append(f"🖼 장면 {len(scenes)}개: Gemini 영상 {gem} · 움직이는 무료 영상 {sum(1 for x in imgs if x.endswith('.mp4')) - gem} · 사진 {sum(1 for x in imgs if x and not x.endswith('.mp4'))}")
+    veo = sum(1 for x in imgs if x.endswith("-veo.mp4"))
+    log.append(f"🖼 장면 {len(scenes)}개: 직접 올린 Gemini 영상 {gem} · Gemini Veo {veo} · 무료 영상 AI {sum(1 for x in imgs if x.endswith('.mp4')) - gem - veo} · 사진 {sum(1 for x in imgs if x and not x.endswith('.mp4'))}")
     done = store.load_json("published.json", {"blog": []})
     done.setdefault("shorts", [])
     sc = store.cfg().get("shorts", {})

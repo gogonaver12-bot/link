@@ -114,3 +114,83 @@ def hook_clip(subject, out_dir: Path, seconds=5):
     _log(usd, MODEL, subject)
     print(f"  🎬 AI 훅 영상 생성 (${usd:.2f}, 이번 달 ${month_spent():.2f}/${budget})")
     return out
+
+
+# ───────────────── Gemini Veo: 사진 → 움직이는 영상 (Gemini API, AI Studio 결제 연결 필요) ─────────────────
+VEO_USD_PER_SEC = float(os.environ.get("VEO_USD_PER_SEC", "0.15"))  # 빠른 모델 기준 보수적 추정 — 실제 요금은 AI Studio 청구서 기준
+_veo = {"model": None, "down": False}
+
+
+def _veo_model(key):
+    if _veo["model"] is None:
+        req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", headers={"x-goog-api-key": key})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            ms = [m["name"] for m in json.load(r).get("models", [])
+                  if "veo" in m["name"].lower() and "predictLongRunning" in m.get("supportedGenerationMethods", [])]
+        ms.sort(key=lambda n: ("fast" not in n, "preview" in n, n))  # 빠르고 싼 안정판 먼저
+        _veo["model"] = ms[0] if ms else ""
+    return _veo["model"]
+
+
+def veo_animate(img, prompt, out: Path, seconds=8):
+    """장면 사진(인물 참조 포함)을 Veo로 움직이는 영상으로. 예산·결제·한도 안 되면 None → 무료 영상 AI/사진 줌으로."""
+    key = os.environ.get("GEMINI_API_KEY")
+    if _veo["down"] or not key or os.environ.get("GEMINI_VIDEO", "1") != "1":
+        return None
+    out = Path(out)
+    if out.exists():
+        return out
+    budget = float(os.environ.get("AI_VIDEO_BUDGET", "5"))
+    usd = round(seconds * VEO_USD_PER_SEC, 2)
+    if month_spent() + usd > budget:
+        print(f"  💸 이번 달 Gemini 영상 예산 ${budget} 다 씀 → 무료 영상 AI로", flush=True)
+        _veo["down"] = True
+        return None
+    try:
+        model = _veo_model(key)
+        if not model:
+            raise RuntimeError("Veo 모델이 이 키에 안 보임")
+        data = Path(img).read_bytes()
+        mime = "image/jpeg" if str(img).lower().endswith((".jpg", ".jpeg")) else "image/png"
+        body = {"instances": [{"prompt": prompt[:1500], "image": {"bytesBase64Encoded": base64.b64encode(data).decode(), "mimeType": mime}}],
+                "parameters": {"aspectRatio": "9:16", "personGeneration": "allow_adult",
+                               "negativePrompt": "text, subtitles, watermark, distorted face, extra fingers"}}
+        hdr = {"Content-Type": "application/json", "x-goog-api-key": key}
+        try:
+            req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/{model}:predictLongRunning",
+                                         json.dumps(body).encode(), headers=hdr, method="POST")
+            with urllib.request.urlopen(req, timeout=60) as r:
+                op = json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code != 400:
+                raise
+            body["parameters"].pop("personGeneration", None)  # 일부 모델·지역은 이 옵션을 안 받음
+            req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/{model}:predictLongRunning",
+                                         json.dumps(body).encode(), headers=hdr, method="POST")
+            with urllib.request.urlopen(req, timeout=60) as r:
+                op = json.load(r)
+        for _ in range(60):  # 최대 약 10분
+            time.sleep(10)
+            with urllib.request.urlopen(urllib.request.Request(
+                    f"https://generativelanguage.googleapis.com/v1beta/{op['name']}", headers={"x-goog-api-key": key}), timeout=30) as r:
+                op = json.load(r)
+            if op.get("done"):
+                break
+        if op.get("error") or not op.get("done"):
+            raise RuntimeError(str(op.get("error") or "시간 초과")[:120])
+        res = op.get("response", {})
+        samples = (res.get("generateVideoResponse") or res).get("generatedSamples") or res.get("videos") or []
+        uri = (samples[0].get("video") or {}).get("uri") if samples else None
+        if not uri:
+            raise RuntimeError("영상이 오지 않음(안전 필터 등)")
+        with urllib.request.urlopen(urllib.request.Request(uri, headers={"x-goog-api-key": key}), timeout=120) as r:
+            out.write_bytes(r.read())
+        _log(usd, model.split("/")[-1], prompt)
+        print(f"  🎬 Gemini Veo 영상 {out.name} (${usd}, 이번 달 ${month_spent():.2f}/${budget})", flush=True)
+        return out
+    except Exception as e:
+        _veo["down"] = True  # 이번 실행에서는 더 부르지 않음
+        code = getattr(e, "code", "")
+        why = "AI Studio 결제 연결이 필요해요" if code in (429, 403, 400) else str(e)[:80]
+        print(f"  ⚠️ Gemini Veo 불가({code or 'x'}) — {why} → 무료 영상 AI로", flush=True)
+        return None
