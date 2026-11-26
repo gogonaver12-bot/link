@@ -46,7 +46,7 @@ def upload(path, private):
     body = {"snippet": {"title": title, "description": desc,
                         "tags": meta.get("tags", []), "categoryId": "22", "defaultLanguage": "ko"},
             "status": {"privacyStatus": "private" if private else "public",
-                       "selfDeclaredMadeForKids": False, "containsSyntheticMedia": True}}
+                       "selfDeclaredMadeForKids": bool(meta.get("made_for_kids")), "containsSyntheticMedia": True}}
     try:
         r = yt().videos().insert(part="snippet,status", body=body,
                                  media_body=MediaFileUpload(path, resumable=True)).execute()
