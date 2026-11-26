@@ -336,3 +336,11 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .km .btns { grid-template-columns: 1fr 1fr; }
 #odSvc { margin-top: 10px; } #odSvc button { cursor: pointer; background: transparent; font: inherit; font-size: 12px; padding: 5px 10px; }
 #odReq { border-radius: 12px; border: 1px solid var(--line); background: var(--card2); color: var(--fg); padding: 10px; font: inherit; font-size: 14px; box-sizing: border-box; }
+
+/* Gemini 장면 올리기 */
+.gem { margin-top: 12px; padding: 12px; border-radius: 12px; border: 1px dashed var(--line2); background: color-mix(in srgb, var(--accent) 6%, var(--card)); }
+.gem-sc { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+.gem-sc > b { width: 24px; height: 24px; border-radius: 50%; background: var(--card2); display: grid; place-items: center; font-size: 12px; flex: 0 0 24px; }
+.gem-sc.done > b { background: var(--ok); color: #fff; }
+.gem-refs { display: flex; gap: 6px; margin-top: 6px; } .gem-refs img { width: 46px; height: 62px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+label.btn { cursor: pointer; display: block; }

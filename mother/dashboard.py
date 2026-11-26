@@ -115,8 +115,14 @@ def _stories():
                   "img": f"stories/{b['slug']}/chars/{c['id']}.jpg" if (story.DIR / b["slug"] / "chars" / f"{c['id']}.jpg").exists() else ""}
                  for c in b.get("characters", [])]
         eps = [{**m, "video": ups.get(m.get("file", ""), "")} for m in b.get("made", [])]
+        pf = story.DIR / b["slug"] / "plan.json"
+        plan = None
+        if pf.exists():
+            pl = json.loads(pf.read_text(encoding="utf-8"))
+            plan = {"n": pl["n"], "title": pl["ep"].get("title", ""), "scenes": [
+                {**sc, "clip": story.clip_path(b["slug"], pl["n"], sc["i"]).exists()} for sc in pl["scenes"]]}
         out.append({"slug": b["slug"], "title": b["title"], "genre": b.get("genre", ""), "logline": b.get("logline", ""),
-                    "characters": chars, "episodes": eps[::-1], "planned": len(b.get("episodes", []))})
+                    "characters": chars, "episodes": eps[::-1], "planned": len(b.get("episodes", [])), "plan": plan})
     return out[::-1]
 
 

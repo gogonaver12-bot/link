@@ -602,3 +602,23 @@ def test_hfvideo_quota_fallback(monkeypatch, tmp_path):
     monkeypatch.setattr(hfvideo, "_dead", set()); monkeypatch.setattr(hfvideo, "_quota", {"out": False})
     img = tmp_path / "a.jpg"; img.write_bytes(b"x")
     assert hfvideo.animate(img, "girl smiles", tmp_path / "a.mp4") is None and hfvideo._quota["out"]  # 사용량 끝 → 사진 줌으로 대체
+
+
+def test_story_plan_then_render_uses_uploaded_clip(monkeypatch, tmp_path):
+    from mother import story, publish, providers as pv
+    monkeypatch.setattr(story, "DIR", tmp_path / "stories"); monkeypatch.setattr(story, "SHORTS", tmp_path / "sf")
+    monkeypatch.setattr(store, "ROOT", tmp_path)
+    (tmp_path / "sf" / "scripts").mkdir(parents=True)
+    story.save({"slug": "s1", "title": "T", "genre": "", "logline": "", "tone": "", "setting": "village", "made": [],
+                "characters": [{"id": "mira", "name": "미라", "voice": "girl", "look": "girl, red braid"}]})
+    (tmp_path / "stories" / "s1" / "chars").mkdir(parents=True); (tmp_path / "stories" / "s1" / "chars" / "mira.jpg").write_bytes(b"x")
+    monkeypatch.setattr(pv, "complete", lambda *a, **k: (json.dumps({"title": "1화", "summary": "s", "cta": "c", "scenes": [
+        {"speaker": "mira", "line": "내가 뽑을게", "shot": "[mira] grabs the sword"}, {"speaker": "narrator", "line": "빛이 났다", "shot": "light"}]}), "t"))
+    plan, msg = story.plan_episode("s1")
+    assert "Keep the person exactly" in plan["scenes"][0]["prompt"] and plan["scenes"][0]["refs"] == ["stories/s1/chars/mira.jpg"]
+    story.clip_path("s1", 1, 0).write_bytes(b"mp4")  # 폰에서 Gemini 영상을 올린 상황
+    monkeypatch.setattr(story, "_img", lambda: types.SimpleNamespace(generate=lambda *a, **k: None))
+    got = {}
+    monkeypatch.setattr(publish, "produce", lambda sp, private, log, done: got.setdefault("s", json.loads(sp.read_text(encoding="utf-8"))) and True)
+    out = story.render_episode("s1", private=True)
+    assert got["s"]["clips"][0].endswith("ep01-00.mp4") and "Gemini 영상 1" in out and not (tmp_path / "stories" / "s1" / "plan.json").exists()
