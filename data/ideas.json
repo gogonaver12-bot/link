@@ -1563,98 +1563,116 @@
     "killed_by": "생존 테스트"
   },
   {
-    "title": "무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어",
-    "market": "AI 개발자 및 소규모 스타트업",
-    "platform": "GitHub & AWS",
-    "model": "구독 (SaaS 프리미엄)",
-    "first_step": "FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성",
-    "evidence": "상용 LLM 크레딧 소진 및 키 오류로 인한 서비스 중단 방지 니즈 급증",
+    "title": "무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS",
+    "market": "API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업",
+    "platform": "웹 서비스 및 패키지 라이브러리",
+    "model": "구독",
+    "first_step": "GitHub에 무료 LLM(Ollama, Groq 등) 폴백(Fallback) 라우팅 오픈소스 초안 작성",
+    "evidence": "상용 API 크레딧 고갈로 인한 서비스 중단 사례 급증 및 비용 최적화 수요 증가",
     "scores": {
       "demand": 85,
       "low_competition": 70,
-      "low_cost": 90,
+      "low_cost": 95,
       "speed_to_revenue": 60,
-      "scalability": 85,
-      "low_risk": 80
+      "scalability": 80,
+      "low_risk": 90
     },
     "id": "I0019",
-    "score": 78.0,
+    "score": 79.0,
     "status": "active",
     "created": "2026-11-26",
     "viability": {
       "date": "2026-11-26",
       "pass": true,
       "hold": false,
-      "why": "흑자 확률 56% · 90일 ROI 중앙값 +53% (기준 40%·+30%)",
+      "why": "흑자 확률 59% · 90일 ROI 중앙값 +48% (기준 40%·+30%)",
       "sim": {
         "days": 90,
         "runs": 2000,
-        "p_profit": 0.556,
-        "roi_p10": -1.0,
-        "roi_p50": 0.53,
-        "roi_p90": 8.42,
-        "rev30_p50": 198.0,
-        "rev_p10": 0.0,
-        "rev_p50": 1980.0,
-        "rev_p90": 177210.0,
-        "breakeven_p50": 64
+        "p_profit": 0.588,
+        "roi_p10": -0.9,
+        "roi_p50": 0.48,
+        "roi_p90": 6.4,
+        "rev30_p50": 58.0,
+        "rev_p10": 29.0,
+        "rev_p50": 522.0,
+        "rev_p90": 8526.0,
+        "breakeven_p50": 65
       },
       "params": {
-        "price_usd": 99.0,
-        "conv_rate_pct": 0.8,
+        "price_usd": 29.0,
+        "conv_rate_pct": 1.0,
         "visitors_low": 50.0,
-        "visitors_high": 200.0,
+        "visitors_high": 150.0,
         "ramp_days": 90.0,
-        "setup_cost_usd": 500.0,
+        "setup_cost_usd": 150.0,
         "unit_cost_pct": 10.0,
-        "monthly_cost_usd": 200.0,
+        "monthly_cost_usd": 50.0,
         "competition": "high",
         "risks": [
-          "LiteLLM 및 Portkey 등 강력한 기존 오픈소스/상용 하이브리드 경쟁자로 인한 낮은 유료 전환율",
-          "고객의 온프레미스/ 자체 AWS 구축 선호로 인한 SaaS 형태 수익화의 한계",
-          "오픈소스 기반 솔루션으로 인한 진입 장벽 낮음 및 가격 경쟁 심화",
-          "low conversion from free tier to premium",
-          "strong competition from open‑source routers (LiteLLM, Portkey) offering free plans",
-          "customers self‑host on AWS reducing SaaS uptake"
+          "무료 오픈소스 LLM 및 API 제공 업체의 rate limit(429 오류) 빈발로 인한 서비스 안정성 저하",
+          "유사 오픈소스 솔루션 및 대형 클라우드 업체의 기본 기능 내재화로 인한 이탈",
+          "1인 개발 역량 한계로 인한 고객 기술 지원 지연",
+          "Rate‑limit throttling from major LLM providers (e.g., Gemini, Groq) leading to service outages",
+          "High API usage costs reducing margin",
+          "Strong competition from existing open‑source exception‑handling libraries and hosted LLM SaaS"
         ],
         "evidence": [
-          "경쟁사인 Portkey 및 LiteLLM 엔터프라이즈 팀 플랜은 월 $99 수준부터 시작함: https://portkey.ai/pricing",
-          "LiteLLM GitHub 스타 1만 개 이상으로 개발자 관심도는 높으나 무료 오픈소스 대안이 풍부함",
-          "오픈소스 미들웨어 특성상 자체 서버 구축 비율이 높아 SaaS 프리미엄 모델의 유료 전환율이 매우 낮음",
-          "Portkey pricing page shows team plans starting at $99/month https://portkey.ai/pricing",
-          "LiteLLM GitHub repository has >10k stars indicating strong community interest https://github.com/BerriAI/litellm",
-          "Search trend data shows growing queries for 'open source LLM router' (Google Trends, accessed 2024‑10‑01)"
+          "제공된 로그 데이터: gemini-flash-lite-latest 및 groq 모델 등에서 429 quota exceeded 오류 빈발",
+          "유사 개발자 대상 마이크로SaaS 평균 전환율(0.5%) 및 초기 유입 추정",
+          "https://cloud.google.com/vertex-ai/docs/quota",
+          "https://groq.com/docs/rate-limits",
+          "https://github.com/search?q=exception+handling+llm+micro+saas",
+          "https://www.statista.com/statistics/1177414/number-of-developers-worldwide/"
         ],
-        "disagreement": 3.0
+        "disagreement": 1.61
       },
-      "evidence": "* **결론**: 오픈소스 LLM 라우팅(LiteLLM, Portkey 등)은 수요가 높으나, **오픈소스 자체의 무료성 및 경쟁 심화**로 인해 단순 API 라우팅만으로는 유료 구독 전환율이 낮아 **모니터링·보안·가버넌스 결합형 엔터프라이즈 플랜**으로만 수익화가 가능합니다.\n* **경쟁 상품 가격대**: 주요 경쟁사인 Portkey 및 LiteLLM 엔터프라이즈의 경우, 팀 플랜은 월 $99~선, 엔터프라이즈(Custom)는 연간 수만 달러 규모로 과금. ([Portkey Pricing](https://portkey.ai/pricing))\n* **검색 수요 및 시장**: GitHub 및 AI 개발자 커뮤니티에서 비용 절감과 멀티 LLM 전환(Failover)을 위한 오픈소스 프록시/라우터 관심도 급증 (예: LiteLLM GitHub 스타 1만 개 이상).\n* **실패 및 한계 사례**: 오픈소스 미들웨어 특성상 고객이 직접 자체 서버(AWS/Docker)에 구축하는 경우가 많아, SaaS 프리미엄 모델의 무료 티어에서 유료 전환(Monetization)을 유도하기 극히 어렵다는 한계가 보고됨.",
+      "evidence": "[실패] gemini: gemini-flash-lite-latest 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please c / gemini: gemini-omni-1.2-flash 429: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please chec / groq: openai/gpt-oss-120b 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01 / groq: qwen/qwen3.8-27b 429: {\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m444h7",
       "estimates": [
         {
           "model": "gemini:gemini-flash-lite-latest",
           "role": "중립 심사역",
-          "price_usd": 99.0,
+          "price_usd": 29,
           "conv_rate_pct": 0.5,
-          "visitors_low": 50.0,
-          "visitors_high": 200.0
+          "visitors_low": 50,
+          "visitors_high": 200
         },
         {
           "model": "groq:openai/gpt-oss-120b",
           "role": "비관 분석가",
-          "price_usd": 99,
-          "conv_rate_pct": 0.8,
-          "visitors_low": 200,
-          "visitors_high": 1500
+          "price_usd": 5,
+          "conv_rate_pct": 1,
+          "visitors_low": 10,
+          "visitors_high": 30
         },
         {
           "model": "groq:qwen/qwen3.8-27b",
           "role": "낙관 분석가",
-          "price_usd": 149,
-          "conv_rate_pct": 15,
-          "visitors_low": 2,
-          "visitors_high": 10
+          "price_usd": 29,
+          "conv_rate_pct": 2.5,
+          "visitors_low": 50,
+          "visitors_high": 150
         }
       ]
     },
-    "started": "2026-11-26"
+    "started": "2026-11-26",
+    "product": {
+      "made": "2026-11-26",
+      "title": "무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
+      "dir": "workspace/products/I0019",
+      "pdf": "workspace/products/I0019/product.pdf",
+      "files": [
+        "00-목차.md",
+        "01-마이크로SaaS-비즈니스-모델-설계-및-아키텍처-이해.md",
+        "02-GitHub-오픈소스-초안-작성-및-환경-세팅.md",
+        "03-1차-라우터-구현-메인-유료-API-연동-및-호출.md",
+        "04-2차-라우터-구현-Groq-및-Ollama-폴백-자동화.md",
+        "05-패키지-라이브러리-패키징-및-웹-서비스-연동.md",
+        "06-구독-결제-시스템-Stripe-연동-및-수익화.md",
+        "07-실전-마케팅과-초기-고객-10명-모으는-법.md",
+        "product.pdf",
+        "판매페이지.md"
+      ]
+    }
   }
 ]

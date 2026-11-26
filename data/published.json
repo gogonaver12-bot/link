@@ -5,7 +5,8 @@
     "/home/runner/work/link/link/workspace/products/I0001/03-3장-이메일-작성-및-비즈니스-커뮤니케이션-자동화.md",
     "/home/runner/work/link/link/workspace/products/I0001/04-4장-데이터-분석-및-엑셀-Excel-스프레드시트-200-활용.md",
     "/home/runner/work/link/link/workspace/products/I0001/05-5장-마케팅-문구-및-블로그-SNS-콘텐츠-대량-생산.md",
-    "/home/runner/work/link/link/workspace/products/I0001/06-6장-업무-시간을-반으로-줄여주는-나만의-맞춤형-GPT-설정법.md"
+    "/home/runner/work/link/link/workspace/products/I0001/06-6장-업무-시간을-반으로-줄여주는-나만의-맞춤형-GPT-설정법.md",
+    "/home/runner/work/link/link/workspace/products/I0001/07-7장-실전-부록-복사해서-바로-쓰는-치트키-프롬프트-모음-30선.md"
   ],
   "shorts": [
     "001",
@@ -18,7 +19,8 @@
     "014",
     "015",
     "story-farm-girl-sword-ep01",
-    "story-farm-girl-sword-ep04"
+    "story-farm-girl-sword-ep04",
+    "story-farm-girl-sword-ep02"
   ],
   "blog_posted": [
     {
@@ -35,6 +37,11 @@
       "date": "2026-11-26",
       "title": "챗GPT 야근을 부르는 반복 지시, 커스텀 인스트럭션으로 3분 만에 끝내는 법",
       "url": "https://bigdataupdate12.blogspot.com/2026/11/gpt-3.html"
+    },
+    {
+      "date": "2026-11-26",
+      "title": "업무 속도를 2배 올리는 AI 프롬프트 30선, 바로 복사해서 쓸 수 있다면?",
+      "url": "https://bigdataupdate12.blogspot.com/2026/11/2-ai-30.html"
     }
   ]
 }

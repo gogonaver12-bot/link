@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T07:10:30+00:00",
+ "updated": "2026-11-26T07:23:17+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1576,26 +1576,43 @@
   },
   {
    "id": "I0019",
-   "title": "무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어",
-   "market": "AI 개발자 및 소규모 스타트업",
-   "platform": "GitHub & AWS",
-   "model": "구독 (SaaS 프리미엄)",
-   "first_step": "FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성",
-   "evidence": "상용 LLM 크레딧 소진 및 키 오류로 인한 서비스 중단 방지 니즈 급증",
+   "title": "무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS",
+   "market": "API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업",
+   "platform": "웹 서비스 및 패키지 라이브러리",
+   "model": "구독",
+   "first_step": "GitHub에 무료 LLM(Ollama, Groq 등) 폴백(Fallback) 라우팅 오픈소스 초안 작성",
+   "evidence": "상용 API 크레딧 고갈로 인한 서비스 중단 사례 급증 및 비용 최적화 수요 증가",
    "scores": {
     "demand": 85,
     "low_competition": 70,
-    "low_cost": 90,
+    "low_cost": 95,
     "speed_to_revenue": 60,
-    "scalability": 85,
-    "low_risk": 80
+    "scalability": 80,
+    "low_risk": 90
    },
-   "score": 78.0,
+   "score": 79.0,
    "status": "active",
    "created": "2026-11-26",
    "started": "2026-11-26",
    "last_review": null,
-   "product": null,
+   "product": {
+    "made": "2026-11-26",
+    "title": "무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
+    "dir": "workspace/products/I0019",
+    "pdf": "workspace/products/I0019/product.pdf",
+    "files": [
+     "00-목차.md",
+     "01-마이크로SaaS-비즈니스-모델-설계-및-아키텍처-이해.md",
+     "02-GitHub-오픈소스-초안-작성-및-환경-세팅.md",
+     "03-1차-라우터-구현-메인-유료-API-연동-및-호출.md",
+     "04-2차-라우터-구현-Groq-및-Ollama-폴백-자동화.md",
+     "05-패키지-라이브러리-패키징-및-웹-서비스-연동.md",
+     "06-구독-결제-시스템-Stripe-연동-및-수익화.md",
+     "07-실전-마케팅과-초기-고객-10명-모으는-법.md",
+     "product.pdf",
+     "판매페이지.md"
+    ]
+   },
    "killed_by": null,
    "version": null,
    "upgrades": [],
@@ -1603,63 +1620,63 @@
     "date": "2026-11-26",
     "pass": true,
     "hold": false,
-    "why": "흑자 확률 56% · 90일 ROI 중앙값 +53% (기준 40%·+30%)",
+    "why": "흑자 확률 59% · 90일 ROI 중앙값 +48% (기준 40%·+30%)",
     "sim": {
      "days": 90,
      "runs": 2000,
-     "p_profit": 0.556,
-     "roi_p10": -1.0,
-     "roi_p50": 0.53,
-     "roi_p90": 8.42,
-     "rev30_p50": 198.0,
-     "rev_p10": 0.0,
-     "rev_p50": 1980.0,
-     "rev_p90": 177210.0,
-     "breakeven_p50": 64
+     "p_profit": 0.588,
+     "roi_p10": -0.9,
+     "roi_p50": 0.48,
+     "roi_p90": 6.4,
+     "rev30_p50": 58.0,
+     "rev_p10": 29.0,
+     "rev_p50": 522.0,
+     "rev_p90": 8526.0,
+     "breakeven_p50": 65
     },
     "estimates": [
      {
       "model": "gemini:gemini-flash-lite-latest",
       "role": "중립 심사역",
-      "price_usd": 99.0,
+      "price_usd": 29,
       "conv_rate_pct": 0.5,
-      "visitors_low": 50.0,
-      "visitors_high": 200.0
+      "visitors_low": 50,
+      "visitors_high": 200
      },
      {
       "model": "groq:openai/gpt-oss-120b",
       "role": "비관 분석가",
-      "price_usd": 99,
-      "conv_rate_pct": 0.8,
-      "visitors_low": 200,
-      "visitors_high": 1500
+      "price_usd": 5,
+      "conv_rate_pct": 1,
+      "visitors_low": 10,
+      "visitors_high": 30
      },
      {
       "model": "groq:qwen/qwen3.8-27b",
       "role": "낙관 분석가",
-      "price_usd": 149,
-      "conv_rate_pct": 15,
-      "visitors_low": 2,
-      "visitors_high": 10
+      "price_usd": 29,
+      "conv_rate_pct": 2.5,
+      "visitors_low": 50,
+      "visitors_high": 150
      }
     ],
     "risks": [
-     "LiteLLM 및 Portkey 등 강력한 기존 오픈소스/상용 하이브리드 경쟁자로 인한 낮은 유료 전환율",
-     "고객의 온프레미스/ 자체 AWS 구축 선호로 인한 SaaS 형태 수익화의 한계",
-     "오픈소스 기반 솔루션으로 인한 진입 장벽 낮음 및 가격 경쟁 심화",
-     "low conversion from free tier to premium",
-     "strong competition from open‑source routers (LiteLLM, Portkey) offering free plans",
-     "customers self‑host on AWS reducing SaaS uptake"
+     "무료 오픈소스 LLM 및 API 제공 업체의 rate limit(429 오류) 빈발로 인한 서비스 안정성 저하",
+     "유사 오픈소스 솔루션 및 대형 클라우드 업체의 기본 기능 내재화로 인한 이탈",
+     "1인 개발 역량 한계로 인한 고객 기술 지원 지연",
+     "Rate‑limit throttling from major LLM providers (e.g., Gemini, Groq) leading to service outages",
+     "High API usage costs reducing margin",
+     "Strong competition from existing open‑source exception‑handling libraries and hosted LLM SaaS"
     ],
     "evidence": [
-     "경쟁사인 Portkey 및 LiteLLM 엔터프라이즈 팀 플랜은 월 $99 수준부터 시작함: https://portkey.ai/pricing",
-     "LiteLLM GitHub 스타 1만 개 이상으로 개발자 관심도는 높으나 무료 오픈소스 대안이 풍부함",
-     "오픈소스 미들웨어 특성상 자체 서버 구축 비율이 높아 SaaS 프리미엄 모델의 유료 전환율이 매우 낮음",
-     "Portkey pricing page shows team plans starting at $99/month https://portkey.ai/pricing",
-     "LiteLLM GitHub repository has >10k stars indicating strong community interest https://github.com/BerriAI/litellm",
-     "Search trend data shows growing queries for 'open source LLM router' (Google Trends, accessed 2024‑10‑01)"
+     "제공된 로그 데이터: gemini-flash-lite-latest 및 groq 모델 등에서 429 quota exceeded 오류 빈발",
+     "유사 개발자 대상 마이크로SaaS 평균 전환율(0.5%) 및 초기 유입 추정",
+     "https://cloud.google.com/vertex-ai/docs/quota",
+     "https://groq.com/docs/rate-limits",
+     "https://github.com/search?q=exception+handling+llm+micro+saas",
+     "https://www.statista.com/statistics/1177414/number-of-developers-worldwide/"
     ],
-    "disagreement": 3.0
+    "disagreement": 1.61
    },
    "metrics": {
     "revenue": 0,
@@ -1685,7 +1702,7 @@
   {
    "name": "content_creator",
    "title": "콘텐츠 제작팀",
-   "version": 2,
+   "version": 3,
    "tools": [
     "save_file",
     "hook_score"
@@ -1702,7 +1719,7 @@
   {
    "name": "developer",
    "title": "개발팀",
-   "version": 2,
+   "version": 3,
    "tools": [
     "github_search",
     "github_read",
@@ -1720,7 +1737,7 @@
   {
    "name": "github_scout",
    "title": "오픈소스·프롬프트 탐색팀",
-   "version": 2,
+   "version": 3,
    "tools": [
     "github_search",
     "github_read",
@@ -1764,7 +1781,7 @@
   {
    "name": "researcher",
    "title": "시장조사팀",
-   "version": 2,
+   "version": 3,
    "tools": [
     "web_search",
     "crawl",
@@ -1930,6 +1947,16 @@
  ],
  "reports": [
   {
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-26T07:23+00:00"
+  },
+  {
+   "file": "reports/20261126-0712-상품-I0019.md",
+   "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
+   "date": "2026-11-26T07:12+00:00"
+  },
+  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
    "date": "2026-11-26T07:09+00:00"
@@ -1947,11 +1974,6 @@
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-26T07:09+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-26.md",
-   "title": "일일 리포트 2026-11-26",
    "date": "2026-11-26T07:09+00:00"
   },
   {
@@ -1982,13 +2004,13 @@
  ],
  "runs": [
   {
-   "ts": "2026-11-26T07:10:10+00:00",
+   "ts": "2026-11-26T07:10:52+00:00",
    "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어 (AI 개발자 및 소규모 스타트업/GitHub & AWS, 구독 (SaaS 프리미엄))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+   "model": null,
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS (API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업/웹 서비스 및 패키지 라이브러리, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   },
   {
-   "ts": "2026-11-26T07:09:51+00:00",
+   "ts": "2026-11-26T07:10:27+00:00",
    "agent": "researcher",
    "model": null,
    "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
@@ -2137,6 +2159,13 @@
   }
  ],
  "sources": [
+  {
+   "name": "feeds.feedburner.com",
+   "category": "business",
+   "origin": "AI 추천",
+   "added": "2026-11-26",
+   "removed": null
+  },
   {
    "name": "markezine.jp",
    "category": "business",
@@ -2308,10 +2337,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-26T07:10:29+00:00",
-   "cmd": "biz scout --market GLOBAL",
+   "ts": "2026-11-26T07:23:15+00:00",
+   "cmd": "daily",
    "ok": true,
-   "output": "I0019 78.0점 [active] AI 개발자 및 소규모 스타트업/GitHub & AWS 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어\n   → FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성"
+   "output": "드 JP] 青龍映画賞 | https://www.google.com/search?q=%E9%9D%92%E9%BE%8D%E6%98%A0%E7%94%BB%E8%B3%9E\n- [구글 트렌드 US] battlestar galactica | https://www.google.com/search?q=battlestar%20galactica\n- [구글 트렌드 KR] 백철승 | https://www.google.com/search?q=%EB%B0%B1%EC%B2%A0%EC%8A%B9\n## 사업 리뷰\n## 신규 발굴 (GLOBAL)\n- I0019 79.0점 [active] 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS — GitHub에 무료 LLM(Ollama, Groq 등) 폴백(Fallback) 라우팅 오픈소스 초안 작성\n## 상품 자동 제작\n- I0019 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드 · 7장 · 30,509자 · PDF\n## 숏츠 자동 업로드\n🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (11개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다' 주제 중단\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n기존 채널 데이터에서 수면 관련 콘텐츠('침대에 누워도 잠이 안 오는 진짜 이유' 등)가 394회로 유일하게 높은 조회수를 기록했으나, 채널 콘셉트인 'F ai-LAB (AI 실험실)'에 부합하는 AI 관련 툴, 실증, 'AI에게 시켜보기' 형태의 콘텐츠로 전환이 필요함. 벤치마크 분석 결과, 'Real vs AI Image' 및 'AI Animation' 같이 시각적 호기심을 자극하고 '진짜와 가짜 판별' 또는 'AI의 예상치 못한 결과'를 다룬 25~35초 길이의 영상이 폭발적인 조회수(60만~180만 회)를 기록함. 따라서 수면/생활 정보 대신 채널 콘셉트인 AI 기술(예: AI 이미지 디테일 테스트, AI가 생성한 초실사 영상의 함정 등)을 다루어 참신성과 시청 지속 시간을 높인다.\n📝 016.json: AI가 그린 손가락, 아직도 이상할까?\n⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  🎨 AI 이미지 Wide shot of the mossy: ai_8cba4d7eef3d.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Medium shot of person flexing,: ai_91a669323366.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  🎨 AI 이미지 Medium shot of floating flame: ai_9d5075568e40.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 Wide shot of villagers forming: ai_a47f6c28abd4.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Close-up of person shouting, clenched: ai_745ef716eefb.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Medium shot of person slipping,: ai_4acb73151950.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Wide shot of the sword: ai_9f2dac3e9f6f.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Close-up of person smirking, eyes: ai_a3e33c51c10d.jpg\n  🎨 AI 이미지 cinematic: ai_83062b504948.jpg\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep02.mp4 (28.7초)\n✅ https://youtube.com/shorts/HnHVZU6S2T0\n## 블로그 자동 게시\n📝 업무 속도를 2배 올리는 AI 프롬프트 30선, 바로 복사해서 쓸 수 있다면? — https://bigdataupdate12.blogspot.com/2026/11/2-ai-30.html · groq:openai/gpt-oss-120b\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n- content_creator → v3\n- developer → v3\n- github_scout → v3\n- researcher → v3\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 19개 · 진행중 1 · 탈락 16\n  I0019 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS [API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업] 매출 $0 ROI +0% 0일차\n  에이전트 analyst: 평균 8.0점 (1회)\n  에이전트 content_creator: 평균 2.0점 (1회)\n  에이전트 developer: 평균 2.5점 (2회)\n  에이전트 github_scout: 평균 2.0점 (1회)\n  에이전트 researcher: 평균 2.0점 (1회)\n  에이전트 viral_analyst: 평균 9.0점 (1회)\n```"
   },
   {
    "ts": "2026-11-26T06:10:21+00:00",
@@ -2447,13 +2476,23 @@
  ],
  "videos": [
   {
+   "id": "HnHVZU6S2T0",
+   "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
+   "date": "2026-11-26",
+   "private": true,
+   "channel": "old",
+   "cover": "농부소녀와 전설의 검\n2화",
+   "views": 0,
+   "likes": 0
+  },
+  {
    "id": "z3DqVwM04TI",
    "title": "농부소녀와 전설의 검 4화 | 4화: 전설의 검 속에서 나온 녀석",
    "date": "2026-11-26",
    "private": true,
    "channel": "old",
    "cover": "농부소녀와 전설의 검\n4화",
-   "views": 0,
+   "views": 1,
    "likes": 0
   },
   {
@@ -2533,7 +2572,7 @@
    "private": null,
    "channel": "old",
    "cover": "",
-   "views": 392,
+   "views": 394,
    "likes": 1
   },
   {
@@ -2559,6 +2598,11 @@
  ],
  "previews": [
   {
+   "file": "story-farm-girl-sword-ep02.mp4",
+   "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
+   "date": "2026-11-26"
+  },
+  {
    "file": "story-farm-girl-sword-ep04.mp4",
    "title": "농부소녀와 전설의 검 4화 | 4화: 전설의 검 속에서 나온 녀석",
    "date": "2026-11-26"
@@ -2571,11 +2615,6 @@
   {
    "file": "story-farm-girl-sword-ep03.mp4",
    "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
-   "date": "2026-11-25"
-  },
-  {
-   "file": "story-farm-girl-sword-ep02.mp4",
-   "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
    "date": "2026-11-25"
   }
  ],
@@ -2602,11 +2641,11 @@
     "lines": 10
    },
    {
-    "id": "story-farm-girl-sword-ep02",
-    "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
-    "hook": "바위에 빛이 깜빡인다",
-    "score": 28,
-    "lines": 8
+    "id": "016",
+    "title": "AI가 그린 손가락, 아직도 이상할까?",
+    "hook": "AI가 그린 사람 손, 지금은 완벽할까요?",
+    "score": 34,
+    "lines": 14
    },
    {
     "id": "013",
@@ -2708,7 +2747,7 @@
      "date": "2026-11-25",
      "file": "story-farm-girl-sword-ep02",
      "uploaded": false,
-     "video": ""
+     "video": "HnHVZU6S2T0"
     },
     {
      "n": 1,
@@ -2738,12 +2777,12 @@
    },
    {
     "name": "상품·콘텐츠 제작",
-    "n": 8,
+    "n": 10,
     "done": true
    },
    {
     "name": "업로드(공개)",
-    "n": 14,
+    "n": 16,
     "done": true
    },
    {
@@ -2754,8 +2793,8 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 11,
-  "blog": 3
+  "shorts": 12,
+  "blog": 4
  },
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,
