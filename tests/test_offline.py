@@ -689,3 +689,18 @@ def test_claude_down_persists_then_retries(monkeypatch):
     later = store.now() + dt.timedelta(hours=13)
     monkeypatch.setattr(store, "now", lambda: later)
     assert llm.has_claude()  # 12시간 뒤 다시 확인
+
+
+def test_doctor_and_skill_factory(monkeypatch):
+    from mother import doctor, skills_finder, providers as pv
+    now = store.now().isoformat(timespec="seconds")
+    store.append_jsonl("errors.jsonl", {"ts": now, "cmd": "claude", "error": "BadRequestError: Your credit balance is too low", "trace": ""})
+    store.append_jsonl("errors.jsonl", {"ts": now, "cmd": "story next x", "error": "KeyError: 'scenes'", "trace": "File story.py line 9"})
+    monkeypatch.setattr(pv, "complete", lambda prompt, system="", agent="", spec=None: (
+        "Phase 1: scenes 키 없음 확인" if agent == "doctor" else
+        "---\nname: blog-seo\ndescription: Use when writing a Naver blog post\n---\n## 개요\n테스트", "groq:t"))
+    out = doctor.run()
+    rp = (store.REPORTS / "doctor" / f"{store.today()}.md").read_text(encoding="utf-8")
+    assert "AI 진단 1건" in out and "알려진 원인" in rp and "scenes 키 없음" in rp  # 알려진 에러는 AI 안 부름
+    name = skills_finder.write_skill("블로그팀", "네이버 블로그 상위노출")
+    assert name == "co-blog-seo" and "Use when" in (store.SKILLS / f"{name}.md").read_text(encoding="utf-8")

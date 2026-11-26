@@ -98,8 +98,33 @@ def equip(agent_name, query):
         except Exception:
             continue
     if not name:
+        name = write_skill(role, query)  # 밖에서 맞는 스킬을 못 찾으면 직접 만듦 (Superpowers writing-skills 규칙)
+    if not name:
         return None
     if name not in spec.setdefault("skills", []):
         spec["skills"].append(name)
         agents.save(spec)
+    return name
+
+
+def write_skill(role, query):
+    """writing-skills 규칙: name(소문자-하이픈), description은 'Use when …'(언제 쓰는지만), 본문은 개요·언제 쓰나·절차·흔한 실수·검증.
+    반환: 저장한 스킬 이름 또는 None."""
+    from . import providers
+    guide = (store.SKILLS / "superpowers-writing-skills.md")
+    rules = guide.read_text(encoding="utf-8")[:4000] if guide.exists() else ""
+    prompt = (f"역할: {role}\n필요한 스킬: {query}\n\n위 규칙대로 이 역할이 '{query}' 일을 잘하게 돕는 SKILL.md 하나를 써라. "
+              "맨 위 YAML 머리말(name: 소문자-하이픈, description: 'Use when ...'로 언제 쓰는지만 한 문장), 본문은 한국어로 "
+              "## 개요 / ## 언제 쓰나 / ## 절차(번호) / ## 흔한 실수 / ## 끝났는지 확인 — 400~900자, 사실만, 과장·불법·약관 위반 금지.")
+    try:
+        text, used = providers.complete(prompt, system=("너는 에이전트 스킬 작성자다. 규칙:\n" + rules)[:6000], agent="skill_writer")
+    except Exception:
+        return None
+    m = re.search(r"---\s*\nname:\s*([a-z0-9-]+)", text)
+    if not m or "description:" not in text:
+        return None
+    name = "co-" + m.group(1)[:50]
+    body = text[text.index("---"):]
+    (store.SKILLS / f"{name}.md").write_text(f"<!-- source: 회사 자체 작성(writing-skills 규칙, {used}, {store.today()}) -->\n{body}\n",
+                                            encoding="utf-8")
     return name
