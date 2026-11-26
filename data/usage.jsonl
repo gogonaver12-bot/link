@@ -457,3 +457,5 @@
 {"ts": "2026-11-26T18:01:03+00:00", "agent": "sales", "model": "gemini:gemini-flash-lite-latest", "in": 2512, "out": 349, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-26T18:01:07+00:00", "agent": "mother", "model": "gemini:gemini-flash-lite-latest", "in": 1887, "out": 383, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-26T17:43:13+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 712, "out": 729, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T18:00:23+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 319, "out": 677, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T18:04:35+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 687, "out": 517, "cache_read": 0, "usd": 0.0}

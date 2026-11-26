@@ -1,0 +1,42 @@
+{
+  "title": "제42구역: 속삭이는 거울",
+  "title_en": "scp_zone_42_mirror",
+  "genre": "SCP 인터뷰",
+  "logline": "거울을 통해 타인의 기억을 훔쳐보는 변칙 존재를 심문하던 수사관이, 거울 속에서 자신의 과거와 마주하며 벌어지는 심리 스릴러.",
+  "tone": "기괴하고 서늘한, 긴장감 넘치는",
+  "setting": "A stark, concrete underground interrogation room, dimly lit by a single flickering fluorescent overhead light. Cold, claustrophobic atmosphere with a large two-way mirror on one wall, aged stainless steel table, and magnetic lock doors.",
+  "characters": [
+    {
+      "id": "kang",
+      "name": "강진우",
+      "role": "수석 조사관",
+      "voice": "male",
+      "look": "English: 35 years old, sharp facial features, messy black hair, tired dark circles under sharp brown eyes, lean build, wearing a wrinkled white button-down shirt with loosened black tie."
+    },
+    {
+      "id": "lee",
+      "name": "이서연",
+      "role": "기록 연구원",
+      "voice": "female",
+      "look": "English: 28 years old, calm oval face, neat dark brown bob-cut hair, intelligent eyes behind thin wire-rimmed glasses, slender build, wearing a clean lab coat over a grey turtleneck."
+    },
+    {
+      "id": "subject",
+      "name": "대상-703",
+      "role": "변칙 개체",
+      "voice": "male",
+      "look": "English: Appears 40 years old, pale translucent skin, glossy completely pitch-black eyes without pupils, short shaved hair, gaunt skeleton-like frame, wearing a standard orange inmate jumpsuit."
+    }
+  ],
+  "episodes": [
+    "1화: 거울 속에 갇힌 남자가 조사관 강진우의 어린 시절 비밀을 정확히 읊어내며 첫 번째 인터뷰가 충격에 빠진다.",
+    "2화: 이서연 연구원은 대상-703이 지난 10년간 접촉한 모든 사람들의 기억을 흡수해왔다는 가설을 세운다.",
+    "3화: 강진우는 대상과의 대화 중 자신의 잃어버린 기억의 조각들이 거울 너머에 있다는 사실을 깨닫고 혼란에 빠진다.",
+    "4화: 격리실 내부의 전기가 차단되고, 거울 표면을 통해 정체 모를 검은 액체와 환각이 조사관들을 압박하기 시작한다.",
+    "5화: 강진우는 거울을 깨기 위해 총을 겨누지만, 거울 속에서 자신을 향해 방아쇠를 당기는 또 다른 누군가와 마주한다."
+  ],
+  "slug": "scp-zone-42-mirror",
+  "created": "2026-11-26",
+  "made": [],
+  "writer": "무료 AI(JSON 모드)"
+}
