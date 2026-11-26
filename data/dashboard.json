@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T07:10:19+00:00",
+ "updated": "2026-11-26T07:10:30+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1573,6 +1573,101 @@
     "disagreement": 0.69
    },
    "metrics": null
+  },
+  {
+   "id": "I0019",
+   "title": "무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어",
+   "market": "AI 개발자 및 소규모 스타트업",
+   "platform": "GitHub & AWS",
+   "model": "구독 (SaaS 프리미엄)",
+   "first_step": "FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성",
+   "evidence": "상용 LLM 크레딧 소진 및 키 오류로 인한 서비스 중단 방지 니즈 급증",
+   "scores": {
+    "demand": 85,
+    "low_competition": 70,
+    "low_cost": 90,
+    "speed_to_revenue": 60,
+    "scalability": 85,
+    "low_risk": 80
+   },
+   "score": 78.0,
+   "status": "active",
+   "created": "2026-11-26",
+   "started": "2026-11-26",
+   "last_review": null,
+   "product": null,
+   "killed_by": null,
+   "version": null,
+   "upgrades": [],
+   "viability": {
+    "date": "2026-11-26",
+    "pass": true,
+    "hold": false,
+    "why": "흑자 확률 56% · 90일 ROI 중앙값 +53% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.556,
+     "roi_p10": -1.0,
+     "roi_p50": 0.53,
+     "roi_p90": 8.42,
+     "rev30_p50": 198.0,
+     "rev_p10": 0.0,
+     "rev_p50": 1980.0,
+     "rev_p90": 177210.0,
+     "breakeven_p50": 64
+    },
+    "estimates": [
+     {
+      "model": "gemini:gemini-flash-lite-latest",
+      "role": "중립 심사역",
+      "price_usd": 99.0,
+      "conv_rate_pct": 0.5,
+      "visitors_low": 50.0,
+      "visitors_high": 200.0
+     },
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 99,
+      "conv_rate_pct": 0.8,
+      "visitors_low": 200,
+      "visitors_high": 1500
+     },
+     {
+      "model": "groq:qwen/qwen3.8-27b",
+      "role": "낙관 분석가",
+      "price_usd": 149,
+      "conv_rate_pct": 15,
+      "visitors_low": 2,
+      "visitors_high": 10
+     }
+    ],
+    "risks": [
+     "LiteLLM 및 Portkey 등 강력한 기존 오픈소스/상용 하이브리드 경쟁자로 인한 낮은 유료 전환율",
+     "고객의 온프레미스/ 자체 AWS 구축 선호로 인한 SaaS 형태 수익화의 한계",
+     "오픈소스 기반 솔루션으로 인한 진입 장벽 낮음 및 가격 경쟁 심화",
+     "low conversion from free tier to premium",
+     "strong competition from open‑source routers (LiteLLM, Portkey) offering free plans",
+     "customers self‑host on AWS reducing SaaS uptake"
+    ],
+    "evidence": [
+     "경쟁사인 Portkey 및 LiteLLM 엔터프라이즈 팀 플랜은 월 $99 수준부터 시작함: https://portkey.ai/pricing",
+     "LiteLLM GitHub 스타 1만 개 이상으로 개발자 관심도는 높으나 무료 오픈소스 대안이 풍부함",
+     "오픈소스 미들웨어 특성상 자체 서버 구축 비율이 높아 SaaS 프리미엄 모델의 유료 전환율이 매우 낮음",
+     "Portkey pricing page shows team plans starting at $99/month https://portkey.ai/pricing",
+     "LiteLLM GitHub repository has >10k stars indicating strong community interest https://github.com/BerriAI/litellm",
+     "Search trend data shows growing queries for 'open source LLM router' (Google Trends, accessed 2024‑10‑01)"
+    ],
+    "disagreement": 3.0
+   },
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
   }
  ],
  "team": [
@@ -1835,31 +1930,6 @@
  ],
  "reports": [
   {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-26T07:09+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-26.md",
-   "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-26T07:09+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-26T07:09+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-26T07:09+00:00"
-  },
-  {
-   "file": "reports/20261123-1109-상품-I0001.md",
-   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-26T07:09+00:00"
-  },
-  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
    "date": "2026-11-26T07:09+00:00"
@@ -1875,8 +1945,33 @@
    "date": "2026-11-26T07:09+00:00"
   },
   {
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-26T07:09+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-26T07:09+00:00"
+  },
+  {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
+   "date": "2026-11-26T07:09+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-26T07:09+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-26T07:09+00:00"
+  },
+  {
+   "file": "reports/20261123-1109-상품-I0001.md",
+   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
    "date": "2026-11-26T07:09+00:00"
   },
   {
@@ -1886,6 +1981,18 @@
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-26T07:10:10+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어 (AI 개발자 및 소규모 스타트업/GitHub & AWS, 구독 (SaaS 프리미엄))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-26T07:09:51+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
+  },
   {
    "ts": "2026-11-26T03:47:57+00:00",
    "agent": "researcher",
@@ -1945,18 +2052,6 @@
    "agent": "researcher",
    "model": null,
    "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n네이버 검색 알고리즘 및 블로그 정책 변동\n- 2026-11-23 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행(국내 지역 소상공인(식당, 뷰티, 학원 등)): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -91% (기준 40%·+3"
-  },
-  {
-   "ts": "2026-11-25T17:08:01+00:00",
-   "agent": "content_creator",
-   "model": null,
-   "task": "콘텐츠 제작팀이 새로운 마케팅 스킬을 활용한 홍보 자료와 가이드를 제작하여 배포한다."
-  },
-  {
-   "ts": "2026-11-25T17:07:59+00:00",
-   "agent": "developer",
-   "model": null,
-   "task": "개발팀이 선정된 스킬을 코드베이스에 통합하고 필요한 API 키와 설정을 적용한다."
   }
  ],
  "errors": [],
@@ -2213,10 +2308,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-26T07:10:18+00:00",
-   "cmd": "news",
+   "ts": "2026-11-26T07:10:29+00:00",
+   "cmd": "biz scout --market GLOBAL",
    "ok": true,
-   "output": "새 소식 134건 수집"
+   "output": "I0019 78.0점 [active] AI 개발자 및 소규모 스타트업/GitHub & AWS 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어\n   → FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성"
   },
   {
    "ts": "2026-11-26T06:10:21+00:00",
@@ -2633,13 +2728,13 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 18,
+    "n": 19,
     "done": true
    },
    {
     "name": "진행 승인",
-    "n": 0,
-    "done": false
+    "n": 1,
+    "done": true
    },
    {
     "name": "상품·콘텐츠 제작",

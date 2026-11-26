@@ -1561,5 +1561,100 @@
       ]
     },
     "killed_by": "생존 테스트"
+  },
+  {
+    "title": "무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어",
+    "market": "AI 개발자 및 소규모 스타트업",
+    "platform": "GitHub & AWS",
+    "model": "구독 (SaaS 프리미엄)",
+    "first_step": "FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성",
+    "evidence": "상용 LLM 크레딧 소진 및 키 오류로 인한 서비스 중단 방지 니즈 급증",
+    "scores": {
+      "demand": 85,
+      "low_competition": 70,
+      "low_cost": 90,
+      "speed_to_revenue": 60,
+      "scalability": 85,
+      "low_risk": 80
+    },
+    "id": "I0019",
+    "score": 78.0,
+    "status": "active",
+    "created": "2026-11-26",
+    "viability": {
+      "date": "2026-11-26",
+      "pass": true,
+      "hold": false,
+      "why": "흑자 확률 56% · 90일 ROI 중앙값 +53% (기준 40%·+30%)",
+      "sim": {
+        "days": 90,
+        "runs": 2000,
+        "p_profit": 0.556,
+        "roi_p10": -1.0,
+        "roi_p50": 0.53,
+        "roi_p90": 8.42,
+        "rev30_p50": 198.0,
+        "rev_p10": 0.0,
+        "rev_p50": 1980.0,
+        "rev_p90": 177210.0,
+        "breakeven_p50": 64
+      },
+      "params": {
+        "price_usd": 99.0,
+        "conv_rate_pct": 0.8,
+        "visitors_low": 50.0,
+        "visitors_high": 200.0,
+        "ramp_days": 90.0,
+        "setup_cost_usd": 500.0,
+        "unit_cost_pct": 10.0,
+        "monthly_cost_usd": 200.0,
+        "competition": "high",
+        "risks": [
+          "LiteLLM 및 Portkey 등 강력한 기존 오픈소스/상용 하이브리드 경쟁자로 인한 낮은 유료 전환율",
+          "고객의 온프레미스/ 자체 AWS 구축 선호로 인한 SaaS 형태 수익화의 한계",
+          "오픈소스 기반 솔루션으로 인한 진입 장벽 낮음 및 가격 경쟁 심화",
+          "low conversion from free tier to premium",
+          "strong competition from open‑source routers (LiteLLM, Portkey) offering free plans",
+          "customers self‑host on AWS reducing SaaS uptake"
+        ],
+        "evidence": [
+          "경쟁사인 Portkey 및 LiteLLM 엔터프라이즈 팀 플랜은 월 $99 수준부터 시작함: https://portkey.ai/pricing",
+          "LiteLLM GitHub 스타 1만 개 이상으로 개발자 관심도는 높으나 무료 오픈소스 대안이 풍부함",
+          "오픈소스 미들웨어 특성상 자체 서버 구축 비율이 높아 SaaS 프리미엄 모델의 유료 전환율이 매우 낮음",
+          "Portkey pricing page shows team plans starting at $99/month https://portkey.ai/pricing",
+          "LiteLLM GitHub repository has >10k stars indicating strong community interest https://github.com/BerriAI/litellm",
+          "Search trend data shows growing queries for 'open source LLM router' (Google Trends, accessed 2024‑10‑01)"
+        ],
+        "disagreement": 3.0
+      },
+      "evidence": "* **결론**: 오픈소스 LLM 라우팅(LiteLLM, Portkey 등)은 수요가 높으나, **오픈소스 자체의 무료성 및 경쟁 심화**로 인해 단순 API 라우팅만으로는 유료 구독 전환율이 낮아 **모니터링·보안·가버넌스 결합형 엔터프라이즈 플랜**으로만 수익화가 가능합니다.\n* **경쟁 상품 가격대**: 주요 경쟁사인 Portkey 및 LiteLLM 엔터프라이즈의 경우, 팀 플랜은 월 $99~선, 엔터프라이즈(Custom)는 연간 수만 달러 규모로 과금. ([Portkey Pricing](https://portkey.ai/pricing))\n* **검색 수요 및 시장**: GitHub 및 AI 개발자 커뮤니티에서 비용 절감과 멀티 LLM 전환(Failover)을 위한 오픈소스 프록시/라우터 관심도 급증 (예: LiteLLM GitHub 스타 1만 개 이상).\n* **실패 및 한계 사례**: 오픈소스 미들웨어 특성상 고객이 직접 자체 서버(AWS/Docker)에 구축하는 경우가 많아, SaaS 프리미엄 모델의 무료 티어에서 유료 전환(Monetization)을 유도하기 극히 어렵다는 한계가 보고됨.",
+      "estimates": [
+        {
+          "model": "gemini:gemini-flash-lite-latest",
+          "role": "중립 심사역",
+          "price_usd": 99.0,
+          "conv_rate_pct": 0.5,
+          "visitors_low": 50.0,
+          "visitors_high": 200.0
+        },
+        {
+          "model": "groq:openai/gpt-oss-120b",
+          "role": "비관 분석가",
+          "price_usd": 99,
+          "conv_rate_pct": 0.8,
+          "visitors_low": 200,
+          "visitors_high": 1500
+        },
+        {
+          "model": "groq:qwen/qwen3.8-27b",
+          "role": "낙관 분석가",
+          "price_usd": 149,
+          "conv_rate_pct": 15,
+          "visitors_low": 2,
+          "visitors_high": 10
+        }
+      ]
+    },
+    "started": "2026-11-26"
   }
 ]
