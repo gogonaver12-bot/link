@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^story plan/, "Gemini 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Gemini 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -512,6 +512,7 @@ function viewMore() {
     ${item('data-go="#ai"', "🤖", "AI", "연결된 AI · 모델 점수 · AI 대결")}
     ${item('data-go="#reports"', "📄", "보고서", "매일 쌓이는 결과물")}</div>
   <div class="card">
+    ${item('data-open="hubsearch"', "🔎", "통합 검색", "회사 스킬·프롬프트·에이전트 + skills.sh + 깃허브 + 웹을 한 번에")}
     ${item('data-open="keys"', "🔑", "키 도우미", "API 키 이름 복사 · 발급 링크")}
     ${item('data-open="google"', "🔗", "구글 연결", "유튜브 · 블로그 1회 연결")}
     ${item('data-open="settings"', "⚙️", "설정", "토큰 · 테마")}</div>`;
@@ -730,7 +731,10 @@ async function kmongSheet() {
       <div class="btns">${cp(x.description, "설명 전체")}${cp(x.faq.map((f) => "Q. " + f[0] + "\nA. " + f[1]).join("\n\n"), "FAQ")}</div>
       ${x.file ? `<a class="btn ghost small" style="margin-top:8px;display:block;text-align:center" href="${esc(x.file)}" target="_blank" rel="noopener">📕 판매할 PDF 받기</a>` : ""}</div>`).join("")}`;
 }
-const SHEETS = { kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+const hubSheet = () => `<h3>🔎 통합 검색</h3><p class="sub" style="margin:0">이미 있는 스킬·프롬프트·에이전트부터 찾고, 없으면 skills.sh(설치 수 순)·깃허브·웹까지 찾아요</p>
+  <div class="field"><input id="hubQ" maxlength="120" placeholder="예: 블로그 글 상위노출 / 영상 대본 훅 / 엑셀 자동화"></div>
+  <button class="btn" id="hubBtn" style="width:100%">검색</button><p class="sub">1~2분 뒤 홈 '최근 명령 결과'에서 결과를 눌러 보세요</p>`;
+const SHEETS = { hubsearch: hubSheet, kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
   const sv = e.target.closest("[data-svc]");
@@ -746,6 +750,7 @@ document.addEventListener("click", (e) => {
   if (ds.go) { closeSheet(); location.hash = ds.go; return; }
   if (ds.cmd) return dispatch(ds.cmd, "", ds.label);
   if (ds.open === "kmong") { openSheet("<h3>불러오는 중…</h3>"); kmongSheet().then((h) => { $("#sheetBody").innerHTML = h; }); return; }
+  if (ds.open === "hubsearch") return openSheet(hubSheet());
   if (ds.open) { if (D && !D.empty) openSheet(SHEETS[ds.open](ds.id)); else if (ds.open === "settings") openSheet(settingsSheet()); return; }
   if (ds.idea) return openSheet(ideaSheet(ds.idea));
   if (ds.errlog !== undefined) { const r = D.errors[+ds.errlog];
@@ -775,6 +780,7 @@ document.addEventListener("click", async (e) => {
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
   }
+  if (id === "hubBtn") { const v = $("#hubQ").value.trim(); if (!v) return toast("찾을 내용을 적어 주세요"); dispatch(`search all ${q(v)}`, "", "통합 검색"); }
   if (id === "odBtn") {
     const r = $("#odReq").value.trim(); if (!r) return toast("고객 요청을 붙여넣어 주세요");
     const svc = $("#odSvc .accent")?.dataset.svc || "review";
