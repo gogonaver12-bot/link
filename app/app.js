@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^story plan/, "Gemini 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -405,13 +405,49 @@ function viewStory() {
   <div class="section-title"><h2>내 시리즈 ${SS.length}개</h2></div>
   ${SS.length ? SS.map((b) => `<div class="card">
     <div class="row" style="padding:0"><div class="grow"><div class="t">${esc(b.title)}</div><div class="m">${esc(b.genre)} · ${b.episodes.length}화 제작 / 계획 ${b.planned}화</div></div>
-      <button class="btn small" data-cmd="story next ${esc(b.slug)}" data-label="${esc(b.title)} 다음 화">▶ ${b.episodes.length + 1}화</button></div>
+      <button class="btn small" data-cmd="story next ${esc(b.slug)}" data-label="${esc(b.title)} 다음 화">▶ ${b.episodes.length + 1}화 자동</button></div>
     <div class="m wrap" style="margin-top:6px">${esc(b.logline)}</div>
     <div class="cast">${b.characters.map((c) => `<div>${c.img ? `<img src="${imgUrl(c.img)}" alt="" loading="lazy">` : `<span class="noimg">🧑</span>`}<b>${esc(c.name)}</b><small>${esc(c.role)}</small></div>`).join("")}</div>
+    ${geminiBox(b)}
     ${b.episodes.length ? `<div class="eps">${b.episodes.map((e) => `<a class="ep" ${e.video ? `href="https://youtube.com/shorts/${encodeURIComponent(e.video)}" target="_blank" rel="noopener"` : ""}>
       <b>${e.n}화</b><span>${esc(e.title)}</span><small>${e.video ? "▶ 보기" : e.uploaded ? "" : "업로드 전"}</small></a>`).join("")}</div>` : ""}</div>`).join("")
     : empty("🎭", "아직 시리즈가 없어요", "한 줄 줄거리를 넣고 만들기를 누르면 1화까지 자동으로 만들어요")}`;
 }
+
+function geminiBox(b) {  // 폰 Gemini 앱(플러스)으로 장면 영상을 만들어 올리면, 목소리·자막·음악·업로드는 자동
+  const imgUrl = (p) => `../${p.split("/").map(encodeURIComponent).join("/")}`;
+  if (!b.plan) return `<div class="gem"><div class="t">✨ Gemini로 진짜 움직이는 장면 만들기</div>
+    <div class="m">다음 화 대본과 장면별 프롬프트를 먼저 만들어요 → Gemini 앱에서 인물 사진 + 프롬프트로 영상 생성 → 여기 올리기 → 완성</div>
+    <button class="btn small ghost" style="margin-top:8px" data-cmd="story plan ${esc(b.slug)}" data-label="Gemini 장면용 대본">📝 ${b.episodes.length + 1}화 장면 프롬프트 만들기</button></div>`;
+  const P = b.plan, up = P.scenes.filter((s) => s.clip).length;
+  return `<div class="gem"><div class="t">✨ ${P.n}화 '${esc(P.title)}' — Gemini 장면 ${up}/${P.scenes.length}개 올림</div>
+    <ol class="steps-ol" style="font-size:12px;margin:6px 0"><li>인물 사진을 길게 눌러 저장</li><li>Gemini 앱 → 동영상 → 사진 첨부 + 📋 프롬프트 붙여넣기 → 다운로드</li><li>⬆️ 영상 올리기 (못 만든 장면은 자동으로 무료 그림으로 채워요)</li></ol>
+    ${P.scenes.map((s) => `<div class="gem-sc ${s.clip ? "done" : ""}"><b>${s.i + 1}</b><div class="grow"><div class="t wrap">${esc(s.line)}</div>
+      <div class="gem-refs">${(s.refs || []).map((r) => `<img src="${imgUrl(r)}" alt="인물 사진 — 길게 눌러 저장">`).join("")}</div>
+      <div class="btns" style="grid-template-columns:1fr 1fr;margin-top:6px"><button class="btn small ghost" data-copy="${esc(s.prompt)}">📋 프롬프트</button>
+      <label class="btn small ${s.clip ? "ghost" : ""}" style="text-align:center">${s.clip ? "✓ 다시 올리기" : "⬆️ 영상 올리기"}<input type="file" accept="video/*" hidden
+        data-upslug="${esc(b.slug)}" data-upn="${P.n}" data-upi="${s.i}"></label></div></div></div>`).join("")}
+    <button class="btn" style="margin-top:10px;width:100%" data-cmd="story render ${esc(b.slug)}" data-label="${esc(b.title)} ${P.n}화 완성">✅ 올린 장면으로 ${P.n}화 완성하기</button></div>`;
+}
+async function uploadClip(input) {
+  const f = input.files[0]; if (!f) return;
+  if (!token()) return openSheet(noTokenSheet(""));
+  if (f.size > 45e6) return toast("45MB 이하 영상만 올릴 수 있어요");
+  const path = `stories/${input.dataset.upslug}/clips/ep${String(input.dataset.upn).padStart(2, "0")}-${String(input.dataset.upi).padStart(2, "0")}.mp4`;
+  toast(`⬆️ 올리는 중… (${(f.size / 1e6).toFixed(1)}MB)`);
+  const b64 = await new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(f); });
+  let sha;
+  try { sha = (await gh(`/repos/${REPO}/contents/${path}?ref=main`)).sha; } catch { /* 처음 올림 */ }
+  try {
+    await gh(`/repos/${REPO}/contents/${path}`, { method: "PUT", body: JSON.stringify({ message: `story clip ${path}`, content: b64, branch: "main", ...(sha ? { sha } : {}) }) });
+    toast("✅ 장면 영상 올림 — 1~2분 뒤 새로고침하면 ✓ 표시");
+  } catch (e) {
+    const c = String(e.message).slice(0, 3);
+    openSheet(c === "403" || c === "404" ? `<h3>올리기 권한이 필요해요</h3><ol class="steps-ol"><li><a target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens">GitHub 토큰 설정</a> → 쓰고 있는 토큰 → Edit</li>
+      <li>Repository permissions → <b>Contents: Read and write</b> 추가</li><li>Update → 다시 올리기</li></ol>` : `<h3>올리기 실패</h3><p class="sub">${esc(e.message)}</p>`);
+  }
+}
+document.addEventListener("change", (e) => { if (e.target.dataset && e.target.dataset.upslug) uploadClip(e.target); });
 
 /* ───────── 화면: 영상 확인 ───────── */
 function viewVideos() {
@@ -648,7 +684,7 @@ const settingsSheet = () => {
     <input id="tok" type="password" autocomplete="off" placeholder="${token() ? "저장됨 ●●●●" : "github_pat_..."}"></div>
   <div class="btns"><button class="btn" id="tokSave">저장 · 연결 확인</button><button class="btn ghost" id="tokDel">토큰 삭제</button></div>
   <div class="note"><b>토큰 만들기(1분):</b><ol><li><a target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens/new">새 토큰 만들기</a> 열기</li>
-    <li>Repository access → <b>Only select</b> → <b>${esc(REPO.split("/")[1])}</b></li><li>Permissions → <b>Actions: Read and write</b></li><li>생성된 토큰을 위에 붙여넣기</li></ol></div>
+    <li>Repository access → <b>Only select</b> → <b>${esc(REPO.split("/")[1])}</b></li><li>Permissions → <b>Actions: Read and write</b> + <b>Contents: Read and write</b>(스토리 영상 올리기용)</li><li>생성된 토큰을 위에 붙여넣기</li></ol></div>
   <div class="note"><b>홈 화면에 앱으로 추가:</b> 아이폰은 Safari 공유 버튼 → 홈 화면에 추가 · 안드로이드는 Chrome 메뉴 → 앱 설치</div>
   <div class="note">저장소: <a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}">${esc(REPO)}</a> · 데이터 ${ago(D && D.updated)}</div>`;
 };

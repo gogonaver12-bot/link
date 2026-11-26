@@ -134,24 +134,65 @@ def _shot_prompt(b, shot):
     return f"{text}. Setting: {b.get('setting', '')}", refs
 
 
-def episode(slug, private=False):
-    from .publish import produce
-    b = load(slug)
-    n = len(b["made"]) + 1
+def _write(b, n):
     prev = "\n".join(f"{m['n']}화: {m['summary']}" for m in b["made"][-4:]) or "없음(1화)"
     plan = b.get("episodes", [])
-    ep, used = _json(
+    return _json(
         f"시리즈 바이블:\n{json.dumps({k: b[k] for k in ('title', 'genre', 'logline', 'tone', 'setting', 'characters')}, ensure_ascii=False)}\n"
         f"지난 회차:\n{prev}\n이번 {n}화 계획: {plan[n - 1] if n <= len(plan) else '이야기를 자연스럽게 이어감'}\n\n"
         f"{n}화 대본 JSON: " '{"title":"","summary":"한 줄","scenes":[{"speaker":"narrator 또는 인물 id","line":"한국어 대사/내레이션 18자 안팎",'
         '"shot":"영어 장면 묘사: 등장 인물은 [id]로 표기, 행동·장소·카메라(close-up/medium/wide)·조명·표정"}],"cta":"다음 화가 궁금하게 + 구독",'
         '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES, "story_writer")
+
+
+def _veo_prompt(b, sc):
+    """Gemini 앱(Veo)에 붙여넣을 장면 영상 프롬프트 — 인물 참조 사진과 함께 넣으면 같은 얼굴로 나옴."""
+    text, refs = _shot_prompt(b, sc.get("shot", ""))
+    return (f"Vertical 9:16 cinematic live-action shot, 8 seconds. {text}. Realistic motion: natural breathing, blinking, hair and "
+            f"clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"{sc.get('line', '')}\". "
+            "Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music."), refs
+
+
+def plan_episode(slug):
+    """다음 화 대본 + 장면별 Gemini 프롬프트를 먼저 만들어 둠 → 폰 Gemini 앱으로 장면 영상을 만들어 올림 → story render."""
+    b = load(slug)
+    n = len(b["made"]) + 1
+    ep, used = _write(b, n)
     scenes = [s for s in ep.get("scenes", []) if s.get("line")][:12]
+    out = []
+    for i, sc in enumerate(scenes):
+        prompt, refs = _veo_prompt(b, sc)
+        out.append({"i": i, "speaker": sc.get("speaker"), "line": sc["line"], "prompt": prompt,
+                    "refs": [str(r.relative_to(store.ROOT)) for r in refs if r.exists()]})
+    ep["scenes"] = scenes
+    plan = {"n": n, "ep": ep, "writer": used, "created": store.today(), "scenes": out}
+    (DIR / slug / "plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=2), encoding="utf-8")
+    (DIR / slug / "clips").mkdir(parents=True, exist_ok=True)
+    return plan, f"📝 {b['title']} {n}화 '{ep.get('title', '')}' 대본 준비 — 장면 {len(out)}개 · 앱에서 장면마다 Gemini 영상을 만들어 올린 뒤 '완성하기'"
+
+
+def clip_path(slug, n, i):
+    return DIR / slug / "clips" / f"ep{n:02d}-{i:02d}.mp4"
+
+
+def render_episode(slug, private=False):
+    """plan.json(없으면 새로 작성)으로 영상 완성: 올린 Gemini 장면 영상 우선 → 없으면 무료 그림(+앞 장면은 무료 영상 AI)."""
+    from .publish import produce
+    b = load(slug)
+    pf = DIR / slug / "plan.json"
+    plan = json.loads(pf.read_text(encoding="utf-8")) if pf.exists() else plan_episode(slug)[0]
+    n, ep, used = plan["n"], plan["ep"], plan.get("writer", "")
+    scenes = ep["scenes"]
     ai, imgs, log = _img(), [], [f"🎬 {b['title']} {n}화 '{ep.get('title', '')}' — 장면 {len(scenes)}개 · 작가 {used}"]
     log += character_sheets(b)  # 지난번에 못 만든 인물 사진이 있으면 이번에 만듦
     cache = SHORTS / "assets" / "story" / slug
-    fails = 0
+    fails, gem = 0, 0
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):
+        up = clip_path(slug, n, i)
+        if up.exists():  # 폰 Gemini 앱으로 만들어 올린 장면 영상
+            imgs.append(str(up.resolve()))
+            gem += 1
+            continue
         prompt, refs = _shot_prompt(b, sc.get("shot", ""))
         try:
             p = ai.generate(prompt, cache, refs=refs, style=STYLE, name=f"ep{n:02d}-{i:02d}.png",
@@ -185,7 +226,7 @@ def episode(slug, private=False):
     sp = SHORTS / "scripts" / f"story-{slug}-ep{n:02d}.json"
     sp.write_text(json.dumps(script, ensure_ascii=False, indent=2), encoding="utf-8")
     (DIR / slug / f"ep{n:02d}.json").write_text(json.dumps(ep, ensure_ascii=False, indent=2), encoding="utf-8")
-    log.append(f"🖼 장면 이미지 {sum(1 for x in imgs if x)}/{len(scenes)}장 · 움직이는 영상 {sum(1 for x in imgs if x.endswith('.mp4'))}장")
+    log.append(f"🖼 장면 {len(scenes)}개: Gemini 영상 {gem} · 움직이는 무료 영상 {sum(1 for x in imgs if x.endswith('.mp4')) - gem} · 사진 {sum(1 for x in imgs if x and not x.endswith('.mp4'))}")
     done = store.load_json("published.json", {"blog": []})
     done.setdefault("shorts", [])
     sc = store.cfg().get("shorts", {})
@@ -197,4 +238,10 @@ def episode(slug, private=False):
     b["made"].append({"n": n, "title": ep.get("title", ""), "summary": ep.get("summary", ""), "date": store.today(),
                       "file": sp.stem, "uploaded": bool(ok)})
     save(b)
+    pf.unlink(missing_ok=True)
     return "\n".join(x for x in log if x)
+
+
+def episode(slug, private=False):
+    """다음 화를 한 번에(대본 → 장면 → 영상 → 업로드)."""
+    return render_episode(slug, private)

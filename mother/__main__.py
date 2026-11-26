@@ -153,8 +153,8 @@ def main(argv=None):
     sh_ = sp.add_parser("shorts", help="숏츠 대본→영상→유튜브 자동 업로드 (--private: 비공개 시험 업로드)")
     sh_.add_argument("--private", action="store_true"); sh_.add_argument("--topic", default="", help="이 주제로 만들기")
     sh_.add_argument("--skip", default="", help="대기 대본 빼기 (예: 007,008)")
-    st = sp.add_parser("story", help="AI 실사 스토리: story new \"로그라인\" [--genre 판타지] / story next <slug> / story list")
-    st.add_argument("action", choices=["new", "next", "list"]); st.add_argument("arg", nargs="?", default="")
+    st = sp.add_parser("story", help="AI 실사 스토리: story new \"로그라인\" [--genre 판타지] / story next <slug> / story plan <slug>(Gemini 장면용 대본) / story render <slug> / story list")
+    st.add_argument("action", choices=["new", "next", "list", "plan", "render"]); st.add_argument("arg", nargs="?", default="")
     st.add_argument("--genre", default=""); st.add_argument("--private", action="store_true")
     od = sp.add_parser("order", help="크몽·숨고 주문 처리: order <blog|review|detail|translate|ppt> \"고객 요청\"")
     od.add_argument("service"); od.add_argument("request")
@@ -323,7 +323,8 @@ def main(argv=None):
             p("\n".join(log))
             p(story.episode(b["slug"], x.private))
         else:
-            p(story.episode(x.arg or (story.all_series() or [{}])[-1].get("slug", ""), x.private))
+            slug = x.arg or (story.all_series() or [{}])[-1].get("slug", "")
+            p(story.plan_episode(slug)[1] if x.action == "plan" else story.episode(slug, x.private))
     elif x.cmd == "order":
         from . import orders
         p(orders.make(x.service, x.request))
