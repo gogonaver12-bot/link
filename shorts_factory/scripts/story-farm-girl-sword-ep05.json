@@ -1,0 +1,88 @@
+{
+  "title": "농부소녀와 전설의 검 5화 | 5화: 뽑았는데, 환불 안 되나요?",
+  "story": true,
+  "hook": "잠깐, 환불 안 되나요?",
+  "lines": [
+    "누가 함부로 내 봉인을 풀래?",
+    "아니, 그냥 밭일하려고 뽑았는데!",
+    "이 검은 세상을 구할 성물이다!",
+    "야! 네가 그걸 왜 뽑아 있어?",
+    "보리스? 네가 와서 좀 가져갈래?",
+    "이미 주인으로 찍혔으니 도망 못 친다.",
+    "시골 소녀의 평화는 끝났다!"
+  ],
+  "cta": "전설의 검을 뽑은 루나의 운명은? 다음 화를 기대해주세요! 구독과 좋아요!",
+  "voices": [
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "루나",
+    "이그니스",
+    "루나",
+    "이그니스",
+    "보리스",
+    "루나",
+    "이그니스",
+    "",
+    ""
+  ],
+  "clips": [
+    "assets/story/farm-girl-sword/ep05-00.mp4",
+    "assets/story/farm-girl-sword/ep05-01.mp4",
+    "assets/story/farm-girl-sword/ep05-02.mp4",
+    "assets/story/farm-girl-sword/ep05-03.jpg",
+    "assets/story/farm-girl-sword/ep05-04.jpg",
+    "assets/story/farm-girl-sword/ep05-05.jpg",
+    "assets/story/farm-girl-sword/ep05-06.jpg",
+    "assets/story/farm-girl-sword/ep05-07.jpg",
+    "assets/story/farm-girl-sword/ep05-07.jpg"
+  ],
+  "audio": [
+    "assets/story/farm-girl-sword/ep05-00.mp3",
+    "assets/story/farm-girl-sword/ep05-01.mp3",
+    "assets/story/farm-girl-sword/ep05-02.mp3",
+    "assets/story/farm-girl-sword/ep05-03.mp3",
+    "assets/story/farm-girl-sword/ep05-04.mp3",
+    "assets/story/farm-girl-sword/ep05-05.mp3",
+    "assets/story/farm-girl-sword/ep05-06.mp3",
+    "assets/story/farm-girl-sword/ep05-07.mp3",
+    ""
+  ],
+  "no_subtitles": true,
+  "keywords": [
+    "English: Close-up of person looking",
+    "English: Medium shot of person",
+    "English: Medium shot of person",
+    "English: Close-up of person expanding",
+    "English: Wide shot of person",
+    "English: Two-shot of person holding",
+    "English: Close-up of person grinning",
+    "English: Wide shot of person",
+    "cinematic"
+  ],
+  "cover": "농부소녀와 전설의 검\n5화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "바위 속 전설의 검을 뽑은 루나, 그리고 그 속에 봉인된 까칠한 정령 이그니스의 유쾌한 티격태격 판타지 숏드라마 5화!\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)",
+  "tags": [
+    "숏드라마",
+    "판타지",
+    "웹드라마",
+    "코미디",
+    "정령",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}
