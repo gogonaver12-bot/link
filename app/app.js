@@ -386,7 +386,7 @@ function viewMake() {
 }
 
 const makeSeg = (on) => `<div class="seg"><a href="#make" class="${on === "shorts" ? "on" : ""}">🎬 정보 숏츠</a><a href="#story" class="${on === "story" ? "on" : ""}">🎭 AI 실사 스토리</a></div>`;
-const GENRES = ["판타지", "SCP 인터뷰", "로맨스", "호러", "SF", "학원물"];
+const GENRES = ["판타지", "SCP 인터뷰", "로맨스", "호러", "SF", "학원물", "어린이 동화"];
 
 /* ───────── 화면: AI 실사 스토리 ───────── */
 function viewStory() {

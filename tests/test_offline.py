@@ -622,3 +622,15 @@ def test_story_plan_then_render_uses_uploaded_clip(monkeypatch, tmp_path):
     monkeypatch.setattr(publish, "produce", lambda sp, private, log, done: got.setdefault("s", json.loads(sp.read_text(encoding="utf-8"))) and True)
     out = story.render_episode("s1", private=True)
     assert got["s"]["clips"][0].endswith("ep01-00.mp4") and "Gemini 영상 1" in out and not (tmp_path / "stories" / "s1" / "plan.json").exists()
+
+
+def test_skills_sh_ranking(monkeypatch):
+    import requests
+    from mother import skills_finder as sf
+    rows = [{"source": "rand/x", "skillId": "a", "installs": 50}, {"source": "big/y", "skillId": "b", "installs": 5000},
+            {"source": "anthropics/skills", "skillId": "c", "installs": 300}, {"source": "mid/z", "skillId": "d", "installs": 400}]
+    monkeypatch.setattr(requests, "get", lambda *a, **k: types.SimpleNamespace(ok=True, json=lambda: {"skills": rows}))
+    monkeypatch.setattr(sf.tools, "github_search", lambda *a, **k: "")
+    got = [r["skillId"] for r in sf.skills_sh("x")]
+    assert got == ["c", "b", "d"]  # 공식 출처 → 설치 1,000+ → 그 외(100 미만은 제외)
+    assert ("anthropics/skills", "skills/c/SKILL.md") in sf.candidates("x", 3)

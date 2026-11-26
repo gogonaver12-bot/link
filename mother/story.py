@@ -222,6 +222,8 @@ def render_episode(slug, private=False):
         "cover": f"{b['title']}\n{n}화", "colors": ["0x0b0b12", "0x2a1f3d"],
         "description": f"{ep.get('description', '')}\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님){attrib}",
         "tags": ep.get("tags", []) + ["AI드라마", "숏드라마", "AI실사화"],
+        # 어린이용이면 유튜브에 '아동용'으로 신고 (법적 의무 · 댓글·맞춤광고 꺼짐)
+        "made_for_kids": bool(re.search(r"어린이|동화|유아|키즈|kids|children", b.get("genre", "") + b.get("logline", ""), re.I)),
     }
     sp = SHORTS / "scripts" / f"story-{slug}-ep{n:02d}.json"
     sp.write_text(json.dumps(script, ensure_ascii=False, indent=2), encoding="utf-8")

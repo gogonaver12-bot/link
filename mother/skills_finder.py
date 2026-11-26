@@ -9,13 +9,39 @@ MAX_SKILLS_PER_AGENT = 2
 HIJACK = re.compile(r"every task|all tasks|always use|must be used|wajib|setiap tugas|必须|所有任务|すべてのタスク", re.I)
 
 
+TRUSTED = ("anthropics/", "vercel-labs/", "microsoft/", "obra/", "google/", "openai/", "github/")  # 공식·검증된 출처
+MIN_INSTALLS = 100  # 설치 수 100 미만은 보류 (1,000 이상 우선)
+
+
+def skills_sh(query, n=5):
+    """skills.sh(스킬 디렉터리) 검색 → 설치 수·공식 출처 순으로 정렬. [{source, skillId, installs}]"""
+    import requests
+    try:
+        r = requests.get("https://skills.sh/api/search", params={"q": query}, timeout=15, headers={"User-Agent": tools.UA})
+        rows = r.json().get("skills", []) if r.ok else []
+    except Exception:
+        return []
+    rows = [x for x in rows if x.get("installs", 0) >= MIN_INSTALLS or x.get("source", "").startswith(TRUSTED)]
+    rows.sort(key=lambda x: (not x.get("source", "").startswith(TRUSTED), x.get("installs", 0) < 1000, -x.get("installs", 0)))
+    return rows[:n]
+
+
+def _skill_paths(row):
+    sid = row["skillId"]
+    return [f"skills/{sid}/SKILL.md", f"{sid}/SKILL.md", f".claude/skills/{sid}/SKILL.md", f"plugins/{sid}/SKILL.md", "SKILL.md"]
+
+
 def candidates(query, n=5):
-    """검색어 → (repo, path) 후보들. 코드 검색(토큰 필요) 실패 시 저장소 검색 + 루트 SKILL.md."""
-    out = [(r, p.strip()) for r, p in re.findall(r"- ([\w.-]+/[\w.-]+) \| ([^|]*SKILL\.md) \|", tools.github_search(query, "skills", limit=n))]
+    """검색어 → (repo, path) 후보들. 1순위 skills.sh(설치 수·공식 출처), 2순위 깃허브 코드 검색, 3순위 저장소 검색 + 루트 SKILL.md."""
+    out = []
+    for row in skills_sh(query, n):
+        for p in _skill_paths(row):
+            out.append((row["source"], p))
+    out += [(r, p.strip()) for r, p in re.findall(r"- ([\w.-]+/[\w.-]+) \| ([^|]*SKILL\.md) \|", tools.github_search(query, "skills", limit=n))]
     if not out:
         for repo in re.findall(r"- ([\w.-]+/[\w.-]+) \|", tools.github_search(f"{query} skill", "repos", limit=n)):
             out.append((repo, "SKILL.md"))
-    return out[:n]
+    return out[: n * 5]
 
 
 def find_skill(query):
@@ -62,6 +88,8 @@ def equip(agent_name, query):
             text = tools.github_read(repo, pth, 20001)
         except Exception:
             continue
+        if not text.lstrip().startswith(("---", "#")) or "404: Not Found" in text[:40]:
+            continue  # 그 경로에 스킬 파일이 없음 → 다음 경로
         if not text.strip() or detect_injection(text) or not relevant(role, query, text):
             continue  # AI 조작 문장·엉뚱한 스킬은 장착하지 않음
         try:
