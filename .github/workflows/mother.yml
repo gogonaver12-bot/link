@@ -57,6 +57,7 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           POLLINATIONS_TOKEN: ${{ secrets.POLLINATIONS_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN || secrets.HUGGINGFACE_TOKEN }}
           HF_API_KEY_ID: ${{ secrets.HF_API_KEY_ID }}
           HF_API_KEY_SECRET: ${{ secrets.HF_API_KEY_SECRET }}
           GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}

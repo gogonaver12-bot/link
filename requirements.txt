@@ -8,3 +8,4 @@ google-auth>=2.20
 edge-tts>=6.1
 google-auth-oauthlib>=1.2
 cryptography>=42
+gradio_client>=1.3

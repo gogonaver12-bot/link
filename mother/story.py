@@ -27,7 +27,8 @@ RULES = ("규칙: 오리지널 캐릭터만 — 기존 작품·캐릭터의 이�
 
 
 def _cfg():
-    return {"writer": store.cfg().get("shorts", {}).get("writer", "auto"), "images_per_episode": 12, **store.cfg().get("story", {})}
+    return {"writer": store.cfg().get("shorts", {}).get("writer", "auto"), "images_per_episode": 12, "motion_scenes": 4,
+            **store.cfg().get("story", {})}
 
 
 def parse(text):
@@ -159,6 +160,12 @@ def episode(slug, private=False):
             p, fails = None, fails + 1
             if fails == 2:
                 log.append(f"⚠️ 장면 이미지 실패({str(e)[:50]}) → 남은 장면은 무료 영상으로")
+        if p and i < _cfg()["motion_scenes"]:  # 앞 장면들은 사진을 실제로 움직이는 영상으로(무료 영상 AI, 하루 사용량 안에서)
+            sys.path.insert(0, str(SHORTS))
+            import hfvideo
+            v = hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
+            if v:
+                p = v
         imgs.append(str(p.relative_to(SHORTS)) if p else "")
     voice = lambda spk: VOICES["narrator"] if spk == "narrator" else VOICES.get(
         next((c.get("voice") for c in b["characters"] if c["id"] == spk), "female"), VOICES["female"])
@@ -178,7 +185,7 @@ def episode(slug, private=False):
     sp = SHORTS / "scripts" / f"story-{slug}-ep{n:02d}.json"
     sp.write_text(json.dumps(script, ensure_ascii=False, indent=2), encoding="utf-8")
     (DIR / slug / f"ep{n:02d}.json").write_text(json.dumps(ep, ensure_ascii=False, indent=2), encoding="utf-8")
-    log.append(f"🖼 장면 이미지 {sum(1 for x in imgs if x)}/{len(scenes)}장 (나머지는 무료 영상)")
+    log.append(f"🖼 장면 이미지 {sum(1 for x in imgs if x)}/{len(scenes)}장 · 움직이는 영상 {sum(1 for x in imgs if x.endswith('.mp4'))}장")
     done = store.load_json("published.json", {"blog": []})
     done.setdefault("shorts", [])
     sc = store.cfg().get("shorts", {})
