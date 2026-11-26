@@ -1,0 +1,42 @@
+{
+  "title": "제13구역의 기록자",
+  "title_en": "site_thirteen_chronicler",
+  "genre": "SCP 인터뷰",
+  "logline": "비밀 격리 시설에서 기괴한 변칙 존재들을 대면하며 재단의 숨겨진 진실을 파헤치는 수석 연구원의 이야기.",
+  "tone": "긴장감 넘치는, 서늘한, 미스터리한",
+  "setting": "Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.",
+  "characters": [
+    {
+      "id": "kang",
+      "name": "강서진",
+      "role": "수석 연구원",
+      "voice": "female",
+      "look": "Asian female, age 32, sharp dark eyes, neat black hair tied in a low bun, slim build, wearing a crisp white lab coat over a grey button-up shirt, calm and analytical expression."
+    },
+    {
+      "id": "han",
+      "name": "한도진",
+      "role": "보안 팀장",
+      "voice": "male",
+      "look": "Asian male, age 38, intense gaze, short buzz cut, muscular build, wearing a dark tactical security uniform with body armor, stern and vigilant expression."
+    },
+    {
+      "id": "subject",
+      "name": "실험체 세타",
+      "role": "변칙 존재",
+      "voice": "male",
+      "look": "Androgynous human entity, age unknown, pale translucent skin, long silver-white hair covering the face, wearing standard orange containment jumpsuit, barefoot, subtle unnatural movements."
+    }
+  ],
+  "episodes": [
+    "1화: 신임 연구원 강서진이 첫 번째 위험한 변칙 존재와의 대면 인터뷰를 시작하다.",
+    "2화: 인터뷰 도중 실험체 세타가 강서진의 가장 깊은 과거의 기억을 언급하며 심리를 흔들다.",
+    "3화: 격리실 내부의 전기가 차단되고, 모니터 너머에서 정체불명의 경보음이 울리기 시작하다.",
+    "4화: 보안 팀장 한도진이 통제력을 잃어가는 현장에 진입해 긴급 격리 프로토콜을 발동하다.",
+    "5화: 세타가 남긴 마지막 경고와 함께, 재단이 숨겨왔던 거대한 비밀의 조각이 드러나다."
+  ],
+  "slug": "site-thirteen-chronicler",
+  "created": "2026-11-26",
+  "made": [],
+  "writer": "무료 AI(JSON 모드)"
+}

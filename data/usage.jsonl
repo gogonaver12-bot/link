@@ -467,3 +467,5 @@
 {"ts": "2026-11-26T18:47:57+00:00", "agent": "prompt_engineer", "model": "gemini:gemini-flash-lite-latest", "in": 340, "out": 174, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-26T18:48:00+00:00", "agent": "prompt_engineer", "model": "gemini:gemini-flash-lite-latest", "in": 328, "out": 183, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-26T18:48:03+00:00", "agent": "prompt_engineer", "model": "gemini:gemini-flash-lite-latest", "in": 327, "out": 131, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T18:47:44+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 317, "out": 590, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-26T18:49:31+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 634, "out": 746, "cache_read": 0, "usd": 0.0}
