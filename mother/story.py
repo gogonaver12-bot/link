@@ -28,6 +28,7 @@ RULES = ("규칙: 오리지널 캐릭터만 — 기존 작품·캐릭터의 이�
 
 def _cfg():
     return {"writer": store.cfg().get("shorts", {}).get("writer", "auto"), "images_per_episode": 12, "motion_scenes": 4,
+            "talk_scenes": 6, "subtitles": False,
             **store.cfg().get("story", {})}
 
 
@@ -189,10 +190,29 @@ def render_episode(slug, private=False):
     fails, gem = 0, 0
     import os
     os.environ.setdefault("AI_VIDEO_BUDGET", str(store.cfg().get("shorts", {}).get("ai_video_budget_usd_month", 5)))  # Gemini 영상 월 예산
+    voice = lambda spk: VOICES["narrator"] if spk == "narrator" else VOICES.get(
+        next((c.get("voice") for c in b["characters"] if c["id"] == spk), "female"), VOICES["female"])
+    sys.path.insert(0, str(SHORTS))
+    import aivideo, hfvideo, hftalk
+    audios, talks = [], 0
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):
+        # 대사 목소리를 먼저 만들어 둠 → 그 목소리로 '말하는 영상'을 만들고, 영상 합칠 때도 같은 파일을 써서 입 모양이 맞음
+        au = cache / f"ep{n:02d}-{i:02d}.mp3"
+        try:
+            cache.mkdir(parents=True, exist_ok=True)
+            if not au.exists():
+                import make_short
+                make_short.say(sc["line"], voice(sc.get("speaker")), "+12%", au)
+            audios.append(str(au.relative_to(SHORTS)))
+        except Exception:
+            au = None
+            audios.append("")
+        speaks = sc.get("speaker") not in (None, "", "narrator") and au and talks < _cfg()["talk_scenes"]
         up = clip_path(slug, n, i)
-        if up.exists():  # 폰 Gemini 앱으로 만들어 올린 장면 영상
-            imgs.append(str(up.resolve()))
+        if up.exists():  # 폰 Gemini 앱으로 만들어 올린 장면 영상 → 인물 대사면 입 모양만 맞춤
+            t = hftalk.talk(None, au, cache / f"ep{n:02d}-{i:02d}-up-talk.mp4", motion=up) if speaks else None
+            talks += bool(t)
+            imgs.append(str(t.relative_to(SHORTS)) if t else str(up.resolve()))
             gem += 1
             continue
         prompt, refs = _shot_prompt(b, sc.get("shot", ""))
@@ -203,17 +223,19 @@ def render_episode(slug, private=False):
             p, fails = None, fails + 1
             if fails == 2:
                 log.append(f"⚠️ 장면 이미지 실패({str(e)[:50]}) → 남은 장면은 무료 영상으로")
-        if p and i < _cfg()["motion_scenes"]:  # 앞 장면들은 사진을 실제로 움직이는 영상으로: Gemini Veo(결제·예산 안) → 무료 영상 AI
-            sys.path.insert(0, str(SHORTS))
-            import aivideo, hfvideo
+        still, motion = p, None
+        if p and i < _cfg()["motion_scenes"] and not speaks:  # 내레이션·행동 장면: Gemini Veo(결제·예산 안) → 무료 영상 AI
             veo_prompt, _ = _veo_prompt(b, sc)
-            v = aivideo.veo_animate(p, veo_prompt, p.with_name(p.stem + "-veo.mp4"))
-            v = v or hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
-            if v:
-                p = v
+            motion = aivideo.veo_animate(p, veo_prompt, p.with_name(p.stem + "-veo.mp4")) or \
+                hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
+        if still and speaks:  # 인물 대사 장면: 사진 + 목소리 → 말하며 움직이는 영상(입 모양 맞춤)
+            t = hftalk.talk(still, au, still.with_name(still.stem + "-talk.mp4"))
+            if t:
+                motion, talks = t, talks + 1
+            elif i < _cfg()["motion_scenes"]:
+                motion = hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
+        p = motion or still
         imgs.append(str(p.relative_to(SHORTS)) if p else "")
-    voice = lambda spk: VOICES["narrator"] if spk == "narrator" else VOICES.get(
-        next((c.get("voice") for c in b["characters"] if c["id"] == spk), "female"), VOICES["female"])
     names = {c["id"]: c["name"] for c in b["characters"]}
     attrib = "\n\n출처: SCP 재단(SCP Foundation) — CC BY-SA 3.0" if "scp" in (b.get("genre", "") + b.get("logline", "")).lower() else ""
     script = {
@@ -222,6 +244,8 @@ def render_episode(slug, private=False):
         "voices": [voice(s.get("speaker")) for s in scenes] + [VOICES["narrator"]],
         "speakers": [names.get(s.get("speaker"), "") for s in scenes] + [""],
         "clips": imgs + [imgs[-1] if imgs else ""],
+        "audio": audios + [""],  # 줄마다 미리 만든 목소리(말하는 영상과 같은 파일)
+        "no_subtitles": not _cfg()["subtitles"],  # 실사 스토리: 자막 없이 움직임과 말로
         "keywords": [" ".join(re.sub(r"\[\w+\]", "person", s.get("shot", "cinematic")).split()[:5]) for s in scenes] + ["cinematic"],
         "cover": f"{b['title']}\n{n}화", "colors": ["0x0b0b12", "0x2a1f3d"],
         "description": f"{ep.get('description', '')}\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님){attrib}",
@@ -233,7 +257,9 @@ def render_episode(slug, private=False):
     sp.write_text(json.dumps(script, ensure_ascii=False, indent=2), encoding="utf-8")
     (DIR / slug / f"ep{n:02d}.json").write_text(json.dumps(ep, ensure_ascii=False, indent=2), encoding="utf-8")
     veo = sum(1 for x in imgs if x.endswith("-veo.mp4"))
-    log.append(f"🖼 장면 {len(scenes)}개: 직접 올린 Gemini 영상 {gem} · Gemini Veo {veo} · 무료 영상 AI {sum(1 for x in imgs if x.endswith('.mp4')) - gem - veo} · 사진 {sum(1 for x in imgs if x and not x.endswith('.mp4'))}")
+    tk = sum(1 for x in imgs if x.endswith("-talk.mp4"))
+    log.append(f"🖼 장면 {len(scenes)}개: 🗣️ 말하는 영상 {tk} · 직접 올린 Gemini 영상 {gem} · Gemini Veo {veo} · 무료 움직임 "
+               f"{sum(1 for x in imgs if x.endswith('.mp4')) - tk - veo - gem} · 사진 {sum(1 for x in imgs if x and not x.endswith('.mp4'))} · 자막 {'있음' if _cfg()['subtitles'] else '없음'}")
     done = store.load_json("published.json", {"blog": []})
     done.setdefault("shorts", [])
     sc = store.cfg().get("shorts", {})

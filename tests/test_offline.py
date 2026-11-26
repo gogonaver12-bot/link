@@ -669,3 +669,10 @@ def test_veo_animate_flow(monkeypatch, tmp_path):
     out = aivideo.veo_animate(img, "girl pulls the sword", tmp_path / "s-veo.mp4")
     assert out and out.read_bytes() == b"MP4DATA" and any("veo-3.0-fast" in c for c in calls)  # 빠른 모델 우선
     assert aivideo.month_spent() == 1.2  # 8초 × $0.15 기록 → 월 예산에 반영
+
+
+def test_hftalk_skips_without_audio(tmp_path):
+    import sys
+    sys.path.insert(0, str(store.ROOT / "shorts_factory"))
+    import hftalk
+    assert hftalk.talk(tmp_path / "a.png", None, tmp_path / "o.mp4") is None  # 목소리 없으면 시도하지 않음
