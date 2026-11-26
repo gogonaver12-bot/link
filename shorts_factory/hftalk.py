@@ -10,8 +10,8 @@ _dead, _quota = set(), {"out": False}
 
 
 def _try(space, ep, kw):
-    from gradio_client import Client
-    r = Client(space, token=os.getenv("HF_TOKEN") or None, verbose=False).predict(**kw, api_name=ep)
+    import hfjob
+    r = hfjob.predict(space, ep, kw, timeout=300)  # 대기 줄에서 5분 넘게 못 기다림
     v = r[0] if isinstance(r, (list, tuple)) else r
     return v["video"] if isinstance(v, dict) else v
 
@@ -44,8 +44,11 @@ def talk(img, audio, out: Path, motion=None):
             print(f"  🗣️ 말하는 영상 ({space.split('/')[1]}) {out.name}", flush=True)
             return out
         except Exception as e:
-            if "quota" in str(e).lower():
+            msg = str(e).lower()
+            if "quota" in msg:
                 print(f"  ⏳ 말하는 영상 AI 오늘 사용량 끝({space.split('/')[1]}) → 다음 AI", flush=True)
+            elif "예산" in str(e) or isinstance(e, TimeoutError) or "timeout" in msg:
+                print(f"  ⏱️ 말하는 영상 AI 너무 오래 걸림({space.split('/')[1]}) → 다음 AI", flush=True)
             _dead.add(space)
     _quota["out"] = True
     print("  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)", flush=True)

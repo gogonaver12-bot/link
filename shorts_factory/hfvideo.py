@@ -33,7 +33,7 @@ def animate(img, prompt, out: Path, sec=3.5):
     if out.exists():
         return out
     try:
-        from gradio_client import Client
+        import gradio_client  # noqa: F401
     except ImportError:
         return None
     prompt = (prompt[:400] + ". Natural subtle motion: breathing, blinking, hair and clothes moving in the wind, "
@@ -42,7 +42,8 @@ def animate(img, prompt, out: Path, sec=3.5):
         if space in _dead:
             continue
         try:
-            r = Client(space, token=os.getenv("HF_TOKEN") or None, verbose=False).predict(**kw, api_name=ep)
+            import hfjob
+            r = hfjob.predict(space, ep, kw, timeout=240)  # 대기 줄에서 4분 넘게 못 기다림
             v = r[0]["video"] if isinstance(r[0], dict) else r[0]
             shutil.copy(v, out)
             print(f"  🎞️ 사진→영상 ({space.split('/')[1]}) {out.name}", flush=True)
