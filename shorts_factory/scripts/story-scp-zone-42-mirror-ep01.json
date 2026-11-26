@@ -1,0 +1,82 @@
+{
+  "title": "제42구역: 속삭이는 거울 1화 | 제42구역: 속삭이는 거울 - 제1화",
+  "story": true,
+  "hook": "대답해, 너는 누구지?",
+  "lines": [
+    "거울은 거짓말을 안 해.",
+    "팀장님, 기록이 이상해요.",
+    "무슨 소리야, 서연아?",
+    "열두 살, 그 불타는 집에서...",
+    "닥쳐, 그만해!",
+    "네가 네 동생을 밀었잖아."
+  ],
+  "cta": "과거의 진실은? 다음 화를 기대하세요! 구독과 좋아요",
+  "voices": [
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "강진우",
+    "대상-703",
+    "이서연",
+    "강진우",
+    "대상-703",
+    "강진우",
+    "대상-703",
+    ""
+  ],
+  "clips": [
+    "assets/story/scp-zone-42-mirror/ep01-00.mp4",
+    "assets/story/scp-zone-42-mirror/ep01-01.mp4",
+    "assets/story/scp-zone-42-mirror/ep01-02.mp4",
+    "assets/story/scp-zone-42-mirror/ep01-03.jpg",
+    "assets/story/scp-zone-42-mirror/ep01-04.jpg",
+    "assets/story/scp-zone-42-mirror/ep01-05.jpg",
+    "assets/story/scp-zone-42-mirror/ep01-06.jpg",
+    "assets/story/scp-zone-42-mirror/ep01-06.jpg"
+  ],
+  "audio": [
+    "assets/story/scp-zone-42-mirror/ep01-00.mp3",
+    "assets/story/scp-zone-42-mirror/ep01-01.mp3",
+    "assets/story/scp-zone-42-mirror/ep01-02.mp3",
+    "assets/story/scp-zone-42-mirror/ep01-03.mp3",
+    "assets/story/scp-zone-42-mirror/ep01-04.mp3",
+    "assets/story/scp-zone-42-mirror/ep01-05.mp3",
+    "assets/story/scp-zone-42-mirror/ep01-06.mp3",
+    ""
+  ],
+  "no_subtitles": true,
+  "keywords": [
+    "English: Medium shot of kang",
+    "English: Close-up of subject's pitch-black",
+    "English: Medium shot of lee",
+    "English: Close-up of kang turning",
+    "English: Extreme close-up of subject's",
+    "English: Medium-close shot of kang",
+    "English: Wide shot of the",
+    "cinematic"
+  ],
+  "cover": "제42구역: 속삭이는 거울\n1화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "제42구역 지하 심실, 거울 속 변칙 존재가 강진우의 가장 어두운 과거를 폭로한다.\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)\n\n출처: SCP 재단(SCP Foundation) — CC BY-SA 3.0",
+  "tags": [
+    "SCP",
+    "숏드라마",
+    "미스터리",
+    "스릴러",
+    "웹드라마",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}

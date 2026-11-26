@@ -37,6 +37,15 @@
   ],
   "slug": "scp-zone-42-mirror",
   "created": "2026-11-26",
-  "made": [],
+  "made": [
+    {
+      "n": 1,
+      "title": "제42구역: 속삭이는 거울 - 제1화",
+      "summary": "조사관 강진우는 거울 속 변칙 존재로부터 자신의 잊혀진 과거를 듣게 된다.",
+      "date": "2026-11-26",
+      "file": "story-scp-zone-42-mirror-ep01",
+      "uploaded": true
+    }
+  ],
   "writer": "무료 AI(JSON 모드)"
 }
