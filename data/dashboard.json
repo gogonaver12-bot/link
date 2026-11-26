@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T03:56:54+00:00",
+ "updated": "2026-11-26T06:10:23+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1832,54 +1832,54 @@
  ],
  "reports": [
   {
-   "file": "reports/daily-2026-11-26.md",
-   "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-26T03:56+00:00"
-  },
-  {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-26T03:45+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-26T03:45+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-26T03:45+00:00"
-  },
-  {
-   "file": "reports/20261123-1109-상품-I0001.md",
-   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-26T03:45+00:00"
-  },
-  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-26T03:45+00:00"
+   "date": "2026-11-26T05:56+00:00"
   },
   {
    "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
    "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-26T03:45+00:00"
+   "date": "2026-11-26T05:56+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-26T03:45+00:00"
+   "date": "2026-11-26T05:56+00:00"
+  },
+  {
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-26T05:56+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-26T05:56+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-26T03:45+00:00"
+   "date": "2026-11-26T05:56+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-26T05:56+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-26T05:56+00:00"
+  },
+  {
+   "file": "reports/20261123-1109-상품-I0001.md",
+   "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
+   "date": "2026-11-26T05:56+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-26T03:45+00:00"
+   "date": "2026-11-26T05:56+00:00"
   }
  ],
  "runs": [
@@ -2210,6 +2210,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-26T06:10:21+00:00",
+   "cmd": "story next farm-girl-sword --private",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep04-00.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 10초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep04-01.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 9초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep04-02.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 8초\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n🎬 농부소녀와 전설의 검 4화 '4화: 전설의 검 속에서 나온 녀석' — 장면 9개 · 작가 무료 AI(JSON 모드)\n🖼 장면 이미지 9/9장 · 움직이는 영상 3장\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep04.mp4 (40.5초)\n✅ https://youtube.com/shorts/z3DqVwM04TI"
+  },
+  {
    "ts": "2026-11-26T03:56:53+00:00",
    "cmd": "schedule",
    "ok": true,
@@ -2262,12 +2268,6 @@
    "cmd": "benchmark",
    "ok": true,
    "output": "최근 10개 인기 AI 숏츠(하루 조회수 순, 중앙 길이 31초):\n- 하루 2,067,230회 · 31초 · 1 Throw. infinite Chaos. 🎯🔥 #Shorts #ai #aishorts #dart #CGI #cinematic  #reels #fyp · 태그: the impossible throw, impossible throw, 1 shot 100 impacts, throwing star target\n- 하루 1,316,157회 · 31초 · The Hidden Secret in the Box 💚 #Shorts · 태그: minecraft, steve, animation, minecraftshorts\n- 하루 926,465회 · 50초 · No ordinary Love 🙂 | #shorts #lovers #animation · 태그: \n- 하루 703,465회 · 36초 · पुरानी गोदरेज को बना दिया लग्जरी! 😱 ऐसा बदलाव देखा है? ❤️ #shorts #diy #saasbahu #art #aishorts #bts · 태그: old Godrej makeover, Godrej wardrobe transformation, tiktok, aivedio\n- 하루 679,047회 · 14초 · Amazing AI Fantasy Exotic Birds &amp Rare Species Animation ​#Shorts #ViralBirds #ExoticBirds · 태그: fantasy birds, exotic birds, rare bird species, wildlife magic, viral shorts, AI animation birds, beautiful birds in the world, amazing nature creatures\n- 하루 677,336회 · 25초 · Real vs AI Image! #shorts · 태그: how to spot ai generated images, how to spot fake images, how to detect ai images, guess an ai image\n- 하루 399,763회 · 10초 · 트레이닝복 입고 나란히 앉은 두 형님의 현실 근황 😂 #shorts #쇼츠 #트럼프 #푸틴 #AI영상 #웃긴영상 #유머 #일상유머 · 태그: \n- 하루 390,880회 · 47초 · Eggs So Strange, You’ll Think They’re Alien!🙄#shorts #egg #animals  #facts #city #ytshorts #ytviral · 태그: \n- 하루 318,710회 · 27초 · 🦁 SHERU BHAI KA BADLA 🔥 | Papa Ka Pyaar ❤️ | PART I · 태그: \n- 하루 298,693회 · 44초 · 젠슨 황의 매트릭스 마지막 반전 · 태그: ElonMusk, 일론머스크, 테슬라, 스페이스X"
-  },
-  {
-   "ts": "2026-11-25T17:13:52+00:00",
-   "cmd": "test I0015",
-   "ok": true,
-   "output": "🔧 개선 1차: AI Failover Service with SLA‑Backed Premium Subscription → 채택 (판정 보류 — AI 1개만 참여(최소 2개 필요) · 참고: 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%))\n⏸ 보류 — 판정 보류 — AI 1개만 참여(최소 2개 필요) · 참고: 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $49.0/$245.0/$686.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $49 전환 0.5% 하루 20~50"
   }
  ],
  "pipelines": [
@@ -2348,6 +2348,16 @@
   }
  ],
  "videos": [
+  {
+   "id": "z3DqVwM04TI",
+   "title": "농부소녀와 전설의 검 4화 | 4화: 전설의 검 속에서 나온 녀석",
+   "date": "2026-11-26",
+   "private": true,
+   "channel": "old",
+   "cover": "농부소녀와 전설의 검\n4화",
+   "views": 0,
+   "likes": 0
+  },
   {
    "id": "eHfWXH2LKfA",
    "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
@@ -2450,6 +2460,11 @@
   }
  ],
  "previews": [
+  {
+   "file": "story-farm-girl-sword-ep04.mp4",
+   "title": "농부소녀와 전설의 검 4화 | 4화: 전설의 검 속에서 나온 녀석",
+   "date": "2026-11-26"
+  },
   {
    "file": "story-farm-girl-sword-ep01.mp4",
    "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
@@ -2571,6 +2586,15 @@
    ],
    "episodes": [
     {
+     "n": 4,
+     "title": "4화: 전설의 검 속에서 나온 녀석",
+     "summary": "검을 뽑자마자 정령 이그니스가 나타나 루나에게 끝없는 잔소리를 쏟아낸다.",
+     "date": "2026-11-26",
+     "file": "story-farm-girl-sword-ep04",
+     "uploaded": true,
+     "video": "z3DqVwM04TI"
+    },
+    {
      "n": 3,
      "title": "3화: 검의 부름",
      "summary": "루나, 검의 비밀을 마주한다",
@@ -2620,7 +2644,7 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 13,
+    "n": 14,
     "done": true
    },
    {
@@ -2631,7 +2655,7 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 10,
+  "shorts": 11,
   "blog": 3
  },
  "keys_set": {
@@ -2652,6 +2676,7 @@
   "PIXABAY_API_KEY": false,
   "AUDIO_KEY": false,
   "POLLINATIONS_TOKEN": false,
+  "HF_TOKEN": false,
   "GH_SEARCH_TOKEN": false
  }
 }

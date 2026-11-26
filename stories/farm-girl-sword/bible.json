@@ -66,6 +66,14 @@
       "date": "2026-11-25",
       "file": "story-farm-girl-sword-ep03",
       "uploaded": false
+    },
+    {
+      "n": 4,
+      "title": "4화: 전설의 검 속에서 나온 녀석",
+      "summary": "검을 뽑자마자 정령 이그니스가 나타나 루나에게 끝없는 잔소리를 쏟아낸다.",
+      "date": "2026-11-26",
+      "file": "story-farm-girl-sword-ep04",
+      "uploaded": true
     }
   ],
   "writer": "gemini:gemini-flash-lite-latest"
