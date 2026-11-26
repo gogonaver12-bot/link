@@ -21,8 +21,22 @@ NO_KEY = ("AI 키가 없어요. 저장소 Settings → Secrets → Actions 에 A
 _claude_down = None  # 크레딧 부족·키 오류가 나면 이번 실행 동안 Claude를 건너뛰고 무료 AI로 전환
 
 
+DOWN_HOURS = 12  # 크레딧 부족이면 12시간 동안 Claude를 건너뛰고 그 뒤 한 번 다시 확인 (매 실행마다 실패·에러 기록 반복 방지)
+
+
+def _down_saved():
+    d = store.load_json("claude_down.json", {})
+    if not d.get("until"):
+        return None
+    if store.now().isoformat(timespec="seconds") >= d["until"]:
+        return None
+    return d.get("why") or "Claude 크레딧 부족 → 무료 AI 사용 중"
+
+
 def has_claude():
-    return bool(os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_AUTH_TOKEN")) and not _claude_down
+    if not (os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_AUTH_TOKEN")) or _claude_down:
+        return False
+    return not _down_saved()
 
 
 def _check_down(e):
@@ -31,6 +45,9 @@ def _check_down(e):
     msg = str(e).lower()
     if isinstance(e, (anthropic.AuthenticationError, anthropic.PermissionDeniedError)) or "credit balance" in msg or "billing" in msg:
         _claude_down = "Claude 크레딧 부족·키 오류 → 무료 AI로 자동 전환"
+        import datetime as _dt
+        store.save_json("claude_down.json", {"since": store.now().isoformat(timespec="seconds"), "why": _claude_down,
+                                             "until": (store.now() + _dt.timedelta(hours=DOWN_HOURS)).isoformat(timespec="seconds")})
         store.append_jsonl("errors.jsonl", {"ts": store.now().isoformat(timespec="seconds"), "cmd": "claude",
                                             "error": f"{type(e).__name__}: {str(e)[:300]}", "trace": "", "attempt": 1})
         return True

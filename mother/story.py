@@ -126,6 +126,27 @@ def character_sheets(b):
     return out
 
 
+def talk_portraits(b):
+    """인물마다 '대사용 얼굴 사진' 1장(가슴 위 정면, 시리즈 배경) — 말하는 장면은 늘 이 사진으로 만들어 회차가 바뀌어도 같은 얼굴."""
+    out, ai = [], _img()
+    d = DIR / b["slug"] / "chars"
+    d.mkdir(parents=True, exist_ok=True)
+    for c in b["characters"]:
+        f = d / f"{c['id']}-talk.jpg"
+        if f.exists():
+            continue
+        try:
+            png = ai.generate(f"Medium close-up portrait of {c['look']}, facing the camera, face and mouth clearly visible, natural expression, "
+                              f"in this place: {b.get('setting', '')}", SHORTS / "assets" / "story" / b["slug"], style=STYLE,
+                              refs=[d / f"{c['id']}.jpg"], name=f"talk-{c['id']}.png", seed=zlib.crc32((b["slug"] + c["id"]).encode()) % 100000)
+            if png:
+                _jpg(png, f, width=720)
+                out.append(f"🗣️ {c['name']} 대사용 얼굴 사진 완료")
+        except Exception:
+            pass
+    return out
+
+
 def _shot_prompt(b, shot):
     """장면 묘사의 [id] 를 인물 외모 설명으로 바꾸고, 등장 인물의 참조 사진을 고른다."""
     chars = {c["id"]: c for c in b["characters"]}
@@ -186,6 +207,7 @@ def render_episode(slug, private=False):
     scenes = ep["scenes"]
     ai, imgs, log = _img(), [], [f"🎬 {b['title']} {n}화 '{ep.get('title', '')}' — 장면 {len(scenes)}개 · 작가 {used}"]
     log += character_sheets(b)  # 지난번에 못 만든 인물 사진이 있으면 이번에 만듦
+    log += talk_portraits(b)
     cache = SHORTS / "assets" / "story" / slug
     fails, gem = 0, 0
     import os
@@ -228,8 +250,9 @@ def render_episode(slug, private=False):
             veo_prompt, _ = _veo_prompt(b, sc)
             motion = aivideo.veo_animate(p, veo_prompt, p.with_name(p.stem + "-veo.mp4")) or \
                 hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
-        if still and speaks:  # 인물 대사 장면: 사진 + 목소리 → 말하며 움직이는 영상(입 모양 맞춤)
-            t = hftalk.talk(still, au, still.with_name(still.stem + "-talk.mp4"))
+        if still and speaks:  # 인물 대사 장면: 대사용 얼굴 사진(회차 내내 같은 얼굴) + 목소리 → 말하며 움직이는 영상(입 모양 맞춤)
+            face = DIR / slug / "chars" / f"{sc.get('speaker')}-talk.jpg"
+            t = hftalk.talk(face if face.exists() else still, au, still.with_name(still.stem + "-talk.mp4"))
             if t:
                 motion, talks = t, talks + 1
             elif i < _cfg()["motion_scenes"]:
