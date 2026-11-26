@@ -136,9 +136,12 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
                     (f"1.25-0.0015*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
                     ("1.18", f"(iw-iw/zoom)*on/{frames}", "ih/2-ih/zoom/2"),
                     ("1.18", f"(iw-iw/zoom)*(1-on/{frames})", "ih/2-ih/zoom/2")][i % 4]
-            zp = (f"scale={W*2}:{H*2}:force_original_aspect_ratio=increase,crop={W*2}:{H*2},"
-                  f"zoompan=z='{move[0]}':x='{move[1]}':y='{move[2]}':d={frames}:s={W}x{H}:fps=30")
-            sh(["ffmpeg", "-y", "-i", c, "-vf", f"{zp},eq=brightness=-0.08:saturation=1.15",
+            zp = (f"scale={W*2}:{H*2}:flags=lanczos:force_original_aspect_ratio=increase,crop={W*2}:{H*2},"
+                  f"zoompan=z='{move[0]}':x='{move[1]}':y='{move[2]}':d={frames}:s={W}x{H}:fps=30,unsharp=5:5:0.7")
+            look = ("eq=brightness=-0.08:saturation=1.15" if not scene_clips else  # 스토리: 영화처럼 색보정·비네트·필름 그레인·장면 전환 페이드
+                    f"eq=contrast=1.07:brightness=-0.03:saturation=1.12,colorbalance=rs=0.03:bs=-0.03:rh=-0.02:bh=0.03,vignette=PI/5,"
+                    f"noise=alls=5:allf=t,fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
+            sh(["ffmpeg", "-y", "-i", c, "-vf", f"{zp},{look}",
                 "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
             segs.append(seg); start = end
             continue
