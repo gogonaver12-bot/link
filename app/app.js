@@ -118,7 +118,7 @@ async function dispatch(command = "daily", goal = "", label = "") {
   }
 }
 let polling = 0, RUN = null;
-const EXPECT = [[/스토리|다음 화/, 600], [/영상|shorts/, 330], [/일일|daily/, 1200], [/테스트|토너먼트|test/, 240], [/사업 발굴|scout/, 420], [/파이프라인/, 300]];
+const EXPECT = [[/주문/, 150], [/스토리|다음 화/, 600], [/영상|shorts/, 330], [/일일|daily/, 1200], [/테스트|토너먼트|test/, 240], [/사업 발굴|scout/, 420], [/파이프라인/, 300]];
 const STEPNAME = { "Set up job": "준비", "Run actions/checkout@v4": "코드 받기", "Run actions/setup-python@v5": "파이썬 준비",
   "Run pip install -r requirements.txt": "도구 설치", "install ffmpeg (숏츠 영상 제작용)": "영상 도구 설치", run: "AI 작업 중", "save results": "결과 저장" };
 function runCard() {
@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -436,7 +436,16 @@ function viewVideos() {
 /* ───────── 화면: 파이프라인 (영상 외 자동화) ───────── */
 function viewPipes() {
   if (D.empty) return `<div class="skeleton"></div>`;
-  return `<h1 class="page">⚙️ 파이프라인</h1><p class="sub">영상 말고 다른 자동화 · 하고 싶은 일을 말하면 팀·스킬·일정까지 자동으로</p>
+  return `<div class="card money-card"><div class="t">💼 크몽에서 바로 팔기 (판매 글 5개 준비 완료)</div>
+    <div class="m">리뷰 답글 · 외국인 안내문 번역 · 블로그 원고 · 상세페이지 · 전자책 — 제목·가격·설명은 복사 버튼, 썸네일은 길게 눌러 저장</div>
+    <button class="btn" data-open="kmong" style="margin-top:10px;width:100%">🛒 판매 글 열기</button></div>
+  <div class="card"><div class="t">📦 주문 들어오면 (결과물은 AI가 만들어요)</div>
+    <div class="chips" id="odSvc">${[["review", "리뷰 답글"], ["translate", "안내문 번역"], ["blog", "블로그 원고"], ["detail", "상세페이지"], ["ppt", "PPT 원고"]]
+      .map(([k, v], i) => `<button class="pill ${i ? "" : "accent"}" data-svc="${k}">${v}</button>`).join("")}</div>
+    <textarea id="odReq" rows="5" style="width:100%;margin-top:10px" placeholder="고객이 보낸 요청을 그대로 붙여넣기 (예: 리뷰 30개, 가게 이름, 원하는 말투 / 번역할 안내문과 언어)"></textarea>
+    <button class="btn" id="odBtn" style="margin-top:8px;width:100%">✨ 납품본 만들기</button>
+    <div class="m" style="margin-top:6px">2~3분 뒤 보고서 탭 맨 위에 완성본이 떠요 → 복사해서 고객에게 보내기</div></div>
+  <h1 class="page">⚙️ 파이프라인</h1><p class="sub">영상 말고 다른 자동화 · 하고 싶은 일을 말하면 팀·스킬·일정까지 자동으로</p>
   <div class="quick">
     <button class="qbtn" data-cmd="daily" data-label="일일 자동운영"><span class="ico">⚙️</span>일일 자동운영</button>
     <button class="qbtn" data-cmd="blog" data-label="블로그 글"><span class="ico">📝</span>블로그 글</button>
@@ -670,9 +679,25 @@ function render() {
     "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
-const SHEETS = { newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+let KM = null;
+async function kmongSheet() {
+  try { KM = KM || await (await fetch("kmong/listings.json?t=" + Date.now())).json(); } catch { return "<h3>판매 글을 불러오지 못했어요</h3>"; }
+  const cp = (t, label) => `<button class="btn small ghost" data-copy="${esc(t)}">📋 ${label}</button>`;
+  return `<h3>🛒 크몽 판매 글</h3><ol class="steps-ol">${KM.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+    ${KM.items.map((x) => `<div class="card km"><img src="${esc(x.thumb)}" alt="썸네일 — 길게 눌러 저장" loading="lazy">
+      <div class="t wrap">${esc(x.title)}</div><div class="m">카테고리: ${esc(x.category)}</div>
+      <div class="btns">${cp(x.title, "제목")}${cp(x.tags.join(", "), "검색어")}</div>
+      ${x.packages.map((p) => `<div class="row" style="padding:6px 0"><span class="pill accent">${esc(p.name)}</span><div class="grow"><div class="t">${p.price.toLocaleString()}원 · ${esc(p.desc)}</div>
+        <div class="m">작업 ${p.days}일 · 수정 ${p.revisions}회</div></div>${cp(String(p.price), "가격")}</div>`).join("")}
+      <div class="note wrap">${esc(x.description).replace(/\n/g, "<br>")}</div>
+      <div class="btns">${cp(x.description, "설명 전체")}${cp(x.faq.map((f) => "Q. " + f[0] + "\nA. " + f[1]).join("\n\n"), "FAQ")}</div>
+      ${x.file ? `<a class="btn ghost small" style="margin-top:8px;display:block;text-align:center" href="${esc(x.file)}" target="_blank" rel="noopener">📕 판매할 PDF 받기</a>` : ""}</div>`).join("")}`;
+}
+const SHEETS = { kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
+  const sv = e.target.closest("[data-svc]");
+  if (sv) { sv.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("accent", b === sv)); return; }
   const gb = e.target.closest("[data-genre]");
   if (gb) { gb.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("accent", b === gb)); return; }
   const vid = e.target.closest("[data-video]");
@@ -683,6 +708,7 @@ document.addEventListener("click", (e) => {
   if (ds.close !== undefined) return closeSheet();
   if (ds.go) { closeSheet(); location.hash = ds.go; return; }
   if (ds.cmd) return dispatch(ds.cmd, "", ds.label);
+  if (ds.open === "kmong") { openSheet("<h3>불러오는 중…</h3>"); kmongSheet().then((h) => { $("#sheetBody").innerHTML = h; }); return; }
   if (ds.open) { if (D && !D.empty) openSheet(SHEETS[ds.open](ds.id)); else if (ds.open === "settings") openSheet(settingsSheet()); return; }
   if (ds.idea) return openSheet(ideaSheet(ds.idea));
   if (ds.errlog !== undefined) { const r = D.errors[+ds.errlog];
@@ -711,6 +737,11 @@ document.addEventListener("click", async (e) => {
     const type = $("#ltype .on").dataset.v, note = $("#lnote").value.trim().slice(0, 60);
     if (!iid || !(amt > 0)) return toast("사업과 금액을 확인해 주세요");
     dispatch(`biz log ${iid} --${type} ${amt} --currency ${cur}${note ? " --note " + q(note) : ""}`, "", "매출 기록");
+  }
+  if (id === "odBtn") {
+    const r = $("#odReq").value.trim(); if (!r) return toast("고객 요청을 붙여넣어 주세요");
+    const svc = $("#odSvc .accent")?.dataset.svc || "review";
+    dispatch(`order ${svc} ${q(r.slice(0, 6000))}`, "", "주문 납품본 만들기");
   }
   if (id === "stNew") {
     const lg = $("#stLog").value.trim(); if (!lg) return toast("한 줄 줄거리를 적어 주세요");

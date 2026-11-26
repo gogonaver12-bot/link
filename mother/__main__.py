@@ -156,6 +156,8 @@ def main(argv=None):
     st = sp.add_parser("story", help="AI 실사 스토리: story new \"로그라인\" [--genre 판타지] / story next <slug> / story list")
     st.add_argument("action", choices=["new", "next", "list"]); st.add_argument("arg", nargs="?", default="")
     st.add_argument("--genre", default=""); st.add_argument("--private", action="store_true")
+    od = sp.add_parser("order", help="크몽·숨고 주문 처리: order <blog|review|detail|translate|ppt> \"고객 요청\"")
+    od.add_argument("service"); od.add_argument("request")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     sp.add_parser("benchmark", help="유튜브 인기 AI 숏츠 수집(대본 참고용)")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
@@ -322,6 +324,9 @@ def main(argv=None):
             p(story.episode(b["slug"], x.private))
         else:
             p(story.episode(x.arg or (story.all_series() or [{}])[-1].get("slug", ""), x.private))
+    elif x.cmd == "order":
+        from . import orders
+        p(orders.make(x.service, x.request))
     elif x.cmd == "benchmark":
         from . import benchmark
         d = benchmark.refresh()

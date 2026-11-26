@@ -329,3 +329,10 @@ h1.page { font-size: 24px; margin: 6px 2px 2px; letter-spacing: -.02em; }
 .pv { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
 .pv-item { flex: 0 0 150px; } .pv-item video { width: 150px; aspect-ratio: 9 / 16; border-radius: 12px; background: #000; display: block; }
 .pv-item .t { font-size: 12px; margin-top: 6px; }
+
+/* 크몽 판매 */
+.money-card { border-color: color-mix(in srgb, var(--ok) 45%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--ok) 12%, var(--card)), var(--card)); }
+.km img { width: 100%; border-radius: 12px; display: block; margin-bottom: 10px; }
+.km .btns { grid-template-columns: 1fr 1fr; }
+#odSvc { margin-top: 10px; } #odSvc button { cursor: pointer; background: transparent; font: inherit; font-size: 12px; padding: 5px 10px; }
+#odReq { border-radius: 12px; border: 1px solid var(--line); background: var(--card2); color: var(--fg); padding: 10px; font: inherit; font-size: 14px; box-sizing: border-box; }

@@ -574,3 +574,17 @@ def test_story_json_repair():
     bad = '설명입니다 {"title": "A", "scenes": [{"speaker": "narrator", "line": "안녕",},], "tags": ["x",],} 끝'
     assert story.parse(bad)["scenes"][0]["line"] == "안녕"
     assert story.parse('{"a": [1, 2, ...], "b": “q”}')["a"] == [1, 2]
+
+
+def test_order_make(monkeypatch):
+    from mother import orders, providers as pv
+    monkeypatch.setattr(pv, "complete", lambda prompt, system="", agent="", spec=None: ("1. 방문해 주셔서 감사합니다!", "groq:test"))
+    out = orders.make("review", "리뷰 3개: 맛있어요 / 배달 늦음 / 친절해요, 가게 이름 행복분식")
+    assert "납품본 완성" in out
+    f = next((store.REPORTS / "orders").glob("*-review-*.md"))
+    assert "감사합니다" in f.read_text(encoding="utf-8")
+    assert "서비스 종류" in orders.make("nope", "x")
+    import json as _j
+    L = _j.loads((store.ROOT / "app" / "kmong" / "listings.json").read_text(encoding="utf-8"))
+    assert {i["id"] for i in L["items"]} >= {"review", "translate", "blog", "detail", "ebook"}
+    assert all((store.ROOT / "app" / i["thumb"]).exists() for i in L["items"])
