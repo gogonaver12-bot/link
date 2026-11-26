@@ -14,12 +14,14 @@ TOKEN, SECRET, LOG = ROOT / "token.json", ROOT / "client_secret.json", ROOT / "u
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googleapis.com/auth/youtube.readonly"]
 
 
-def yt():
+def yt(story=False):
     from google.oauth2.credentials import Credentials
     from google.auth.transport.requests import Request
     from googleapiclient.discovery import build
     import os
-    token = os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") or os.getenv("GOOGLE_OAUTH_REFRESH_TOKEN")  # 새 채널 토큰 우선
+    # 스토리(AI 실사 드라마)는 별도 채널 토큰 → 정보 숏츠는 F ai-LAB 토큰 → 없으면 기존 계정
+    token = ((os.getenv("YOUTUBE_STORY_REFRESH_TOKEN") if story else None)
+             or os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") or os.getenv("GOOGLE_OAUTH_REFRESH_TOKEN"))
     if token:  # 깃허브 Actions: Secrets 의 refresh token 사용 (브라우저 로그인 없음)
         creds = Credentials(None, refresh_token=token, token_uri="https://oauth2.googleapis.com/token",
                             client_id=os.environ["GOOGLE_OAUTH_CLIENT_ID"], client_secret=os.environ["GOOGLE_OAUTH_CLIENT_SECRET"])
@@ -41,14 +43,17 @@ def upload(path, private):
     meta = json.loads(Path(path).with_suffix(".json").read_text(encoding="utf-8"))
     title = meta["title"][:90] + " #shorts"
     import os
-    brand = os.getenv("CHANNEL_NAME", "")
-    desc = meta.get("description", "") + (f"\n\n🔬 {brand} — AI로 만드는 신기한 실험실 · 구독하고 매일 받아보기" if brand else "")
+    story = bool(meta.get("story"))
+    brand = os.getenv("STORY_CHANNEL_NAME" if story else "CHANNEL_NAME", "")
+    tail = (f"\n\n🎬 {brand} — 매일 이어지는 AI 실사 드라마 · 구독하고 다음 화 받아보기" if story
+            else f"\n\n🔬 {brand} — AI로 만드는 신기한 실험실 · 구독하고 매일 받아보기")
+    desc = meta.get("description", "") + (tail if brand else "")
     body = {"snippet": {"title": title, "description": desc,
                         "tags": meta.get("tags", []), "categoryId": "22", "defaultLanguage": "ko"},
             "status": {"privacyStatus": "private" if private else "public",
                        "selfDeclaredMadeForKids": bool(meta.get("made_for_kids")), "containsSyntheticMedia": True}}
     try:
-        r = yt().videos().insert(part="snippet,status", body=body,
+        r = yt(story).videos().insert(part="snippet,status", body=body,
                                  media_body=MediaFileUpload(path, resumable=True)).execute()
     except Exception as e:
         if "uploadLimitExceeded" in str(e) or "exceeded the number of videos" in str(e):
@@ -57,7 +62,8 @@ def upload(path, private):
     log = json.loads(LOG.read_text()) if LOG.exists() else []
     from datetime import date
     log.append({"id": r["id"], "file": Path(path).name, "title": meta["title"], "date": date.today().isoformat(),
-                "private": bool(private), "channel": "new" if os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") else "old",
+                "private": bool(private), "channel": ("story" if story and os.getenv("YOUTUBE_STORY_REFRESH_TOKEN") else
+                            "new" if os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") else "old"),
                 "cover": meta.get("cover", ""), "duration": meta.get("duration")})
     LOG.write_text(json.dumps(log, ensure_ascii=False, indent=2))
     print(f"✅ https://youtube.com/shorts/{r['id']}")

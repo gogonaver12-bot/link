@@ -395,6 +395,8 @@ function viewStory() {
   const imgUrl = (p) => `../${p.split("/").map(encodeURIComponent).join("/")}`;
   return `<div id="runbox">${runCard()}</div>${makeSeg("story")}<h1 class="page">🎭 AI 실사 스토리</h1>
   <p class="sub">인물 사진을 먼저 만들고 장면마다 같은 얼굴로 그려요 · 대본 Fable(없으면 무료 AI) · 그림 Gemini · 인물별 목소리</p>
+  ${(() => { const ch = (D.channels || []).find((c) => c.id === "youtube_story");
+    return ch ? `<div class="chips"><span class="pill ${ch.ready ? "ok" : "candidate"} ${ch.ready ? "" : "tap"}" ${ch.ready ? "" : 'data-open="storychan"'}>${ch.ready ? "✓ " + esc(ch.name) + " 연결됨" : "✗ 스토리 채널 미연결 → 비공개로 올림 (눌러서 방법 보기)"}</span></div>` : ""; })()}
   ${S.ai_images ? "" : `<div class="note">⚠️ AI 이미지가 꺼져 있어요</div>`}
   <div class="card"><div class="field" style="margin-top:0"><label>새 시리즈 — 한 줄 줄거리</label>
     <input id="stLog" maxlength="160" placeholder="예: 시골 소녀가 아무도 못 뽑던 바위 속 검을 뽑아버린다"></div>
@@ -464,7 +466,7 @@ function viewVideos() {
   ${V.length ? `<div class="vgrid">${V.map((v, k) => `<a class="vcard" href="https://youtube.com/shorts/${yid(v)}" target="_blank" rel="noopener noreferrer" data-video="${k}">
       <div class="thumb"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/${yid(v)}/oardefault.jpg" data-fb="https://i.ytimg.com/vi/${yid(v)}/hqdefault.jpg">
       ${v.private ? '<span class="badge">🔒 비공개</span>' : ""}<span class="views">▶ ${v.views.toLocaleString()}</span></div>
-      <div class="t clamp2">${esc(v.title)}</div><div class="m">❤ ${v.likes}${v.date ? " · " + esc(v.date.slice(5)) : ""}${v.channel === "new" ? " · F ai-LAB" : ""}</div></a>`).join("")}</div>`
+      <div class="t clamp2">${esc(v.title)}</div><div class="m">❤ ${v.likes}${v.date ? " · " + esc(v.date.slice(5)) : ""}${v.channel === "new" ? " · F ai-LAB" : v.channel === "story" ? " · 드라마 채널" : ""}</div></a>`).join("")}</div>`
     : empty("🎞️", "아직 올린 영상이 없어요", "영상제작에서 만들기를 눌러보세요", { attr: 'data-go="#make"', label: "🎬 영상 만들러 가기" })}
   <div class="btns"><a class="btn ghost" href="https://studio.youtube.com/" target="_blank" rel="noopener">📊 유튜브 스튜디오</a></div>`;
 }
@@ -528,6 +530,11 @@ function videoSheet(k) {
     <div class="btns"><a class="btn" href="https://youtube.com/shorts/${id}" target="_blank" rel="noopener">▶️ 유튜브 앱에서</a>
       <a class="btn ghost" href="https://studio.youtube.com/video/${id}/edit" target="_blank" rel="noopener">✏️ 스튜디오 수정</a></div>`;
 }
+const storyChanSheet = () => `<h3>🎬 AI 실사 드라마 채널 따로 만들기</h3><ol class="steps-ol">
+  <li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel_switcher">유튜브 채널 전환</a> → <b>채널 만들기</b> → 이름 정하기 (예: AI 실사 드라마)</li>
+  <li>PC에서 <b>C:\\link\\tools\\google_login\\google_login_story.bat</b> 더블클릭</li>
+  <li>브라우저에서 <b>방금 만든 드라마 채널</b> 선택 → 허용 → 끝</li></ol>
+  <p class="sub">정보 숏츠는 F ai-LAB, 움직이는 AI 드라마는 이 채널로 따로 올라가요. 채널 이름을 정하면 알려주세요(설명란 문구에 넣어요).</p>`;
 const newChanSheet = () => `<h3>📺 새 채널 F ai-LAB 연결</h3><ol class="steps-ol">
   <li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel_switcher">유튜브 채널 전환</a> → <b>채널 만들기</b> → 이름 <b>F ai-LAB</b></li>
   <li>PC에서 <b>C:\\link\\tools\\google_login\\google_login_youtube.bat</b> 더블클릭</li>
@@ -641,6 +648,7 @@ const KEYS = [
   ["🚀 자동 업로드 (가장 중요 · ROI 0% 해결)", [
     ["GOOGLE_OAUTH_CLIENT_ID", "구글 1회 연결 ①", "#google"], ["GOOGLE_OAUTH_CLIENT_SECRET", "구글 1회 연결 ②", "#google"],
     ["GOOGLE_OAUTH_REFRESH_TOKEN", "구글 1회 연결 ③", "#google"], ["BLOGGER_BLOG_ID", "blogger.com 내 블로그 주소의 blogID 숫자", "https://www.blogger.com/"],
+    ["YOUTUBE_STORY_REFRESH_TOKEN", "AI 실사 드라마 채널 전용 · PC에서 google_login_story.bat 실행하면 자동 저장", "https://www.youtube.com/channel_switcher"],
     ["YOUTUBE_OAUTH_REFRESH_TOKEN", "새 채널(F ai-LAB) 전용 · PC에서 google_login_youtube.bat 실행하면 자동 저장", "https://www.youtube.com/channel_switcher"]]],
   ["🆓 무료 AI (막히면 자동 전환)", [
     ["GEMINI_API_KEY", "Get API key → Create", "https://aistudio.google.com/apikey"], ["GROQ_API_KEY", "Create API Key", "https://console.groq.com/keys"],
@@ -734,7 +742,7 @@ async function kmongSheet() {
 const hubSheet = () => `<h3>🔎 통합 검색</h3><p class="sub" style="margin:0">이미 있는 스킬·프롬프트·에이전트부터 찾고, 없으면 skills.sh(설치 수 순)·깃허브·웹까지 찾아요</p>
   <div class="field"><input id="hubQ" maxlength="120" placeholder="예: 블로그 글 상위노출 / 영상 대본 훅 / 엑셀 자동화"></div>
   <button class="btn" id="hubBtn" style="width:100%">검색</button><p class="sub">1~2분 뒤 홈 '최근 명령 결과'에서 결과를 눌러 보세요</p>`;
-const SHEETS = { hubsearch: hubSheet, kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
+const SHEETS = { storychan: storyChanSheet, hubsearch: hubSheet, kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
   const sv = e.target.closest("[data-svc]");

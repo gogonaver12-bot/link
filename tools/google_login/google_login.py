@@ -18,8 +18,9 @@ HERE = Path(__file__).resolve().parent
 
 
 def main():
-    youtube_only = "--youtube" in sys.argv  # 새 유튜브 채널(브랜드 계정) 전용 연결
-    args = [a for a in sys.argv[1:] if a != "--youtube"]
+    story = "--story" in sys.argv  # AI 실사 드라마 전용 채널
+    youtube_only = story or "--youtube" in sys.argv  # 새 유튜브 채널(브랜드 계정) 전용 연결
+    args = [a for a in sys.argv[1:] if a not in ("--youtube", "--story")]
     scopes = SCOPES[:2] if youtube_only else SCOPES
     secret_file = Path(args[0]) if args else HERE / "client_secret.json"
     if not secret_file.exists():
@@ -30,7 +31,7 @@ def main():
     from google_auth_oauthlib.flow import InstalledAppFlow
     from googleapiclient.discovery import build
 
-    print("브라우저가 열리면 " + ("업로드할 새 채널(예: F ai-LAB)을 선택" if youtube_only else "내 구글 계정 선택")
+    print("브라우저가 열리면 " + ("AI 실사 드라마 채널을 선택" if story else "업로드할 새 채널(예: F ai-LAB)을 선택" if youtube_only else "내 구글 계정 선택")
           + " → (확인되지 않은 앱 경고가 나오면 '고급' → '이동') → 허용")
     flow = InstalledAppFlow.from_client_secrets_file(str(secret_file), scopes)
     creds = flow.run_local_server(port=0, prompt="consent", access_type="offline")
@@ -42,7 +43,7 @@ def main():
     ch = build("youtube", "v3", credentials=creds, cache_discovery=False).channels().list(part="snippet", mine=True).execute()
     channel = ch["items"][0]["snippet"]["title"] if ch.get("items") else "(유튜브 채널 없음 — youtube.com 에서 채널 만들기)"
     if youtube_only:
-        blogs, values = [], {"YOUTUBE_OAUTH_REFRESH_TOKEN": creds.refresh_token}
+        blogs, values = [], {("YOUTUBE_STORY_REFRESH_TOKEN" if story else "YOUTUBE_OAUTH_REFRESH_TOKEN"): creds.refresh_token}
     else:
         blogs = build("blogger", "v3", credentials=creds, cache_discovery=False).blogs().listByUser(userId="self").execute().get("items", [])
         values = {"GOOGLE_OAUTH_CLIENT_ID": client.get("client_id", ""), "GOOGLE_OAUTH_CLIENT_SECRET": client.get("client_secret", ""),
