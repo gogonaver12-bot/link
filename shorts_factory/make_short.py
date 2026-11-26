@@ -145,6 +145,16 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
                 "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
             segs.append(seg); start = end
             continue
+        if scene_clips and c.suffix.lower() == ".mp4":  # 스토리: AI로 움직인 장면 — 대사 길이에 맞춰 천천히 늘이고(최대 2배) 모자라면 반복
+            L = max(0.5, dur(c))
+            k = min(2.0, max(1.0, d / L))
+            look = (f"eq=contrast=1.07:brightness=-0.03:saturation=1.12,vignette=PI/5,noise=alls=5:allf=t,"
+                    f"fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
+            sh(["ffmpeg", "-y", "-stream_loop", "-1", "-i", c, "-t", f"{d:.2f}",
+                "-vf", f"setpts={k:.3f}*PTS,scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30,unsharp=5:5:0.6,{look}",
+                "-frames:v", str(frames), "-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
+            segs.append(seg); start = end
+            continue
         L = dur(c)  # 앞뒤 20%(제목/자막 카드 많음) 건너뜀
         off = random.uniform(L * 0.2, max(L * 0.2, L * 0.8 - d))
         zoom = f"zoompan=z='1.25+0.0012*on':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={W}x{H}:fps=30"

@@ -613,6 +613,7 @@ const KEYS = [
     ["PEXELS_API_KEY", "고화질 세로 실사 영상 · 무료", "https://www.pexels.com/api/new/"],
     ["PIXABAY_API_KEY", "실사 영상 · 무료 (Pexels 신규 발급 중단 → 이것 추천)", "https://pixabay.com/api/docs/"],
     ["AUDIO_KEY", "배경음악·효과음 · PC에서 audio_pack.bat 실행하면 자동 저장 (유튜브 오디오 보관함)", "https://studio.youtube.com/"],
+    ["HF_TOKEN", "사진→움직이는 영상(무료) · huggingface.co 가입 → Settings → Access Tokens → Create(Read)", "https://huggingface.co/settings/tokens"],
     ["POLLINATIONS_TOKEN", "무료 이미지 AI · 로고 없이·더 빠르게 (선택, 없어도 무료로 그림)", "https://auth.pollinations.ai/"],
     ["GEMINI_API_KEY", "AI 영상·이미지도 이 키로 만듦 (AI Studio에서 결제 연결해야 영상 가능 · 월 $5 한도)", "https://aistudio.google.com/usage"]]],
   ["⭐ 품질·분석 (선택)", [

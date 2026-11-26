@@ -588,3 +588,17 @@ def test_order_make(monkeypatch):
     L = _j.loads((store.ROOT / "app" / "kmong" / "listings.json").read_text(encoding="utf-8"))
     assert {i["id"] for i in L["items"]} >= {"review", "translate", "blog", "detail", "ebook"}
     assert all((store.ROOT / "app" / i["thumb"]).exists() for i in L["items"])
+
+
+def test_hfvideo_quota_fallback(monkeypatch, tmp_path):
+    import sys, types
+    sys.path.insert(0, str(store.ROOT / "shorts_factory"))
+    import hfvideo
+    class Boom:
+        def __init__(self, *a, **k): pass
+        def predict(self, **k): raise RuntimeError("You have exceeded your ZeroGPU quota")
+    fake = types.ModuleType("gradio_client"); fake.Client = Boom; fake.handle_file = lambda p: p
+    monkeypatch.setitem(sys.modules, "gradio_client", fake)
+    monkeypatch.setattr(hfvideo, "_dead", set()); monkeypatch.setattr(hfvideo, "_quota", {"out": False})
+    img = tmp_path / "a.jpg"; img.write_bytes(b"x")
+    assert hfvideo.animate(img, "girl smiles", tmp_path / "a.mp4") is None and hfvideo._quota["out"]  # 사용량 끝 → 사진 줌으로 대체
