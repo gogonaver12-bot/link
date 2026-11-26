@@ -19,8 +19,9 @@ VOICES = {  # edge-tts 목소리|음높이|속도
     "male": "ko-KR-InJoonNeural|+0Hz|+5%", "boy": "ko-KR-InJoonNeural|+35Hz|+10%",
     "old_male": "ko-KR-InJoonNeural|-20Hz|-6%", "old_female": "ko-KR-SunHiNeural|-15Hz|-6%",
 }
-STYLE = ("photorealistic live-action film still, cinematic lighting, 35mm lens, shallow depth of field, realistic skin texture, "
-         "vertical 9:16 composition with the subject in the upper two-thirds, no text, no letters, no watermark")
+STYLE = ("photorealistic live-action K-drama film still, shot on ARRI Alexa, 35mm anamorphic lens, cinematic lighting with soft key light "
+         "and rim light, shallow depth of field, ultra detailed, sharp focus on the eyes, realistic skin texture, natural color grading, "
+         "vertical 9:16 composition with the subject in the upper two-thirds, no text, no letters, no watermark, no cartoon, no 3d render")
 RULES = ("규칙: 오리지널 캐릭터만 — 기존 작품·캐릭터의 이름·외모·설정을 쓰지 않는다(공공 영역 전설·신화는 가능, "
          "SCP 재단 소재는 CC BY-SA 출처 표기). 실존 인물·혐오·선정적 묘사 금지. 대사는 짧고 자연스러운 한국어.")
 
