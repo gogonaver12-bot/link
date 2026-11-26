@@ -18,3 +18,8 @@
 - `mother/` 마더 에이전트(CEO·팀·사업·AI 16종 라우터) · `agents/*.yaml` 팀 · `config.yaml` 설정
 - `shorts_factory/` 숏츠 자동 제작 · `jarvis/jobs.json` 작업큐 · `data/` 장부·평가·에러 · `reports/` 결과
 - 예정: PC 버전(`jarvis-ai-hub`, 윈도우 로컬 데이터)을 이 저장소로 통합. 데이터는 `data/` 형식으로 가져오고, 기능은 `mother/` 모듈로 합친다.
+
+## 통합 스킬·프롬프트·에이전트 (모든 세션 공통)
+- 회사 스킬은 `skills/*.md`, 에이전트는 `agents/*.yaml`가 원본이다. `python -m mother hub`(또는 매일 자동)로 `.claude/skills/`·`.claude/agents/`에 묶여, 이 저장소를 여는 모든 세션이 자동으로 쓴다. `.claude/` 자동 생성본은 직접 고치지 말고 원본을 고친다.
+- 일을 시작하기 전에 `python -m mother search all "할 일"`로 이미 있는 스킬·에이전트부터 찾고, 없을 때만 skills.sh(공식 출처·설치 1,000+ 우선)에서 하나만 가져온다. 목록: `skills/INDEX.md`.
+- 다른 저장소(jarvis-ai-hub 등)는 비공개다. 이 저장소는 공개이므로 그쪽 원문을 복사하지 않고 위치만 참조한다.

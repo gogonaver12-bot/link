@@ -122,7 +122,7 @@ def main(argv=None):
     ag.add_argument("--force", action="store_true")
 
     s = sp.add_parser("search", help="LLM 없이 바로 검색 (토큰 0)")
-    s.add_argument("kind", choices=["google", "github", "skills", "prompts", "agents", "code", "youtube", "trending"])
+    s.add_argument("kind", choices=["all", "google", "github", "skills", "prompts", "agents", "code", "youtube", "trending"])
     s.add_argument("query", nargs="?", default="")
     s.add_argument("--region", default="KR"); s.add_argument("--lang", default="ko")
     sp.add_parser("crawl", help="페이지 크롤링 (토큰 0)").add_argument("url")
@@ -158,6 +158,7 @@ def main(argv=None):
     st.add_argument("--genre", default=""); st.add_argument("--private", action="store_true")
     od = sp.add_parser("order", help="크몽·숨고 주문 처리: order <blog|review|detail|translate|ppt> \"고객 요청\"")
     od.add_argument("service"); od.add_argument("request")
+    sp.add_parser("hub", help="스킬·프롬프트·에이전트를 .claude/ 로 묶어 모든 세션이 쓰게 함")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     sp.add_parser("benchmark", help="유튜브 인기 AI 숏츠 수집(대본 참고용)")
     mk = sp.add_parser("make", help="사업 아이디어 → 판매용 상품(원고·PDF·판매페이지) 자동 제작")
@@ -196,7 +197,10 @@ def main(argv=None):
             p(f"{x.name} ← 스킬 {x.arg}")
     elif x.cmd == "search":
         k, q = x.kind, x.query
-        if k == "google":
+        if k == "all":  # 통합 검색: 이미 있는 스킬·프롬프트·에이전트 → skills.sh → 깃허브 → 웹
+            from . import hub
+            p(hub.find(q))
+        elif k == "google":
             p(tools.google_search(q, x.lang, x.region))
         elif k in ("github", "code"):
             p(tools.github_search(q, "repos" if k == "github" else "code"))
@@ -328,6 +332,9 @@ def main(argv=None):
     elif x.cmd == "order":
         from . import orders
         p(orders.make(x.service, x.request))
+    elif x.cmd == "hub":
+        from . import hub
+        p(hub.sync_claude())
     elif x.cmd == "benchmark":
         from . import benchmark
         d = benchmark.refresh()
@@ -353,6 +360,11 @@ def main(argv=None):
         from . import dashboard
         d = dashboard.build()
         p(f"앱 데이터 갱신: 사업 {len(d['ideas'])} · 팀 {len(d['team'])} · 보고서 {len(d['reports'])}")
+        try:  # 새로 생긴 스킬·에이전트도 모든 세션에 바로 반영
+            from . import hub
+            p(hub.sync_claude())
+        except Exception as e:
+            p(f"(스킬 통합 건너뜀: {e})")
 
 
 RETRYABLE = ("Timeout", "ConnectionError", "APIConnectionError", "RateLimitError", "InternalServerError",
