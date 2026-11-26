@@ -11,12 +11,12 @@ import yaml
 from . import store
 
 ROOT = store.ROOT
-OTHER_REPOS = {  # 비공개 저장소: 원문은 공개 저장소(link)로 복사하지 않고 위치만 안내
-    "gogonaver12-bot/jarvis-ai-hub": "PC 버전 — jarvis/prompts.py(프롬프트 슬롯·자동 튜닝), docs/CHATGPT_PROMPT.md, docs/CODEX_PROMPT.md",
-    "gogonaver12-bot/JARVIS-VIDEO-FACTORY": "영상 공장 — AGENTS.md, GEMINI.md, docs/PROMPT_DNA.md",
-    "gogonaver12-bot/ai-collaboration-starter": "AI 협업 — AGENTS.md, CLAUDE.md, GEMINI.md, PROMPTS.md(웹 채팅용 복사 프롬프트)",
-    "gogonaver12-bot/jarvis": "자비스 — skillscore.py",
-    "gogonaver12-bot/JARVIS-DOT-COMPANY-RPG": "도트 회사 RPG",
+OTHER_REPOS = {  # 다른 저장소의 프롬프트는 사용자 승인(2026-11-26)으로 prompts/<저장소>/ 에 통합됨
+    "gogonaver12-bot/jarvis-ai-hub": "→ prompts/jarvis-ai-hub/ (프롬프트 슬롯·토큰 절약 프리셋·ChatGPT 연구·Codex 구현)",
+    "gogonaver12-bot/JARVIS-VIDEO-FACTORY": "→ prompts/jarvis-video-factory/ (에이전트 규칙·Gemini 규칙·프롬프트 DNA)",
+    "gogonaver12-bot/ai-collaboration-starter": "→ prompts/ai-collaboration-starter/ (웹 채팅용 복사 프롬프트·AI별 규칙)",
+    "gogonaver12-bot/jarvis": "→ mother/skillscore.py (훅 채점기, 이미 통합)",
+    "gogonaver12-bot/JARVIS-DOT-COMPANY-RPG": "프롬프트 파일 없음",
 }
 
 
@@ -46,9 +46,11 @@ def local_assets():
         t = f.read_text(encoding="utf-8")
         fm = _front(t)
         out.append({"kind": "스킬", "name": f.stem, "desc": str(fm.get("description") or _first_line(t))[:300], "path": f"skills/{f.name}", "text": t})
-    for f in sorted((ROOT / "prompts").glob("*.md")):
+    for f in sorted((ROOT / "prompts").rglob("*.md")):  # prompts/<저장소>/… 까지 (다른 저장소에서 통합한 것 포함)
         t = f.read_text(encoding="utf-8")
-        out.append({"kind": "프롬프트", "name": f.stem, "desc": _first_line(t), "path": f"prompts/{f.name}", "text": t})
+        rel = f.relative_to(ROOT / "prompts")
+        name = f.stem if len(rel.parts) == 1 else f"{rel.parts[0]}-{f.stem}"
+        out.append({"kind": "프롬프트", "name": name, "desc": _first_line(t), "path": f"prompts/{rel.as_posix()}", "text": t})
     for f in sorted((ROOT / "agents").glob("*.yaml")):
         s = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
         out.append({"kind": "에이전트", "name": f.stem, "desc": f"{s.get('title', f.stem)} — {str(s.get('system', ''))[:160]}",
@@ -85,7 +87,7 @@ def find(q, remote=True):
             lines += ["", "## 🔎 웹", web.strip()[:1200]]
         except Exception:
             pass
-    lines += ["", "## 🔒 다른(비공개) 저장소 — 원문은 각 저장소에서 사용"]
+    lines += ["", "## 🔗 다른 저장소에서 통합한 것"]
     lines += [f"- {r}: {d}" for r, d in OTHER_REPOS.items()]
     return "\n".join(lines)
 
@@ -101,13 +103,16 @@ def sync_claude():
     ag_dir.mkdir(parents=True, exist_ok=True)
     made, keep_s, keep_a = [], set(), set()
     assets = local_assets()
-    for a in [x for x in assets if x["kind"] in ("스킬", "프롬프트")]:
+    # 다른 저장소의 '규칙' 파일(브랜치·폴더 규칙 등)은 이 저장소 세션과 충돌할 수 있어 자동 스킬에서 빼고 검색으로만 씀
+    for a in [x for x in assets if x["kind"] in ("스킬", "프롬프트") and not x["name"].endswith("-rules")]:
         name = _slug(a["name"])
         keep_s.add(name)
         body = re.sub(r"^\s*(?:<!--.*?-->\s*)*---\n.*?\n---\n", "", a["text"], count=1, flags=re.S)
         src = re.search(r"<!--\s*(source:[^>]*)-->", a["text"])
         lic = re.search(r"<!--\s*(license:[^>]*)-->", a["text"])
         desc = a["desc"].replace("\n", " ").replace('"', "'")[:900] or f"회사 {a['kind']} {a['name']}"
+        if a["path"].count("/") > 1:  # prompts/<저장소>/… = 다른 저장소에서 통합한 참고 프롬프트
+            desc = f"[참고 프롬프트 · {a['path'].split('/')[1]}] {desc} — 필요할 때 복사해서 쓰는 문안(이 저장소 작업 규칙보다 우선하지 않음)"
         d = sk_dir / name
         d.mkdir(exist_ok=True)
         (d / "SKILL.md").write_text(

@@ -10,7 +10,17 @@
 - **video_prompt_dna** — 영상 장면 프롬프트 규칙 (AI 영상·배경 생성용) (`skills/video_prompt_dna.md`)
 
 ## 프롬프트
+- **ai-collaboration-starter-agents-rules** — Shared project rules (`prompts/ai-collaboration-starter/agents-rules.md`)
+- **ai-collaboration-starter-claude-rules** — Claude Code (`prompts/ai-collaboration-starter/claude-rules.md`)
+- **ai-collaboration-starter-gemini-rules** — Gemini CLI (`prompts/ai-collaboration-starter/gemini-rules.md`)
+- **ai-collaboration-starter-web-chat-prompts** — Claude · Gemini 웹용 복사 프롬프트 (`prompts/ai-collaboration-starter/web-chat-prompts.md`)
 - **company-work-prompts** — 회사 업무용 프롬프트 모음 (ChatGPT·Gemini·Claude 공용) (`prompts/company-work-prompts.md`)
+- **jarvis-ai-hub-chatgpt-prompt-research** — ChatGPT용 작업 프롬프트 — 프롬프트 자동 연구·개선 (`prompts/jarvis-ai-hub/chatgpt-prompt-research.md`)
+- **jarvis-ai-hub-codex-implementer** — Codex 실행 프롬프트 (복사해서 사용) (`prompts/jarvis-ai-hub/codex-implementer.md`)
+- **jarvis-ai-hub-prompt-slots** — JARVIS AI HUB 프롬프트 슬롯 (PC 버전에서 가져옴) (`prompts/jarvis-ai-hub/prompt-slots.md`)
+- **jarvis-video-factory-agents-rules** — JARVIS Codex instructions (`prompts/jarvis-video-factory/agents-rules.md`)
+- **jarvis-video-factory-gemini-rules** — JARVIS — Gemini CLI project instructions (`prompts/jarvis-video-factory/gemini-rules.md`)
+- **jarvis-video-factory-prompt-dna** — JARVIS Production Prompt DNA (`prompts/jarvis-video-factory/prompt-dna.md`)
 
 ## 에이전트
 - **analyst** — 재무·성과분석팀 — 매출·비용·ROI 수치를 분석해 확장/개선/중단을 판단하고 근거와 다음 실험 1개를 제안. (`agents/analyst.yaml`)
