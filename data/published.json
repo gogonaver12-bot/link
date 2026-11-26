@@ -4,7 +4,8 @@
     "/home/runner/work/link/link/workspace/products/I0001/02-2장-기획서-보고서-작성-10분-만에-끝내는-법.md",
     "/home/runner/work/link/link/workspace/products/I0001/03-3장-이메일-작성-및-비즈니스-커뮤니케이션-자동화.md",
     "/home/runner/work/link/link/workspace/products/I0001/04-4장-데이터-분석-및-엑셀-Excel-스프레드시트-200-활용.md",
-    "/home/runner/work/link/link/workspace/products/I0001/05-5장-마케팅-문구-및-블로그-SNS-콘텐츠-대량-생산.md"
+    "/home/runner/work/link/link/workspace/products/I0001/05-5장-마케팅-문구-및-블로그-SNS-콘텐츠-대량-생산.md",
+    "/home/runner/work/link/link/workspace/products/I0001/06-6장-업무-시간을-반으로-줄여주는-나만의-맞춤형-GPT-설정법.md"
   ],
   "shorts": [
     "001",
@@ -15,7 +16,8 @@
     "006",
     "007",
     "014",
-    "015"
+    "015",
+    "story-farm-girl-sword-ep01"
   ],
   "blog_posted": [
     {
@@ -27,6 +29,11 @@
       "date": "2026-11-25",
       "title": "유튜브·블로그·인스타그램, AI 한 번에 제작하는 방법은?",
       "url": "https://bigdataupdate12.blogspot.com/2026/11/ai.html"
+    },
+    {
+      "date": "2026-11-26",
+      "title": "챗GPT 야근을 부르는 반복 지시, 커스텀 인스트럭션으로 3분 만에 끝내는 법",
+      "url": "https://bigdataupdate12.blogspot.com/2026/11/gpt-3.html"
     }
   ]
 }

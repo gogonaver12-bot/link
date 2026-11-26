@@ -1,15 +1,11 @@
 {
- "updated": "2026-11-25T19:00:57+00:00",
+ "updated": "2026-11-26T03:56:54+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
   "daily": 3.0,
   "today": 0.0,
   "days": [
-   {
-    "d": "2026-11-12",
-    "usd": 0.0
-   },
    {
     "d": "2026-11-13",
     "usd": 0.0
@@ -60,6 +56,10 @@
    },
    {
     "d": "2026-11-25",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-26",
     "usd": 0.0
    }
   ],
@@ -173,7 +173,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -249,7 +249,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -351,7 +351,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -436,7 +436,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -593,7 +593,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -669,7 +669,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -827,7 +827,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 2
+    "age": 3
    }
   },
   {
@@ -1442,6 +1442,137 @@
     "disagreement": 0.0
    },
    "metrics": null
+  },
+  {
+   "id": "I0018",
+   "title": "무료 오픈소스 AI 기반 맞춤형 자소서 첨삭 에이전트",
+   "market": "취업 준비생 및 이직 준비자 시장",
+   "platform": "웹 서비스 (Streamlit / Vercel)",
+   "model": "프리미엄(기본 무료, 심층 분석 및 면접 질문 생성 유료화)",
+   "first_step": "Hugging Face의 무료 오픈소스 LLM(예: Llama 3)을 활용하여 자소서 교정 프롬프트를 테스트하는 파이썬 스크립트 작성",
+   "evidence": "취업난 가중으로 AI 자소서 첨삭 수요 급증, 유료 API 비용 부담을 줄인 무료 오픈소스 활용 서비스의 가격 경쟁력 부각",
+   "scores": {
+    "demand": 85,
+    "low_competition": 60,
+    "low_cost": 95,
+    "speed_to_revenue": 70,
+    "scalability": 80,
+    "low_risk": 90
+   },
+   "score": 79.5,
+   "status": "killed",
+   "created": "2026-11-26",
+   "started": null,
+   "last_review": null,
+   "product": null,
+   "killed_by": "생존 테스트",
+   "version": null,
+   "upgrades": [
+    {
+     "date": "2026-11-26",
+     "round": 1,
+     "title": "국내 외국계 기업 및 해외 취업 준비생 타깃 영문/국문 듀얼 이력서·면접 패키지 월 구독 서비스",
+     "changes": [
+      "가격을 건당 $3.00에서 월 $19.00 구독 패키지로 인상",
+      "타깃을 범용 취준생에서 국내 외국계 기업 및 해외 취업 준비생으로 좁혀 차별화",
+      "초기 서버 고정비를 Vercel 무료 티어 및 API 종량제(건당 $0.5 이하)로 최적화하여 90일 내 손익분기점 달성 설계"
+     ],
+     "fix_why": "기존 $3.00의 너무 낮은 단가와 비용 구조를 월 $19.00 구독 모델로 고치고, 경쟁이 심한 범용 시장 대신 외국계/해외 취업이라는 틈새 타깃에 집중하여 유료 전환율과 마진을 높여 탈락 원인을 해결함",
+     "diagnosis": [
+      "가격 $3.00 — 너무 낮아 팔아도 남는 게 없음",
+      "비용(초기 $50 + 월 $30)이 예상 매출 $78보다 큼",
+      "경쟁 심함 — 틈새(나라·언어·대상) 필요",
+      "자리 잡는 데 120일 — 90일 안에 회수 어려움"
+     ],
+     "result": "흑자 확률 4% · 90일 ROI 중앙값 -96% (기준 40%·+30%)",
+     "pass": false,
+     "adopted": false
+    },
+    {
+     "date": "2026-11-26",
+     "round": 2,
+     "title": "국내 IT 대기업·스타트업 현직자 이직 전용 익명 AI 레퍼런스 체크 및 경력 기술서 역공학 첨삭 패키지",
+     "changes": [
+      "단가 $3.00에서 $15.00(건당) 및 $29.00(구독)으로 단가 5배 인상",
+      "취준생 대신 구매력이 확실한 '3~7년 차 IT 이직 준비자'로 타깃 변경",
+      "단순 자소서 교정이 아닌 '직무별 합격 이력서 역공학 분석'으로 기능 차별화",
+      "Vercel 및 서버리스 아키텍처 도입으로 고정 서버 비용을 월 $15 이하로 감축"
+     ],
+     "fix_why": "기존 $3.00의 저단가와 범용 취준생 타깃으로는 범용 LLM과의 경쟁에서 버틸 수 없었으나, 3~7년 차 IT 이직자로 타깃을 좁히고 단가를 $15 이상으로 현실화하여 마진율을 확보함. 또한 이직 시장의 높은 지불 의향을 활용해 90일 내 손익분기점 달성 및 흑자 확률 기준을 충족함.",
+     "diagnosis": [
+      "가격 $3.00 — 너무 낮아 팔아도 남는 게 없음",
+      "비용(초기 $50 + 월 $30)이 예상 매출 $78보다 큼",
+      "경쟁 심함 — 틈새(나라·언어·대상) 필요",
+      "자리 잡는 데 120일 — 90일 안에 회수 어려움"
+     ],
+     "result": "흑자 확률 1% · 90일 ROI 중앙값 -92% (기준 40%·+30%)",
+     "pass": false,
+     "adopted": false
+    }
+   ],
+   "viability": {
+    "date": "2026-11-26",
+    "pass": false,
+    "hold": false,
+    "why": "흑자 확률 28% · 90일 ROI 중앙값 -49% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.282,
+     "roi_p10": -0.89,
+     "roi_p50": -0.49,
+     "roi_p90": 1.09,
+     "rev30_p50": 9.0,
+     "rev_p10": 15.0,
+     "rev_p50": 78.0,
+     "rev_p90": 426.0,
+     "breakeven_p50": 91
+    },
+    "estimates": [
+     {
+      "model": "gemini:gemini-flash-lite-latest",
+      "role": "중립 심사역",
+      "price_usd": 3.75,
+      "conv_rate_pct": 1.5,
+      "visitors_low": 50,
+      "visitors_high": 200
+     },
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 3,
+      "conv_rate_pct": 0.8,
+      "visitors_low": 150,
+      "visitors_high": 400
+     },
+     {
+      "model": "groq:qwen/qwen3.8-27b",
+      "role": "낙관 분석가",
+      "price_usd": 1.5,
+      "conv_rate_pct": 3.5,
+      "visitors_low": 40,
+      "visitors_high": 150
+     }
+    ],
+    "risks": [
+     "ChatGPT 및 Claude 등 범용 LLM 무료 제공으로 인한 유료 결제 전환율 저하",
+     "단순 프롬프트 래퍼 형태 서비스에 대한 시장의 낮은 차별화 인식",
+     "API 비용 및 오픈소스 모델 자가 호스팅 시 발생하는 인프라 관리 리스크",
+     "취업 시즌(상/하반기) 외의 극심한 트래픽 계절성 변동",
+     "API 비용 급증",
+     "무료 대체 서비스와의 경쟁"
+    ],
+    "evidence": [
+     "기존 AI 자소서 서비스 가격대 월 1만 원~3만 원대(USD 환산 약 7.5~22.5불, 건당 모델 고려해 보수적 산정)",
+     "오픈소스 LLM 및 무료 인프라(Streamlit/Vercel) 활용 시 서버 고정비 절감 가능 [출처: 플래텀](https://platum.kr/archives/299455?utm_source=rss&utm_medium=rss&utm_campaign=%25ed%2581%25ac%25eb%259e%2598%25ed%2594%2584%25ed%2586%25a4-%25ec%259e%2594%25ec%25b2%25b4-%25ea%25b0%259c%25eb%25b0%259c-llm-%25eb%259d%25ec%2598%25a8-1-%25eb%25af%25b8%25eb%258b%2588-%25ec%25a0%2595%25ec%258b%259c-%25ec%25b6%259c%25ec%2583%2581%25ec%2597%2585%25ec%25a0%2581)",
+     "플래텀 기사: https://platum.kr/archives/299455?utm_source=rss&utm_medium=rss&utm_campaign=%25ed%2581%25ac%25eb%259e%2598%25ed%2594%2584%25ed%2586%25a4-%25ec%259e%2590%25ec%25b2%25b4-%25ea%25b0%259c%25eb%25b0%259c-llm-%25eb%259d%25ec%2598%25a8-1-%25eb%25af%25b8%25eb%258b%2588-%25ec%25a0%2595%25ec%258b%259c-%25ec%25b6%259c%25ec%258b%259c-%25ec%2583%2581%25ec%2597%2585%25ec%25a0%2581",
+     "시장 조사: 국내 취업/이직 커뮤니티(블라인드, 잡코리아)에서 AI 자소서 첨삭 검색량 지속적 존재 (비공개 데이터 기반)",
+     "경쟁사 가격대: 자소설닷컴 에디터, 인크루트 피어 등 월 10,000~30,000원 또는 건당 결제 모델 (약 $8~$24) 참고",
+     "경쟁사(인크루트 등)의 월정액 1-3만 원 모델 대비 건당 결제 모델의 장벽 높음 분석"
+    ],
+    "disagreement": 0.69
+   },
+   "metrics": null
   }
  ],
  "team": [
@@ -1459,7 +1590,7 @@
   {
    "name": "content_creator",
    "title": "콘텐츠 제작팀",
-   "version": 1,
+   "version": 2,
    "tools": [
     "save_file",
     "hook_score"
@@ -1476,7 +1607,7 @@
   {
    "name": "developer",
    "title": "개발팀",
-   "version": 1,
+   "version": 2,
    "tools": [
     "github_search",
     "github_read",
@@ -1491,7 +1622,7 @@
   {
    "name": "github_scout",
    "title": "오픈소스·프롬프트 탐색팀",
-   "version": 1,
+   "version": 2,
    "tools": [
     "github_search",
     "github_read",
@@ -1535,7 +1666,7 @@
   {
    "name": "researcher",
    "title": "시장조사팀",
-   "version": 1,
+   "version": 2,
    "tools": [
     "web_search",
     "crawl",
@@ -1701,52 +1832,81 @@
  ],
  "reports": [
   {
-   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
-   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-25T18:43+00:00"
-  },
-  {
-   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
-   "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-25T18:43+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-25T18:43+00:00"
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-26T03:56+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-25T18:43+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-25.md",
-   "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-25T18:43+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-24.md",
-   "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-25T18:43+00:00"
+   "date": "2026-11-26T03:45+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-25T18:43+00:00"
+   "date": "2026-11-26T03:45+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-24.md",
+   "title": "일일 리포트 2026-11-24",
+   "date": "2026-11-26T03:45+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-25T18:43+00:00"
+   "date": "2026-11-26T03:45+00:00"
+  },
+  {
+   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-26T03:45+00:00"
+  },
+  {
+   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
+   "title": "매일 업데이트및 영상확인",
+   "date": "2026-11-26T03:45+00:00"
+  },
+  {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-26T03:45+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-25.md",
+   "title": "일일 리포트 2026-11-25",
+   "date": "2026-11-26T03:45+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-25T18:43+00:00"
+   "date": "2026-11-26T03:45+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-26T03:47:57+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 국내 IT 대기업·스타트업 현직자 이직 전용 익명 AI 레퍼런스 체크 및 경력 기술서 역공학 첨삭 패키지 (KR/웹 서비스 (Next.js / Supabase / Vercel), 건당 $15.00 단건 결제 및 월 $29.00의 무제한 첨삭 구독 모델 (오픈소스 LLM 앙상블 및 자체 파인튜닝 모델 활용))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-26T03:47:29+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 국내 외국계 기업 및 해외 취업 준비생 타깃 영문/국문 듀얼 이력서·면접 패키지 월 구독 서비스 (KR/Web (Next.js / Vercel), 심층 첨삭 및 모의 면접 질문 3회 패키지 월 $19.00 구독 모델)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-26T03:47:08+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 AI 기반 맞춤형 자소서 첨삭 에이전트 (취업 준비생 및 이직 준비자 시장/웹 서비스 (Streamlit / Vercel), 프리미엄(기본 무료, 심층 분석 및 면접 질문 생성 유료화))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-26T03:46:57+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n네이버 검색 알고리즘 및 블로그 정책 변동\n- 2026-11-23 소상공인 맞춤형 AI 블로그·인스타 마케팅 콘텐츠 대행(국내 지역 소상공인(식당, 뷰티, 학원 등)): 시뮬레이션 탈락 — 흑자 확률 0% · 90일 ROI 중앙값 -91% (기준 40%·+3"
+  },
   {
    "ts": "2026-11-25T17:22:43+00:00",
    "agent": "viral_analyst",
@@ -1794,30 +1954,6 @@
    "agent": "developer",
    "model": null,
    "task": "개발팀이 선정된 스킬을 코드베이스에 통합하고 필요한 API 키와 설정을 적용한다."
-  },
-  {
-   "ts": "2026-11-25T17:05:25+00:00",
-   "agent": "analyst",
-   "model": "groq:openai/gpt-oss-120b",
-   "task": "재무·성과분석팀이 수집된 스킬들의 예상 ROI와 비용을 분석하여 상위 후보를 선정한다."
-  },
-  {
-   "ts": "2026-11-25T17:05:20+00:00",
-   "agent": "github_scout",
-   "model": null,
-   "task": "오픈소스·프롬프트 탐색팀이 GitHub에서 인기 있는 마케팅 자동화·콘텐츠 생성 스킬을 검색하고 상세 정보를 수집한다."
-  },
-  {
-   "ts": "2026-11-25T17:05:12+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "시장 조사팀이 최신 마케팅 스킬 트렌드와 경쟁사 활용 사례를 웹 검색하고 정리한다."
-  },
-  {
-   "ts": "2026-11-25T17:09:17+00:00",
-   "agent": "office_assistant",
-   "model": null,
-   "task": "구현된 솔루션의 적용 절차와 토큰 사용량 모니터링 대시보드 설정 문서를 작성한다."
   }
  ],
  "errors": [],
@@ -1830,79 +1966,93 @@
  ],
  "news": [
   {
-   "source": "구글 트렌드 JP",
-   "category": "trend",
-   "title": "openai",
-   "url": "https://www.google.com/search?q=openai"
-  },
-  {
-   "source": "구글 트렌드 US",
-   "category": "trend",
-   "title": "sabah vs barcelona",
-   "url": "https://www.google.com/search?q=sabah%20vs%20barcelona"
-  },
-  {
-   "source": "구글 트렌드 KR",
-   "category": "trend",
-   "title": "선수",
-   "url": "https://www.google.com/search?q=%EC%84%A0%EC%88%98"
+   "source": "Product Hunt",
+   "category": "product",
+   "title": "eluna",
+   "url": "https://www.producthunt.com/products/eluna"
   },
   {
    "source": "Product Hunt",
    "category": "product",
-   "title": "Fompi",
-   "url": "https://www.producthunt.com/products/fompi"
+   "title": "VibeCode.surf",
+   "url": "https://www.producthunt.com/products/vibecode-surf"
   },
   {
    "source": "Product Hunt",
    "category": "product",
-   "title": "file.spot",
-   "url": "https://www.producthunt.com/products/file-spot"
-  },
-  {
-   "source": "Product Hunt",
-   "category": "product",
-   "title": "Continual-ARC",
-   "url": "https://www.producthunt.com/products/unify-5"
+   "title": "Sen Việt (VieLotus-IM)",
+   "url": "https://www.producthunt.com/products/sen-vi-t-vielotus-im"
   },
   {
    "source": "rss.itmedia.co.jp",
    "category": "tech",
-   "title": "ミスミの「間接材自動販売機」が好調な理由",
-   "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news010.html"
+   "title": "ブラウザでCAD図面を共同編集、skyACEがWeb完結のCADツール発売",
+   "url": "https://built.itmedia.co.jp/bt/articles/2611/20/news070.html"
   },
   {
    "source": "rss.itmedia.co.jp",
    "category": "tech",
-   "title": "JX金属の亜鉛基板、宇宙へ 暗黒エネルギー解明に貢献",
-   "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news019.html"
+   "title": "日立建機、3Dマシンガイダンス後付けキットが30トンクラスの油圧ショベルに対応",
+   "url": "https://built.itmedia.co.jp/bt/articles/2611/20/news062.html"
   },
   {
    "source": "rss.itmedia.co.jp",
    "category": "tech",
-   "title": "3Dプリンタを使うなら、今が面白いタイミングなのでは？",
-   "url": "https://monoist.itmedia.co.jp/mn/articles/2611/24/news009.html"
+   "title": "メールとExcelの施工管理から脱却！ AutodeskのAI活用を見据えた情報共有基盤",
+   "url": "https://built.itmedia.co.jp/bt/articles/2611/20/news068.html"
+  },
+  {
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Making a dumb TV just smart enough",
+   "url": "https://qsantos.fr/2026/11/19/making-a-dumb-tv-just-smart-enough/"
+  },
+  {
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Hacking radiators for fun and no profit",
+   "url": "https://qsantos.fr/2026/11/20/hacking-radiators-for-fun-and-no-profit/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "AI導入事例の多くはコスト削減ではなく生産性の向上と加速によって価値を生み出しており、AIで構築されたアプリ100件のうち80％が手作業を自動化していることがAnthropicのレポートで明らかに",
-   "url": "https://gigazine.net/news/20261125-anthropic-working-with-ai/"
+   "title": "Linux上で完全なmacOS GUIユーザー空間を実現する「xnulinux」",
+   "url": "https://gigazine.net/news/20261126-xnu-linux/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "NVIDIAのジェンスン・フアンCEOが従業員に謝罪し「NVIDIAは最も政治と無縁な会社」と主張",
-   "url": "https://gigazine.net/news/20261125-jensen-huang-apologizes-to-nvidia-employees/"
+   "title": "「トマト詐欺」で大手食品メーカーが訴えられる",
+   "url": "https://gigazine.net/news/20261126-cento-fine-foods-sued-tomato-fraud/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "「自動車の座席暖房をサブスクで解禁」など自動車の後付けサブスクを禁止する法律がニューヨークで成立",
-   "url": "https://gigazine.net/news/20261125-no-vehicle-subscription-fee-act/"
+   "title": "「普段どれくらいゲームするのか？」「欲しいゲーム機は？」「Steamでよく遊ぶジャンルは？」などGIGAZINE読者のゲーム事情を調査してみた",
+   "url": "https://gigazine.net/news/20261126-gigazine-user-game-preference/"
+  },
+  {
+   "source": "ITmedia",
+   "category": "tech",
+   "title": "[ITmedia News] 1Password、一部顧客の氏名やメールアドレスが流出 保管庫内のデータに「影響なし」",
+   "url": "https://www.itmedia.co.jp/news/article/2611/26/2000003466/"
   }
  ],
  "sources": [
+  {
+   "name": "markezine.jp",
+   "category": "business",
+   "origin": "AI 추천",
+   "added": "2026-11-26",
+   "removed": null
+  },
+  {
+   "name": "rss.itmedia.co.jp",
+   "category": "tech",
+   "origin": "자주 등장",
+   "added": "2026-11-26",
+   "removed": null
+  },
   {
    "name": "inc.com",
    "category": "business",
@@ -2060,6 +2210,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-26T03:56:53+00:00",
+   "cmd": "schedule",
+   "ok": true,
+   "output": "bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (9개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: 'AI가 만든 영상, 인간 눈을 속일까?' 주제 중단\n🤖 사용 AI: gemini:gemini-flash-lite-latest\nTraceback (most recent call last):\n  File \"/home/runner/work/link/link/shorts_factory/feedback.py\", line 100, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/feedback.py\", line 88, in main\n    res = ask_ai(rows, a.n)\n          ^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/link/link/shorts_factory/feedback.py\", line 79, in ask_ai\n    return json.loads(text[text.index(\"{\"): text.rindex(\"}\") + 1])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/json/decoder.py\", line 354, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ^^^^^^^^^^^^^^^^^^^^^^\njson.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 42 column 7 (char 1206)\n⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  🎨 AI 이미지 Wide shot of the ancient: ai_90360379f4f3.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  🎨 AI 이미지 Medium shot of Luna walking: ai_d506d72a350d.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  🎨 AI 이미지 Close‑up of a floating crimson: ai_d3de6b23d4b2.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 Medium shot of Boris standing: ai_b2807b55e4a9.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  🎨 AI 이미지 Close‑up on Luna's face, eyebrows: ai_7ef2d1d4bbaf.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 Close‑up on Ignis, mischievous spark: ai_489ef562a29f.jpg\n  🎨 AI 이미지 Medium shot of Luna placing: ai_38dab90cbe52.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  🎨 AI 이미지 Wide shot as the sword: ai_065924c97204.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 Close‑up on Ignis smirking, the: ai_4cdceb2129dd.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 cinematic: ai_83062b504948.jpg\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep01.mp4 (25.7초)\n✅ https://youtube.com/shorts/eHfWXH2LKfA\n## 블로그 자동 게시\n📝 챗GPT 야근을 부르는 반복 지시, 커스텀 인스트럭션으로 3분 만에 끝내는 법 — https://bigdataupdate12.blogspot.com/2026/11/gpt-3.html · gemini:gemini-flash-lite-latest\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n- content_creator → v2\n- developer → v2\n- github_scout → v2\n- researcher → v2\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 18개 · 진행중 0 · 탈락 16\n  에이전트 analyst: 평균 8.0점 (1회)\n  에이전트 content_creator: 평균 2.0점 (1회)\n  에이전트 developer: 평균 2.5점 (2회)\n  에이전트 github_scout: 평균 2.0점 (1회)\n  에이전트 researcher: 평균 2.0점 (1회)\n  에이전트 viral_analyst: 평균 9.0점 (1회)\n```"
+  },
+  {
    "ts": "2026-11-25T19:00:56+00:00",
    "cmd": "story next farm-girl-sword --private",
    "ok": true,
@@ -2112,12 +2268,6 @@
    "cmd": "test I0015",
    "ok": true,
    "output": "🔧 개선 1차: AI Failover Service with SLA‑Backed Premium Subscription → 채택 (판정 보류 — AI 1개만 참여(최소 2개 필요) · 참고: 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%))\n⏸ 보류 — 판정 보류 — AI 1개만 참여(최소 2개 필요) · 참고: 흑자 확률 0% · 90일 ROI 중앙값 -99% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $49.0/$245.0/$686.0 · 손익분기 91일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $49 전환 0.5% 하루 20~50"
-  },
-  {
-   "ts": "2026-11-25T17:11:34+00:00",
-   "cmd": "test I0015",
-   "ok": true,
-   "output": "✅ 생존 — 흑자 확률 99% · 90일 ROI 중앙값 +397% (기준 40%·+30%)\n90일 매출 P10/P50/P90: $14700.0/$35700.0/$92100.0 · 손익분기 29일\n- 비관 분석가 groq:openai/gpt-oss-120b: 가격 $150 전환 5% 하루 50~200"
   }
  ],
  "pipelines": [
@@ -2199,6 +2349,16 @@
  ],
  "videos": [
   {
+   "id": "eHfWXH2LKfA",
+   "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
+   "date": "2026-11-26",
+   "private": true,
+   "channel": "old",
+   "cover": "농부소녀와 전설의 검\n1화",
+   "views": 0,
+   "likes": 0
+  },
+  {
    "id": "l6w93JsQ4rY",
    "title": "AI가 만든 영상, 인간 눈을 속일까?",
    "date": "2026-11-25",
@@ -2265,7 +2425,7 @@
    "private": null,
    "channel": "old",
    "cover": "",
-   "views": 351,
+   "views": 392,
    "likes": 1
   },
   {
@@ -2275,7 +2435,7 @@
    "private": null,
    "channel": "old",
    "cover": "",
-   "views": 0,
+   "views": 1,
    "likes": 0
   },
   {
@@ -2285,11 +2445,16 @@
    "private": null,
    "channel": "old",
    "cover": "",
-   "views": 4,
+   "views": 3,
    "likes": 0
   }
  ],
  "previews": [
+  {
+   "file": "story-farm-girl-sword-ep01.mp4",
+   "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
+   "date": "2026-11-26"
+  },
   {
    "file": "story-farm-girl-sword-ep03.mp4",
    "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
@@ -2331,13 +2496,6 @@
     "lines": 8
    },
    {
-    "id": "story-farm-girl-sword-ep01",
-    "title": "농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다",
-    "hook": "바위 속에 빛이 깜빡인다.",
-    "score": 30,
-    "lines": 8
-   },
-   {
     "id": "013",
     "title": "AI가 만든 완벽한 하루 루틴, 직접 실행해봤다",
     "hook": "AI가 나만을 위한 하루 일정을 설계했다고?!",
@@ -2371,9 +2529,16 @@
     "hook": "매일 보는 거울 속 당신의 얼굴, 사실 진짜가 아닙니다.",
     "score": 39,
     "lines": 6
+   },
+   {
+    "id": "008",
+    "title": "잠을 3배 빠르게 깊게 자는 비밀",
+    "hook": "잠 못 이루는 당신, 3초만에 해결!",
+    "score": 45,
+    "lines": 7
    }
   ],
-  "queue_total": 9,
+  "queue_total": 8,
   "last": {
    "ts": "2026-11-25T17:24:49+00:00",
    "cmd": "shorts --private --topic \"Ai가 과연 얼마나 사람처럼 영상을만들수있을까?\"",
@@ -2430,7 +2595,7 @@
      "date": "2026-11-25",
      "file": "story-farm-girl-sword-ep01",
      "uploaded": false,
-     "video": ""
+     "video": "eHfWXH2LKfA"
     }
    ],
    "planned": 10
@@ -2440,7 +2605,7 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 17,
+    "n": 18,
     "done": true
    },
    {
@@ -2450,12 +2615,12 @@
    },
    {
     "name": "상품·콘텐츠 제작",
-    "n": 7,
+    "n": 8,
     "done": true
    },
    {
     "name": "업로드(공개)",
-    "n": 11,
+    "n": 13,
     "done": true
    },
    {
@@ -2466,8 +2631,8 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 9,
-  "blog": 2
+  "shorts": 10,
+  "blog": 3
  },
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,
