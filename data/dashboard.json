@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T18:48:01+00:00",
+ "updated": "2026-11-26T18:48:05+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -1787,7 +1787,6 @@
    "version": 4,
    "tools": [
     "web_search",
-    "crawl",
     "google_search",
     "news_search",
     "add_site"
@@ -2345,7 +2344,7 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-26T18:48:00+00:00",
+   "ts": "2026-11-26T18:48:04+00:00",
    "cmd": "agent upgrade",
    "ok": true,
    "output": "analyst: 유지\ncontent_creator: v4 업그레이드\ndeveloper: v4 업그레이드\ngithub_scout: v4 업그레이드\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: v4 업그레이드\nsales: 유지\nviral_analyst: 유지"
