@@ -639,5 +639,5 @@ def test_skills_sh_ranking(monkeypatch):
 def test_hub_find_local_assets():
     from mother import hub
     out = hub.find("영상 대본 훅", remote=False)
-    assert "이미 있는 것" in out and "reels_team_prompts" in out and "비공개" in out
+    assert "이미 있는 것" in out and "viral_analyst" in out and "비공개" in out
     assert hub._slug("company_work_prompts") == "company-work-prompts"
