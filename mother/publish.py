@@ -28,7 +28,10 @@ def youtube_ready():  # 새 채널(F ai-LAB) 전용 토큰이 있으면 그 채�
 
 def channels():
     yt = "새 채널" if os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN") else "기존 계정 채널"
+    st = store.cfg().get("story", {}).get("channel_name", "스토리 채널")
     return [{"id": "youtube", "name": f"유튜브 숏츠 ({yt})", "ready": youtube_ready(), "need": "구글 1회 연결"},
+            {"id": "youtube_story", "name": f"유튜브 AI 실사 드라마 ({st})", "ready": bool(os.getenv("YOUTUBE_STORY_REFRESH_TOKEN")),
+             "need": "스토리 채널 만들고 google_login_story.bat 실행 (그전엔 비공개로 올림)"},
             {"id": "blogger", "name": "블로그(Blogger)", "ready": google_ready() and bool(os.getenv("BLOGGER_BLOG_ID")),
              "need": "구글 1회 연결 + BLOGGER_BLOG_ID"},
             {"id": "kmong", "name": "크몽·Gumroad", "ready": False, "need": "자동 등록 API 없음 → 업로드 키트 준비"}]
@@ -49,7 +52,8 @@ def _py(*args, extra=None):
     sc = store.cfg().get("shorts", {})
     env = {**os.environ, "AI_IMAGES": "1" if sc.get("ai_images", True) else "0",
            "AI_VIDEO": "1" if sc.get("ai_video", True) else "0", "AI_VIDEO_BUDGET": str(sc.get("ai_video_budget_usd_month", 5)),
-           "AI_VIDEO_PROVIDER": sc.get("ai_video_provider", "gemini"), "CHANNEL_NAME": sc.get("channel_name", ""), **(extra or {})}
+           "AI_VIDEO_PROVIDER": sc.get("ai_video_provider", "gemini"), "CHANNEL_NAME": sc.get("channel_name", ""),
+           "STORY_CHANNEL_NAME": store.cfg().get("story", {}).get("channel_name", ""), **(extra or {})}
     r = subprocess.run([sys.executable, *args], cwd=SHORTS, capture_output=True, text=True, timeout=900, env=env)
     return (r.stdout + r.stderr).strip()[-1500:]
 
@@ -98,6 +102,8 @@ def produce(s, private, log, done):
     uploaded = False
     if mp4.exists():
         preview(mp4, meta)
+    if meta.get("story") and not os.getenv("YOUTUBE_STORY_REFRESH_TOKEN"):
+        private = True  # 스토리는 별도 채널 — 그 채널 연결 전엔 비공개
     if mp4.exists() and youtube_ready() and not _limit["hit"]:
         args = ["upload.py", str(mp4)] + (["--private"] if private or _cfg().get("youtube_privacy", "public") != "public" else [])
         res = _py(*args)

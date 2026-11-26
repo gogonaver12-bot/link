@@ -233,9 +233,9 @@ def render_episode(slug, private=False):
     done.setdefault("shorts", [])
     sc = store.cfg().get("shorts", {})
     import os
-    if not private and sc.get("hold_until_new_channel") and not os.getenv("YOUTUBE_OAUTH_REFRESH_TOKEN"):
+    if not private and not os.getenv("YOUTUBE_STORY_REFRESH_TOKEN"):  # 스토리는 별도 채널 — 연결 전엔 공개로 올리지 않음
         private = True
-        log.append("🔒 새 채널 연결 전 → 비공개 업로드")
+        log.append("🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)")
     ok = produce(sp, private, log, done)
     b["made"].append({"n": n, "title": ep.get("title", ""), "summary": ep.get("summary", ""), "date": store.today(),
                       "file": sp.stem, "uploaded": bool(ok)})

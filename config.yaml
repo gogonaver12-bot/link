@@ -107,6 +107,7 @@ shorts:
     - ["ai animation story shorts", "US", "en"]
     - ["신기한 사실 쇼츠", "KR", "ko"]
 
-story:                                  # AI 실사 스토리 (대본: Fable → 없으면 무료 AI / 그림: Gemini 이미지, 결제 필요)
+story:                                  # AI 실사 스토리 — 별도 유튜브 채널
+  channel_name: "AI 실사 드라마"        # 스토리 채널 이름(바꾸려면 여기 수정) (대본: Fable → 없으면 무료 AI / 그림: Gemini 이미지, 결제 필요)
   images_per_episode: 12
   motion_scenes: 4                      # 앞 장면 N개는 사진을 실제로 움직이는 영상으로(무료 영상 AI, 하루 사용량 안에서)

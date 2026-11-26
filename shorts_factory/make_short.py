@@ -224,7 +224,7 @@ def main():
     sh(cmd)
     meta = {"title": s["title"], "description": s.get("description", ""), "tags": s.get("tags", []),
             "duration": round(total, 1), "file": out.name, "cover": s.get("cover", ""),
-            "made_for_kids": bool(s.get("made_for_kids"))}
+            "made_for_kids": bool(s.get("made_for_kids")), "story": bool(s.get("story"))}
     out.with_suffix(".json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"✅ {out} ({total:.1f}초)")
 
