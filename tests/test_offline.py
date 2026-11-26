@@ -676,3 +676,16 @@ def test_hftalk_skips_without_audio(tmp_path):
     sys.path.insert(0, str(store.ROOT / "shorts_factory"))
     import hftalk
     assert hftalk.talk(tmp_path / "a.png", None, tmp_path / "o.mp4") is None  # 목소리 없으면 시도하지 않음
+
+
+def test_claude_down_persists_then_retries(monkeypatch):
+    import datetime as dt
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setattr(llm, "_claude_down", None)
+    assert llm.has_claude()
+    llm._check_down(RuntimeError("Your credit balance is too low"))
+    monkeypatch.setattr(llm, "_claude_down", None)  # 다음 실행(새 프로세스)이라고 가정
+    assert not llm.has_claude()  # 12시간 동안은 건너뜀
+    later = store.now() + dt.timedelta(hours=13)
+    monkeypatch.setattr(store, "now", lambda: later)
+    assert llm.has_claude()  # 12시간 뒤 다시 확인
