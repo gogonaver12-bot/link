@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T04:05:18+00:00",
+ "updated": "2026-11-27T05:23:36+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -2187,79 +2187,79 @@
  ],
  "reports": [
   {
-   "file": "reports/daily-2026-11-27.md",
-   "title": "일일 리포트 2026-11-27",
-   "date": "2026-11-27T04:05+00:00"
-  },
-  {
-   "file": "reports/doctor/2026-11-27.md",
-   "title": "🩺 자동 진단 2026-11-27 — 최근 2일 에러 50건 · 종류 4개",
-   "date": "2026-11-27T04:05+00:00"
-  },
-  {
-   "file": "reports/20261127-0349-상품-I0020.md",
-   "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
-   "date": "2026-11-27T03:49+00:00"
-  },
-  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/20261126-0712-상품-I0019.md",
    "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
+  },
+  {
+   "file": "reports/20261127-0349-상품-I0020.md",
+   "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
+   "date": "2026-11-27T05:23+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-27.md",
+   "title": "일일 리포트 2026-11-27",
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
    "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/daily-2026-11-26.md",
    "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
    "title": "이번 주 수익 개선 계획",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-27T03:47+00:00"
+   "date": "2026-11-27T05:23+00:00"
+  },
+  {
+   "file": "reports/doctor/2026-11-27.md",
+   "title": "🩺 자동 진단 2026-11-27 — 최근 2일 에러 50건 · 종류 4개",
+   "date": "2026-11-27T05:23+00:00"
   }
  ],
  "runs": [
@@ -2604,6 +2604,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-27T05:23:35+00:00",
+   "cmd": "story plan farm-girl-sword",
+   "ok": true,
+   "output": "📝 농부소녀와 전설의 검 6화 '제6화: 왕국 기사단장의 방문' 대본 준비 — 장면 8개 · 앱에서 장면마다 Google Flow(또는 Gemini 앱)로 영상을 만들어 올린 뒤 '완성하기' (대사 장면은 인물이 직접 말하게 프롬프트에 대사 포함)"
+  },
+  {
    "ts": "2026-11-27T04:05:17+00:00",
    "cmd": "schedule",
    "ok": true,
@@ -2656,12 +2662,6 @@
    "cmd": "biz scout --market GLOBAL",
    "ok": true,
    "output": "I0019 78.0점 [active] AI 개발자 및 소규모 스타트업/GitHub & AWS 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어\n   → FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성"
-  },
-  {
-   "ts": "2026-11-26T07:10:18+00:00",
-   "cmd": "news",
-   "ok": true,
-   "output": "새 소식 134건 수집"
   }
  ],
  "pipelines": [
@@ -3243,7 +3243,93 @@
     }
    ],
    "planned": 10,
-   "plan": null
+   "plan": {
+    "n": 6,
+    "title": "제6화: 왕국 기사단장의 방문",
+    "scenes": [
+     {
+      "i": 0,
+      "speaker": "narrator",
+      "line": "마을에 퍼진 놀라운 소문!",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Wide shot of the rural farming village under bright daylight, villagers whispering in groups, camera tracking slowly, cheerful yet tense atmosphere.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this narration: \"마을에 퍼진 놀라운 소문!\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [],
+      "clip": false
+     },
+     {
+      "i": 1,
+      "speaker": "luna",
+      "line": "내, 내가 사고 친 건가?",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Close-up of 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) looking nervously at the glowing legendary sword in her hand, freckled face with wide green eyes, soft warm sunlight.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"내, 내가 사고 친 건가?\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+       "stories/farm-girl-sword/chars/luna-talk.jpg",
+       "stories/farm-girl-sword/chars/luna.jpg"
+      ],
+      "clip": false
+     },
+     {
+      "i": 2,
+      "speaker": "ignis",
+      "line": "귀찮은 파리들이 몰려온다.",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Medium shot of 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword.) as a floating crimson flame hovering near 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.), glowing orange eyes narrowing, crackling sparks.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours) looks at the other person and says in Korean, clearly with natural lip sync: \"귀찮은 파리들이 몰려온다.\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+       "stories/farm-girl-sword/chars/ignis-talk.jpg",
+       "stories/farm-girl-sword/chars/luna.jpg",
+       "stories/farm-girl-sword/chars/ignis.jpg"
+      ],
+      "clip": false
+     },
+     {
+      "i": 3,
+      "speaker": "boris",
+      "line": "저, 저기 엄청난 기세가!",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Medium shot of 보리스 (English: 20-year-old muscular young man, square jaw, short black crew cut, sharp brown eyes, wearing heavy iron shoulder plates over a leather vest, holding a standard broadsword.) pointing toward the village entrance with a startled expression, heavy iron shoulder plates gleaming.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 보리스 (English: 20-year-old muscular young man) looks at the other person and says in Korean, clearly with natural lip sync: \"저, 저기 엄청난 기세가!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+       "stories/farm-girl-sword/chars/boris-talk.jpg",
+       "stories/farm-girl-sword/chars/boris.jpg"
+      ],
+      "clip": false
+     },
+     {
+      "i": 4,
+      "speaker": "narrator",
+      "line": "왕국 최강 기사단장 등장!",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Wide shot at the village entrance, a cloud of dust rising as armored footsteps echo, dramatic high-angle camera.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this narration: \"왕국 최강 기사단장 등장!\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [],
+      "clip": false
+     },
+     {
+      "i": 5,
+      "speaker": "luna",
+      "line": "누구세요? 우리 마을엔 왜요?",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Medium-close shot of 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) standing firm with a faded patch-work tunic, holding the sword defensively, determined look.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"누구세요? 우리 마을엔 왜요?\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+       "stories/farm-girl-sword/chars/luna-talk.jpg",
+       "stories/farm-girl-sword/chars/luna.jpg"
+      ],
+      "clip": false
+     },
+     {
+      "i": 6,
+      "speaker": "narrator",
+      "line": "검을 내놓으라는 무리한 요구",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Close-up of a silver-armored knight's hand resting coldly on a polished pommel, sharp focus, tense mood.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this narration: \"검을 내놓으라는 무리한 요구\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [],
+      "clip": false
+     },
+     {
+      "i": 7,
+      "speaker": "ignis",
+      "line": "녀석을 날려버려, 계약자!",
+      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Close-up of 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword.) flaring brightly with crimson light, sparking aggressively near 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.)'s shoulder, whispering prompt.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours) looks at the other person and says in Korean, clearly with natural lip sync: \"녀석을 날려버려, 계약자!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+       "stories/farm-girl-sword/chars/ignis-talk.jpg",
+       "stories/farm-girl-sword/chars/luna.jpg",
+       "stories/farm-girl-sword/chars/ignis.jpg"
+      ],
+      "clip": false
+     }
+    ]
+   }
   }
  ],
  "local_jobs": [],
