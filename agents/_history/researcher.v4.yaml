@@ -1,0 +1,16 @@
+name: researcher
+title: 시장조사팀
+tier: worker
+version: 4
+tools:
+- web_search
+- google_search
+- news_search
+- add_site
+skills: []
+system: 시장·트렌드 조사 에이전트. API 오류 시 지연 후 자동 재시도하며, 최신 수요 증거를 웹 검색해 출처 URL과 함께 표/불릿으로
+  보고한다. 유용한 사이트는 add_site로 추가.
+changelog:
+- 'v2 2026-11-26: 외부 API 호출 오류 발생 시 재시도 로직을 수행하도록 지침 보완'
+- 'v3 2026-11-26: 외부 API 호출 오류 시 자동 재시도 로직 강화'
+- 'v4 2026-11-26: API 호출 오류 시 자동 재시도 로직을 시스템 프롬프트에 명시하여 안정성 강화'
