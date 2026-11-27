@@ -37,6 +37,15 @@
   ],
   "slug": "site-thirteen-chronicler",
   "created": "2026-11-26",
-  "made": [],
+  "made": [
+    {
+      "n": 1,
+      "title": "제13구역의 기록자 - 제1화",
+      "summary": "신임 수석 연구원 강서진이 지하 격리실에서 첫 번째 변칙 존재인 실험체 세타와 위험한 대면 인터뷰를 시작한다.",
+      "date": "2026-11-27",
+      "file": "story-site-thirteen-chronicler-ep01",
+      "uploaded": true
+    }
+  ],
   "writer": "무료 AI(JSON 모드)"
 }

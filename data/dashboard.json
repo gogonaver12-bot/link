@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T05:23:36+00:00",
+ "updated": "2026-11-27T05:28:53+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -2189,77 +2189,77 @@
   {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261126-0712-상품-I0019.md",
    "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261127-0349-상품-I0020.md",
    "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/daily-2026-11-27.md",
    "title": "일일 리포트 2026-11-27",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
    "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/daily-2026-11-26.md",
    "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
    "title": "이번 주 수익 개선 계획",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   },
   {
    "file": "reports/doctor/2026-11-27.md",
    "title": "🩺 자동 진단 2026-11-27 — 최근 2일 에러 50건 · 종류 4개",
-   "date": "2026-11-27T05:23+00:00"
+   "date": "2026-11-27T05:20+00:00"
   }
  ],
  "runs": [
@@ -2604,10 +2604,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-27T05:23:35+00:00",
-   "cmd": "story plan farm-girl-sword",
+   "ts": "2026-11-27T05:28:52+00:00",
+   "cmd": "story next site-thirteen-chronicler",
    "ok": true,
-   "output": "📝 농부소녀와 전설의 검 6화 '제6화: 왕국 기사단장의 방문' 대본 준비 — 장면 8개 · 앱에서 장면마다 Google Flow(또는 Gemini 앱)로 영상을 만들어 올린 뒤 '완성하기' (대사 장면은 인물이 직접 말하게 프롬프트에 대사 포함)"
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 2 · 사진 6 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/4Z6Do-0Nm88"
   },
   {
    "ts": "2026-11-27T04:05:17+00:00",
@@ -2748,6 +2748,16 @@
   }
  ],
  "videos": [
+  {
+   "id": "4Z6Do-0Nm88",
+   "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
+   "date": "2026-11-27",
+   "private": true,
+   "channel": "old",
+   "cover": "제13구역의 기록자\n1화",
+   "views": 0,
+   "likes": 0
+  },
   {
    "id": "0QVZldGA8ls",
    "title": "농부소녀와 전설의 검 5화 | 5화: 뽑았는데, 환불 안 되나요?",
@@ -2891,6 +2901,11 @@
  ],
  "previews": [
   {
+   "file": "story-site-thirteen-chronicler-ep01.mp4",
+   "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
+   "date": "2026-11-27"
+  },
+  {
    "file": "story-farm-girl-sword-ep05.mp4",
    "title": "농부소녀와 전설의 검 5화 | 5화: 뽑았는데, 환불 안 되나요?",
    "date": "2026-11-26"
@@ -2903,11 +2918,6 @@
   {
    "file": "story-farm-girl-sword-ep02.mp4",
    "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
-   "date": "2026-11-26"
-  },
-  {
-   "file": "story-farm-girl-sword-ep04.mp4",
-   "title": "농부소녀와 전설의 검 4화 | 4화: 전설의 검 속에서 나온 녀석",
    "date": "2026-11-26"
   }
  ],
@@ -3014,92 +3024,19 @@
      "img": "stories/site-thirteen-chronicler/chars/subject.jpg"
     }
    ],
-   "episodes": [],
+   "episodes": [
+    {
+     "n": 1,
+     "title": "제13구역의 기록자 - 제1화",
+     "summary": "신임 수석 연구원 강서진이 지하 격리실에서 첫 번째 변칙 존재인 실험체 세타와 위험한 대면 인터뷰를 시작한다.",
+     "date": "2026-11-27",
+     "file": "story-site-thirteen-chronicler-ep01",
+     "uploaded": true,
+     "video": "4Z6Do-0Nm88"
+    }
+   ],
    "planned": 5,
-   "plan": {
-    "n": 1,
-    "title": "제13구역의 기록자 - 제1화",
-    "scenes": [
-     {
-      "i": 0,
-      "speaker": "narrator",
-      "line": "빛이 닿지 않는 지하 13구역, 그곳의 문이 열렸다.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Wide shot: 한도진 (Asian male, age 38, intense gaze, short buzz cut, muscular build, wearing a dark tactical security uniform with body armor, stern and vigilant expression.) standing beside heavy steel security doors in a cold underground concrete interrogation room, flickering fluorescent lights overhead, tense atmosphere.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"빛이 닿지 않는 지하 13구역, 그곳의 문이 열렸다.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/han.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 1,
-      "speaker": "kang",
-      "line": "기록 개시. 오늘부로 내가 전담한다.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Medium shot: 강서진 (Asian female, age 32, sharp dark eyes, neat black hair tied in a low bun, slim build, wearing a crisp white lab coat over a grey button-up shirt, calm and analytical expression.) sitting behind a metal table, wearing a crisp white lab coat, sharp dark eyes staring straight ahead with a calm, analytical expression.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"기록 개시. 오늘부로 내가 전담한다.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/kang.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 2,
-      "speaker": "han",
-      "line": "서진 씨, 녀석은 인간이 아닙니다. 조심해요.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Close-up: 한도진 (Asian male, age 38, intense gaze, short buzz cut, muscular build, wearing a dark tactical security uniform with body armor, stern and vigilant expression.) looking through the metallic two-way mirror, intense gaze, strict tactical security uniform, stern and vigilant expression.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"서진 씨, 녀석은 인간이 아닙니다. 조심해요.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/han.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 3,
-      "speaker": "subject",
-      "line": "드디어... 내 이야기를 들어줄 사람이 왔네.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Medium shot: 실험체 세타 (Androgynous human entity, age unknown, pale translucent skin, long silver-white hair covering the face, wearing standard orange containment jumpsuit, barefoot, subtle unnatural movements.) sitting in the dim containment cell, pale translucent skin, long silver-white hair covering the face, orange jumpsuit, subtle unnatural movements.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"드디어... 내 이야기를 들어줄 사람이 왔네.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/subject.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 4,
-      "speaker": "kang",
-      "line": "고개를 들고 질문에만 답해라, 세타.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Medium shot: 강서진 (Asian female, age 32, sharp dark eyes, neat black hair tied in a low bun, slim build, wearing a crisp white lab coat over a grey button-up shirt, calm and analytical expression.) leaning forward across the interrogation table, low bun hair, slim build, cold fluorescent light reflecting off her glasses.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"고개를 들고 질문에만 답해라, 세타.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/kang.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 5,
-      "speaker": "subject",
-      "line": "네 뒤에 서 있는 그 남자는... 이미 죽었어.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Close-up: 실험체 세타 (Androgynous human entity, age unknown, pale translucent skin, long silver-white hair covering the face, wearing standard orange containment jumpsuit, barefoot, subtle unnatural movements.) lifting its head slightly, revealing pale skin and an eerie, unnatural smile, staring directly into the camera.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"네 뒤에 서 있는 그 남자는... 이미 죽었어.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/subject.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 6,
-      "speaker": "kang",
-      "line": "...방금 뭐라고 했지?",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Close-up: 강서진 (Asian female, age 32, sharp dark eyes, neat black hair tied in a low bun, slim build, wearing a crisp white lab coat over a grey button-up shirt, calm and analytical expression.) freezing in place, her calm expression shattering into shock and sudden terror, dim shadows flickering across her face.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"...방금 뭐라고 했지?\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [
-       "stories/site-thirteen-chronicler/chars/kang.jpg"
-      ],
-      "clip": false
-     },
-     {
-      "i": 7,
-      "speaker": "narrator",
-      "line": "재단이 숨겨온 진실이, 비로소 고개를 든다.",
-      "prompt": "Vertical 9:16 cinematic live-action shot, 8 seconds. Wide shot: The steel security door slowly closing on its own, emergency red warning lights flashing, heavy claustrophobic atmosphere.. Setting: Modern underground concrete interrogation room, cold fluorescent flickering lights, metallic two-way mirror, heavy steel security doors, claustrophobic and tense atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"재단이 숨겨온 진실이, 비로소 고개를 든다.\". Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music.",
-      "refs": [],
-      "clip": false
-     }
-    ]
-   }
+   "plan": null
   },
   {
    "slug": "scp-zone-42-mirror",
@@ -3352,7 +3289,7 @@
    },
    {
     "name": "업로드(공개)",
-    "n": 19,
+    "n": 20,
     "done": true
    },
    {
@@ -3363,7 +3300,7 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 14,
+  "shorts": 15,
   "blog": 5
  },
  "keys_set": {

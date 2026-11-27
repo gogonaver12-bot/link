@@ -1,0 +1,88 @@
+{
+  "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
+  "story": true,
+  "hook": "빛이 닿지 않는 지하 13구역, 그곳의 문이 열렸다.",
+  "lines": [
+    "기록 개시. 오늘부로 내가 전담한다.",
+    "서진 씨, 녀석은 인간이 아닙니다. 조심해요.",
+    "드디어... 내 이야기를 들어줄 사람이 왔네.",
+    "고개를 들고 질문에만 답해라, 세타.",
+    "네 뒤에 서 있는 그 남자는... 이미 죽었어.",
+    "...방금 뭐라고 했지?",
+    "재단이 숨겨온 진실이, 비로소 고개를 든다."
+  ],
+  "cta": "과연 세타의 말은 진실일까? 다음 화에서 확인하세요. 구독과 좋아요!",
+  "voices": [
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "",
+    "강서진",
+    "한도진",
+    "실험체 세타",
+    "강서진",
+    "실험체 세타",
+    "강서진",
+    "",
+    ""
+  ],
+  "clips": [
+    "assets/story/site-thirteen-chronicler/ep01-00.mp4",
+    "assets/story/site-thirteen-chronicler/ep01-01.mp4",
+    "assets/story/site-thirteen-chronicler/ep01-02.jpg",
+    "assets/story/site-thirteen-chronicler/ep01-03.jpg",
+    "assets/story/site-thirteen-chronicler/ep01-04.jpg",
+    "assets/story/site-thirteen-chronicler/ep01-05.jpg",
+    "assets/story/site-thirteen-chronicler/ep01-06.jpg",
+    "assets/story/site-thirteen-chronicler/ep01-07.jpg",
+    "assets/story/site-thirteen-chronicler/ep01-07.jpg"
+  ],
+  "audio": [
+    "assets/story/site-thirteen-chronicler/ep01-00.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-01.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-02.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-03.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-04.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-05.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-06.mp3",
+    "assets/story/site-thirteen-chronicler/ep01-07.mp3",
+    ""
+  ],
+  "no_subtitles": true,
+  "keywords": [
+    "Wide shot: person standing beside",
+    "Medium shot: person sitting behind",
+    "Close-up: person looking through the",
+    "Medium shot: person sitting in",
+    "Medium shot: person leaning forward",
+    "Close-up: person lifting its head",
+    "Close-up: person freezing in place,",
+    "Wide shot: The steel security",
+    "cinematic"
+  ],
+  "cover": "제13구역의 기록자\n1화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "비밀 격리 시설 제13구역. 수석 연구원 강서진이 첫 대면한 변칙 존재 '세타'가 던진 섬뜩한 경고의 진실은?\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)\n\n출처: SCP 재단(SCP Foundation) — CC BY-SA 3.0",
+  "tags": [
+    "SCP",
+    "숏드라마",
+    "미스터리",
+    "스릴러",
+    "SF",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}
