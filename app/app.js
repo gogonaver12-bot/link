@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^local plan/, "PC 렌더 쇼츠 대본"], [/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Gemini 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^local plan/, "PC 렌더 쇼츠 대본"], [/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Flow 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -425,12 +425,14 @@ function viewStory() {
 
 function geminiBox(b) {  // 폰 Gemini 앱(플러스)으로 장면 영상을 만들어 올리면, 목소리·자막·음악·업로드는 자동
   const imgUrl = (p) => `../${p.split("/").map(encodeURIComponent).join("/")}`;
-  if (!b.plan) return `<div class="gem"><div class="t">✨ Gemini로 진짜 움직이는 장면 만들기</div>
-    <div class="m">다음 화 대본과 장면별 프롬프트를 먼저 만들어요 → Gemini 앱에서 인물 사진 + 프롬프트로 영상 생성 → 여기 올리기 → 완성</div>
-    <button class="btn small ghost" style="margin-top:8px" data-cmd="story plan ${esc(b.slug)}" data-label="Gemini 장면용 대본">📝 ${b.episodes.length + 1}화 장면 프롬프트 만들기</button></div>`;
+  if (!b.plan) return `<div class="gem"><div class="t">🎬 Google Flow로 말하는 장면 만들기 (플러스 구독)</div>
+    <div class="m">다음 화 대본과 장면별 프롬프트(대사 포함)를 먼저 만들어요 → Flow에서 인물 사진을 재료로 넣고 생성 → 여기 올리기 → 목소리·음악·업로드 자동</div>
+    <button class="btn small ghost" style="margin-top:8px" data-cmd="story plan ${esc(b.slug)}" data-label="Flow 장면용 대본">📝 ${b.episodes.length + 1}화 Flow 장면 프롬프트 만들기</button></div>`;
   const P = b.plan, up = P.scenes.filter((s) => s.clip).length;
-  return `<div class="gem"><div class="t">✨ ${P.n}화 '${esc(P.title)}' — Gemini 장면 ${up}/${P.scenes.length}개 올림</div>
-    <ol class="steps-ol" style="font-size:12px;margin:6px 0"><li>인물 사진을 길게 눌러 저장</li><li>Gemini 앱 → 동영상 → 사진 첨부 + 📋 프롬프트 붙여넣기 → 다운로드</li><li>⬆️ 영상 올리기 (못 만든 장면은 자동으로 무료 그림으로 채워요)</li></ol>
+  return `<div class="gem"><div class="t">🎬 ${P.n}화 '${esc(P.title)}' — Flow 장면 ${up}/${P.scenes.length}개 올림</div>
+    <ol class="steps-ol" style="font-size:12px;margin:6px 0"><li>인물 사진을 길게 눌러 저장</li>
+      <li><a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">Google Flow</a> → 새 프로젝트 → <b>재료로 동영상(Ingredients)</b> → 사진 첨부 + 📋 프롬프트 붙여넣기 → 세로 9:16 → 생성 → 다운로드 (Gemini 앱 동영상도 가능)</li>
+      <li>⬆️ 영상 올리기 — 대사 장면은 영상 속 목소리를 그대로 써요 · 못 만든 장면은 자동으로 채워요</li></ol>
     ${P.scenes.map((s) => `<div class="gem-sc ${s.clip ? "done" : ""}"><b>${s.i + 1}</b><div class="grow"><div class="t wrap">${esc(s.line)}</div>
       <div class="gem-refs">${(s.refs || []).map((r) => `<img src="${imgUrl(r)}" alt="인물 사진 — 길게 눌러 저장">`).join("")}</div>
       <div class="btns" style="grid-template-columns:1fr 1fr;margin-top:6px"><button class="btn small ghost" data-copy="${esc(s.prompt)}">📋 프롬프트</button>

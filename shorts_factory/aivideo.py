@@ -132,7 +132,24 @@ def _veo_model(key):
     return _veo["model"]
 
 
-def veo_animate(img, prompt, out: Path, seconds=8):
+def speech_cut(clip: Path, audio_out: Path, pad=0.3):
+    """Veo가 말한 영상: 말이 끝난 지점까지만 영상·소리를 잘라 같은 길이로 저장(8초를 다 쓰지 않게). 반환: 잘린 영상 경로."""
+    import re, subprocess
+    r = subprocess.run(["ffmpeg", "-i", str(clip), "-af", "silencedetect=n=-32dB:d=0.35", "-f", "null", "-"], capture_output=True, text=True)
+    total = float((re.findall(r"Duration: (\d+):(\d+):([\d.]+)", r.stderr) or [("0", "0", "8")])[0][2]) or 8.0
+    starts = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", r.stderr)]
+    ends = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", r.stderr)]
+    trailing = starts and (not ends or starts[-1] > ends[-1] or ends[-1] >= total - 0.25)  # 파일 끝까지 조용함(끝에서 silence_end가 찍힘)
+    end = starts[-1] if trailing and starts[-1] > 0.8 else total  # 말이 끝난 뒤 조용한 부분부터 잘라냄
+    cut = min(total, end + pad)
+    out = clip.with_name(clip.stem + "-talk.mp4")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(clip), "-t", f"{cut:.2f}", "-an", "-c:v", "libx264", "-preset", "veryfast",
+                    "-pix_fmt", "yuv420p", str(out)], check=True)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(clip), "-t", f"{cut:.2f}", "-vn", "-ac", "1", "-ar", "24000", str(audio_out)], check=True)
+    return out
+
+
+def veo_animate(img, prompt, out: Path, seconds=8, dialogue=None):
     """장면 사진(인물 참조 포함)을 Veo로 움직이는 영상으로. 예산·결제·한도 안 되면 None → 무료 영상 AI/사진 줌으로."""
     key = os.environ.get("GEMINI_API_KEY")
     if _veo["down"] or not key or os.environ.get("GEMINI_VIDEO", "1") != "1":
@@ -152,6 +169,9 @@ def veo_animate(img, prompt, out: Path, seconds=8):
             raise RuntimeError("Veo 모델이 이 키에 안 보임")
         data = Path(img).read_bytes()
         mime = "image/jpeg" if str(img).lower().endswith((".jpg", ".jpeg")) else "image/png"
+        if dialogue:  # 주인공이 직접 말하게: Veo가 대사 음성과 입 모양을 함께 만듦
+            prompt = (prompt[:1200] + f' The character speaks this Korean line clearly with natural lip movement, then stays silent: "{dialogue}". '
+                      "Synchronized speech audio only, no music, no narration.")
         body = {"instances": [{"prompt": prompt[:1500], "image": {"bytesBase64Encoded": base64.b64encode(data).decode(), "mimeType": mime}}],
                 "parameters": {"aspectRatio": "9:16", "personGeneration": "allow_adult",
                                "negativePrompt": "text, subtitles, watermark, distorted face, extra fingers"}}
