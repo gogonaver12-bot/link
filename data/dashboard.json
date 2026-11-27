@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T05:29:36+00:00",
+ "updated": "2026-11-27T05:29:48+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -2187,11 +2187,6 @@
  ],
  "reports": [
   {
-   "file": "reports/jobs/connection-test-002.md",
-   "title": "connection-test-002",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
    "date": "2026-11-27T05:20+00:00"
@@ -2254,6 +2249,11 @@
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
+   "date": "2026-11-27T05:20+00:00"
+  },
+  {
+   "file": "reports/jobs/connection-test-002.md",
+   "title": "connection-test-002",
    "date": "2026-11-27T05:20+00:00"
   },
   {
@@ -2604,10 +2604,10 @@
  ],
  "commands": [
   {
-   "ts": "2026-11-27T05:29:35+00:00",
+   "ts": "2026-11-27T05:29:47+00:00",
    "cmd": "story next site-thirteen-chronicler",
    "ok": true,
-   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/mmb9akuk9tg"
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/dDIRbL4j9ok"
   },
   {
    "ts": "2026-11-27T04:05:17+00:00",
@@ -2749,7 +2749,7 @@
  ],
  "videos": [
   {
-   "id": "mmb9akuk9tg",
+   "id": "dDIRbL4j9ok",
    "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
    "date": "2026-11-27",
    "private": true,
@@ -3032,7 +3032,7 @@
      "date": "2026-11-27",
      "file": "story-site-thirteen-chronicler-ep01",
      "uploaded": true,
-     "video": "mmb9akuk9tg"
+     "video": "dDIRbL4j9ok"
     }
    ],
    "planned": 5,
