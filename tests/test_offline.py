@@ -607,6 +607,7 @@ def test_hfvideo_quota_fallback(monkeypatch, tmp_path):
 def test_story_plan_then_render_uses_uploaded_clip(monkeypatch, tmp_path):
     from mother import story, publish, providers as pv
     monkeypatch.setattr(story, "DIR", tmp_path / "stories"); monkeypatch.setattr(story, "SHORTS", tmp_path / "sf")
+    shutil.copy(store.ROOT / "config.yaml", tmp_path / "config.yaml")
     monkeypatch.setattr(store, "ROOT", tmp_path)
     (tmp_path / "sf" / "scripts").mkdir(parents=True)
     story.save({"slug": "s1", "title": "T", "genre": "", "logline": "", "tone": "", "setting": "village", "made": [],
@@ -615,7 +616,8 @@ def test_story_plan_then_render_uses_uploaded_clip(monkeypatch, tmp_path):
     monkeypatch.setattr(pv, "complete", lambda *a, **k: (json.dumps({"title": "1화", "summary": "s", "cta": "c", "scenes": [
         {"speaker": "mira", "line": "내가 뽑을게", "shot": "[mira] grabs the sword"}, {"speaker": "narrator", "line": "빛이 났다", "shot": "light"}]}), "t"))
     plan, msg = story.plan_episode("s1")
-    assert "Keep the person exactly" in plan["scenes"][0]["prompt"] and plan["scenes"][0]["refs"] == ["stories/s1/chars/mira.jpg"]
+    assert "Keep every person exactly" in plan["scenes"][0]["prompt"] and plan["scenes"][0]["refs"] == ["stories/s1/chars/mira.jpg"]
+    assert 'says in Korean' in plan["scenes"][0]["prompt"] and "No speech" in plan["scenes"][1]["prompt"]  # 인물 대사만 직접 말하게
     story.clip_path("s1", 1, 0).write_bytes(b"mp4")  # 폰에서 Gemini 영상을 올린 상황
     monkeypatch.setattr(story, "_img", lambda: types.SimpleNamespace(generate=lambda *a, **k: None))
     got = {}

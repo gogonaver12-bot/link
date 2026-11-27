@@ -167,12 +167,18 @@ def _write(b, n):
         '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES, "story_writer")
 
 
-def _veo_prompt(b, sc):
-    """Gemini 앱(Veo)에 붙여넣을 장면 영상 프롬프트 — 인물 참조 사진과 함께 넣으면 같은 얼굴로 나옴."""
+def _veo_prompt(b, sc, speak=None):
+    """Google Flow·Gemini 앱(Veo)에 붙여넣을 장면 프롬프트 — 인물 사진을 재료(Ingredients)로 넣으면 같은 얼굴로 나옴.
+    speak=True(인물 대사 장면): 그 인물이 한국어 대사를 직접 말하게(입 모양·목소리 포함)."""
     text, refs = _shot_prompt(b, sc.get("shot", ""))
-    return (f"Vertical 9:16 cinematic live-action shot, 8 seconds. {text}. Realistic motion: natural breathing, blinking, hair and "
-            f"clothes moving; smooth slow camera move. Mood matches this line of dialogue: \"{sc.get('line', '')}\". "
-            "Keep the person exactly like the attached reference photo. No subtitles, no text, no speech, no music."), refs
+    who = next((f"{c['name']} ({c['look'].split(',')[0]})" for c in b["characters"] if c["id"] == sc.get("speaker")), "")
+    speak = (sc.get("speaker") not in (None, "", "narrator")) if speak is None else speak
+    talk = (f'{who} looks at the other person and says in Korean, clearly with natural lip sync: "{sc.get("line", "")}" — then pauses. '
+            "Only this one line of speech, natural room tone, no music." if speak else
+            f'Mood matches this narration: "{sc.get("line", "")}". No speech, no music.')
+    return (f"Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. {text}. Realistic motion: natural breathing, blinking, hair and "
+            f"clothes moving; smooth slow camera move. {talk} Keep every person exactly like the attached reference photos. "
+            "No subtitles, no on-screen text."), refs
 
 
 def plan_episode(slug):
@@ -184,13 +190,23 @@ def plan_episode(slug):
     out = []
     for i, sc in enumerate(scenes):
         prompt, refs = _veo_prompt(b, sc)
+        face = DIR / slug / "chars" / f"{sc.get('speaker')}-talk.jpg"
+        refs = ([face] if face.exists() else []) + [r for r in refs if r != face]
         out.append({"i": i, "speaker": sc.get("speaker"), "line": sc["line"], "prompt": prompt,
                     "refs": [str(r.relative_to(store.ROOT)) for r in refs if r.exists()]})
     ep["scenes"] = scenes
     plan = {"n": n, "ep": ep, "writer": used, "created": store.today(), "scenes": out}
     (DIR / slug / "plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=2), encoding="utf-8")
     (DIR / slug / "clips").mkdir(parents=True, exist_ok=True)
-    return plan, f"📝 {b['title']} {n}화 '{ep.get('title', '')}' 대본 준비 — 장면 {len(out)}개 · 앱에서 장면마다 Gemini 영상을 만들어 올린 뒤 '완성하기'"
+    talk_portraits(b)
+    return plan, (f"📝 {b['title']} {n}화 '{ep.get('title', '')}' 대본 준비 — 장면 {len(out)}개 · 앱에서 장면마다 Google Flow(또는 Gemini 앱)로 "
+                  f"영상을 만들어 올린 뒤 '완성하기' (대사 장면은 인물이 직접 말하게 프롬프트에 대사 포함)")
+
+
+def _has_audio(p):
+    r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=index", "-of", "csv=p=0", str(p)],
+                       capture_output=True, text=True)
+    return bool(r.stdout.strip())
 
 
 def clip_path(slug, n, i):
@@ -231,10 +247,16 @@ def render_episode(slug, private=False):
             audios.append("")
         speaks = sc.get("speaker") not in (None, "", "narrator") and au and talks < _cfg()["talk_scenes"]
         up = clip_path(slug, n, i)
-        if up.exists():  # 폰 Gemini 앱으로 만들어 올린 장면 영상 → 인물 대사면 입 모양만 맞춤
-            t = hftalk.talk(None, au, cache / f"ep{n:02d}-{i:02d}-up-talk.mp4", motion=up) if speaks else None
+        if up.exists():  # Google Flow·Gemini 앱으로 만들어 올린 장면 영상
+            t = None
+            if speaks and au:  # 인물이 그 영상 안에서 직접 말함 → 말 끝까지 잘라 그 소리를 이 줄 목소리로(입 모양과 같은 출처)
+                try:
+                    t = aivideo.speech_cut(up, au) if _has_audio(up) else None
+                except Exception:
+                    t = None
+                t = t or hftalk.talk(None, au, cache / f"ep{n:02d}-{i:02d}-up-talk.mp4", motion=up)  # 소리 없는 영상이면 입 모양만 맞춤
             talks += bool(t)
-            imgs.append(str(t.relative_to(SHORTS)) if t else str(up.resolve()))
+            imgs.append(str(t.resolve()) if t else str(up.resolve()))
             gem += 1
             continue
         prompt, refs = _shot_prompt(b, sc.get("shot", ""))
@@ -252,7 +274,15 @@ def render_episode(slug, private=False):
                 hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
         if still and speaks:  # 인물 대사 장면: 대사용 얼굴 사진(회차 내내 같은 얼굴) + 목소리 → 말하며 움직이는 영상(입 모양 맞춤)
             face = DIR / slug / "chars" / f"{sc.get('speaker')}-talk.jpg"
-            t = hftalk.talk(face if face.exists() else still, au, still.with_name(still.stem + "-talk.mp4"))
+            t = None
+            vp, _ = _veo_prompt(b, sc)
+            vv = aivideo.veo_animate(face if face.exists() else still, vp, still.with_name(still.stem + "-veo.mp4"))  # 프롬프트에 대사 포함
+            if vv:  # Gemini Veo가 직접 말함 → 말 끝까지 잘라서 그 소리를 이 줄 목소리로 사용(입 모양과 소리가 같은 출처)
+                try:
+                    t = aivideo.speech_cut(vv, au)
+                except Exception:
+                    t = None
+            t = t or hftalk.talk(face if face.exists() else still, au, still.with_name(still.stem + "-talk.mp4"))
             if t:
                 motion, talks = t, talks + 1
             elif i < _cfg()["motion_scenes"]:

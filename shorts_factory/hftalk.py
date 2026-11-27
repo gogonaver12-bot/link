@@ -49,6 +49,8 @@ def talk(img, audio, out: Path, motion=None):
                 print(f"  ⏳ 말하는 영상 AI 오늘 사용량 끝({space.split('/')[1]}) → 다음 AI", flush=True)
             elif "예산" in str(e) or isinstance(e, TimeoutError) or "timeout" in msg:
                 print(f"  ⏱️ 말하는 영상 AI 너무 오래 걸림({space.split('/')[1]}) → 다음 AI", flush=True)
+            else:
+                print(f"  ⚠️ 말하는 영상 AI 오류({space.split('/')[1]}): {str(e)[:90]} → 다음 AI", flush=True)
             _dead.add(space)
     _quota["out"] = True
     print("  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)", flush=True)
