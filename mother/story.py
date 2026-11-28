@@ -10,7 +10,7 @@ import zlib
 import subprocess
 import sys
 
-from . import continuity, providers, store
+from . import cinematic, continuity, providers, store
 
 DIR = store.ROOT / "stories"
 SHORTS = store.ROOT / "shorts_factory"
@@ -20,8 +20,8 @@ VOICES = {  # edge-tts 목소리|음높이|속도
     "male": "ko-KR-InJoonNeural|+0Hz|+5%", "boy": "ko-KR-InJoonNeural|+35Hz|+10%",
     "old_male": "ko-KR-InJoonNeural|-20Hz|-6%", "old_female": "ko-KR-SunHiNeural|-15Hz|-6%",
 }
-STYLE = ("photorealistic live-action K-drama film still, shot on ARRI Alexa, 35mm anamorphic lens, cinematic lighting with soft key light "
-         "and rim light, shallow depth of field, ultra detailed, sharp focus on the eyes, realistic skin texture, natural color grading, "
+STYLE = ("photorealistic live-action K-drama film still, cinematic lighting with soft key light "
+         "and rim light, sharp focus on the eyes, natural color grading, "
          "vertical 9:16 composition with the subject in the upper two-thirds, no text, no letters, no watermark, no cartoon, no 3d render")
 RULES = ("규칙: 오리지널 캐릭터만 — 기존 작품·캐릭터의 이름·외모·설정을 쓰지 않는다(공공 영역 전설·신화는 가능, "
          "SCP 재단 소재는 CC BY-SA 출처 표기). 실존 인물·혐오·선정적 묘사 금지. 대사는 짧고 자연스러운 한국어.")
@@ -156,7 +156,7 @@ def _shot_prompt(b, shot):
     text = re.sub(r"\[(\w+)\]", lambda m: f"{chars[m.group(1)]['name']} ({clean(chars[m.group(1)]['look'])})" if m.group(1) in chars else m.group(1),
                   clean(shot))
     refs = [DIR / b["slug"] / "chars" / f"{i}.jpg" for i in ids]
-    return f"{continuity.lock_block(b, ids)}{text}. Setting: {b.get('setting', '')}", refs
+    return continuity.lock_block(b, ids) + cinematic.compose(text, b.get("setting", "")), refs  # 고정 외모 잠금 + 5단계 황금 공식 순서(샷·무빙→피사체·동작→배경→조명→렌즈)
 
 
 def _owner_rules():
@@ -172,8 +172,9 @@ def _write(b, n):
         f"시리즈 바이블:\n{json.dumps({k: b[k] for k in ('title', 'genre', 'logline', 'tone', 'setting', 'characters')}, ensure_ascii=False)}\n"
         f"지난 회차:\n{prev}\n{continuity.brief(b['slug'])}\n이번 {n}화 계획: {plan[n - 1] if n <= len(plan) else '이야기를 자연스럽게 이어감'}\n\n"
         f"{n}화 대본 JSON: " '{"title":"","summary":"한 줄","scenes":[{"speaker":"narrator 또는 인물 id","line":"한국어 대사/내레이션 18자 안팎",'
-        '"shot":"영어 장면 묘사: 등장 인물은 [id]로 표기, 행동·장소·카메라(close-up/medium/wide)·조명·표정"}],"cta":"다음 화가 궁금하게 + 구독",'
-        '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES
+        '"shot":"영어 장면 묘사(등장 인물은 [id]로 표기)"}],"cta":"다음 화가 궁금하게 + 구독",'
+        '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. '
+        + cinematic.WRITER_RULE + " " + RULES
         + _owner_rules(), "story_writer")
 
 
@@ -186,8 +187,8 @@ def _veo_prompt(b, sc, speak=None):
     talk = (f'{who} looks at the other person and says in Korean, clearly with natural lip sync: "{sc.get("line", "")}" — then pauses. '
             "Only this one line of speech, natural room tone, no music." if speak else
             f'Mood matches this narration: "{sc.get("line", "")}". No speech, no music.')
-    return (f"Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. {text}. Realistic motion: natural breathing, blinking, hair and "
-            f"clothes moving; smooth slow camera move. {talk} Keep every person exactly like the attached reference photos. "
+    return (f"Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. {text}. Natural breathing and blinking. "
+            f"{talk} Keep every person exactly like the attached reference photos. "
             "No subtitles, no on-screen text."), refs
 
 

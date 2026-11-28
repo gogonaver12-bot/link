@@ -801,3 +801,14 @@ def test_story_check_rules_and_fallbacks(monkeypatch, tmp_path):
     assert ct.ensure_fixed(b) == 1 and "red braid" in b["characters"][0]["fixed"]["hair"] and "tunic" in b["characters"][0]["fixed"]["outfit"]
     led = ct.update(b, 1, {"summary": "첫 만남", "scenes": [{"speaker": "narrator", "line": "그날 밤"}]})
     assert led["episodes"][0]["summary"] == "첫 만남" and led["threads"] == ["그날 밤"]
+
+
+def test_cinematic_golden_formula():
+    from mother import cinematic
+    p = cinematic.compose("[kang] turning head slowly, beautiful masterpiece, ultra 8k, wet asphalt reflecting neon lights", "Seoul at night")
+    assert "beautiful" not in p.lower() and "masterpiece" not in p.lower() and "8k" not in p.lower()
+    assert p.startswith("Medium shot, subtle handheld movement.")  # 샷·무빙이 없으면 맨 앞에 보충
+    assert p.index("Setting:") < p.index("Shot on")  # 배경 → 렌즈 순서
+    assert "85mm" in cinematic.lens("Extreme close-up, slow dolly in on her eyes")
+    assert "RED V-Raptor" in cinematic.lens("Low-angle tracking shot following a runner")
+    assert cinematic.compose("Close-up, slow dolly in on [a] crying").startswith("Close-up, slow dolly in")
