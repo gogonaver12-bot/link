@@ -16,6 +16,7 @@ ROOT = Path(__file__).parent
 FONT = ROOT / "assets" / "BlackHanSans.ttf"
 MAX_SEC = 59.0
 W, H = 1080, 1920
+ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "15", "-pix_fmt", "yuv420p"]  # 중간 조각은 거의 무손실(두 번 압축해도 화질 유지)
 
 
 def sh(cmd):
@@ -28,6 +29,16 @@ def sh(cmd):
 def dur(p):
     return float(sh(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                      "-of", "csv=p=0", str(p)]).strip())
+
+
+def fps(p):
+    """영상의 초당 프레임 (AI 무료 영상은 16fps가 많음 → 부드럽게 보간할지 판단)."""
+    try:
+        a, b = sh(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=r_frame_rate",
+                   "-of", "csv=p=0", str(p)]).strip().split("/")
+        return float(a) / float(b or 1)
+    except Exception:
+        return 30.0
 
 
 async def tts(text, voice, rate, path, pitch="+0Hz"):
@@ -121,7 +132,7 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
         c1, c2 = colors
         src = f"gradients=s={W}x{H}:c0={c1}:c1={c2}:x0=0:y0=0:x1={W}:y1={H}:speed=0.015:d={total:.2f},fps=30"
         sh(["ffmpeg", "-y", "-f", "lavfi", "-i", src, "-vf", "noise=alls=6:allf=t",
-            "-c:v", "libx264", "-preset", "veryfast", bg])
+            *ENC, bg])
         return bg
     # 자막 줄마다 컷 전환 + 천천히 줌인 (시선 유지)
     segs, bounds = [], [c[0] for c in cues[1:]] + [total]
@@ -139,20 +150,21 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
             zp = (f"scale={W*2}:{H*2}:flags=lanczos:force_original_aspect_ratio=increase,crop={W*2}:{H*2},"
                   f"zoompan=z='{move[0]}':x='{move[1]}':y='{move[2]}':d={frames}:s={W}x{H}:fps=30,unsharp=5:5:0.7")
             look = ("eq=brightness=-0.08:saturation=1.15" if not scene_clips else  # 스토리: 영화처럼 색보정·비네트·필름 그레인·장면 전환 페이드
-                    f"eq=contrast=1.07:brightness=-0.03:saturation=1.12,colorbalance=rs=0.03:bs=-0.03:rh=-0.02:bh=0.03,vignette=PI/5,"
+                    f"eq=contrast=1.06:brightness=0.01:saturation=1.1,colorbalance=rs=0.03:bs=-0.03:rh=-0.02:bh=0.03,vignette=PI/5,"
                     f"noise=alls=5:allf=t,fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
             sh(["ffmpeg", "-y", "-i", c, "-vf", f"{zp},{look}",
-                "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
+                "-frames:v", str(frames), *ENC, seg])
             segs.append(seg); start = end
             continue
         if scene_clips and c.suffix.lower() == ".mp4":  # 스토리: AI로 움직인 장면 — 대사 길이에 맞춰 천천히 늘이고(최대 2배) 모자라면 반복
             L = max(0.5, dur(c))
             k = 1.0 if "-talk" in c.stem else min(2.0, max(1.0, d / L))  # 말하는 영상은 입 모양이 어긋나지 않게 속도 그대로
-            look = (f"eq=contrast=1.07:brightness=-0.03:saturation=1.12,vignette=PI/5,noise=alls=5:allf=t,"
+            smooth = f"minterpolate=fps=30:mi_mode=mci:mc_mode=obmc:me=epzs," if fps(c) / k < 24 else ""  # AI 영상(16fps)·느리게 늘인 장면 → 중간 프레임 만들어 부드럽게
+            look = (f"eq=contrast=1.06:brightness=0.01:saturation=1.1,vignette=PI/5,noise=alls=4:allf=t,"
                     f"fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
             sh(["ffmpeg", "-y", "-stream_loop", "-1", "-i", c, "-t", f"{d:.2f}",
-                "-vf", f"setpts={k:.3f}*PTS,scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30,unsharp=5:5:0.6,{look}",
-                "-frames:v", str(frames), "-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
+                "-vf", f"setpts={k:.3f}*PTS,{smooth}scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30,unsharp=5:5:0.6,{look}",
+                "-frames:v", str(frames), "-an", *ENC, seg])
             segs.append(seg); start = end
             continue
         L = dur(c)  # 앞뒤 20%(제목/자막 카드 많음) 건너뜀
@@ -160,7 +172,7 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
         zoom = f"zoompan=z='1.25+0.0012*on':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={W}x{H}:fps=30"
         sh(["ffmpeg", "-y", "-ss", f"{off:.2f}", "-stream_loop", "-1", "-i", c, "-t", f"{d:.2f}",
             "-vf", f"{fit},{zoom},eq=brightness=-0.10:saturation=1.15", "-frames:v", str(frames),
-            "-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", seg])
+            "-an", *ENC, seg])
         segs.append(seg); start = end
     lst = work / "segs.txt"
     lst.write_text("".join(f"file '{p.resolve()}'\n" for p in segs))
@@ -224,8 +236,8 @@ def main():
     vf = "[0:v]null[v]" if s.get("no_subtitles") else f"[0:v]ass={ass}:fontsdir={FONT.parent}[v]"  # 실사 스토리: 자막 없이 영상과 말로
     cmd += ["-filter_complex", f"{vf};{afilter}",
             "-map", "[v]", "-map", "[a]", "-t", f"{total:.2f}",
-            "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
-            "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", out]
+            "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-profile:v", "high", "-maxrate", "16M", "-bufsize", "32M",
+            "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", out]
     sh(cmd)
     meta = {"title": s["title"], "description": s.get("description", ""), "tags": s.get("tags", []),
             "duration": round(total, 1), "file": out.name, "cover": s.get("cover", ""),
