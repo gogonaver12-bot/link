@@ -1,0 +1,88 @@
+{
+  "title": "제42구역: 속삭이는 거울 2화 | 제42구역: 속삭이는 거울 2화",
+  "story": true,
+  "hook": "녀석이 삼킨 건, 타인의 기억뿐만이 아닙니다.",
+  "lines": [
+    "무슨 소리야? 데이터로 증명해.",
+    "대상-703은 10년간 접촉한 수백 명의 기억을 누적했어요.",
+    "우리는 하나이자, 전부다...",
+    "거울 안에서 그들이 서로를 먹어치우며 증식 중입니다.",
+    "그럼 내 과거를 속삭인 건... 그중 누구지?",
+    "네가 가장 죽이고 싶었던... 바로 그 사람이지.",
+    "거울 너머에 숨겨진 또 다른 진실이 드러난다."
+  ],
+  "cta": "거울 속에서 지켜보는 진짜 존재는 누구인가? 다음 화에서 확인하세요. 구독과 좋아요!",
+  "voices": [
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "이서연",
+    "강진우",
+    "이서연",
+    "대상-703",
+    "이서연",
+    "강진우",
+    "대상-703",
+    "",
+    ""
+  ],
+  "clips": [
+    "assets/story/scp-zone-42-mirror/ep02-00.mp4",
+    "assets/story/scp-zone-42-mirror/ep02-01.mp4",
+    "assets/story/scp-zone-42-mirror/ep02-02.mp4",
+    "assets/story/scp-zone-42-mirror/ep02-03.jpg",
+    "assets/story/scp-zone-42-mirror/ep02-04.jpg",
+    "assets/story/scp-zone-42-mirror/ep02-05.jpg",
+    "assets/story/scp-zone-42-mirror/ep02-06.jpg",
+    "assets/story/scp-zone-42-mirror/ep02-07.jpg",
+    "assets/story/scp-zone-42-mirror/ep02-07.jpg"
+  ],
+  "audio": [
+    "assets/story/scp-zone-42-mirror/ep02-00.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-01.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-02.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-03.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-04.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-05.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-06.mp3",
+    "assets/story/scp-zone-42-mirror/ep02-07.mp3",
+    ""
+  ],
+  "no_subtitles": true,
+  "keywords": [
+    "English: person stands by the",
+    "English: person sits leaning forward,",
+    "English: person swipes the tablet",
+    "English: person in orange jumpsuit",
+    "English: person looks nervously at",
+    "English: person grips the edge",
+    "English: person leans close to",
+    "English: The flickering fluorescent light",
+    "cinematic"
+  ],
+  "cover": "제42구역: 속삭이는 거울\n2화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "SCP 재단 세계관 기반 오리지널 숏드라마 제42구역: 속삭이는 거울 2화. 대상-703의 충격적인 가설과 강진우 조사관의 과거에 얽힌 비밀.\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)\n\n출처: SCP 재단(SCP Foundation) — CC BY-SA 3.0",
+  "tags": [
+    "숏드라마",
+    "SCP",
+    "SF스릴러",
+    "미스터리",
+    "제42구역",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}
