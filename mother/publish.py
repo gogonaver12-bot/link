@@ -63,11 +63,11 @@ PREVIEWS = SHORTS.parent / "app" / "previews"
 
 
 def preview(mp4, meta, keep=4):
-    """앱 '영상확인'에서 바로 볼 가벼운 미리보기(360p) — 최근 몇 개만 남김. 업로드 전·한도 초과여도 폰에서 확인 가능."""
+    """앱 '영상확인'에서 바로 볼 미리보기(540p, 폰 화면에서 선명) — 최근 몇 개만 남김. 업로드 전·한도 초과여도 폰에서 확인 가능."""
     PREVIEWS.mkdir(parents=True, exist_ok=True)
     out = PREVIEWS / mp4.name
-    r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4), "-vf", "scale=360:-2", "-c:v", "libx264", "-crf", "33",
-                        "-preset", "veryfast", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", str(out)], capture_output=True)
+    r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4), "-vf", "scale=540:-2:flags=lanczos", "-c:v", "libx264", "-crf", "26",
+                        "-preset", "slow", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", str(out)], capture_output=True)
     if r.returncode:
         return None
     idx = store.load_json("previews.json", [])
