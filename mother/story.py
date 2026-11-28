@@ -151,7 +151,9 @@ def _shot_prompt(b, shot):
     """장면 묘사의 [id] 를 인물 외모 설명으로 바꾸고, 등장 인물의 참조 사진을 고른다."""
     chars = {c["id"]: c for c in b["characters"]}
     ids = [i for i in chars if re.search(rf"\[{i}\]|\b{i}\b", shot)]
-    text = re.sub(r"\[(\w+)\]", lambda m: f"{chars[m.group(1)]['name']} ({chars[m.group(1)]['look']})" if m.group(1) in chars else m.group(1), shot)
+    clean = lambda t: re.sub(r"\b(English|영어)\s*:\s*", "", t)  # AI가 붙인 'English:' 머리말 제거
+    text = re.sub(r"\[(\w+)\]", lambda m: f"{chars[m.group(1)]['name']} ({clean(chars[m.group(1)]['look'])})" if m.group(1) in chars else m.group(1),
+                  clean(shot))
     refs = [DIR / b["slug"] / "chars" / f"{i}.jpg" for i in ids]
     return f"{text}. Setting: {b.get('setting', '')}", refs
 

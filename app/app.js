@@ -431,13 +431,15 @@ function geminiBox(b) {  // 폰 Gemini 앱(플러스)으로 장면 영상을 만
   const P = b.plan, up = P.scenes.filter((s) => s.clip).length;
   return `<div class="gem"><div class="t">🎬 ${P.n}화 '${esc(P.title)}' — Flow 장면 ${up}/${P.scenes.length}개 올림</div>
     <ol class="steps-ol" style="font-size:12px;margin:6px 0"><li>인물 사진을 길게 눌러 저장</li>
-      <li><a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">Google Flow</a> → 새 프로젝트 → <b>재료로 동영상(Ingredients)</b> → 사진 첨부 + 📋 프롬프트 붙여넣기 → 세로 9:16 → 생성 → 다운로드 (Gemini 앱 동영상도 가능)</li>
+      <li><a href="${esc(store.get("flow_url") || "https://labs.google/fx/tools/flow")}" target="_blank" rel="noopener">${store.get("flow_url") ? "내 Flow 프로젝트" : "Google Flow"}</a> → <b>재료로 동영상(Ingredients)</b> → 사진 첨부 + 📋 프롬프트 붙여넣기 → 세로 9:16 → 생성 → 다운로드 (Gemini 앱 동영상도 가능)</li>
       <li>⬆️ 영상 올리기 — 대사 장면은 영상 속 목소리를 그대로 써요 · 못 만든 장면은 자동으로 채워요</li></ol>
     ${P.scenes.map((s) => `<div class="gem-sc ${s.clip ? "done" : ""}"><b>${s.i + 1}</b><div class="grow"><div class="t wrap">${esc(s.line)}</div>
       <div class="gem-refs">${(s.refs || []).map((r) => `<img src="${imgUrl(r)}" alt="인물 사진 — 길게 눌러 저장">`).join("")}</div>
       <div class="btns" style="grid-template-columns:1fr 1fr;margin-top:6px"><button class="btn small ghost" data-copy="${esc(s.prompt)}">📋 프롬프트</button>
       <label class="btn small ${s.clip ? "ghost" : ""}" style="text-align:center">${s.clip ? "✓ 다시 올리기" : "⬆️ 영상 올리기"}<input type="file" accept="video/*" hidden
         data-upslug="${esc(b.slug)}" data-upn="${P.n}" data-upi="${s.i}"></label></div></div></div>`).join("")}
+    <div class="btns" style="margin-top:10px"><a class="btn ghost" style="text-align:center" href="${esc(store.get("flow_url") || "https://labs.google/fx/tools/flow")}" target="_blank" rel="noopener">🎬 ${store.get("flow_url") ? "내 Flow 프로젝트 열기" : "Flow 열기"}</a>
+      <button class="btn ghost" data-copy="${esc(P.scenes.map((s) => `[장면 ${s.i + 1}] ${s.prompt}`).join("\n\n"))}">📋 프롬프트 전부 복사</button></div>
     <button class="btn" style="margin-top:10px;width:100%" data-cmd="story render ${esc(b.slug)}" data-label="${esc(b.title)} ${P.n}화 완성">✅ 올린 장면으로 ${P.n}화 완성하기</button></div>`;
 }
 async function uploadClip(input) {
@@ -723,6 +725,11 @@ const provSheet = (id) => {
 
 /* ───────── 라우터 & 이벤트 ───────── */
 function render() {
+  if ((location.hash || "").startsWith("#flow=")) {  // 내 Flow 프로젝트 링크를 이 폰에만 저장(저장소에는 안 올라감)
+    const u = decodeURIComponent(location.hash.slice(6));
+    if (/^https:\/\/(flow\.google\.com|labs\.google)\//.test(u)) { store.set("flow_url", u); toast("✅ 내 Flow 프로젝트 연결됨 — 스토리 장면에서 바로 열려요"); }
+    history.replaceState(null, "", "#story");
+  }
   const hash = location.hash || "#home";
   const tab = /^#(biz|team|ai|report)/.test(hash) ? "more" : hash === "#story" ? "make" : hash.slice(1);
   document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", tab === a.dataset.tab));
