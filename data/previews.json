@@ -1,10 +1,5 @@
 [
   {
-    "file": "story-mountain-shadow-ep01.mp4",
-    "title": "산속의 그림자 1화 | 산속의 그림자",
-    "date": "2026-11-26"
-  },
-  {
     "file": "story-farm-girl-sword-ep05.mp4",
     "title": "농부소녀와 전설의 검 5화 | 5화: 뽑았는데, 환불 안 되나요?",
     "date": "2026-11-26"
@@ -17,6 +12,11 @@
   {
     "file": "story-farm-girl-sword-ep03.mp4",
     "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
+    "date": "2026-11-28"
+  },
+  {
+    "file": "story-site-thirteen-chronicler-ep02.mp4",
+    "title": "제13구역의 기록자 2화 | 제13구역의 기록자: 2화",
     "date": "2026-11-28"
   }
 ]

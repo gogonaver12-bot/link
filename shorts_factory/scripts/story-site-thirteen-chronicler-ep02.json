@@ -1,0 +1,88 @@
+{
+  "title": "제13구역의 기록자 2화 | 제13구역의 기록자: 2화",
+  "story": true,
+  "hook": "내 질문에 답해, 세타.",
+  "lines": [
+    "서진아... 울지 마.",
+    "방금... 뭐라고 했지?",
+    "그날 밤 불에 타던 네 동생.",
+    "박사, 즉시 인터뷰 중단합니다!",
+    "어떻게 그걸 알고 있어?",
+    "네 기억 속에 내가 살고 있거든.",
+    "재단이 감춘 진짜 괴물은 누구인가."
+  ],
+  "cta": "과거를 아는 변칙 존재의 정체는? 다음 화에서 확인하세요. 구독!",
+  "voices": [
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-SunHiNeural|+0Hz|+8%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "강서진",
+    "실험체 세타",
+    "강서진",
+    "실험체 세타",
+    "한도진",
+    "강서진",
+    "실험체 세타",
+    "",
+    ""
+  ],
+  "clips": [
+    "assets/story/site-thirteen-chronicler/ep02-00.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-01.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-02.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-03.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-04.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-05.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-06.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-07.jpg",
+    "assets/story/site-thirteen-chronicler/ep02-07.jpg"
+  ],
+  "audio": [
+    "assets/story/site-thirteen-chronicler/ep02-00.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-01.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-02.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-03.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-04.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-05.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-06.mp3",
+    "assets/story/site-thirteen-chronicler/ep02-07.mp3",
+    ""
+  ],
+  "no_subtitles": true,
+  "keywords": [
+    "Close-up of kang, cold fluorescent",
+    "Medium shot of subject, pale",
+    "Extreme close-up of kang, widening",
+    "Wide shot of the interrogation",
+    "Medium shot of han, dark",
+    "Close-up of kang, trembling lips,",
+    "Close-up of subject, face pressed",
+    "Wide dark shot of the",
+    "cinematic"
+  ],
+  "cover": "제13구역의 기록자\n2화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "비밀 격리 시설 제13구역. 수석 연구원 강서진은 실험체 세타와의 인터뷰 중 자신의 지우고 싶은 과거를 마주한다.\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)\n\n출처: SCP 재단(SCP Foundation) — CC BY-SA 3.0",
+  "tags": [
+    "숏드라마",
+    "SF미스터리",
+    "SCP",
+    "스릴러",
+    "웹드라마",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}
