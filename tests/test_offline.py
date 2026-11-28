@@ -743,3 +743,14 @@ def test_agensi_kit_is_original_and_packaged():
             md = z.read(f"{i['id']}/SKILL.md").decode()
         assert md.startswith("---\nname: ") and "description: Use when" in md
         assert "obra/superpowers" not in md and "coreyhaines31" not in md  # 남의 스킬은 팔지 않음
+
+
+def test_cinematic_golden_formula():
+    from mother import cinematic
+    p = cinematic.compose("[kang] turning head slowly, beautiful masterpiece, ultra 8k, wet asphalt reflecting neon lights", "Seoul at night")
+    assert "beautiful" not in p.lower() and "masterpiece" not in p.lower() and "8k" not in p.lower()
+    assert p.startswith("Medium shot, subtle handheld movement.")  # 샷·무빙이 없으면 맨 앞에 보충
+    assert p.index("Setting:") < p.index("Shot on")  # 배경 → 렌즈 순서
+    assert "85mm" in cinematic.lens("Extreme close-up, slow dolly in on her eyes")
+    assert "RED V-Raptor" in cinematic.lens("Low-angle tracking shot following a runner")
+    assert cinematic.compose("Close-up, slow dolly in on [a] crying").startswith("Close-up, slow dolly in")
