@@ -4,7 +4,7 @@
 stories/<slug>/bible.json · chars/<id>.jpg(참조 사진, 회차가 바뀌어도 같은 얼굴) · ep01.json …
 """
 import json
-import pathlib
+from pathlib import Path
 import re
 import zlib
 import subprocess
@@ -15,10 +15,11 @@ from . import cinematic, continuity, providers, store
 DIR = store.ROOT / "stories"
 SHORTS = store.ROOT / "shorts_factory"
 VOICES = {  # edge-tts 목소리|음높이|속도
-    "narrator": "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
-    "female": "ko-KR-SunHiNeural|+0Hz|+8%", "girl": "ko-KR-SunHiNeural|+30Hz|+10%",
-    "male": "ko-KR-InJoonNeural|+0Hz|+5%", "boy": "ko-KR-InJoonNeural|+35Hz|+10%",
-    "old_male": "ko-KR-InJoonNeural|-20Hz|-6%", "old_female": "ko-KR-SunHiNeural|-15Hz|-6%",
+    # 드라마는 자연스럽게: 음높이 변조(기계음 원인) 최소화, 빠르게 말하지 않기
+    "narrator": "ko-KR-HyunsuMultilingualNeural|+0Hz|-6%",
+    "female": "ko-KR-SunHiNeural|+0Hz|-4%", "girl": "ko-KR-SunHiNeural|+8Hz|-2%",
+    "male": "ko-KR-InJoonNeural|+0Hz|-4%", "boy": "ko-KR-InJoonNeural|+10Hz|-2%",
+    "old_male": "ko-KR-InJoonNeural|-6Hz|-10%", "old_female": "ko-KR-SunHiNeural|-6Hz|-10%",
 }
 STYLE = ("photorealistic live-action K-drama film still, cinematic lighting with soft key light "
          "and rim light, sharp focus on the eyes, natural color grading, "
@@ -79,7 +80,7 @@ def all_series():
 
 
 def _img():
-    sys.path.insert(0, str(SHORTS))
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "shorts_factory"))  # 코드 위치(데이터 폴더와 별개)
     import aiimage
     return aiimage
 
@@ -247,7 +248,7 @@ def render_episode(slug, private=False):
     os.environ.setdefault("AI_VIDEO_BUDGET", str(store.cfg().get("shorts", {}).get("ai_video_budget_usd_month", 5)))  # Gemini 영상 월 예산
     voice = lambda spk: VOICES["narrator"] if spk == "narrator" else VOICES.get(
         next((c.get("voice") for c in b["characters"] if c["id"] == spk), "female"), VOICES["female"])
-    sys.path[:0] = [str(SHORTS), str(pathlib.Path(__file__).resolve().parent.parent / "shorts_factory")]  # 테스트에서 SHORTS를 바꿔도 모듈은 찾게
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "shorts_factory"))  # 코드 위치(데이터 폴더와 별개)
     import aivideo, hfvideo, hftalk
     audios, talks = [], 0
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):

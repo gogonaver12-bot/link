@@ -56,7 +56,7 @@ def sfx(kind, seed=""):
     return ["-f", "lavfi", "-i", SYNTH[kind]]
 
 
-def mix(cues, total, seed="", first_input=2):
+def mix(cues, total, seed="", first_input=2, story=False):
     """음성(1번 입력) + 음악(덕킹) + 효과음. 반환: (추가 입력 인자, filter_complex 오디오 부분)."""
     args, n = [], first_input
     f = ["[1:a]asplit=2[vo][vk]"]
@@ -64,12 +64,13 @@ def mix(cues, total, seed="", first_input=2):
     m = music(seed)
     if m:
         args += ["-stream_loop", "-1", "-i", str(m)]
-        f.append(f"[{n}:a]volume=0.30[m0];[m0][vk]sidechaincompress=threshold=0.04:ratio=8:attack=15:release=350[m]")
+        f.append(f"[{n}:a]volume={0.16 if story else 0.30}[m0];[m0][vk]sidechaincompress=threshold=0.04:ratio=8:attack=15:release=350[m]")
         mix_in.append("[m]"); n += 1
     else:
         f.append("[vk]anullsink")
     starts = [c[0] for c in cues[1:]][:12]  # 장면 바뀔 때마다 톡
-    for kind, times, vol in (("whoosh", [0.0], 0.55), ("pop", starts, 0.30), ("ding", [max(total - 0.9, 0)], 0.35)):
+    fx = () if story else (("whoosh", [0.0], 0.55), ("pop", starts, 0.30), ("ding", [max(total - 0.9, 0)], 0.35))
+    for kind, times, vol in fx:  # 드라마는 효과음 없이(장면마다 '톡' 소리는 몰입을 깸) — 음악만 작게, 소리는 영상·목소리 그대로
         if not times:
             continue
         args += sfx(kind, seed)

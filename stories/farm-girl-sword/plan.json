@@ -1,75 +1,77 @@
 {
-  "n": 6,
+  "n": 7,
   "ep": {
-    "title": "제6화: 왕국 기사단장의 방문",
-    "summary": "검을 뽑은 루나 앞에 왕국의 오만한 기사단장이 나타나 검을 강탈하려 한다.",
+    "title": "농부소녀와 전설의 검 7화",
+    "summary": "기사단장이 검을 빼앗으려 하자 루나가 이그니스의 힘을 빌려 반격한다.",
     "scenes": [
       {
         "speaker": "narrator",
-        "line": "마을에 퍼진 놀라운 소문!",
-        "shot": "English: Wide shot of the rural farming village under bright daylight, villagers whispering in groups, camera tracking slowly, cheerful yet tense atmosphere."
+        "line": "기사단장이 검을 빼앗으려 손을 뻗었다!",
+        "shot": "Medium close-up, slow dolly in. [boris] extending a gauntleted hand toward [luna]. Weathered wooden fence and green meadows in the background. Bright noon daylight with harsh shadows."
       },
       {
         "speaker": "luna",
-        "line": "내, 내가 사고 친 건가?",
-        "shot": "English: Close-up of [luna] looking nervously at the glowing legendary sword in her hand, freckled face with wide green eyes, soft warm sunlight."
+        "line": "내 검에 손대지마!",
+        "shot": "Close-up, quick pan. [luna] stepping back sharply while holding the glowing sword. Mossy stone courtyard with scattered pebble textures. Overcast daylight with cool color grading."
       },
       {
         "speaker": "ignis",
-        "line": "귀찮은 파리들이 몰려온다.",
-        "shot": "English: Medium shot of [ignis] as a floating crimson flame hovering near [luna], glowing orange eyes narrowing, crackling sparks."
+        "line": "인간 녀석, 아주 겁도 없군.",
+        "shot": "Medium shot, static camera. [ignis] hovering beside [luna] with crackling crimson sparks. Rustic wooden huts in the blurred background. Warm sunset backlighting with orange hues."
       },
       {
         "speaker": "boris",
-        "line": "저, 저기 엄청난 기세가!",
-        "shot": "English: Medium shot of [boris] pointing toward the village entrance with a startled expression, heavy iron shoulder plates gleaming."
-      },
-      {
-        "speaker": "narrator",
-        "line": "왕국 최강 기사단장 등장!",
-        "shot": "English: Wide shot at the village entrance, a cloud of dust rising as armored footsteps echo, dramatic high-angle camera."
+        "line": "건방진 시골 년이!",
+        "shot": "Low-angle tracking shot, fast movement. [boris] swinging a heavy broadsword downward. Dusty dirt road with scattered dry leaves on the ground. Harsh midday sunlight with high contrast."
       },
       {
         "speaker": "luna",
-        "line": "누구세요? 우리 마을엔 왜요?",
-        "shot": "English: Medium-close shot of [luna] standing firm with a faded patch-work tunic, holding the sword defensively, determined look."
-      },
-      {
-        "speaker": "narrator",
-        "line": "검을 내놓으라는 무리한 요구",
-        "shot": "English: Close-up of a silver-armored knight's hand resting coldly on a polished pommel, sharp focus, tense mood."
+        "line": "이거나 받아라!",
+        "shot": "Medium close-up, handheld camera. [luna] swinging the legendary blade horizontally. Distant rolling hills and green pastures in soft focus. Golden hour lighting with warm amber tones."
       },
       {
         "speaker": "ignis",
-        "line": "녀석을 날려버려, 계약자!",
-        "shot": "English: Close-up of [ignis] flaring brightly with crimson light, sparking aggressively near [luna]'s shoulder, whispering prompt."
+        "line": "힘을 조금만 빌려주마.",
+        "shot": "Close-up, slow push in. [ignis] pulsing with bright orange light near the blade. Moss-covered stone surface with damp texture. Dramatic low-key lighting with deep shadows."
+      },
+      {
+        "speaker": "narrator",
+        "line": "검에서 거대한 빛이 뿜어져 나왔다!",
+        "shot": "Wide shot, static camera. [luna] standing firm as a blinding shockwave erupts. Cracked earth and flying dust particles in the air. Bright white flash with cinematic teal and orange grading."
+      },
+      {
+        "speaker": "luna",
+        "line": "어? 이게 뭐야?",
+        "shot": "Medium close-up, slow dolly back. [luna] blinking in utter shock at the glowing blade. Whispering Crag in the distant background with rocky textures. Soft morning light with gentle diffusion."
       }
     ],
-    "cta": "과연 루나는 검을 지켜낼까요? 다음 화를 기대해주세요!",
-    "description": "전설의 검을 뽑은 루나에게 찾아온 왕국의 위협! 긴장감 넘치는 6화.",
+    "cta": "단장이 날아갔다고? 다음 화가 궁금하다면 구독!",
+    "description": "전설의 검을 뽑은 루나에게 닥친 위기! 과연 그녀는 왕국 기사단장을 상대로 검을 지켜낼 수 있을까?",
     "tags": [
-      "판타지",
       "숏드라마",
-      "웹소설",
-      "성장물",
-      "액션"
+      "판타지",
+      "사이다",
+      "웹소설원작"
     ]
   },
   "writer": "무료 AI(JSON 모드)",
-  "created": "2026-11-27",
+  "created": "2026-11-28",
   "scenes": [
     {
       "i": 0,
       "speaker": "narrator",
-      "line": "마을에 퍼진 놀라운 소문!",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Wide shot of the rural farming village under bright daylight, villagers whispering in groups, camera tracking slowly, cheerful yet tense atmosphere.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this narration: \"마을에 퍼진 놀라운 소문!\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
-      "refs": []
+      "line": "기사단장이 검을 빼앗으려 손을 뻗었다!",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. Medium close-up, slow dolly in. 보리스 (20-year-old muscular young man, square jaw, short black crew cut, sharp brown eyes, wearing heavy iron shoulder plates over a leather vest, holding a standard broadsword.) extending a gauntleted hand toward 루나 (16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.). Weathered wooden fence and green meadows in the background. Bright noon daylight with harsh shadows. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on ARRI Alexa 65, 85mm prime lens, f/1.4 shallow depth of field, hyper-realistic skin texture, natural 35mm film grain. Natural breathing and blinking. Mood matches this narration: \"기사단장이 검을 빼앗으려 손을 뻗었다!\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+        "stories/farm-girl-sword/chars/luna.jpg",
+        "stories/farm-girl-sword/chars/boris.jpg"
+      ]
     },
     {
       "i": 1,
       "speaker": "luna",
-      "line": "내, 내가 사고 친 건가?",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Close-up of 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) looking nervously at the glowing legendary sword in her hand, freckled face with wide green eyes, soft warm sunlight.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"내, 내가 사고 친 건가?\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "line": "내 검에 손대지마!",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. slow push in. Close-up, quick pan. 루나 (16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) stepping back sharply while holding the glowing sword. Mossy stone courtyard with scattered pebble textures. Overcast daylight with cool color grading. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on ARRI Alexa 65, 85mm prime lens, f/1.4 shallow depth of field, hyper-realistic skin texture, natural 35mm film grain. Natural breathing and blinking. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"내 검에 손대지마!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
       "refs": [
         "stories/farm-girl-sword/chars/luna-talk.jpg",
         "stories/farm-girl-sword/chars/luna.jpg"
@@ -78,8 +80,8 @@
     {
       "i": 2,
       "speaker": "ignis",
-      "line": "귀찮은 파리들이 몰려온다.",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Medium shot of 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword.) as a floating crimson flame hovering near 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.), glowing orange eyes narrowing, crackling sparks.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours) looks at the other person and says in Korean, clearly with natural lip sync: \"귀찮은 파리들이 몰려온다.\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "line": "인간 녀석, 아주 겁도 없군.",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. slow push in. Medium shot, static camera. 이그니스 (Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword.) hovering beside 루나 (16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) with crackling crimson sparks. Rustic wooden huts in the blurred background. Warm sunset backlighting with orange hues. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on ARRI Alexa 65, 85mm prime lens, f/1.4 shallow depth of field, hyper-realistic skin texture, natural 35mm film grain. Natural breathing and blinking. 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours) looks at the other person and says in Korean, clearly with natural lip sync: \"인간 녀석, 아주 겁도 없군.\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
       "refs": [
         "stories/farm-girl-sword/chars/ignis-talk.jpg",
         "stories/farm-girl-sword/chars/luna.jpg",
@@ -89,8 +91,8 @@
     {
       "i": 3,
       "speaker": "boris",
-      "line": "저, 저기 엄청난 기세가!",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Medium shot of 보리스 (English: 20-year-old muscular young man, square jaw, short black crew cut, sharp brown eyes, wearing heavy iron shoulder plates over a leather vest, holding a standard broadsword.) pointing toward the village entrance with a startled expression, heavy iron shoulder plates gleaming.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 보리스 (English: 20-year-old muscular young man) looks at the other person and says in Korean, clearly with natural lip sync: \"저, 저기 엄청난 기세가!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "line": "건방진 시골 년이!",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. Low-angle tracking shot, fast movement. 보리스 (20-year-old muscular young man, square jaw, short black crew cut, sharp brown eyes, wearing heavy iron shoulder plates over a leather vest, holding a standard broadsword.) swinging a heavy broadsword downward. Dusty dirt road with scattered dry leaves on the ground. Harsh midday sunlight with high contrast. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on RED V-Raptor, 24mm wide-angle lens, high shutter speed, natural motion blur, cinematic contrast. Natural breathing and blinking. 보리스 (English: 20-year-old muscular young man) looks at the other person and says in Korean, clearly with natural lip sync: \"건방진 시골 년이!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
       "refs": [
         "stories/farm-girl-sword/chars/boris-talk.jpg",
         "stories/farm-girl-sword/chars/boris.jpg"
@@ -98,37 +100,41 @@
     },
     {
       "i": 4,
-      "speaker": "narrator",
-      "line": "왕국 최강 기사단장 등장!",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Wide shot at the village entrance, a cloud of dust rising as armored footsteps echo, dramatic high-angle camera.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this narration: \"왕국 최강 기사단장 등장!\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
-      "refs": []
-    },
-    {
-      "i": 5,
       "speaker": "luna",
-      "line": "누구세요? 우리 마을엔 왜요?",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Medium-close shot of 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) standing firm with a faded patch-work tunic, holding the sword defensively, determined look.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"누구세요? 우리 마을엔 왜요?\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "line": "이거나 받아라!",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. Medium close-up, handheld camera. 루나 (16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) swinging the legendary blade horizontally. Distant rolling hills and green pastures in soft focus. Golden hour lighting with warm amber tones. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on RED V-Raptor, 24mm wide-angle lens, high shutter speed, natural motion blur, cinematic contrast. Natural breathing and blinking. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"이거나 받아라!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
       "refs": [
         "stories/farm-girl-sword/chars/luna-talk.jpg",
         "stories/farm-girl-sword/chars/luna.jpg"
       ]
     },
     {
+      "i": 5,
+      "speaker": "ignis",
+      "line": "힘을 조금만 빌려주마.",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. Close-up, slow push in. 이그니스 (Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword.) pulsing with bright orange light near the blade. Moss-covered stone surface with damp texture. Dramatic low-key lighting with deep shadows. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on ARRI Alexa 65, 85mm prime lens, f/1.4 shallow depth of field, hyper-realistic skin texture, natural 35mm film grain. Natural breathing and blinking. 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours) looks at the other person and says in Korean, clearly with natural lip sync: \"힘을 조금만 빌려주마.\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+        "stories/farm-girl-sword/chars/ignis-talk.jpg",
+        "stories/farm-girl-sword/chars/ignis.jpg"
+      ]
+    },
+    {
       "i": 6,
       "speaker": "narrator",
-      "line": "검을 내놓으라는 무리한 요구",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Close-up of a silver-armored knight's hand resting coldly on a polished pommel, sharp focus, tense mood.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. Mood matches this narration: \"검을 내놓으라는 무리한 요구\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
-      "refs": []
+      "line": "검에서 거대한 빛이 뿜어져 나왔다!",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. slow push in. Wide shot, static camera. 루나 (16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) standing firm as a blinding shockwave erupts. Cracked earth and flying dust particles in the air. Bright white flash with cinematic teal and orange grading. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on ARRI Alexa 65, 85mm prime lens, f/1.4 shallow depth of field, hyper-realistic skin texture, natural 35mm film grain. Natural breathing and blinking. Mood matches this narration: \"검에서 거대한 빛이 뿜어져 나왔다!\". No speech, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "refs": [
+        "stories/farm-girl-sword/chars/luna.jpg"
+      ]
     },
     {
       "i": 7,
-      "speaker": "ignis",
-      "line": "녀석을 날려버려, 계약자!",
-      "prompt": "Vertical 9:16 cinematic live-action K-drama shot, 8 seconds. English: Close-up of 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours, glowing orange eyes, crackling magical sparks, hovering near the legendary sword.) flaring brightly with crimson light, sparking aggressively near 루나 (English: 16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.)'s shoulder, whispering prompt.. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere.. Realistic motion: natural breathing, blinking, hair and clothes moving; smooth slow camera move. 이그니스 (English: Appears as a floating crimson flame with faint humanoid contours) looks at the other person and says in Korean, clearly with natural lip sync: \"녀석을 날려버려, 계약자!\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
+      "speaker": "luna",
+      "line": "어? 이게 뭐야?",
+      "prompt": "Vertical 9:16 live-action K-drama shot, 8 seconds, one clear action. Medium close-up, slow dolly back. 루나 (16-year-old girl, round face with light freckles, bright green eyes, long messy brown hair tied in a loose ponytail, slim athletic build, wearing a faded patch-work tunic and sturdy leather boots.) blinking in utter shock at the glowing blade. Whispering Crag in the distant background with rocky textures. Soft morning light with gentle diffusion. Setting: English: A remote farming village near the Whispering Crag, medieval rural fantasy style, rustic wooden houses, glowing mystical runes on an ancient mossy boulder, bright and warm daylight atmosphere. Shot on ARRI Alexa 65, 85mm prime lens, f/1.4 shallow depth of field, hyper-realistic skin texture, natural 35mm film grain. Natural breathing and blinking. 루나 (English: 16-year-old girl) looks at the other person and says in Korean, clearly with natural lip sync: \"어? 이게 뭐야?\" — then pauses. Only this one line of speech, natural room tone, no music. Keep every person exactly like the attached reference photos. No subtitles, no on-screen text.",
       "refs": [
-        "stories/farm-girl-sword/chars/ignis-talk.jpg",
-        "stories/farm-girl-sword/chars/luna.jpg",
-        "stories/farm-girl-sword/chars/ignis.jpg"
+        "stories/farm-girl-sword/chars/luna-talk.jpg",
+        "stories/farm-girl-sword/chars/luna.jpg"
       ]
     }
   ]

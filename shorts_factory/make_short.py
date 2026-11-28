@@ -16,6 +16,8 @@ ROOT = Path(__file__).parent
 FONT = ROOT / "assets" / "BlackHanSans.ttf"
 MAX_SEC = 59.0
 W, H = 1080, 1920
+XF = 0.6  # 스토리 장면 전환: 0.6초 디졸브(겹쳐서 부드럽게 넘어감)
+GAP, MIN_SCENE = 0.7, 3.2  # 스토리: 대사 사이 숨 쉬는 틈, 장면 최소 길이(너무 빠른 전환 방지)
 ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "15", "-pix_fmt", "yuv420p"]  # 중간 조각은 거의 무손실(두 번 압축해도 화질 유지)
 
 
@@ -137,21 +139,23 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
     # 자막 줄마다 컷 전환 + 천천히 줌인 (시선 유지)
     segs, bounds = [], [c[0] for c in cues[1:]] + [total]
     start = 0.0
+    story = bool(scene_clips)
     for i, end in enumerate(bounds):
-        d = max(0.5, end - start)
+        d = max(0.5, end - start) + (XF if story and i < len(bounds) - 1 else 0)  # 다음 장면과 겹칠 만큼 더 길게
         c = clips[i % len(clips)]
         seg = work / f"seg{i:02d}.mp4"
         frames = int(d * 30) + 1
         if c.suffix.lower() in (".jpg", ".jpeg", ".png"):  # 사진·AI 이미지: 장면마다 다른 카메라 움직임(줌인·줌아웃·좌우 이동)
-            move = [("1+0.0015*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
-                    (f"1.25-0.0015*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
-                    ("1.18", f"(iw-iw/zoom)*on/{frames}", "ih/2-ih/zoom/2"),
-                    ("1.18", f"(iw-iw/zoom)*(1-on/{frames})", "ih/2-ih/zoom/2")][i % 4]
+            zs = 0.0007 if story else 0.0015  # 스토리는 카메라를 더 천천히
+            move = [(f"1+{zs}*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
+                    (f"1.2-{zs}*on", "iw/2-iw/zoom/2", "ih/2-ih/zoom/2"),
+                    ("1.12", f"(iw-iw/zoom)*on/{frames}", "ih/2-ih/zoom/2"),
+                    ("1.12", f"(iw-iw/zoom)*(1-on/{frames})", "ih/2-ih/zoom/2")][i % 4]
             zp = (f"scale={W*2}:{H*2}:flags=lanczos:force_original_aspect_ratio=increase,crop={W*2}:{H*2},"
                   f"zoompan=z='{move[0]}':x='{move[1]}':y='{move[2]}':d={frames}:s={W}x{H}:fps=30,unsharp=5:5:0.7")
             look = ("eq=brightness=-0.08:saturation=1.15" if not scene_clips else  # 스토리: 영화처럼 색보정·비네트·필름 그레인·장면 전환 페이드
                     f"eq=contrast=1.06:brightness=0.01:saturation=1.1,colorbalance=rs=0.03:bs=-0.03:rh=-0.02:bh=0.03,vignette=PI/5,"
-                    f"noise=alls=5:allf=t,fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
+                    "noise=alls=4:allf=t")  # 장면 전환은 끝에서 디졸브로
             sh(["ffmpeg", "-y", "-i", c, "-vf", f"{zp},{look}",
                 "-frames:v", str(frames), *ENC, seg])
             segs.append(seg); start = end
@@ -160,10 +164,11 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
             L = max(0.5, dur(c))
             k = 1.0 if "-talk" in c.stem else min(2.0, max(1.0, d / L))  # 말하는 영상은 입 모양이 어긋나지 않게 속도 그대로
             smooth = f"minterpolate=fps=30:mi_mode=mci:mc_mode=obmc:me=epzs," if fps(c) / k < 24 else ""  # AI 영상(16fps)·느리게 늘인 장면 → 중간 프레임 만들어 부드럽게
-            look = (f"eq=contrast=1.06:brightness=0.01:saturation=1.1,vignette=PI/5,noise=alls=4:allf=t,"
-                    f"fade=t=in:st=0:d=0.18,fade=t=out:st={max(0.0, d - 0.18):.2f}:d=0.18")
-            sh(["ffmpeg", "-y", "-stream_loop", "-1", "-i", c, "-t", f"{d:.2f}",
-                "-vf", f"setpts={k:.3f}*PTS,{smooth}scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30,unsharp=5:5:0.6,{look}",
+            look = "eq=contrast=1.06:brightness=0.01:saturation=1.1,vignette=PI/5,noise=alls=4:allf=t"
+            talk = "-talk" in c.stem  # 말하는 영상은 반복하면 소리 없이 입만 움직임 → 마지막 장면을 멈춘 채 유지
+            hold = "tpad=stop_mode=clone:stop_duration=30," if talk else ""
+            sh(["ffmpeg", "-y", *([] if talk else ["-stream_loop", "-1"]), "-i", c, "-t", f"{d:.2f}",
+                "-vf", f"{hold}setpts={k:.3f}*PTS,{smooth}scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps=30,unsharp=5:5:0.6,{look}",
                 "-frames:v", str(frames), "-an", *ENC, seg])
             segs.append(seg); start = end
             continue
@@ -174,6 +179,15 @@ def background(total, colors, work, cues, keywords, subject="", scene_clips=None
             "-vf", f"{fit},{zoom},eq=brightness=-0.10:saturation=1.15", "-frames:v", str(frames),
             "-an", *ENC, seg])
         segs.append(seg); start = end
+    if story and len(segs) > 1:  # 장면끼리 0.6초 디졸브로 자연스럽게 (컷 툭툭 끊김 없음)
+        starts = [0.0] + [c[0] for c in cues[1:]]
+        chain, prev = [], "[0:v]"
+        for j in range(1, len(segs)):
+            out = "[v]" if j == len(segs) - 1 else f"[x{j}]"
+            chain.append(f"{prev}[{j}:v]xfade=transition=fade:duration={XF}:offset={starts[j]:.3f}{out}")
+            prev = out
+        sh(["ffmpeg", "-y", *sum([["-i", p] for p in segs], []), "-filter_complex", ";".join(chain), "-map", "[v]", *ENC, bg])
+        return bg
     lst = work / "segs.txt"
     lst.write_text("".join(f"file '{p.resolve()}'\n" for p in segs))
     sh(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", bg])
@@ -214,14 +228,21 @@ def main():
         s["keywords"] = [kw[i] for i, *_ in segs if i < len(kw)]
         if s.get("clips"):
             s["clips"] = [s["clips"][i] for i, *_ in segs if i < len(s["clips"])]
-    for _, line, p, d in segs:
-        cues.append((t, t + d, line)); parts.append(p); t += d  # 음성은 사이 공백 없이 이어 붙임 → 화면·자막·입 모양과 정확히 맞춤
+    for j, (_, line, p, d) in enumerate(segs):
+        g = 0.0
+        if s.get("story") and j < len(segs) - 1:  # 스토리: 대사 사이 숨 쉬는 틈 + 장면 최소 길이 → 전환이 빠르지 않게
+            g = round(max(GAP, MIN_SCENE - d), 2)
+            gp = work / f"g{j:02d}.mp3"
+            sh(["ffmpeg", "-y", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono", "-t", f"{g}", "-c:a", "libmp3lame", "-b:a", "48k", gp])
+        cues.append((t, t + d + g, line)); parts.append(p); t += d + g  # 말 시작은 장면 시작과 정확히 맞춤(입 모양 유지)
+        if g:
+            parts.append(gp)
 
-    lst = work / "a.txt"
-    lst.write_text("".join(f"file '{p.resolve()}'\n" for p in parts))
-    voice_mp3 = work / "voice.m4a"
-    sh(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-af", "apad=pad_dur=0.6,loudnorm=I=-14:TP=-1.5",
-        "-c:a", "aac", "-b:a", "160k", voice_mp3])
+    voice_mp3 = work / "voice.m4a"  # 목소리·쉼·Flow 영상 소리는 형식이 제각각 → 같은 형식으로 맞춘 뒤 이어 붙임(일부 줄이 빠지는 문제 방지)
+    norm = "".join(f"[{k}:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=mono[p{k}];" for k in range(len(parts)))
+    sh(["ffmpeg", "-y", *sum([["-i", str(p)] for p in parts], []), "-filter_complex",
+        norm + "".join(f"[p{k}]" for k in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1,apad=pad_dur=0.6,loudnorm=I=-14:TP=-1.5[a]",
+        "-map", "[a]", "-c:a", "aac", "-b:a", "160k", voice_mp3])
     total = min(dur(voice_mp3), MAX_SEC)
 
     bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work, cues, s.get("keywords", []),
@@ -231,7 +252,7 @@ def main():
 
     out = Path(a.out) / f"{sp.stem}.mp4"
     cmd = ["ffmpeg", "-y", "-i", bg, "-i", voice_mp3]
-    extra, afilter = sound.mix(cues, total, seed=sp.stem)  # 배경음악(목소리 나오면 자동으로 작아짐) + 효과음
+    extra, afilter = sound.mix(cues, total, seed=sp.stem, story=bool(s.get("story")))  # 배경음악(목소리 나오면 자동으로 작아짐) + 효과음
     cmd += extra
     vf = "[0:v]null[v]" if s.get("no_subtitles") else f"[0:v]ass={ass}:fontsdir={FONT.parent}[v]"  # 실사 스토리: 자막 없이 영상과 말로
     cmd += ["-filter_complex", f"{vf};{afilter}",

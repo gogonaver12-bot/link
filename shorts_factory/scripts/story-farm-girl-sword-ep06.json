@@ -1,0 +1,88 @@
+{
+  "title": "농부소녀와 전설의 검 6화 | 제6화: 왕국 기사단장의 방문",
+  "story": true,
+  "hook": "마을에 퍼진 놀라운 소문!",
+  "lines": [
+    "내, 내가 사고 친 건가?",
+    "귀찮은 파리들이 몰려온다.",
+    "저, 저기 엄청난 기세가!",
+    "왕국 최강 기사단장 등장!",
+    "누구세요? 우리 마을엔 왜요?",
+    "검을 내놓으라는 무리한 요구",
+    "녀석을 날려버려, 계약자!"
+  ],
+  "cta": "과연 루나는 검을 지켜낼까요? 다음 화를 기대해주세요!",
+  "voices": [
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-SunHiNeural|+30Hz|+10%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%",
+    "ko-KR-InJoonNeural|+0Hz|+5%",
+    "ko-KR-HyunsuMultilingualNeural|+0Hz|+4%"
+  ],
+  "speakers": [
+    "",
+    "루나",
+    "이그니스",
+    "보리스",
+    "",
+    "루나",
+    "",
+    "이그니스",
+    ""
+  ],
+  "clips": [
+    "assets/story/farm-girl-sword/ep06-00.mp4",
+    "assets/story/farm-girl-sword/ep06-01.mp4",
+    "assets/story/farm-girl-sword/ep06-02.mp4",
+    "assets/story/farm-girl-sword/ep06-03.jpg",
+    "assets/story/farm-girl-sword/ep06-04.jpg",
+    "assets/story/farm-girl-sword/ep06-05.jpg",
+    "assets/story/farm-girl-sword/ep06-06.jpg",
+    "assets/story/farm-girl-sword/ep06-07.jpg",
+    "assets/story/farm-girl-sword/ep06-07.jpg"
+  ],
+  "audio": [
+    "assets/story/farm-girl-sword/ep06-00.mp3",
+    "assets/story/farm-girl-sword/ep06-01.mp3",
+    "assets/story/farm-girl-sword/ep06-02.mp3",
+    "assets/story/farm-girl-sword/ep06-03.mp3",
+    "assets/story/farm-girl-sword/ep06-04.mp3",
+    "assets/story/farm-girl-sword/ep06-05.mp3",
+    "assets/story/farm-girl-sword/ep06-06.mp3",
+    "assets/story/farm-girl-sword/ep06-07.mp3",
+    ""
+  ],
+  "no_subtitles": true,
+  "keywords": [
+    "English: Wide shot of the",
+    "English: Close-up of person looking",
+    "English: Medium shot of person",
+    "English: Medium shot of person",
+    "English: Wide shot at the",
+    "English: Medium-close shot of person",
+    "English: Close-up of a silver-armored",
+    "English: Close-up of person flaring",
+    "cinematic"
+  ],
+  "cover": "농부소녀와 전설의 검\n6화",
+  "colors": [
+    "0x0b0b12",
+    "0x2a1f3d"
+  ],
+  "description": "전설의 검을 뽑은 루나에게 찾아온 왕국의 위협! 긴장감 넘치는 6화.\n\nAI로 만든 오리지널 숏드라마 (실존 인물 아님)",
+  "tags": [
+    "판타지",
+    "숏드라마",
+    "웹소설",
+    "성장물",
+    "액션",
+    "AI드라마",
+    "숏드라마",
+    "AI실사화"
+  ],
+  "made_for_kids": false
+}

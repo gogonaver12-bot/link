@@ -548,7 +548,7 @@ def test_story_series_and_episode(monkeypatch, tmp_path):
     out = story.episode("sword-girl", private=True)
     s = got["s"]
     assert s["story"] and s["hook"] == "아무도 못 뽑던 검" and len(s["voices"]) == 1 + len(s["lines"]) + 1 == len(s["clips"])
-    assert s["voices"][1].startswith("ko-KR-SunHiNeural|+30Hz") and "-20Hz" in s["voices"][2]  # 인물별 목소리(소녀·노인)
+    assert s["voices"][1].startswith("ko-KR-SunHiNeural|+8Hz") and "-6Hz" in s["voices"][2]  # 인물별 목소리(소녀·노인)
     assert story.load("sword-girl")["made"][0]["n"] == 1 and "1화" in out
     text, refs = story._shot_prompt(b, "[mira] grabs the hilt")
     assert "red braid" in text and refs[0].name == "mira.jpg"
@@ -812,3 +812,4 @@ def test_cinematic_golden_formula():
     assert "85mm" in cinematic.lens("Extreme close-up, slow dolly in on her eyes")
     assert "RED V-Raptor" in cinematic.lens("Low-angle tracking shot following a runner")
     assert cinematic.compose("Close-up, slow dolly in on [a] crying").startswith("Close-up, slow dolly in")
+    assert "English:" not in cinematic.compose("Wide shot, crane up over a farm", "English: A remote farming village")
