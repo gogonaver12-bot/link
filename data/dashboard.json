@@ -1,15 +1,11 @@
 {
- "updated": "2026-11-27T05:29:48+00:00",
+ "updated": "2026-11-28T03:35:10+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
   "daily": 3.0,
   "today": 0.0,
   "days": [
-   {
-    "d": "2026-11-14",
-    "usd": 0.0
-   },
    {
     "d": "2026-11-15",
     "usd": 0.0
@@ -60,6 +56,10 @@
    },
    {
     "d": "2026-11-27",
+    "usd": 0.0
+   },
+   {
+    "d": "2026-11-28",
     "usd": 0.0
    }
   ],
@@ -173,7 +173,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -249,7 +249,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -351,7 +351,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -436,7 +436,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -593,7 +593,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -669,7 +669,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -827,7 +827,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 4
+    "age": 5
    }
   },
   {
@@ -1595,13 +1595,13 @@
    "created": "2026-11-26",
    "started": "2026-11-26",
    "last_review": {
-    "date": "2026-11-27",
+    "date": "2026-11-28",
     "action": "watch",
     "revenue": 0,
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1,
+    "age": 2,
     "plan": ""
    },
    "product": {
@@ -1692,7 +1692,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 1
+    "age": 2
    }
   },
   {
@@ -1715,7 +1715,16 @@
    "status": "active",
    "created": "2026-11-27",
    "started": "2026-11-27",
-   "last_review": null,
+   "last_review": {
+    "date": "2026-11-28",
+    "action": "watch",
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 1,
+    "plan": ""
+   },
    "product": {
     "made": "2026-11-27",
     "title": "사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
@@ -1804,7 +1813,7 @@
     "cost": 0,
     "profit": 0,
     "roi": 0.0,
-    "age": 0
+    "age": 1
    }
   },
   {
@@ -1923,6 +1932,166 @@
     "disagreement": 1.2
    },
    "metrics": null
+  },
+  {
+   "id": "I0023",
+   "title": "제조/물류 중견기업용 온프레미스 LLM API 장애 자동 복구 전용 게이트웨이 구축 대행 컨설팅 및 월 구독",
+   "market": "KR",
+   "platform": "GitHub 및 온프레미스 서버 환경",
+   "model": "초기 구축 컨설팅 비용 3,000,000원 1회 선결제 및 월 500,000원 유지보수 구독 모델",
+   "first_step": "FastAPI를 활용해 Anthropic API 호출 실패 시 Ollama(Llama 3)로 자동 폴백(Fallback)되는 오픈소스 프록시 깃헙 리포지토리 초안 작성",
+   "evidence": "상용 LLM API의 간헐적 장애 및 크레딧 소모에 대한 개발자 커뮤니티(Reddit r/LocalLLaMA, Hacker News)의 비용 절감 및 안정성 확보 니즈 급증",
+   "scores": {
+    "demand": 85,
+    "low_competition": 70,
+    "low_cost": 90,
+    "speed_to_revenue": 60,
+    "scalability": 85,
+    "low_risk": 90
+   },
+   "score": 79.0,
+   "status": "active",
+   "created": "2026-11-28",
+   "started": "2026-11-28",
+   "last_review": null,
+   "product": {
+    "made": "2026-11-28",
+    "title": "제조/물류 중견기업을 위한 온프레미스 LLM API 장애 자동 복구 게이트웨이 구축 가이드",
+    "dir": "workspace/products/I0023",
+    "pdf": "workspace/products/I0023/product.pdf",
+    "files": [
+     "00-목차.md",
+     "01-온프레미스-LLM-게이트웨이-도입-배경-및-ROI-분석.md",
+     "02-시스템-아키텍처-설계-및-요구사항-정의.md",
+     "03-깃헙-GitHub-리포지토리-초기-설정-및-프로젝트-구조.md",
+     "04-Anthropic-API-클라이언트-및-에러-핸들링-구현.md",
+     "05-Ollama-Llama-3-로컬-폴백-Fallback-엔진-연동.md",
+     "06-로깅-모니터링-및-실시간-알림-시스템-구축.md",
+     "07-프로덕션-환경-배포-및-Docker-Compose-최적화.md",
+     "08-실전-부하-테스트-및-컨설팅-구독-서비스-온보딩.md",
+     "product.pdf",
+     "판매페이지.md"
+    ]
+   },
+   "killed_by": null,
+   "version": 2,
+   "upgrades": [
+    {
+     "date": "2026-11-28",
+     "round": 1,
+     "title": "의료·법무 LLM 에이전트 전용 무중단 API 장애 복구 엔터프라이즈 프록시",
+     "changes": [
+      "가격을 건당 $0.02에서 월 $399 정액제로 변경하여 마진 확보",
+      "타깃을 일반 개발자에서 미국 의료·법무 규정 준수 필수 AI SaaS 기업(직원 20인 이상)으로 좁힘",
+      "초기 마케팅 비용을 $500에서 $150으로 절감하고, 리드 100개 확보 전략으로 전환",
+      "기존 단순 중계에서 '의료·법무 API 503/429 장애 시 0.1초 내 미국 내 로컬 백업 모델 자동 전환 및 감사 로그(Audit Log) 저장' 기능으로 차별화"
+     ],
+     "fix_why": "단순 중계 프록시는 오픈소스(LiteLLM)와 경쟁해 수익을 낼 수 없으나, 컴플라이언스(HIPAA/SOC2)가 필수인 의료·법무 AI 기업을 타깃으로 월 $399 고단가 구독 모델을 적용하면 적은 고객(월 5개사)으로도 초기 비용을 즉시 회수하고 흑자 전환(ROI +45%)이 가능해집니다.",
+     "diagnosis": [
+      "가격 $0.02 — 너무 낮아 팔아도 남는 게 없음",
+      "전환율 0.50% — 방문자가 거의 안 삼",
+      "비용(초기 $500 + 월 $150)이 예상 매출 $4보다 큼",
+      "경쟁 심함 — 틈새(나라·언어·대상) 필요",
+      "자리 잡는 데 90일 — 90일 안에 회수 어려움",
+      "AI끼리 의견 차이 큼 — 근거(가격·판매량) 부족"
+     ],
+     "result": "흑자 확률 0% · 90일 ROI 중앙값 -100% (기준 40%·+30%)",
+     "pass": false,
+     "adopted": false
+    },
+    {
+     "date": "2026-11-28",
+     "round": 2,
+     "title": "제조/물류 중견기업용 온프레미스 LLM API 장애 자동 복구 전용 게이트웨이 구축 대행 컨설팅 및 월 구독",
+     "changes": [
+      "단건 API 중계 프록시 판매를 폐지하고, 온프레미스 인프라 구축 컨설팅(300만 원)과 월 50만 원 구독 모델로 전환",
+      "퍼블릭 클라우드 LLM 대신 보안이 필수적인 국내 제조/물류 중견기업 5개사 타깃 집중 공략",
+      "초기 개발 및 영업 비용을 60만 원 이하로 통제하고 첫 달 목표 매출을 350만 원으로 상향 조정",
+      "오픈소스 라이브러리(LiteLLM 등)를 커스터마이징하여 3일 이내에 단독 구축 완료하도록 공수 절감"
+     ],
+     "fix_why": "기존의 저단가($0.02) 종량제 및 단순 중계 모델에서 벗어나, 고단가 엔터프라이즈 온프레미스 구축 컨설팅(300만 원)과 고정 구독(50만 원)을 결합하여 마진율을 극복하고, 대형 솔루션(Portkey 등)이 침투하기 어려운 국내 중견기업의 폐쇄망 보안 수요를 공략하여 흑자 전환을 달성함.",
+     "diagnosis": [
+      "가격 $0.02 — 너무 낮아 팔아도 남는 게 없음",
+      "전환율 0.50% — 방문자가 거의 안 삼",
+      "비용(초기 $500 + 월 $150)이 예상 매출 $4보다 큼",
+      "경쟁 심함 — 틈새(나라·언어·대상) 필요",
+      "자리 잡는 데 90일 — 90일 안에 회수 어려움",
+      "AI끼리 의견 차이 큼 — 근거(가격·판매량) 부족"
+     ],
+     "result": "흑자 확률 68% · 90일 ROI 중앙값 +184% (기준 40%·+30%)",
+     "pass": true,
+     "adopted": true
+    }
+   ],
+   "viability": {
+    "date": "2026-11-28",
+    "pass": true,
+    "hold": false,
+    "why": "흑자 확률 68% · 90일 ROI 중앙값 +184% (기준 40%·+30%)",
+    "sim": {
+     "days": 90,
+     "runs": 2000,
+     "p_profit": 0.677,
+     "roi_p10": -1.0,
+     "roi_p50": 1.84,
+     "roi_p90": 12.11,
+     "rev30_p50": 0.0,
+     "rev_p10": 0.0,
+     "rev_p50": 9600.0,
+     "rev_p90": 110400.0,
+     "breakeven_p50": 36
+    },
+    "estimates": [
+     {
+      "model": "gemini:gemini-flash-lite-latest",
+      "role": "중립 심사역",
+      "price_usd": 2400,
+      "conv_rate_pct": 2.5,
+      "visitors_low": 5,
+      "visitors_high": 8
+     },
+     {
+      "model": "groq:openai/gpt-oss-120b",
+      "role": "비관 분석가",
+      "price_usd": 2500,
+      "conv_rate_pct": 2,
+      "visitors_low": 5,
+      "visitors_high": 12
+     },
+     {
+      "model": "groq:qwen/qwen3.8-27b",
+      "role": "낙관 분석가",
+      "price_usd": 400,
+      "conv_rate_pct": 3,
+      "visitors_low": 0.5,
+      "visitors_high": 2
+     }
+    ],
+    "risks": [
+     "제조 및 물류 대기업의 긴 B2B 구매 주기와 까다로운 온프레미스 보안 검증 프로세스",
+     "vLLM 및 Kubernetes 기반 오픈소스 솔루션과의 가격 경쟁 심화",
+     "1인 사업자 체제에서의 24/7 엔터프라이즈 장애 지원 역량 한계",
+     "니치 시장으로 인한 수요 부족",
+     "고객사의 온프레미스 인프라 복잡성·메모리·스케일링 이슈",
+     "AI 규제·보안 요구사항 충족 비용"
+    ],
+    "evidence": [
+     "초기 컨설팅 3,000,000원 및 월 500,000원 유지보수 (환율 ₩1,250/USD 기준 약 $2,400 초기 및 $400 월 구독이나 보수적 책정)",
+     "네이버 및 구글 관련 키워드 월 검색량 150~250회 (https://datalab.naver.com/keyword/trendSearch.naver)",
+     "관련 기업용 파일럿 사례 및 리뷰 5~12건 수준 (https://latticeai.co.kr/products/gateway)",
+     "경쟁 서비스(IBM, Cohere, LangChain Enterprise 등) 초기 비용 $2,800~$3,200, 월 구독 $450~$600 수준 (https://www.ibm.com/cloud/watson-machine-learning)",
+     "온프레미스 LLM OOM 및 Pod Restart Loop 등 인프라 장애 리스크 보고 (https://github.com/vllm-project/vllm/issues/84)",
+     "https://huggingface.co/inference"
+    ],
+    "disagreement": 1.39
+   },
+   "metrics": {
+    "revenue": 0,
+    "cost": 0,
+    "profit": 0,
+    "roi": 0.0,
+    "age": 0
+   }
   }
  ],
  "team": [
@@ -1940,7 +2109,7 @@
   {
    "name": "content_creator",
    "title": "콘텐츠 제작팀",
-   "version": 5,
+   "version": 6,
    "tools": [
     "save_file",
     "hook_score"
@@ -1957,7 +2126,7 @@
   {
    "name": "developer",
    "title": "개발팀",
-   "version": 5,
+   "version": 6,
    "tools": [
     "github_search",
     "github_read",
@@ -1978,7 +2147,7 @@
   {
    "name": "github_scout",
    "title": "오픈소스·프롬프트 탐색팀",
-   "version": 5,
+   "version": 6,
    "tools": [
     "github_search",
     "github_read",
@@ -2022,7 +2191,7 @@
   {
    "name": "researcher",
    "title": "시장조사팀",
-   "version": 5,
+   "version": 6,
    "tools": [
     "web_search",
     "google_search",
@@ -2187,82 +2356,121 @@
  ],
  "reports": [
   {
-   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
-   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-27T05:20+00:00"
+   "file": "reports/daily-2026-11-28.md",
+   "title": "일일 리포트 2026-11-28",
+   "date": "2026-11-28T03:35+00:00"
   },
   {
-   "file": "reports/20261126-0712-상품-I0019.md",
-   "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
-   "date": "2026-11-27T05:20+00:00"
+   "file": "reports/doctor/2026-11-28.md",
+   "title": "🩺 자동 진단 2026-11-28 — 최근 2일 에러 14건 · 종류 1개",
+   "date": "2026-11-28T03:35+00:00"
   },
   {
-   "file": "reports/20261127-0349-상품-I0020.md",
-   "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-27.md",
-   "title": "일일 리포트 2026-11-27",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
-   "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-26.md",
-   "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-25.md",
-   "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-27T05:20+00:00"
-  },
-  {
-   "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
-   "title": "이번 주 수익 개선 계획",
-   "date": "2026-11-27T05:20+00:00"
+   "file": "reports/20261128-0333-상품-I0023.md",
+   "title": "상품 완성: 제조/물류 중견기업을 위한 온프레미스 LLM API 장애 자동 복구 게이트웨이 구축 가이드",
+   "date": "2026-11-28T03:33+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-27T05:20+00:00"
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261126-0712-상품-I0019.md",
+   "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
+   "title": "이번 주 수익 개선 계획",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-27.md",
+   "title": "일일 리포트 2026-11-27",
+   "date": "2026-11-28T03:30+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-27T05:20+00:00"
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-25.md",
+   "title": "일일 리포트 2026-11-25",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-28T03:30+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-27T05:20+00:00"
+   "date": "2026-11-28T03:30+00:00"
   },
   {
-   "file": "reports/jobs/connection-test-002.md",
-   "title": "connection-test-002",
-   "date": "2026-11-27T05:20+00:00"
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
+   "title": "매일 업데이트및 영상확인",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261127-0349-상품-I0020.md",
+   "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-28T03:30+00:00"
   },
   {
    "file": "reports/doctor/2026-11-27.md",
    "title": "🩺 자동 진단 2026-11-27 — 최근 2일 에러 50건 · 종류 4개",
-   "date": "2026-11-27T05:20+00:00"
+   "date": "2026-11-28T03:30+00:00"
+  },
+  {
+   "file": "reports/jobs/connection-test-002.md",
+   "title": "connection-test-002",
+   "date": "2026-11-28T03:30+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-28T03:32:09+00:00",
+   "agent": "researcher",
+   "model": "groq:openai/gpt-oss-120b",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 제조/물류 중견기업용 온프레미스 LLM API 장애 자동 복구 전용 게이트웨이 구축 대행 컨설팅 및 월 구독 (KR/GitHub 및 온프레미스 서버 환경, 초기 구축 컨설팅 비용 3,000,000원 1회 선결제 및 월 500,000원 유지보수 구독 모델)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-28T03:31:48+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 의료·법무 LLM 에이전트 전용 무중단 API 장애 복구 엔터프라이즈 프록시 (US/GitHub & AWS Marketplace, 기업당 월 $399 정액 구독제 (LLM 토큰 1,000만 개 포함, 초과 시 100만 개당 $0.10 과금))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-28T03:31:31+00:00",
+   "agent": "researcher",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 장애 자동 복구 중계 프록시 (AI 개발자 및 인프라 엔지니어/GitHub / SaaS, 사용량 기반 종량제(Pay-as-you-go) 및 기업용 월 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
+  },
+  {
+   "ts": "2026-11-28T03:31:26+00:00",
+   "agent": "researcher",
+   "model": null,
+   "task": "US 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Gumroad, Etsy, Fiverr, YouTube, Amazon KDP. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내 극심한 경"
+  },
   {
    "ts": "2026-11-27T03:48:46+00:00",
    "agent": "researcher",
@@ -2310,30 +2518,6 @@
    "agent": "researcher",
    "model": null,
    "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
-  },
-  {
-   "ts": "2026-11-26T07:10:10+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어 (AI 개발자 및 소규모 스타트업/GitHub & AWS, 구독 (SaaS 프리미엄))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-26T07:09:51+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
-  },
-  {
-   "ts": "2026-11-26T03:47:57+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 국내 IT 대기업·스타트업 현직자 이직 전용 익명 AI 레퍼런스 체크 및 경력 기술서 역공학 첨삭 패키지 (KR/웹 서비스 (Next.js / Supabase / Vercel), 건당 $15.00 단건 결제 및 월 $29.00의 무제한 첨삭 구독 모델 (오픈소스 LLM 앙상블 및 자체 파인튜닝 모델 활용))\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-26T03:47:29+00:00",
-   "agent": "researcher",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 국내 외국계 기업 및 해외 취업 준비생 타깃 영문/국문 듀얼 이력서·면접 패키지 월 구독 서비스 (KR/Web (Next.js / Vercel), 심층 첨삭 및 모의 면접 질문 3회 패키지 월 $19.00 구독 모델)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
   }
  ],
  "errors": [],
@@ -2346,76 +2530,76 @@
  ],
  "news": [
   {
-   "source": "구글 트렌드 JP",
-   "category": "trend",
-   "title": "青龍映画賞",
-   "url": "https://www.google.com/search?q=%E9%9D%92%E9%BE%8D%E6%98%A0%E7%94%BB%E8%B3%9E"
-  },
-  {
-   "source": "구글 트렌드 US",
-   "category": "trend",
-   "title": "battlestar galactica",
-   "url": "https://www.google.com/search?q=battlestar%20galactica"
-  },
-  {
-   "source": "구글 트렌드 KR",
-   "category": "trend",
-   "title": "백철승",
-   "url": "https://www.google.com/search?q=%EB%B0%B1%EC%B2%A0%EC%8A%B9"
+   "source": "Product Hunt",
+   "category": "product",
+   "title": "Periscope",
+   "url": "https://www.producthunt.com/products/periscope-4"
   },
   {
    "source": "Product Hunt",
    "category": "product",
-   "title": "Pax by Pydantic",
-   "url": "https://www.producthunt.com/products/pydantic"
+   "title": "Pushary Calls",
+   "url": "https://www.producthunt.com/products/pushary"
   },
   {
    "source": "Product Hunt",
    "category": "product",
-   "title": "Hello Transcribe 5",
-   "url": "https://www.producthunt.com/products/hello-transcribe"
-  },
-  {
-   "source": "Product Hunt",
-   "category": "product",
-   "title": "Claude-Mem Cloud Sync",
-   "url": "https://www.producthunt.com/products/claude-mem"
+   "title": "Contral",
+   "url": "https://www.producthunt.com/products/contral"
   },
   {
    "source": "rss.itmedia.co.jp",
    "category": "tech",
-   "title": "図面を数十万件学習したKKGの「国産建設AI」 2D図からBIMや見積書を自動生成の実力【動画で確認】",
-   "url": "https://built.itmedia.co.jp/bt/articles/2611/25/news056.html"
+   "title": "日本郵船、新本店ビルは19階建て延べ約6.9万m2 2033年竣工へ",
+   "url": "https://built.itmedia.co.jp/bt/articles/2611/24/news063.html"
   },
   {
    "source": "rss.itmedia.co.jp",
    "category": "tech",
-   "title": "「AIだけでは変革しない」directが“現場OS”へ L is B横井社長が3社協業の「BIM基盤構想」発表",
-   "url": "https://built.itmedia.co.jp/bt/articles/2611/25/news072.html"
+   "title": "丹青社、築古ビル再生事業を「ビルノワ」へ名称変更",
+   "url": "https://built.itmedia.co.jp/bt/articles/2611/24/news074.html"
   },
   {
    "source": "rss.itmedia.co.jp",
    "category": "tech",
-   "title": "VR安全教育教材を毎朝LINEで配信、ジョリーグッドが「KYミニッツ」を提供開始",
-   "url": "https://built.itmedia.co.jp/bt/articles/2611/26/news080.html"
+   "title": "水産廃棄物の「ホタテ貝殻」を世界水準の建材塗料へ Shelltasがサウジ大手と防カビ検証",
+   "url": "https://built.itmedia.co.jp/bt/articles/2611/24/news075.html"
+  },
+  {
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Making a dumb TV just smart enough",
+   "url": "https://qsantos.fr/2026/11/19/making-a-dumb-tv-just-smart-enough/"
+  },
+  {
+   "source": "qsantos.fr",
+   "category": "tech",
+   "title": "Hacking radiators for fun and no profit",
+   "url": "https://qsantos.fr/2026/11/20/hacking-radiators-for-fun-and-no-profit/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "濃厚なミルクソースとバニラが口中を甘さで満たすロッテ「爽 贅沢濃味バニラ」試食レビュー",
-   "url": "https://gigazine.net/news/20261126-lotte-sou-rich-vanilla/"
+   "title": "生産終了がアナウンスされたテスラのCybertruck(サイバートラック)は中古車市場で最も売れやすいトラック",
+   "url": "https://gigazine.net/news/20261127-tesla-cybertruck-fastest-selling-used-truck/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "OpenAIが57年来の数学の難問「行列乗算はどこまで効率化できるのか」に決着をつける論文を公開",
-   "url": "https://gigazine.net/news/20261126-openai-matrix-multiplication/"
+   "title": "メモリ不足により2026年第3四半期のラテンアメリカにおけるスマートフォン出荷台数は前年同期比24％減を記録",
+   "url": "https://gigazine.net/news/20261127-latam-smartphone/"
   },
   {
    "source": "GIGAZINE",
    "category": "tech",
-   "title": "「Anthropicのダリオ・アモデイCEOが人間の自由意志をAIに委ねようとしている」という報道を本人が真っ向から否定し「AIの未来は民主的なプロセスで決定されるべき」と明言",
-   "url": "https://gigazine.net/news/20261126-dario-amodei-ai-human/"
+   "title": "人間の生きた細胞にビートルズの歌詞を保存＆細胞分裂後も正確に読み取ることに成功",
+   "url": "https://gigazine.net/news/20261127-human-cells-dna-storage/"
+  },
+  {
+   "source": "ITmedia",
+   "category": "tech",
+   "title": "[ITmedia Mobile] ブラックフライデーで安くなっているApple製品まとめ iPhone Airは23％オフの14万5900円に",
+   "url": "https://www.itmedia.co.jp/mobile/articles/2611/27/news087.html"
   }
  ],
  "sources": [
@@ -2604,10 +2788,46 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-28T03:35:09+00:00",
+   "cmd": "schedule",
+   "ok": true,
+   "output": "9 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS: **watch** ROI +0% \n- I0020 AI 기반 자영업자 맞춤형 인스타그램/블로그 마케팅 템플릿 패키지: **watch** ROI +0% \n## 신규 발굴 (US)\n- I0023 79.0점 [active] 제조/물류 중견기업용 온프레미스 LLM API 장애 자동 복구 전용 게이트웨이 구축 대행 컨설팅 및 월 구독 — FastAPI를 활용해 Anthropic API 호출 실패 시 Ollama(Llama 3)로 자동 폴백(Fallback)되는 오픈소스 프록시 깃헙 리포지토리 초안 작성\n## 상품 자동 제작\n- I0023 제조/물류 중견기업을 위한 온프레미스 LLM API 장애 자동 복구 게이트웨이 구축 가이드 · 8장 · 33,486자 · PDF\n## 숏츠 자동 업로드\n🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (15개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화' 주제 중단\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n기존 데이터에서 조회수가 높은 영상들은 '수면, 뇌, 꿀팁' 등 호기심을 자극하는 정보성 콘텐츠였으며, 조회수가 낮은 영상들은 다소 뻔한 수면 사운드나 반복적인 픽션 스토리였습니다. 벤치마크 분석 결과, 사람들의 시선을 사로잡는 AI 이미지 구별법('Real vs AI')이나 AI의 실제 활용 사례, 그리고 일상 속 AI 기술의 논란을 다룬 쇼츠가 폭발적인 조회수를 기록했습니다. 따라서 F ai-LAB 채널 콘셉트에 맞게 '최신 AI 툴을 직접 써보고 결과를 공개하거나 일상에서 AI를 테스트하는 실험실' 형태로, 과장 없이 사실만을 바탕으로 한 훅을 구성하여 시청 유지율을 높이고자 합니다.\n📝 018.json: AI가 그린 손가락, 인간 손과 구별하는 법\n⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  🎨 AI 이미지 wide shot of ancient mossy: ai_a9382b34d4f5.jpg\n  🎨 AI 이미지 close-up on person's surprised face,: ai_65d8bbebb82a.jpg\n  🎨 AI 이미지 medium shot of floating crimson: ai_105e3449cd83.jpg\n  🎨 AI 이미지 wide shot of person charging: ai_aa22498c1ee8.jpg\n  🎨 AI 이미지 close-up on person's determined eyes,: ai_d5fd5798aa1a.jpg\n  🎨 AI 이미지 medium shot, person flickers, magical: ai_30d98938b511.jpg\n  🎨 AI 이미지 close-up of person looking at: ai_ac307ed404e8.jpg\n  🎨 AI 이미지 medium shot, person gestures, sword: ai_d5a51d6cbf6a.jpg\n  🎨 AI 이미지 wide shot, person swings sword,: ai_43b2f3881a90.jpg\n  🎨 AI 이미지 wide shot of empty space: ai_903413788c22.jpg\n  🎨 AI 이미지 close-up of faint glint in: ai_94a722a5c1a1.jpg\n  🎨 AI 이미지 cinematic: ai_83062b504948.jpg\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep03.mp4 (31.4초)\n✅ https://youtube.com/shorts/5ASaYhqlE9Y\n## 블로그 자동 게시\n📝 방문자 늘리는 가전 블로그 키워드, 대기업 피해서 발굴하는 법은? — https://bigdataupdate12.blogspot.com/2026/11/blog-post.html · gemini:gemini-flash-lite-latest\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n- content_creator → v6\n- developer → v6\n- github_scout → v6\n- researcher → v6\n## 작업큐\n새 작업 없음\n## 🩺 자동 진단\n🩺 에러 14건(종류 1개) 진단 → reports/doctor/2026-11-28.md (AI 진단 0건)\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 23개 · 진행중 3 · 탈락 16\n  I0019 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS [API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업] 매출 $0 ROI +0% 2일차\n  I0020 AI 기반 자영업자 맞춤형 인스타그램/블로그 마케팅 템플릿 패키지 [동네 식당, 카페, 뷰티숍 등 소상공인] 매출 $0 ROI +0% 1일차\n  I0023 제조/물류 중견기업용 온프레미스 LLM API 장애 자동 복구 전용 게이트웨이 구축 대행 컨설팅 및 월 구독 [KR] 매출 $0 ROI +0% 0일차\n  에이전트 analyst: 평균 8.5점 (2회)\n  에이전트 content_creator: 평균 2.0점 (1회)\n  에이전트 developer: 평균 2.5점 (2회)\n  에이전트 github_scout: 평균 2.0점 (1회)\n  에이전트 researcher: 평균 5.5점 (2회)\n  에이전트 sales: 평균 9.0점 (1회)\n  에이전트 viral_analyst: 평균 9.0점 (1회)\n```"
+  },
+  {
    "ts": "2026-11-27T05:29:47+00:00",
    "cmd": "story next site-thirteen-chronicler",
    "ok": true,
    "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/dDIRbL4j9ok"
+  },
+  {
+   "ts": "2026-11-27T05:29:35+00:00",
+   "cmd": "story next site-thirteen-chronicler",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/mmb9akuk9tg"
+  },
+  {
+   "ts": "2026-11-27T05:29:29+00:00",
+   "cmd": "story next site-thirteen-chronicler",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/RSxpFHxO_G0"
+  },
+  {
+   "ts": "2026-11-27T05:29:21+00:00",
+   "cmd": "story next site-thirteen-chronicler",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 0 · 사진 8 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/Vqxy1ENf2XQ"
+  },
+  {
+   "ts": "2026-11-27T05:28:52+00:00",
+   "cmd": "story next site-thirteen-chronicler",
+   "ok": true,
+   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 2 · 사진 6 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/4Z6Do-0Nm88"
+  },
+  {
+   "ts": "2026-11-27T05:23:35+00:00",
+   "cmd": "story plan farm-girl-sword",
+   "ok": true,
+   "output": "📝 농부소녀와 전설의 검 6화 '제6화: 왕국 기사단장의 방문' 대본 준비 — 장면 8개 · 앱에서 장면마다 Google Flow(또는 Gemini 앱)로 영상을 만들어 올린 뒤 '완성하기' (대사 장면은 인물이 직접 말하게 프롬프트에 대사 포함)"
   },
   {
    "ts": "2026-11-27T04:05:17+00:00",
@@ -2626,42 +2846,6 @@
    "cmd": "story render scp-zone-42-mirror",
    "ok": true,
    "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 7초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 9초\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n  ⏳ 무료 이미지 AI 잠깐 대기 40초\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n🎬 제42구역: 속삭이는 거울 1화 '제42구역: 속삭이는 거울 - 제1화' — 장면 7개 · 작가 무료 AI(JSON 모드)\n🗣️ 강진우 대사용 얼굴 사진 완료\n🗣️ 이서연 대사용 얼굴 사진 완료\n🗣️ 대상-703 대사용 얼굴 사진 완료\n🖼 장면 7개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 4 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-scp-zone-42-mirror-ep01.mp4 (28.6초)\n✅ https://youtube.com/shorts/X23fvm2EDoQ"
-  },
-  {
-   "ts": "2026-11-26T18:48:04+00:00",
-   "cmd": "agent upgrade",
-   "ok": true,
-   "output": "analyst: 유지\ncontent_creator: v4 업그레이드\ndeveloper: v4 업그레이드\ngithub_scout: v4 업그레이드\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: v4 업그레이드\nsales: 유지\nviral_analyst: 유지"
-  },
-  {
-   "ts": "2026-11-26T18:48:00+00:00",
-   "cmd": "agent upgrade",
-   "ok": true,
-   "output": "analyst: 유지\ncontent_creator: v4 업그레이드\ndeveloper: v4 업그레이드\ngithub_scout: v4 업그레이드\nlocalizer: 유지\noffice_assistant: 유지\nresearcher: v4 업그레이드\nsales: 유지\nviral_analyst: 유지"
-  },
-  {
-   "ts": "2026-11-26T18:01:08+00:00",
-   "cmd": "이번 주 수익 개선 계획",
-   "ok": true,
-   "output": "LINK AI Company는 이번 주 수익 개선을 위해 저마진·고비용의 B2C 실물 상품 판매를 중단하고, 영업이익률 60%가 예상되는 고단가 B2B 디지털 솔루션으로 피벗하기로 결정했습니다. 분석가와 연구원은 시장 수요와 재무적 타당성을 검증했으며, 영업팀은 50만 원 상당의 적정 단가 설정 및 국내외 플랫폼별 수익화 전략을 수립했습니다. 최종적으로 7일간의 MVP 랜딩페이지와 검색광고를 통한 유효 문의 전환율 테스트를 즉시 실행하여 리스크를 최소화할 계획입니다. \n다음: \n- 고단가 B2B 솔루션 MVP 랜딩페이지 제작 착수 \n- 네이버 및 구글 검색광고(SA) 집행을 통한 7일간 유효 문의 전환율(CPA) 테스트 진행 \n- 사전 베타 테스트 기반 투명한 케이스 스터디 및 초기 리드 수집 \n보고서: reports/20261126-1801-이번-주-수익-개선-계획.md"
-  },
-  {
-   "ts": "2026-11-26T15:03:31+00:00",
-   "cmd": "story new \"산속 괴물미스터리 스토리\" --genre \"호러\"",
-   "ok": true,
-   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n📚 시리즈 '산속의 그림자' (mountain-shadow) — 인물 3명 · 작가 무료 AI(JSON 모드)\n🧑 민호 참조 사진 완료\n🧑 지은 참조 사진 완료\n🧑 상우 참조 사진 완료\n  ⏳ 무료 이미지 AI 잠깐 대기 42초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 7초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 7초\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 이미지 AI 잠깐 대기 9초\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n  ⏳ 무료 이미지 AI 잠깐 대기 39초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 32초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n🎬 산속의 그림자 1화 '산속의 그림자' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: Gemini 영상 0 · 움직이는 무료 영상 3 · 사진 5\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-mountain-shadow-ep01.mp4 (36.7초)\n✅ https://youtube.com/shorts/bFy4AUzb7fM"
-  },
-  {
-   "ts": "2026-11-26T07:23:15+00:00",
-   "cmd": "daily",
-   "ok": true,
-   "output": "드 JP] 青龍映画賞 | https://www.google.com/search?q=%E9%9D%92%E9%BE%8D%E6%98%A0%E7%94%BB%E8%B3%9E\n- [구글 트렌드 US] battlestar galactica | https://www.google.com/search?q=battlestar%20galactica\n- [구글 트렌드 KR] 백철승 | https://www.google.com/search?q=%EB%B0%B1%EC%B2%A0%EC%8A%B9\n## 사업 리뷰\n## 신규 발굴 (GLOBAL)\n- I0019 79.0점 [active] 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS — GitHub에 무료 LLM(Ollama, Groq 등) 폴백(Fallback) 라우팅 오픈소스 초안 작성\n## 상품 자동 제작\n- I0019 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드 · 7장 · 30,509자 · PDF\n## 숏츠 자동 업로드\n🔒 새 채널(F ai-LAB) 연결 전 → 비공개로 업로드 (google_login_youtube.bat 실행하면 새 채널 공개)\n📊 stats.csv 갱신 (11개)\n📊 규칙 피드백:\n평균 시청지속률 0% (<70%) → 훅 더 짧게, 전체 30초 이하로\n최고 조회수 1천 미만 → 주제 바꿔 A/B 테스트(같은 날 다른 주제 3개)\n베스트: '침대에 누워도 잠이 안 오는 진짜 이유' 스타일 반복 / 워스트: '농부소녀와 전설의 검 1화 | 1화: 전설의 검을 뽑다' 주제 중단\n🤖 사용 AI: gemini:gemini-flash-lite-latest\n\n🤖 AI 분석:\n기존 채널 데이터에서 수면 관련 콘텐츠('침대에 누워도 잠이 안 오는 진짜 이유' 등)가 394회로 유일하게 높은 조회수를 기록했으나, 채널 콘셉트인 'F ai-LAB (AI 실험실)'에 부합하는 AI 관련 툴, 실증, 'AI에게 시켜보기' 형태의 콘텐츠로 전환이 필요함. 벤치마크 분석 결과, 'Real vs AI Image' 및 'AI Animation' 같이 시각적 호기심을 자극하고 '진짜와 가짜 판별' 또는 'AI의 예상치 못한 결과'를 다룬 25~35초 길이의 영상이 폭발적인 조회수(60만~180만 회)를 기록함. 따라서 수면/생활 정보 대신 채널 콘셉트인 AI 기술(예: AI 이미지 디테일 테스트, AI가 생성한 초실사 영상의 함정 등)을 다루어 참신성과 시청 지속 시간을 높인다.\n📝 016.json: AI가 그린 손가락, 아직도 이상할까?\n⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  🎨 AI 이미지 Wide shot of the mossy: ai_8cba4d7eef3d.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Medium shot of person flexing,: ai_91a669323366.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 33초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  ⏳ 무료 이미지 AI 잠깐 대기 13초\n  ⏳ 무료 이미지 AI 잠깐 대기 34초\n  🎨 AI 이미지 Medium shot of floating flame: ai_9d5075568e40.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 43초\n  🎨 AI 이미지 Wide shot of villagers forming: ai_a47f6c28abd4.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Close-up of person shouting, clenched: ai_745ef716eefb.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Medium shot of person slipping,: ai_4acb73151950.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Wide shot of the sword: ai_9f2dac3e9f6f.jpg\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  🎨 AI 이미지 Close-up of person smirking, eyes: ai_a3e33c51c10d.jpg\n  🎨 AI 이미지 cinematic: ai_83062b504948.jpg\n  ⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-farm-girl-sword-ep02.mp4 (28.7초)\n✅ https://youtube.com/shorts/HnHVZU6S2T0\n## 블로그 자동 게시\n📝 업무 속도를 2배 올리는 AI 프롬프트 30선, 바로 복사해서 쓸 수 있다면? — https://bigdataupdate12.blogspot.com/2026/11/2-ai-30.html · groq:openai/gpt-oss-120b\n## 자동 파이프라인\n- 오늘 실행할 것 없음\n## 에이전트 업그레이드\n- content_creator → v3\n- developer → v3\n- github_scout → v3\n- researcher → v3\n## 작업큐\n새 작업 없음\n## 현황\n```\n오늘 비용 $0.0 / $3.0\n아이디어 19개 · 진행중 1 · 탈락 16\n  I0019 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS [API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업] 매출 $0 ROI +0% 0일차\n  에이전트 analyst: 평균 8.0점 (1회)\n  에이전트 content_creator: 평균 2.0점 (1회)\n  에이전트 developer: 평균 2.5점 (2회)\n  에이전트 github_scout: 평균 2.0점 (1회)\n  에이전트 researcher: 평균 2.0점 (1회)\n  에이전트 viral_analyst: 평균 9.0점 (1회)\n```"
-  },
-  {
-   "ts": "2026-11-26T07:10:29+00:00",
-   "cmd": "biz scout --market GLOBAL",
-   "ok": true,
-   "output": "I0019 78.0점 [active] AI 개발자 및 소규모 스타트업/GitHub & AWS 무료 오픈소스 LLM(Ollama/HuggingFace) 기반 API 라우팅 미들웨어\n   → FastAPI로 유료 API 키 소진 시 Ollama 로컬 모델로 자동 폴백되는 오픈소스 파이썬 패키지 작성"
   }
  ],
  "pipelines": [
@@ -2748,6 +2932,16 @@
   }
  ],
  "videos": [
+  {
+   "id": "5ASaYhqlE9Y",
+   "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
+   "date": "2026-11-28",
+   "private": true,
+   "channel": "old",
+   "cover": "농부소녀와 전설의 검\n3화",
+   "views": 0,
+   "likes": 0
+  },
   {
    "id": "dDIRbL4j9ok",
    "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
@@ -2901,6 +3095,11 @@
  ],
  "previews": [
   {
+   "file": "story-farm-girl-sword-ep03.mp4",
+   "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
+   "date": "2026-11-28"
+  },
+  {
    "file": "story-site-thirteen-chronicler-ep01.mp4",
    "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
    "date": "2026-11-27"
@@ -2913,11 +3112,6 @@
   {
    "file": "story-mountain-shadow-ep01.mp4",
    "title": "산속의 그림자 1화 | 산속의 그림자",
-   "date": "2026-11-26"
-  },
-  {
-   "file": "story-farm-girl-sword-ep02.mp4",
-   "title": "농부소녀와 전설의 검 2화 | 2화: 운명의 검",
    "date": "2026-11-26"
   }
  ],
@@ -2944,11 +3138,11 @@
     "lines": 6
    },
    {
-    "id": "story-farm-girl-sword-ep03",
-    "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
-    "hook": "바위가 다시 흔들리기 시작한다",
-    "score": 30,
-    "lines": 10
+    "id": "018",
+    "title": "AI가 그린 손가락, 인간 손과 구별하는 법",
+    "hook": "AI가 만든 이미지, 진짜 사람과 구별할 수 있나요?",
+    "score": 38,
+    "lines": 9
    },
    {
     "id": "017",
@@ -3158,7 +3352,7 @@
      "date": "2026-11-25",
      "file": "story-farm-girl-sword-ep03",
      "uploaded": false,
-     "video": ""
+     "video": "5ASaYhqlE9Y"
     },
     {
      "n": 2,
@@ -3274,22 +3468,22 @@
   "steps": [
    {
     "name": "사업 발굴",
-    "n": 22,
+    "n": 23,
     "done": true
    },
    {
     "name": "진행 승인",
-    "n": 2,
+    "n": 3,
     "done": true
    },
    {
     "name": "상품·콘텐츠 제작",
-    "n": 12,
+    "n": 14,
     "done": true
    },
    {
     "name": "업로드(공개)",
-    "n": 20,
+    "n": 22,
     "done": true
    },
    {
@@ -3300,8 +3494,8 @@
   ],
   "blocker": "올라갔고 조회·유입이 쌓이는 중 — 매출이 생기면 💵매출 기록",
   "action": "log",
-  "shorts": 15,
-  "blog": 5
+  "shorts": 16,
+  "blog": 6
  },
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,

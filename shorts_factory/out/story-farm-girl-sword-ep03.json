@@ -9,7 +9,9 @@
     "숏드라마",
     "AI실사화"
   ],
-  "duration": 31.5,
+  "duration": 31.4,
   "file": "story-farm-girl-sword-ep03.mp4",
-  "cover": "농부소녀와 전설의 검\n3화"
+  "cover": "농부소녀와 전설의 검\n3화",
+  "made_for_kids": false,
+  "story": true
 }

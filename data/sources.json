@@ -6,8 +6,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "구글 트렌드 US",
@@ -16,8 +16,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "구글 트렌드 JP",
@@ -26,8 +26,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "Hacker News",
@@ -36,8 +36,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "Product Hunt",
@@ -46,8 +46,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "Anthropic SDK 릴리스",
@@ -56,8 +56,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "Google GenAI SDK 릴리스",
@@ -66,8 +66,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "Ollama 릴리스",
@@ -76,8 +76,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "GitHub 변경 로그",
@@ -86,8 +86,8 @@
     "origin": "기본",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "플래텀",
@@ -96,8 +96,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "벤처스퀘어",
@@ -106,8 +106,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "전자신문",
@@ -116,8 +116,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 8,
-    "last_ok": "2026-11-27"
+    "ok": 9,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "TechCrunch",
@@ -126,8 +126,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 7,
-    "last_ok": "2026-11-27"
+    "ok": 8,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "The Verge",
@@ -136,8 +136,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 7,
-    "last_ok": "2026-11-27"
+    "ok": 8,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "ITmedia",
@@ -146,8 +146,8 @@
     "origin": "후보목록",
     "added": "2026-11-23",
     "fails": 0,
-    "ok": 7,
-    "last_ok": "2026-11-27"
+    "ok": 8,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "GIGAZINE",
@@ -156,8 +156,8 @@
     "origin": "후보목록",
     "added": "2026-11-24",
     "fails": 0,
-    "ok": 6,
-    "last_ok": "2026-11-27"
+    "ok": 7,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "GitHub 트렌딩",
@@ -166,8 +166,8 @@
     "origin": "후보목록",
     "added": "2026-11-24",
     "fails": 0,
-    "ok": 6,
-    "last_ok": "2026-11-27"
+    "ok": 7,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "Hugging Face 블로그",
@@ -176,8 +176,8 @@
     "origin": "후보목록",
     "added": "2026-11-24",
     "fails": 0,
-    "ok": 6,
-    "last_ok": "2026-11-27"
+    "ok": 7,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "rss.itmedia.co.jp",
@@ -186,8 +186,8 @@
     "origin": "자주 등장",
     "added": "2026-11-25",
     "fails": 0,
-    "ok": 5,
-    "last_ok": "2026-11-27"
+    "ok": 6,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "qsantos.fr",
@@ -196,8 +196,8 @@
     "origin": "자주 등장",
     "added": "2026-11-25",
     "fails": 0,
-    "ok": 5,
-    "last_ok": "2026-11-27"
+    "ok": 6,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "rss.itmedia.co.jp",
@@ -206,8 +206,8 @@
     "origin": "자주 등장",
     "added": "2026-11-25",
     "fails": 0,
-    "ok": 4,
-    "last_ok": "2026-11-27"
+    "ok": 5,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "inc.com",
@@ -216,8 +216,8 @@
     "origin": "AI 추천",
     "added": "2026-11-25",
     "fails": 0,
-    "ok": 4,
-    "last_ok": "2026-11-27"
+    "ok": 5,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "rss.itmedia.co.jp",
@@ -226,8 +226,8 @@
     "origin": "자주 등장",
     "added": "2026-11-26",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-27"
+    "ok": 4,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "markezine.jp",
@@ -236,8 +236,8 @@
     "origin": "AI 추천",
     "added": "2026-11-26",
     "fails": 0,
-    "ok": 3,
-    "last_ok": "2026-11-27"
+    "ok": 4,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "feeds.feedburner.com",
@@ -246,8 +246,8 @@
     "origin": "AI 추천",
     "added": "2026-11-26",
     "fails": 0,
-    "ok": 2,
-    "last_ok": "2026-11-27"
+    "ok": 3,
+    "last_ok": "2026-11-28"
   },
   {
     "name": "readwrite.com",
@@ -256,7 +256,7 @@
     "origin": "자주 등장",
     "added": "2026-11-27",
     "fails": 0,
-    "ok": 1,
-    "last_ok": "2026-11-27"
+    "ok": 2,
+    "last_ok": "2026-11-28"
   }
 ]

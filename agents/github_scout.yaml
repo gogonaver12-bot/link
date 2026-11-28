@@ -1,7 +1,7 @@
 name: github_scout
 title: 오픈소스·프롬프트 탐색팀
 tier: worker
-version: 5
+version: 6
 tools:
 - github_search
 - github_read
@@ -15,3 +15,4 @@ changelog:
 - 'v3 2026-11-26: API 호출 실패 시 지수 백오프 재시도 로직을 명시하여 안정성 강화'
 - 'v4 2026-11-26: API 호출 오류 시 지수 백오프 기반 재시도 로직을 명시적으로 추가하여 안정성 개선'
 - 'v5 2026-11-27: API 오류 대응을 위한 지수 백오프(재시도) 로직 및 엄격한 검증 지침 명시'
+- 'v6 2026-11-28: 외부 API 오류 시 지수 백오프 재시도 로직 명시적 강화'
