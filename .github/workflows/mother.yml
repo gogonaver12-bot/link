@@ -18,7 +18,7 @@ permissions: { contents: write }
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60  # 2분 스토리 회차 렌더 여유
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }   # 대기 중이던 실행도 최신 상태에서 시작

@@ -111,7 +111,11 @@ shorts:
 
 story:                                  # AI 실사 스토리 — 별도 유튜브 채널
   channel_name: "AI 실사 드라마"        # 스토리 채널 이름(바꾸려면 여기 수정) (대본: Fable → 없으면 무료 AI / 그림: Gemini 이미지, 결제 필요)
-  images_per_episode: 12
+  minutes: 2                            # 한 화 길이(약 2분 · 세로 3분 이하는 쇼츠로 올라감)
+  scenes: "22~26"                       # 한 화 장면 수
+  max_scenes: 28
+  max_sec: 130
+  images_per_episode: 14                # 그림 수(장면이 더 많으면 사이 장면은 같은 그림을 다른 카메라 움직임으로)
   motion_scenes: 4
   talk_scenes: 6                        # 인물 대사 장면 N개는 사진+목소리로 '말하는 영상'(입 모양 맞춤, 무료 AI 하루 사용량 안에서)
   subtitles: false                      # 실사 스토리는 자막 없이 움직임과 말로                      # 앞 장면 N개는 사진을 실제로 움직이는 영상으로(무료 영상 AI, 하루 사용량 안에서)
