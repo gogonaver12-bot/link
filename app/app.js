@@ -17,7 +17,7 @@ let REPO = guessRepo();
 let D = null;          // dashboard.json
 let bizFilter = "all";
 
-const NAMES = { anthropic: "Claude", gemini: "Gemini", groq: "Groq", cerebras: "Cerebras", openrouter: "OpenRouter", mistral: "Mistral",
+const NAMES = { anthropic: "Claude", gemini: "Gemini", groq: "Groq", cerebras: "Cerebras", nvidia: "NVIDIA", openrouter: "OpenRouter", mistral: "Mistral",
   ollama: "Ollama", openai: "ChatGPT", deepseek: "DeepSeek", xai: "Grok", qwen: "Qwen", moonshot: "Kimi", together: "Together",
   upstage: "Upstage Solar", clova: "HyperCLOVA X", perplexity: "Perplexity" };
 const STATUS = { active: "진행중", candidate: "후보", killed: "탈락" };
@@ -117,7 +117,7 @@ async function dispatch(command = "daily", goal = "", label = "") {
     openSheet(tokenFixSheet(String(e.message).slice(0, 3)));
   }
 }
-let polling = 0, RUN = null;
+let polling = 0, RUN = null, PIN = null;
 const EXPECT = [[/주문/, 150], [/스토리|다음 화/, 600], [/영상|shorts/, 330], [/일일|daily/, 1200], [/테스트|토너먼트|test/, 240], [/사업 발굴|scout/, 420], [/파이프라인/, 300]];
 const STEPNAME = { "Set up job": "준비", "Run actions/checkout@v4": "코드 받기", "Run actions/setup-python@v5": "파이썬 준비",
   "Run pip install -r requirements.txt": "도구 설치", "install ffmpeg (숏츠 영상 제작용)": "영상 도구 설치", run: "AI 작업 중", "save results": "결과 저장" };
@@ -251,7 +251,7 @@ function viewHome() {
   <div class="section-title"><h2>최근 보고서</h2><a href="#reports">전체</a></div>
   ${D.reports.length ? `<div class="card">${D.reports.slice(0, 3).map(reportRow).join("")}</div>` : empty("📄", "보고서가 아직 없어요", "일일 자동운영을 실행하면 매일 쌓여요")}`;
 }
-const CMDNAME = [[/^local plan/, "PC 렌더 쇼츠 대본"], [/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Flow 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
+const CMDNAME = [[/^feedback add/, "영상 피드백"], [/^local plan/, "PC 렌더 쇼츠 대본"], [/^search all/, "통합 검색"], [/^hub$/, "스킬 통합"], [/^story plan/, "Flow 장면용 대본"], [/^story render/, "스토리 완성"], [/^order /, "주문 납품본 만들기"], [/^story new/, "새 AI 스토리 + 1화"], [/^story next/, "AI 스토리 다음 화"], [/^shorts --skip/, "대본 빼기"], [/^shorts.*--private/, "영상 테스트 제작"], [/^shorts/, "영상 제작"],
   [/^benchmark/, "인기 영상 분석"], [/^test all/, "생존 토너먼트"], [/^test /, "생존 테스트·개선"], [/^blog/, "블로그 글"], [/^pipeline run/, "파이프라인 실행"], [/^pipeline new/, "파이프라인 만들기"], [/^daily$|^schedule$/, "일일 자동운영"], [/^biz scout/, "사업 발굴"], [/^biz review/, "ROI 리뷰"], [/^biz approve/, "사업 승인"],
   [/^biz log/, "매출 기록"], [/^agent upgrade/, "팀 업그레이드"], [/^agent new/, "새 팀 만들기"], [/^jobs$|^push$/, "작업큐 처리"],
   [/^ai arena/, "AI 대결"], [/^ai ask/, "AI 질문"], [/^news add/, "사이트 추가"], [/^news/, "정보 수집"], [/^export$/, "데이터 갱신"]];
@@ -472,7 +472,10 @@ function viewVideos() {
   <div class="kpis"><div class="card kpi"><div class="lbl">🎞️ 올린 영상</div><div class="num">${V.length}</div></div>
     <div class="card kpi"><div class="lbl">👀 총 조회수</div><div class="num">${views.toLocaleString()}</div></div></div>
   ${(D.previews || []).length ? `<div class="section-title"><h2>🆕 방금 만든 영상 (미리보기)</h2></div><div class="pv">${D.previews.map((p) => `
-    <div class="pv-item"><video src="previews/${encodeURIComponent(p.file)}" controls playsinline preload="metadata"></video><div class="t clamp2">${esc(p.title)}</div><div class="m">${esc(p.date)}</div></div>`).join("")}</div>` : ""}
+    <div class="pv-item"><div class="pv-wrap"><video src="previews/${encodeURIComponent(p.file)}" controls playsinline preload="metadata" data-pvfile="${esc(p.file)}"></video></div>
+      <div class="t clamp2">${esc(p.title)}</div><div class="m">${esc(p.date)}</div>
+      <button class="btn small ghost" style="margin-top:6px;width:100%" data-pin="${esc(p.file)}">📍 고칠 곳 찍기</button></div>`).join("")}</div>
+    <p class="sub" style="margin-top:4px">📍 누르고 → 영상을 멈춘 화면에서 고칠 자리를 톡 → 한 줄 메모 · 다음 영상부터 반영돼요</p>` : ""}
   ${best && best.views ? `<div class="card" style="margin-top:10px"><div class="m">🏆 최고 조회</div><div class="t">${esc(best.title)} · ${best.views.toLocaleString()}회</div></div>` : ""}
   ${V.length ? `<div class="vgrid">${V.map((v, k) => `<a class="vcard" href="https://youtube.com/shorts/${yid(v)}" target="_blank" rel="noopener noreferrer" data-video="${k}">
       <div class="thumb"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/${yid(v)}/oardefault.jpg" data-fb="https://i.ytimg.com/vi/${yid(v)}/hqdefault.jpg">
@@ -663,7 +666,7 @@ const KEYS = [
     ["YOUTUBE_OAUTH_REFRESH_TOKEN", "새 채널(F ai-LAB) 전용 · PC에서 google_login_youtube.bat 실행하면 자동 저장", "https://www.youtube.com/channel_switcher"]]],
   ["🆓 무료 AI (막히면 자동 전환)", [
     ["GEMINI_API_KEY", "Get API key → Create", "https://aistudio.google.com/apikey"], ["GROQ_API_KEY", "Create API Key", "https://console.groq.com/keys"],
-    ["CEREBRAS_API_KEY", "API Keys → Generate", "https://cloud.cerebras.ai/"], ["OPENROUTER_API_KEY", "Create Key (무료 모델만 사용)", "https://openrouter.ai/settings/keys"],
+    ["CEREBRAS_API_KEY", "API Keys → Generate", "https://cloud.cerebras.ai/"], ["NVIDIA_API_KEY", "무료 · 여러 회사 AI 모델 (생존 테스트 AI 경쟁에 도움)", "https://build.nvidia.com/settings/api-keys"], ["OPENROUTER_API_KEY", "Create Key (무료 모델만 사용)", "https://openrouter.ai/settings/keys"],
     ["MISTRAL_API_KEY", "Create new key (무료 체험 등급)", "https://console.mistral.ai/api-keys"]]],
   ["🎬 영상 품질 (무료 · 추천)", [
     ["PEXELS_API_KEY", "고화질 세로 실사 영상 · 무료", "https://www.pexels.com/api/new/"],
@@ -761,6 +764,17 @@ const hubSheet = () => `<h3>🔎 통합 검색</h3><p class="sub" style="margin:
 const SHEETS = { storychan: storyChanSheet, hubsearch: hubSheet, kmong: () => "<h3>불러오는 중…</h3>", newchan: newChanSheet, music: musicSheet, newpipe: newPipeSheet, google: googleSheet, addsite: addSiteSheet, scout: scoutSheet, log: logSheet, newagent: newAgentSheet, arena: arenaSheet, keys: keysSheet, settings: settingsSheet };
 
 document.addEventListener("click", (e) => {
+  const pin = e.target.closest("[data-pin]");
+  if (pin) { PIN = pin.dataset.pin; const v = document.querySelector(`video[data-pvfile="${CSS.escape(PIN)}"]`); if (v) { v.pause(); v.controls = false; v.parentElement.classList.add("pinning"); }
+    return toast("멈춘 화면에서 고칠 자리를 톡 눌러 주세요"); }
+  const pv = e.target.closest("video[data-pvfile]");
+  if (pv && PIN === pv.dataset.pvfile) {
+    const r = pv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height, t = pv.currentTime;
+    const note = prompt(`${t.toFixed(1)}초 · 이 자리에서 무엇을 고칠까요? (예: 자막을 더 위로 / 목소리 더 느리게)`);
+    pv.controls = true; pv.parentElement.classList.remove("pinning"); PIN = null;
+    if (note && note.trim()) dispatch(`feedback add ${q(pv.dataset.pvfile)} ${t.toFixed(1)} ${x.toFixed(3)} ${y.toFixed(3)} ${q(note.trim().slice(0, 200))}`, "", "영상 피드백");
+    return;
+  }
   const lk = e.target.closest("[data-lk]");
   if (lk) { lk.parentElement.querySelectorAll("button").forEach((b) => b.classList.toggle("accent", b === lk)); return; }
   const sv = e.target.closest("[data-svc]");

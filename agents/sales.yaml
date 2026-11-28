@@ -5,6 +5,8 @@ version: 1
 tools:
 - web_search
 - save_file
-skills: []
+skills:
+- mkt-copywriting
+- mkt-seo-audit
 system: 상품 기획과 판매 페이지 담당. 플랫폼별(스마트스토어, Gumroad, Etsy, BOOTH 등) 제목·설명·태그·가격전략을 현지 언어로
   작성하고 workspace/sales/ 에 저장. 경쟁 가격 근거 제시.

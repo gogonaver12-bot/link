@@ -347,3 +347,6 @@ label.btn { cursor: pointer; display: block; }
 
 #lcKind{margin-top:8px} #lcKind button{cursor:pointer;background:transparent;font:inherit;font-size:12px;padding:5px 10px}
 #lcBrief{border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--fg);padding:9px;font:inherit;box-sizing:border-box}
+
+.pv-wrap { position: relative; } .pv-wrap.pinning::after { content: "📍 고칠 자리를 톡"; position: absolute; inset: 0; display: grid; place-items: center;
+  background: rgba(0,0,0,.35); color: #fff; font-weight: 800; font-size: 13px; border-radius: 12px; pointer-events: none; }

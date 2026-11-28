@@ -167,6 +167,10 @@ def main(argv=None):
     lc = sp.add_parser("local", help="PC 렌더 쇼츠: local plan <horror|ainews> \"브리프\" [--speed 0.85] / local list")
     lc.add_argument("action", choices=["plan", "list"]); lc.add_argument("kind", nargs="?", default="horror")
     lc.add_argument("brief", nargs="?", default=""); lc.add_argument("--speed", type=float)
+    fb = sp.add_parser("feedback", help="영상 피드백 핀: feedback add <파일> <초> <x> <y> \"메모\" / feedback rules")
+    fb.add_argument("action", choices=["add", "rules"]); fb.add_argument("file", nargs="?", default="")
+    fb.add_argument("t", nargs="?", default="0"); fb.add_argument("x", nargs="?", default="0.5"); fb.add_argument("y", nargs="?", default="0.5")
+    fb.add_argument("note", nargs="?", default="")
     sp.add_parser("doctor", help="최근 에러를 systematic-debugging 방식으로 진단 → reports/doctor/")
     sp.add_parser("blog", help="블로그 글 작성→Blogger 자동 게시")
     sp.add_parser("benchmark", help="유튜브 인기 AI 숏츠 수집(대본 참고용)")
@@ -347,6 +351,13 @@ def main(argv=None):
             p("\n".join(f"- [{j['status']}] {j['title']} ({j['kind']})" for j in localshorts.jobs()) or "대기열 없음")
         else:
             p(localshorts.plan(x.kind, x.brief or "요즘 화제가 될 만한 주제", x.speed))
+    elif x.cmd == "feedback":
+        from . import vfeedback
+        if x.action == "add":
+            p(vfeedback.add(x.file, x.t, x.x, x.y, x.note))
+            p(vfeedback.rules())
+        else:
+            p(vfeedback.rules(force=True))
     elif x.cmd == "doctor":
         from . import doctor
         p(doctor.run())
