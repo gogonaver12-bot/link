@@ -745,6 +745,64 @@ def test_agensi_kit_is_original_and_packaged():
         assert "obra/superpowers" not in md and "coreyhaines31" not in md  # 남의 스킬은 팔지 않음
 
 
+def test_story_continuity_flow_lock_ledger_check(monkeypatch, tmp_path):
+    from mother import story, continuity as ct, publish, providers as pv
+    monkeypatch.setattr(story, "DIR", tmp_path / "stories"); monkeypatch.setattr(story, "SHORTS", tmp_path / "sf")
+    shutil.copy(store.ROOT / "config.yaml", tmp_path / "config.yaml")
+    monkeypatch.setattr(store, "ROOT", tmp_path)
+    (tmp_path / "sf" / "scripts").mkdir(parents=True)
+    story.save({"slug": "s2", "title": "T", "genre": "", "logline": "", "tone": "", "setting": "village", "made": [],
+                "characters": [{"id": "mira", "name": "미라", "voice": "girl", "look": "English: 12-year-old girl, red braid, blue tunic"}]})
+    d = tmp_path / "stories" / "s2" / "chars"; d.mkdir(parents=True)
+    (d / "mira.jpg").write_bytes(b"x"); (d / "mira-talk.jpg").write_bytes(b"auto")
+    assert ct.face("s2", "mira").name == "mira-talk.jpg"
+    (d / "mira.flow").write_text("flow")  # 폰 앱에서 Flow 이미지를 올림 → 자동 대사 사진보다 우선
+    assert ct.face("s2", "mira").name == "mira.jpg" and ct.is_flow("s2", "mira")
+    calls = []
+    def fake_json(system, prompt, schema, agent="worker"):
+        calls.append(agent)
+        if agent == "story_lock":
+            return {"age": "12-year-old", "face": "freckles", "hair": "red braid", "outfit": "blue tunic", "props": "none", "body": "small"}
+        if agent == "story_check":  # 1차: 이름 틀림 → 고친 대본, 2차: 통과
+            if calls.count("story_check") == 1:
+                return {"ok": False, "issues": [{"type": "이름", "scene": 1, "detail": "미나→미라"}],
+                        "fixed": {"title": "1화", "summary": "s", "scenes": [{"speaker": "mira", "line": "내가 미라야", "shot": "[mira] smiles"},
+                                                                            {"speaker": "narrator", "line": "검이 빛났다", "shot": "light"}]}}
+            return {"ok": True, "issues": [], "fixed": {}}
+        if agent == "story_continuity":
+            return {"summary": "미라가 검을 찾음", "events": ["검 발견"], "characters": {"mira": {"injury": "왼손 상처"}},
+                    "locations": ["마을 광장"], "props": ["빛나는 검"], "threads": ["검의 주인은?"], "resolved": []}
+        raise RuntimeError("no")
+    monkeypatch.setattr(pv, "json_complete", fake_json)
+    monkeypatch.setattr(pv, "complete", lambda *a, **k: (json.dumps({"title": "1화", "summary": "s", "scenes": [
+        {"speaker": "mina", "line": "내가 미나야", "shot": "[mira] smiles"}, {"speaker": "narrator", "line": "검이 빛났다", "shot": "light"}]}), "t"))
+    plan, _ = story.plan_episode("s2")
+    lock = "CHARACTER LOCK"
+    assert plan["scenes"][0]["prompt"].startswith("Vertical") and lock in plan["scenes"][0]["prompt"] and "hair red braid" in plan["scenes"][0]["prompt"]
+    assert plan["ep"]["scenes"][0]["line"] == "내가 미라야" and plan["scenes"][0]["refs"][0] == "stories/s2/chars/mira.jpg"
+    assert "Ingredients" in plan["scenes"][0]["ingredients"] and "Flow 원본" in plan["scenes"][0]["ingredients"]
+    chk = ct.read_check("s2")
+    assert chk["rewrote"] and chk["issues"][0]["type"] == "이름" and story.load("s2")["characters"][0]["fixed"]["hair"] == "red braid"
+    monkeypatch.setattr(story, "_img", lambda: types.SimpleNamespace(generate=lambda *a, **k: None))
+    monkeypatch.setattr(publish, "produce", lambda sp, private, log, done: True)
+    story.render_episode("s2", private=True)
+    led = ct.load("s2")
+    assert led["episodes"][0]["n"] == 1 and led["characters"]["mira"]["injury"] == "왼손 상처" and "검의 주인은?" in led["threads"]
+    assert "검의 주인은?" in ct.brief("s2") and "왼손 상처" in ct.brief("s2")  # 다음 화 작가에게 넘어감
+
+
+def test_story_check_rules_and_fallbacks(monkeypatch, tmp_path):
+    from mother import story, continuity as ct, providers as pv
+    monkeypatch.setattr(story, "DIR", tmp_path / "stories")
+    monkeypatch.setattr(pv, "json_complete", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("offline")))
+    b = {"slug": "s3", "title": "T", "characters": [{"id": "mira", "name": "미라", "look": "girl, red braid, wearing a blue tunic"}]}
+    ep, rep = ct.check(b, {"scenes": [{"speaker": "미라", "line": "안녕", "shot": "[ghost] waves at [mira]"}]})
+    assert ep["scenes"][0]["speaker"] == "mira" and "[ghost]" not in ep["scenes"][0]["shot"] and not rep["ok"] and rep["by"] == "규칙 검사"
+    assert ct.ensure_fixed(b) == 1 and "red braid" in b["characters"][0]["fixed"]["hair"] and "tunic" in b["characters"][0]["fixed"]["outfit"]
+    led = ct.update(b, 1, {"summary": "첫 만남", "scenes": [{"speaker": "narrator", "line": "그날 밤"}]})
+    assert led["episodes"][0]["summary"] == "첫 만남" and led["threads"] == ["그날 밤"]
+
+
 def test_cinematic_golden_formula():
     from mother import cinematic
     p = cinematic.compose("[kang] turning head slowly, beautiful masterpiece, ultra 8k, wet asphalt reflecting neon lights", "Seoul at night")

@@ -422,7 +422,8 @@ function viewStory() {
     <div class="row" style="padding:0"><div class="grow"><div class="t">${esc(b.title)}</div><div class="m">${esc(b.genre)} · ${b.episodes.length}화 제작 / 계획 ${b.planned}화</div></div>
       <button class="btn small" data-cmd="story next ${esc(b.slug)}" data-label="${esc(b.title)} 다음 화">▶ ${b.episodes.length + 1}화 자동</button></div>
     <div class="m wrap" style="margin-top:6px">${esc(b.logline)}</div>
-    <div class="cast">${b.characters.map((c) => `<div>${c.img ? `<img src="${imgUrl(c.img)}" alt="" loading="lazy">` : `<span class="noimg">🧑</span>`}<b>${esc(c.name)}</b><small>${esc(c.role)}</small></div>`).join("")}</div>
+    ${castBox(b)}
+    ${checkBox(b)}
     ${geminiBox(b)}
     ${b.episodes.length ? `<div class="eps">${b.episodes.map((e) => `<a class="ep" ${e.video ? `href="https://youtube.com/shorts/${encodeURIComponent(e.video)}" target="_blank" rel="noopener"` : ""}>
       <b>${e.n}화</b><span>${esc(e.title)}</span><small>${e.video ? "▶ 보기" : e.uploaded ? "" : "업로드 전"}</small></a>`).join("")}</div>` : ""}</div>`).join("")
@@ -440,12 +441,13 @@ function geminiBox(b) {  // 폰 Gemini 앱(플러스)으로 장면 영상을 만
       <li><a href="${esc(store.get("flow_url") || "https://labs.google/fx/tools/flow")}" target="_blank" rel="noopener">${store.get("flow_url") ? "내 Flow 프로젝트" : "Google Flow"}</a> → <b>재료로 동영상(Ingredients)</b> → 사진 첨부 + 📋 프롬프트 붙여넣기 → 세로 9:16 → 생성 → 다운로드 (Gemini 앱 동영상도 가능)</li>
       <li>⬆️ 영상 올리기 — 대사 장면은 영상 속 목소리를 그대로 써요 · 못 만든 장면은 자동으로 채워요</li></ol>
     ${P.scenes.map((s) => `<div class="gem-sc ${s.clip ? "done" : ""}"><b>${s.i + 1}</b><div class="grow"><div class="t wrap">${esc(s.line)}</div>
+      ${s.ingredients ? `<div class="m wrap" style="font-size:11px">${esc(s.ingredients)}</div>` : ""}
       <div class="gem-refs">${(s.refs || []).map((r) => `<img src="${imgUrl(r)}" alt="인물 사진 — 길게 눌러 저장">`).join("")}</div>
       <div class="btns" style="grid-template-columns:1fr 1fr;margin-top:6px"><button class="btn small ghost" data-copy="${esc(s.prompt)}">📋 프롬프트</button>
       <label class="btn small ${s.clip ? "ghost" : ""}" style="text-align:center">${s.clip ? "✓ 다시 올리기" : "⬆️ 영상 올리기"}<input type="file" accept="video/*" hidden
         data-upslug="${esc(b.slug)}" data-upn="${P.n}" data-upi="${s.i}"></label></div></div></div>`).join("")}
     <div class="btns" style="margin-top:10px"><a class="btn ghost" style="text-align:center" href="${esc(store.get("flow_url") || "https://labs.google/fx/tools/flow")}" target="_blank" rel="noopener">🎬 ${store.get("flow_url") ? "내 Flow 프로젝트 열기" : "Flow 열기"}</a>
-      <button class="btn ghost" data-copy="${esc(P.scenes.map((s) => `[장면 ${s.i + 1}] ${s.prompt}`).join("\n\n"))}">📋 프롬프트 전부 복사</button></div>
+      <button class="btn ghost" data-copy="${esc(P.scenes.map((s) => `[장면 ${s.i + 1}] ${s.ingredients ? s.ingredients + "\n" : ""}${s.prompt}`).join("\n\n"))}">📋 프롬프트 전부 복사</button></div>
     <button class="btn" style="margin-top:10px;width:100%" data-cmd="story render ${esc(b.slug)}" data-label="${esc(b.title)} ${P.n}화 완성">✅ 올린 장면으로 ${P.n}화 완성하기</button></div>`;
 }
 async function uploadClip(input) {
@@ -467,6 +469,54 @@ async function uploadClip(input) {
   }
 }
 document.addEventListener("change", (e) => { if (e.target.dataset && e.target.dataset.upslug) uploadClip(e.target); });
+
+/* ───────── 캐릭터 카드: Flow 캐릭터 이미지 올리기 + 고정 외모 + 일관성 점검 ───────── */
+const CHAR_KINDS = [["", "본 사진"], ["talk", "대사 얼굴"], ["smile", "표정"], ["side", "옆모습"]];
+function castBox(b) {
+  const imgUrl = (p) => `../${p.split("/").map(encodeURIComponent).join("/")}`;
+  return `<div class="cast">${b.characters.map((c) => `<div>${c.img ? `<img src="${imgUrl(c.img)}" alt="" loading="lazy">` : `<span class="noimg">🧑</span>`}<b>${esc(c.name)}${c.flow ? ' <span class="pill ok" style="font-size:10px;padding:1px 5px">flow</span>' : ""}</b><small>${esc(c.role)}</small></div>`).join("")}</div>
+    <details class="gem" style="margin-top:8px"><summary class="t">🧑‍🎨 캐릭터 카드 · Flow 이미지 올리기</summary>
+    <div class="m">Flow에서 받은 캐릭터 이미지를 올리면 자동 사진보다 먼저 쓰고, 모든 회차·장면에 같은 얼굴·옷으로 넣어요</div>
+    ${b.characters.map((c) => `<div class="gem-sc"><div class="grow"><div class="t">${esc(c.name)} <small>(${esc(c.id || "")})</small> ${c.flow ? "✓ Flow 원본" : "자동 생성 사진"}</div>
+      <div class="gem-refs">${(c.extra || []).map((x) => `<img src="${imgUrl(x.img)}" alt="${esc(x.kind)}" title="${esc(x.kind)}${x.flow ? " · flow" : ""}">`).join("")}</div>
+      <div class="m wrap" style="font-size:11px">🔒 ${esc(c.lock || "")}</div>
+      <div class="btns" style="grid-template-columns:repeat(4,1fr);margin-top:6px">${CHAR_KINDS.map(([k, lab]) => `<label class="btn small ghost" style="text-align:center;font-size:11px">⬆️ ${lab}<input type="file" accept="image/*" hidden
+        data-charslug="${esc(b.slug)}" data-charid="${esc(c.id || "")}" data-charkind="${k}"></label>`).join("")}</div></div></div>`).join("")}</details>`;
+}
+function checkBox(b) {
+  const C = b.check, T = b.threads || [];
+  if (!C && !T.length) return "";
+  return `<div class="gem" style="margin-top:8px"><div class="t">🧭 일관성 점검 ${C ? `(${C.n}화 · ${esc(C.by)})` : ""}</div>
+    ${C ? `<div class="m">${C.ok ? "✅ 설정집·장부와 맞아요" : `⚠️ ${C.issues.length}건 발견${C.rewrote ? " → AI가 고쳐 다시 씀" : ""}`} · 검사: ${esc((C.items || []).join("·"))}</div>
+    ${(C.issues || []).map((x) => `<div class="m wrap" style="font-size:12px">• [${esc(x.type || "")}${x.scene ? " " + x.scene + "장면" : ""}] ${esc(x.detail || "")}</div>`).join("")}` : ""}
+    ${T.length ? `<div class="m wrap" style="margin-top:4px">🧵 남은 떡밥: ${T.map(esc).join(" · ")}</div>` : ""}</div>`;
+}
+function toJpeg(f, max = 1280) {  // 폰 사진(png·webp·heic 미리보기 등) → jpg로 줄여서
+  return new Promise((ok, no) => { const u = URL.createObjectURL(f), im = new Image();
+    im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)), cv = document.createElement("canvas");
+      cv.width = Math.round(im.width * k); cv.height = Math.round(im.height * k); cv.getContext("2d").drawImage(im, 0, 0, cv.width, cv.height);
+      URL.revokeObjectURL(u); ok(cv.toDataURL("image/jpeg", 0.9).split(",")[1]); };
+    im.onerror = () => { URL.revokeObjectURL(u); no(new Error("이미지를 읽지 못했어요")); }; im.src = u; });
+}
+async function putRepo(path, b64, message) {
+  let sha;
+  try { sha = (await gh(`/repos/${REPO}/contents/${path}?ref=main`)).sha; } catch { /* 처음 올림 */ }
+  return gh(`/repos/${REPO}/contents/${path}`, { method: "PUT", body: JSON.stringify({ message, content: b64, branch: "main", ...(sha ? { sha } : {}) }) });
+}
+async function uploadChar(input) {
+  const f = input.files[0]; if (!f) return;
+  if (!token()) return openSheet(noTokenSheet(""));
+  const d = input.dataset, base = `stories/${d.charslug}/chars/${d.charid}${d.charkind ? "-" + d.charkind : ""}`;
+  toast("⬆️ 캐릭터 이미지 올리는 중…");
+  try {
+    await putRepo(`${base}.jpg`, await toJpeg(f), `story char ${base}.jpg (flow)`);
+    await putRepo(`${base}.flow`, btoa(new Date().toISOString() + " flow\n"), `story char flow mark ${base}`);
+    toast("✅ Flow 캐릭터 이미지 올림 — 다음 장면부터 이 얼굴을 써요");
+  } catch (e) {
+    openSheet(`<h3>올리기 실패</h3><p class="sub">${esc(e.message)}</p><p class="sub">토큰에 Contents: Read and write 권한이 필요해요</p>`);
+  }
+}
+document.addEventListener("change", (e) => { if (e.target.dataset && e.target.dataset.charslug) uploadChar(e.target); });
 
 /* ───────── 화면: 영상 확인 ───────── */
 function viewVideos() {
