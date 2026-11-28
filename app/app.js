@@ -491,6 +491,9 @@ function viewPipes() {
   return `<div class="card money-card"><div class="t">💼 크몽에서 바로 팔기 (판매 글 5개 준비 완료)</div>
     <div class="m">리뷰 답글 · 외국인 안내문 번역 · 블로그 원고 · 상세페이지 · 전자책 — 제목·가격·설명은 복사 버튼, 썸네일은 길게 눌러 저장</div>
     <button class="btn" data-open="kmong" style="margin-top:10px;width:100%">🛒 판매 글 열기</button></div>
+  <div class="card money-card"><div class="t">🌐 Agensi에서 스킬 팔기 (해외 · 판매가의 70%)</div>
+    <div class="m">우리 시스템에서 직접 만든 스킬 4개 포장 완료 — 쇼츠 자동화 $19 · AI 실사 드라마 $29 · 사업 생존 테스트 $15 · 훅 채점기 $9 · 답장 메일 포함</div>
+    <button class="btn" data-open="agensi" style="margin-top:10px;width:100%">🌐 판매 키트 열기</button></div>
   <div class="card"><div class="t">📦 주문 들어오면 (결과물은 AI가 만들어요)</div>
     <div class="chips" id="odSvc">${[["review", "리뷰 답글"], ["translate", "안내문 번역"], ["blog", "블로그 원고"], ["detail", "상세페이지"], ["ppt", "PPT 원고"]]
       .map(([k, v], i) => `<button class="pill ${i ? "" : "accent"}" data-svc="${k}">${v}</button>`).join("")}</div>
@@ -744,19 +747,20 @@ function render() {
     "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
   $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
 }
-let KM = null;
-async function kmongSheet() {
-  try { KM = KM || await (await fetch("kmong/listings.json?t=" + Date.now())).json(); } catch { return "<h3>판매 글을 불러오지 못했어요</h3>"; }
+const KMC = {};
+async function kmongSheet(src = "kmong", head = "🛒 크몽 판매 글") {
+  let KM;
+  try { KM = KMC[src] = KMC[src] || await (await fetch(`${src}/listings.json?t=` + Date.now())).json(); } catch { return "<h3>판매 글을 불러오지 못했어요</h3>"; }
   const cp = (t, label) => `<button class="btn small ghost" data-copy="${esc(t)}">📋 ${label}</button>`;
-  return `<h3>🛒 크몽 판매 글</h3><ol class="steps-ol">${KM.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
-    ${KM.items.map((x) => `<div class="card km"><img src="${esc(x.thumb)}" alt="썸네일 — 길게 눌러 저장" loading="lazy">
+  return `<h3>${head}</h3><ol class="steps-ol">${KM.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+    ${KM.items.map((x) => `<div class="card km">${x.thumb ? `<img src="${esc(x.thumb)}" alt="썸네일 — 길게 눌러 저장" loading="lazy">` : ""}
       <div class="t wrap">${esc(x.title)}</div><div class="m">카테고리: ${esc(x.category)}</div>
       <div class="btns">${cp(x.title, "제목")}${cp(x.tags.join(", "), "검색어")}</div>
       ${x.packages.map((p) => `<div class="row" style="padding:6px 0"><span class="pill accent">${esc(p.name)}</span><div class="grow"><div class="t">${p.price.toLocaleString()}원 · ${esc(p.desc)}</div>
         <div class="m">작업 ${p.days}일 · 수정 ${p.revisions}회</div></div>${cp(String(p.price), "가격")}</div>`).join("")}
       <div class="note wrap">${esc(x.description).replace(/\n/g, "<br>")}</div>
       <div class="btns">${cp(x.description, "설명 전체")}${cp(x.faq.map((f) => "Q. " + f[0] + "\nA. " + f[1]).join("\n\n"), "FAQ")}</div>
-      ${x.file ? `<a class="btn ghost small" style="margin-top:8px;display:block;text-align:center" href="${esc(x.file)}" target="_blank" rel="noopener">📕 판매할 PDF 받기</a>` : ""}</div>`).join("")}`;
+      ${x.file ? `<a class="btn ghost small" style="margin-top:8px;display:block;text-align:center" href="${esc(x.file)}" target="_blank" rel="noopener" download>${x.file.endsWith(".zip") ? "📦 올릴 zip 받기" : "📕 판매할 PDF 받기"}</a>` : ""}</div>`).join("")}`;
 }
 const hubSheet = () => `<h3>🔎 통합 검색</h3><p class="sub" style="margin:0">이미 있는 스킬·프롬프트·에이전트부터 찾고, 없으면 skills.sh(설치 수 순)·깃허브·웹까지 찾아요</p>
   <div class="field"><input id="hubQ" maxlength="120" placeholder="예: 블로그 글 상위노출 / 영상 대본 훅 / 엑셀 자동화"></div>
@@ -789,7 +793,8 @@ document.addEventListener("click", (e) => {
   if (ds.close !== undefined) return closeSheet();
   if (ds.go) { closeSheet(); location.hash = ds.go; return; }
   if (ds.cmd) return dispatch(ds.cmd, "", ds.label);
-  if (ds.open === "kmong") { openSheet("<h3>불러오는 중…</h3>"); kmongSheet().then((h) => { $("#sheetBody").innerHTML = h; }); return; }
+  if (ds.open === "kmong" || ds.open === "agensi") { openSheet("<h3>불러오는 중…</h3>");
+    (ds.open === "agensi" ? kmongSheet("agensi", "🌐 Agensi 스킬 판매 (해외 · 달러)") : kmongSheet()).then((h) => { $("#sheetBody").innerHTML = h; }); return; }
   if (ds.open === "hubsearch") return openSheet(hubSheet());
   if (ds.open) { if (D && !D.empty) openSheet(SHEETS[ds.open](ds.id)); else if (ds.open === "settings") openSheet(settingsSheet()); return; }
   if (ds.idea) return openSheet(ideaSheet(ds.idea));
