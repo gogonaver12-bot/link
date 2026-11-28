@@ -569,3 +569,13 @@
 {"ts": "2026-11-28T10:21:42+00:00", "agent": "check", "model": "groq:openai/gpt-oss-120b", "in": 84, "out": 145, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-28T10:21:43+00:00", "agent": "check", "model": "nvidia:nvidia/nemotron-3.5-lightning-30b-a3b", "in": 24, "out": 166, "cache_read": 0, "usd": 0.0}
 {"ts": "2026-11-28T14:30:04+00:00", "agent": "story_writer_json", "model": "gemini:gemini-flash-lite-latest", "in": 917, "out": 767, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:26+00:00", "agent": "mother", "model": "gemini:gemini-flash-lite-latest", "in": 1271, "out": 167, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:27+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 480, "out": 25, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:28+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 973, "out": 37, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:28+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 1067, "out": 33, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:29+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 3408, "out": 88, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:30+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 587, "out": 31, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:31+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 1356, "out": 41, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:32+00:00", "agent": "github_scout", "model": "gemini:gemini-flash-lite-latest", "in": 1458, "out": 62, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:34+00:00", "agent": "sales", "model": "gemini:gemini-flash-lite-latest", "in": 3382, "out": 713, "cache_read": 0, "usd": 0.0}
+{"ts": "2026-11-28T14:47:36+00:00", "agent": "mother", "model": "gemini:gemini-flash-lite-latest", "in": 1248, "out": 268, "cache_read": 0, "usd": 0.0}

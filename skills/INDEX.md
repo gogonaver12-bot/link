@@ -4,6 +4,7 @@
 
 ## 스킬
 - **company_work_prompts** — 업무 비서용 프롬프트 15종 — 이메일, 회의록, 주간보고, 기획서, 엑셀, 요약, 보고 문장, 우선순위, 클레임, PPT, 채용, 협상, 매뉴얼, 브레인스토밍 (`skills/company_work_prompts.md`)
+- **growth-marketing-os-funnel-decomposition** — Senior performance analyst skill that answers "why did sales drop (or jump)?" using rigorous funnel decomposition. Use whenever store metric (`skills/growth-marketing-os-funnel-decomposition.md`)
 - **local-shorts-factory** — Use when the user wants a horror 3D or AI news short rendered with the PC video factory (Supertonic TTS, Blender) instead of the cloud pipel (`skills/local-shorts-factory.md`)
 - **mkt-copywriting** — When the user wants to write or rewrite page copy (homepage, landing, pricing, feature), or asks which headline, promise, or message to lead (`skills/mkt-copywriting.md`)
 - **mkt-seo-audit** — When the user wants to audit or diagnose SEO, or asks why traffic dropped, a page won't rank, or whether a setup like canonicals, hreflang,  (`skills/mkt-seo-audit.md`)

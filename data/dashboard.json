@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T14:30:06+00:00",
+ "updated": "2026-11-28T14:47:38+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -2158,9 +2158,9 @@
    ],
    "model": "auto",
    "skills": [],
-   "avg": 2.0,
-   "evals": 1,
-   "last_feedback": "외부 API 호출 오류 처리 및 재시도 로직 필요"
+   "avg": 5.5,
+   "evals": 2,
+   "last_feedback": "오픈소스 마케팅 OS와 퍼널 분해 스킬을 정확히 찾아내어 즉시 적용 가능하도록 도출함."
   },
   {
    "name": "localizer",
@@ -2220,8 +2220,8 @@
     "mkt-seo-audit"
    ],
    "avg": 9.0,
-   "evals": 1,
-   "last_feedback": "국내외 플랫폼별 가격 책정 및 구체적인 실행 계획(MVP 테스트 및 케이스 스터디 확보)을 훌륭히 수립함"
+   "evals": 2,
+   "last_feedback": "글로벌 플랫폼별 현지 언어에 맞춘 카피라이팅과 SEO 전략을 수립하고 산출물 파일까지 완벽히 정리함."
   },
   {
    "name": "viral_analyst",
@@ -2349,7 +2349,7 @@
   {
    "model": "gemini:gemini-flash-lite-latest",
    "avg": 9.0,
-   "n": 4,
+   "n": 6,
    "dropped": false
   },
   {
@@ -2367,97 +2367,120 @@
  ],
  "reports": [
   {
+   "file": "reports/20261128-1447-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-28T14:47+00:00"
+  },
+  {
    "file": "reports/jobs/connection-test-002.md",
    "title": "connection-test-002",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/doctor/2026-11-28.md",
    "title": "🩺 자동 진단 2026-11-28 — 최근 2일 에러 14건 · 종류 1개",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
    "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261126-0712-상품-I0019.md",
    "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261127-0349-상품-I0020.md",
    "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/daily-2026-11-27.md",
    "title": "일일 리포트 2026-11-27",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
    "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261123-1243-상품-I0003.md",
    "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
    "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/daily-2026-11-26.md",
    "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/daily-2026-11-25.md",
    "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
    "title": "이번 주 수익 개선 계획",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/daily-2026-11-23.md",
    "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261128-0333-상품-I0023.md",
    "title": "상품 완성: 제조/물류 중견기업을 위한 온프레미스 LLM API 장애 자동 복구 게이트웨이 구축 가이드",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/daily-2026-11-28.md",
    "title": "일일 리포트 2026-11-28",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   },
   {
    "file": "reports/doctor/2026-11-27.md",
    "title": "🩺 자동 진단 2026-11-27 — 최근 2일 에러 50건 · 종류 4개",
-   "date": "2026-11-28T14:29+00:00"
+   "date": "2026-11-28T14:46+00:00"
   }
  ],
  "runs": [
+  {
+   "ts": "2026-11-28T14:47:34+00:00",
+   "agent": "sales",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "새로 장착한 마케팅 스킬을 활용하여 실제 판매 및 마케팅 전략에 어떻게 적용할지 검토하라."
+  },
+  {
+   "ts": "2026-11-28T14:47:32+00:00",
+   "agent": "github_scout",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "탐색한 마케팅 스킬 중 우리 팀에 즉시 적용할 수 있는 유용한 스킬을 가져와 장착하라."
+  },
+  {
+   "ts": "2026-11-28T14:47:29+00:00",
+   "agent": "github_scout",
+   "model": "gemini:gemini-flash-lite-latest",
+   "task": "깃허브에서 활용 가능한 오픈소스 마케팅 관련 레포지토리와 스킬을 검색하라."
+  },
   {
    "ts": "2026-11-28T03:32:09+00:00",
    "agent": "researcher",
@@ -2511,24 +2534,6 @@
    "agent": "researcher",
    "model": "gemini:gemini-flash-lite-latest",
    "task": "도출된 후보군에 대해 시장 수요와 경쟁 강도를 웹 검색을 통해 빠르게 검증하라."
-  },
-  {
-   "ts": "2026-11-26T18:00:43+00:00",
-   "agent": "analyst",
-   "model": "gemini:gemini-flash-lite-latest",
-   "task": "과거 실패 사례의 재무적 교훈을 바탕으로 고비용 구조와 저단가 아이템을 배제한 이번 주 수익 개선 후보군을 도출하라."
-  },
-  {
-   "ts": "2026-11-26T07:10:52+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "다음 사업/자동화의 수익 가능성을 인터넷으로 확인하라: 무료 오픈소스 LLM 기반 예외 처리 자동화 마이크로SaaS (API 비용 절감 및 안정성을 고민하는 1인 개발자 및 스타트업/웹 서비스 및 패키지 라이브러리, 구독)\n경쟁 상품 가격대·판매량(리뷰 수)·검색 수요·실패 사례를 찾아 숫자와 출처 URL 위주로 10줄 이내로 보고."
-  },
-  {
-   "ts": "2026-11-26T07:10:27+00:00",
-   "agent": "researcher",
-   "model": null,
-   "task": "GLOBAL 시장(en)에서 1인+AI가 30일 안에 첫 매출 가능한 온라인 사업 3개를 찾아라. 플랫폼 후보: Product Hunt, AppSumo, Upwork, Lemon Squeezy. 최근 수요 증거(검색량/판매순위/바이럴)를 웹검색으로 확인. 과거 실패 교훈 반영:\n쟁\n- 2026-11-23 AI 기반 숏폼 스크립트 작성 및 콘텐츠 기획 패키지(US 소상공인 및 유튜브 숏폼 크리에이터): 시뮬레이션 탈락 — 흑자 확률 41% · 90일 ROI 중앙값 -17% (기준 40%·+30%); 위험: 플랫폼(Fiverr 등) 내"
   }
  ],
  "errors": [],
@@ -2799,6 +2804,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-28T14:47:37+00:00",
+   "cmd": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "ok": true,
+   "output": "LINK AI Company는 깃허브에서 오픈소스 마케팅 OS와 실무 퍼널 분석 스킬을 성공적으로 발굴하고 장착했습니다. 이를 바탕으로 스마트스토어, Gumroad, Etsy, BOOTH 등 주요 글로벌 플랫폼별 맞춤형 판매 및 SEO 전략을 수립하고 현지화 산출물을 도출했습니다. 최소 비용과 단계로 목표를 달성하였으며, 즉시 실무에 적용할 수 있는 완성도를 보였습니다. \n다음: \n- workspace/sales/ 하위의 각 플랫폼별 마케팅 산출물 파일 검토 및 실제 스토어 등록 진행 \n- 장착된 퍼널 분석 및 카피라이팅 스킬을 활용한 실전 광고 캠페인 집행 및 데이터 측정 \n보고서: reports/20261128-1447-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md"
+  },
+  {
    "ts": "2026-11-28T14:30:05+00:00",
    "cmd": "story plan farm-girl-sword",
    "ok": true,
@@ -2851,12 +2862,6 @@
    "cmd": "story next site-thirteen-chronicler",
    "ok": true,
    "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/dDIRbL4j9ok"
-  },
-  {
-   "ts": "2026-11-27T05:29:35+00:00",
-   "cmd": "story next site-thirteen-chronicler",
-   "ok": true,
-   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-02.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 3 · 사진 5 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/mmb9akuk9tg"
   }
  ],
  "pipelines": [
@@ -3234,19 +3239,49 @@
    "logline": "비밀 격리 시설에서 기괴한 변칙 존재들을 대면하며 재단의 숨겨진 진실을 파헤치는 수석 연구원의 이야기.",
    "characters": [
     {
+     "id": "kang",
      "name": "강서진",
      "role": "수석 연구원",
-     "img": "stories/site-thirteen-chronicler/chars/kang.jpg"
+     "lock": "강서진 [kang]: age 32; face Asian female, sharp dark eyes, calm and analytical expression.; hair neat black hair tied in a low bun; outfit a crisp white lab coat over a grey button-up shirt; body slim build",
+     "flow": false,
+     "img": "stories/site-thirteen-chronicler/chars/kang.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/site-thirteen-chronicler/chars/kang-talk.jpg",
+       "flow": false
+      }
+     ]
     },
     {
+     "id": "han",
      "name": "한도진",
      "role": "보안 팀장",
-     "img": "stories/site-thirteen-chronicler/chars/han.jpg"
+     "lock": "한도진 [han]: age 38; face Asian male, intense gaze, stern and vigilant expression.; outfit a dark tactical security uniform with body armor; body short buzz cut, muscular build",
+     "flow": false,
+     "img": "stories/site-thirteen-chronicler/chars/han.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/site-thirteen-chronicler/chars/han-talk.jpg",
+       "flow": false
+      }
+     ]
     },
     {
+     "id": "subject",
      "name": "실험체 세타",
      "role": "변칙 존재",
-     "img": "stories/site-thirteen-chronicler/chars/subject.jpg"
+     "lock": "실험체 세타 [subject]: age unknown; face Androgynous human entity, pale translucent skin, barefoot, subtle unnatural movements.; hair long silver-white hair covering the face; outfit standard orange containment jumpsuit",
+     "flow": false,
+     "img": "stories/site-thirteen-chronicler/chars/subject.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/site-thirteen-chronicler/chars/subject-talk.jpg",
+       "flow": false
+      }
+     ]
     }
    ],
    "episodes": [
@@ -3270,7 +3305,10 @@
     }
    ],
    "planned": 5,
-   "plan": null
+   "plan": null,
+   "check": null,
+   "threads": [],
+   "ledger_eps": 0
   },
   {
    "slug": "scp-zone-42-mirror",
@@ -3279,19 +3317,49 @@
    "logline": "거울을 통해 타인의 기억을 훔쳐보는 변칙 존재를 심문하던 수사관이, 거울 속에서 자신의 과거와 마주하며 벌어지는 심리 스릴러.",
    "characters": [
     {
+     "id": "kang",
      "name": "강진우",
      "role": "수석 조사관",
-     "img": "stories/scp-zone-42-mirror/chars/kang.jpg"
+     "lock": "강진우 [kang]: age 35 years old; face sharp facial features, tired dark circles under sharp brown eyes; hair messy black hair; outfit a wrinkled white button-down shirt with loosened black tie.; body lean build",
+     "flow": false,
+     "img": "stories/scp-zone-42-mirror/chars/kang.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/scp-zone-42-mirror/chars/kang-talk.jpg",
+       "flow": false
+      }
+     ]
     },
     {
+     "id": "lee",
      "name": "이서연",
      "role": "기록 연구원",
-     "img": "stories/scp-zone-42-mirror/chars/lee.jpg"
+     "lock": "이서연 [lee]: age 28 years old; face calm oval face; hair neat dark brown bob-cut hair; outfit a clean lab coat over a grey turtleneck.; props intelligent eyes behind thin wire-rimmed glasses; body slender build",
+     "flow": false,
+     "img": "stories/scp-zone-42-mirror/chars/lee.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/scp-zone-42-mirror/chars/lee-talk.jpg",
+       "flow": false
+      }
+     ]
     },
     {
+     "id": "subject",
      "name": "대상-703",
      "role": "변칙 개체",
-     "img": "stories/scp-zone-42-mirror/chars/subject.jpg"
+     "lock": "대상-703 [subject]: age Appears 40 years old; face pale translucent skin, glossy completely pitch-black eyes without pupils, gaunt skeleton-like frame; hair short shaved hair; outfit a standard orange inmate jumpsuit.",
+     "flow": false,
+     "img": "stories/scp-zone-42-mirror/chars/subject.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/scp-zone-42-mirror/chars/subject-talk.jpg",
+       "flow": false
+      }
+     ]
     }
    ],
    "episodes": [
@@ -3315,7 +3383,10 @@
     }
    ],
    "planned": 5,
-   "plan": null
+   "plan": null,
+   "check": null,
+   "threads": [],
+   "ledger_eps": 0
   },
   {
    "slug": "mountain-shadow",
@@ -3324,19 +3395,31 @@
    "logline": "산속에서 사라지는 등산객들의 비밀을 파헤치는 조사팀이 괴물의 정체와 마주한다.",
    "characters": [
     {
+     "id": "hoon",
      "name": "민호",
      "role": "조사팀 리더",
-     "img": "stories/mountain-shadow/chars/hoon.jpg"
+     "lock": "민호 [hoon]: face 30s, sharp eyes, scar on left cheek; hair short black hair; outfit a worn hiking jacket; body lean build",
+     "flow": false,
+     "img": "stories/mountain-shadow/chars/hoon.jpg",
+     "extra": []
     },
     {
+     "id": "ji",
      "name": "지은",
      "role": "생물학자",
-     "img": "stories/mountain-shadow/chars/ji.jpg"
+     "lock": "지은 [ji]: face 28; hair long dark hair in ponytail; outfit lab coat over casual clothes; props glasses, carries a field notebook; body petite",
+     "flow": false,
+     "img": "stories/mountain-shadow/chars/ji.jpg",
+     "extra": []
     },
     {
+     "id": "sang",
      "name": "상우",
      "role": "지역 주민",
-     "img": "stories/mountain-shadow/chars/sang.jpg"
+     "lock": "상우 [sang]: face 45, rugged, grizzled beard, deep-set eyes, sturdy; outfit traditional hanbok with a weathered coat; props carries a lantern",
+     "flow": false,
+     "img": "stories/mountain-shadow/chars/sang.jpg",
+     "extra": []
     }
    ],
    "episodes": [
@@ -3351,7 +3434,10 @@
     }
    ],
    "planned": 5,
-   "plan": null
+   "plan": null,
+   "check": null,
+   "threads": [],
+   "ledger_eps": 0
   },
   {
    "slug": "farm-girl-sword",
@@ -3360,19 +3446,49 @@
    "logline": "시골 소녀가 수백 년간 아무도 뽑지 못한 바위 속 검을 뽑아버린다",
    "characters": [
     {
+     "id": "luna",
      "name": "루나",
      "role": "주인공, 평범한 시골 소녀",
-     "img": "stories/farm-girl-sword/chars/luna.jpg"
+     "lock": "루나 [luna]: age 16-year-old girl; face round face with light freckles, bright green eyes; hair long messy brown hair tied in a loose ponytail; outfit a faded patch-work tunic and sturdy leather boots.; body slim athletic build",
+     "flow": false,
+     "img": "stories/farm-girl-sword/chars/luna.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/farm-girl-sword/chars/luna-talk.jpg",
+       "flow": false
+      }
+     ]
     },
     {
+     "id": "ignis",
      "name": "이그니스",
      "role": "검에 봉인된 고대의 까칠한 정령",
-     "img": "stories/farm-girl-sword/chars/ignis.jpg"
+     "lock": "이그니스 [ignis]: face glowing orange eyes, crackling magical sparks; props hovering near the legendary sword.; body Appears as a floating crimson flame with faint humanoid contours",
+     "flow": false,
+     "img": "stories/farm-girl-sword/chars/ignis.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/farm-girl-sword/chars/ignis-talk.jpg",
+       "flow": false
+      }
+     ]
     },
     {
+     "id": "boris",
      "name": "보리스",
      "role": "마을의 덩치 큰 자칭 검호 청년",
-     "img": "stories/farm-girl-sword/chars/boris.jpg"
+     "lock": "보리스 [boris]: age 20-year-old muscular young man, holding a standard broadsword.; face square jaw, sharp brown eyes; hair short black crew cut; outfit heavy iron shoulder plates over a leather vest",
+     "flow": false,
+     "img": "stories/farm-girl-sword/chars/boris.jpg",
+     "extra": [
+      {
+       "kind": "talk",
+       "img": "stories/farm-girl-sword/chars/boris-talk.jpg",
+       "flow": false
+      }
+     ]
     }
    ],
    "episodes": [
@@ -3525,7 +3641,10 @@
       "clip": false
      }
     ]
-   }
+   },
+   "check": null,
+   "threads": [],
+   "ledger_eps": 0
   }
  ],
  "local_jobs": [],
