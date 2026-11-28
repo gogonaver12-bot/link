@@ -82,6 +82,14 @@
       "date": "2026-11-26",
       "file": "story-farm-girl-sword-ep05",
       "uploaded": true
+    },
+    {
+      "n": 6,
+      "title": "제6화: 왕국 기사단장의 방문",
+      "summary": "검을 뽑은 루나 앞에 왕국의 오만한 기사단장이 나타나 검을 강탈하려 한다.",
+      "date": "2026-11-28",
+      "file": "story-farm-girl-sword-ep06",
+      "uploaded": true
     }
   ],
   "writer": "gemini:gemini-flash-lite-latest"
