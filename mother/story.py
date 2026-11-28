@@ -30,7 +30,7 @@ RULES = ("규칙: 오리지널 캐릭터만 — 기존 작품·캐릭터의 이�
 
 def _cfg():
     return {"writer": store.cfg().get("shorts", {}).get("writer", "auto"), "images_per_episode": 12, "motion_scenes": 4,
-            "talk_scenes": 6, "subtitles": False,
+            "talk_scenes": 6, "subtitles": False, "minutes": 1, "scenes": "8~11", "max_scenes": 12, "max_sec": 59,
             **store.cfg().get("story", {})}
 
 
@@ -96,7 +96,11 @@ def new_series(logline, genre=""):
         '{"title":"한국어 제목","title_en":"english slug words","genre":"","logline":"","tone":"",'
         '"setting":"영어: 시대·장소·분위기를 그림으로 그릴 수 있게","characters":[{"id":"영문 소문자 한 단어","name":"한국어 이름",'
         '"role":"","voice":"female|girl|male|boy|old_male|old_female","look":"영어: 나이·얼굴·머리·눈·체형·의상·특징을 구체적으로(매 장면 똑같이 그릴 수 있게)"}],'
-        '"episodes":["1화 한 줄 요약","2화 한 줄 요약","3화 한 줄 요약","4화 한 줄 요약","5화 한 줄 요약"]}. 인물 2~4명. ' + RULES, "story_writer")
+        '"mystery":"시즌 내내 숨기는 핵심 비밀(작가만 앎)",'
+        '"episodes":["1화: 무엇을 보여주고 · 어떤 질문을 남기는지","2화: …","3화: …","4화: …","5화: …","6화: …","7화: …","8화: …"]}. 인물 2~4명. '
+        "회차 설계: 한 화에 다 밝히지 않는다 — 1화는 이상 현상과 인물만 보여주고 정체는 숨김, 화마다 단서 하나를 풀면 더 큰 질문 하나가 생김, "
+        "핵심 비밀은 마지막 화 근처에서 공개. SCP 장르면 오리지널 SCP 개체(번호·등급·특수 격리 절차)를 새로 만들고 기존 SCP 문서 내용은 쓰지 않음. "
+        + RULES, "story_writer")
     bible["slug"] = slugify(bible.get("title_en") or bible.get("title", ""))
     if (DIR / bible["slug"]).exists():
         bible["slug"] += "-" + store.today()[5:].replace("-", "")
@@ -170,11 +174,14 @@ def _write(b, n):
     prev = "\n".join(f"{m['n']}화: {m['summary']}" for m in b["made"][-4:]) or "없음(1화)"
     plan = b.get("episodes", [])
     return _json(
-        f"시리즈 바이블:\n{json.dumps({k: b[k] for k in ('title', 'genre', 'logline', 'tone', 'setting', 'characters')}, ensure_ascii=False)}\n"
+        f"시리즈 바이블:\n{json.dumps({k: b[k] for k in ('title', 'genre', 'logline', 'tone', 'setting', 'characters') if k in b}, ensure_ascii=False)}\n"
+        + (f"[작가만 아는 핵심 비밀 — 이번 화 계획보다 더 공개 금지, 암시만]: {b['mystery']}\n" if b.get("mystery") else "") +
         f"지난 회차:\n{prev}\n{continuity.brief(b['slug'])}\n이번 {n}화 계획: {plan[n - 1] if n <= len(plan) else '이야기를 자연스럽게 이어감'}\n\n"
         f"{n}화 대본 JSON: " '{"title":"","summary":"한 줄","scenes":[{"speaker":"narrator 또는 인물 id","line":"한국어 대사/내레이션 18자 안팎",'
         '"shot":"영어 장면 묘사(등장 인물은 [id]로 표기)"}],"cta":"다음 화가 궁금하게 + 구독",'
-        '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. '
+        '"description":"","tags":[""]}. ' + f"장면 {_cfg()['scenes']}개(합쳐 약 {_cfg()['minutes']}분), 첫 장면은 3초 안에 궁금증. "
+        "한 화에 다 밝히지 말 것: 이번 화 계획 범위만 다루고, 질문 하나에 답하면 더 큰 질문 하나를 남김. 중간쯤 작은 반전 1개, "
+        "마지막 장면은 결정적 순간 직전에 끊기(클리프행어). "
         + cinematic.WRITER_RULE + " " + RULES
         + _owner_rules(), "story_writer")
 
@@ -202,7 +209,7 @@ def plan_episode(slug):
     ep, used = _write(b, n)
     ep, chk = continuity.check(b, ep)  # 설정집·연속성 장부와 어긋나면 고쳐 다시 씀
     continuity.save_check(slug, n, chk)
-    scenes = [s for s in ep.get("scenes", []) if s.get("line")][:12]
+    scenes = [s for s in ep.get("scenes", []) if s.get("line")][:_cfg()["max_scenes"]]
     out = []
     for i, sc in enumerate(scenes):
         prompt, refs = _veo_prompt(b, sc)
@@ -251,7 +258,9 @@ def render_episode(slug, private=False):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "shorts_factory"))  # 코드 위치(데이터 폴더와 별개)
     import aivideo, hfvideo, hftalk
     audios, talks = [], 0
-    for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):
+    step = max(1, -(-len(scenes) // _cfg()["images_per_episode"]))  # 장면이 많으면(2분 회차) 그림은 step 장면마다 새로, 사이는 같은 그림을 다른 카메라로
+    last = None
+    for i, sc in enumerate(scenes):
         # 대사 목소리를 먼저 만들어 둠 → 그 목소리로 '말하는 영상'을 만들고, 영상 합칠 때도 같은 파일을 써서 입 모양이 맞음
         au = cache / f"ep{n:02d}-{i:02d}.mp3"
         try:
@@ -278,15 +287,17 @@ def render_episode(slug, private=False):
             gem += 1
             continue
         prompt, refs = _shot_prompt(b, sc.get("shot", ""))
+        reuse = bool(i % step and last)
         try:
-            p = ai.generate(prompt, cache, refs=refs, style=STYLE, name=f"ep{n:02d}-{i:02d}.png",
+            p = last if reuse else ai.generate(prompt, cache, refs=refs, style=STYLE, name=f"ep{n:02d}-{i:02d}.png",
                             seed=zlib.crc32(slug.encode()) % 100000 + i) if fails < 2 else None
         except Exception as e:
             p, fails = None, fails + 1
             if fails == 2:
                 log.append(f"⚠️ 장면 이미지 실패({str(e)[:50]}) → 남은 장면은 무료 영상으로")
         still, motion = p, None
-        if p and i < _cfg()["motion_scenes"] and not speaks:  # 내레이션·행동 장면: Gemini Veo(결제·예산 안) → 무료 영상 AI
+        last = p or last
+        if p and not reuse and i < _cfg()["motion_scenes"] and not speaks:  # 내레이션·행동 장면: Gemini Veo(결제·예산 안) → 무료 영상 AI
             veo_prompt, _ = _veo_prompt(b, sc)
             motion = aivideo.veo_animate(p, veo_prompt, p.with_name(p.stem + "-veo.mp4")) or \
                 hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
@@ -294,23 +305,23 @@ def render_episode(slug, private=False):
             face = continuity.face(slug, sc.get("speaker"))
             t = None
             vp, _ = _veo_prompt(b, sc)
-            vv = aivideo.veo_animate(face if face.exists() else still, vp, still.with_name(still.stem + "-veo.mp4"))  # 프롬프트에 대사 포함
+            vv = aivideo.veo_animate(face if face.exists() else still, vp, cache / f"ep{n:02d}-{i:02d}-veo.mp4")  # 프롬프트에 대사 포함
             if vv:  # Gemini Veo가 직접 말함 → 말 끝까지 잘라서 그 소리를 이 줄 목소리로 사용(입 모양과 소리가 같은 출처)
                 try:
                     t = aivideo.speech_cut(vv, au)
                 except Exception:
                     t = None
-            t = t or hftalk.talk(face if face.exists() else still, au, still.with_name(still.stem + "-talk.mp4"))
+            t = t or hftalk.talk(face if face.exists() else still, au, cache / f"ep{n:02d}-{i:02d}-talk.mp4")  # 장면마다 다른 파일(같은 그림 재사용해도 대사별로)
             if t:
                 motion, talks = t, talks + 1
-            elif i < _cfg()["motion_scenes"]:
+            elif i < _cfg()["motion_scenes"] and not reuse:
                 motion = hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
         p = motion or still
         imgs.append(str(p.relative_to(SHORTS)) if p else "")
     names = {c["id"]: c["name"] for c in b["characters"]}
     attrib = "\n\n출처: SCP 재단(SCP Foundation) — CC BY-SA 3.0" if "scp" in (b.get("genre", "") + b.get("logline", "")).lower() else ""
     script = {
-        "title": f"{b['title']} {n}화 | {ep.get('title', '')}"[:90], "story": True,
+        "title": f"{b['title']} {n}화 | {ep.get('title', '')}"[:90], "story": True, "max_sec": _cfg()["max_sec"],
         "hook": scenes[0]["line"], "lines": [s["line"] for s in scenes[1:]], "cta": ep.get("cta", ""),
         "voices": [voice(s.get("speaker")) for s in scenes] + [VOICES["narrator"]],
         "speakers": [names.get(s.get("speaker"), "") for s in scenes] + [""],

@@ -220,10 +220,11 @@ def main():
             say(line, voices[i] if i < len(voices) and voices[i] else voice, rate, p)
         segs.append((i, line, p, dur(p)))
     cut = 0
-    while len(segs) > 2 and sum(d + 0.08 for *_, d in segs) + 0.6 > MAX_SEC:
+    max_sec = float(s.get("max_sec") or MAX_SEC)  # 스토리는 2분(세로 3분 이하도 쇼츠)
+    while len(segs) > 2 and sum(d + (GAP if s.get("story") else 0.08) for *_, d in segs) + 0.6 > max_sec:
         segs.pop(-2 if s.get("cta", "").strip() else -1); cut += 1  # 훅·마무리(CTA)는 지키고 본문 끝쪽부터 줄임
     if cut:
-        print(f"⚠️ 59초 초과 → 본문 {cut}줄 줄임(훅·마무리는 유지)")
+        print(f"⚠️ {max_sec:.0f}초 초과 → 본문 {cut}줄 줄임(훅·마무리는 유지)")
         kw = s.get("keywords", [])
         s["keywords"] = [kw[i] for i, *_ in segs if i < len(kw)]
         if s.get("clips"):
@@ -243,7 +244,7 @@ def main():
     sh(["ffmpeg", "-y", *sum([["-i", str(p)] for p in parts], []), "-filter_complex",
         norm + "".join(f"[p{k}]" for k in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1,apad=pad_dur=0.6,loudnorm=I=-14:TP=-1.5[a]",
         "-map", "[a]", "-c:a", "aac", "-b:a", "160k", voice_mp3])
-    total = min(dur(voice_mp3), MAX_SEC)
+    total = min(dur(voice_mp3), max_sec)
 
     bg = background(total, s.get("colors", ["0x1a1a2e", "0xe94560"]), work, cues, s.get("keywords", []),
                     s.get("visual_hook", ""), scene_clips=s.get("clips"))
