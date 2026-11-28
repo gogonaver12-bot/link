@@ -1,10 +1,5 @@
 [
   {
-    "file": "story-site-thirteen-chronicler-ep01.mp4",
-    "title": "제13구역의 기록자 1화 | 제13구역의 기록자 - 제1화",
-    "date": "2026-11-27"
-  },
-  {
     "file": "story-farm-girl-sword-ep03.mp4",
     "title": "농부소녀와 전설의 검 3화 | 3화: 검의 부름",
     "date": "2026-11-28"
@@ -17,6 +12,11 @@
   {
     "file": "story-farm-girl-sword-ep06.mp4",
     "title": "농부소녀와 전설의 검 6화 | 제6화: 왕국 기사단장의 방문",
+    "date": "2026-11-28"
+  },
+  {
+    "file": "story-scp-site-k-333-ep01.mp4",
+    "title": "새벽 3시 33분 1화 | 새벽 3시 33분",
     "date": "2026-11-28"
   }
 ]

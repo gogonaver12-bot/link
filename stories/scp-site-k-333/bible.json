@@ -1,0 +1,55 @@
+{
+  "title": "새벽 3시 33분",
+  "title_en": "scp_site_k_333",
+  "genre": "SCP 미스터리 호러",
+  "logline": "SCP 재단 한국 지부, 매일 새벽 3시 33분 격리실 CCTV에 존재하지 않는 연구원이 찍힌다. 그 얼굴은 오늘 처음 출근한 신입 연구원과 똑같다",
+  "tone": "Claustrophobic, eerie, clinical, psychological dread",
+  "setting": "Modern underground high-security subterranean SCP Foundation Korean Branch Site-K, sterile white corridors, flickering fluorescent lights, cold stainless steel containment cells, high-contrast shadows",
+  "characters": [
+    {
+      "id": "dojin",
+      "name": "강도진",
+      "role": "신입 연구원 (Subject of Anomaly)",
+      "voice": "male",
+      "look": "English: 25 years old, sharp facial features, pale skin, messy black hair, tired dark circles under eyes, slender build, wearing a crisp white lab coat over a plain navy shirt, silver ID badge"
+    },
+    {
+      "id": "sojin",
+      "name": "한소진",
+      "role": "수석 보안관 (Lead Security Officer)",
+      "voice": "female",
+      "look": "English: 32 years old, cold sharp eyes, scarred left eyebrow, tied-back dark brown hair, athletic and sturdy build, wearing tactical black combat gear with Foundation arm patch, holstered sidearm"
+    },
+    {
+      "id": "doctorlee",
+      "name": "이박사",
+      "role": "격리 구역 책임 연구원 (Site Director)",
+      "voice": "old_male",
+      "look": "English: 55 years old, deep wrinkles, silver-rimmed glasses, receding gray hair, stooped posture, wearing a stained white lab coat and black leather gloves, expressionless demeanor"
+    }
+  ],
+  "mystery": "새벽 3시 33분의 존재는 신입 도진의 미래 시체가 아니라, 재단이 인간의 기억을 조작해 무한히 반복시키는 '시간 루프 실험'의 실패작이다. 도진은 이미 100번째 투입된 클론이며, 매일 밤 격리실에서 소멸하고 있었다.",
+  "episodes": [
+    "1화: 첫 출근한 도진이 배정된 격리실 CCTV에서 정확히 자신과 닮은 정체불명의 인물이 찍히는 것을 목격하고 충격을 받는다.",
+    "2화: 보안관 소진이 CCTV 영상을 삭제하려다 들키고, 도진은 자신이 배정된 'SCP-7411' 파일의 열람 권한이 없다는 사실을 알게 된다.",
+    "3화: 이박사가 도진에게 야간 근무를 지시하며 '새벽 3시 33분에는 절대 모니터를 보지 말라'는 경고를 남긴다.",
+    "4화: 도진이 호기심을 참지 못하고 모니터를 켠 순간, 화면 속의 존재가 CCTV를 향해 도진과 똑같은 입모양으로 '도망쳐'라고 속삭인다.",
+    "5화: 소진은 도진의 사원증 바코드 속에서 지워진 과거 기록과 수십 개의 동일한 출입증 시리얼 넘버를 발견한다.",
+    "6화: 격리실 내부로 직접 들어간 도진은 벽에 새겨진 수백 개의 정적(正) 자와 자신의 손글씨로 적힌 '오늘이 몇 번째지?'라는 낙서를 발견한다.",
+    "7화: 이박사가 본색을 드러내며 도진을 격리실에 가두고, 새벽 3시 33분이 되는 순간 도진의 기억이 리셋되는 전조 증상이 시작된다.",
+    "8화: 도진은 루프를 끊기 위해 스스로 CCTV 사각지대로 걸어 들어가며, 카메라를 향해 다음 날의 자신에게 남기는 최후의 경고를 남긴다."
+  ],
+  "slug": "scp-site-k-333",
+  "created": "2026-11-28",
+  "made": [
+    {
+      "n": 1,
+      "title": "새벽 3시 33분",
+      "summary": "신입 연구원 도진은 첫 출근 날, 격리실 CCTV에서 자신과 똑같은 얼굴의 존재를 발견한다.",
+      "date": "2026-11-28",
+      "file": "story-scp-site-k-333-ep01",
+      "uploaded": true
+    }
+  ],
+  "writer": "무료 AI(JSON 모드)"
+}
