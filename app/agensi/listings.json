@@ -1,0 +1,140 @@
+{
+  "steps": [
+    "agensi.io → 가입(구글·깃허브) → 크리에이터(판매자) 화면",
+    "새 스킬 → 아래 📦 zip 파일 올리기 → 제목·가격·태그는 📋 복사해서 붙여넣기",
+    "정산 연결(Stripe 등 — 한국 지원 여부는 대시보드에서 확인) → 게시(자동 보안 검사 8개)",
+    "맨 아래 답장 문구를 복사해 Joeri 메일에 답장 → 받은 제휴 링크는 쇼츠 설명란에 넣기"
+  ],
+  "items": [
+    {
+      "id": "shorts-autopilot",
+      "thumb": "",
+      "category": "Agensi skill",
+      "title": "Shorts Autopilot — daily faceless YouTube Shorts on free tools",
+      "tags": [
+        "youtube-shorts",
+        "automation",
+        "ffmpeg",
+        "github-actions",
+        "content"
+      ],
+      "packages": [
+        {
+          "name": "Skill",
+          "price": 19,
+          "desc": "달러 · 한 번 결제 · SKILL.md 패키지",
+          "days": 0,
+          "revisions": 0
+        }
+      ],
+      "description": "Turn one topic (or none) into a published 9:16 Short every day, then let view data steer the next script. Built and run in production on GitHub Actions with free AI providers; works in any language (examples are Korean/English).",
+      "faq": [
+        [
+          "어떤 AI에서 쓰나요?",
+          "SKILL.md를 읽는 모든 에이전트(Claude Code, Codex CLI, Cursor, Gemini CLI 등)"
+        ]
+      ],
+      "file": "agensi/shorts-autopilot.zip"
+    },
+    {
+      "id": "ai-drama-pipeline",
+      "thumb": "",
+      "category": "Agensi skill",
+      "title": "AI Live-Action Short Drama — consistent characters that actually speak",
+      "tags": [
+        "ai-video",
+        "veo",
+        "storytelling",
+        "lip-sync",
+        "shorts"
+      ],
+      "packages": [
+        {
+          "name": "Skill",
+          "price": 29,
+          "desc": "달러 · 한 번 결제 · SKILL.md 패키지",
+          "days": 0,
+          "revisions": 0
+        }
+      ],
+      "description": "One logline → a series bible → per-episode 9:16 shorts where the *same* faces keep appearing and characters actually speak. Built for free-first tooling with a paid upgrade path (Veo / Google Flow).",
+      "faq": [
+        [
+          "어떤 AI에서 쓰나요?",
+          "SKILL.md를 읽는 모든 에이전트(Claude Code, Codex CLI, Cursor, Gemini CLI 등)"
+        ]
+      ],
+      "file": "agensi/ai-drama-pipeline.zip"
+    },
+    {
+      "id": "idea-survival-test",
+      "thumb": "",
+      "category": "Agensi skill",
+      "title": "Idea Survival Test — multi-model estimates + Monte Carlo + auto-fix",
+      "tags": [
+        "business",
+        "monte-carlo",
+        "validation",
+        "side-hustle",
+        "agents"
+      ],
+      "packages": [
+        {
+          "name": "Skill",
+          "price": 15,
+          "desc": "달러 · 한 번 결제 · SKILL.md 패키지",
+          "days": 0,
+          "revisions": 0
+        }
+      ],
+      "description": "\"Only survivors get resources.\" A repeatable gate that turns gut-feel ideas into a pass/fail with numbers, then tries to rescue the failures before killing them.",
+      "faq": [
+        [
+          "어떤 AI에서 쓰나요?",
+          "SKILL.md를 읽는 모든 에이전트(Claude Code, Codex CLI, Cursor, Gemini CLI 등)"
+        ]
+      ],
+      "file": "agensi/idea-survival-test.zip"
+    },
+    {
+      "id": "hook-scorer",
+      "thumb": "",
+      "category": "Agensi skill",
+      "title": "Hook Scorer — zero-token hook grading + targeted rewrites",
+      "tags": [
+        "copywriting",
+        "hooks",
+        "shorts",
+        "ads",
+        "marketing"
+      ],
+      "packages": [
+        {
+          "name": "Skill",
+          "price": 9,
+          "desc": "달러 · 한 번 결제 · SKILL.md 패키지",
+          "days": 0,
+          "revisions": 0
+        }
+      ],
+      "description": "A deterministic hook check you can run thousands of times for free, plus a rewrite loop that targets the weakest dimension.",
+      "faq": [
+        [
+          "어떤 AI에서 쓰나요?",
+          "SKILL.md를 읽는 모든 에이전트(Claude Code, Codex CLI, Cursor, Gemini CLI 등)"
+        ]
+      ],
+      "file": "agensi/hook-scorer.zip"
+    },
+    {
+      "id": "reply",
+      "thumb": "",
+      "category": "이메일 답장 (영어, 복사해서 보내기)",
+      "title": "Reply to Joeri (Agensi)",
+      "tags": [],
+      "packages": [],
+      "description": "Hi Joeri,\n\nThanks for reaching out — glad you liked LINK. I've packaged four original skills from it (Shorts Autopilot, AI Live-Action Drama Pipeline, Idea Survival Test, Hook Scorer) and will list them on Agensi this week.\nCould you confirm the 70% creator share, payout method for Korea-based creators (Stripe/PayPal), and how I get my affiliate link?\n\nThanks,\n",
+      "faq": []
+    }
+  ]
+}

@@ -731,3 +731,15 @@ def test_video_feedback_pins_to_rules(monkeypatch):
     monkeypatch.setattr(pv, "complete", lambda *a, **k: ("1. 자막·글자는 화면 아래 15% 위로 올린다 (1)", "groq:t"))
     assert "갱신" in vfeedback.rules() and "최신" in vfeedback.rules()  # 새 피드백 없으면 다시 안 만듦
     assert "15%" in vfeedback.rules_text()
+
+
+def test_agensi_kit_is_original_and_packaged():
+    import json as _j, zipfile
+    L = _j.loads((store.ROOT / "app" / "agensi" / "listings.json").read_text(encoding="utf-8"))
+    skills = [i for i in L["items"] if i.get("file")]
+    assert len(skills) == 4 and all(i["packages"][0]["price"] > 0 for i in skills)
+    for i in skills:
+        with zipfile.ZipFile(store.ROOT / "app" / i["file"]) as z:
+            md = z.read(f"{i['id']}/SKILL.md").decode()
+        assert md.startswith("---\nname: ") and "description: Use when" in md
+        assert "obra/superpowers" not in md and "coreyhaines31" not in md  # 남의 스킬은 팔지 않음
