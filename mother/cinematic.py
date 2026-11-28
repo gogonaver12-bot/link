@@ -22,7 +22,7 @@ _SIZES = ("extreme close-up", "close-up", "close up", "medium", "wide", "full sh
 
 def clean(text):
     """추상 형용사 제거(오히려 과장된 CG 느낌을 냄) + 공백 정리."""
-    t = re.sub(_ABSTRACT, "", text or "", flags=re.I)
+    t = re.sub(_ABSTRACT, "", re.sub(r"\b(English|영어)\s*:\s*", "", text or ""), flags=re.I)  # AI가 붙인 'English:' 머리말도 제거
     return re.sub(r"\s{2,}", " ", re.sub(r"\s+([,.])", r"\1", t)).strip(" ,.")
 
 

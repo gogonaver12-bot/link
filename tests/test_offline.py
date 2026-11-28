@@ -754,3 +754,4 @@ def test_cinematic_golden_formula():
     assert "85mm" in cinematic.lens("Extreme close-up, slow dolly in on her eyes")
     assert "RED V-Raptor" in cinematic.lens("Low-angle tracking shot following a runner")
     assert cinematic.compose("Close-up, slow dolly in on [a] crying").startswith("Close-up, slow dolly in")
+    assert "English:" not in cinematic.compose("Wide shot, crane up over a farm", "English: A remote farming village")
