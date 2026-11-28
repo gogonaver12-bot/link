@@ -4,12 +4,13 @@
 stories/<slug>/bible.json · chars/<id>.jpg(참조 사진, 회차가 바뀌어도 같은 얼굴) · ep01.json …
 """
 import json
+import pathlib
 import re
 import zlib
 import subprocess
 import sys
 
-from . import providers, store
+from . import continuity, providers, store
 
 DIR = store.ROOT / "stories"
 SHORTS = store.ROOT / "shorts_factory"
@@ -133,7 +134,7 @@ def talk_portraits(b):
     d.mkdir(parents=True, exist_ok=True)
     for c in b["characters"]:
         f = d / f"{c['id']}-talk.jpg"
-        if f.exists():
+        if f.exists() or continuity.is_flow(b["slug"], c["id"]):  # Flow 원본 사진을 올렸으면 그 얼굴을 그대로 씀
             continue
         try:
             png = ai.generate(f"Medium close-up portrait of {c['look']}, facing the camera, face and mouth clearly visible, natural expression, "
@@ -155,7 +156,7 @@ def _shot_prompt(b, shot):
     text = re.sub(r"\[(\w+)\]", lambda m: f"{chars[m.group(1)]['name']} ({clean(chars[m.group(1)]['look'])})" if m.group(1) in chars else m.group(1),
                   clean(shot))
     refs = [DIR / b["slug"] / "chars" / f"{i}.jpg" for i in ids]
-    return f"{text}. Setting: {b.get('setting', '')}", refs
+    return f"{continuity.lock_block(b, ids)}{text}. Setting: {b.get('setting', '')}", refs
 
 
 def _owner_rules():
@@ -169,7 +170,7 @@ def _write(b, n):
     plan = b.get("episodes", [])
     return _json(
         f"시리즈 바이블:\n{json.dumps({k: b[k] for k in ('title', 'genre', 'logline', 'tone', 'setting', 'characters')}, ensure_ascii=False)}\n"
-        f"지난 회차:\n{prev}\n이번 {n}화 계획: {plan[n - 1] if n <= len(plan) else '이야기를 자연스럽게 이어감'}\n\n"
+        f"지난 회차:\n{prev}\n{continuity.brief(b['slug'])}\n이번 {n}화 계획: {plan[n - 1] if n <= len(plan) else '이야기를 자연스럽게 이어감'}\n\n"
         f"{n}화 대본 JSON: " '{"title":"","summary":"한 줄","scenes":[{"speaker":"narrator 또는 인물 id","line":"한국어 대사/내레이션 18자 안팎",'
         '"shot":"영어 장면 묘사: 등장 인물은 [id]로 표기, 행동·장소·카메라(close-up/medium/wide)·조명·표정"}],"cta":"다음 화가 궁금하게 + 구독",'
         '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES
@@ -194,14 +195,20 @@ def plan_episode(slug):
     """다음 화 대본 + 장면별 Gemini 프롬프트를 먼저 만들어 둠 → 폰 Gemini 앱으로 장면 영상을 만들어 올림 → story render."""
     b = load(slug)
     n = len(b["made"]) + 1
+    if continuity.ensure_fixed(b):  # 인물마다 고정 외모 설명(한 번 정하면 그대로)
+        save(b)
     ep, used = _write(b, n)
+    ep, chk = continuity.check(b, ep)  # 설정집·연속성 장부와 어긋나면 고쳐 다시 씀
+    continuity.save_check(slug, n, chk)
     scenes = [s for s in ep.get("scenes", []) if s.get("line")][:12]
     out = []
     for i, sc in enumerate(scenes):
         prompt, refs = _veo_prompt(b, sc)
-        face = DIR / slug / "chars" / f"{sc.get('speaker')}-talk.jpg"
+        face = continuity.face(slug, sc.get("speaker"))
         refs = ([face] if face.exists() else []) + [r for r in refs if r != face]
+        ids = list(dict.fromkeys([sc.get("speaker")] + [r.stem.split("-")[0] for r in refs]))
         out.append({"i": i, "speaker": sc.get("speaker"), "line": sc["line"], "prompt": prompt,
+                    "ingredients": continuity.ingredients(b, ids),
                     "refs": [str(r.relative_to(store.ROOT)) for r in refs if r.exists()]})
     ep["scenes"] = scenes
     plan = {"n": n, "ep": ep, "writer": used, "created": store.today(), "scenes": out}
@@ -239,7 +246,7 @@ def render_episode(slug, private=False):
     os.environ.setdefault("AI_VIDEO_BUDGET", str(store.cfg().get("shorts", {}).get("ai_video_budget_usd_month", 5)))  # Gemini 영상 월 예산
     voice = lambda spk: VOICES["narrator"] if spk == "narrator" else VOICES.get(
         next((c.get("voice") for c in b["characters"] if c["id"] == spk), "female"), VOICES["female"])
-    sys.path.insert(0, str(SHORTS))
+    sys.path[:0] = [str(SHORTS), str(pathlib.Path(__file__).resolve().parent.parent / "shorts_factory")]  # 테스트에서 SHORTS를 바꿔도 모듈은 찾게
     import aivideo, hfvideo, hftalk
     audios, talks = [], 0
     for i, sc in enumerate(scenes[:_cfg()["images_per_episode"]]):
@@ -282,7 +289,7 @@ def render_episode(slug, private=False):
             motion = aivideo.veo_animate(p, veo_prompt, p.with_name(p.stem + "-veo.mp4")) or \
                 hfvideo.animate(p, f"{sc.get('shot', '')}. {sc.get('line', '')}", p.with_suffix(".mp4"))
         if still and speaks:  # 인물 대사 장면: 대사용 얼굴 사진(회차 내내 같은 얼굴) + 목소리 → 말하며 움직이는 영상(입 모양 맞춤)
-            face = DIR / slug / "chars" / f"{sc.get('speaker')}-talk.jpg"
+            face = continuity.face(slug, sc.get("speaker"))
             t = None
             vp, _ = _veo_prompt(b, sc)
             vv = aivideo.veo_animate(face if face.exists() else still, vp, still.with_name(still.stem + "-veo.mp4"))  # 프롬프트에 대사 포함
@@ -333,6 +340,7 @@ def render_episode(slug, private=False):
     b["made"].append({"n": n, "title": ep.get("title", ""), "summary": ep.get("summary", ""), "date": store.today(),
                       "file": sp.stem, "uploaded": bool(ok)})
     save(b)
+    continuity.update(b, n, ep)  # 연속성 장부 갱신 → 다음 화 작가에게
     pf.unlink(missing_ok=True)
     return "\n".join(x for x in log if x)
 

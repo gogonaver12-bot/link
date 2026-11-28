@@ -112,9 +112,12 @@ def _stories():
     ups = {u["file"].rsplit(".", 1)[0]: u["id"] for u in (json.loads(UPLOADS.read_text(encoding="utf-8")) if UPLOADS.exists() else [])}
     out = []
     for b in story.all_series():
-        chars = [{"name": c["name"], "role": c.get("role", ""),
-                  "img": f"stories/{b['slug']}/chars/{c['id']}.jpg" if (story.DIR / b["slug"] / "chars" / f"{c['id']}.jpg").exists() else ""}
+        from . import continuity as ct
+        chars = [{"id": c["id"], "name": c["name"], "role": c.get("role", ""), "lock": ct.lock(c), "flow": ct.is_flow(b["slug"], c["id"]),
+                  "img": f"stories/{b['slug']}/chars/{c['id']}.jpg" if (story.DIR / b["slug"] / "chars" / f"{c['id']}.jpg").exists() else "",
+                  "extra": [{"kind": k, "img": str(p.relative_to(story.DIR.parent)), "flow": f} for k, p, f in ct.images(b["slug"], c["id"]) if k != "main"]}
                  for c in b.get("characters", [])]
+        led = ct.load(b["slug"])
         eps = [{**m, "video": ups.get(m.get("file", ""), "")} for m in b.get("made", [])]
         pf = story.DIR / b["slug"] / "plan.json"
         plan = None
@@ -123,7 +126,8 @@ def _stories():
             plan = {"n": pl["n"], "title": pl["ep"].get("title", ""), "scenes": [
                 {**sc, "clip": story.clip_path(b["slug"], pl["n"], sc["i"]).exists()} for sc in pl["scenes"]]}
         out.append({"slug": b["slug"], "title": b["title"], "genre": b.get("genre", ""), "logline": b.get("logline", ""),
-                    "characters": chars, "episodes": eps[::-1], "planned": len(b.get("episodes", [])), "plan": plan})
+                    "characters": chars, "episodes": eps[::-1], "planned": len(b.get("episodes", [])), "plan": plan,
+                    "check": ct.read_check(b["slug"]), "threads": led["threads"][-5:], "ledger_eps": len(led["episodes"])})
     return out[::-1]
 
 
