@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T10:16:27+00:00",
+ "updated": "2026-11-28T10:21:45+00:00",
  "company": "LINK AI Company",
  "repo": "gogonaver12-bot/link",
  "budget": {
@@ -66,7 +66,8 @@
   "by_model": {
    "gemini:gemini-flash-lite-latest": 0.0,
    "groq:openai/gpt-oss-120b": 0.0,
-   "groq:qwen/qwen3.8-27b": 0.0
+   "groq:qwen/qwen3.8-27b": 0.0,
+   "nvidia:nvidia/nemotron-3.5-lightning-30b-a3b": 0.0
   }
  },
  "money": {
@@ -2366,94 +2367,94 @@
  ],
  "reports": [
   {
-   "file": "reports/jobs/connection-test-002.md",
-   "title": "connection-test-002",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
    "file": "reports/doctor/2026-11-28.md",
    "title": "🩺 자동 진단 2026-11-28 — 최근 2일 에러 14건 · 종류 1개",
-   "date": "2026-11-28T10:12+00:00"
+   "date": "2026-11-28T10:21+00:00"
   },
   {
-   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
-   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/20261126-0712-상품-I0019.md",
-   "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/20261127-0349-상품-I0020.md",
-   "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-27.md",
-   "title": "일일 리포트 2026-11-27",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
-   "title": "매일 업데이트및 영상확인",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/20261123-1243-상품-I0003.md",
-   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
-   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-26.md",
-   "title": "일일 리포트 2026-11-26",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/daily-2026-11-25.md",
-   "title": "일일 리포트 2026-11-25",
-   "date": "2026-11-28T10:12+00:00"
-  },
-  {
-   "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
-   "title": "이번 주 수익 개선 계획",
-   "date": "2026-11-28T10:12+00:00"
+   "file": "reports/jobs/connection-test-002.md",
+   "title": "connection-test-002",
+   "date": "2026-11-28T10:21+00:00"
   },
   {
    "file": "reports/daily-2026-11-24.md",
    "title": "일일 리포트 2026-11-24",
-   "date": "2026-11-28T10:12+00:00"
+   "date": "2026-11-28T10:21+00:00"
   },
   {
-   "file": "reports/daily-2026-11-23.md",
-   "title": "일일 리포트 2026-11-23",
-   "date": "2026-11-28T10:12+00:00"
+   "file": "reports/20261123-1122-파이프라인-daily_trend_blog_and_report.md",
+   "title": "파이프라인: 매일 트렌드 블로그 게시 및 주간 성과 보고",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/20261126-0712-상품-I0019.md",
+   "title": "상품 완성: 무료 LLM 폴백 라우팅 마이크로SaaS 구축 가이드",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/20261126-1801-이번-주-수익-개선-계획.md",
+   "title": "이번 주 수익 개선 계획",
+   "date": "2026-11-28T10:21+00:00"
   },
   {
    "file": "reports/20261128-0333-상품-I0023.md",
    "title": "상품 완성: 제조/물류 중견기업을 위한 온프레미스 LLM API 장애 자동 복구 게이트웨이 구축 가이드",
-   "date": "2026-11-28T10:12+00:00"
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-27.md",
+   "title": "일일 리포트 2026-11-27",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-23.md",
+   "title": "일일 리포트 2026-11-23",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-25.md",
+   "title": "일일 리포트 2026-11-25",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/20261123-1243-상품-I0003.md",
+   "title": "상품 완성: 저품질 탈출부터 월 100만 원까지: AI 쿠팡 파트너스 자동화 가이드",
+   "date": "2026-11-28T10:21+00:00"
   },
   {
    "file": "reports/20261123-1109-상품-I0001.md",
    "title": "상품 완성: 퇴근이 빨라지는 초보를 위한 챗GPT 업무 자동화 가이드",
-   "date": "2026-11-28T10:12+00:00"
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/daily-2026-11-26.md",
+   "title": "일일 리포트 2026-11-26",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/20261125-1722-매일-업데이트및-영상확인.md",
+   "title": "매일 업데이트및 영상확인",
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/20261127-0349-상품-I0020.md",
+   "title": "상품 완성: 사장님은 영업만 하세요! 1분 만에 끝내는 AI 인스타·블로그 마케팅 템플릿 패키지",
+   "date": "2026-11-28T10:21+00:00"
   },
   {
    "file": "reports/daily-2026-11-28.md",
    "title": "일일 리포트 2026-11-28",
-   "date": "2026-11-28T10:12+00:00"
+   "date": "2026-11-28T10:21+00:00"
+  },
+  {
+   "file": "reports/20261125-1709-깃허브에서-쓸만한-마케팅-스킬-찾아-장착.md",
+   "title": "깃허브에서 쓸만한 마케팅 스킬 찾아 장착",
+   "date": "2026-11-28T10:21+00:00"
   },
   {
    "file": "reports/doctor/2026-11-27.md",
    "title": "🩺 자동 진단 2026-11-27 — 최근 2일 에러 50건 · 종류 4개",
-   "date": "2026-11-28T10:12+00:00"
+   "date": "2026-11-28T10:21+00:00"
   }
  ],
  "runs": [
@@ -2798,6 +2799,12 @@
  ],
  "commands": [
   {
+   "ts": "2026-11-28T10:21:44+00:00",
+   "cmd": "ai check",
+   "ok": true,
+   "output": "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요\n✅ gemini: 정상 (gemini-flash-lite-latest)\n✅ groq: 정상 (openai/gpt-oss-120b)\n✅ nvidia: 정상 (nvidia/nemotron-3.5-lightning-30b-a3b)\nopenai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기\n유튜브(구글) API 키로 되는 것:\n  ✅ 유튜브 조회(인기·검색): 가능\n  ⚠️ Gemini AI: 오류 403\n  ⚠️ 블로그(Blogger) 읽기: 오류 403\n  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요\n  ⚠️ 블로그 글쓰기: 오류 403"
+  },
+  {
    "ts": "2026-11-28T10:16:25+00:00",
    "cmd": "ai check",
    "ok": true,
@@ -2850,12 +2857,6 @@
    "cmd": "story next site-thirteen-chronicler",
    "ok": true,
    "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  ⏳ 무료 이미지 AI 잠깐 대기 44초\n  ⏳ 무료 이미지 AI 잠깐 대기 45초\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 0 · 사진 8 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/Vqxy1ENf2XQ"
-  },
-  {
-   "ts": "2026-11-27T05:28:52+00:00",
-   "cmd": "story next site-thirteen-chronicler",
-   "ok": true,
-   "output": "⚠️ Gemini 이미지 불가(429) → 무료 이미지 AI(Pollinations)로\n  ⚠️ Gemini Veo 불가(x) — Veo 모델이 이 키에 안 보임 → 무료 영상 AI로\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-00.mp4\n  ⏱️ 말하는 영상 AI 너무 오래 걸림(Wan2.2-S2V) → 다음 AI\n  ⚠️ 말하는 영상 AI 모두 막힘 → 나머지 대사는 움직이는 장면 + 목소리로 (HF_TOKEN 넣으면 사용량↑)\n  🎞️ 사진→영상 (wan2-2-fp8da-aoti-faster) ep01-01.mp4\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-2-fp8da-aoti-faster) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(ltx-video-distilled) → 다음 AI\n  ⏳ 무료 영상 AI 오늘 사용량 끝(wan2-1-fast) → 다음 AI\n  ⚠️ 무료 영상 AI 모두 사용량 끝 → 나머지 장면은 사진 줌 효과 (HF_TOKEN 넣으면 하루 사용량이 늘어요)\n🎬 제13구역의 기록자 1화 '제13구역의 기록자 - 제1화' — 장면 8개 · 작가 무료 AI(JSON 모드)\n🖼 장면 8개: 🗣️ 말하는 영상 0 · 직접 올린 Gemini 영상 0 · Gemini Veo 0 · 무료 움직임 2 · 사진 6 · 자막 없음\n🔒 스토리 채널 연결 전 → 비공개 업로드 (google_login_story.bat 실행하면 그 채널에 공개)\n⚠️ Gemini 영상 불가(429) — AI Studio 결제 연결이 필요할 수 있어요\n✅ /home/runner/work/link/link/shorts_factory/out/story-site-thirteen-chronicler-ep01.mp4 (42.5초)\n✅ https://youtube.com/shorts/4Z6Do-0Nm88"
   }
  ],
  "pipelines": [
@@ -3535,6 +3536,23 @@
   "shorts": 17,
   "blog": 6
  },
+ "ai_check": {
+  "ts": "2026-11-28T10:21:43+00:00",
+  "rows": [
+   "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요",
+   "✅ gemini: 정상 (gemini-flash-lite-latest)",
+   "✅ groq: 정상 (openai/gpt-oss-120b)",
+   "✅ nvidia: 정상 (nvidia/nemotron-3.5-lightning-30b-a3b)",
+   "openai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기",
+   "유튜브(구글) API 키로 되는 것:",
+   "  ✅ 유튜브 조회(인기·검색): 가능",
+   "  ⚠️ Gemini AI: 오류 403",
+   "  ⚠️ 블로그(Blogger) 읽기: 오류 403",
+   "  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요",
+   "  ⚠️ 블로그 글쓰기: 오류 403"
+  ]
+ },
+ "app_version": 26,
  "keys_set": {
   "GOOGLE_OAUTH_CLIENT_ID": true,
   "GOOGLE_OAUTH_CLIENT_SECRET": true,

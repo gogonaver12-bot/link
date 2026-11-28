@@ -1,0 +1,16 @@
+{
+  "ts": "2026-11-28T10:21:43+00:00",
+  "rows": [
+    "Claude: 💳 연결은 됐지만 충전 잔액 없음 — 사이트에서 결제/충전 필요",
+    "✅ gemini: 정상 (gemini-flash-lite-latest)",
+    "✅ groq: 정상 (openai/gpt-oss-120b)",
+    "✅ nvidia: 정상 (nvidia/nemotron-3.5-lightning-30b-a3b)",
+    "openai: ⚠️ 키 값에 공백·줄바꿈 또는 다른 회사 키가 들어있음 — Secrets 값을 다시 붙여넣기",
+    "유튜브(구글) API 키로 되는 것:",
+    "  ✅ 유튜브 조회(인기·검색): 가능",
+    "  ⚠️ Gemini AI: 오류 403",
+    "  ⚠️ 블로그(Blogger) 읽기: 오류 403",
+    "  🔒 유튜브 업로드: API 키로는 불가 — 구글 로그인 허락(OAuth) 필요",
+    "  ⚠️ 블로그 글쓰기: 오류 403"
+  ]
+}
