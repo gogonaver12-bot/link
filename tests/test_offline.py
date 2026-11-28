@@ -721,3 +721,13 @@ def test_local_shorts_plan_and_validate(monkeypatch, tmp_path):
     monkeypatch.setattr(pv, "complete", lambda *a, **k: (json.dumps(good, ensure_ascii=False), "groq:t"))
     out = ls.plan("horror", "아파트 복도 공포", 0.85)
     assert "PC 대기열" in out and ls.jobs()[0]["status"] == "pending" and ls.jobs()[0]["speed"] == 0.85
+
+
+def test_video_feedback_pins_to_rules(monkeypatch):
+    from mother import vfeedback, providers as pv
+    monkeypatch.setattr(vfeedback, "RULES", store.SKILLS / "production-feedback.md")
+    out = vfeedback.add("story-x-ep05.mp4", 12.3, 0.5, 0.85, "자막이 너무 아래 있어요 위로")
+    assert "12.3초" in out and "아래쪽" in out
+    monkeypatch.setattr(pv, "complete", lambda *a, **k: ("1. 자막·글자는 화면 아래 15% 위로 올린다 (1)", "groq:t"))
+    assert "갱신" in vfeedback.rules() and "최신" in vfeedback.rules()  # 새 피드백 없으면 다시 안 만듦
+    assert "15%" in vfeedback.rules_text()

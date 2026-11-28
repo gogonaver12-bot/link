@@ -158,6 +158,12 @@ def _shot_prompt(b, shot):
     return f"{text}. Setting: {b.get('setting', '')}", refs
 
 
+def _owner_rules():
+    from .vfeedback import rules_text
+    r = rules_text()
+    return f"\n[사장님 피드백으로 정한 제작 규칙 — 반드시 지킬 것]\n{r}" if r else ""
+
+
 def _write(b, n):
     prev = "\n".join(f"{m['n']}화: {m['summary']}" for m in b["made"][-4:]) or "없음(1화)"
     plan = b.get("episodes", [])
@@ -166,7 +172,8 @@ def _write(b, n):
         f"지난 회차:\n{prev}\n이번 {n}화 계획: {plan[n - 1] if n <= len(plan) else '이야기를 자연스럽게 이어감'}\n\n"
         f"{n}화 대본 JSON: " '{"title":"","summary":"한 줄","scenes":[{"speaker":"narrator 또는 인물 id","line":"한국어 대사/내레이션 18자 안팎",'
         '"shot":"영어 장면 묘사: 등장 인물은 [id]로 표기, 행동·장소·카메라(close-up/medium/wide)·조명·표정"}],"cta":"다음 화가 궁금하게 + 구독",'
-        '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES, "story_writer")
+        '"description":"","tags":[""]}. 장면 8~11개(합쳐 50초 이내), 첫 장면은 3초 안에 궁금증, 마지막은 반전·떡밥. ' + RULES
+        + _owner_rules(), "story_writer")
 
 
 def _veo_prompt(b, sc, speak=None):

@@ -53,6 +53,7 @@ providers:
   cerebras:   {base: "https://api.cerebras.ai/v1", key: CEREBRAS_API_KEY, free: true, prefer: [gpt-oss, llama], note: "cloud.cerebras.ai 무료 키"}
   openrouter: {base: "https://openrouter.ai/api/v1", key: OPENROUTER_API_KEY, free: true, model_filter: ":free", prefer: [deepseek, qwen, llama], note: "무료 모델 수십개 한 키로"}
   mistral:    {base: "https://api.mistral.ai/v1", key: MISTRAL_API_KEY, free: true, prefer: [mistral-small], note: "console.mistral.ai 무료 체험 등급"}
+  nvidia:     {base: "https://integrate.api.nvidia.com/v1", key: NVIDIA_API_KEY, free: true, prefer: [llama-3.3-70b, qwen, deepseek], note: "build.nvidia.com 무료 키 — 여러 회사 모델을 이름만 바꿔 사용"}
   ollama:     {base: "http://localhost:11434/v1", free: true, prefer: [qwen, llama, gemma], note: "내 PC 무료 실행 (ollama.com)"}
   openai:     {base: "https://api.openai.com/v1", key: OPENAI_API_KEY, prefer: [mini], price: [0.4, 1.6], note: "ChatGPT API"}
   deepseek:   {base: "https://api.deepseek.com", key: DEEPSEEK_API_KEY, model: deepseek-chat, price: [0.3, 1.2], note: "저렴·중국어 강점"}
@@ -66,7 +67,7 @@ providers:
 
 routing:
   # 실무팀(worker) 시도 순서: 무료 → 저렴 → Claude. 키 없는 AI는 자동 건너뜀
-  worker_order: [gemini, groq, cerebras, openrouter, mistral, ollama, deepseek, qwen, upstage, openai, xai, moonshot, together, clova]
+  worker_order: [gemini, groq, cerebras, nvidia, openrouter, mistral, ollama, deepseek, qwen, upstage, openai, xai, moonshot, together, clova]
   models_per_provider: 2   # AI별로 모델 2개까지 시도 (한도 초과 시 같은 AI의 다른 모델로)
   min_model_score: 5.5     # 평균 점수 미만 모델은 자동 탈락
   min_samples: 3           # 최소 평가 횟수 이후 판정
@@ -106,6 +107,7 @@ shorts:
     - ["AI generated shorts", "US", "en"]
     - ["ai animation story shorts", "US", "en"]
     - ["신기한 사실 쇼츠", "KR", "ko"]
+    - ["how it works animation", "US", "en"]      # 작동 원리 애니메이션(드릴 원리 21만 좋아요) 구조 학습
 
 story:                                  # AI 실사 스토리 — 별도 유튜브 채널
   channel_name: "AI 실사 드라마"        # 스토리 채널 이름(바꾸려면 여기 수정) (대본: Fable → 없으면 무료 AI / 그림: Gemini 이미지, 결제 필요)

@@ -5,6 +5,8 @@
 ## 스킬
 - **company_work_prompts** — 업무 비서용 프롬프트 15종 — 이메일, 회의록, 주간보고, 기획서, 엑셀, 요약, 보고 문장, 우선순위, 클레임, PPT, 채용, 협상, 매뉴얼, 브레인스토밍 (`skills/company_work_prompts.md`)
 - **local-shorts-factory** — Use when the user wants a horror 3D or AI news short rendered with the PC video factory (Supertonic TTS, Blender) instead of the cloud pipel (`skills/local-shorts-factory.md`)
+- **mkt-copywriting** — When the user wants to write or rewrite page copy (homepage, landing, pricing, feature), or asks which headline, promise, or message to lead (`skills/mkt-copywriting.md`)
+- **mkt-seo-audit** — When the user wants to audit or diagnose SEO, or asks why traffic dropped, a page won't rank, or whether a setup like canonicals, hreflang,  (`skills/mkt-seo-audit.md`)
 - **reels_team_prompts** — 숏폼 팀 프롬프트 — 레퍼런스 탐색, 성과 분석(조회수 ≥ 구독자 3배), 대본 각색(구조 유지·내용 교체), 표지 문구 5안, 목소리 선택 (`skills/reels_team_prompts.md`)
 - **superpowers-code-review** — Use when completing tasks, implementing major features, or before merging to verify work meets requirements (`skills/superpowers-code-review.md`)
 - **superpowers-systematic-debugging** — Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes (`skills/superpowers-systematic-debugging.md`)
