@@ -53,7 +53,7 @@ providers:
   cerebras:   {base: "https://api.cerebras.ai/v1", key: CEREBRAS_API_KEY, free: true, prefer: [gpt-oss, llama], note: "cloud.cerebras.ai 무료 키"}
   openrouter: {base: "https://openrouter.ai/api/v1", key: OPENROUTER_API_KEY, free: true, model_filter: ":free", prefer: [deepseek, qwen, llama], note: "무료 모델 수십개 한 키로"}
   mistral:    {base: "https://api.mistral.ai/v1", key: MISTRAL_API_KEY, free: true, prefer: [mistral-small], note: "console.mistral.ai 무료 체험 등급"}
-  nvidia:     {base: "https://integrate.api.nvidia.com/v1", key: NVIDIA_API_KEY, free: true, prefer: [llama-3.3-70b, qwen, deepseek], note: "build.nvidia.com 무료 키 — 여러 회사 모델을 이름만 바꿔 사용"}
+  nvidia:     {base: "https://integrate.api.nvidia.com/v1", key: NVIDIA_API_KEY, free: true, prefer: [nemotron-3.5-lightning, glm, minimax, gemma-3-12b, llama-3.3-70b, qwen], note: "build.nvidia.com 무료 키 — 여러 회사 모델을 이름만 바꿔 사용"}
   ollama:     {base: "http://localhost:11434/v1", free: true, prefer: [qwen, llama, gemma], note: "내 PC 무료 실행 (ollama.com)"}
   openai:     {base: "https://api.openai.com/v1", key: OPENAI_API_KEY, prefer: [mini], price: [0.4, 1.6], note: "ChatGPT API"}
   deepseek:   {base: "https://api.deepseek.com", key: DEEPSEEK_API_KEY, model: deepseek-chat, price: [0.3, 1.2], note: "저렴·중국어 강점"}

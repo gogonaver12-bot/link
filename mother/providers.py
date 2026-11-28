@@ -13,7 +13,8 @@ import requests
 from . import llm, store, tools
 
 NOT_FOR_CHAT = ("whisper", "tts", "audio", "realtime", "guard", "safety", "embed", "moderation", "transcribe",
-                "image", "vision-only", "search-preview", "dall", "sora", "veo", "imagen", "rerank", "ocr")
+                "image", "vision-only", "search-preview", "dall", "sora", "veo", "imagen", "rerank", "ocr",
+                "detector", "clip", "retriev", "pii", "translate", "calibration", "starcoder")  # 대화용이 아닌 모델(엔비디아 목록에 많음)
 LIGHT = ("flash", "mini", "small", "lite", "instant", "haiku", "chat")
 _alive = {}
 
@@ -58,8 +59,8 @@ def _get(url, headers):
     return r.json()
 
 
-def _post(url, headers, body):
-    r = requests.post(url, headers=headers, json=body, timeout=240)
+def _post(url, headers, body, timeout=120):
+    r = requests.post(url, headers=headers, json=body, timeout=(10, timeout))  # 느린 모델은 2분에 끊고 다음 모델로
     if r.status_code >= 400:
         raise ProviderError(f"{body.get('model')} {r.status_code}: {r.text[:300]}")
     return r.json()
@@ -175,7 +176,7 @@ def _log(p, model, agent, u):
                                        "usd": round((i * price[0] + o * price[1]) / 1e6, 5)})
 
 
-def run_openai(p, model, system, user, tool_names=(), agent="worker", max_turns=None):
+def run_openai(p, model, system, user, tool_names=(), agent="worker", max_turns=None, timeout=120):
     """OpenAI 호환 AI의 도구 루프."""
     if store.spend_on() >= store.cfg()["budget"]["daily_usd"]:
         raise llm.BudgetExceeded("오늘 예산 소진")
@@ -187,7 +188,7 @@ def run_openai(p, model, system, user, tool_names=(), agent="worker", max_turns=
         body = {"model": model, "messages": msgs}
         if tdefs:
             body["tools"] = tdefs
-        d = _post(url, _headers(p), body)
+        d = _post(url, _headers(p), body, timeout=timeout)
         _log(p, model, agent, d.get("usage") or {})
         m = d["choices"][0]["message"]
         calls = m.get("tool_calls") or []
@@ -316,9 +317,16 @@ def check_all():
             if r.status_code >= 400:
                 out.append(f"{p}: {_why(r.status_code, r.text)}")
                 continue
-            m = pick_model(p)
-            run_openai(p, m, "OK 한 단어로 답하라.", "OK", agent="check", max_turns=1)
-            out.append(f"✅ {p}: 정상 ({m})")
+            last = None
+            for m in pick_models(p, 3):  # 한 모델이 느리거나 막히면 다음 모델로 (엔비디아처럼 모델이 많은 곳)
+                try:
+                    run_openai(p, m, "OK 한 단어로 답하라.", "OK", agent="check", max_turns=1, timeout=45)
+                    out.append(f"✅ {p}: 정상 ({m})")
+                    break
+                except (ProviderError, requests.RequestException) as e:
+                    last = e
+            else:
+                raise last
         except ProviderError as e:
             code = int(str(e).split(" ")[1][:3]) if str(e).split(" ")[1][:3].isdigit() else 0
             out.append(f"{p}: {_why(code, str(e))}")

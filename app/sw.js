@@ -1,5 +1,5 @@
 // 앱 화면은 캐시(오프라인에서도 열림), 데이터는 항상 최신 우선
-const C = "jarvis-v25";
+const C = "jarvis-v26";
 const SHELL = ["./", "index.html", "style.css", "app.js", "icon.svg", "icon-192.png", "manifest.webmanifest"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(C).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== C).map((k) => caches.delete(k))))); self.clients.claim(); });

@@ -69,6 +69,12 @@ function md(src) {
 }
 
 /* ───────── 데이터 ───────── */
+const APP_V = 26;  // mother/dashboard.py APP_VERSION 과 같게
+async function forceUpdate() {  // 옛 앱 화면이 남아 있을 때: 캐시·서비스워커 지우고 새로 받기
+  try { for (const r of (await navigator.serviceWorker?.getRegistrations?.()) || []) await r.unregister(); } catch { /* 무시 */ }
+  try { for (const k of await caches.keys()) await caches.delete(k); } catch { /* 무시 */ }
+  location.replace(location.pathname + "?v=" + Date.now() + location.hash);
+}
 async function fetchText(path) {
   const urls = [`../${path}?t=${Date.now()}`, `https://raw.githubusercontent.com/${REPO}/main/${path}?t=${Date.now()}`];
   for (const u of urls) {
@@ -582,7 +588,9 @@ function viewAI() {
   <button class="btn ghost" style="margin-bottom:10px" data-cmd="ai check" data-label="연결 점검">🩺 연결 점검 (AI마다 실제 호출해서 진단)</button>
   <div class="pgrid">${[...D.providers].sort((a, b) => b.connected - a.connected || b.free - a.free).map((p) => `
     <div class="card prov tap" data-prov="${esc(p.id)}"><span class="dot ${p.connected ? "" : "off"}"></span>
-    <div class="grow"><div class="t">${esc(NAMES[p.id] || p.id)}</div><div class="m">${p.connected ? "연결됨" : "미연결"} · ${p.free ? "무료" : "유료"}</div></div></div>`).join("")}</div>
+    <div class="grow"><div class="t">${esc(NAMES[p.id] || p.id)}</div><div class="m">${p.connected ? "키 등록됨" : "미연결"} · ${p.free ? "무료" : "유료"}</div>
+    ${checkOf(p.id) ? `<div class="m wrap">${esc(checkOf(p.id))}</div>` : ""}</div></div>`).join("")}</div>
+  ${D.ai_check && D.ai_check.ts ? `<p class="note">🩺 마지막 연결 점검 ${ago(D.ai_check.ts)}</p>` : ""}
   <div class="section-title"><h2>정보 출처 ${(D.sources || []).filter((x) => !x.removed).length}곳</h2><button data-open="addsite">＋ 사이트 추가</button></div>
   <div class="card">${(D.sources || []).filter((x) => !x.removed).slice(0, 8).map((x) => `<div class="row"><div class="grow">
     <div class="t">${esc(x.name)}</div><div class="m">${esc(x.category)} · ${esc(x.origin)} · ${esc(x.added || "")}</div></div>
@@ -592,6 +600,14 @@ function viewAI() {
       <div class="t">${esc(m.model)}</div><div class="bar ${m.dropped ? "bad" : ""}"><i style="width:${m.avg * 10}%"></i></div></div>
       <div style="text-align:right"><b>${m.avg}</b><div class="m">${m.n}회</div></div>${m.dropped ? '<span class="pill bad">탈락</span>' : ""}</div>`).join("")}</div>`
     : empty("🏆", "아직 평가 기록이 없어요", "AI 대결을 돌리면 같은 문제로 채점해 순위를 매겨요", { attr: 'data-open="arena"', label: "⚔️ AI 대결 시작" })}`;
+}
+
+function checkOf(id) {  // 'ai check' 결과에서 이 AI 줄 찾기 → "✅ 정상 (모델)" / "⚠️ 이유"
+  const want = id === "anthropic" ? "claude" : id;
+  const r = ((D.ai_check && D.ai_check.rows) || []).find((x) => x.replace(/^✅\s*/, "").toLowerCase().startsWith(want + ":"));
+  if (!r) return "";
+  const body = r.replace(/^✅\s*/, "").slice(want.length + 1).trim();
+  return (r.startsWith("✅") ? "✅ " : "") + body.slice(0, 90);
 }
 
 /* ───────── 화면: 보고서 ───────── */
@@ -712,7 +728,8 @@ const settingsSheet = () => {
   <div class="note"><b>토큰 만들기(1분):</b><ol><li><a target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens/new">새 토큰 만들기</a> 열기</li>
     <li>Repository access → <b>Only select</b> → <b>${esc(REPO.split("/")[1])}</b></li><li>Permissions → <b>Actions: Read and write</b> + <b>Contents: Read and write</b>(스토리 영상 올리기용)</li><li>생성된 토큰을 위에 붙여넣기</li></ol></div>
   <div class="note"><b>홈 화면에 앱으로 추가:</b> 아이폰은 Safari 공유 버튼 → 홈 화면에 추가 · 안드로이드는 Chrome 메뉴 → 앱 설치</div>
-  <div class="note">저장소: <a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}">${esc(REPO)}</a> · 데이터 ${ago(D && D.updated)}</div>`;
+  <button class="btn ghost" style="margin-top:10px" id="appUpdate">🔄 앱 새 버전 받기 (화면이 옛날 그대로일 때)</button>
+  <div class="note">앱 v${APP_V} · 저장소: <a target="_blank" rel="noopener" href="https://github.com/${esc(REPO)}">${esc(REPO)}</a> · 데이터 ${ago(D && D.updated)}</div>`;
 };
 const tokenFixSheet = (code) => code === "401"
   ? `<h3>🔑 토큰이 맞지 않아요</h3><p class="note">토큰이 만료됐거나 잘못 복사됐어요. 새로 만들어 ⚙️ 설정에 다시 붙여넣어 주세요.</p>
@@ -745,7 +762,9 @@ function render() {
   if (quick[hash]) { history.replaceState(null, "", "#home"); $("#view").innerHTML = `<div class="view-enter">${viewHome()}</div>`; return openSheet(quick[hash]()); }
   const v = { "#home": viewHome, "#make": viewMake, "#story": viewStory, "#videos": viewVideos, "#pipes": viewPipes, "#more": viewMore,
     "#biz": viewBiz, "#team": viewTeam, "#ai": viewAI, "#reports": viewReports }[hash] || viewHome;
-  $("#view").innerHTML = `<div class="view-enter">${v()}</div>`;
+  const stale = D.app_version && D.app_version > APP_V
+    ? `<button class="card tap" id="appUpdate" style="border-color:var(--accent);width:100%;text-align:left"><b id="appUpdate2">🔄 새 버전이 있어요</b><span class="m" style="display:block" id="appUpdate3">눌러서 최신 화면 받기 (키 등록 상태·새 기능 반영)</span></button>` : "";
+  $("#view").innerHTML = `<div class="view-enter">${stale}${v()}</div>`;
 }
 const KMC = {};
 async function kmongSheet(src = "kmong", head = "🛒 크몽 판매 글") {
@@ -856,6 +875,7 @@ document.addEventListener("click", async (e) => {
     if (!n || !d) return toast("이름과 하는 일을 입력해 주세요");
     dispatch(`agent new ${n} ${q(d)}`, "", "새 팀 만들기");
   }
+  if (/^appUpdate/.test(id)) { toast("새 버전 받는 중…"); return forceUpdate(); }
   if (id === "tokSave") {
     const v = $("#tok").value.trim(); if (v) store.set("gh_token", v);
     if (!token()) return toast("토큰을 붙여넣어 주세요");

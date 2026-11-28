@@ -259,7 +259,9 @@ def main(argv=None):
         if x.action == "status":
             p(providers.status())
         elif x.action == "check":
-            p("\n".join(providers.check_all()))
+            rows = providers.check_all()
+            store.save_json("ai_check.json", {"ts": store.now().isoformat(timespec="seconds"), "rows": rows})  # 앱 'AI 통합'에 AI별 상태 표시
+            p("\n".join(rows))
         elif x.action == "ask":
             text, used = providers.complete(x.prompt, spec={"tier": "worker", "tools": [], "model": x.model})
             p(text, f"\n— {used}")

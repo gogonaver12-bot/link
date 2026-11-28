@@ -16,6 +16,7 @@ def _report_list():
     return out
 
 
+APP_VERSION = 26  # app/app.js 의 APP_V 와 같게 — 폰 앱이 옛 버전이면 '새 버전 받기' 띄움
 KEY_NAMES = ["GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN", "YOUTUBE_OAUTH_REFRESH_TOKEN", "YOUTUBE_STORY_REFRESH_TOKEN", "BLOGGER_BLOG_ID",
              "GEMINI_API_KEY", "GROQ_API_KEY", "CEREBRAS_API_KEY", "NVIDIA_API_KEY", "OPENROUTER_API_KEY", "MISTRAL_API_KEY",
              "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "YOUTUBE_API_KEY", "PEXELS_API_KEY", "PIXABAY_API_KEY", "AUDIO_KEY", "POLLINATIONS_TOKEN", "HF_TOKEN", "GH_SEARCH_TOKEN"]
@@ -248,6 +249,8 @@ def build():
         "stories": _stories(),
         "local_jobs": __import__("mother.localshorts", fromlist=["jobs"]).jobs()[-8:][::-1],
         "progress": _progress(rev),
+        "ai_check": store.load_json("ai_check.json", {}),
+        "app_version": APP_VERSION,
         "keys_set": {k: bool(os.getenv(k)) for k in KEY_NAMES},  # 이름별 등록 여부만 (값은 절대 포함 안 함)
     }
     (store.DATA / "dashboard.json").write_text(store.redact(json.dumps(snap, ensure_ascii=False, indent=1)), encoding="utf-8")

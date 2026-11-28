@@ -132,7 +132,7 @@ def test_openai_tool_loop_and_agent_failover(monkeypatch):
         {"choices": [{"message": {"content": "끝"}}], "usage": {}},
     ])
 
-    def fake_post(url, headers, body):
+    def fake_post(url, headers, body, **kw):
         if body["model"] == "bad":
             raise providers.ProviderError("429 rate limit")
         assert "save_file" in [t["function"]["name"] for t in body["tools"]]
@@ -187,7 +187,7 @@ def test_gemini_only_mode_and_no_key_message(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "g")
     monkeypatch.setattr(providers, "pick_models", lambda p, n=1: ["g-flash"])
     assert providers.candidates({"tier": "worker", "tools": ["web_search", "crawl"]}) == [("gemini", "g-flash")]
-    monkeypatch.setattr(providers, "_post", lambda url, h, body: {
+    monkeypatch.setattr(providers, "_post", lambda url, h, body, **kw: {
         "choices": [{"message": {"content": '```json\n{"ideas": []}\n```'}}], "usage": {}})
     assert llm.ask_json("mother", "s", "p", {"type": "object"}) == {"ideas": []}
 
@@ -200,7 +200,7 @@ def test_model_level_failover_on_quota(monkeypatch):
     monkeypatch.setattr(tools, "_cached", lambda k, h, f: ["gemini-2.5-flash", "gemini-flash-latest", "gemini-flash-lite-latest", "text-embedding-004"])
     assert [m for _, m in providers.candidates({"tier": "worker", "tools": []})] == ["gemini-flash-lite-latest", "gemini-flash-latest"]
 
-    def fake_post(url, h, body):
+    def fake_post(url, h, body, **kw):
         if body["model"] == "gemini-flash-lite-latest":
             raise providers.ProviderError(f"{body['model']} 429: quota")
         return {"choices": [{"message": {"content": "안녕하세요"}}], "usage": {}}
